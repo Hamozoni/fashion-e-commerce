@@ -14,12 +14,15 @@ datasource db {
 }
 
 model Product {
-  id String @id @default(uuid())
+  id String @id @unique @default(uuid())
   name String
+  createdAt DateTime @default(now())
   priceInCent Int
-  isAvailable Boolean
-  descr String
+  isAvailable Boolean @default(true)
+  description String?
   specifications Specifications[]
+  imagesPath ImagesPath[]
+  count Int
 }
 
 model Specifications{
@@ -28,4 +31,25 @@ model Specifications{
   specification String
   product Product  @relation(fields: [productId], references: [id])
   productId String
+}
+model ImagesPath {
+  id String @id @default(uuid())
+  url String
+  color String?
+  product Product  @relation(fields: [productId], references: [id])
+  productId String
+}
+
+model User {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  email String @unique
+  userName String?
+  avatarPath String?
+  role      Role     @default(USER)
+}
+
+enum Role {
+  USER
+  ADMIN
 }
