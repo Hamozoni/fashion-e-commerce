@@ -23,6 +23,7 @@ model Product {
   specifications Specifications[]
   imagesPath ImagesPath[]
   count Int
+  order Order[]
 }
 
 model Specifications{
@@ -47,9 +48,26 @@ model User {
   userName String?
   avatarPath String?
   role      Role     @default(USER)
+  order Order[]
+}
+
+model Order {
+  id String @id @default(uuid())
+  status Status @default(PENDDING)
+  pricePaidInCent Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  products Product[]
+  userId String
+  user User @relation(fields: [userId],references: [id])
 }
 
 enum Role {
   USER
   ADMIN
+}
+
+enum Status {
+  PENDDING
+  
 }
