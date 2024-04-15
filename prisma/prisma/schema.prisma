@@ -23,7 +23,9 @@ model Product {
   specifications Specifications[]
   imagesPath ImagesPath[]
   count Int
-  order Order[]
+  orders Order[]
+  categories Category[]
+  subCategories SubCategory[]
 }
 
 model Specifications{
@@ -41,6 +43,18 @@ model ImagesPath {
   productId String
 }
 
+model Category {
+  id    String    @id @default(uuid())
+  name  CategoryOpptin @default(men)
+  products Product[]
+}
+
+model SubCategory {
+  id    String    @id @default(uuid())
+  name  SubCategoryOpptio @default(shoes)
+  products Product[]
+}
+
 model User {
   id String @id @default(uuid())
   createdAt DateTime @default(now())
@@ -48,12 +62,12 @@ model User {
   userName String?
   avatarPath String?
   role      Role     @default(USER)
-  order Order[]
+  orders Order[]
 }
 
 model Order {
   id String @id @default(uuid())
-  status Status @default(PENDDING)
+  status Status @default(pendding)
   pricePaidInCent Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -68,6 +82,18 @@ enum Role {
 }
 
 enum Status {
-  PENDDING
-  
+  pendding
+}
+
+enum CategoryOpptin {
+  men
+  momen
+  kids
+}
+
+enum SubCategoryOpptio {
+  shoes
+  t_shirts
+  shirts
+  pants
 }
