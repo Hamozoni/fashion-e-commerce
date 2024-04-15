@@ -12,3 +12,20 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Product {
+  id String @id @default(uuid())
+  name String
+  priceInCent Int
+  isAvailable Boolean
+  descr String
+  specifications Specifications[]
+}
+
+model Specifications{
+  id String @id @default(uuid())
+  name String
+  specification String
+  product Product  @relation(fields: [productId], references: [id])
+  productId String
+}
