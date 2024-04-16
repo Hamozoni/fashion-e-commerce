@@ -17,7 +17,9 @@ model Product {
   id String @id @unique @default(uuid())
   name String
   createdAt DateTime @default(now())
+  updateddAt DateTime @updatedAt
   priceInCent Int
+  oldPriceInCent Int? @default(0)
   isAvailable Boolean @default(true)
   description String?
   specifications Specifications[]
