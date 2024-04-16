@@ -87,7 +87,7 @@ enum Status {
 
 enum CategoryOpptin {
   men
-  momen
+  Women
   kids
 }
 
