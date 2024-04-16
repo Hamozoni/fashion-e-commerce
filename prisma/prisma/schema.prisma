@@ -25,7 +25,7 @@ model Product {
   count Int
   orders Order[]
   categories Category[]
-  subCategories SubCategory[]
+  subCategories SubCategory[] 
 }
 
 model Specifications{
