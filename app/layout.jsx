@@ -1,5 +1,5 @@
 
-import "./globals.scss";
+import "./globals.css";
 
 
 export const metadata = {
