@@ -6,7 +6,7 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header className="flex align-middle justify-between bg-purple-100 p-6">
-        <h4 className="text-2xl font-bold uppercase">
+        <h4 className="text-3xl font-bold uppercase">
             myh shop
         </h4>
         <nav className="flex align-middle gap-5">
