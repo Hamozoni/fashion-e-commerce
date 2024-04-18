@@ -10,7 +10,10 @@ const Header = () => {
             myh shop
         </h4>
         <nav>
-            <Link href={`/`}>ggg</Link>
+            <Link href={`/admin/dashbourd`}>dashbourd</Link>
+            <Link href={`/admin/products`}>products</Link>
+            <Link href={`/admin/customers`}>customers</Link>
+            <Link href={`/admin/customers`}>sales</Link>
         </nav>
     </header>
   )
