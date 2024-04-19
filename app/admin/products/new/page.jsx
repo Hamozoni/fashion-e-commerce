@@ -3,16 +3,16 @@
 const NewProducts = () => {
 
     const className = {
-        inputsDev: 'pb-4 mb-3 min-w-fit  border-b border-slate-100',
-        inputClass : 'min-w-full text-gray-900 border-slate-200 border  focus:border-slate-400 rounded-lg p-2 my-2',
+        inputsDev: 'pb-4 mb-3  border-b border-slate-100',
+        inputClass : 'w-full max-w-full  text-gray-900 border-slate-200 border  focus:border-slate-400 rounded-lg p-2 my-2',
         label: 'text-xl font-bold text-slate-700',
-        sumBtn: 'min-w-full rounded-lg p-2 my-2 border-slate-200 border font-bold text-xl text-slate-700 bg-slate-100 uppercase hover:shadow-md '
+        sumBtn: 'w-full max-w-full  rounded-lg p-2 my-2 border-slate-200 border font-bold text-xl text-slate-700 bg-slate-100 uppercase hover:shadow-md '
     };
 
   return (
-    <div className="p-4 lg:p-10 w-full">
-        <form className="mx-auto  border border-slate-100 p-4 rounded-md   min-w-fit shadow-lg" action="" type='POST' >
-        <h3 className="py-4 mb-6 font-bold text-2xl border-b border-slate-100 ">adding new product form</h3>
+    <div className="p-4 lg:p-10 w-full max-w-full ">
+        <h3 className="pb-4 font-bold text-2xl">adding new product form</h3>
+        <form className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" action="" >
             <div className={className.inputsDev}>
                 <label className={className.label}  htmlFor="title">title : </label>
                 <input 
