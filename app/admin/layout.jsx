@@ -1,4 +1,4 @@
-import Header from "./_components/header/header";
+import Header from "./_components/header/Header";
 
 export const metadata = {
     title: "myh store shop",
