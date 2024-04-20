@@ -4,6 +4,10 @@ import {z} from "zod";
 
 export async function addProtuct(formData) {
 
+  const fileSchema = z.instanceof(File,{message: 'Required'})
+
+  const imagePath = fileSchema.refine(file => file.size === 0 || file.name.startsWith('image/'))
+
     z.object({
        title : z.string().min(1),
        price: z.coerce.number().int(1),
@@ -14,7 +18,8 @@ export async function addProtuct(formData) {
        specifications: z.string().min(5),
        isAvailble: z.coerce.boolean(),
        count : z.coerce.number().int(1),
-       imagePath: Image
+       serialNumber : z.coerce.number().count(10),
+       imagePath: imagePath,
     })
 }
  

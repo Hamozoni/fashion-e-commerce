@@ -123,6 +123,16 @@ const NewProducts = () => {
                     required
                     />
             </div>
+            <div className={className.inputsDev}>
+                <label className={className.label}  htmlFor="serialNumber">serial Number : </label>
+                <input 
+                    className={className.inputClass} 
+                    type="number" 
+                    name="serialNumber" 
+                    id="serialNumber-path" 
+                    required
+                    />
+            </div>
 
             <button type="submit" className={className.sumBtn}>save</button>
             
