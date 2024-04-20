@@ -16,8 +16,8 @@ const Header = () => {
         <nav className="flex align-middle gap-5">
             <Link href={`/admin/dashbourd`} className={className.link}>dashbourd</Link>
             <Link href={`/admin/products`} className={className.link} >products</Link>
-            {/* <Link href={`/admin/customers`} className={className.link} >customers</Link>
-            <Link href={`/admin/customers`} className={className.link} >sales</Link> */}
+            <Link href={`/admin/customers`} className={className.link} >customers</Link>
+            <Link href={`/admin/customers`} className={className.link} >sales</Link>
         </nav>
     </header>
   )
