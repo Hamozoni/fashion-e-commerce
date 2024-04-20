@@ -1,4 +1,6 @@
+"use client";
 
+import {addProtuct} from "../../_actions/addProtuct";
 
 const NewProducts = () => {
 
@@ -12,7 +14,7 @@ const NewProducts = () => {
   return (
     <div className="p-4 lg:p-10 w-full max-w-full ">
         <h3 className="pb-4 font-bold text-2xl">adding new product form</h3>
-        <form className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" action="" >
+        <form className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" action={addProtuct} >
             <div className={className.inputsDev}>
                 <label className={className.label}  htmlFor="title">title : </label>
                 <input 
@@ -93,11 +95,11 @@ const NewProducts = () => {
             <div className={`${className.inputsDev} flex gap-4`}>
                 <div className='{className}'>
                     <label className={className.label}  htmlFor="not-availble"> not availble : </label>
-                    <input type="radio" name="availble" value='no' id="not-availble" />
+                    <input type="radio" name="availble" value='false' id="not-availble" />
                 </div>
                 <div className='{className}'>
                    <label className={className.label}  htmlFor="availble">availble : </label>
-                   <input type="radio" name="availble" value='yes' id="availble" />
+                   <input type="radio" name="availble" value='true' id="availble" />
                 </div>
             </div>
             <div className={className}>
