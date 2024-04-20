@@ -73,7 +73,7 @@ const NewProducts = () => {
                 <label className={className.label}  htmlFor="about">about this item : </label>
                <textarea 
                     className={className.inputClass}  
-                    name="about" 
+                    name="aboutThisItem" 
                     id="about" 
                     placeholder="about this item" 
                     cols="10" rows="10"
@@ -95,11 +95,11 @@ const NewProducts = () => {
             <div className={`${className.inputsDev} flex gap-4`}>
                 <div className='{className}'>
                     <label className={className.label}  htmlFor="not-availble"> not availble : </label>
-                    <input type="radio" name="availble" value='false' id="not-availble" />
+                    <input type="radio" name="isAvailble" value='false' id="not-availble" />
                 </div>
                 <div className='{className}'>
                    <label className={className.label}  htmlFor="availble">availble : </label>
-                   <input type="radio" name="availble" value='true' id="availble" />
+                   <input type="radio" name="isAvailble" value='true' id="availble" />
                 </div>
             </div>
             <div className={className}>

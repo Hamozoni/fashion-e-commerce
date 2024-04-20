@@ -29,6 +29,7 @@ model Product {
   categories Category[]
   subCategories SubCategory[] 
   reviews Reviews[]
+  aboutThisItem String
 }
 
 model Specifications{
