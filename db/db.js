@@ -1,4 +1,12 @@
 import { PrismaClient } from '@prisma/client'
 
-const db = new PrismaClient();
-// use `prisma` in your application to read and write data in your DB
+const prismaClientSingleton = () => {
+  return new PrismaClient()
+}
+
+
+const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
+
+export default prisma
+
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma
