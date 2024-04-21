@@ -51,7 +51,6 @@ export async function addProtuct(formData) {
         priceInCent: parseInt(product?.price),
         isAvailable: product?.isAvailble === 'true' ? true : false,
         description : product?.description,
-        // specifications: product?.specifications,
         imagesPath: imageUrl,
         count: parseInt(product?.count) ,
         category: product?.category,

@@ -20,25 +20,43 @@ model Product {
   updateddAt DateTime @updatedAt
   priceInCent Int
   offerPriceInCent Int? @default(0)
+  isOffer Boolean @default(false)
   isAvailable Boolean @default(true)
   description  String @db.Text
-  specifications Specifications[]
-  imagesPath String
-  count Int
-  orders Order[]
+  count Int @default(1)
   category String
   subCategory String
-  reviews Reviews[]
   aboutThisItem String @db.Text
-  serialNumber Int @default(0000000000)
+  serialNumber String? @unique
+  specifications Specifications[]
+  orders Order[]
+  reviews Reviews[]
+  images  ProductImages[]
+  sizes ProductSizes[]
 }
 
 model Specifications{
   id String @id @default(uuid())
-  name String
-  specification String
+  key String
+  value String
   product Product  @relation(fields: [productId], references: [id])
   productId String
+}
+
+model ProductImages {
+  id String @id @default(uuid())
+  imagePath String
+  color String
+  product Product  @relation(fields: [productId], references: [id])
+  productId String
+}
+
+model ProductSizes {
+    id String @id @default(uuid())
+    name String
+    description String?
+    product Product  @relation(fields: [productId], references: [id])
+    productId String
 }
 
 model Reviews {
