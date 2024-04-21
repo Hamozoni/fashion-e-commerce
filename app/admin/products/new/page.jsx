@@ -1,28 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import {addProtuct} from "../../_actions/addProtuct";
+
+const id = `${Math.random().toString(16).slice(2)}id${Math.random().toString(16).slice(2)}`;
 
 const productImage = {
     imagePath: '',
     color: '',
-    productId: ''
+    productId: id
 }
 
 const productSpecification= {
     key: '',
     value: '',
-    productId: ''
+    productId: id
 }
 
 const productSize= {
     name: '',
     value: '',
     description: '',
-    productId: ''
+    productId: id
 }
 
 const product = {
+    id,
     name : '',
     priceInCent : 0,
     offerPriceInCent: null,
