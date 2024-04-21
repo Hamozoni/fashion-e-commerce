@@ -50,18 +50,28 @@ export async function addProtuct(formData) {
         name : product?.name,
         priceInCent: parseInt(product?.price),
         isAvailable: product?.isAvailble === 'true' ? true : false,
-        description : product?.description,
+        description : Buffer.from([...product?.description]),
         // specifications: product?.specifications,
         imagesPath: imageUrl,
         count: parseInt(product?.count) ,
-        // categories: product?.category,
-        // subCategories: product?.subCategories,
-        aboutThisItem: product?.aboutThisItem,
+        aboutThisItem: Buffer.from([...product?.aboutThisItem]),
         serialNumber: parseInt(product?.serialNumber)
 
     }})
 
-    console.log(newProduct)
+    const category = await prisma.category.create({data : {
+        name : product?.category,
+        productId: newProduct.id
+
+    }})
+
+    const subcategorycategory = await prisma.subCategory.create({data : {
+      name : product?.subCategories,
+      productId: newProduct.id
+
+  }})
+
+    console.log(newProduct,category)
 
     redirect('/admin/products')
 }

@@ -21,7 +21,7 @@ model Product {
   priceInCent Int
   oldPriceInCent Int? @default(0)
   isAvailable Boolean @default(true)
-  description Bytes?
+  description  String @db.Text
   specifications Specifications[]
   imagesPath String
   count Int
@@ -31,7 +31,7 @@ model Product {
   subcategoryId String
   subCategories SubCategory? @relation(fields: [subcategoryId],references: [id])
   reviews Reviews[]
-  aboutThisItem Bytes
+  aboutThisItem String @db.Text
   serialNumber Int @default(0000000000)
 }
 
