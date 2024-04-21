@@ -26,10 +26,8 @@ model Product {
   imagesPath String
   count Int
   orders Order[]
-  categoryId String
-  categories Category? @relation(fields: [categoryId],references: [id])
-  subcategoryId String
-  subCategories SubCategory? @relation(fields: [subcategoryId],references: [id])
+  category String
+  subCategory String
   reviews Reviews[]
   aboutThisItem String @db.Text
   serialNumber Int @default(0000000000)
@@ -43,13 +41,6 @@ model Specifications{
   productId String
 }
 
-model Category {
-  id    String    @id @default(uuid())
-  name  String
-  productId String
-  products Product[] 
-}
-
 model Reviews {
   id String @id @default(uuid())
   text String
@@ -58,11 +49,7 @@ model Reviews {
   user User @relation(fields: [autherId],references: [id])
   product Product @relation(fields: [productId],references: [id])
 }
-model SubCategory {
-  id    String    @id @default(uuid())
-  name  String
-  products Product[]
-}
+
 
 model User {
   id String @id @default(uuid())
