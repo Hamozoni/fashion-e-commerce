@@ -19,7 +19,7 @@ model Product {
   createdAt DateTime @default(now())
   updateddAt DateTime @updatedAt
   priceInCent Int
-  oldPriceInCent Int? @default(0)
+  offerPriceInCent Int? @default(0)
   isAvailable Boolean @default(true)
   description  String @db.Text
   specifications Specifications[]
