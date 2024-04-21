@@ -3,10 +3,15 @@ CREATE TABLE `Product` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updateddAt` DATETIME(3) NOT NULL,
     `priceInCent` INTEGER NOT NULL,
+    `oldPriceInCent` INTEGER NULL DEFAULT 0,
     `isAvailable` BOOLEAN NOT NULL DEFAULT true,
     `description` VARCHAR(191) NULL,
+    `imagesPath` VARCHAR(191) NOT NULL,
     `count` INTEGER NOT NULL,
+    `aboutThisItem` VARCHAR(191) NOT NULL,
+    `serialNumber` INTEGER NOT NULL DEFAULT 0,
 
     UNIQUE INDEX `Product_id_key`(`id`),
     PRIMARY KEY (`id`)
@@ -23,19 +28,19 @@ CREATE TABLE `Specifications` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `ImagesPath` (
+CREATE TABLE `Category` (
     `id` VARCHAR(191) NOT NULL,
-    `url` VARCHAR(191) NOT NULL,
-    `color` VARCHAR(191) NULL,
-    `productId` VARCHAR(191) NOT NULL,
+    `name` ENUM('men', 'Women', 'kids') NOT NULL DEFAULT 'men',
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Category` (
+CREATE TABLE `Reviews` (
     `id` VARCHAR(191) NOT NULL,
-    `name` ENUM('men', 'momen', 'kids') NOT NULL DEFAULT 'men',
+    `text` VARCHAR(191) NOT NULL,
+    `productId` VARCHAR(191) NOT NULL,
+    `autherId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -104,7 +109,10 @@ CREATE TABLE `_OrderToProduct` (
 ALTER TABLE `Specifications` ADD CONSTRAINT `Specifications_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `Product`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ImagesPath` ADD CONSTRAINT `ImagesPath_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `Product`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Reviews` ADD CONSTRAINT `Reviews_autherId_fkey` FOREIGN KEY (`autherId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Reviews` ADD CONSTRAINT `Reviews_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `Product`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Order` ADD CONSTRAINT `Order_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

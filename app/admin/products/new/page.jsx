@@ -19,7 +19,7 @@ const NewProducts = () => {
                 <label className={className.label}  htmlFor="title">title : </label>
                 <input 
                     type="text" 
-                    name="title" 
+                    name="name" 
                     id="title" 
                     className={className.inputClass} 
                     placeholder="the name of the product..."
@@ -56,7 +56,7 @@ const NewProducts = () => {
                     type="text" 
                     name="category" 
                     id="category" 
-                    placeholder="the category of the product..."
+                    placeholder="if there is more than one category  one||two"
                      />
             </div>
             <div className={className}>
@@ -66,7 +66,7 @@ const NewProducts = () => {
                     type="text" 
                     name="subcategory" 
                     id="subcategory" 
-                    placeholder="the subcategory of the product..."
+                    placeholder="if there is more than one subcategory  one||two"
                      />
             </div>
             <div className={className}>
@@ -86,7 +86,7 @@ const NewProducts = () => {
                     className={className.inputClass}  
                     name="specifications" 
                     id="specifications" 
-                    placeholder="specifications should be key_ _value|| key_ _value|| key_ _value||else.." 
+                    placeholder="specifications should be key_ _value|| key_ _value|| key_ _value|| else.." 
                     cols="10" rows="10"
                     required
                     ></textarea>
@@ -130,6 +130,7 @@ const NewProducts = () => {
                     type="number" 
                     name="serialNumber" 
                     id="serialNumber-path" 
+                    placeholder="serial number shold be 10 degits"
                     required
                     />
             </div>

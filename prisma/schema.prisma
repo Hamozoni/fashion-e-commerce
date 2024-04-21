@@ -26,8 +26,10 @@ model Product {
   imagesPath String
   count Int
   orders Order[]
-  categories Category[]
-  subCategories SubCategory[] 
+  categoryId String
+  categories Category? @relation(fields: [categoryId],references: [id])
+  subcategoryId String
+  subCategories SubCategory? @relation(fields: [subcategoryId],references: [id])
   reviews Reviews[]
   aboutThisItem String
   serialNumber Int @default(0000000000)
@@ -43,8 +45,9 @@ model Specifications{
 
 model Category {
   id    String    @id @default(uuid())
-  name  CategoryOpptin @default(men)
-  products Product[]
+  name  String
+  productId String
+  products Product[] 
 }
 
 model Reviews {
@@ -57,7 +60,7 @@ model Reviews {
 }
 model SubCategory {
   id    String    @id @default(uuid())
-  name  SubCategoryOpptio @default(shoes)
+  name  String
   products Product[]
 }
 
@@ -92,15 +95,3 @@ enum Status {
   pendding
 }
 
-enum CategoryOpptin {
-  men
-  Women
-  kids
-}
-
-enum SubCategoryOpptio {
-  shoes
-  t_shirts
-  shirts
-  pants
-}
