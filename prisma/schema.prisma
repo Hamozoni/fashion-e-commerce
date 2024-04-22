@@ -28,11 +28,14 @@ model Product {
   subCategory String
   aboutThisItem String @db.Text
   serialNumber String? @unique
+  selectedSize String?
+  selectedColor String?
   specifications Specifications[]
   orders Order[]
   reviews Reviews[]
   images  ProductImages[]
   sizes ProductSizes[]
+
 }
 
 model Specifications{

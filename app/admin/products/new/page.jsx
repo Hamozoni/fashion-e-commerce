@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import FormInput from "./FormInput";
 
 const id = `${Math.random().toString(16).slice(2)}id${Math.random().toString(16).slice(2)}`;
 
@@ -41,9 +42,51 @@ const product = {
     sizes: [productSize]
 };
 
+const inputsInfo = [
+    {
+       value : 'name',
+       title: 'name',
+       type: 'text',
+       place:'the name of the product...'
+    },
+    {
+        value : 'priceInCent',
+        title: 'price',
+        type: 'number',
+        place:'the price of the product in cent...'
+     },
+     {
+        value : 'category',
+        title: 'category',
+        type: 'text',
+        place:'the category of your product...'
+     },
+     {
+        value : 'subCategory',
+        title: 'subcategory',
+        type: 'text',
+        place:'the subcategory of your product...'
+     },
+     {
+        value : 'count',
+        title: 'count',
+        type: 'number',
+        place:'how many product you want to add...'
+     },
+     {
+        value : 'serialNumber',
+        title: 'serial number',
+        type: 'number',
+        place:'serial number shold be 10 degits'
+     },
+
+]
+
 const NewProducts = () => {
 
     const [data,setData] = useState(product);
+
+    console.log(data)
     
     const className = {
         inputsDev: 'pb-4 mb-3  border-b border-slate-100',
@@ -56,26 +99,23 @@ const NewProducts = () => {
     <div className="p-4 lg:p-10 w-full max-w-full ">
         <h3 className="pb-4 font-bold text-2xl">adding new product form</h3>
         <form className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
-            <div className={className.inputsDev}>
-                <label className={className.label}  htmlFor="title">title : </label>
-                <input 
-                    type="text" 
-                    id="title" 
-                    className={className.inputClass} 
-                    placeholder="the name of the product..."
-                    required
-                     />
-            </div>
-            <div className={className.inputsDev}>
-                <label className={className.label}  htmlFor="price">price : </label>
-                <input 
-                    className={className.inputClass} 
-                    type="number" 
-                    id="price" 
-                    placeholder="the price of the product in cent..."
-                    required
-                     />
-            </div>
+            {
+                inputsInfo.map(input=> (
+                    <FormInput 
+                        key={input.value}
+                        value={input.value} 
+                        setvalue={(e)=> setData(prev=> {
+                            return {
+                                ...prev,
+                                [input.value]: e
+                            }
+                        })} 
+                        title={input.title} 
+                        type={input.type}
+                        placeHolder={input.place}
+                    />
+                ))
+            }
             <div className={className.inputsDev}>
                 <label className={className.label}  htmlFor="description">description : </label>
                 <textarea 
@@ -87,24 +127,6 @@ const NewProducts = () => {
                     required
                     ></textarea>
             </div>
-            <div className={className.inputsDev}>
-                <label className={className.label}  htmlFor="category">category : </label>
-                <input 
-                    className={className.inputClass} 
-                    type="text" 
-                    id="category" 
-                    placeholder="if there is more than one category  one||two"
-                     />
-            </div>
-            <div className={className}>
-                <label  className={className.label} htmlFor="subcategory">subcategory : </label>
-                <input 
-                    className={className.inputClass} 
-                    type="text" 
-                    id="subcategory" 
-                    placeholder="if there is more than one subcategory  one||two"
-                     />
-            </div>
             <div className={className}>
                 <label className={className.label}  htmlFor="about">about this item : </label>
                <textarea 
@@ -115,10 +137,6 @@ const NewProducts = () => {
                     required
                     ></textarea>
             </div>
-            <div className={className}>
-                <label className={className.label}  htmlFor="specifications">specifications : </label>
-               
-            </div>
             <div className={`${className.inputsDev} flex gap-4`}>
                 <div className='{className}'>
                     <label className={className.label}  htmlFor="not-availble"> not availble : </label>
@@ -128,27 +146,6 @@ const NewProducts = () => {
                    <label className={className.label}  htmlFor="availble">availble : </label>
                    <input type="radio" value='true' id="availble" />
                 </div>
-            </div>
-            <div className={className}>
-                <label className={className.label}  htmlFor="count">count : </label>
-                <input 
-                    className={className.inputClass} 
-                    type="number" 
-                    name="count" 
-                    id="count" 
-                    placeholder="the count of the product..."
-                    required
-                     />
-            </div>
-            <div className={className.inputsDev}>
-                <label className={className.label}  htmlFor="serialNumber">serial Number : </label>
-                <input 
-                    className={className.inputClass} 
-                    type="number" 
-                    id="serialNumber-path" 
-                    placeholder="serial number shold be 10 degits"
-                    required
-                    />
             </div>
 
             <button type="submit" className={className.sumBtn}>save</button>
