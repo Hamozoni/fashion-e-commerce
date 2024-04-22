@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 
-export default function SpecificationInputs({id,setData}) {
+export default function SpecificationInputs({id,setData,className}) {
 
 
     const specificationObj = {
@@ -14,32 +14,33 @@ export default function SpecificationInputs({id,setData}) {
     };
 
     const [specificationArr,setSpecification] = useState([specificationObj]);
-    const [add,setAdd] = useState('add');
 
     const addMore = ()=> {
-        setData(prev=> {
-            return [...prev,['specifications'] = [...specificationArr]]
+        setSpecification(prev=> {
+            return [...prev,specificationObj]
         })
-    }
+    };
 
-    const addSpice = ()=> {
-        setData(prev=> [...prev,specificationObj])
-        setAdd('added')
-    }
+    useEffect(()=> {
+        setData(prev => {
+          return  [prev,prev.specifications = specificationArr]
+        })
+    },[specificationArr])
+
 
   return (
-    <div>
+    <div className={className.inputsDev} >
         <div className="flex items-center justify-between">
-            <h4>Specifications :</h4>
-            <p onClick={addMore}>add more</p>
+            <h4 className={className.label} >Specifications :</h4>
         </div>
         {
             specificationArr?.map((_,i)=> (
 
-                <div key={Math.random().toString(16).slice(2)} className="">
-                    <div className="">
-                        <label htmlFor={'key-'+i}>key</label>
+                <div key={Math.random().toString(16).slice(2)} className="flex align-middle gap-4">
+                    <div className="flex items-center gap-3 w-1/2">
+                        <label className={className.label} htmlFor={'key-'+i}>key:</label>
                         <input 
+                            className={className.inputClass}
                             onChange={e=> setSpecification(prev=> {
                                 return [...prev,
                                     prev[i].key = e.target.value 
@@ -52,9 +53,10 @@ export default function SpecificationInputs({id,setData}) {
                             />
 
                     </div>
-                    <div className="">
-                        <label htmlFor={'value-'+i}>value</label>
+                    <div className="flex items-center gap-3 w-1/2">
+                        <label className={className.label} htmlFor={'value-'+i}>value:</label>
                         <input
+                            className={className.inputClass}
                             onChange={e=> setSpecification(prev=> {
                                 return [...prev,
                                     prev[i].value = e.target.value 
@@ -69,9 +71,7 @@ export default function SpecificationInputs({id,setData}) {
                 </div>
             ))
         }
-
-        <button onClick={addSpice}>{add}</button>
-
+        <p onClick={addMore}>add more</p>
     </div>
   )
 }

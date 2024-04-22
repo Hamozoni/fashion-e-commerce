@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import FormInput from "./FormInput";
+import SpecificationInputs from "./SpecificationInputs";
 
 const id = `${Math.random().toString(16).slice(2)}id${Math.random().toString(16).slice(2)}`;
 
@@ -131,6 +132,7 @@ const NewProducts = () => {
                     required
                     ></textarea>
             </div>
+            <SpecificationInputs id={id} setData={setData} className={className} />
             <div className={`${className.inputsDev} flex gap-4`}>
                 <div className='{className}'>
                     <label className={className.label}  htmlFor="not-availble"> not availble : </label>
