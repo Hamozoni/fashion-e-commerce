@@ -96,7 +96,7 @@ export default function SpecificationInputs({id,setData,className}) {
                 </div>
             ))
         }
-        <div className="flex items-center gap-4 w-fit mx-auto text-center cursor-pointer pt-3">
+        <div className="flex items-center gap-4 w-fit mx-auto text-center cursor-pointer py-3">
         
             <p className="font-bold px-4 py-1  rounded-lg border-slate-200 border hover:bg-slate-200 " onClick={addMore}>add more field</p>
             {
