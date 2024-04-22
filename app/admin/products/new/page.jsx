@@ -11,12 +11,6 @@ const productImage = {
     productId: id
 }
 
-const productSpecification= {
-    key: '',
-    value: '',
-    productId: id
-}
-
 const productSize= {
     name: '',
     value: '',
@@ -37,7 +31,7 @@ const product = {
     subCategory: '',
     aboutThisItem: '',
     serialNumber: '',
-    specifications: [productSpecification],
+    specifications: [],
     images: [productImage],
     sizes: [productSize]
 };
