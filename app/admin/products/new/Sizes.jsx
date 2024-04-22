@@ -28,18 +28,18 @@ export default function Sizes({id,setdata,className}) {
     },[sizes]);
   return (
     <div>
-        <h4 className={className.label}>sizes :</h4>
+        <h4 className={`${className.label} pb-3`}>sizes </h4>
         <div  className={className.inputsDev}>
             {
                 sizes.map((_,i)=> (
                     <div>
-                        <div className={className.inputClass}>
-                            <label >name </label>
-                            <input type="text" placeholder="enter the name of your size..." />
+                        <div >
+                            <label >name :</label>
+                            <input type="text" className={className.inputClass} placeholder="enter the name of your size..." />
                         </div>
-                        <div className={className.inputClass}>
+                        <div>
                             <label >description :</label>
-                            <input type="text" placeholder="enter the description of your size..." />
+                            <input className={className.inputClass} type="text" placeholder="enter the description of your size..." />
                         </div>
                     </div>
                 ))
