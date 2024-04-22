@@ -29,12 +29,12 @@ export default function Sizes({id,setdata,className}) {
         <div  className={className.inputsDev}>
             {
                 sizes.map((_,i)=> (
-                    <div>
-                        <div >
+                    <div className="md:flex items-center gap-3 w-full">
+                        <div className="md:w-1/2" >
                             <label >name :</label>
                             <input type="text" className={className.inputClass} placeholder="enter the name of your size..." />
                         </div>
-                        <div>
+                        <div className="md:w-1/2">
                             <label >description :</label>
                             <input className={className.inputClass} type="text" placeholder="enter the description of your size..." />
                         </div>

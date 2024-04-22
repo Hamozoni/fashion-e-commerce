@@ -70,7 +70,11 @@ const NewProducts = () => {
     const [images,setImages] = useState([]);
     const [sizes,setSizes] = useState([]);
 
-    console.log(data)
+    const handleSubmit = async (e)=> {
+        e.preventDefault();
+        await fetch('/api/product/new',{method:'post',})
+
+    }
     
     const className = {
         inputsDev: '2r21 *:  QEWpb-4 mb-3  border-b border-slate-100',
@@ -151,7 +155,7 @@ const NewProducts = () => {
 
             </div>
 
-            <button type="submit" className={className.sumBtn}>save</button>
+            <button type="submit" className={className.sumBtn} onSubmit={handleSubmit}>save</button>
             
         </form>
     </div>
