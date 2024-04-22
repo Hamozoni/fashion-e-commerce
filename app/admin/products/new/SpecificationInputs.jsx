@@ -1,32 +1,66 @@
 "use client"
 
-import { useEffect, useState } from "react"
-
+import {  useEffect, useState } from "react"
 
 
 export default function SpecificationInputs({id,setData,className}) {
 
 
-    const specificationObj = {
-        key :'',
-        value: '',
-        id: id
-    };
 
-    const [specificationArr,setSpecification] = useState([specificationObj]);
+    const [specificationArr,setSpecification] = useState([{ key:'',value: '',id,}]);
+
+    console.log(specificationArr)
 
     const addMore = ()=> {
         setSpecification(prev=> {
-            return [...prev,specificationObj]
+            return [...prev,{
+                key:'',
+                value: '',
+                id,
+            }]
         })
     };
 
     useEffect(()=> {
         setData(prev => {
-          return  [prev,prev.specifications = specificationArr]
+            prev.specifications = specificationArr.filter(el=> el !== undefined)
+          return prev
         })
-    },[specificationArr])
+    },[specificationArr]);
 
+    const handleDelete = (i)=> {
+        if(i !== 0) {
+            setSpecification(prev=> {
+                console.log(i)
+                
+                prev[i] = undefined
+             return[...prev]
+            })
+        }
+    }
+
+    const addKey = (e,i)=> {
+
+       setSpecification(prev=> {
+            prev[i].key = e.target.value;
+            prev[i].id = id
+            return [...prev]
+           }
+        )
+
+     document.getElementById(`${'key-'+i}`).focus()
+        
+    }
+
+    const addValue =  (e,i)=> {
+           setSpecification(prev=> {
+                prev[i].value = e.target.value;
+                prev[i].id = id
+                return [...prev]
+            })
+                document.getElementById(`${'value-'+i}`).focus()
+
+    }
 
   return (
     <div className={className.inputsDev} >
@@ -34,18 +68,16 @@ export default function SpecificationInputs({id,setData,className}) {
             <h4 className={className.label} >Specifications :</h4>
         </div>
         {
-            specificationArr?.map((_,i)=> (
+            specificationArr?.map((el,i)=> (
+                el !== undefined &&
 
-                <div key={Math.random().toString(16).slice(2)} className="flex align-middle gap-4">
+                <div  className="flex align-middle gap-4">
                     <div className="flex items-center gap-3 w-1/2">
                         <label className={className.label} htmlFor={'key-'+i}>key:</label>
                         <input 
+                            value={el.key}
                             className={className.inputClass}
-                            onChange={e=> setSpecification(prev=> {
-                                return [...prev,
-                                    prev[i].key = e.target.value 
-                                ]
-                            })}
+                            onChange={e=> addKey(e,i)}
                             type="text" 
                             required  
                             id={'key-'+i} 
@@ -57,21 +89,21 @@ export default function SpecificationInputs({id,setData,className}) {
                         <label className={className.label} htmlFor={'value-'+i}>value:</label>
                         <input
                             className={className.inputClass}
-                            onChange={e=> setSpecification(prev=> {
-                                return [...prev,
-                                    prev[i].value = e.target.value 
-                                ]
-                            })}
+                            value={el.value}
+                            onChange={e=> addValue(e,i)}
                             type="text" 
                             required  
                             id={'value-'+i} 
                             placeholder="enter your specifications value" 
                           />
                     </div>
+                    {
+                        i === 0 ?  <p onClick={addMore}>more</p>:
+                        <p onClick={()=> handleDelete(i)}>delete</p>
+                    }
                 </div>
             ))
         }
-        <p onClick={addMore}>add more</p>
     </div>
   )
 }
