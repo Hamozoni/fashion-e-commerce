@@ -22,10 +22,7 @@ export default function Images({setData,id,className}) {
     };
 
     useEffect(()=> {
-        setData(prev => {
-            prev.images = images
-          return prev
-        })
+        setData(prev => [...prev,...images])
     },[images]);
 
   return (

@@ -21,10 +21,7 @@ export default function Sizes({id,setdata,className}) {
     };
 
     useEffect(()=> {
-        setSizes(prev => {
-            prev.setSizes = sizes
-          return prev
-        })
+        setdata(prev => [...prev,...sizes])
     },[sizes]);
   return (
     <div>

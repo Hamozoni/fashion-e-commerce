@@ -123,7 +123,7 @@ const NewProducts = () => {
             </div>
             <SpecificationInputs id={id} setData={setSpecifications} className={className} />
             <Images setData={setImages} id={id} className={className}/>
-            <Sizes id={id} setdata={setData} className={className} />
+            <Sizes id={id} setdata={setSizes} className={className} />
             <div className={className.inputsDev} >
                 <h3 className={`${className.label} pb-4`} >availblity : </h3>
                 <div className='flex gap-4'>
