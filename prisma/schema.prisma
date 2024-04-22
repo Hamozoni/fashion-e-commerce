@@ -67,6 +67,7 @@ model Reviews {
   text String
   productId String
   autherId String
+  rating Int @default(7)
   user User @relation(fields: [autherId],references: [id])
   product Product @relation(fields: [productId],references: [id])
 }

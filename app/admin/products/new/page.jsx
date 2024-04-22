@@ -3,17 +3,10 @@
 import { useState } from "react";
 import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
-import Images from "./Images"
+import Images from "./Images";
+import Sizes from "./Sizes";
 
 const id = `${Math.random().toString(16).slice(2)}id${Math.random().toString(16).slice(2)}`;
-
-
-const productSize= {
-    name: '',
-    value: '',
-    description: '',
-    productId: id
-}
 
 const product = {
     id,
@@ -30,7 +23,7 @@ const product = {
     serialNumber: '',
     specifications: [],
     images: [],
-    sizes: [productSize]
+    sizes: []
 };
 
 const inputsInfo = [
@@ -80,7 +73,7 @@ const NewProducts = () => {
     console.log(data)
     
     const className = {
-        inputsDev: 'pb-4 mb-3  border-b border-slate-100',
+        inputsDev: '2r21 *:  QEWpb-4 mb-3  border-b border-slate-100',
         inputClass : 'w-full max-w-full  text-gray-900 border-slate-200 border  focus:border-slate-400 rounded-lg p-2 my-2',
         label: 'text-lg font-medium text-slate-700',
         sumBtn: 'w-full max-w-full  rounded-lg p-2 my-2 border-slate-200 border font-bold text-xl text-slate-700 bg-slate-100 uppercase hover:shadow-md '
@@ -130,6 +123,7 @@ const NewProducts = () => {
             </div>
             <SpecificationInputs id={id} setData={setData} className={className} />
             <Images setData={setData} id={id} className={className}/>
+            <Sizes id={id} setdata={setData} className={className} />
             <div className={className.inputsDev} >
                 <h3 className={`${className.label} pb-4`} >availblity : </h3>
                 <div className='flex gap-4'>
