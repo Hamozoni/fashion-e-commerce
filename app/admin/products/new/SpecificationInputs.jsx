@@ -28,17 +28,6 @@ export default function SpecificationInputs({id,setData,className}) {
         })
     },[specificationArr]);
 
-    const handleDelete = (i)=> {
-        if(i !== 0) {
-            setSpecification(prev=> {
-                console.log(i)
-                
-                prev[i] = undefined
-             return[...prev]
-            })
-        }
-    }
-
     const addKey = (e,i)=> {
 
        setSpecification(prev=> {
@@ -60,19 +49,27 @@ export default function SpecificationInputs({id,setData,className}) {
             })
                 document.getElementById(`${'value-'+i}`).focus()
 
+    };
+
+    const deleteInput = (i)=> {
+        specificationArr.length = i -1
+        setSpecification(prev=> {
+            prev.length = i - 1
+            return [...prev]
+        })
     }
 
   return (
     <div className={className.inputsDev} >
         <div className="flex items-center justify-between">
-            <h4 className={className.label} >Specifications :</h4>
+            <h4 className={`${className.label} pb-3`} >Specifications </h4>
         </div>
         {
             specificationArr?.map((el,i)=> (
                 el !== undefined &&
 
-                <div  className="flex align-middle gap-4">
-                    <div className="flex items-center gap-3 w-1/2">
+                <div key={`spec-${i}`}  className='md:flex align-middle gap-4'>
+                    <div className="gap-3 md:w-1/2">
                         <label className={className.label} htmlFor={'key-'+i}>key:</label>
                         <input 
                             value={el.key}
@@ -85,7 +82,7 @@ export default function SpecificationInputs({id,setData,className}) {
                             />
 
                     </div>
-                    <div className="flex items-center gap-3 w-1/2">
+                    <div className="gap-3 md:w-1/2">
                         <label className={className.label} htmlFor={'value-'+i}>value:</label>
                         <input
                             className={className.inputClass}
@@ -97,13 +94,18 @@ export default function SpecificationInputs({id,setData,className}) {
                             placeholder="enter your specifications value" 
                           />
                     </div>
-                    {
-                        i === 0 ?  <p onClick={addMore}>more</p>:
-                        <p onClick={()=> handleDelete(i)}>delete</p>
-                    }
                 </div>
             ))
         }
+        <div className="flex items-center gap-4 w-fit mx-auto text-center cursor-pointer pt-3">
+        
+            <p className="font-bold px-4 py-1  rounded-lg border-slate-200 border hover:bg-slate-200 " onClick={addMore}>add more field</p>
+            {
+                specificationArr.length > 1 &&
+              <p className="text-red-600 hover:font-bold" onClick={()=> deleteInput(specificationArr.length)}>delete field</p>
+            }
+
+        </div>
     </div>
   )
 }

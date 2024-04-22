@@ -133,15 +133,31 @@ const NewProducts = () => {
                     ></textarea>
             </div>
             <SpecificationInputs id={id} setData={setData} className={className} />
-            <div className={`${className.inputsDev} flex gap-4`}>
-                <div className='{className}'>
-                    <label className={className.label}  htmlFor="not-availble"> not availble : </label>
-                    <input type="radio"  value='false' id="not-availble" />
+            <div className={className.inputsDev} >
+                <h3 className={`${className.label} pb-4`} >availblity : </h3>
+                <div className='flex gap-4'>
+                    <div className={`flex items-center gap-2 cursor-pointer `}  
+                        onClick={()=> {
+                            setData(prev=> {
+                                return {...prev,isAvailable : true}
+                            })
+                        }
+                        }>
+                        <h5 className={data.isAvailable ?  'font-bold' :''}>available</h5>
+                        <span className={`w-4 block h-4 border-4 border-zinc-500 rounded-full ${data.isAvailable ?  'bg-gray-800' :''}`}></span>
+                    </div>
+                    <div className={`flex items-center gap-2 cursor-pointer`} 
+                        onClick={()=> {
+                            setData(prev=> {
+                                return {...prev,isAvailable : false}
+                            })
+                           }
+                        }>
+                        <h5 className={data.isAvailable ? '': 'font-bold'}>not available</h5>
+                        <span className={`w-4 block h-4 border-4 border-red-400 rounded-full ${data.isAvailable ? '' : 'bg-red-500'}`}></span>
+                    </div>
                 </div>
-                <div className='{className}'>
-                   <label className={className.label}  htmlFor="availble">availble : </label>
-                   <input type="radio" value='true' id="availble" />
-                </div>
+
             </div>
 
             <button type="submit" className={className.sumBtn}>save</button>
