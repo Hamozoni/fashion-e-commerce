@@ -21,9 +21,6 @@ const product = {
     subCategory: '',
     aboutThisItem: '',
     serialNumber: '',
-    specifications: [],
-    images: [],
-    sizes: []
 };
 
 const inputsInfo = [
@@ -69,6 +66,9 @@ const inputsInfo = [
 const NewProducts = () => {
 
     const [data,setData] = useState(product);
+    const [specifications,setSpecifications] = useState([]);
+    const [images,setImages] = useState([]);
+    const [sizes,setSizes] = useState([]);
 
     console.log(data)
     
@@ -121,8 +121,8 @@ const NewProducts = () => {
                     required
                     ></textarea>
             </div>
-            <SpecificationInputs id={id} setData={setData} className={className} />
-            <Images setData={setData} id={id} className={className}/>
+            <SpecificationInputs id={id} setData={setSpecifications} className={className} />
+            <Images setData={setImages} id={id} className={className}/>
             <Sizes id={id} setdata={setData} className={className} />
             <div className={className.inputsDev} >
                 <h3 className={`${className.label} pb-4`} >availblity : </h3>

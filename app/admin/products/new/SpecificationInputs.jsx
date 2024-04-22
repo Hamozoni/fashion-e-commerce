@@ -22,10 +22,7 @@ export default function SpecificationInputs({id,setData,className}) {
     };
 
     useEffect(()=> {
-        setData(prev => {
-            prev.specifications = specificationArr
-          return prev
-        })
+        setData(prev => [...prev,specificationArr])
     },[specificationArr]);
 
     const addKey = (e,i)=> {
