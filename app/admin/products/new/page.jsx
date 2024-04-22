@@ -3,14 +3,10 @@
 import { useState } from "react";
 import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
+import Images from "./Images"
 
 const id = `${Math.random().toString(16).slice(2)}id${Math.random().toString(16).slice(2)}`;
 
-const productImage = {
-    imagePath: '',
-    color: '',
-    productId: id
-}
 
 const productSize= {
     name: '',
@@ -33,7 +29,7 @@ const product = {
     aboutThisItem: '',
     serialNumber: '',
     specifications: [],
-    images: [productImage],
+    images: [],
     sizes: [productSize]
 };
 
@@ -86,7 +82,7 @@ const NewProducts = () => {
     const className = {
         inputsDev: 'pb-4 mb-3  border-b border-slate-100',
         inputClass : 'w-full max-w-full  text-gray-900 border-slate-200 border  focus:border-slate-400 rounded-lg p-2 my-2',
-        label: 'text-xl font-bold text-slate-700',
+        label: 'text-lg font-medium text-slate-700',
         sumBtn: 'w-full max-w-full  rounded-lg p-2 my-2 border-slate-200 border font-bold text-xl text-slate-700 bg-slate-100 uppercase hover:shadow-md '
     };
 
@@ -114,7 +110,7 @@ const NewProducts = () => {
             <div className={className.inputsDev}>
                 <label className={className.label}  htmlFor="description">description : </label>
                 <textarea 
-                    className={className.inputClass}  
+                    className={`${className.inputClass} h-20 min-h-16`}  
                     id="description" 
                     placeholder="the description of the product..." 
                     cols="10" 
@@ -125,7 +121,7 @@ const NewProducts = () => {
             <div className={className}>
                 <label className={className.label}  htmlFor="about">about this item : </label>
                <textarea 
-                    className={className.inputClass}   
+                    className={`${className.inputClass} h-20 min-h-16`}   
                     id="about" 
                     placeholder="about this item" 
                     cols="10" rows="10"
@@ -133,6 +129,7 @@ const NewProducts = () => {
                     ></textarea>
             </div>
             <SpecificationInputs id={id} setData={setData} className={className} />
+            <Images setData={setData} id={id} className={className}/>
             <div className={className.inputsDev} >
                 <h3 className={`${className.label} pb-4`} >availblity : </h3>
                 <div className='flex gap-4'>
@@ -144,7 +141,7 @@ const NewProducts = () => {
                         }
                         }>
                         <h5 className={data.isAvailable ?  'font-bold' :''}>available</h5>
-                        <span className={`w-4 block h-4 border-4 border-zinc-500 rounded-full ${data.isAvailable ?  'bg-gray-800' :''}`}></span>
+                        <span className={`w-4 block h-4 border-2 border-zinc-500 rounded-full ${data.isAvailable ?  'bg-gray-800' :''}`}></span>
                     </div>
                     <div className={`flex items-center gap-2 cursor-pointer`} 
                         onClick={()=> {
@@ -153,8 +150,8 @@ const NewProducts = () => {
                             })
                            }
                         }>
-                        <h5 className={data.isAvailable ? '': 'font-bold'}>not available</h5>
-                        <span className={`w-4 block h-4 border-4 border-red-400 rounded-full ${data.isAvailable ? '' : 'bg-red-500'}`}></span>
+                        <h5 className={data.isAvailable ? '': 'font-bold text-red-400'}>not available</h5>
+                        <span className={`w-4 block h-4 border-2 border-red-400 rounded-full ${data.isAvailable ? '' : 'bg-red-500'}`}></span>
                     </div>
                 </div>
 

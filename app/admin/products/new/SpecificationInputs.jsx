@@ -7,7 +7,7 @@ export default function SpecificationInputs({id,setData,className}) {
 
 
 
-    const [specificationArr,setSpecification] = useState([{ key:'',value: '',id,}]);
+    const [specificationArr,setSpecification] = useState([{ key:'',value: '',productId: id,}]);
 
     console.log(specificationArr)
 
@@ -16,14 +16,14 @@ export default function SpecificationInputs({id,setData,className}) {
             return [...prev,{
                 key:'',
                 value: '',
-                id,
+                productId: id
             }]
         })
     };
 
     useEffect(()=> {
         setData(prev => {
-            prev.specifications = specificationArr.filter(el=> el !== undefined)
+            prev.specifications = specificationArr
           return prev
         })
     },[specificationArr]);
@@ -32,7 +32,7 @@ export default function SpecificationInputs({id,setData,className}) {
 
        setSpecification(prev=> {
             prev[i].key = e.target.value;
-            prev[i].id = id
+            prev[i].productId = id
             return [...prev]
            }
         )
@@ -44,7 +44,7 @@ export default function SpecificationInputs({id,setData,className}) {
     const addValue =  (e,i)=> {
            setSpecification(prev=> {
                 prev[i].value = e.target.value;
-                prev[i].id = id
+                prev[i].productId  = id
                 return [...prev]
             })
                 document.getElementById(`${'value-'+i}`).focus()
@@ -52,7 +52,6 @@ export default function SpecificationInputs({id,setData,className}) {
     };
 
     const deleteInput = (i)=> {
-        specificationArr.length = i -1
         setSpecification(prev=> {
             prev.length = i - 1
             return [...prev]
