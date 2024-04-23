@@ -5,6 +5,7 @@ import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
+import axios from "axios";
 
 const id = `${Math.random().toString(16).slice(2)}id${Math.random().toString(16).slice(2)}`;
 
@@ -70,9 +71,18 @@ const NewProducts = () => {
     const [images,setImages] = useState([]);
     const [sizes,setSizes] = useState([]);
 
-    const handleSubmit = async (e)=> {
+    const handleSubmit = (e)=> {
         e.preventDefault();
-        await fetch('/api/product/new',{method:'post',})
+        axios({
+            method: 'post',
+            url: '/api/products/new',
+            data: {
+               process : data,
+               specifications,
+               images,
+               sizes
+            }
+        })
 
     }
     
