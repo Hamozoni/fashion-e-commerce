@@ -1,6 +1,6 @@
 import { headers } from "next/headers"
 
-export default async function POST(request) {
+export async function POST(request) {
 
     const h = headers();
 
@@ -8,5 +8,5 @@ export default async function POST(request) {
 
     console.log(data)
     console.log(h)
-  return Response('hi')
+  return new Response('hi')
 }

@@ -73,17 +73,20 @@ const NewProducts = () => {
 
     const handleSubmit = (event)=> {
         event.preventDefault();
-        console.log(data,specifications,sizes,images)
-        //  axios({
-        //     method: 'post',
-        //     url: '/api/products/new',
-        //     data: {
-        //        products : data,
-        //        specifications,
-        //        images,
-        //        sizes
-        //     }
-        // })
+        console.log(data)
+        console.log(images)
+        console.log(sizes)
+        console.log(specifications)
+         axios({
+            method: 'POST',
+            url: '/api/products/new',
+            data: {
+               products : data,
+               specifications,
+               images,
+               sizes
+            }
+        })
 
 
 

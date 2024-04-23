@@ -10,7 +10,7 @@ export default function Sizes({id,setdata,className}) {
 
 
     const addMore = ()=> {
-        setSizes(prev=> [...prev,{sizes: '',color: '',productId: id}])
+        setSizes(prev=> [...prev,{name: '',description: '',productId: id}])
     }
 
     const removeField = (leng)=> {
@@ -21,7 +21,7 @@ export default function Sizes({id,setdata,className}) {
     };
 
     useEffect(()=> {
-        setdata(prev => [...prev,...sizes])
+        setdata([...sizes])
     },[sizes]);
 
   return (
