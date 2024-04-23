@@ -9,7 +9,6 @@ export default function SpecificationInputs({id,setData,className}) {
 
     const [specificationArr,setSpecification] = useState([{ key:'',value: '',productId: id,}]);
 
-    console.log(specificationArr)
 
     const addMore = ()=> {
         setSpecification(prev=> {
@@ -33,9 +32,7 @@ export default function SpecificationInputs({id,setData,className}) {
             return [...prev]
            }
         )
-
-     document.getElementById(`${'key-'+i}`).focus()
-        
+ 
     }
 
     const addValue =  (e,i)=> {

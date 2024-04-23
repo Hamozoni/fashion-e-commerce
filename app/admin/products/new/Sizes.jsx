@@ -23,20 +23,43 @@ export default function Sizes({id,setdata,className}) {
     useEffect(()=> {
         setdata(prev => [...prev,...sizes])
     },[sizes]);
+
   return (
     <div>
         <h4 className={`${className.label} pb-3`}>sizes </h4>
         <div  className={className.inputsDev}>
             {
                 sizes.map((_,i)=> (
-                    <div className="md:flex items-center gap-3 w-full">
+                    <div className="md:flex items-center gap-3 w-full" key={i}>
                         <div className="md:w-1/2" >
                             <label >name :</label>
-                            <input type="text" className={className.inputClass} placeholder="enter the name of your size..." />
+                            <input 
+                                type="text" 
+                                className={className.inputClass} 
+                                placeholder="enter the name of your size..."
+                                onChange={e=> {
+                                    setSizes(prev=> {
+                                        prev[i].name = e.target.value
+
+                                        return [...prev]
+                                    })
+                                }}
+                                 />
                         </div>
                         <div className="md:w-1/2">
                             <label >description :</label>
-                            <input className={className.inputClass} type="text" placeholder="enter the description of your size..." />
+                            <input 
+                                className={className.inputClass} 
+                                type="text" 
+                                placeholder="enter the description of your size..."
+                                onChange={e=> {
+                                    setSizes(prev=> {
+                                        prev[i].description = e.target.value
+
+                                        return [...prev]
+                                    })
+                                }}
+                                 />
                         </div>
                     </div>
                 ))

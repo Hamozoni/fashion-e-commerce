@@ -36,8 +36,7 @@ export default function Images({setData,id,className}) {
                             <h6 className={`${className.label}`}>image :</h6>
                             <input type="file" className={className.inputClass}
                                 onChange={(e)=> setImages(prev=> {
-                                    prev[i].imagePath = e.target
-                                    prev[i].productId = id
+                                    prev[i].imagePath = e.target.value
                                     return [...prev]
                                     
                                 })} 
@@ -47,8 +46,7 @@ export default function Images({setData,id,className}) {
                             <h6 className={`${className.label}`}>color :</h6>
                             <input type='color' className=''
                                 onChange={(e)=> setImages(prev=> {
-                                    prev[i].color = e.target
-                                    prev[i].productId = id
+                                    prev[i].color = e.target.value
                                     return [...prev]
                                 })} 
                             />

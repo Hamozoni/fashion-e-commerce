@@ -71,18 +71,21 @@ const NewProducts = () => {
     const [images,setImages] = useState([]);
     const [sizes,setSizes] = useState([]);
 
-    const handleSubmit = (e)=> {
-        e.preventDefault();
-        axios({
-            method: 'post',
-            url: '/api/products/new',
-            data: {
-               process : data,
-               specifications,
-               images,
-               sizes
-            }
-        })
+    const handleSubmit = (event)=> {
+        event.preventDefault();
+        console.log(data,specifications,sizes,images)
+        //  axios({
+        //     method: 'post',
+        //     url: '/api/products/new',
+        //     data: {
+        //        products : data,
+        //        specifications,
+        //        images,
+        //        sizes
+        //     }
+        // })
+
+
 
     }
     
@@ -96,7 +99,7 @@ const NewProducts = () => {
   return (
     <div className="p-4 lg:p-10 w-full max-w-full ">
         <h3 className="pb-4 font-bold text-2xl">adding new product form</h3>
-        <form className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
+        <form  onSubmit={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
             {
                 inputsInfo.map(input=> (
                     <FormInput 
@@ -123,7 +126,12 @@ const NewProducts = () => {
                     cols="10" 
                     rows="10"
                     required
-                    ></textarea>
+                    onChange={e=> setData(prev=> {
+                        return {...prev,description : e.target.value}
+                    })}
+                    >
+                    
+                    </textarea>
             </div>
             <div className={className}>
                 <label className={className.label}  htmlFor="about">about this item : </label>
@@ -133,6 +141,9 @@ const NewProducts = () => {
                     placeholder="about this item" 
                     cols="10" rows="10"
                     required
+                    onChange={e=> setData(prev=> {
+                        return {...prev,aboutThisItem : e.target.value}
+                    })}
                     ></textarea>
             </div>
             <SpecificationInputs id={id} setData={setSpecifications} className={className} />
@@ -165,7 +176,7 @@ const NewProducts = () => {
 
             </div>
 
-            <button type="submit" className={className.sumBtn} onSubmit={handleSubmit}>save</button>
+            <button type="submit" className={className.sumBtn}>save</button>
             
         </form>
     </div>
