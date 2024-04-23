@@ -172,7 +172,7 @@ const NewProducts = () => {
                 </textarea>
                 {
                     (errors && errors.find((e=> e.path[0] === 'description')) !== undefined) ? 
-                    <p className={className.error}>{errors.find((e=> e.path[0] === 'description')).message}</p>
+                    <p className={className.error}>{errors?.find((e=> e.path[0] === 'description'))?.message}</p>
                     :''
                 }
             </div>
@@ -192,7 +192,7 @@ const NewProducts = () => {
                 </textarea>
                 {
                     (errors && errors.find((e=> e.path[0] === 'about')) !== undefined) ? 
-                    <p className={className.error}>{errors.find((e=> e.path[0] === 'about')).message}</p>
+                    <p className={className.error}>{errors?.find((e=> e.path[0] === 'about'))?.message}</p>
                     :''
                 }
             </div>

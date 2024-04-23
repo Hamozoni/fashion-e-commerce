@@ -15,7 +15,7 @@ export default function FormInput({value,setvalue,title,type,placeHolder,errors,
         />
           {
               (errors && errors.find((e=> e.path[0] === value)) !== undefined) ? 
-              <p className={className.error}>{errors.find((e=> e.path[0] === value)).message}</p>
+              <p className={className.error}>{errors?.find((e=> e.path[0] === value))?.message}</p>
               :''
           } 
     </div>

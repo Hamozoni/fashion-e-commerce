@@ -1,6 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {z} from 'zod';
+
+const sizesZSchema = z.object({
+    name: z.enum(['xs','s','m','xl','2xl','3xl','4xl','5xl']),
+    description: z.string().min(5),
+    productId: z.string()
+})
+
 
 export default function Sizes({id,setdata,className}) {
 
@@ -9,6 +17,8 @@ export default function Sizes({id,setdata,className}) {
         description: '',
         productId: id
     }]);
+
+    const [errors,setErrors] = useState(null);
 
 
     const addMore = ()=> {
@@ -23,7 +33,16 @@ export default function Sizes({id,setdata,className}) {
     };
 
     useEffect(()=> {
-        setdata([...sizes])
+        const test = sizesZSchema.array().safeParse(sizes);
+
+        if(test.success){
+            setErrors(null)
+        }else {
+            setErrors(JSON.parse(test?.error))
+            console.log(JSON.parse(test?.error))
+        }
+
+        setdata([...sizes]);
     },[sizes]);
 
   return (
@@ -46,7 +65,12 @@ export default function Sizes({id,setdata,className}) {
                                         return [...prev]
                                     })
                                 }}
-                                 />
+                             />
+                            {
+                                (errors && errors.find((e=> e.path[0] === i )) !== undefined) ? 
+                                    <p className={className.error}>{errors?.find((e=> e.path[1] === 'name'))?.message}</p>
+                                :''
+                            }
                         </div>
                         <div className="md:w-1/2">
                             <label >description :</label>
@@ -62,6 +86,11 @@ export default function Sizes({id,setdata,className}) {
                                     })
                                 }}
                                  />
+                             {
+                                (errors && errors.find((e=> e.path[0] === i )) !== undefined) ? 
+                                    <p className={className.error}>{errors?.find((e=> e.path[1] === 'description'))?.message}</p>
+                                :''
+                            }
                         </div>
                     </div>
                 ))
