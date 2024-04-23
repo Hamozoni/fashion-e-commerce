@@ -1,27 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
 import axios from "axios";
+import { z} from "zod";
+
+ const productZSchema  =  z.object({
+    id : z.string(),
+    name : z.string().min(3),
+    priceInCent : z.coerce.number().int().min(100),
+    isAvailable: z.boolean(),
+    description: z.string().min(5),
+    count: z.coerce.number().int().min(1),
+    category: z.string().min(3),
+    subCategory: z.string().min(3),
+    aboutThisItem: z.string().min(3),
+    serialNumber: z.string().min(10).max(10),
+})
 
 const id = `${Math.random().toString(16).slice(2)}id${Math.random().toString(16).slice(2)}`;
 
 const product = {
     id,
-    name : '',
-    priceInCent : 0,
-    offerPriceInCent: null,
-    isOffer: false,
+    // name : '',
+    // priceInCent : 0,
     isAvailable: true,
-    description: '',
-    count: 1,
-    category: '',
-    subCategory: '',
-    aboutThisItem: '',
-    serialNumber: '',
+    // description: '',
+    // count: 1,
+    // category: '',
+    // subCategory: '',
+    // aboutThisItem: '',
+    // serialNumber: '',
 };
 
 const inputsInfo = [
@@ -58,8 +70,8 @@ const inputsInfo = [
      {
         value : 'serialNumber',
         title: 'serial number',
-        type: 'number',
-        place:'serial number shold be 10 degits'
+        type: 'text',
+        place:'ASIN shold be 10 '
      },
 
 ]
@@ -70,27 +82,49 @@ const NewProducts = () => {
     const [specifications,setSpecifications] = useState([]);
     const [images,setImages] = useState([]);
     const [sizes,setSizes] = useState([]);
+    const [errors,setErrors] = useState(null);
+    const [isPendding,setIsPendding] = useState(false);
 
     const handleSubmit = (event)=> {
         event.preventDefault();
-        console.log(data)
+
+        const test = productZSchema.safeParse(data);
+        console.log(JSON.parse(test.error))
         console.log(images)
         console.log(sizes)
         console.log(specifications)
-         axios({
-            method: 'POST',
-            url: '/api/products/new',
-            data: {
-               products : data,
-               specifications,
-               images,
-               sizes
-            }
-        })
 
-
+        if(test.success) {
+            setIsPendding(true);
+            setErrors(null)
+            axios({
+               method: 'POST',
+               url: '/api/products/new',
+               data: {
+                  products : data,
+                  specifications,
+                  images,
+                  sizes
+               }
+           }).catch(err=> {
+               setErrors(err)
+           }).finally(()=> {
+               setIsPendding(false);
+           })
+        }else {
+            setErrors(JSON.parse(test.error))
+        }
 
     }
+
+    useEffect(()=> {
+        const test = productZSchema.safeParse(data);
+        if(test.success){
+            setErrors(null)
+        }else {
+            setErrors(JSON.parse(test.error))
+        }
+    },[data])
     
     const className = {
         inputsDev: '2r21 *:  QEWpb-4 mb-3  border-b border-slate-100',
@@ -116,6 +150,7 @@ const NewProducts = () => {
                         })} 
                         title={input.title} 
                         type={input.type}
+                        errors={errors}
                         placeHolder={input.place}
                     />
                 ))
@@ -126,15 +161,18 @@ const NewProducts = () => {
                     className={`${className.inputClass} h-20 min-h-16`}  
                     id="description" 
                     placeholder="the description of the product..." 
-                    cols="10" 
-                    rows="10"
                     required
                     onChange={e=> setData(prev=> {
                         return {...prev,description : e.target.value}
                     })}
                     >
                     
-                    </textarea>
+                </textarea>
+                {
+                    (errors && errors.find((e=> e.path[0] === 'description')) !== undefined) ? 
+                    <p>{errors.find((e=> e.path[0] === 'description')).message}</p>
+                    :''
+                }
             </div>
             <div className={className}>
                 <label className={className.label}  htmlFor="about">about this item : </label>
@@ -147,7 +185,14 @@ const NewProducts = () => {
                     onChange={e=> setData(prev=> {
                         return {...prev,aboutThisItem : e.target.value}
                     })}
-                    ></textarea>
+                    >
+
+                </textarea>
+                {
+                    (errors && errors.find((e=> e.path[0] === 'about')) !== undefined) ? 
+                    <p>{errors.find((e=> e.path[0] === 'about')).message}</p>
+                    :''
+                }
             </div>
             <SpecificationInputs id={id} setData={setSpecifications} className={className} />
             <Images setData={setImages} id={id} className={className}/>
@@ -176,10 +221,13 @@ const NewProducts = () => {
                         <span className={`w-4 block h-4 border-2 border-red-400 rounded-full ${data.isAvailable ? '' : 'bg-red-500'}`}></span>
                     </div>
                 </div>
-
+                {
+                    (errors && errors.find((e=> e.path[0] === 'isAvailable')) !== undefined) ? 
+                    <p>{errors.find((e=> e.path[0] === 'isAvailable')).message}</p>
+                    :''
+                }
             </div>
-
-            <button type="submit" className={className.sumBtn}>save</button>
+            <button type="submit" className={className.sumBtn}>{isPendding ? 'loading...' : 'save'}</button>
             
         </form>
     </div>

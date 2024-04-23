@@ -1,5 +1,5 @@
 
-export default function FormInput({value,setvalue,title,type,placeHolder}) {
+export default function FormInput({value,setvalue,title,type,placeHolder,errors}) {
 
     const className = {
         inputsDev: 'pb-4 mb-3  border-b border-slate-100',
@@ -18,7 +18,12 @@ export default function FormInput({value,setvalue,title,type,placeHolder}) {
             id={type} 
             placeholder={placeHolder}
             required
-            />
+        />
+          {
+              (errors && errors.find((e=> e.path[0] === value)) !== undefined) ? 
+              <p>{errors.find((e=> e.path[0] === value)).message}</p>
+              :''
+          } 
     </div>
   )
 }
