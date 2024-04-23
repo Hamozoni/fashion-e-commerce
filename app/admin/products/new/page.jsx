@@ -15,8 +15,8 @@ import { z} from "zod";
     isAvailable: z.boolean(),
     description: z.string().min(5),
     count: z.coerce.number().int().min(1),
-    category: z.string().min(3),
-    subCategory: z.string().min(3),
+    category: z.enum(["men", "women", "kids"]),
+    subCategory: z.enum(["t-shirt", "shit"]),
     aboutThisItem: z.string().min(3),
     serialNumber: z.string().min(10).max(10),
 })
@@ -130,7 +130,8 @@ const NewProducts = () => {
         inputsDev: '2r21 *:  QEWpb-4 mb-3  border-b border-slate-100',
         inputClass : 'w-full max-w-full  text-gray-900 border-slate-200 border  focus:border-slate-400 rounded-lg p-2 my-2',
         label: 'text-lg font-medium text-slate-700',
-        sumBtn: 'w-full max-w-full  rounded-lg p-2 my-2 border-slate-200 border font-bold text-xl text-slate-700 bg-slate-100 uppercase hover:shadow-md '
+        sumBtn: 'w-full max-w-full  rounded-lg p-2 my-2 border-slate-200 border font-bold text-xl text-slate-700 bg-slate-100 uppercase hover:shadow-md ',
+        error: 'w-fit my-auto mb-3 text-red-600 '
     };
 
   return (
@@ -152,6 +153,7 @@ const NewProducts = () => {
                         type={input.type}
                         errors={errors}
                         placeHolder={input.place}
+                        className={className}
                     />
                 ))
             }
@@ -170,7 +172,7 @@ const NewProducts = () => {
                 </textarea>
                 {
                     (errors && errors.find((e=> e.path[0] === 'description')) !== undefined) ? 
-                    <p>{errors.find((e=> e.path[0] === 'description')).message}</p>
+                    <p className={className.error}>{errors.find((e=> e.path[0] === 'description')).message}</p>
                     :''
                 }
             </div>
@@ -190,7 +192,7 @@ const NewProducts = () => {
                 </textarea>
                 {
                     (errors && errors.find((e=> e.path[0] === 'about')) !== undefined) ? 
-                    <p>{errors.find((e=> e.path[0] === 'about')).message}</p>
+                    <p className={className.error}>{errors.find((e=> e.path[0] === 'about')).message}</p>
                     :''
                 }
             </div>
@@ -221,11 +223,6 @@ const NewProducts = () => {
                         <span className={`w-4 block h-4 border-2 border-red-400 rounded-full ${data.isAvailable ? '' : 'bg-red-500'}`}></span>
                     </div>
                 </div>
-                {
-                    (errors && errors.find((e=> e.path[0] === 'isAvailable')) !== undefined) ? 
-                    <p>{errors.find((e=> e.path[0] === 'isAvailable')).message}</p>
-                    :''
-                }
             </div>
             <button type="submit" className={className.sumBtn}>{isPendding ? 'loading...' : 'save'}</button>
             
