@@ -1,4 +1,5 @@
 import fs  from 'fs/promises';
+import { redirect } from 'next/navigation';
 
 const { PrismaClient } = require('@prisma/client')
 
@@ -25,6 +26,9 @@ export async function POST(request) {
     };
 
     await prisma.productImages.createMany({data : data.images});
+
+
+    redirect('/admin/products');
 
   return new Response('hi')
 }

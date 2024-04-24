@@ -89,7 +89,7 @@ const NewProducts = () => {
         event.preventDefault();
 
         const test = productZSchema.safeParse(data);
-        console.log(JSON.parse(test.error))
+
         console.log(images)
         console.log(sizes)
         console.log(specifications)

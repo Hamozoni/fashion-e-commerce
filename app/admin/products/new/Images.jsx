@@ -8,7 +8,7 @@ const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
 
 const imagesZSchema = z.object({
     imagePath: z.string().refine(
-        (file) => ACCEPTED_IMAGE_TYPES .includes(file.split('.')[1]),
+        (file) => ACCEPTED_IMAGE_TYPES .includes(file.split('.')[file.split('.').length - 1]),
         "Only .jpg, .jpeg, .png and .webp formats are supported."
       ),
     color: z.string(),
