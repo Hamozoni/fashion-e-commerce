@@ -1,6 +1,13 @@
 "use client"
 
-import {  useEffect, useState } from "react"
+import {  useEffect, useState } from "react";
+import {z} from 'zod';
+
+const specifZSchema = z.object({
+    key:  z.string().min(3),
+    value: z.string().min(3),
+    productId: z.string()
+})
 
 
 export default function SpecificationInputs({id,setData,className}) {
@@ -8,6 +15,7 @@ export default function SpecificationInputs({id,setData,className}) {
 
 
     const [specificationArr,setSpecification] = useState([{ key:'',value: '',productId: id,}]);
+    const [errors,setErrors] = useState(null)
 
 
     const addMore = ()=> {
@@ -21,7 +29,15 @@ export default function SpecificationInputs({id,setData,className}) {
     };
 
     useEffect(()=> {
+
+    const  test = specifZSchema.array().safeParse(specificationArr);
+
+    if(test.success){
+        setErrors(null)
         setData([...specificationArr])
+    }else {
+        setErrors(JSON.parse(test.error))
+    }
     },[specificationArr]);
 
     const addKey = (e,i)=> {
@@ -74,6 +90,11 @@ export default function SpecificationInputs({id,setData,className}) {
                             placeholder="enter your specifications key" 
                             />
 
+                           { (errors && errors.find((e=> e.path[0] === i )) !== undefined) ? 
+                                    <p className={className.error}>{errors?.find((e=> e.path[1] === 'key'))?.message}</p>
+                                :''
+                            }
+
                     </div>
                     <div className="gap-3 md:w-1/2">
                         <label className={className.label} htmlFor={'value-'+i}>value:</label>
@@ -86,6 +107,10 @@ export default function SpecificationInputs({id,setData,className}) {
                             id={'value-'+i} 
                             placeholder="enter your specifications value" 
                           />
+                            { (errors && errors.find((e=> e.path[0] === i )) !== undefined) ? 
+                                    <p className={className.error}>{errors?.find((e=> e.path[1] === 'value'))?.message}</p>
+                                :''
+                            }
                     </div>
                 </div>
             ))

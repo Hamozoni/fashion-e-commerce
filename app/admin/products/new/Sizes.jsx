@@ -37,12 +37,11 @@ export default function Sizes({id,setdata,className}) {
 
         if(test.success){
             setErrors(null)
+            setdata([...sizes]);
         }else {
             setErrors(JSON.parse(test?.error))
-            console.log(JSON.parse(test?.error))
         }
 
-        setdata([...sizes]);
     },[sizes]);
 
   return (

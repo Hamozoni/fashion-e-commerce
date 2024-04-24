@@ -17,7 +17,7 @@ import { z} from "zod";
     count: z.coerce.number().int().min(1),
     category: z.enum(["men", "women", "kids"]),
     subCategory: z.enum(["t-shirt", "shit"]),
-    aboutThisItem: z.string().min(3),
+    aboutThisItem: z.string().min(5),
     serialNumber: z.string().min(10).max(10),
 })
 
@@ -131,7 +131,7 @@ const NewProducts = () => {
         inputClass : 'w-full max-w-full  text-gray-900 border-slate-200 border  focus:border-slate-400 rounded-lg p-2 my-2',
         label: 'text-lg font-medium text-slate-700',
         sumBtn: 'w-full max-w-full  rounded-lg p-2 my-2 border-slate-200 border font-bold text-xl text-slate-700 bg-slate-100 uppercase hover:shadow-md ',
-        error: 'w-fit my-auto mb-3 text-red-600 '
+        error: 'w-fit my-auto mb-3 text-red-600 text-center text-xs'
     };
 
   return (
@@ -176,7 +176,7 @@ const NewProducts = () => {
                     :''
                 }
             </div>
-            <div className={className}>
+            <div className={className.inputsDev}>
                 <label className={className.label}  htmlFor="about">about this item : </label>
                <textarea 
                     className={`${className.inputClass} h-20 min-h-16`}   
@@ -191,8 +191,8 @@ const NewProducts = () => {
 
                 </textarea>
                 {
-                    (errors && errors.find((e=> e.path[0] === 'about')) !== undefined) ? 
-                    <p className={className.error}>{errors?.find((e=> e.path[0] === 'about'))?.message}</p>
+                    (errors && errors.find((e=> e.path[0] === 'aboutThisItem')) !== undefined) ? 
+                    <p className={className.error}>{errors?.find((e=> e.path[0] === 'aboutThisItem'))?.message}</p>
                     :''
                 }
             </div>

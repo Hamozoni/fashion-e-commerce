@@ -1,6 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {z} from 'zod';
+
+const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
+
+
+const imagesZSchema = z.object({
+    imagePath: z.string().refine(
+        (file) => ACCEPTED_IMAGE_TYPES .includes(file.split('.')[1]),
+        "Only .jpg, .jpeg, .png and .webp formats are supported."
+      ),
+    color: z.string(),
+    productId: z.string()
+})
 
 export default function Images({setData,id,className}) {
 
@@ -9,6 +22,8 @@ export default function Images({setData,id,className}) {
         color: '',
         productId: id
     }]);
+
+    const [errors,setErrors] = useState(null)
 
     const addMore = ()=> {
         setImages(prev=> [...prev,{imagePath: '',color: '',productId: id}])
@@ -22,7 +37,15 @@ export default function Images({setData,id,className}) {
     };
 
     useEffect(()=> {
-        setData([...images])
+
+        const test = imagesZSchema.array().safeParse(images);
+
+        if(test.success){
+            setData([...images])
+            setErrors(null)
+        }else {
+            setErrors(JSON.parse(test.error))
+        }
     },[images]);
 
   return (
@@ -41,6 +64,11 @@ export default function Images({setData,id,className}) {
                                     
                                 })} 
                             />
+                           {
+                                (errors && errors.find((e=> e.path[0] === i )) !== undefined) ? 
+                                    <p className={className.error}>{errors?.find((e=> e.path[1] === 'imagePath'))?.message}</p>
+                                :''
+                            }
                         </div>
                         <div className="w-full md:h-1/2 ">
                             <h6 className={`${className.label}`}>color :</h6>
@@ -50,6 +78,11 @@ export default function Images({setData,id,className}) {
                                     return [...prev]
                                 })} 
                             />
+                             {
+                                (errors && errors.find((e=> e.path[0] === i )) !== undefined) ? 
+                                    <p className={className.error}>{errors?.find((e=> e.path[1] === 'color'))?.message}</p>
+                                :''
+                            }
                         </div>
                     </div>
                 ))
