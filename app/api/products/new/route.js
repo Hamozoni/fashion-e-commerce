@@ -11,7 +11,16 @@ export async function POST(request) {
     const data = await request.json();
 
 
-    await prisma.product.create({data : data.products});
+    await prisma.product.create({
+        data : data.products,
+        create : {
+            specifications : [
+                ...specifications
+            ]
+        }
+    });
+
+
     await prisma.specifications.createMany({data : data.specifications});
     await prisma.productSizes.createMany({data : data.sizes});
 
