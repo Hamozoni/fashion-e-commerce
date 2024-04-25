@@ -11,19 +11,6 @@ export async function POST(request) {
     const data = await request.json();
 
 
-    await prisma.product.create({
-        data : data.products,
-        create : {
-            specifications : [
-                ...specifications
-            ]
-        }
-    });
-
-
-    await prisma.specifications.createMany({data : data.specifications});
-    await prisma.productSizes.createMany({data : data.sizes});
-
     await fs.mkdir("pubilc/products",{recursive: true})
 
     for(let i = 0; i < data.images.length; i++){
@@ -34,10 +21,29 @@ export async function POST(request) {
         data.images[i].imagePath = imgPath
     };
 
-    await prisma.productImages.createMany({data : data.images});
+
+ const product =   await prisma.product.create({
+        data : data.products,
+        create : {
+            specifications : [
+                ...data.specifications
+            ],
+            sizes : [
+                ...data.sizes
+            ],
+            images: [
+                ...data.images
+            ]
+
+        }
+    });
+
+
+
+
 
 
     redirect('/admin/products');
 
-  return new Response('hi')
+  return new Response(product.json())
 }
