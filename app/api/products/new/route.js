@@ -24,17 +24,21 @@ export async function POST(request) {
 
  const product =   await prisma.product.create({
         data : data.products,
-        create : {
-            specifications : [
+        specifications : {
+            create : [
                 ...data.specifications
-            ],
-            sizes : [
-                ...data.sizes
-            ],
-            images: [
+            ]
+        },
+        images : {
+            create : [
                 ...data.images
             ]
+        },
+        sizes: {
+            create : [
 
+               ...data.sizes
+            ]
         }
     });
 
