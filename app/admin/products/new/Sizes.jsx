@@ -9,12 +9,11 @@ const sizesZSchema = z.object({
 })
 
 
-export default function Sizes({id,setdata,className}) {
+export default function Sizes({setdata,className}) {
 
     const [sizes,setSizes] = useState([{
         name: '',
         description: '',
-        // productId: id
     }]);
 
     const [errors,setErrors] = useState(null);

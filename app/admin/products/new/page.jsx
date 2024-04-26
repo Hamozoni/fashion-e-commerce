@@ -10,7 +10,6 @@ import { z} from "zod";
 
 
  const productZSchema  =  z.object({
-    id : z.string(),
     name : z.string().min(3),
     priceInCent : z.coerce.number().int().min(100),
     isAvailable: z.boolean(),
@@ -22,19 +21,8 @@ import { z} from "zod";
     serialNumber: z.string().min(10).max(10),
 })
 
-const id = `${Math.random().toString(16).slice(2)}id${Math.random().toString(16).slice(2)}`;
-
 const product = {
-    id,
-    // name : '',
-    // priceInCent : 0,
     isAvailable: true,
-    // description: '',
-    // count: 1,
-    // category: '',
-    // subCategory: '',
-    // aboutThisItem: '',
-    // serialNumber: '',
 };
 
 const inputsInfo = [
@@ -198,9 +186,9 @@ const NewProducts = () => {
                     :''
                 }
             </div>
-            <SpecificationInputs id={id} setData={setSpecifications} className={className} />
-            <Images setData={setImages} id={id} className={className}/>
-            <Sizes id={id} setdata={setSizes} className={className} />
+            <SpecificationInputs setData={setSpecifications} className={className} />
+            <Images setData={setImages}className={className}/>
+            <Sizes setdata={setSizes} className={className} />
             <div className={className.inputsDev} >
                 <h3 className={`${className.label} pb-4`} >availblity : </h3>
                 <div className='flex gap-4'>

@@ -14,7 +14,7 @@ const imagesZSchema = z.object({
     color: z.string(),
 })
 
-export default function Images({setData,id,className}) {
+export default function Images({setData,className}) {
 
     const [images,setImages] = useState([{
         imagePath: '',

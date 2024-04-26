@@ -9,7 +9,7 @@ const specifZSchema = z.object({
 })
 
 
-export default function SpecificationInputs({id,setData,className}) {
+export default function SpecificationInputs({setData,className}) {
 
 
 
