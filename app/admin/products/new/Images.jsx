@@ -12,7 +12,6 @@ const imagesZSchema = z.object({
         "Only .jpg, .jpeg, .png and .webp formats are supported."
       ),
     color: z.string(),
-    productId: z.string()
 })
 
 export default function Images({setData,id,className}) {
@@ -20,13 +19,12 @@ export default function Images({setData,id,className}) {
     const [images,setImages] = useState([{
         imagePath: '',
         color: '',
-        productId: id
     }]);
 
     const [errors,setErrors] = useState(null)
 
     const addMore = ()=> {
-        setImages(prev=> [...prev,{imagePath: '',color: '',productId: id}])
+        setImages(prev=> [...prev,{imagePath: '',color: ''}])
     }
 
     const removeField = (leng)=> {

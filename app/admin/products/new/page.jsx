@@ -8,6 +8,7 @@ import Sizes from "./Sizes";
 import axios from "axios";
 import { z} from "zod";
 
+
  const productZSchema  =  z.object({
     id : z.string(),
     name : z.string().min(3),
@@ -85,31 +86,32 @@ const NewProducts = () => {
     const [errors,setErrors] = useState(null);
     const [isPendding,setIsPendding] = useState(false);
 
-    const handleSubmit = (event)=> {
+    const handleSubmit = async (event)=> {
         event.preventDefault();
 
         const test = productZSchema.safeParse(data);
 
         console.log(images)
         console.log(sizes)
-        console.log(specifications)
+        console.log(specifications);
+
 
         if(test.success) {
             setIsPendding(true);
-            setErrors(null)
-            axios({
-               method: 'POST',
-               url: '/api/products/new',
-               data: {
-                  products : data,
-                  specifications,
-                  images,
-                  sizes
-               }
+            setErrors(null);
+
+            axios.post('/api/products/new',{data: {products : data,
+                specifications,
+                images,
+                sizes }})
+              .then(res=> {
+                console.log(res)
            }).catch(err=> {
-               setErrors(err)
+            console.log(err)
+            //    setErrors(err)
            }).finally(()=> {
                setIsPendding(false);
+               
            })
         }else {
             setErrors(JSON.parse(test.error))
@@ -171,7 +173,7 @@ const NewProducts = () => {
                     
                 </textarea>
                 {
-                    (errors && errors.find((e=> e.path[0] === 'description')) !== undefined) ? 
+                    (errors && errors?.find((e=> e.path[0] === 'description')) !== undefined) ? 
                     <p className={className.error}>{errors?.find((e=> e.path[0] === 'description'))?.message}</p>
                     :''
                 }

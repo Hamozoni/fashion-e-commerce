@@ -6,7 +6,6 @@ import {z} from 'zod';
 const specifZSchema = z.object({
     key:  z.string().min(3),
     value: z.string().min(3),
-    productId: z.string()
 })
 
 
@@ -14,7 +13,7 @@ export default function SpecificationInputs({id,setData,className}) {
 
 
 
-    const [specificationArr,setSpecification] = useState([{ key:'',value: '',productId: id,}]);
+    const [specificationArr,setSpecification] = useState([{ key:'',value: ''}]);
     const [errors,setErrors] = useState(null)
 
 
@@ -23,7 +22,6 @@ export default function SpecificationInputs({id,setData,className}) {
             return [...prev,{
                 key:'',
                 value: '',
-                productId: id
             }]
         })
     };
@@ -44,7 +42,6 @@ export default function SpecificationInputs({id,setData,className}) {
 
        setSpecification(prev=> {
             prev[i].key = e.target.value;
-            prev[i].productId = id
             return [...prev]
            }
         )
@@ -54,7 +51,6 @@ export default function SpecificationInputs({id,setData,className}) {
     const addValue =  (e,i)=> {
            setSpecification(prev=> {
                 prev[i].value = e.target.value;
-                prev[i].productId  = id
                 return [...prev]
             })
                 document.getElementById(`${'value-'+i}`).focus()

@@ -6,7 +6,6 @@ import {z} from 'zod';
 const sizesZSchema = z.object({
     name: z.enum(['xs','s','m','l','xl','2xl','3xl','4xl','5xl']),
     description: z.string().min(3),
-    productId: z.string()
 })
 
 
@@ -15,14 +14,14 @@ export default function Sizes({id,setdata,className}) {
     const [sizes,setSizes] = useState([{
         name: '',
         description: '',
-        productId: id
+        // productId: id
     }]);
 
     const [errors,setErrors] = useState(null);
 
 
     const addMore = ()=> {
-        setSizes(prev=> [...prev,{name: '',description: '',productId: id}])
+        setSizes(prev=> [...prev,{name: '',description: ''}])
     }
 
     const removeField = (leng)=> {

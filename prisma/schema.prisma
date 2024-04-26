@@ -27,7 +27,7 @@ model Product {
   category String
   subCategory String
   aboutThisItem String @db.Text
-  serialNumber String? @unique
+  serialNumber String @unique
   selectedSize String?
   selectedColor String?
   specifications Specifications[]

@@ -1,5 +1,4 @@
-import fs  from 'fs/promises';
-import { redirect } from 'next/navigation';
+// import fs  from 'fs/promises';
 
 const { PrismaClient } = require('@prisma/client')
 
@@ -8,38 +7,40 @@ const prisma = new PrismaClient()
 
 export async function POST(request) {
 
-    const data = await request.json();
+    const {data} = await request.json();
+
+    console.log(data.products)
 
 
-    await fs.mkdir("pubilc/products",{recursive: true})
+    // await fs.mkdir("publicc/products",{recursive: true})
 
-    for(let i = 0; i < data.images.length; i++){
-        const imgPath = `pubilc/products/${crypto.randomUUID()}-${data.images[i].imagePath}`;
+    // for(let i = 0; i < data.images.length; i++){
+    //     const imgPath = `products/${crypto.randomUUID()}-${data.images[i].imagePath}`;
 
-        await fs.writeFile(imgPath,Buffer.from(await data.images[i].imagePath.arrayBuffer()))
+    //     await fs.writeFile(imgPath,Buffer.from(await data.images[i].imagePath.arrayBuffer()))
 
-        data.images[i].imagePath = imgPath
-    };
+    //     data.images[i].imagePath = imgPath
+    // };
 
 
- const product =   await prisma.product.create({
-        data : data.products,
-        specifications : {
-            create : [
-                ...data.specifications
-            ]
+  const pro = await prisma.product.create({
+        data : {...data.products,
+            specifications : {
+                create :[
+                    ...data.specifications
+                ]
+            },
+            sizes : {
+                create :[
+                    ...data.sizes
+                ]
+            },
+            images : {
+                create :[
+                    ...data.images
+                ]
+            }
         },
-        images : {
-            create : [
-                ...data.images
-            ]
-        },
-        sizes: {
-            create : [
-
-               ...data.sizes
-            ]
-        }
     });
 
 
@@ -47,7 +48,5 @@ export async function POST(request) {
 
 
 
-    redirect('/admin/products');
-
-  return new Response(product.json())
+  return new Response()
 }
