@@ -5,7 +5,7 @@ import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
-import { postNewPoduct} from "../../../../actions/postNewProduct"
+import uplaodingImages from "../../../../actions/uplaodingImages"
 import { z} from "zod";
 
 
@@ -79,15 +79,25 @@ const NewProducts = () => {
         const test = productZSchema.safeParse(data);
 
         if(test.success) {
-            postNewPoduct(sizes)
+         const img  = uplaodingImages(images);
+         console.log(img)
         }else {
             setErrors(JSON.parse(test.error))
         }
 
     }
 
-    useEffect(()=> {
+    useEffect(async()=> {
         const test = productZSchema.safeParse(data);
+
+        if(images.length > 0 && typeof images[0].imagePath === 'object') {
+            const blob =  Buffer.from(await images[0]?.imagePath?.arrayBuffer())
+            console.log(blob);
+
+        }
+
+
+
         if(test.success){
             setErrors(null)
         }else {

@@ -29,7 +29,7 @@ const imagesZSchema = z.object({
 export default function Images({setData,className}) {
 
     const [images,setImages] = useState([{
-        imagePath: {},
+        imagePath:'',
         color: '',
     }]);
 
@@ -75,7 +75,7 @@ export default function Images({setData,className}) {
                             <h6 className={`${className.label}`}>image :</h6>
                             <input  type="file" className={className.inputClass}
                                 onChange={(e)=> setImages(prev=> {
-                                    prev[i].imagePath = e.target.files[0].stream().getReader()
+                                    prev[i].imagePath = e.target.files[0]
                                     return [...prev]
                                     
                                 })} 
