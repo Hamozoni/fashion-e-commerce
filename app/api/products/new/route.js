@@ -1,4 +1,4 @@
-// import fs  from 'fs/promises';
+import fs from 'fs/promises';
 
 const { PrismaClient } = require('@prisma/client')
 
@@ -12,15 +12,15 @@ export async function POST(request) {
     console.log(data.products)
 
 
-    // await fs.mkdir("publicc/products",{recursive: true})
+    await fs.mkdir("public/products",{recursive: true})
+    
+    for(let i = 0; i < data.images.length; i++){
+        const imgPath = `/products/${crypto.randomUUID()}-${data.images[i].imagePath.name}`;
 
-    // for(let i = 0; i < data.images.length; i++){
-    //     const imgPath = `products/${crypto.randomUUID()}-${data.images[i].imagePath}`;
+        await fs.writeFile(imgPath,Buffer.from(await data.images[i].imagePath.arrayBuffer()))
 
-    //     await fs.writeFile(imgPath,Buffer.from(await data.images[i].imagePath.arrayBuffer()))
-
-    //     data.images[i].imagePath = imgPath
-    // };
+        data.images[i].imagePath = imgPath
+    };
 
 
   const pro = await prisma.product.create({

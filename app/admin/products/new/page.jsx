@@ -79,7 +79,7 @@ const NewProducts = () => {
 
         const test = productZSchema.safeParse(data);
 
-        console.log(images)
+        console.log(images[0].imagePath.blob)
         console.log(sizes)
         console.log(specifications);
 
