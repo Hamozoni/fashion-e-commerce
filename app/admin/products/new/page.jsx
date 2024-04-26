@@ -5,7 +5,7 @@ import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
-import axios from "axios";
+import { postNewPoduct} from "../../../../actions/postNewProduct"
 import { z} from "zod";
 
 
@@ -76,31 +76,10 @@ const NewProducts = () => {
 
     const handleSubmit = async (event)=> {
         event.preventDefault();
-
         const test = productZSchema.safeParse(data);
 
-        console.log(images[0].imagePath.blob)
-        console.log(sizes)
-        console.log(specifications);
-
-
         if(test.success) {
-            setIsPendding(true);
-            setErrors(null);
-
-            axios.post('/api/products/new',{data: {products : data,
-                specifications,
-                images,
-                sizes }})
-              .then(res=> {
-                console.log(res)
-           }).catch(err=> {
-            console.log(err)
-            //    setErrors(err)
-           }).finally(()=> {
-               setIsPendding(false);
-               
-           })
+            postNewPoduct(sizes)
         }else {
             setErrors(JSON.parse(test.error))
         }

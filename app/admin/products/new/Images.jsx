@@ -57,7 +57,7 @@ export default function Images({setData,className}) {
             setErrors(JSON.parse(test.error))
         }
         
-        console.log(images[0].imagePath)
+        console.log(images)
 
     },[images]);
 
@@ -75,7 +75,7 @@ export default function Images({setData,className}) {
                             <h6 className={`${className.label}`}>image :</h6>
                             <input  type="file" className={className.inputClass}
                                 onChange={(e)=> setImages(prev=> {
-                                    prev[i].imagePath = e.target.files[0]
+                                    prev[i].imagePath = e.target.files[0].stream().getReader()
                                     return [...prev]
                                     
                                 })} 
