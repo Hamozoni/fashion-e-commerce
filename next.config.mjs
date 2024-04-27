@@ -7,11 +7,11 @@ const nextConfig = {
             headers: [
               {
                 key: 'Content-Type',
-                value: 'image/*',
+                value: 'multipart/form-data',
               },
               {
                 key: 'Accept',
-                value: 'image/*',
+                value: 'multipart/form-data',
               },
             ],
           },

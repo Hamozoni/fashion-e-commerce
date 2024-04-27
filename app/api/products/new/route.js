@@ -6,7 +6,7 @@ export async function POST (requist) {
 
     const h = new Headers(requist.headers);
 
-    h.set('Content-Type', 'image/*')
+    h.set('Content-Type', 'multipart/form-data')
 
     console.log(h);
     console.log(data);

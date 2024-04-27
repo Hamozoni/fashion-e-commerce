@@ -82,7 +82,7 @@ const NewProducts = () => {
 
         if(test.success) {
             axios.post('/api/products/new',
-                {headers : {'Content-Type': 'image/*'},
+                {headers : {Accept: 'multipart/form-data','Content-Type': 'multipart/form-data'},
                data: {data,specifications,sizes,images}},
             )
         }else {
