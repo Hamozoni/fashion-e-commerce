@@ -87,14 +87,14 @@ const NewProducts = () => {
 
     }
 
-    useEffect(async()=> {
+    useEffect(()=> {
         const test = productZSchema.safeParse(data);
 
-        if(images.length > 0 && typeof images[0].imagePath === 'object') {
-            const blob =  Buffer.from(await images[0]?.imagePath?.arrayBuffer())
-            console.log(blob);
+        // if(images.length > 0 && typeof images[0].imagePath === 'object') {
+        //     const blob =  Buffer.from(await images[0]?.imagePath?.arrayBuffer())
+        //     console.log(blob);
 
-        }
+        // }
 
 
 

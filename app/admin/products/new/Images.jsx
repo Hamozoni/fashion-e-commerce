@@ -73,7 +73,7 @@ export default function Images({setData,className}) {
                     <div className="md:flex items-center w-full gap-4 pb-1" key={'images-'+i}>
                         <div className=" w-full md:h-1/2 pb-2">
                             <h6 className={`${className.label}`}>image :</h6>
-                            <input  type="file" className={className.inputClass}
+                            <input  type="file" accept="image/*" className={className.inputClass}
                                 onChange={(e)=> setImages(prev=> {
                                     prev[i].imagePath = e.target.files[0]
                                     return [...prev]
