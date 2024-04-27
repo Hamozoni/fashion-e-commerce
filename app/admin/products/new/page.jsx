@@ -7,6 +7,7 @@ import Images from "./Images";
 import Sizes from "./Sizes";
 import uplaodingImages from "../../../../actions/uplaodingImages"
 import { z} from "zod";
+import axios from "axios";
 
 
  const productZSchema  =  z.object({
@@ -75,12 +76,15 @@ const NewProducts = () => {
     const [isPendding,setIsPendding] = useState(false);
 
     const handleSubmit = async (event)=> {
+
         event.preventDefault();
         const test = productZSchema.safeParse(data);
 
         if(test.success) {
-         const img  = uplaodingImages(images);
-         console.log(img)
+            axios.post('/api/products/new',
+                {headers : {'Content-Type': 'image/*'},
+               data: {data,specifications,sizes,images}},
+            )
         }else {
             setErrors(JSON.parse(test.error))
         }
@@ -90,16 +94,11 @@ const NewProducts = () => {
     useEffect(()=> {
         const test = productZSchema.safeParse(data);
 
-        // if(images.length > 0 && typeof images[0].imagePath === 'object') {
-        //     const blob =  Buffer.from(await images[0]?.imagePath?.arrayBuffer())
-        //     console.log(blob);
-
-        // }
-
 
 
         if(test.success){
             setErrors(null)
+
         }else {
             setErrors(JSON.parse(test.error))
         }
