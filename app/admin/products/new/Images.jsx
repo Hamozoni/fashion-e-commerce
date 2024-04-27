@@ -24,7 +24,9 @@ const imagesZSchema = z.object({
 //         "Only .jpg, .jpeg, .png and .webp formats are supported."
 //       ),
 //     color: z.string(),
-// })
+// });
+
+const formData = new FormData()
 
 export default function Images({setData,className}) {
 
@@ -49,15 +51,15 @@ export default function Images({setData,className}) {
     useEffect(()=> {
 
         const test = imagesZSchema.array().safeParse(images);
+        setData([...images])
 
         if(test.success){
-            setData([...images])
             setErrors(null)
         }else {
             setErrors(JSON.parse(test.error))
         }
         
-        console.log(images)
+        // console.log(images)
 
     },[images]);
 
@@ -75,7 +77,7 @@ export default function Images({setData,className}) {
                             <h6 className={`${className.label}`}>image :</h6>
                             <input  type="file" accept="image/*" className={className.inputClass}
                                 onChange={(e)=> setImages(prev=> {
-                                    prev[i].imagePath = e.target.files[0]
+                                    prev[i].imagePath = new Blob([e.target.files[0].arrayBuffer()],{type: "text/xml"})
                                     return [...prev]
                                     
                                 })} 
