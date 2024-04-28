@@ -138,6 +138,7 @@ const NewProducts = () => {
             <div className={className.inputsDev}>
                 <label className={className.label}  htmlFor="description">description : </label>
                 <textarea 
+                    name='description'  
                     className={`${className.inputClass} h-20 min-h-16`}  
                     id="description" 
                     placeholder="the description of the product..." 
@@ -157,6 +158,7 @@ const NewProducts = () => {
             <div className={className.inputsDev}>
                 <label className={className.label}  htmlFor="about">about this item : </label>
                <textarea 
+                    name="about"
                     className={`${className.inputClass} h-20 min-h-16`}   
                     id="about" 
                     placeholder="about this item" 

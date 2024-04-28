@@ -77,6 +77,7 @@ export default function SpecificationInputs({setData,className}) {
                     <div className="gap-3 md:w-1/2">
                         <label className={className.label} htmlFor={'key-'+i}>key:</label>
                         <input 
+                            name={specificationKey}
                             value={el.key}
                             className={className.inputClass}
                             onChange={e=> addKey(e,i)}
@@ -95,6 +96,7 @@ export default function SpecificationInputs({setData,className}) {
                     <div className="gap-3 md:w-1/2">
                         <label className={className.label} htmlFor={'value-'+i}>value:</label>
                         <input
+                           name={specificationValue}
                             className={className.inputClass}
                             value={el.value}
                             onChange={e=> addValue(e,i)}

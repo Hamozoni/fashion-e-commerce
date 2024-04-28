@@ -75,7 +75,7 @@ export default function Images({setData,className}) {
                     <div className="md:flex items-center w-full gap-4 pb-1" key={'images-'+i}>
                         <div className=" w-full md:h-1/2 pb-2">
                             <h6 className={`${className.label}`}>image :</h6>
-                            <input  type="file" accept="image/*" className={className.inputClass}
+                            <input name='imageFile'  type="file" accept="image/*" className={className.inputClass}
                                 onChange={(e)=> setImages(prev=> {
                                     prev[i].imagePath = new Blob([e.target.files[0].arrayBuffer()],{type: "text/xml"})
                                     return [...prev]
@@ -90,7 +90,7 @@ export default function Images({setData,className}) {
                         </div>
                         <div className="w-full md:h-1/2 ">
                             <h6 className={`${className.label}`}>color :</h6>
-                            <input type='color' className=''
+                            <input name='imageColor'   type='color' className=''
                                 onChange={(e)=> setImages(prev=> {
                                     prev[i].color = e.target.value
                                     return [...prev]

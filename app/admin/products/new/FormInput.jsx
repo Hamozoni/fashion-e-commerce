@@ -6,10 +6,11 @@ export default function FormInput({value,setvalue,title,type,placeHolder,errors,
     <div className={className.inputsDev}>
         <label className={className.label}  htmlFor={title}>{title} : </label>
         <input 
+            name={value}
             onChange={e=> setvalue( type === 'number' ? +e.target.value : e.target.value)}
             className={className.inputClass} 
             type={type} 
-            id={type} 
+            id={value} 
             placeholder={placeHolder}
             required
         />
