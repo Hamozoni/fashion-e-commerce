@@ -82,10 +82,10 @@ const NewProducts = () => {
 
         const formData = new FormData(document.getElementById('product-form'))
 
+        console.log(formData)
+
         if(test.success) {
-            axios.post('/api/products/new',
-                {headers : {Accept: 'multipart/form-data','Content-Type': 'multipart/form-data'},
-               data: formData},
+            axios.post('/api/products/new',{data: formData}
             )
         }else {
             setErrors(JSON.parse(test.error))
