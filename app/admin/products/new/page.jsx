@@ -80,10 +80,12 @@ const NewProducts = () => {
         event.preventDefault();
         const test = productZSchema.safeParse(data);
 
+        const formData = new FormData(document.getElementById('product-form'))
+
         if(test.success) {
             axios.post('/api/products/new',
                 {headers : {Accept: 'multipart/form-data','Content-Type': 'multipart/form-data'},
-               data: {data,specifications,sizes,images}},
+               data: formData},
             )
         }else {
             setErrors(JSON.parse(test.error))
@@ -115,7 +117,7 @@ const NewProducts = () => {
   return (
     <div className="p-4 lg:p-10 w-full max-w-full ">
         <h3 className="pb-4 font-bold text-2xl">adding new product form</h3>
-        <form  onSubmit={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
+        <form id='product-form'  onSubmit={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
             {
                 inputsInfo.map(input=> (
                     <FormInput 
