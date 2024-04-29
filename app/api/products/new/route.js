@@ -14,7 +14,7 @@ export async function POST (requist) {
 
 
     // console.log(h);
-    console.log(formData.get("imagePath-#b05e5e").name);
+    console.log(formData.getAll("imagePath-#b05e5e")[0]);
 
     return new Response()
 

@@ -48,10 +48,18 @@ model Specifications{
 
 model ProductImages {
   id String @id @default(uuid())
-  imagePath String
   color String
   product Product  @relation(fields: [productId], references: [id])
   productId String
+  images ImagesPath[]
+}
+
+model ImagesPath {
+  id String @id @default(uuid())
+  imagePath String
+  productImages ProductImages @relation(fields: [productImagesId],references: [id])
+  productImagesId  String 
+
 }
 
 model ProductSizes {
