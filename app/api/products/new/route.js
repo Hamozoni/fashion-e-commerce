@@ -2,14 +2,14 @@
 
 export async function POST (requist) {
 
-    const {data} = await requist.json();
+    const body = await requist.body;
 
     // const h = new Headers(requist.headers);
 
 
 
     // console.log(h);
-    console.log(data);
+    console.log(body);
 
     return new Response()
 

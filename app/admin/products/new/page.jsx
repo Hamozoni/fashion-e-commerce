@@ -6,7 +6,7 @@ import SpecificationInputs from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
 import { z} from "zod";
-// import axios from "axios";
+import axios from "axios";
 
 
  const productZSchema  =  z.object({
@@ -67,7 +67,7 @@ const inputsInfo = [
 
 
 
-const formData = new FormData();
+// const formData = new FormData();
 
 
 const NewProducts = () => {
@@ -84,24 +84,49 @@ const NewProducts = () => {
         event.preventDefault();
         const test = productZSchema.safeParse(data);
 
-        Object.entries(data).map((key)=> {
-            formData.append(key[0],key[1])
-        })
+        // Object.entries(data).map((key)=> {
+        //     formData.append(key[0],key[1])
+        // })
 
-        for(let i = 0; i < images.length;i++){
+        // for(let i = 0; i < images.length;i++){
             
-            formData.append("color",images[i].color)
-            for(let p = 0; p < images[i].imagePath.length;p++) {
-                formData.append(`imagePath-${images[i].color}`,images[i].imagePath[p])
-            }
-        }
+        //     formData.append("color",images[i].color)
+        //     for(let p = 0; p < images[i].imagePath.length;p++) {
+        //         formData.append(`imagePath-${images[i].color}`,images[i].imagePath[p])
+        //     }
+        // }
+
+        // sizes.map((e)=> {
+        //     formData.append("sizeName",e.name);
+        //     formData.append("sizeDesc",e.description);
+        // })
+
+        // specifications.map((e)=> {
+        //     formData.append("specifKey",e.key);
+        //     formData.append("specifValue",e.value);
+        // })
 
 
-        console.log(formData.getAll("color"))
+        
+        const formData = new FormData(event.currentTarget)
+        // console.log(formData.getAll("name"))
+        // const response = await fetch('/api/products/new', {
+        //   method: 'POST',
+        //   body: formData,
+        // })
 
         if(test.success) {
-            // axios.post('/api/products/new',{data: formData}
-            // )
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+              }
+          
+              axios.post('/api/products/new',{body : formData}, config)
+                .then(response => {
+                  console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }else {
             setErrors(JSON.parse(test.error))
         }
@@ -161,7 +186,6 @@ const NewProducts = () => {
                     placeholder="the description of the product..." 
                     required
                     onChange={e=> setData(prev=> {
-                        formData.append("description",e.target.value)
                         return {...prev,description : e.target.value}
                     })}
                     >
@@ -183,7 +207,6 @@ const NewProducts = () => {
                     cols="10" rows="10"
                     required
                     onChange={e=> setData(prev=> {
-                        formData.append('aboutThisItem',e.target.value)
                         return {...prev,aboutThisItem : e.target.value}
                     })}
                     >
@@ -195,16 +218,15 @@ const NewProducts = () => {
                     :''
                 }
             </div>
-            <SpecificationInputs  formData={formData} setData={setSpecifications} className={className} />
-            <Images  formData={formData}  setData={setImages}className={className}/>
-            <Sizes  formData={formData}  setdata={setSizes} className={className} />
+            <SpecificationInputs setData={setSpecifications} className={className} />
+            <Images   setData={setImages}className={className}/>
+            <Sizes  setdata={setSizes} className={className} />
             <div className={className.inputsDev} >
                 <h3 className={`${className.label} pb-4`} >availblity : </h3>
                 <div className='flex gap-4'>
                     <div className={`flex items-center gap-2 cursor-pointer `}  
                         onClick={()=> {
                             setData(prev=> {
-                                formData.append("isAvailable",true)
                                 return {...prev,isAvailable : true}
                             })
                         }
@@ -215,7 +237,6 @@ const NewProducts = () => {
                     <div className={`flex items-center gap-2 cursor-pointer`} 
                         onClick={()=> {
                             setData(prev=> {
-                                formData.append("isAvailable",false)
                                 return {...prev,isAvailable : false}
                             })
                            }
