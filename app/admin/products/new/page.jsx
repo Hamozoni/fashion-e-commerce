@@ -9,6 +9,7 @@ import { z} from "zod";
 import axios from "axios";
 
 
+
  const productZSchema  =  z.object({
     name : z.string().min(3),
     priceInCent : z.coerce.number().int().min(100),
@@ -67,7 +68,7 @@ const inputsInfo = [
 
 
 
-// const formData = new FormData();
+
 
 
 const NewProducts = () => {
@@ -84,43 +85,38 @@ const NewProducts = () => {
         event.preventDefault();
         const test = productZSchema.safeParse(data);
 
-        // Object.entries(data).map((key)=> {
-        //     formData.append(key[0],key[1])
-        // })
+        const formData = new FormData();
 
-        // for(let i = 0; i < images.length;i++){
+        Object.entries(data).map((key)=> {
+            formData.append(key[0],key[1])
+        })
+
+        for(let i = 0; i < images.length;i++){
             
-        //     formData.append("color",images[i].color)
-        //     for(let p = 0; p < images[i].imagePath.length;p++) {
-        //         formData.append(`imagePath-${images[i].color}`,images[i].imagePath[p])
-        //     }
-        // }
+            formData.append("color",images[i].color)
+            for(let p = 0; p < images[i].imagePath.length;p++) {
+                formData.append(`imagePath-${images[i].color}`,images[i].imagePath[p])
+            }
+        }
 
-        // sizes.map((e)=> {
-        //     formData.append("sizeName",e.name);
-        //     formData.append("sizeDesc",e.description);
-        // })
+        sizes.map((e)=> {
+            formData.append("sizeName",e.name);
+            formData.append("sizeDesc",e.description);
+        })
 
-        // specifications.map((e)=> {
-        //     formData.append("specifKey",e.key);
-        //     formData.append("specifValue",e.value);
-        // })
+        specifications.map((e)=> {
+            formData.append("specifKey",e.key);
+            formData.append("specifValue",e.value);
+        })
 
 
-        
-        const formData = new FormData(event.currentTarget)
-        // console.log(formData.getAll("name"))
-        // const response = await fetch('/api/products/new', {
-        //   method: 'POST',
-        //   body: formData,
-        // })
 
         if(test.success) {
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
               }
           
-              axios.post('/api/products/new',{body : formData}, config)
+              axios.post('/api/products/new',formData, config)
                 .then(response => {
                   console.log(response);
                 })
@@ -157,7 +153,7 @@ const NewProducts = () => {
   return (
     <div className="p-4 lg:p-10 w-full max-w-full ">
         <h3 className="pb-4 font-bold text-2xl">adding new product form</h3>
-        <form id='product-form'  onSubmit={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
+        <form   onSubmit={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
             {
                 inputsInfo.map(input=> (
                     <FormInput 

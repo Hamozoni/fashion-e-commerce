@@ -3,7 +3,7 @@
 export async function POST (requist) {
 
 
-    const formData = await requist.body;
+    const {formData } = await requist;
 
     // const h = new Headers(requist.headers);
 
