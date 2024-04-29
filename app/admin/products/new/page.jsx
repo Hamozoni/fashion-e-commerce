@@ -5,9 +5,9 @@ import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
-import uplaodingImages from "../../../../actions/uplaodingImages"
+import {postNewPoduct } from '../../../../actions/postNewProduct'
 import { z} from "zod";
-import axios from "axios";
+// import axios from "axios";
 
 
  const productZSchema  =  z.object({
@@ -66,6 +66,11 @@ const inputsInfo = [
 
 ]
 
+
+
+// const formData = new FormData();
+
+
 const NewProducts = () => {
 
     const [data,setData] = useState(product);
@@ -80,13 +85,11 @@ const NewProducts = () => {
         event.preventDefault();
         const test = productZSchema.safeParse(data);
 
-        const formData = new FormData(document.getElementById('product-form'))
-
-        console.log(formData)
+       await postNewPoduct()
 
         if(test.success) {
-            axios.post('/api/products/new',{data: formData}
-            )
+            // axios.post('/api/products/new',{data: formData}
+            // )
         }else {
             setErrors(JSON.parse(test.error))
         }
