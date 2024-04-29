@@ -84,8 +84,10 @@ const NewProducts = () => {
 
         event.preventDefault();
         const test = productZSchema.safeParse(data);
+        console.log("gegegeg",data,sizes,images,specifications)
 
         const formData = new FormData();
+
 
         Object.entries(data).map((key)=> {
             formData.append(key[0],key[1])
@@ -116,7 +118,7 @@ const NewProducts = () => {
                 headers: { 'content-type': 'multipart/form-data' }
               }
           
-              axios.post('/api/products/new',formData, config)
+            await axios.post('/api/products/new',formData, config)
                 .then(response => {
                   console.log(response);
                 })
