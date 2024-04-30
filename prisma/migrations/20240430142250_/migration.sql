@@ -30,6 +30,7 @@ CREATE TABLE `product` (
     `selectedSize` VARCHAR(191) NULL,
     `selectedColor` VARCHAR(191) NULL,
 
+    UNIQUE INDEX `product_serialNumber_key`(`serialNumber`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

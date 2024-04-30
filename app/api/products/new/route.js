@@ -1,5 +1,6 @@
 
 import fs from 'fs/promises';
+import { NextResponse } from 'next/server';
 const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
@@ -8,12 +9,12 @@ export async function POST (requist) {
 
     const formData  = await requist.formData();
 
-    const exestProduct = await prisma.product.findUnique({where : {
+    const exestProduct = await prisma.product.findMany({where : {
         serialNumber : formData.get("serialNumber")
     }});
 
-    if(exestProduct){
-        return new Error('exsest prduct')
+    if(exestProduct !== null){
+        return new NextResponse("Error the products already added before try another product", { status: 400 })
     }
 
    const specifKeys = formData.getAll("specifKey");
@@ -43,36 +44,47 @@ export async function POST (requist) {
 
 
    
+   
+   
    const color = formData.getAll("color");
    
-   const images = [
-       {color: '', images : {create : [{imagePath : ''}]}}
-    ]
+
     
-    await fs.mkdir("public/products",{recursive: true});
-
-   for(let i = 0;i < color.length; i++){
-
-        images[i].color = color[i];
-        
+    const all_images = async ()=> {
+        await fs.mkdir("public/products",{recursive: true});
         const imagesPath = formData.getAll(`imagePath-${color[i]}`);
         const imgarray = [];
 
-        for(let p = 0; p < imagesPath.length; p++){
+        const images = [
+            {color: '', images : {create : [{imagePath : ''}]}}
+         ]
+        
+           for(let i = 0;i < color.length; i++){
+        
+                images[i].color = color[i];
+        
+        
+        
+                
+        
+                for(let p = 0; p < imagesPath.length; p++){
+        
+                    const imageUrl = `public/products/${crypto.randomUUID()}-${imagesPath[p].name}`;
+        
+                    await fs.writeFile(imageUrl,Buffer.from(await imagesPath[p].arrayBuffer()))
+        
+        
+        
+                    imgarray.push({imagePath : imageUrl })
+                   
+                    images[i].images = { create :[...imgarray]}
+        
+                }
+           }
+        return images
 
-            const imageUrl = `public/products/${crypto.randomUUID()}-${imagesPath[p].name}`;
-
-            await fs.writeFile(imageUrl,Buffer.from(await imagesPath[p].arrayBuffer()))
-
-
-
-            imgarray.push({imagePath : imageUrl })
-           
-            images[i].images = { create :[...imgarray]}
-
-        }
-   }
-    console.log(images)
+    }
+    console.log(all_images)
 
     
 
@@ -100,11 +112,11 @@ export async function POST (requist) {
             },
             images : {
                 create :[
-                    ...images
+                    ...all_images
                 ]
             }
         }})
-console.log(pro)
-    return new Response(JSON.stringify(product))
+console.log(product)
+    return new NextResponse(product)
 
 }

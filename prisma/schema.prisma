@@ -9,7 +9,7 @@ datasource db {
 
 
 model order {
-  id              String       @id
+  id               String   @id @default(uuid())
   status          order_status @default(pendding)
   pricePaidInCent Int
   createdAt       DateTime     @default(now())
@@ -45,14 +45,14 @@ model product {
 }
 
 model productimages {
-  id        String @id
+ id               String   @id @default(uuid())
   color     String
   productId String
   product product @relation(fields: [productId],references: [id])
   images imagespath[]
 }
 model imagespath {
-  id              String @id
+  id               String   @id @default(uuid())
   imagePath       String
   productImagesId String
   prductImage productimages @relation(fields: [productImagesId],references: [id])
@@ -60,7 +60,7 @@ model imagespath {
 }
 
 model productsizes {
-  id          String  @id
+  id               String   @id @default(uuid())
   name        String
   description String?
   productId   String
@@ -69,7 +69,7 @@ model productsizes {
 }
 
 model reviews {
-  id        String @id
+ id               String   @id @default(uuid())
   text      String
   productId String
   autherId  String
@@ -80,7 +80,7 @@ model reviews {
 }
 
 model specifications {
-  id        String @id
+  id               String   @id @default(uuid())
   key       String
   value     String
   productId String
@@ -88,7 +88,7 @@ model specifications {
 }
 
 model user {
-  id         String    @id
+ id               String   @id @default(uuid())
   createdAt  DateTime  @default(now())
   uptatedAt  DateTime  @updatedAt
   email      String    @unique()
