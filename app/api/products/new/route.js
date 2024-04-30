@@ -13,7 +13,8 @@ export async function POST (requist) {
         serialNumber : formData.get("serialNumber")
     }});
 
-    if(exestProduct !== null){
+    if(exestProduct.length > 0){
+        console.log(exestProduct);
         return new NextResponse("Error the products already added before try another product", { status: 400 })
     }
 
@@ -47,26 +48,28 @@ export async function POST (requist) {
    
    
    const color = formData.getAll("color");
+   console.log("colors",color)
    
 
     
-    const all_images = async ()=> {
-        await fs.mkdir("public/products",{recursive: true});
-        const imagesPath = formData.getAll(`imagePath-${color[i]}`);
-        const imgarray = [];
 
-        const images = [
-            {color: '', images : {create : [{imagePath : ''}]}}
-         ]
+        await fs.mkdir("public/products",{recursive: true});
+       
+        
+
+        const images = []
         
            for(let i = 0;i < color.length; i++){
+
+              images.push({color: '', images : { create : [{imagePath : ''}]}})
+
+               const imgarray = [];
+
+                const imagesPath = formData.getAll(`imagePath-${color[i]}`);
+                console.log("imagePath",imagesPath)
         
                 images[i].color = color[i];
-        
-        
-        
-                
-        
+    
                 for(let p = 0; p < imagesPath.length; p++){
         
                     const imageUrl = `public/products/${crypto.randomUUID()}-${imagesPath[p].name}`;
@@ -77,15 +80,10 @@ export async function POST (requist) {
         
                     imgarray.push({imagePath : imageUrl })
                    
-                    images[i].images = { create :[...imgarray]}
-        
+                    
                 }
-           }
-        return images
-
-    }
-    console.log(all_images)
-
+                images[i].images = { create :[...imgarray]}
+            }
     
 
 
@@ -111,9 +109,7 @@ export async function POST (requist) {
                 ]
             },
             images : {
-                create :[
-                    ...all_images
-                ]
+                create : [...images]
             }
         }})
 console.log(product)

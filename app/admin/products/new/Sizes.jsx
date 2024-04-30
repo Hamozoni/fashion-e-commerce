@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {z} from 'zod';
 
 const sizesZSchema = z.object({
-    name: z.enum(['xs','s','m','l','xl','2xl','3xl','4xl','5xl']),
+    name: z.string(),
     description: z.string().min(3),
 })
 

@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
     description: z.string().min(5),
     count: z.coerce.number().int().min(1),
     category: z.enum(["men", "women", "kids"]),
-    subCategory: z.enum(["t-shirt", "shit"]),
+    subCategory: z.enum(["t-shirt", "shit","shoes"]),
     aboutThisItem: z.string().min(5),
     serialNumber: z.string().min(10).max(10),
 })
@@ -86,6 +86,8 @@ const NewProducts = () => {
     const handleSubmit = async (event)=> {
 
         event.preventDefault();
+
+        setIsPendding(true);
         const test = productZSchema.safeParse(data);
         console.log("gegegeg",data,sizes,images,specifications)
 
@@ -120,16 +122,20 @@ const NewProducts = () => {
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
               }
+
+              
           
             await axios.post('/api/products/new',formData, config)
                 .then(response => {
 
-                    router.push('/admin/products')
+                router.push('/admin/products');
                   console.log(response);
                 })
                 .catch(error => {
                     console.log(error);
-                });
+                }).finally(()=> {
+                    setIsPendding(false);
+                })
         }else {
             setErrors(JSON.parse(test.error))
         }
