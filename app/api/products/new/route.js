@@ -1,19 +1,8 @@
 
-// export const config = {
-//     api: {
-//         bodyParser: false,
-//     },
-// };
 export async function POST (requist) {
-
 
     const formData  = await requist.formData();
 
-    // const h = new Headers(requist.headers);
-
-
-
-    // console.log(h);
     console.log(formData);
 
    const specifKeys = formData.getAll("specifKey");
@@ -39,20 +28,36 @@ export async function POST (requist) {
     let specification = {name : sizeName[i], description : sizeDesc[i]}
 
     sizes.push(specification)
+   };
+
+
+   
+   const color = formData.getAll("color");
+   
+   const images = [
+       {color: '', images : {create : [{imagePath : ''}]}}
+    ]
+    
+    await fs.mkdir("public/products",{recursive: true});
+
+   for(let i = 0;i < color.length; i++){
+
+        images[i].color = color[i];
+        
+        const imagesPath = formData.getAll(`imagePath-${color[i]}`);
+
+        for(let p = 0; p < imagesPath.length; p++){
+
+            const imageUrl = `/products/${crypto.randomUUID()}-${imagesPath[p].name}`;
+
+            await fs.writeFile(imageUrl,Buffer.from(await imagesPath[p].Buffer()))
+           
+            images[i].images.create.push({imagePath : imageUrl })
+
+        }
    }
 
-
-
-
-
     
-    await fs.mkdir("public/products",{recursive: true})
-
-    
-    const imgPath = `/products/${crypto.randomUUID()}-${data.images[0].imagePath.name}`;
-
-    await fs.writeFile(imgPath,Buffer.from(await data.images[0].imagePath.Buffer()))
-
 
 
   const pro = await prisma.product.create({
@@ -78,7 +83,7 @@ export async function POST (requist) {
             },
             images : {
                 create :[
-                    ...data.images
+                    ...images
                 ]
             }
         }})
