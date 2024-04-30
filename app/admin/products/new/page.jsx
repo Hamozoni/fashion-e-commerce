@@ -7,6 +7,7 @@ import Images from "./Images";
 import Sizes from "./Sizes";
 import { z} from "zod";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 
 
@@ -80,6 +81,8 @@ const NewProducts = () => {
     const [errors,setErrors] = useState(null);
     const [isPendding,setIsPendding] = useState(false);
 
+    const router = useRouter()
+
     const handleSubmit = async (event)=> {
 
         event.preventDefault();
@@ -120,6 +123,8 @@ const NewProducts = () => {
           
             await axios.post('/api/products/new',formData, config)
                 .then(response => {
+
+                    router.push('/admin/products')
                   console.log(response);
                 })
                 .catch(error => {

@@ -13,7 +13,7 @@ CREATE TABLE `Product` (
     `category` VARCHAR(191) NOT NULL,
     `subCategory` VARCHAR(191) NOT NULL,
     `aboutThisItem` TEXT NOT NULL,
-    `serialNumber` VARCHAR(191) NULL,
+    `serialNumber` VARCHAR(191) NOT NULL,
     `selectedSize` VARCHAR(191) NULL,
     `selectedColor` VARCHAR(191) NULL,
 
@@ -35,9 +35,17 @@ CREATE TABLE `Specifications` (
 -- CreateTable
 CREATE TABLE `ProductImages` (
     `id` VARCHAR(191) NOT NULL,
-    `imagePath` VARCHAR(191) NOT NULL,
     `color` VARCHAR(191) NOT NULL,
     `productId` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `ImagesPath` (
+    `id` VARCHAR(191) NOT NULL,
+    `imagePath` VARCHAR(191) NOT NULL,
+    `productImagesId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -58,6 +66,7 @@ CREATE TABLE `Reviews` (
     `text` VARCHAR(191) NOT NULL,
     `productId` VARCHAR(191) NOT NULL,
     `autherId` VARCHAR(191) NOT NULL,
+    `rating` INTEGER NOT NULL DEFAULT 7,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -101,6 +110,9 @@ ALTER TABLE `Specifications` ADD CONSTRAINT `Specifications_productId_fkey` FORE
 
 -- AddForeignKey
 ALTER TABLE `ProductImages` ADD CONSTRAINT `ProductImages_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `Product`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ImagesPath` ADD CONSTRAINT `ImagesPath_productImagesId_fkey` FOREIGN KEY (`productImagesId`) REFERENCES `ProductImages`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `ProductSizes` ADD CONSTRAINT `ProductSizes_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `Product`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

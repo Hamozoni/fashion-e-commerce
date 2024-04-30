@@ -1,9 +1,20 @@
 
+import fs from 'fs/promises';
+const { PrismaClient } = require('@prisma/client')
+
+const prisma = new PrismaClient()
+
 export async function POST (requist) {
 
     const formData  = await requist.formData();
 
-    console.log(formData);
+    const exestProduct = await prisma.product.findUnique({where : {
+        serialNumber : formData.get("serialNumber")
+    }});
+
+    if(exestProduct){
+        return new Error('exsest prduct')
+    }
 
    const specifKeys = formData.getAll("specifKey");
    const specifValues = formData.getAll("specifValue");
@@ -45,22 +56,28 @@ export async function POST (requist) {
         images[i].color = color[i];
         
         const imagesPath = formData.getAll(`imagePath-${color[i]}`);
+        const imgarray = [];
 
         for(let p = 0; p < imagesPath.length; p++){
 
-            const imageUrl = `/products/${crypto.randomUUID()}-${imagesPath[p].name}`;
+            const imageUrl = `public/products/${crypto.randomUUID()}-${imagesPath[p].name}`;
 
-            await fs.writeFile(imageUrl,Buffer.from(await imagesPath[p].Buffer()))
+            await fs.writeFile(imageUrl,Buffer.from(await imagesPath[p].arrayBuffer()))
+
+
+
+            imgarray.push({imagePath : imageUrl })
            
-            images[i].images.create.push({imagePath : imageUrl })
+            images[i].images = { create: [...imgarray]}
 
         }
    }
+    console.log(images)
 
     
 
 
-  const pro = await prisma.product.create({
+  const product = await prisma.product.create({
         data : {
             name: formData.get("name"),
             priceInCent: Number(formData.get("priceInCent")),
@@ -87,7 +104,7 @@ export async function POST (requist) {
                 ]
             }
         }})
-
-    return new Response(pro.json())
+console.log(pro)
+    return new Response(JSON.stringify(product))
 
 }
