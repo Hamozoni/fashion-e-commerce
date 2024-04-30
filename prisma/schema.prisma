@@ -7,59 +7,56 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model ordertoproduct {
-  A String
-  B String
-
-  @@unique([A, B], map: "_OrderToProduct_AB_unique")
-  @@index([B], map: "_OrderToProduct_B_index")
-  @@map("_ordertoproduct")
-}
-
-model imagespath {
-  id              String @id
-  imagePath       String
-  productImagesId String
-
-  @@index([productImagesId], map: "ImagesPath_productImagesId_fkey")
-}
 
 model order {
   id              String       @id
   status          order_status @default(pendding)
   pricePaidInCent Int
   createdAt       DateTime     @default(now())
-  updatedAt       DateTime
+  updatedAt       DateTime    @updatedAt
   userId          String
-
-  @@index([userId], map: "Order_userId_fkey")
+  auther user @relation(fields: [userId],references: [id])
+  products product[]
+  totalPaid Int
 }
 
 model product {
-  id               String   @id @unique(map: "Product_id_key")
+  id               String   @id @default(uuid())
   name             String
   createdAt        DateTime @default(now())
-  updateddAt       DateTime
+  updateddAt       DateTime  @updatedAt
   priceInCent      Int
   offerPriceInCent Int?     @default(0)
-  isOffer          Boolean  @default(false)
+  isOffer          Boolean?  @default(false)
   isAvailable      Boolean  @default(true)
   description      String   @db.Text
   count            Int      @default(1)
   category         String
   subCategory      String
   aboutThisItem    String   @db.Text
-  serialNumber     String   @unique(map: "Product_serialNumber_key")
+  serialNumber     String
   selectedSize     String?
   selectedColor    String?
+  sizes productsizes[]
+  images productimages[]
+  specifications specifications[]
+  reviews reviews[]
+  orders order[]
 }
 
 model productimages {
   id        String @id
   color     String
   productId String
+  product product @relation(fields: [productId],references: [id])
+  images imagespath[]
+}
+model imagespath {
+  id              String @id
+  imagePath       String
+  productImagesId String
+  prductImage productimages @relation(fields: [productImagesId],references: [id])
 
-  @@index([productId], map: "ProductImages_productId_fkey")
 }
 
 model productsizes {
@@ -67,8 +64,8 @@ model productsizes {
   name        String
   description String?
   productId   String
+   product product @relation(fields: [productId],references: [id])
 
-  @@index([productId], map: "ProductSizes_productId_fkey")
 }
 
 model reviews {
@@ -77,9 +74,9 @@ model reviews {
   productId String
   autherId  String
   rating    Int    @default(7)
+  product product @relation(fields: [productId],references: [id])
+  auther  user @relation(fields: [autherId],references: [id])
 
-  @@index([autherId], map: "Reviews_autherId_fkey")
-  @@index([productId], map: "Reviews_productId_fkey")
 }
 
 model specifications {
@@ -87,17 +84,19 @@ model specifications {
   key       String
   value     String
   productId String
-
-  @@index([productId], map: "Specifications_productId_fkey")
+  product    product @relation(fields: [productId],references: [id]) 
 }
 
 model user {
   id         String    @id
   createdAt  DateTime  @default(now())
-  email      String    @unique(map: "User_email_key")
+  uptatedAt  DateTime  @updatedAt
+  email      String    @unique()
   userName   String?
   avatarPath String?
   role       user_role @default(USER)
+  reviews reviews[]
+  orders order[]
 }
 
 enum order_status {
