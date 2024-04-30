@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
     description: z.string().min(5),
     count: z.coerce.number().int().min(1),
     category: z.enum(["men", "women", "kids"]),
-    subCategory: z.enum(["t-shirt", "shit","shoes"]),
+    subCategory: z.enum(["t-shirt", "shit","shoes","slide","slipper"]),
     aboutThisItem: z.string().min(5),
     serialNumber: z.string().min(10).max(10),
 })
@@ -255,7 +255,7 @@ const NewProducts = () => {
                     </div>
                 </div>
             </div>
-            <button type="submit" className={className.sumBtn}>{isPendding ? 'loading...' : 'save'}</button>
+            <button disabled={isPendding} type="submit" className={className.sumBtn}>{isPendding ? 'loading...' : 'save'}</button>
             
         </form>
     </div>
