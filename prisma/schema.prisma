@@ -34,7 +34,7 @@ model product {
   category         String
   subCategory      String
   aboutThisItem    String   @db.Text
-  serialNumber     String
+  serialNumber     String @unique
   selectedSize     String?
   selectedColor    String?
   sizes productsizes[]

@@ -68,7 +68,7 @@ export async function POST (requist) {
 
             imgarray.push({imagePath : imageUrl })
            
-            images[i].images = { create: [...imgarray]}
+            images[i].images = { create :[...imgarray]}
 
         }
    }
