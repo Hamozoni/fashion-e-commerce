@@ -9,6 +9,8 @@ import { z} from "zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
+import Loading from "./Loading";
+
 
 
  const productZSchema  =  z.object({
@@ -165,6 +167,9 @@ const NewProducts = () => {
 
   return (
     <div className="p-4 lg:p-10 w-full max-w-full ">
+        {
+            isPendding ? <Loading /> : ''
+        }
         <h3 className="pb-4 font-bold text-2xl">adding new product form</h3>
         <form   onSubmit={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
             {

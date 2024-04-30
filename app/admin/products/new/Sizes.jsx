@@ -52,7 +52,6 @@ export default function Sizes({setdata,className}) {
                         <div className="md:w-1/2" >
                             <label >name :</label>
                             <input 
-                            name='sizeName'
                                 type="text" 
                                 className={className.inputClass} 
                                 placeholder="enter the name of your size..."
@@ -73,8 +72,7 @@ export default function Sizes({setdata,className}) {
                         <div className="md:w-1/2">
                             <label >description :</label>
                             <input 
-                                name='sizeName'
-                                className={className.description} 
+                                className={className.inputClass} 
                                 type="text" 
                                 placeholder="enter the description of your size..."
                                 onChange={e=> {

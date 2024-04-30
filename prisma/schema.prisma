@@ -37,6 +37,7 @@ model product {
   serialNumber     String @unique
   selectedSize     String?
   selectedColor    String?
+  brand    String?
   sizes productsizes[]
   images productimages[]
   specifications specifications[]
