@@ -4,7 +4,7 @@
 export default function Home() {
   return (
     <div className="">
-       hhhhhhhhhhhhh
+       home page
     </div>
   );
 }
