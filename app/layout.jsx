@@ -1,19 +1,17 @@
-// import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+
 
 import "./globals.css";
 
 export const metadata = {
   title : "myh store shop",
-  description: "store for all categories products",
+  description: "store for all fashoin",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
     <body>
-{/* +        <AppRouterCacheProvider> */}
-             {children}
-{/* +        </AppRouterCacheProvider> */}
+       {children}
     </body>
   </html>
   );
