@@ -11,9 +11,9 @@ const Products = () => {
          </h5>
         <Link 
             href='/admin/products/new' 
-            className="font-bold  text-md rounded-md px-4 py-1 text-yellow-950 border-slate-300 border hover:bg-gray-50" >
+            className="flex items-center gap-2 font-bold  text-md rounded-md px-4 py-1 text-yellow-950 border-slate-300 border hover:bg-gray-50" >
              <IoAdd />
-            <span>Add New Product</span>
+            <span>Add Product</span>
         </Link >
       </nav>
     </div>
