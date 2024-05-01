@@ -1,4 +1,4 @@
-
+import { PiShoppingCart } from "react-icons/pi";
 
 function HeaderUserBar() {
   return (
@@ -18,7 +18,7 @@ function HeaderUserBar() {
             <button>orders</button>
         </div>
         <div className="">
-            cart
+            <PiShoppingCart />
         </div>
     </section>
   )
