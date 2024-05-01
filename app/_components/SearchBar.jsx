@@ -7,14 +7,16 @@ function SearchBar() {
   const className = {
     flex : `flex items-center`,
     searchBox: `rounded-md border bg-slate-200 border-slate-400 flex items-center flex-1 overflow-hidden`,
-    catgory: `flex items-center min-h-full p-2 text-md font-medium cursor-pointer bg-slate-300`
+    catgory: `flex items-center min-h-full p-2 text-md font-medium cursor-pointer bg-slate-300`,
+    delivery: 'flex items-center gap-1 text-sm font-medium cursor-pointer hover:text-gray-700 hover:font-medium'
   }
   return (
     <section className={`${className.flex} flex-1 gap-8`}>
 
         <div >
-            <p className={`${className.flex} gap-1 text-sm font-medium`}>  <IoLocationOutline />delivering to</p>
-            <p className="text-sm font-medium">update location</p>
+            <p className={className.delivery}> 
+              <IoLocationOutline size={22} />delivering to ...
+            </p>
         </div>
          <div className={className.searchBox}>
             <div className="">

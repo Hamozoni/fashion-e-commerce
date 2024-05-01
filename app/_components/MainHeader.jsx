@@ -13,7 +13,7 @@ function MainHeader() {
         <div className={className.flex}>
             <div className="">
                 <Link href='/' className={className.logo}>
-                    myh store
+                    system
                 </Link>
             </div>
             <section className={`${className.flex} flex-1`}>
