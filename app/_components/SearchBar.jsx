@@ -1,31 +1,41 @@
 import { IoSearchSharp } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 function SearchBar() {
+
+  const className = {
+    flex : `flex items-center`,
+    searchBox: `rounded-md border bg-slate-200 border-slate-400 flex items-center flex-1 overflow-hidden`,
+    catgory: `flex items-center min-h-full p-2 text-md font-medium cursor-pointer bg-slate-300`
+  }
   return (
-    <section>
-         <div className="">
-            <span>
-                <IoLocationOutline />
-            </span>
+    <section className={`${className.flex} flex-1 gap-8`}>
+
+        <div >
+            <p className={`${className.flex} gap-1 text-sm font-medium`}>  <IoLocationOutline />delivering to</p>
+            <p className="text-sm font-medium">update location</p>
+        </div>
+         <div className={className.searchBox}>
             <div className="">
-                <h4>delivering to</h4>
-                <h6>update location</h6>
-            </div>
-         </div>
-         <div className="">
-            <div className="">
-                <h4>men</h4>
+                <div className={className.catgory}>
+                     <h6>men</h6>
+                    <IoMdArrowDropdown/>
+                </div>
                 <ul>
                     <li></li>
                 </ul>
             </div>
-            <div className="">
-                <input type="text" placeholder="search myh store" />
+            <div className="flex-1">
+                <input 
+                     className="w-full p-2 bg-transparent text-sm font-bold"
+                    type="text" 
+                    placeholder="search myh store" 
+                    />
             </div>
-            <div className="">
-                <button><IoSearchSharp /></button>
-            </div>
+            <button className='bg-lime-900 text-slate-300 py-2.5 px-5 min-h-full'>
+                <IoSearchSharp size={22} />
+            </button>
          </div>
     </section>
   )
