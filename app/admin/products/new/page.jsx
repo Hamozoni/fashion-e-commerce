@@ -20,7 +20,7 @@ import Loading from "./Loading";
     description: z.string().min(5),
     count: z.coerce.number().int().min(1),
     category: z.enum(["men", "women", "kids"]),
-    subCategory: z.enum(["t-shirt", "shit","shoes","slide","slipper"]),
+    subCategory: z.string(),
     aboutThisItem: z.string().min(5),
     serialNumber: z.string().min(10).max(10),
 })
@@ -69,11 +69,6 @@ const inputsInfo = [
 
 ]
 
-
-
-
-
-
 const NewProducts = () => {
 
     const [data,setData] = useState(product);
@@ -118,15 +113,11 @@ const NewProducts = () => {
             formData.append("specifValue",e.value);
         })
 
-
-
         if(test.success) {
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
               }
 
-              
-          
             await axios.post('/api/products/new',formData, config)
                 .then(response => {
 
@@ -146,8 +137,6 @@ const NewProducts = () => {
 
     useEffect(()=> {
         const test = productZSchema.safeParse(data);
-
-
 
         if(test.success){
             setErrors(null)
