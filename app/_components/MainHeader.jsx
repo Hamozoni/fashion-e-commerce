@@ -19,8 +19,8 @@ function MainHeader() {
                 </Link>
             </div>
             <section className={`${className.flex} flex-1`}>
-                <Categories/>
                 <SearchBar />
+                <Categories/>
                 <HeaderUserBar />
             </section>
         </div>
