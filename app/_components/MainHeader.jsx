@@ -1,6 +1,8 @@
 import Link from "next/link"
-import HeaderUserBar from "./HeaderUserBar"
-import SearchBar from "./SearchBar"
+import HeaderUserBar from "./HeaderUserBar";
+import Categories from "./Categories";
+import SearchBar from "./SearchBar";
+
 
 function MainHeader() {
 
@@ -17,6 +19,7 @@ function MainHeader() {
                 </Link>
             </div>
             <section className={`${className.flex} flex-1`}>
+                <Categories/>
                 <SearchBar />
                 <HeaderUserBar />
             </section>
