@@ -18,7 +18,7 @@ function Slider() {
         <div className=" w-screen max-w-full">
             {
                 sliderImages?.map((img)=> (
-                    <div className="" key={img}>
+                    <div className="min-w-full" key={img}>
                         <Image className="min-w-full max-h-screen "  src={img} alt="category"  width="100vw" height="100vh" />
                     </div>
                 ))

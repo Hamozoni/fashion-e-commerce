@@ -11,9 +11,9 @@ function Categories() {
      const [openCategory,setOpenCategory] = useState('');
 
     const className = {
-        cateBtn: 'text-base font-bold text-green-950 uppercase ',
-        ul: 'absolute left-0 -3 z-50  bg-green-100 rounded-md py-3 ',
-        li: 'flex items-center gap-2 text-sm font-medium text-green-900 py-2 px-5 w-56  cursor-pointer line-clamp-1 hover:bg-green-50 border-b hover:border-green-200'
+        cateBtn: `text-base font-bold text-green-950 uppercase`,
+        ul: 'fixed top-[60px] left-0 w-screen flex items-center overflow-x-auto gap-2 z-50  bg-green-100 border-t border-green-200  py-3 ',
+        li: 'flex flex-col justify-center rounded-lg items-center gap-2 text-sm font-medium text-green-900 p-2 min-w-fit cursor-pointer line-clamp-1 hover:bg-green-50 border border-green-200'
 
     }
 
@@ -24,14 +24,25 @@ function Categories() {
             {
                 categoriesData?.map(cate => (
                     <div className="relative" key={cate.name}>
-                        <button className={className.cateBtn} onClick={()=> setOpenCategory(cate.name)}>{cate?.name}</button>
+                        <button 
+                            className={`${className.cateBtn} ${cate.name === openCategory ? 'border-b border-green-800 text-lime-800 font-medium': ''}`} 
+                            onClick={()=> setOpenCategory(cate.name)}
+                            >
+                                {cate?.name}
+                        </button>
                         {
                             openCategory === cate.name ? 
                              (<ul className={className.ul}>
                                  {
                                     cate.subName.map(sub=> (
                                         <li className={className.li} key={sub}>
-                                            <Image className="rounded-lg h-[40px] w-[40px] border border-green-200" src={sub.image} width={40} height={40} alt={sub.name}/>
+                                            <Image 
+                                                className="rounded-lg h-[100px] w-[100px] border border-green-200" 
+                                                src={sub.image} 
+                                                width={100} 
+                                                height={100} 
+                                                alt={sub.name}
+                                                />
                                             {sub.name}
                                         </li>
                                     ))
