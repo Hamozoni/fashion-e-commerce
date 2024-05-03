@@ -3,7 +3,7 @@ import Overlay from "./Overlay";
 
 import { useState } from "react";
 
-import categories from "../../_data/category.json"
+import categoriesData from "../../_data/category.js"
 
 function Categories() {
 
@@ -21,7 +21,7 @@ function Categories() {
 
         <div className="flex items-center gap-4">
             {
-                categories?.map(cate => (
+                categoriesData?.map(cate => (
                     <div className="relative" key={cate.name}>
                         <button className={className.cateBtn} onClick={()=> setOpenCategory(cate.name)}>{cate?.name}</button>
                         {
@@ -29,7 +29,7 @@ function Categories() {
                              (<ul className={className.ul}>
                                  {
                                     cate.subName.map(sub=> (
-                                        <li className={className.li} key={sub}>{sub}</li>
+                                        <li className={className.li} key={sub}>{sub.name}</li>
                                     ))
                                  }
                              </ul>)
