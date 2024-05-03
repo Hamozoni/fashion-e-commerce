@@ -1,70 +1,55 @@
+"use client"
+import Overlay from "./OverLay";
 
+import { useState } from "react";
+
+import categories from "../_data/category.json"
 
 function Categories() {
 
+     const [openCategory,setOpenCategory] = useState('');
+
     const className = {
-        cateBtn: 'text-base font-bold text-green-950 uppercase',
-        ul: 'absolute left-0 p-3 hidden group/edit  '
+        cateBtn: 'text-base font-bold text-green-950 uppercase ',
+        ul: 'absolute left-0 -3 z-50  bg-green-100 rounded-md py-3 ',
+        li: 'text-sm font-medium text-green-900 py-2 px-5 w-56  cursor-pointer line-clamp-1 hover:bg-green-50'
 
     }
+
   return (
-     <section className="flex items-center gap-4">
-          <div className="relative group/item ">
-               <button className={className.cateBtn}>men</button>
-               <ul className={className.ul}>
-                    <li>T-Shirts</li>
-                    <li>Shirts</li>
-                    <li>Jeans & Trousers</li>
-                    <li>Activewear</li>
-                    <li>Cardigans & Sweaters</li> 
-                    <li>Hoodies & Sweatshirts</li>
-                    <li>Coats & Jackets</li>
-                    <li>Nightwear</li>
-                    <li>Innerwear</li>
-                    <li>Shoes</li>
-                    <li>Accessories</li>
-                   <li>Bags & Wallets</li> 
-               </ul>
-          </div>
-          <div className="relative group/item ">
-               <button className={className.cateBtn}>women</button>
-               <ul className={className.ul}>
-                    <li>Tops & Tees </li>
-                    <li>Dresses & Jumpsuits</li>
-                    <li>Jeans & Jeggings</li>
-                    <li>Pants & Trousers</li>
-                    <li>Leggings</li>
-                    <li>Skirts</li>
-                    <li>Cardigans & Sweaters</li>
-                    <li>Hoodies & Sweatshirts</li>
-                    <li>Activewear</li>
-                    <li>Jackets</li>
-                    <li>Lingerie</li>
-                    <li>Nightwear</li>
-                    <li>Plus Size</li>
-                    <li>Maternity</li>
-                    <li>Shoes</li>
-                    <li>Bags & Wallets</li>
-                    <li>Accessories</li>
-                    <li>Beauty & Perfumes</li>
-               </ul>
-          </div>
-          <div className="relative group/item ">
-               <button className={className.cateBtn}>kids</button>
-               <ul className={className.ul}>
-                   <li> Tops </li>
-                   <li> Dresses</li>
-                   <li> Bottoms</li>
-                   <li> Clothing sets</li>
-                   <li> Nightwear</li>
-                   <li> Rompers & Jumpsuits</li>
-                   <li> Sweaters & Cardigans</li>
-                   <li> Hoodies & Sweatshirts</li>
-                   <li> Coats & Jackets</li>
-                   <li> Shoes</li>
-                   <li> Accessories</li>
-               </ul>
-          </div>
+     <section >
+
+        <div className="flex items-center gap-4">
+            {
+                categories?.map(cate => (
+                    <div className="relative" key={cate.name}>
+                        <button className={className.cateBtn} onClick={()=> setOpenCategory(cate.name)}>{cate?.name}</button>
+                        {
+                            openCategory === cate.name ? 
+                             (<ul className={className.ul}>
+                                 {
+                                    cate.subName.map(sub=> (
+                                        <li className={className.li} key={sub}>{sub}</li>
+                                    ))
+                                 }
+                             </ul>)
+                             :""
+                        }
+
+                    </div>
+                ))
+
+            }
+
+        </div>
+         
+             {
+
+                openCategory.length > 0 &&
+                <Overlay onClick={()=> setOpenCategory('')} />
+
+            }
+        
      </section>
   )
 }
