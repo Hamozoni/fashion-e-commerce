@@ -1,5 +1,5 @@
 
-import MainHeader from "./_components/MainHeader"
+import MainHeader from "./_ui/components/MainHeader";
 
 import "./globals.css";
 

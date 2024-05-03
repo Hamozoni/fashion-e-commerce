@@ -1,9 +1,9 @@
 "use client"
-import Overlay from "./OverLay";
+import Overlay from "./Overlay";
 
 import { useState } from "react";
 
-import categories from "../_data/category.json"
+import categories from "../../_data/category.json"
 
 function Categories() {
 
