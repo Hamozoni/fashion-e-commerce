@@ -13,7 +13,7 @@ function Categories() {
     const className = {
         cateBtn: 'text-base font-bold text-green-950 uppercase ',
         ul: 'absolute left-0 -3 z-50  bg-green-100 rounded-md py-3 ',
-        li: 'flex items-center gap-2 text-lg font-medium text-green-900 py-2 px-5 w-56  cursor-pointer line-clamp-1 hover:bg-green-50 border-b hover:border-lime-700'
+        li: 'flex items-center gap-2 text-sm font-medium text-green-900 py-2 px-5 w-56  cursor-pointer line-clamp-1 hover:bg-green-50 border-b hover:border-green-200'
 
     }
 
@@ -31,7 +31,7 @@ function Categories() {
                                  {
                                     cate.subName.map(sub=> (
                                         <li className={className.li} key={sub}>
-                                            <Image className="rounded-lg h-[40px] w-[40px] border border-green-900" src={sub.image} width={40} height={40} alt={sub.name}/>
+                                            <Image className="rounded-lg h-[40px] w-[40px] border border-green-200" src={sub.image} width={40} height={40} alt={sub.name}/>
                                             {sub.name}
                                         </li>
                                     ))
