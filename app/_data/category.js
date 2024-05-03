@@ -22,19 +22,19 @@ import women_bagsWallets from "../../public/categories/women/womenBagsWallets.we
 import women_beautyPerfumes from "../../public/categories/women/womenBeautyPerfumes.jpg";
 import women_cardigansSweaters from "../../public/categories/women/womenCardigansSweaters.jpg";
 import women_dressesJumpsuits from "../../public/categories/women/womenDressesJumpsuits.jpg";
-import women_hoodiesSweatshirts from "../../public/categories/women/womenHoodiesSweatshirts.avif";
+// import women_hoodiesSweatshirts from "../../public/categories/women/womenHoodiesSweatshirts.webp";
 import women_jackets from "../../public/categories/women/womenJackets.jpg";
 import women_jeansJeggings from "../../public/categories/women/womenJeansJeggings.jpg";
 import women_leggings from "../../public/categories/women/womenLeggings.jpg";
 import women_lingerie from "../../public/categories/women/womenLingerie.webp";
-import women_maternity from "../../public/categories/women/womenMaternity.webp";
+// import women_maternity from "../../public/categories/women/womenMaternity.webp";
 import women_nightwear from "../../public/categories/women/womenNightwear.jpg";
-import women_pantsTrousers from "../../public/categories/women/womenPantsTrousers.avif";
-import women_plusSize from "../../public/categories/women/womenPlusSize.avif";
+// import women_pantsTrousers from "../../public/categories/women/womenPantsTrousers.webp";
+// import women_plusSize from "../../public/categories/women/womenPlusSize.webp";
 import women_topsTees from "../../public/categories/women/womenTopsTees.jpg";
 import women_skirts from "../../public/categories/women/womenSkirts.jpg";
 
-export default categoriesData = [
+export  const categoriesData = [
     {
         name : "men",
         image: men,
@@ -108,7 +108,7 @@ export default categoriesData = [
             },
             {
                 name:  "Pants & Trousers",
-                image: women_pantsTrousers
+                // image: women_pantsTrousers
             },
             {
                 name:   "Leggings",
@@ -124,7 +124,7 @@ export default categoriesData = [
             },
             {
                 name:"Hoodies & Sweatshirts",
-                image: women_hoodiesSweatshirts
+                // image: women_hoodiesSweatshirts
             },
             {
                 name: "Activewear",
@@ -144,11 +144,11 @@ export default categoriesData = [
             },
             {
                 name:  "Plus Size",
-                image: women_plusSize
+                // image: women_plusSize
             },
             {
                 name:  "Maternity",
-                image: women_maternity
+                // image: women_maternity
             },
             {
                 name: "Shoes",
@@ -173,17 +173,51 @@ export default categoriesData = [
         name : "kids",
         image: kids,
         subName : [
-            "Tops",
-            "Dresses",
-            "Bottoms",
-            "Clothing sets",
-            "Nightwear",
-            "Rompers & Jumpsuits",
-            "Sweaters & Cardigans",
-            "Hoodies & Sweatshirts",
-            "Coats & Jackets",
-            "Shoes",
-            "Accessories"
+            {
+                name: "Tops",
+                image: women_topsTees
+            },
+            {
+                name:  "Dresses",
+                image: women_topsTees
+            },
+            {
+                name: "Bottoms",
+                image: women_topsTees
+            },
+            {
+                name:"Clothing sets",
+                image: women_topsTees
+            },
+            {
+                name:"Nightwear",
+                image: women_topsTees
+            },
+            {
+                name: "Rompers & Jumpsuits",
+                image: women_topsTees
+            },
+            {
+                name: "Rompers & Jumpsuits",
+                image: women_topsTees
+            },
+            {
+                name:"Hoodies & Sweatshirts",
+                image: women_topsTees
+            },
+            {
+                name:"Coats & Jackets",
+                image: women_topsTees
+            },
+            {
+                name: "Shoes",
+                image: women_topsTees
+            },
+            {
+                name:  "Accessories",                
+                image: women_topsTees
+            },
+            
         ]
     }
 ]

@@ -26,7 +26,7 @@ function Slider() {
 
 
         </div>
-            <div className="absolute top-0 left-0 w-full h-[100%] bg-black opacity-90"></div>
+            <div className="absolute top-0 left-0 w-full h-[100%] bg-green-950 opacity-90"></div>
 
     </div>
   )
