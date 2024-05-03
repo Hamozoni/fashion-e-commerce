@@ -22,17 +22,29 @@ import women_bagsWallets from "../../public/categories/women/womenBagsWallets.we
 import women_beautyPerfumes from "../../public/categories/women/womenBeautyPerfumes.jpg";
 import women_cardigansSweaters from "../../public/categories/women/womenCardigansSweaters.jpg";
 import women_dressesJumpsuits from "../../public/categories/women/womenDressesJumpsuits.jpg";
-// import women_hoodiesSweatshirts from "../../public/categories/women/womenHoodiesSweatshirts.webp";
+import women_hoodiesSweatshirts from "../../public/categories/women/womenHoodiesSweatShirts.webp";
 import women_jackets from "../../public/categories/women/womenJackets.jpg";
 import women_jeansJeggings from "../../public/categories/women/womenJeansJeggings.jpg";
 import women_leggings from "../../public/categories/women/womenLeggings.jpg";
 import women_lingerie from "../../public/categories/women/womenLingerie.webp";
-// import women_maternity from "../../public/categories/women/womenMaternity.webp";
+import women_maternity from "../../public/categories/women/womenMaternity.webp";
 import women_nightwear from "../../public/categories/women/womenNightwear.jpg";
-// import women_pantsTrousers from "../../public/categories/women/womenPantsTrousers.webp";
-// import women_plusSize from "../../public/categories/women/womenPlusSize.webp";
+import women_pantsTrousers from "../../public/categories/women/womenPantsTrousers.webp";
+import women_plusSize from "../../public/categories/women/womenPlusSize.webp";
 import women_topsTees from "../../public/categories/women/womenTopsTees.jpg";
 import women_skirts from "../../public/categories/women/womenSkirts.jpg";
+
+import kids_tops from "../../public/categories/kids/kidsTops.jpg";
+import kids_accessories from "../../public/categories/kids/kidsAccessories.jpg";
+import kids_bottoms from "../../public/categories/kids/kidsBottoms.webp";
+import kids_clothingSets from "../../public/categories/kids/kidsClothingSets.jpg";
+import kids_coatsJackets from "../../public/categories/kids/kidsCoatsJackets.webp";
+import kids_dresses from "../../public/categories/kids/kidsDresses.jpg";
+import kids_hoodiesSweatshirts from "../../public/categories/kids/kidsHoodiesSweatshirts.jpg";
+import kids_nightwear from "../../public/categories/kids/kidsNightwear.jpg";
+import kids_rompersJumpsuits from "../../public/categories/kids/kidsRompersJumpsuits.jpg";
+import kids_shoes from "../../public/categories/kids/kidsShoes.jpg";
+import kids_sweatersCardigans from "../../public/categories/kids/kidsSweatersCardigans.jpg";
 
 export  const categoriesData = [
     {
@@ -108,7 +120,7 @@ export  const categoriesData = [
             },
             {
                 name:  "Pants & Trousers",
-                // image: women_pantsTrousers
+                image: women_pantsTrousers
             },
             {
                 name:   "Leggings",
@@ -124,7 +136,7 @@ export  const categoriesData = [
             },
             {
                 name:"Hoodies & Sweatshirts",
-                // image: women_hoodiesSweatshirts
+                image: women_hoodiesSweatshirts
             },
             {
                 name: "Activewear",
@@ -144,11 +156,11 @@ export  const categoriesData = [
             },
             {
                 name:  "Plus Size",
-                // image: women_plusSize
+                image: women_plusSize
             },
             {
                 name:  "Maternity",
-                // image: women_maternity
+                image: women_maternity
             },
             {
                 name: "Shoes",
@@ -175,47 +187,47 @@ export  const categoriesData = [
         subName : [
             {
                 name: "Tops",
-                image: women_topsTees
+                image: kids_tops
             },
             {
                 name:  "Dresses",
-                image: women_topsTees
+                image: kids_dresses
             },
             {
                 name: "Bottoms",
-                image: women_topsTees
+                image: kids_bottoms
             },
             {
                 name:"Clothing sets",
-                image: women_topsTees
+                image: kids_clothingSets
             },
             {
                 name:"Nightwear",
-                image: women_topsTees
+                image: kids_nightwear
             },
             {
                 name: "Rompers & Jumpsuits",
-                image: women_topsTees
-            },
-            {
-                name: "Rompers & Jumpsuits",
-                image: women_topsTees
+                image: kids_rompersJumpsuits
             },
             {
                 name:"Hoodies & Sweatshirts",
-                image: women_topsTees
+                image: kids_hoodiesSweatshirts
             },
             {
                 name:"Coats & Jackets",
-                image: women_topsTees
+                image: kids_coatsJackets
             },
             {
                 name: "Shoes",
-                image: women_topsTees
+                image: kids_shoes
             },
             {
                 name:  "Accessories",                
-                image: women_topsTees
+                image: kids_accessories
+            },
+            {
+                name:  "Sweaters & Cardigans",                
+                image: kids_sweatersCardigans
             },
             
         ]
