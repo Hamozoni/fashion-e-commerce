@@ -20,6 +20,10 @@ img {
     object-fit: cover;
 }
 
+::-webkit-scrollbar {
+scrollbar-width: 0;
+}
+
 
 
 
