@@ -12,7 +12,7 @@ function Categories() {
 
     const className = {
         cateBtn: `text-base font-bold text-green-950 uppercase`,
-        ul: 'fixed top-[60px] left-0 w-screen flex items-center overflow-x-auto gap-2 z-50  bg-green-100 border-t border-green-200  py-3 ',
+        ul: 'fixed top-[60px] left-0 w-screen flex items-center overflow-x-auto gap-2 z-50  bg-green-100 border-t border-green-200  py-3 lg:px-8 ',
         li: 'flex flex-col justify-center rounded-lg items-center gap-2 text-sm font-medium text-green-900 p-2 min-w-fit cursor-pointer line-clamp-1 hover:bg-green-50 border border-green-200'
 
     }

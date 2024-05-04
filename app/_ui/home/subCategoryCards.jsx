@@ -1,11 +1,11 @@
 import Image from "next/image"
 
 
-function subCategoryCards({sub}) {
+function SubCategoryCards({sub}) {
   return (
     <div className="">
         <div className="">
-             <Image src={sub.image} alt={sub.name} width={100} height={100}/>
+             <Image src={sub.image} alt={sub.name} width={250} height={250}/>
              <div className="">
                 {sub.name}
              </div>
@@ -17,4 +17,4 @@ function subCategoryCards({sub}) {
   )
 }
 
-export default subCategoryCards
+export default SubCategoryCards
