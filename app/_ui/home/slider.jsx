@@ -13,15 +13,18 @@ const slide = [slide1,slide2,slide3,slide4,slide5,slide6,slide7,slide8,slide9];
 
 function Slider() {
   return (
-    <div>
-        {
-            slide?.map((image)=> (
-                <div key={image} className="">
-                    <Image src={image} alt="slide image" />
-                </div>
-            ))
+    <div className="snap-x overflow-auto">
+        <div className="min-w-fit flex items-center ">
+            {
+                slide?.map((image)=> (
+                    <div key={image} className="snap-normal snap-center w-svw min-w-screen h-svh min-h-svh  max-h-svh">
+                        <Image className="min-w-screen h-svh min-h-svh w-svw  max-h-svh" src={image} alt="slide image"/>
+                    </div>
+                ))
 
-        }
+            }
+
+        </div>
     </div>
   )
 }
