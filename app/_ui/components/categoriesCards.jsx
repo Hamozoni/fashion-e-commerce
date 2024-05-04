@@ -8,7 +8,7 @@ function CategoriesCards() {
         <div className=" p-4 lg:px-8 ">
             {
                 categoriesData?.map((cate)=> (
-                    <div className="mb-[-150px]" key={cate.name}>
+                    <div className="border border-green-200 bg-green-100 my-4 rounded-lg" key={cate.name}>
                             <div className="">
                                 <div className="w-fit mx-auto relative overflow-hidden rounded-xl border border-lime-200 cursor-pointer hover:scale-105 my-5">
                                     <div className="absolute top-0 left-0 w-[100%] h-[100%] bg-black opacity-80 flex items-center justify-center ">
@@ -17,14 +17,14 @@ function CategoriesCards() {
                                       </h4>
 \                                  </div>
                                     <Image 
-                                        className="max-h-[350px]"  
+                                        className="max-h-[330px]"  
                                         src={cate.image} alt={cate.name} 
-                                        width="750" 
-                                        height="350" 
+                                        width="850" 
+                                        height="330" 
                                     />
                                 </div>
                             </div>
-                            <div className="flex items-center justify-center overflow-x-auto translate-y-[-200px] py-10 max-h-full overflow-y-auto gap-4">
+                            <div className="flex items-center flex-wrap justify-center overflow-x-auto translate-y-[-200px] mb-[-150px]  p-10 max-h-full gap-4">
                                 {
                                     cate.subName.map((sub)=> (
                                         <div className="hover:scale-110 min-w-[150px]">
