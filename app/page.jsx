@@ -1,9 +1,9 @@
-import Slider from "./_ui/home/Slider";
+import CategoriesCards from "./_ui/components/categoriesCards";
 
 export default function Home() {
   return (
     <div className="">
-       <Slider/>
+       <CategoriesCards/>
     </div>
   );
 }
