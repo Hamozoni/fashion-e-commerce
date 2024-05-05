@@ -17,9 +17,9 @@ function Slider() {
         <div className="min-w-fit flex items-center  ">
             {
                 slide?.map((image)=> (
-                    <div key={image} className="relative snap-always snap-center w-full h-[500px] min-w-full  max-h-[500px]">
-                        <Image className="min-w-full h-[500px] min-h-[500px] w-full max-h-[500px]" src={image} alt="slide image"/>
-                        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-80"></div>
+                    <div key={image} className="relative snap-always snap-center w-full h-[550px] min-w-full  max-h-[550px]">
+                        <Image className="min-w-full h-[550px] min-h-[550px] w-full max-h-[550px]" src={image} alt="slide image"/>
+                        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
                     </div>
                 ))
 
