@@ -1,10 +1,7 @@
 
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-const { PrismaClient } = require('@prisma/client')
-
-const prisma = new PrismaClient()
-
+import { prisma } from  "../../../_lip/db.js"
 export async function POST (requist) {
 
     const formData  = await requist.formData();

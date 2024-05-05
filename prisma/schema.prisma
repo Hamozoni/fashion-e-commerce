@@ -53,7 +53,7 @@ model productimages {
   images imagespath[]
 }
 model imagespath {
-  id               String   @id @default(uuid())
+  id              String   @id @default(uuid())
   imagePath       String
   productImagesId String
   prductImage productimages @relation(fields: [productImagesId],references: [id])
@@ -70,7 +70,7 @@ model productsizes {
 }
 
 model reviews {
- id               String   @id @default(uuid())
+  id               String   @id @default(uuid())
   text      String
   productId String
   autherId  String
@@ -89,7 +89,7 @@ model specifications {
 }
 
 model user {
- id               String   @id @default(uuid())
+ id          String   @id @default(uuid())
   createdAt  DateTime  @default(now())
   uptatedAt  DateTime  @updatedAt
   email      String    @unique()

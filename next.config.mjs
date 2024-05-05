@@ -15,6 +15,19 @@ const nextConfig = {
               },
             ],
           },
+          {
+            source: '/api/product',
+            headers: [
+              {
+                key: 'Content-Type',
+                value: 'application/json',
+              },
+              {
+                key: 'Accept',
+                value: 'application/json',
+              },
+            ],
+          },
         ]
       },
 };
