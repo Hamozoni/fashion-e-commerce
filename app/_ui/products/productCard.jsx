@@ -11,13 +11,19 @@ import { IoMdHeartEmpty } from "react-icons/io";
 function productCard({product}) {
 
    const className = {
-     card: 'w-[200px] rounded-lg overflow-hidden border border-zinc-700 bg-gray-100'
+        card: 'w-[200px] rounded-lg overflow-hidden border border-zinc-700 bg-gray-100',
+        image: 'w-[200px] h-[300px]',
+        heart: 'absolute top-5 right-5'
    }
   return (
     <div className={className.card}>
         <div className="relative">
-            <Image src={product.images.imagePath.images[0]} alt={product.name} />
-            <div className=" absolute top-5 right-5">
+            <Image 
+                className={className.image} 
+                src={product.images.imagePath.images[0]} 
+                alt={product.name}
+               />
+            <div className={className.heart}>
                <IoMdHeartEmpty/>
             </div>
         </div>
