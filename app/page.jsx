@@ -1,25 +1,24 @@
+"use client"
 // import CategoriesCards from "./_ui/components/categoriesCards";
 import Slide from "./_ui/home/slider";
 // import {fetchData} from "./_lip/fetchData";
 
-const getProduct = async ()=>{
-  const data  =  await fetch('http://localhost:3000/api/product')
-
-  return data.json()
-}
-
 
 export default async function Home() {
+
+
+  const fetchData = async function(){
+    const {response } = await fetch("/api/product")
+    console.log(response.json())
+
+  }
+
   
-  const data  =  await getProduct()
-
-  console.log(data)
-
-    
   return (
-    <div className="">
+    <div >
       <Slide />
        {/* <CategoriesCards/> */}
+       <div onClick={fetchData} >go000000000</div>
     </div>
   );
 }
