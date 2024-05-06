@@ -8,8 +8,8 @@ export default async function Home() {
 
 
   const fetchData = async function(){
-    const {response } = await fetch("/api/product")
-    console.log(response.json())
+    const {data }= await fetch("/api/product")
+    console.log(data)
 
   }
 
