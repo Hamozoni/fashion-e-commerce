@@ -45,7 +45,6 @@ export async function POST (requist) {
    
    
    const color = formData.getAll("color");
-   console.log("colors",color)
    
 
     
@@ -58,14 +57,9 @@ export async function POST (requist) {
         
            for(let i = 0;i < color.length; i++){
 
-              images.push({color: '', images : { create : [{imagePath : ''}]}})
-
-               const imgarray = [];
 
                 const imagesPath = formData.getAll(`imagePath-${color[i]}`);
-                console.log("imagePath",imagesPath)
         
-                images[i].color = color[i];
     
                 for(let p = 0; p < imagesPath.length; p++){
         
@@ -73,13 +67,12 @@ export async function POST (requist) {
         
                     await fs.writeFile(imageUrl,Buffer.from(await imagesPath[p].arrayBuffer()))
         
-        
-        
-                    imgarray.push({imagePath : imageUrl })
+    
+                    images.push({color: color[i] , imagePath : imageUrl})
                    
                     
                 }
-                images[i].images = { create :[...imgarray]}
+        
             }
     
 

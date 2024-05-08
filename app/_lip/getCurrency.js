@@ -7,7 +7,7 @@ function getCurrency(priceIncent) {
         currency: "SAR"
     });
 
-    let price = SAR.format(price / 100)
+    let price = SAR.format(priceIncent / 100)
      
   return price;
 }
