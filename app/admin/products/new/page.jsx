@@ -49,6 +49,12 @@ const inputsInfo = [
         place:'the category of your product...'
      },
      {
+        value : 'brand',
+        title: 'brand',
+        type: 'text',
+        place:'the brand of your product...'
+     },
+     {
         value : 'subCategory',
         title: 'subcategory',
         type: 'text',

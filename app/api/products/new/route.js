@@ -95,6 +95,7 @@ export async function POST (requist) {
             subCategory: formData.get("subCategory"),
             aboutThisItem: formData.get("aboutThisItem"),
             serialNumber: formData.get("serialNumber"),
+            brand: formData.get("brand"),
             specifications : {
                 create :[
                     ...specifications

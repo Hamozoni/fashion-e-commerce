@@ -50,22 +50,15 @@ model productimages {
   color     String
   productId String
   product product @relation(fields: [productId],references: [id])
-  images imagespath[]
-}
-model imagespath {
-  id              String   @id @default(uuid())
-  imagePath       String
-  productImagesId String
-  prductImage productimages @relation(fields: [productImagesId],references: [id])
-
+   imagePath       String
 }
 
 model productsizes {
-  id               String   @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
   description String?
   productId   String
-   product product @relation(fields: [productId],references: [id])
+  product product @relation(fields: [productId],references: [id])
 
 }
 
