@@ -1,8 +1,12 @@
+
 import Image from "next/image";
 import { categoriesData } from "../../_data/category";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 
 function CategoriesCards() {
+
   return (
     <div className="">
         <div className=" p-4 lg:px-8 ">
@@ -27,20 +31,22 @@ function CategoriesCards() {
                             <div className="flex items-center flex-wrap justify-center overflow-x-auto translate-y-[-200px] mb-[-150px]  p-10 max-h-full gap-4">
                                 {
                                     cate.subName.map((sub)=> (
-                                        <div className="hover:scale-110 min-w-[150px]">
-                                                <div className="">
+                                        <Link 
+                                            href={`/${cate.name}?sub=${sub.name.replace(' & '," ")}`} 
+                                            className="hover:scale-110 border border-green-200 rounded-lg min-w-[150px] bg-white flex flex-col items-center justify-center">
+                                                <div className="translate-y-[-10px]">
                                                     <Image 
                                                         src={sub.image} 
                                                         alt={sub.name} 
-                                                        width={150} 
-                                                        height={150} 
-                                                        className='rounded-lg h-[150px] w-[150px] border border-green-200'
+                                                        width={100} 
+                                                        height={100} 
+                                                        className='rounded-full h-[150px] w-[150px] border border-green-200'
                                                         />
                                                 </div>
-                                                <h5 className="text-sm font-medium text-green-900">
+                                                <h5 className="text-sm p-2 pb-0 translate-y-[-10px] font-medium text-green-900">
                                                     {sub.name}
                                                 </h5>
-                                        </div>
+                                        </Link>
                                     ))
                                 }
                             </div>

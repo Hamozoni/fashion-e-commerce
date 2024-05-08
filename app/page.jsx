@@ -1,5 +1,5 @@
 "use client"
-// import CategoriesCards from "./_ui/components/categoriesCards";
+import CategoriesCards from "./_ui/components/categoriesCards";
 import Slide from "./_ui/home/slider";
 // import {fetchData} from "./_lip/fetchData";
 import axios from "axios"
@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <div >
       <Slide />
-       {/* <CategoriesCards/> */}
+       <CategoriesCards/>
        <div onClick={fetchData} >go000000000</div>
     </div>
   );
