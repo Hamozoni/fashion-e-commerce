@@ -9,7 +9,6 @@ export default async function Home() {
     <div >
       <Slide />
        <CategoriesCards/>
-       <div onClick={fetchData} >go000000000</div>
     </div>
   );
 }

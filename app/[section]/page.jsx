@@ -1,19 +1,14 @@
-"use client"
 
-import { useParams,useSearchParams } from "next/navigation"
-import { useEffect } from "react";
+import {fetchData} from "../_lip/fetchData";
 
+async function page({params,searchParams}) {
 
-function page() {
-    const {section}= useParams();
-    const searchParams = useSearchParams();
-    const search = searchParams.get('sub');
+    const {section} = params;
+    const {sub} = searchParams;
+    const product = await fetchData(`products/${section}?sub=${sub}`)
 
-    useEffect(()=>{
+    console.log(product)
 
-        
-
-    },[search])
 
     return (
         <div className="">
