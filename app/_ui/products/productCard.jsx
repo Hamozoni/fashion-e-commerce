@@ -13,7 +13,7 @@ import imagePath from "../../../public/products/1a392cce-01bd-41f8-8cd9-3688080f
 function ProductCard({product}) {
 
    const className = {
-        card: 'w-[280px] rounded-lg overflow-hidden border border-zinc-700 bg-gray-100',
+        card: 'w-[280px] rounded-lg overflow-hidden border border-green-100 cursor-pointer hover:border-green-300 ',
         image: 'w-[280px] h-[280px]',
         heart: 'absolute top-5 right-5'
    }
@@ -29,37 +29,32 @@ function ProductCard({product}) {
                 height={230}
                />
             <div className={className.heart}>
-               <IoMdHeartEmpty/>
+               <IoMdHeartEmpty size={30}/>
             </div>
         </div>
         <div className="p-3">
-            <div className="">
-                <h4>{product.name}</h4>
+            <div className="text-center">
+                <h3 className="text-xl font-bold text-green-950">{product?.brand}</h3>
+                <h4 className="text-md font-bold text-green-950">{product.name}</h4>
             </div>
-            <div className="flex items-center gap-2">
-                <RiStarSFill />
-                <RiStarSFill />
-                <RiStarSFill />
-                <RiStarSFill />
-                <RiStarSFill />
-            </div>
-            <div className="">
-                <p>{getCurrency(product?.priceInCent)}</p>
-            </div>
-            <div className="flex items-center gap-3">
-                <div className="">
-                    <MdOutlineShoppingCart />
-                </div>
-                <div className="">
-                    <FiMinus />
-                </div>
-                <div className="">
-                    1
-                </div>
-                <div className="">
-                    <GoPlus />
+
+            <div className="flex items-center justify-between">
+                <h5 className="text-md font-medium text-green-950">
+                    {getCurrency(product?.priceInCent)}
+                </h5>
+                <div className="flex items-center py-2 text-yellow-400">
+                    <RiStarSFill size={22} />
+                    <RiStarSFill size={22} />
+                    <RiStarSFill size={22} />
+                    <RiStarSFill size={22} />
+                    <RiStarSFill size={22} />
                 </div>
             </div>
+        
+            <div className="text-green-900 rounded-lg flex items-center justify-center py-2 border border-green-200 hover:bg-green-950 hover:text-green-100">
+                <MdOutlineShoppingCart size={20} />
+            </div>
+            
         </div>
     </div>
   )
