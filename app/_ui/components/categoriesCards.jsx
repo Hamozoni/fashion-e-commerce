@@ -1,7 +1,6 @@
 
 import Image from "next/image";
 import { categoriesData } from "../../_data/category";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 
@@ -12,19 +11,19 @@ function CategoriesCards() {
         <div className=" p-4 lg:px-8 ">
             {
                 categoriesData?.map((cate)=> (
-                    <div className="border border-green-200 bg-gray-100 my-4 rounded-lg" key={cate.name}>
+                    <div className="border mt-14 border-green-200 bg-gray-100 my-4 rounded-lg" key={cate.name}>
                             <div className="">
-                                <div className="w-fit mx-auto relative overflow-hidden rounded-xl border border-lime-200 cursor-pointer hover:scale-105 my-5">
-                                    <div className="absolute top-0 left-0 w-[100%] h-[100%] bg-black opacity-80 flex items-center justify-center ">
-                                       <h4 className='text-2xl uppercase text-lime-200'>
+                                <div className="w-fit translate-y-[-70px] mx-auto relative overflow-hidden rounded-xl border border-lime-200 cursor-pointer hover:scale-105 my-5">
+                                    <div className="absolute top-0 left-0 w-[100%] h-[100%] bg-black opacity-80 flex items-center  justify-center ">
+                                       <h4 className='text-5xl font-bold mt-5 uppercase text-lime-200'>
                                           {cate.name} section
                                       </h4>
 \                                  </div>
                                     <Image 
-                                        className="max-h-[330px]"  
+                                        className="max-h-[230px]"  
                                         src={cate.image} alt={cate.name} 
-                                        width="850" 
-                                        height="330" 
+                                        height="230" 
+                                        width='550'
                                     />
                                 </div>
                             </div>

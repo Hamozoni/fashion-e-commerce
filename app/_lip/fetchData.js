@@ -1,9 +1,8 @@
+import axios from "axios"
 
 
-export async function fetchData (url){
+export const fetchData = async function(url){
+    const {data} = await axios(`api/${url}`)
+    return data
 
-    const data  = await fetch(`/api/${url}`)
-
-    return data.json()
-
-}
+  }
