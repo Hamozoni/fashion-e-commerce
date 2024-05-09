@@ -8,30 +8,35 @@ import { FiMinus } from "react-icons/fi";
 import { GoPlus } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
 
-function productCard({product}) {
+import imagePath from "../../../public/products/1a392cce-01bd-41f8-8cd9-3688080faae6-61vj2VbUKNL._AC_SY500_.jpg"
+
+function ProductCard({product}) {
 
    const className = {
-        card: 'w-[200px] rounded-lg overflow-hidden border border-zinc-700 bg-gray-100',
-        image: 'w-[200px] h-[300px]',
+        card: 'w-[280px] rounded-lg overflow-hidden border border-zinc-700 bg-gray-100',
+        image: 'w-[280px] h-[280px]',
         heart: 'absolute top-5 right-5'
    }
+
   return (
     <div className={className.card}>
         <div className="relative">
             <Image 
                 className={className.image} 
-                src={product.images.imagePath.images[0]} 
+                src={ imagePath} 
                 alt={product.name}
+                width={230}
+                height={230}
                />
             <div className={className.heart}>
                <IoMdHeartEmpty/>
             </div>
         </div>
-        <div className="">
+        <div className="p-3">
             <div className="">
                 <h4>{product.name}</h4>
             </div>
-            <div className="">
+            <div className="flex items-center gap-2">
                 <RiStarSFill />
                 <RiStarSFill />
                 <RiStarSFill />
@@ -41,7 +46,7 @@ function productCard({product}) {
             <div className="">
                 <p>{getCurrency(product?.priceInCent)}</p>
             </div>
-            <div className="">
+            <div className="flex items-center gap-3">
                 <div className="">
                     <MdOutlineShoppingCart />
                 </div>
@@ -60,4 +65,4 @@ function productCard({product}) {
   )
 }
 
-export default productCard
+export default ProductCard
