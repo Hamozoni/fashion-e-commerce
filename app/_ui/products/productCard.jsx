@@ -34,6 +34,19 @@ function ProductCard({product}) {
             </div>
         </Link>
         <div className="p-3">
+            <ul className="flex justify-center gap-2 overflow-auto">
+                {
+                    product?.images?.map((color)=> (
+                        <li 
+                            style={{backgroundColor: color.color }} 
+                            key={color.color}
+                            className="w-[35px] h-[35px] rounded-full border border-green-900"
+                            >
+
+                        </li>
+                    ))
+                }
+            </ul>
             <div className="text-center">
                 <h3 className="text-xl font-bold text-green-950">{product?.brand}</h3>
                 <h4 className="text-md font-bold text-green-950">{product.name}</h4>
