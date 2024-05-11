@@ -9,6 +9,7 @@ import { GoPlus } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
 
 import imagePath from "../../../public/products/1a392cce-01bd-41f8-8cd9-3688080faae6-61vj2VbUKNL._AC_SY500_.jpg"
+import Link from "next/link";
 
 function ProductCard({product}) {
 
@@ -20,7 +21,7 @@ function ProductCard({product}) {
 
   return (
     <div className={className.card}>
-        <div className="relative">
+        <Link href={`/product/${product.id}`} className="relative">
             <Image 
                 className={className.image} 
                 src={ imagePath} 
@@ -31,7 +32,7 @@ function ProductCard({product}) {
             <div className={className.heart}>
                <IoMdHeartEmpty size={30}/>
             </div>
-        </div>
+        </Link>
         <div className="p-3">
             <div className="text-center">
                 <h3 className="text-xl font-bold text-green-950">{product?.brand}</h3>
