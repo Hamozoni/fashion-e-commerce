@@ -15,7 +15,6 @@ export async function GET (_reg,context) {
             
         }
     })
-    console.log("results",data)
 
     return new Response(JSON.stringify(data))
 
