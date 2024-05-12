@@ -15,7 +15,7 @@ function ProductCard({product}) {
 
    const className = {
         card: 'w-[280px] rounded-lg overflow-hidden border border-green-100 cursor-pointer hover:border-green-300 ',
-        image: 'w-[280px] h-[280px]',
+        image: 'w-[280px] max-h-[280px] max-w-[280px]',
         heart: 'absolute top-5 right-5'
    }
 
@@ -29,10 +29,10 @@ function ProductCard({product}) {
         <Link href={`/product/${product.id}`} className="relative">
             <Image 
                 className={className.image} 
-                src={ imagePath} 
+                src={product.images[1].imagePath.replace("public",'')}
                 alt={product.name}
-                width={230}
-                height={230}
+                width={280}
+                height={280}
                />
             <div className={className.heart}>
                <IoMdHeartEmpty size={30}/>
@@ -77,7 +77,7 @@ function ProductCard({product}) {
                 </div>
             </div>
         
-            <div className="text-green-900 rounded-lg flex items-center justify-center py-2 border border-green-200 hover:bg-green-950 hover:text-green-100">
+            <div className="text-green-900 rounded-lg flex items-center justify-center py-2 border border-green-200 hover:border-green-500">
                 <MdOutlineShoppingCart size={20} />
             </div>
             
