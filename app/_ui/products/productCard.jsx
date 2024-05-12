@@ -19,6 +19,11 @@ function ProductCard({product}) {
         heart: 'absolute top-5 right-5'
    }
 
+
+ 
+
+   let imagesPath = []
+
   return (
     <div className={className.card}>
         <Link href={`/product/${product.id}`} className="relative">
@@ -36,15 +41,22 @@ function ProductCard({product}) {
         <div className="p-3">
             <ul className="flex justify-center gap-2 overflow-auto">
                 {
-                    product?.images?.map((color)=> (
-                        <li 
-                            style={{backgroundColor: color.color }} 
-                            key={color.color}
-                            className="w-[35px] h-[35px] rounded-full border border-green-900"
-                            >
+                    product?.images?.map((color)=> {
+                        
+                        if(!imagesPath.includes(color.color)){
+                            imagesPath.push(color.color)
+                            return (
+                                <li 
+                                    style={{backgroundColor: color.color }} 
+                                    key={color.color}
+                                    className="w-[25px] h-[25px] rounded-full border border-green-900"
+                                    >
+    
+                                </li>
+                            )
+                        }
 
-                        </li>
-                    ))
+                    })
                 }
             </ul>
             <div className="text-center">
