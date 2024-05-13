@@ -124,7 +124,7 @@ function ProductDetails({product,selectedColor}) {
                 }
             </ul>
         </section>
-        <section className="py-4 border-b border-gray-200">
+        <section className="py-4">
             <h4 className="pb-2 text-lg font-bold text-green-950">about this items</h4>
             <aside ref={about} ></aside>
         </section>

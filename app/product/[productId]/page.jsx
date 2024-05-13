@@ -21,7 +21,7 @@ async function  product({params}) {
 
           </div>
       </div>
-      <section className="py-4 border-b border-gray-200">
+      <section className="py-4">
         <h4 className="pb-2 text-lg font-bold text-green-950">Product description</h4>
         <aside>{data?.description}</aside>
       </section>
