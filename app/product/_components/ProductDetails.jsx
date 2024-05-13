@@ -5,11 +5,12 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { MdOutlineLockPerson } from "react-icons/md";
 import getCurrency from "../../_lip/getCurrency"
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-
+import { useEffect, useRef, useState } from "react";
+let imageColor = [];
 
 function ProductDetails({product,selectedColor}) {
-    let imageColor = [];
+
+    const [selectedSize,setSelectedSize] = useState('')
 
     const about = useRef();
 
@@ -17,65 +18,72 @@ function ProductDetails({product,selectedColor}) {
         about.current.innerText = product?.aboutThisItem
     },[]);
 
+    const className = {
+        infoLi: 'flex items-center  flex-col gap-2 font-medium text-green-950 max-w-[160px]',
+        infoLiIcon:'text-[30px] bg-gray-100  p-2 rounded-full'
+    }
+
 
 
   return (
     <div>
-        <div className="">
-            <h4>{product?.brand}</h4>
-            <h5>{product?.name}</h5>
+        <div className="pb-2">
+            <h4 className="text-lg font-bold text-green-950">{product?.brand}</h4>
+            <h5 className="text-lg font-medium text-green-950">{product?.name}</h5>
         </div>
-        <div className="">
-          <h4>{getCurrency(+product.priceInCent)}</h4>
+        <div className="flex items-center  text-green-950 gap-3">
+          <h4 className='text-lg font-bold'>{getCurrency(+product.priceInCent)}</h4>
           <p>Inclusive of VAT</p>
 
         </div>
-        <div className="">
+        <div className="py-4 border-b border-gray-200">
             <ul className="flex items-center justify-center gap-3">
-                <li>
-                    <BsCashCoin />
+                <li className={className.infoLi}>
+                    <BsCashCoin className={className.infoLiIcon} size={40}/>
                     <span>cash on delivery</span>
                 </li>
-                <li>
-                    <TbArrowBackUp />
+                <li className={className.infoLi}>
+                    <TbArrowBackUp className={className.infoLiIcon} size={40}/>
                     <span>7 days returnable</span>
                 </li>
-                <li>
-                    <CiDeliveryTruck />
+                <li className={className.infoLi}>
+                    <CiDeliveryTruck className={className.infoLiIcon} size={40}/>
                     <span>delivered by system</span>
                 </li>
-                <li>
-                    <MdOutlineLockPerson />
-                    <span>secure</span>
+                <li className={className.infoLi}>
+                    <MdOutlineLockPerson className={className.infoLiIcon} size={40}/>
+                    <span>secure transaction</span>
                 </li>
             </ul>
         </div>
-        <section className="">
-           <h5>sizes : </h5>
-           <ul className="flex items-center gap-3">
+        <section className="py-4 border-b border-gray-200">
+           <h5 className="pb-2 text-lg font-medium text-green-950">sizes : </h5>
+           <ul className="flex items-center gap-1">
                {
                  product?.sizes?.map((size)=> (
-                    <li key={size.id}>
-                        {
-                            size?.name
-                        }
+                    <li 
+                        className={`${selectedSize === size?.name ? " border-green-600 font-medium": ""} border rounded-lg p-3 py-1 cursor-pointer`}
+                        onClick={()=> setSelectedSize(size?.name )}
+                        key={size.id}
+                        >
+                        { size?.name }
                     </li>
 
                  ))
                }
            </ul>
         </section>
-        <section className="">
-           <h5 className="flex items-center gap-3"> 
+        <section className=" py-4 border-b border-gray-200">
+           <h5 className="flex items-center gap-3 pb-2 text-lg font-medium text-green-950"> 
                colors : 
               <p 
                 style={{backgroundColor:selectedColor}} 
-                className="w-[25px] h-[25px] rounded-full border-green-800 border"
+                className="w-[20px] h-[20px] rounded-full border-green-800 border"
                >
 
                 </p>
             </h5>
-           <div className="flex items-center gap-3">
+           <section className="flex items-center gap-3">
                {
                  product?.images?.map((image)=> {
 
@@ -84,11 +92,11 @@ function ProductDetails({product,selectedColor}) {
                         return (
     
                         <Image 
-                            className={`max-h-[40px] min-h-[40px] max-w-[60px] cursor-pointer ${image.color === selectedColor ? 'border border-green-600 rounded-md' : ''}`}
+                            className={`max-h-[50px] min-h-[50px] max-w-[50px] cursor-pointer ${image.color === selectedColor ? 'border border-green-600 rounded-md' : ''}`}
                             key={image.id} 
                             src={image?.imagePath.replace("public","")}
-                            width={60} 
-                            height={40}
+                            width={50} 
+                            height={50}
                             />
     
                      )
@@ -97,25 +105,28 @@ function ProductDetails({product,selectedColor}) {
                 })
                     
                }
-           </div>
+           </section>
         </section>
-        <section>
-            <h4>product specifications</h4>
+        <section className="py-4 border-b border-gray-200">
+            <h4  className="pb-2 text-lg font-bold text-green-950">product specifications</h4>
             <ul>
                 {
                     product?.specifications?.map((specif)=> (
 
-                        <li key={specif?.id}>
-                            <span>{specif?.key}</span>
-                            <span>{specif?.value}</span>
+                        <li 
+                            className="flex items-center gap-4"
+                            key={specif?.id}
+                            >
+                            <span className="font-medium text-md">{specif?.key}</span>
+                            <span className="text-sm">{specif?.value}</span>
                         </li>
 
                     ))
                 }
             </ul>
         </section>
-        <section>
-            <h4>about this items</h4>
+        <section className="py-4 border-b border-gray-200">
+            <h4 className="pb-2 text-lg font-bold text-green-950">about this items</h4>
             <aside ref={about} ></aside>
         </section>
     </div>

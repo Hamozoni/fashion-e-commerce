@@ -9,9 +9,9 @@ function ImagesGalary({productImages,selectedColor}) {
 
 
   return (
-    <div className="">
-        <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center gap-3 flex-col">
+    <div className="pb-6 border-b border-gray-200">
+        <div className="flex items-center gap-3 sticky top-[80px] left-0">
+            <div className="flex items-center justify-center gap-2 flex-col">
                 {
                     productImages?.map((img)=> (
                         img.color === selectedColor ? 

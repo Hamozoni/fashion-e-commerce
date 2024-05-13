@@ -12,7 +12,7 @@ async function  product({params}) {
     console.log(data)
   return (
     <div className="p-4 lg:px-10">
-      <div className="flex gap-3">
+      <div className="flex gap-5">
           <ImagesGalary productImages={data.images} selectedColor={data.images[1].color}/>
           <div className="">
              <ProductDetails product={data} selectedColor={data.images[1].color}/>
@@ -20,8 +20,8 @@ async function  product({params}) {
 
           </div>
       </div>
-      <section>
-        <h4>Product description</h4>
+      <section className="py-4 border-b border-gray-200">
+        <h4 className="pb-2 text-lg font-bold text-green-950">Product description</h4>
         <aside>{data?.description}</aside>
       </section>
     </div>
