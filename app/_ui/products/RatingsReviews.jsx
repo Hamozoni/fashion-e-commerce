@@ -25,9 +25,9 @@ function RatingsReviews() {
                                <td>
                                   5 stars
                                 </td>
-                               <td>
-                                   <div className="w-[200px] h-3 border border-gray-200 rounded-md overflow-hidden">
-                                       <div style={{width: '55%'}} className="bg-green-900 h-3"></div>
+                               <td className="px-3">
+                                   <div className="w-[280px] h-5 border border-gray-200 rounded-md overflow-hidden">
+                                       <div style={{width: '55%'}} className="bg-green-900 h-5"></div>
                                    </div>
                                </td>
                                <td>
@@ -36,28 +36,54 @@ function RatingsReviews() {
                            </tr>
                            <tr>
                                <td>
-                                  5 stars
+                                  4 stars
                                 </td>
-                               <td>
-                                   <div className="w-[200px] h-3 border border-gray-200 rounded-md overflow-hidden">
-                                       <div style={{width: '55%'}} className="bg-green-900 h-3"></div>
+                               <td className="px-3">
+                                   <div className="w-[280px] h-5 border border-gray-200 rounded-md overflow-hidden">
+                                       <div style={{width: '25%'}} className="bg-green-900 h-5"></div>
                                    </div>
                                </td>
                                <td>
-                                   55%
+                                   25%
                                </td>
                            </tr>
                            <tr>
                                <td>
-                                  5 stars
+                                  3 stars
                                 </td>
-                               <td>
-                                   <div className="w-[200px] h-3 border border-gray-200 rounded-md overflow-hidden">
-                                       <div style={{width: '55%'}} className="bg-green-900 h-3"></div>
+                               <td className="px-3">
+                                   <div className="w-[280px] h-5 border border-gray-200 rounded-md overflow-hidden">
+                                       <div style={{width: '5%'}} className="bg-green-900 h-5"></div>
                                    </div>
                                </td>
                                <td>
-                                   55%
+                                   5%
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>
+                                  2 stars
+                                </td>
+                               <td className="px-3">
+                                   <div className="w-[280px] h-5 border border-gray-200 rounded-md overflow-hidden">
+                                       <div style={{width: '7%'}} className="bg-green-900 h-5"></div>
+                                   </div>
+                               </td>
+                               <td>
+                                   7%
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>
+                                  1 stars
+                                </td>
+                               <td className="px-3">
+                                   <div className="w-[280px] h-5 border border-gray-200 rounded-md overflow-hidden">
+                                       <div style={{width: '7%'}} className="bg-green-900 h-5"></div>
+                                   </div>
+                               </td>
+                               <td>
+                                   7%
                                </td>
                            </tr>
                        </tbody>
