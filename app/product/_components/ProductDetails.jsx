@@ -19,7 +19,7 @@ function ProductDetails({product,selectedColor}) {
     },[]);
 
     const className = {
-        infoLi: 'flex items-center  flex-col gap-2 font-medium text-green-950 max-w-[160px]',
+        infoLi: 'flex items-center text-center bg-gray-100 rounded-lg p-2  flex-col text-sm font-medium text-green-950 max-w-[160px]',
         infoLiIcon:'text-[30px] bg-gray-100  p-2 rounded-full'
     }
 
@@ -37,7 +37,7 @@ function ProductDetails({product,selectedColor}) {
 
         </div>
         <div className="py-4 border-b border-gray-200">
-            <ul className="flex items-center justify-center gap-3">
+            <ul className="flex items-center gap-3 flex-wrap">
                 <li className={className.infoLi}>
                     <BsCashCoin className={className.infoLiIcon} size={40}/>
                     <span>cash on delivery</span>
@@ -62,7 +62,7 @@ function ProductDetails({product,selectedColor}) {
                {
                  product?.sizes?.map((size)=> (
                     <li 
-                        className={`${selectedSize === size?.name ? " border-green-600 font-medium": ""} border rounded-lg p-3 py-1 cursor-pointer`}
+                        className={`${selectedSize === size?.name ? " border-green-600 font-medium bg-gray-100": ""} hover:bg-gray-100 border rounded-lg p-3 py-1 cursor-pointer`}
                         onClick={()=> setSelectedSize(size?.name )}
                         key={size.id}
                         >
@@ -88,9 +88,8 @@ function ProductDetails({product,selectedColor}) {
                  product?.images?.map((image)=> {
 
                     if(!imageColor.includes(image.color)){
-                        imageColor.push(image.color)
+                        imageColor.push(image.color);
                         return (
-    
                         <Image 
                             className={`max-h-[50px] min-h-[50px] max-w-[50px] cursor-pointer ${image.color === selectedColor ? 'border border-green-600 rounded-md' : ''}`}
                             key={image.id} 

@@ -4,11 +4,10 @@ import getCurrency from "../../_lip/getCurrency";
 // import { RiStarSLine } from "react-icons/ri";
 import { RiStarSFill } from "react-icons/ri";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { FiMinus } from "react-icons/fi";
-import { GoPlus } from "react-icons/go";
+// import { FiMinus } from "react-icons/fi";
+// import { GoPlus } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
 
-import imagePath from "../../../public/products/1a392cce-01bd-41f8-8cd9-3688080faae6-61vj2VbUKNL._AC_SY500_.jpg"
 import Link from "next/link";
 
 function ProductCard({product}) {

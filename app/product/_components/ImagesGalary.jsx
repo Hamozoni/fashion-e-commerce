@@ -16,7 +16,7 @@ function ImagesGalary({productImages,selectedColor}) {
                     productImages?.map((img)=> (
                         img.color === selectedColor ? 
                         <Image 
-                            className={`rounded-md mb-2 min-w-[60px] max-w-[60px] ${selectedImage === img.imagePath && 'border border-green-900'} cursor-pointer`}
+                            className={`rounded-md mb-2 min-w-[60px] min-h-[60px] max-w-[60px] ${selectedImage === img.imagePath && 'border border-green-900'} cursor-pointer`}
                             onClick={()=> setSelectedImage(img.imagePath)} 
                             key={img.id} 
                             src={img.imagePath.replace("public","")} 
@@ -27,7 +27,7 @@ function ImagesGalary({productImages,selectedColor}) {
                     ))
                 }
             </div>
-            <div className="">
+            <div className="min-h-[500px] flex items-center justify-center">
                 <Image 
                     className="rounded-md"
                     src={selectedImage.replace("public","")} 
