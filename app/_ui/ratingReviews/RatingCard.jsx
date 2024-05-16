@@ -39,7 +39,7 @@ function RatingCard() {
     <div>
         {
             reviews?.map((review)=> (
-                <div className="">
+                <div className="py-7 border-b border-gray-00">
                     <div className="flex items-center gap-2 pb-2">
                         {/* <Image src='/products/1a392cce-01bd-41f8-8cd9-3688080faae6-61vj2VbUKNL._AC_SY500_.jpg' width={40} height={40} alt="auther"/>
                          */}
@@ -57,10 +57,10 @@ function RatingCard() {
                             <LiaStarSolid size={20}/>
                             <LiaStarSolid size={20}/>
                         </div>
-                        <h5>{review?.heighlight}</h5>
+                        <h5 >{review?.heighlight}</h5>
                     </div>
                     <div className="">
-                        <aside>{review.review}</aside>
+                        <aside className="text-green-800 text-sm pb-3">{review.review}</aside>
                         {
                             review?.image !== null &&
                             <Image src='/products/1a392cce-01bd-41f8-8cd9-3688080faae6-61vj2VbUKNL._AC_SY500_.jpg' width={400} height={400} alt='product image'/>
