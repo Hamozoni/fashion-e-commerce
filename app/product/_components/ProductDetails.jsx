@@ -19,7 +19,7 @@ function ProductDetails({product,selectedColor}) {
     },[]);
 
     const className = {
-        infoLi: 'flex items-center text-center bg-gray-100 rounded-lg p-2  flex-col text-sm font-medium text-green-950 max-w-[160px]',
+        infoLi: 'flex items-center text-center bg-gray-100 rounded-lg p-2  flex-col text-sm font-medium text-green-800  max-w-[160px]',
         infoLiIcon:'text-[30px] bg-gray-100  p-2 rounded-full'
     }
 
@@ -28,15 +28,15 @@ function ProductDetails({product,selectedColor}) {
   return (
     <div>
         <div className="pb-2">
-            <h4 className="text-lg font-bold text-green-950">{product?.brand}</h4>
-            <h5 className="text-lg font-medium text-green-950">{product?.name}</h5>
+            <h4 className="text-lg font-bold text-green-900">{product?.brand}</h4>
+            <h5 className="text-lg text-green-800">{product?.name}</h5>
         </div>
-        <div className="flex items-center  text-green-950 gap-3">
-          <h4 className='text-lg font-bold'>{getCurrency(+product.priceInCent)}</h4>
-          <p>Inclusive of VAT</p>
+        <div className="flex items-center  text-green-900 gap-3">
+          <h4 className='text-lg font-extrabold'>{getCurrency(+product.priceInCent)}</h4>
+          <p className="text-green-800 text-sm">Inclusive of VAT</p>
 
         </div>
-        <div className="py-4 border-b border-gray-200">
+        <div className="py-4 border-b border-gray-100">
             <ul className="flex items-center gap-3 flex-wrap">
                 <li className={className.infoLi}>
                     <BsCashCoin className={className.infoLiIcon} size={40}/>
@@ -56,13 +56,13 @@ function ProductDetails({product,selectedColor}) {
                 </li>
             </ul>
         </div>
-        <section className="py-4 border-b border-gray-200">
-           <h5 className="pb-2 text-lg font-medium text-green-950">sizes : </h5>
+        <section className="py-4 border-b border-gray-100">
+           <h5 className="pb-2 text-lg font-bold text-green-900">sizes : </h5>
            <ul className="flex items-center gap-1">
                {
                  product?.sizes?.map((size)=> (
                     <li 
-                        className={`${selectedSize === size?.name ? " border-green-600 font-medium bg-gray-100": ""} hover:bg-gray-100 border rounded-lg p-3 py-1 cursor-pointer`}
+                        className={`${selectedSize === size?.name ? " border-green-600  bg-gray-100": ""} hover:bg-gray-100 border rounded-lg p-3 py-1 cursor-pointer text-green-800`}
                         onClick={()=> setSelectedSize(size?.name )}
                         key={size.id}
                         >
@@ -73,8 +73,8 @@ function ProductDetails({product,selectedColor}) {
                }
            </ul>
         </section>
-        <section className=" py-4 border-b border-gray-200">
-           <h5 className="flex items-center gap-3 pb-2 text-lg font-medium text-green-950"> 
+        <section className=" py-4 border-b border-gray-100">
+           <h5 className="flex items-center gap-3 pb-2 text-lg font-bold text-green-900"> 
                colors : 
               <p 
                 style={{backgroundColor:selectedColor}} 
@@ -106,8 +106,8 @@ function ProductDetails({product,selectedColor}) {
                }
            </section>
         </section>
-        <section className="py-4 border-b border-gray-200">
-            <h4  className="pb-2 text-lg font-bold text-green-950">product specifications</h4>
+        <section className="py-4 border-b border-gray-100">
+            <h4  className="pb-2 text-lg font-bold text-green-900">product specifications</h4>
             <ul>
                 {
                     product?.specifications?.map((specif)=> (
@@ -116,8 +116,8 @@ function ProductDetails({product,selectedColor}) {
                             className="flex items-center gap-4"
                             key={specif?.id}
                             >
-                            <span className="font-medium text-md">{specif?.key}</span>
-                            <span className="text-sm">{specif?.value}</span>
+                            <span className="font-bold text-md text-green-900">{specif?.key}</span>
+                            <span className="text-sm text-green-800">{specif?.value}</span>
                         </li>
 
                     ))
@@ -125,8 +125,8 @@ function ProductDetails({product,selectedColor}) {
             </ul>
         </section>
         <section className="py-4">
-            <h4 className="pb-2 text-lg font-bold text-green-950">about this items</h4>
-            <aside ref={about} ></aside>
+            <h4 className="pb-2 text-lg font-bold text-green-900">about this items</h4>
+            <aside className="text-green-800" ref={about} ></aside>
         </section>
     </div>
   )

@@ -32,8 +32,8 @@ function RatingInfo() {
       }
 
   return (
-    <section className="">
-        <h5 className="pb-2 text-md font-medium text-green-900">Overall Rating</h5>
+    <section className="flex-1 basis-0.5">
+        <h5 className="text-md font-medium text-green-900 pb-2 mb-2 border-b border-gray-100">Overall Rating</h5>
         <div className="flex items-center gap-2">
         <h5 className="text-xl font-bold text-green-900">3.5 out of 5</h5>
             <div className="flex items-center text-yellow-400 text-[30px]">
@@ -45,19 +45,19 @@ function RatingInfo() {
             </div>
             <p className="text-md font-medium text-green-900">Based on 117 ratings</p>
         </div>
-        <div className="py-4">
-            <table>
+        <div className="py-4  bg-gray-50 px-2 rounded-md">
+            <table className="min-w-full table ">
                 <tbody>
                 {
                     ratings?.map((rate)=> (
-                    <tr>
-                        <td className="text-green-800 pb-2 font-medium">{rate?.name}</td>
+                    <tr className="min-w-full table"> 
+                        <td className="text-green-800 w-[52px] pb-2 font-medium">{rate?.name}</td>
                         <td className="px-3">
-                            <div className="w-[280px] h-5 border border-gray-200 rounded-md overflow-hidden">
+                            <div className="h-5 border border-gray-200 rounded-md overflow-hidden">
                                 <div style={{width: rate?.perc}} className="bg-green-900 h-5"></div>
                             </div>
                         </td>
-                        <td className="text-green-800 font-medium"> {rate?.perc}</td>
+                        <td className="text-green-800 font-medium w-[30px]"> {rate?.perc}</td>
                     </tr>
 
                     ))

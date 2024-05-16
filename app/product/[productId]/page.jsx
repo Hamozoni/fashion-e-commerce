@@ -22,8 +22,8 @@ async function  product({params}) {
           </div>
       </div>
       <section className="py-4 border-b border-gray-100">
-        <h4 className="pb-2 text-lg font-bold text-green-950">Product description</h4>
-        <aside>{data?.description}</aside>
+        <h4 className="pb-2 text-lg font-bold text-green-900">Product description</h4>
+        <aside className="text-green-800">{data?.description}</aside>
       </section>
       <RatingReviews/>
     </div>
