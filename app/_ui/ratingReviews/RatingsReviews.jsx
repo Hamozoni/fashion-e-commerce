@@ -1,5 +1,7 @@
 import RatingInfo from "./RatingInfo";
 
+import RatingCard from './RatingCard'
+
 function RatingsReviews() {
 
   return (
@@ -14,9 +16,7 @@ function RatingsReviews() {
                 className="text-md font-medium text-green-900 pb-2 mb-2 border-b border-gray-100"
                 >6 Reviews
               </h5>
-              <div className="">
-                 <div className=""></div>
-              </div>
+              <RatingCard />
             </section>
         </div>
     </section>
