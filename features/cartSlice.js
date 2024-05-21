@@ -8,7 +8,11 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addToCart: (state,action)=> {
+        increment: (state,action)=> {
+
+            const item = state.cartItems.find(el=> el.product.id === action.payload.id);
+
+            if(item) q++
             
         }
         
