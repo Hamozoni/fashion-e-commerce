@@ -12,7 +12,7 @@ export const cartSlice = createSlice({
 
             const item = state.cartItems.find(el=> el.product.id === action.payload.id);
 
-            if(item) q++
+            if(item) item.q++
             
         }
         
