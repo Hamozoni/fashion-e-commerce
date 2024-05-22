@@ -42,6 +42,8 @@ export const totalPriceSelector = createSelector([cartItems],(cartItems)=> {
     cartItems.reduce((total,current)=> total += current.priceInCent * current.quantity,0)
 });
 
-export const productQuantitySelector = createSelector()
+export const productQuantitySelector = createSelector([cartItems,(cartItems,productId)=> productId],
+(cartItems,productId)=> cartItems.find(e=> e.product.id === productId)?.quantity
+)
 
 export default cartSlice.reducer;
