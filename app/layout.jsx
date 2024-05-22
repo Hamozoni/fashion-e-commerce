@@ -1,5 +1,6 @@
 
 import MainHeader from "./_ui/components/MainHeader";
+import ReduxProvider from "./ReduxProvider"
 
 import "./globals.css";
 
@@ -12,11 +13,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
     <body>
-       <MainHeader />
-      <main>
-          {children}
-      </main>
-
+      <ReduxProvider>
+        <main>
+            <MainHeader />
+            {children}
+        </main>
+      </ReduxProvider>
     </body>
   </html>
   );
