@@ -2,6 +2,7 @@
 import { PiShoppingCart } from "react-icons/pi";
 import { useAppSelector } from "../../../store/store";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 
 function HeaderUserBar() {
@@ -17,7 +18,7 @@ function HeaderUserBar() {
     const className = {
         flex:  `flex items-center gap-4`,
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
-        cartNumb: "absolute left-1/3 bottom-3 bg-green-800 text-slate-100 rounded-full w-5 h-5 flex items-center justify-center  "
+        cartNumb: "absolute left-1/3 bottom-3 animate-pingOnce bg-green-800 text-slate-100 rounded-full w-5 h-5 flex items-center justify-center p-1  "
     }
   return (
     <section className={className.flex} >
@@ -35,14 +36,18 @@ function HeaderUserBar() {
         <div className="">
             <button className={className.title}>orders</button>
         </div>
-        <div  className="relative cursor-pointer">
+        <Link href='/cart'  className="relative cursor-pointer">
             {
                 itemsTotal ?
-                <span className={className.cartNumb}>{itemsTotal}</span>
+                <span
+                    className={className.cartNumb}
+                    >
+                        {itemsTotal > 9 ? "9+" : itemsTotal}
+                </span>
                 :''
             }
             <PiShoppingCart size={28}/>
-        </div>
+        </Link>
     </section>
   )
 }

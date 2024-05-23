@@ -12,6 +12,15 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        pingOnce: {
+          "50%" : {translate: "scale(2)"},
+          100: {translate: "scale(1)"}
+        }
+      },
+      animation: {
+        pingOnce: "pingOnce 0.3s cubic-bezier(0, 0, 0.2, 1)"
+      }
     },
   },
   plugins: [],

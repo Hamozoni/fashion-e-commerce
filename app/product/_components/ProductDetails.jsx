@@ -132,4 +132,4 @@ function ProductDetails({product,selectedColor}) {
   )
 }
 
-export default ProductDetails
+export default ProductDetails;
