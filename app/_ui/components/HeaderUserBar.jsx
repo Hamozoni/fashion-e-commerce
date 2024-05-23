@@ -5,7 +5,7 @@ import { totalCartItemsQSelector } from "../../../features/cartSlice";
 
 function HeaderUserBar() {
 
-    const cartItemsTotal = useAppSelector(state => totalCartItemsQSelector(state));
+    const cartItemsTotal = useAppSelector(totalCartItemsQSelector);
 
     const className = {
         flex:  `flex items-center gap-4`,
