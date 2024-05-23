@@ -3,14 +3,14 @@ import getCurrency from "../../_lip/getCurrency";
 
 function CartItemsCard({product}) {
 
-  const className = {
+//   const className = {
 
-  }
+//   }
   return (
-    <div className="flex gap-3 p-3 border-b border-green-100">
+    <div className="flex gap-3 p-3 border-b border-green-100 bg-green-50">
         <div className="">
             <Image 
-                src={product?.product?.images[0]?.imagePath?.replace("public","")}
+                src={product?.product?.images[1]?.imagePath?.replace("public","")}
                 width={150}
                 height={150}
                 alt='product image'

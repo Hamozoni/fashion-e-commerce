@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useAppSelector } from "../../store/store";
 import Link from "next/link";
-import CartItemsCard from "./_components/CartItemsCard"
+import CartItemsCard from "./_components/CartItemsCard";
+import CartSummary from "./_components/CartSummary";
 
 function page() {
 
@@ -17,7 +18,7 @@ function page() {
  const cartCard = cartItems?.map((product)=> <CartItemsCard product={product}/>)
 
   return (
-    <div className="p-4 lg:px-8">
+    <div className="p-4 lg:px-8 flex gap-3 ">
         {
             cartItems?.length ? cartCard :
             <div className="relative max-w-fit mx-auto">
@@ -27,6 +28,7 @@ function page() {
                 </Link>
             </div>
         }
+        <CartSummary/>
         
     </div>
   )
