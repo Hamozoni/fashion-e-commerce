@@ -7,12 +7,8 @@ import Link from "next/link";
 
 function HeaderUserBar() {
 
-    const cartItemsTotal = useAppSelector((state)=> state.cart.cartItems);
-    const [itemsTotal,setItemsTotal] = useState(0);
-
-    useEffect(()=> {
-        setItemsTotal(cartItemsTotal.reduce((total,curr)=> (total += curr.quantity),0))
-    },[cartItemsTotal])
+    const cartItems = useAppSelector((state)=> state.cart.cartItems);
+    const itemsTotal = cartItems?.reduce((total,curr)=> (total += curr.quantity),0)
 
 
     const className = {

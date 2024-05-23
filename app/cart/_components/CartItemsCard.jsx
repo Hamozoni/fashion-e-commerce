@@ -7,7 +7,7 @@ function CartItemsCard({product}) {
 
 //   }
   return (
-    <div className="flex gap-3 p-3 border-b border-green-100 bg-green-50">
+    <div className="flex gap-3 p-3 border-b border-green-100">
         <div className="">
             <Image 
                 src={product?.product?.images[1]?.imagePath?.replace("public","")}
