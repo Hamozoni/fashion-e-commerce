@@ -5,12 +5,16 @@ import { FiPlus } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { decrementItemInCart, incrementItemInCart,removeItemFromCart, productQuantitySelector } from "../../../features/cartSlice";
+import { decrementItemInCart, incrementItemInCart,removeItemFromCart, productQuantitySelector, totalCartItemsQSelector } from "../../../features/cartSlice";
 
 function AddToCart({product}) {
 
     const quantity = useAppSelector(state => productQuantitySelector(state,product.id));
     const dispatch = useAppDispatch();
+
+    const cartItemsTotal = useAppSelector(totalCartItemsQSelector);
+
+    console.log(cartItemsTotal)
 
     const className = {
         addBtn : 'bg-green-900 text-green-100 hover:bg-green-700 flex-1 flex items-center justify-center border border-green-300 rounded-md p-5 py-2 text-md font-bold'

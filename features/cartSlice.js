@@ -41,7 +41,7 @@ export const {incrementItemInCart,decrementItemInCart,removeItemFromCart} = cart
 const cartItems = (state)=> state.cart.cartItems
 
 export const totalCartItemsQSelector = createSelector([cartItems],(cartItems)=> {
-    cartItems.reduce((total,current)=> total += current.quantity,0)
+    cartItems.reduce((total,curr)=> total += curr.product.quantity,0)
 });
 
 export const totalPriceSelector = createSelector([cartItems],(cartItems)=> {
