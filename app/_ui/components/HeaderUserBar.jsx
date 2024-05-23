@@ -1,6 +1,12 @@
+"use client"
 import { PiShoppingCart } from "react-icons/pi";
+import { useAppSelector } from "../../../store/store";
+import { totalCartItemsQSelector } from "../../../features/cartSlice";
 
 function HeaderUserBar() {
+
+    const cartItemsTotal = useAppSelector(state => totalCartItemsQSelector(state));
+
     const className = {
         flex:  `flex items-center gap-4`,
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
@@ -23,7 +29,11 @@ function HeaderUserBar() {
             <button className={className.title}>orders</button>
         </div>
         <div  className="relative cursor-pointer">
-            <span className={className.cartNumb}>9</span>
+            {
+                cartItemsTotal ?
+                <span className={className.cartNumb}>{cartItemsTotal}</span>
+                :''
+            }
             <PiShoppingCart size={28}/>
         </div>
     </section>

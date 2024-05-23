@@ -1,7 +1,7 @@
 import { fetchData } from "../../_lip/fetchData";
 import ImagesGalary from "../_components/ImagesGalary"
 import ProductDetails from "../_components/ProductDetails";
-import AddToCart from "../_components/AddToCard";
+import AddToCart from "../_components/AddToCart";
 import RatingReviews from "../../_ui/ratingReviews/RatingsReviews";
 
 
@@ -17,7 +17,7 @@ async function  product({params}) {
           <ImagesGalary productImages={data.images} selectedColor={data.images[1].color}/>
           <div className="">
              <ProductDetails product={data} selectedColor={data.images[1].color}/>
-             <AddToCart />
+             <AddToCart  product={data}/>
 
           </div>
       </div>

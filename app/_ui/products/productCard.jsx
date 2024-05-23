@@ -1,9 +1,9 @@
+
 import Image from "next/image";
 import getCurrency from "../../_lip/getCurrency";
 
 // import { RiStarSLine } from "react-icons/ri";
 import { RiStarSFill } from "react-icons/ri";
-import { MdOutlineShoppingCart } from "react-icons/md";
 // import { FiMinus } from "react-icons/fi";
 // import { GoPlus } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -12,16 +12,14 @@ import Link from "next/link";
 
 function ProductCard({product}) {
 
+
    const className = {
         card: 'w-[280px] rounded-lg overflow-hidden border border-green-100 cursor-pointer hover:border-green-300 ',
         image: 'w-[280px] max-h-[280px] max-w-[280px]',
-        heart: 'absolute top-5 right-5'
+        heart: 'absolute top-5 right-5',
    }
 
-
- 
-
-   let imagesPath = []
+ let imagesPath = []
 
   return (
     <div className={className.card}>
@@ -75,11 +73,6 @@ function ProductCard({product}) {
                     <RiStarSFill size={22} />
                 </div>
             </div>
-        
-            <div className="text-green-900 rounded-lg flex items-center justify-center py-2 border border-green-200 hover:border-green-500">
-                <MdOutlineShoppingCart size={20} />
-            </div>
-            
         </div>
     </div>
   )
