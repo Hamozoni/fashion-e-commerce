@@ -11,8 +11,9 @@ function CartSummary() {
     const totalPrice = getCurrency(cartItems?.reduce((total,curr)=> (total += curr?.product?.priceInCent * curr?.quantity),0));
     const subtotal = cartItems?.reduce((total,curr)=> (total += curr?.quantity),0);
 
+
   return (
-    <div>
+    <div className="flex-1">
         <header>
             <div className="">
                 <MdOutlineLocalShipping />
@@ -20,9 +21,17 @@ function CartSummary() {
                 <p>on orders over SAR 150 </p>
             </div>
         </header>
-        <div className="">
-            <h5>{`subtotal (${subtotal} items): ${totalPrice} `}</h5>
+        <div className="flex items-center justify-between">
+            <h5>{`subtotal (${subtotal} items):`}</h5>
+            <h5> {totalPrice} </h5>
         </div>
+        <div className="flex items-center justify-between">
+            <h5>total: </h5>
+            <h5> {totalPrice} </h5>
+        </div>
+        <button className="w-full rounded-md py-2 bg-green-200 uppercase text-green-900 hover:bg-green-100">
+             checkout
+        </button>
     </div>
   )
 }
