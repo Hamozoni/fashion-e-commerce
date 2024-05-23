@@ -11,9 +11,9 @@ export const cartSlice = createSlice({
         incrementItemInCart: (state,action)=> {
 
             const item = state.cartItems.find(el=> el.product.id === action.payload.id);
-
             if(item){ 
                 item.quantity++
+
             } else {
                 state.cartItems.push({product: action.payload,quantity: 1})
             }
@@ -38,14 +38,11 @@ export const cartSlice = createSlice({
 
 export const {incrementItemInCart,decrementItemInCart,removeItemFromCart} = cartSlice.actions;
 
-const cartItems = (state)=> state.cart.cartItems
+const cartItems = (state)=> state.cart.cartItems;
 
-export const totalCartItemsQSelector = createSelector([cartItems],(cartItems)=> {
-    cartItems.reduce((total,curr)=> total += curr.product.quantity,0)
-});
 
 export const totalPriceSelector = createSelector([cartItems],(cartItems)=> {
-    cartItems.reduce((total,current)=> total += current.priceInCent * current.quantity,0)
+    cartItems.reduce((total,current)=> (total += current.product.priceInCent * current.quantity),0)
 });
 
 export const productQuantitySelector = createSelector([cartItems,(cartItems,productId)=> productId],

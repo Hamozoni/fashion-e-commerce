@@ -1,10 +1,17 @@
 "use client"
 import { PiShoppingCart } from "react-icons/pi";
-// import { useAppSelector } from "../../../store/store";
-// import { totalCartItemsQSelector } from "../../../features/cartSlice";
+import { useAppSelector } from "../../../store/store";
+import { useEffect, useState } from "react";
+
 
 function HeaderUserBar() {
 
+    const cartItemsTotal = useAppSelector((state)=> state.cart.cartItems);
+    const [itemsTotal,setItemsTotal] = useState(0);
+
+    useEffect(()=> {
+        setItemsTotal(cartItemsTotal.reduce((total,curr)=> (total += curr.quantity),0))
+    },[cartItemsTotal])
 
 
     const className = {
@@ -29,11 +36,11 @@ function HeaderUserBar() {
             <button className={className.title}>orders</button>
         </div>
         <div  className="relative cursor-pointer">
-            {/* {
-                cartItemsTotal ?
-                <span className={className.cartNumb}>{cartItemsTotal}</span>
+            {
+                itemsTotal ?
+                <span className={className.cartNumb}>{itemsTotal}</span>
                 :''
-            } */}
+            }
             <PiShoppingCart size={28}/>
         </div>
     </section>
