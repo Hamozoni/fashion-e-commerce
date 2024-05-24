@@ -13,20 +13,6 @@ function AddToCart({product,selectedColor,selectedSize}) {
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === product.id)?.quantity);
     const dispatch = useAppDispatch();
 
-    const addedToCartProduct = useCallback(()=> {
-        return {
-            id: product.id,
-            name: product.name,
-            priceInCent: product.priceInCent,
-            category: product.category,
-            subCategory: product.subCategory,
-            serialNumber: product.serialNumber,
-            brand: product.brand,
-            image: product.image.find(e=> e.color === selectedColor).imagePath,
-            selectedColor,
-            selectedSize,
-        }
-    },)
 
     const incrementItem = ()=> {
 
@@ -35,7 +21,18 @@ function AddToCart({product,selectedColor,selectedSize}) {
         }else if (!selectedColor){
 
         }else {
-            dispatch(incrementItemInCart(addedToCartProduct))
+            dispatch(incrementItemInCart({
+                id: product.id,
+                name: product.name,
+                priceInCent: product.priceInCent,
+                category: product.category,
+                subCategory: product.subCategory,
+                serialNumber: product.serialNumber,
+                brand: product.brand,
+                image: product.images.find(e=> e.color === selectedColor).imagePath,
+                selectedColor,
+                selectedSize,
+            }))
         }
     }
 
@@ -51,7 +48,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
                 <div className="flex items-center justify-center gap-2  border border-green-300 rounded-md p-3 py-2">
                     <FiMinus 
                         className="text-xl" 
-                        onClick={()=> dispatch(decrementItemInCart(addedToCartProduct))} 
+                        onClick={()=> dispatch(decrementItemInCart(product.id))} 
                     />
                     <h5 className="text-xl border-x border-green-200 px-2" >{quantity}</h5>
                     <FiPlus 

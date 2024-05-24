@@ -8,7 +8,7 @@ import CartSummary from "./_components/CartSummary";
 
 function page() {
 
-    const cartItems = useAppSelector(state=> state.cart.cartItems);
+    const cartItems = useAppSelector(state=> state.cart.products);
 
     console.log(cartItems)
     const className = {
@@ -18,9 +18,14 @@ function page() {
  const cartCard = cartItems?.map((product)=> <CartItemsCard product={product}/>)
 
   return (
-    <div className="p-4 lg:px-8 flex gap-3 ">
+    <div className="p-4 lg:px-8 flex gap-3">
         {
-            cartItems?.length ? cartCard :
+            cartItems?.length ?
+            <>
+                {cartCard}
+                <CartSummary/>
+              
+            </>  :
             <div className="relative max-w-fit mx-auto">
                 <Image src='/cart/emtyCart.png' width={404}  height={316} alt='emty cart'/>
                 <Link className={className.startShopping} href='/' >
@@ -28,7 +33,7 @@ function page() {
                 </Link>
             </div>
         }
-        <CartSummary/>
+       
         
     </div>
   )

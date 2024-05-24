@@ -7,20 +7,20 @@ function CartItemsCard({product}) {
 
 //   }
   return (
-    <div className="flex gap-3 p-3 border-b border-green-100">
+    <div className="flex gap-3 p-3 border-b border-green-100 flex-shrink-0">
         <div className="">
             <Image 
-                src={product?.product?.images[1]?.imagePath?.replace("public","")}
+                src={product?.image?.replace("public","")}
                 width={150}
                 height={150}
                 alt='product image'
                  />
         </div>
         <div className="">
-            <h4>{product?.product?.name}</h4>
+            <h4>{product?.name}</h4>
             <h6> color: 
                 <span 
-                    style={{background: product?.color}}
+                    style={{background: product?.selectedColor}}
                     className="w-[35px] h-[35px] rounded-full"
                     >
                 </span>
@@ -29,13 +29,13 @@ function CartItemsCard({product}) {
                 <span 
                     className="w-[35px] h-[35px] rounded-full"
                     >
-                        {product?.size}
+                        {product?.selectedSize}
                 </span>
             </h6>
         </div>
         <div className="">
             <h6>price</h6>
-            <h4>{getCurrency(product?.product?.priceInCent)}</h4>
+            <h4>{getCurrency(product?.priceInCent)}</h4>
         </div>
         <div className="">
             <h6>quantity</h6>
@@ -43,7 +43,7 @@ function CartItemsCard({product}) {
         </div>
         <div className="">
             <h6>total price</h6>
-            <h4>{getCurrency(product?.product?.priceInCent * product?.quantity)}</h4>
+            <h4>{getCurrency(product?.priceInCent * product?.quantity)}</h4>
         </div>
     </div>
   )

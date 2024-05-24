@@ -14,11 +14,10 @@ import Image from "next/image";
 
 function CartSummary() {
 
-    const cartItems = useAppSelector(state=> state.cart.cartItems);
-    const totalPrice = cartItems?.reduce((total,curr)=> (total += curr?.product?.priceInCent * curr?.quantity),0)
-    const subtotal = cartItems?.reduce((total,curr)=> (total += curr?.quantity),0);
+    const totalPrice = useAppSelector(state=> state.cart.totalPaid)
+    const subtotal = useAppSelector(state=> state.cart.totalQuantity)
 
-    const deliveryFree = totalPrice > 14999 ? 0 : 1700;
+    const deliveryFree = useAppSelector(state=> state.cart.deliveryFree)
 
     const paymentLogos = [madaLogo,visaLogo,masterCLogo,applePayLogo,paypalLogo];
 
