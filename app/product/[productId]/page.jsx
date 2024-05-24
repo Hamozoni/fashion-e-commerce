@@ -17,7 +17,7 @@ async function  product({params}) {
           <ImagesGalary productImages={data.images} selectedColor={data.images[1].color}/>
           <div className="">
              <ProductDetails product={data} selectedColor={data.images[1].color}/>
-             <AddToCart  product={data} selectedColor='#000000' selectedSize='42' />
+             <AddToCart  product={data} selectedColor='#0c9597' selectedSize='42' />
           </div>
       </div>
       <section className="py-4 border-b border-gray-100">

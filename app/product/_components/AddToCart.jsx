@@ -1,12 +1,10 @@
 "use client"
-
-import { FiMinus } from "react-icons/fi";
-import { FiPlus } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { decrementItemInCart, incrementItemInCart,removeItemFromCart, productQuantitySelector } from "../../../features/cartSlice";
-import { useCallback } from "react";
+import {removeItemFromCart, addToCart } from "../../../features/cartSlice";
+
+import QuantityBtn from "../../_ui/products/QuantityBtn";
 
 function AddToCart({product,selectedColor,selectedSize}) {
 
@@ -21,7 +19,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
         }else if (!selectedColor){
 
         }else {
-            dispatch(incrementItemInCart({
+            dispatch(addToCart({
                 id: product.id,
                 name: product.name,
                 priceInCent: product.priceInCent,
@@ -45,16 +43,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
         {
             quantity ? 
             <>
-                <div className="flex items-center justify-center gap-2  border border-green-300 rounded-md p-3 py-2">
-                    <FiMinus 
-                        className="text-xl" 
-                        onClick={()=> dispatch(decrementItemInCart(product.id))} 
-                    />
-                    <h5 className="text-xl border-x border-green-200 px-2" >{quantity}</h5>
-                    <FiPlus 
-                        className="text-xl " 
-                        onClick={incrementItem}/>
-                </div>
+                <QuantityBtn id={product.id} />
                 <botton 
                     onClick={()=> dispatch(removeItemFromCart(product.id))}
                     className={`${className.addBtn} bg-rose-600 hover:bg-rose-700`}>

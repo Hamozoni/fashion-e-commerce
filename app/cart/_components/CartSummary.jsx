@@ -35,9 +35,9 @@ function CartSummary() {
 
 
   return (
-    <div className="flex-1">
+    <div className="w-[350px]">
         <header className={className.section}>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 max-w-fit mx-auto">
                 <MdOutlineLocalShipping size={22}/>
                 <h4 className="uppercase text-green-900">free shipping</h4>
                 <p className="text-sm text-green-800">on orders over <strong > SAR 150 </strong></p>
@@ -57,16 +57,15 @@ function CartSummary() {
                 <h5> {getCurrency(totalPrice + deliveryFree)} </h5>
             </div>
             <button className={className.checkoutBtn}>
-                checkout
+                checkout pay {getCurrency(totalPrice + deliveryFree)}
             </button>
         </div>
 
-        <section className={className.section}>
-            <h5>ways you can pay :</h5>
+        <div className={className.section}>
             <ul className="flex items-center gap-2 flex-wrap justify-center">
                 {payment}
             </ul>
-        </section>
+        </div>
     </div>
   )
 }
