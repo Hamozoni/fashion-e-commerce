@@ -4,6 +4,13 @@ import { useAppSelector } from "../../../store/store";
 import getCurrency from "../../_lip/getCurrency";
 import { MdOutlineLocalShipping } from "react-icons/md";
 
+import madaLogo from "../../../public/paymentLogos/logo-mada.webp"
+import visaLogo from "../../../public/paymentLogos/logo-visa.webp"
+import masterCLogo from "../../../public/paymentLogos/logo-mc.webp"
+import paypalLogo from "../../../public/paymentLogos/logo-paypal.webp"
+import applePayLogo from "../../../public/paymentLogos/logo-applepay.webp"
+import Image from "next/image";
+
 
 function CartSummary() {
 
@@ -12,6 +19,14 @@ function CartSummary() {
     const subtotal = cartItems?.reduce((total,curr)=> (total += curr?.quantity),0);
 
     const deliveryFree = totalPrice > 14999 ? 0 : 1700;
+
+    const paymentLogos = [madaLogo,visaLogo,masterCLogo,applePayLogo,paypalLogo];
+
+    const payment = paymentLogos?.map((img)=> (
+         <li key={img}>
+            <Image  src={img} width={50} height={50} alt="payment"/>
+        </li>
+    ))
 
 
   return (
@@ -38,6 +53,12 @@ function CartSummary() {
         <button className="w-full rounded-md py-2 bg-green-200 uppercase text-green-900 hover:bg-green-100">
              checkout
         </button>
+        <section>
+            <h5>ways you can pay :</h5>
+            <ul className="flex items-center gap-2 flex-wrap">
+                {payment}
+            </ul>
+        </section>
     </div>
   )
 }
