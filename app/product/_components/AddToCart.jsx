@@ -55,8 +55,6 @@ function AddToCart({product,selectedColor,selectedSize}) {
                 onClick={incrementItem}
                 className={className.addBtn}>
                 add to cart
-                
-                
             </botton>
         }
         <div className="flex items-center justify-center  border border-green-300 rounded-md p-3 py-2 text-xl">
