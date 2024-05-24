@@ -17,6 +17,8 @@ model order {
   userId          String
   auther user @relation(fields: [userId],references: [id])
   products product[]
+  totalQuantity Int
+  deliveryFree Int
   totalPaid Int
 }
 
@@ -26,11 +28,12 @@ model product {
   createdAt        DateTime @default(now())
   updateddAt       DateTime  @updatedAt
   priceInCent      Int
+  totalPriceInCent Int?
   offerPriceInCent Int?     @default(0)
   isOffer          Boolean?  @default(false)
   isAvailable      Boolean  @default(true)
   description      String   @db.Text
-  count            Int      @default(1)
+  quantity         Int      @default(1)
   category         String
   subCategory      String
   aboutThisItem    String   @db.Text
@@ -46,11 +49,11 @@ model product {
 }
 
 model productimages {
- id               String   @id @default(uuid())
+  id        String   @id @default(uuid())
   color     String
   productId String
   product product @relation(fields: [productId],references: [id])
-   imagePath       String
+  imagePath       String
 }
 
 model productsizes {

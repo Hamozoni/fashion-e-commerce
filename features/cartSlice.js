@@ -1,7 +1,18 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    cartItems :[]
+    products :[],
+    totalQuantity : 0,
+    deliveryFree : 0,
+    totalPaid : 0
+};
+
+const getTotal = (state)=> {
+    state.totalQuantity = state.products.reduce((total,curr)=> (total += curr.quantity),0);
+    state.totalPaid = state.products.reduce((total,curr)=> (total += curr.priceInCent * curr.quantity),0);
+    state.deliveryFree = state.totalPaid  > 14999 ? 0 : 1700;
+
+    return state
 }
 
 export const cartSlice = createSlice({
@@ -10,38 +21,35 @@ export const cartSlice = createSlice({
     reducers: {
         incrementItemInCart: (state,action)=> {
 
-            const item = state.cartItems.find(el=> el.product.id === action.payload.id);
+            const item = state.products.find(el=> el.id === action.payload.id);
+
             if(item){ 
                 item.quantity++
 
             } else {
-                state.cartItems.push({product: action.payload,quantity: 1})
+                state.products.push(action.payload)
             }
-            
-            
+
+            getTotal(state);
         },
         decrementItemInCart: (state,action)=> {
-            const item = state.cartItems.find(el=> el.product.id === action.payload.id);
+            const item = state.products.find(el=> el.id === action.payload.id);
             if(item){
                 item.quantity--
                 if(item.quantity === 0){
-                    state.cartItems = state.cartItems.filter(e=> e.product.id !== action.payload.id)
+                    state.products = state.products.filter(e=> e.id !== action.payload.id)
                 }
             }
+            getTotal(state);
         },
         removeItemFromCart: (state,action)=> {
-            state.cartItems = state.cartItems.filter(e=> e.product.id !== action.payload.id)
+            state.products = state.products.filter(e=> e.id !== action.payload.id);
+            getTotal(state);
         }
         
     }
 });
 
 export const {incrementItemInCart,decrementItemInCart,removeItemFromCart} = cartSlice.actions;
-
-const cartItems = (state)=> state.cart.cartItems;
-
-export const productQuantitySelector = createSelector([cartItems,(cartItems,productId)=> productId],
-(cartItems,productId)=> cartItems.find(e=> e.product.id === productId)?.quantity
-)
 
 export default cartSlice.reducer;
