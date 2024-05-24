@@ -25,7 +25,7 @@ function page() {
             cartItems?.length ?
             <div className="p-4 lg:px-8 flex gap-3">
                 <section>
-                    <h4 className={className.sectionTitle}>cart items {totalItemsOnCart}</h4>
+                    <h4 className={className.sectionTitle}>{totalItemsOnCart} items</h4>
                     <div className="flex-1">
                         {cartCard}
                     </div> 
