@@ -27,23 +27,23 @@ export const cartSlice = createSlice({
                 item.quantity++
 
             } else {
-                state.products.push(action.payload)
+                state.products.push({...action.payload,quantity: 1})
             }
 
             getTotal(state);
         },
         decrementItemInCart: (state,action)=> {
-            const item = state.products.find(el=> el.id === action.payload.id);
+            const item = state.products.find(el=> el.id === action.payload);
             if(item){
                 item.quantity--
                 if(item.quantity === 0){
-                    state.products = state.products.filter(e=> e.id !== action.payload.id)
+                    state.products = state.products.filter(e=> e.id !== action.payload)
                 }
             }
             getTotal(state);
         },
         removeItemFromCart: (state,action)=> {
-            state.products = state.products.filter(e=> e.id !== action.payload.id);
+            state.products = state.products.filter(e=> e.id !== action.payload);
             getTotal(state);
         }
         
