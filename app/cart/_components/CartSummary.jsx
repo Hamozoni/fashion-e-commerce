@@ -36,7 +36,7 @@ function CartSummary() {
 
   return (
     <div className="w-[350px]">
-        <header className={className.section}>
+        <header className={`${className.section} bg-green-50`}>
             <div className="flex items-center gap-2 max-w-fit mx-auto">
                 <MdOutlineLocalShipping size={22}/>
                 <h4 className="uppercase text-green-900">free shipping</h4>
