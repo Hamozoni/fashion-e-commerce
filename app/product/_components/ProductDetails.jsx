@@ -36,7 +36,6 @@ function ProductDetails({product,selectedColor}) {
         <div className="flex items-center  text-green-900 gap-3">
           <h4 className='text-lg font-extrabold'>{getCurrency(+product.priceInCent)}</h4>
           <p className="text-green-800 text-sm">Inclusive of VAT</p>
-
         </div>
         <div className="py-4 border-b border-gray-100">
             <ul className="flex items-center gap-3 flex-wrap">
@@ -60,24 +59,7 @@ function ProductDetails({product,selectedColor}) {
         </div>
         <SelectSize sizes={product?.sizes} />
         <SelectImage images={product?.images} />
-        <section className="py-4 border-b border-gray-100">
-            <h4  className="pb-2 text-lg font-bold text-green-900">product specifications</h4>
-            <ul>
-                {
-                    product?.specifications?.map((specif)=> (
-
-                        <li 
-                            className="flex items-center gap-4"
-                            key={specif?.id}
-                            >
-                            <span className="font-bold text-md text-green-900">{specif?.key}</span>
-                            <span className="text-sm text-green-800">{specif?.value}</span>
-                        </li>
-
-                    ))
-                }
-            </ul>
-        </section>
+        <Specifications specifications={product.specifications} />
         <section className="py-4">
             <h4 className="pb-2 text-lg font-bold text-green-900">about this items</h4>
             <aside className="text-green-800" ref={about} ></aside>
