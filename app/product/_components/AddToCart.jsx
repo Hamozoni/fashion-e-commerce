@@ -57,7 +57,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
                 add to cart
             </botton>
         }
-        <div className="flex items-center justify-center  border border-green-300 rounded-md p-3 py-2 text-xl">
+        <div className="flex items-center justify-center border border-green-300 rounded-md p-3 py-2 text-xl">
             <FaHeart className="text-rose-500" />
         </div>
     </div>

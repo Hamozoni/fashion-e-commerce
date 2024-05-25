@@ -5,7 +5,9 @@ import { store } from "../store/store"
 
 function ReduxProvider({children}) {
   return (
-    <Provider store={store}>{children}</Provider>
+    <Provider store={store}>
+       {children}
+    </Provider>
   )
 }
 
