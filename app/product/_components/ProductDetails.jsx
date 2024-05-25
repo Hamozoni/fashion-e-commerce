@@ -5,6 +5,7 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { MdOutlineLockPerson } from "react-icons/md";
 import getCurrency from "../../_lip/getCurrency";
 import SelectImage from "./SelectImage";
+import SelectSize from "./SelectSize";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -57,24 +58,8 @@ function ProductDetails({product,selectedColor}) {
                 </li>
             </ul>
         </div>
-        <section className="py-4 border-b border-gray-100">
-           <h5 className="pb-2 text-lg font-bold text-green-900">sizes : </h5>
-           <ul className="flex items-center gap-1">
-               {
-                 product?.sizes?.map((size)=> (
-                    <li 
-                        className={`${selectedSize === size?.name ? " border-green-600  bg-gray-100": ""} hover:bg-gray-100 border rounded-lg p-3 py-1 cursor-pointer text-green-800`}
-                        onClick={()=> setSelectedSize(size?.name )}
-                        key={size.id}
-                        >
-                        { size?.name }
-                    </li>
-
-                 ))
-               }
-           </ul>
-        </section>
-        <SelectImage />
+        <SelectSize sizes={product?.sizes} />
+        <SelectImage images={product?.images} />
         <section className="py-4 border-b border-gray-100">
             <h4  className="pb-2 text-lg font-bold text-green-900">product specifications</h4>
             <ul>
