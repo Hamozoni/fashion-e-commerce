@@ -1,8 +1,9 @@
 
 import Image from "next/image";
+
 let imageColor = [];
 
-function SelectImage({images,selectedColor}) {
+function SelectImage({images,selectedColor,setSelectedColor}) {
 
   return (
 
@@ -24,6 +25,7 @@ function SelectImage({images,selectedColor}) {
                     imageColor.push(image.color);
                     return (
                     <Image 
+                        onClick={()=> setSelectedColor(image.color)}
                         className={`max-h-[50px] min-h-[50px] max-w-[50px] cursor-pointer ${image.color === selectedColor ? 'border border-green-600 rounded-md' : ''}`}
                         key={image.id} 
                         src={image?.imagePath.replace("public","")}

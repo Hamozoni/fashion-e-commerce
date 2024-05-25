@@ -8,6 +8,7 @@ import Features from "./Features"
 import { useEffect, useRef, useState } from "react";
 import ImagesGalary from "./ImagesGalary";
 import AddToCart from "./AddToCart";
+import Specifications from "./Specifications";
 
 
 function ProductDetails({product}) {
@@ -35,8 +36,8 @@ function ProductDetails({product}) {
                     <h5 className="text-lg text-green-800">{product?.name}</h5>
                 </div>
                 <div className="flex items-center  text-green-900 gap-3">
-                <h4 className='text-lg font-extrabold'>{getCurrency(+product.priceInCent)}</h4>
-                <p className="text-green-800 text-sm">Inclusive of VAT</p>
+                    <h4 className='text-lg font-extrabold'>{getCurrency(+product.priceInCent)}</h4>
+                    <p className="text-green-800 text-sm">Inclusive of VAT</p>
                 </div>
                 <Features />
                 <SelectSize 

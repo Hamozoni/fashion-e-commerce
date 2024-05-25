@@ -2,7 +2,7 @@
 function Specifications({specifications}) {
 
   return (
-    
+
     <section className="py-4 border-b border-gray-100">
         <h4  className="pb-2 text-lg font-bold text-green-900">product specifications</h4>
         <ul>

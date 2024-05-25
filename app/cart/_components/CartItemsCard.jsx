@@ -4,21 +4,24 @@ import QuantityBtn from "../../_ui/products/QuantityBtn";
 import { removeItemFromCart } from "../../../features/cartSlice";
 import { useAppDispatch } from "../../../store/store";
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import Link from "next/link";
 
 function CartItemsCard({product}) {
     const dispatch = useAppDispatch();
   return (
     <div className="flex gap-3 items-center p-3 border border-gray-100 bg-gray-50 rounded-md w-full">
-        <div className="min-w-[150px]">
+        <Link href={`/product/${product?.id}`} className="min-w-[150px]">
             <Image 
                 src={product?.image?.replace("public","")}
                 width={150}
                 height={150}
                 alt='product image'
                  />
-        </div>
+        </Link>
         <section>
-            <h4 className="pb-2">{product?.name}</h4>
+            <Link href={`/product/${product?.id}`}>
+                <h4 className="pb-2 font-bold text-green-900 hover:text-green-800">{product?.name}</h4>
+            </Link>
             <div className="flex gap-5 items-center flex-wrap">
                 <div className="border-r px-2 border-green-100">
                     <h6 className="flex items-center gap-2"> color: 
