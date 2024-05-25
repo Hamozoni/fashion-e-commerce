@@ -10,23 +10,24 @@ import ImagesGalary from "./ImagesGalary";
 import AddToCart from "./AddToCart";
 
 
-function ProductDetails({product,selectedColor}) {
+function ProductDetails({product}) {
 
-    const [selectedSize,setSelectedSize] = useState('')
+    const [selectedSize,setSelectedSize] = useState('');
+    const [selectedColor,setSelectedColor] = useState('');
 
     const about = useRef();
 
     useEffect(()=> {
-        about.current.innerText = product?.aboutThisItem
+        about.current.innerText = product?.aboutThisItem;
+        setSelectedColor(product.images[1].color);
     },[]);
-
-
-
-
 
   return (
     <div className="flex gap-5">
-        <ImagesGalary productImages={data.images} selectedColor={data.images[1].color}/>
+        <ImagesGalary 
+            productImages={product.images} 
+            selectedColor={selectedColor}
+            />
         <div className="">
             <div>
                 <div className="pb-2">
@@ -38,15 +39,25 @@ function ProductDetails({product,selectedColor}) {
                 <p className="text-green-800 text-sm">Inclusive of VAT</p>
                 </div>
                 <Features />
-                <SelectSize sizes={product?.sizes} />
-                <SelectImage images={product?.images} />
-                <Specifications specifications={product.specifications} />
+                <SelectSize 
+                    sizes={product?.sizes} 
+                    selectedSize={selectedSize}
+                    setSelectedSize={setSelectedSize}/>
+                <SelectImage 
+                    images={product?.images} 
+                    selectedColor={selectedColor} 
+                    setSelectedColor={setSelectedColor} />
+                <Specifications 
+                    specifications={product.specifications} />
                 <section className="py-4">
                     <h4 className="pb-2 text-lg font-bold text-green-900">about this items</h4>
                     <aside className="text-green-800" ref={about} ></aside>
                 </section>
             </div>
-            <AddToCart  product={data} selectedColor='#0c9597' selectedSize='42' />
+            <AddToCart
+                product={product} 
+                selectedColor={selectedColor} 
+                selectedSize={selectedSize} />
         </div>
     </div>
   )
