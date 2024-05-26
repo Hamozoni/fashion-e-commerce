@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { FaHeart } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
@@ -11,10 +12,10 @@ import Overlay from "../../_ui/components/Overlay";
 
 function AddToCart({product,selectedColor,selectedSize}) {
 
-    const quantity = useAppSelector(state => {
-        state.cart.products?.find(e=> e.id === product.id && e.selectedColor === product.selectedColor &&  e.selectedSize === product.selectedSize)?.quantity
-    });
+    const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === product.id && e.selectedColor === selectedColor && e.selectedSize === selectedSize)?.quantity);
+
     const dispatch = useAppDispatch();
+    console.log(quantity)
 
     const [errorMessege,setErrorMessege] = useState(null);
 
@@ -53,9 +54,9 @@ function AddToCart({product,selectedColor,selectedSize}) {
         {
             quantity ? 
             <>
-                <QuantityBtn id={product.id} />
+                <QuantityBtn id={product.id} selectedColor={selectedColor} selectedSize={selectedSize} />
                 <botton 
-                    onClick={()=> dispatch(removeItemFromCart(product.id))}
+                    onClick={()=> dispatch(removeItemFromCart({id: product.id,selectedColor,selectedSize}))}
                     className={`${className.addBtn} bg-rose-600 hover:bg-rose-700`}>
                         remove <MdOutlineDeleteOutline size={16} />
                 </botton>

@@ -25,7 +25,10 @@ export const cartSlice = createSlice({
             getTotal(state);
         },
         incrementItemInCart: (state,action)=> {
-            const item = state.products.find(el=> el.id === action.payload);
+
+            const {id,selectedColor,selectedSize} = action.payload;
+
+            const item = state.products.find(el=> el.id === id && el.selectedColor === selectedColor && el.selectedSize === selectedSize);
             if(item){ 
                 item.quantity++
             } 
@@ -33,17 +36,19 @@ export const cartSlice = createSlice({
             getTotal(state);
         },
         decrementItemInCart: (state,action)=> {
-            const item = state.products.find(el=> el.id === action.payload);
+            const {id,selectedColor,selectedSize} = action.payload;
+            const item = state.products.find(el=> el.id === id && el.selectedColor === selectedColor && el.selectedSize === selectedSize);
             if(item){
                 item.quantity--
                 if(item.quantity === 0){
-                    state.products = state.products.filter(e=> e.id !== action.payload)
+                    state.products = state.products.filter(el=> el.id !== id && el.selectedColor !== selectedColor && el.selectedSize !== selectedSize)
                 }
             }
             getTotal(state);
         },
         removeItemFromCart: (state,action)=> {
-            state.products = state.products.filter(e=> e.id !== action.payload);
+            const {id,selectedColor,selectedSize} = action.payload;
+            state.products = state.products.filter(el=> el.id !== id && el.selectedColor !== selectedColor && el.selectedSize !== selectedSize);
             getTotal(state);
         }
         
