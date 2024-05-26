@@ -6,16 +6,7 @@ function SelectImage({images,selectedColor,setSelectedColor}) {
 
    
 
-    const groupBy = (images, key) => images.reduce(
-        (result, item) => ({
-          ...result,
-          [item[key]]: [
-            ...(result[item[key]] || []),
-            item,
-          ],
-        }), 
-        {},
-      );
+    const groupBy = (images, key) => images.reduce((result, item) => ({...result,[item[key]]: [...(result[item[key]] || []), item,],}), {},);
 
       console.log(groupBy(images,"color"))
 
