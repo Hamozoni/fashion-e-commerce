@@ -11,7 +11,9 @@ import Overlay from "../../_ui/components/Overlay";
 
 function AddToCart({product,selectedColor,selectedSize}) {
 
-    const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === product.id)?.quantity);
+    const quantity = useAppSelector(state => {
+        state.cart.products?.find(e=> e.id === product.id && e.selectedColor === product.selectedColor &&  e.selectedSize === product.selectedSize)?.quantity
+    });
     const dispatch = useAppDispatch();
 
     const [errorMessege,setErrorMessege] = useState(null);
@@ -19,7 +21,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
 
     const incrementItem = ()=> {
 
-        if(!selectedSize && selectedColor){
+        if(!selectedSize && !selectedColor){
             setErrorMessege('place select product color and size')
         }else if (!selectedColor){
             setErrorMessege('place select product color')
