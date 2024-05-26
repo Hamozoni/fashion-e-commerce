@@ -3,22 +3,30 @@ import { FaHeart } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import {removeItemFromCart, addToCart } from "../../../features/cartSlice";
+import { BiMessageAltError } from "react-icons/bi";
 
 import QuantityBtn from "../../_ui/products/QuantityBtn";
+import { useState } from "react";
+import Overlay from "../../_ui/components/Overlay";
 
 function AddToCart({product,selectedColor,selectedSize}) {
 
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === product.id)?.quantity);
     const dispatch = useAppDispatch();
 
+    const [errorMessege,setErrorMessege] = useState(null);
+
 
     const incrementItem = ()=> {
 
-        if(!selectedSize){
-
+        if(!selectedSize && selectedColor){
+            setErrorMessege('place select product color and size')
         }else if (!selectedColor){
-
+            setErrorMessege('place select product color')
+        } else if (!selectedSize){
+            setErrorMessege('place select product size')
         }else {
+            setErrorMessege(null);
             dispatch(addToCart({
                 id: product.id,
                 name: product.name,
@@ -39,7 +47,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
     }
 
   return (
-    <div className="flex items-stretch justify-center gap-2 pt-5 w-full cursor-pointer">
+    <div className="flex items-stretch justify-center gap-2 pt-5 w-full cursor-pointer relative">
         {
             quantity ? 
             <>
@@ -60,6 +68,14 @@ function AddToCart({product,selectedColor,selectedSize}) {
         <div className="flex items-center justify-center border border-green-300 rounded-md p-3 py-2 text-xl">
             <FaHeart className="text-rose-500" />
         </div>
+        {   errorMessege !== null &&
+            <>
+                <Overlay onClick={()=> setErrorMessege(null)} />
+                <div className="absolute z-50 top-0 left-0 w-full translate-y-[-100%] bg-green-200 text-green-900 flex items-center gap-2 rounded-md p-3">
+                   <BiMessageAltError size={22} /> {errorMessege}
+                </div>
+            </>
+        }
     </div>
   )
 }

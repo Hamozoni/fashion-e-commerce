@@ -11,7 +11,7 @@ function ImagesGalary({productImages,selectedColor}) {
 
         setSelectedImage(productImages[0].imagePath)
 
-    },[selectedColor])
+    },[productImages])
 
 
   return (
