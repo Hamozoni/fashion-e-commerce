@@ -9,7 +9,7 @@ import Link from "next/link";
 function CartItemsCard({product}) {
     const dispatch = useAppDispatch();
   return (
-    <div className="flex flex-1 gap-3 items-center p-3 mb-3 border border-gray-100 bg-gray-50 rounded-md w-full">
+    <div className="flex gap-3 items-center p-3 mb-3 border border-gray-100 bg-gray-50 rounded-md w-full">
         <Link href={`/product/${product?.id}`} className="min-w-[150px]">
             <Image 
                 src={product?.image?.replace("public","")}
@@ -43,13 +43,17 @@ function CartItemsCard({product}) {
                     <h6>price</h6>
                     <h4>{getCurrency(product?.priceInCent)}</h4>
                 </div>
-                <QuantityBtn id={product.id} />
+                <QuantityBtn 
+                    id={product.id} 
+                    selectedColor={product.selectedColor} 
+                    selectedSize={product.selectedSize} 
+                    />
                 <div className="border-r px-2 border-green-100">
                     <h6>total price</h6>
                     <h4>{getCurrency(product?.priceInCent * product?.quantity)}</h4>
                 </div>
                 <botton 
-                    onClick={()=> dispatch(removeItemFromCart(product.id))}
+                    onClick={()=> dispatch(removeItemFromCart({id:product.id,selectedColor:product.selectedColor,selectedSize: product.selectedSize}))}
                     className={ `flex items-center cursor-pointer text-md font-bold text-rose-600 hover:text-rose-700`}>
                         remove <MdOutlineDeleteOutline size={16} />
                 </botton>

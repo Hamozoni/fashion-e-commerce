@@ -41,14 +41,16 @@ export const cartSlice = createSlice({
             if(item){
                 item.quantity--
                 if(item.quantity === 0){
-                    state.products = state.products.filter(el=> el.id !== id && el.selectedColor !== selectedColor && el.selectedSize !== selectedSize)
+                    state.products.splice(state.products.indexOf(item),1)
                 }
             }
             getTotal(state);
         },
         removeItemFromCart: (state,action)=> {
             const {id,selectedColor,selectedSize} = action.payload;
-            state.products = state.products.filter(el=> el.id !== id && el.selectedColor !== selectedColor && el.selectedSize !== selectedSize);
+            const item = state.products.find(el=> el.id === id && el.selectedColor === selectedColor && el.selectedSize === selectedSize);
+            state.products.splice(state.products.indexOf(item),1)
+
             getTotal(state);
         }
         
