@@ -15,10 +15,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === product.id && e.selectedColor === selectedColor && e.selectedSize === selectedSize)?.quantity);
 
     const dispatch = useAppDispatch();
-    console.log(quantity)
-
     const [errorMessege,setErrorMessege] = useState(null);
-
 
     const incrementItem = ()=> {
 

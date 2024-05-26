@@ -5,7 +5,6 @@ import RatingReviews from "../../_ui/ratingReviews/RatingsReviews";
 
 async function  product({params}) {
     const {productId} = params;
-
     const [data] = await fetchData(`product/${productId}`);
 
   
