@@ -4,11 +4,13 @@ import Image from "next/image";
 
 function SelectImage({images,selectedColor,setSelectedColor}) {
 
-   
+    const groupBy = (images, key) => images.reduce(
+        (result,item) => ({
+          ...result,[item[key]]: [...(result[item[key]] || []),item,],}), 
+        {},
+      );
 
-    const groupBy = (images, key) => images.reduce((result, item) => ({...result,[item[key]]: [...(result[item[key]] || []), item,],}), {},);
-
-      console.log(groupBy(images,"color"))
+    console.log(Object.entries(groupBy(images,"color")))
 
   return (
 
@@ -24,12 +26,12 @@ function SelectImage({images,selectedColor,setSelectedColor}) {
         </h5>
         <section className="flex items-center gap-3">
             {
-             images?.map((image)=> (
+            Object.entries(groupBy(images,"color"))?.map(([color,image])=> (
                 <Image 
-                    onClick={()=> setSelectedColor(image.color)}
-                    className={`max-h-[50px] min-h-[50px] max-w-[50px] cursor-pointer ${image.color === selectedColor ? 'border border-green-600 rounded-md' : ''}`}
-                    key={image.id} 
-                    src={image?.imagePath.replace("public","")}
+                    onClick={()=> setSelectedColor(color)}
+                    className={`max-h-[50px] min-h-[50px] max-w-[50px] cursor-pointer ${color === selectedColor ? 'border border-green-600 rounded-md' : ''}`}
+                    key={image[0].id} 
+                    src={image[0]?.imagePath.replace("public","")}
                     width={50} 
                     height={50}
                     />
@@ -41,4 +43,4 @@ function SelectImage({images,selectedColor,setSelectedColor}) {
   )
 }
 
-export default SelectImage
+export default SelectImage;

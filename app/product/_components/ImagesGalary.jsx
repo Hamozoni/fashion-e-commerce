@@ -1,11 +1,17 @@
 "use client"
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 function ImagesGalary({productImages,selectedColor}) {
 
     const [selectedImage,setSelectedImage] = useState(productImages[0].imagePath);
+
+    useEffect(()=> {
+
+        setSelectedImage(productImages[0].imagePath)
+
+    },[selectedColor])
 
 
   return (
