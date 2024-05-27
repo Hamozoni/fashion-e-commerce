@@ -3,7 +3,7 @@
 import { FaHeart } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
-import {removeItemFromCart, addToCart } from "../../../features/cartSlice";
+import {removeItemFromCart, addToCart } from "../../../store/features/cartSlice";
 import { BiMessageAltError } from "react-icons/bi";
 
 import QuantityBtn from "../../_ui/products/QuantityBtn";
