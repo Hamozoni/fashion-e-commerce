@@ -24,6 +24,12 @@ img {
 ::-webkit-scrollbar {
 scrollbar-width: 0;
 }
+input {
+    outline: none;
+}
+input:focus {
+    outline-color: transparent;
+}
 
 
 

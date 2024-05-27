@@ -1,8 +1,16 @@
+import AuthHeader from "../_components/authHeader"
 
 
 function LoginPage() {
   return (
-    <div>Login</div>
+    <div>
+        <div className="">
+            <AuthHeader text='login'/>
+            <form action="">
+                
+            </form>
+        </div>
+    </div>
   )
 }
 
