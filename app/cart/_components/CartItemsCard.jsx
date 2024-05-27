@@ -9,9 +9,12 @@ import Link from "next/link";
 function CartItemsCard({product}) {
     const dispatch = useAppDispatch();
   return (
-    <div className="flex gap-3 items-center p-3 mb-3 border border-gray-100 bg-gray-50 rounded-md w-full">
-        <Link href={`/product/${product?.id}`} className="min-w-[150px]">
-            <Image 
+    <div className="flex gap-3 items-center p-3 mb-3 rounded-md shadow-sm border border-gray-50 w-full">
+        <Link 
+            href={`/product/${product?.id}`}
+            className="flex items-center justify-center min-w-[150px] max-w-[150px] max-h-[150px] min-h-[150px] rounded-sm shadow-md border border-gray-50">
+            <Image
+                className="min-w-[150px] max-h-[150px] " 
                 src={product?.image?.replace("public","")}
                 width={150}
                 height={150}

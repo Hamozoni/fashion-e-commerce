@@ -28,7 +28,7 @@ function CartSummary() {
     ));
 
     const className = {
-        section : 'p-3 border border-gray-100 mb-3 rounded-md',
+        section : 'p-3 border border-gray-50 mb-3 rounded-md shadow-md',
         parts: 'flex items-center justify-between py-2 border-b border-gray-50',
         checkoutBtn: 'w-full rounded-md py-2 bg-green-900 uppercase text-green-50 hover:bg-green-800'
     }
