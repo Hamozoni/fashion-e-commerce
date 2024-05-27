@@ -1,11 +1,9 @@
-
-
 export const metadata = {
-    title: 'system auth',
-    describition: 'easy to register and login'
+    title: "system auth page",
+    description: "easy register and login"
 }
 
-export default function AuthPage ({children}){
+export default function AuthLatout ({children}){
     return (
         <div className="">
             {children}
