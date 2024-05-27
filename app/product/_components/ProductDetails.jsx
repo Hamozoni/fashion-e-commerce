@@ -14,19 +14,24 @@ import Specifications from "./Specifications";
 function ProductDetails({product}) {
 
     const [selectedSize,setSelectedSize] = useState('');
-    const [selectedColor,setSelectedColor] = useState('');
+    const [selectedColor,setSelectedColor] = useState(product.images[0].color);
 
     const about = useRef();
 
+    const imagesGroupBy = (images, key) => images.reduce(
+        (result,item) => ({
+          ...result,[item[key]]: [...(result[item[key]] || []),item,],}), 
+        {},
+      );
+
     useEffect(()=> {
         about.current.innerText = product?.aboutThisItem;
-        setSelectedColor(product.images[1].color);
     },[]);
 
   return (
     <div className="flex gap-5">
         <ImagesGalary 
-            productImages={product.images} 
+            productImages={imagesGroupBy(product.images,'color')} 
             selectedColor={selectedColor}
             />
         <div className="">
@@ -45,7 +50,7 @@ function ProductDetails({product}) {
                     selectedSize={selectedSize}
                     setSelectedSize={setSelectedSize}/>
                 <SelectImage 
-                    images={product?.images} 
+                    images={imagesGroupBy(product.images,'color')} 
                     selectedColor={selectedColor} 
                     setSelectedColor={setSelectedColor} />
                 <Specifications 

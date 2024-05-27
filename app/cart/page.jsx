@@ -6,7 +6,7 @@ import Link from "next/link";
 import CartItemsCard from "./_components/CartItemsCard";
 import CartSummary from "./_components/CartSummary";
 
-function page() {
+function cartPage() {
 
     const cartItems = useAppSelector(state=> state.cart.products);
     const totalItemsOnCart = useAppSelector((state)=> state.cart.totalQuantity);
@@ -17,7 +17,7 @@ function page() {
         sectionTitle: 'text-green-900 font-bold text-lg mb-3 pb-3 border-b border-gray-100'
     }
 
- const cartCard = cartItems?.map((product)=> <CartItemsCard key={product.id} product={product}/>)
+ const cartCard = cartItems?.map((product)=> <CartItemsCard key={`${product.id}${product.selectedColor}${product.selectedSize}`} product={product}/>)
 
   return (
     <div className="p-4 lg:px-8">
@@ -49,4 +49,4 @@ function page() {
   )
 }
 
-export default page
+export default cartPage;

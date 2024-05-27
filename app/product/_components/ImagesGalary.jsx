@@ -5,27 +5,27 @@ import { useEffect, useState } from "react";
 
 function ImagesGalary({productImages,selectedColor}) {
 
-    const [selectedImage,setSelectedImage] = useState(productImages[0].imagePath);
+    const [selectedImage,setSelectedImage] = useState(productImages[selectedColor][0]?.imagePath);
 
     useEffect(()=> {
 
-        setSelectedImage(productImages[0].imagePath)
+        setSelectedImage(productImages[selectedColor][0]?.imagePath);
 
-    },[productImages])
+    },[selectedColor])
 
 
   return (
     <div className="pb-6 border-b border-gray-200">
         <div className="flex items-center gap-3 sticky top-[80px] left-0">
-            <div className="flex items-center justify-center gap-2 flex-col">
+            <div className="flex items-center justify-center gap-2 flex-col ">
                 {
-                    productImages?.map((img)=> (
+                    productImages[selectedColor]?.map((img)=> (
                         img.color === selectedColor ? 
                         <Image 
-                            className={`rounded-md mb-2 min-w-[60px] min-h-[60px] max-w-[60px] ${selectedImage === img.imagePath && 'border border-green-900'} cursor-pointer`}
+                            className={`rounded-md border border-gray-100 shadow-md mb-2 min-w-[60px] max-w-[60px]  min-h-[60px] max-h-[60px] ${selectedImage === img?.imagePath && 'border border-green-900'} cursor-pointer`}
                             onClick={()=> setSelectedImage(img.imagePath)} 
                             key={img.id} 
-                            src={img.imagePath.replace("public","")} 
+                            src={img?.imagePath?.replace("public","")} 
                             width={60} height={60} 
                             />
                             :''
@@ -33,11 +33,11 @@ function ImagesGalary({productImages,selectedColor}) {
                     ))
                 }
             </div>
-            <div className="min-h-[500px] flex items-center justify-center">
+            <div className="min-h-[500px] max-h-[500px] flex items-center justify-center rounded-md border border-gray-100 shadow-md">
                 <Image 
-                    className="rounded-md"
-                    src={selectedImage.replace("public","")} 
-                    width={500} height={800}
+                    className="rounded-md min-h-[500px] max-h-[500px]"
+                    src={selectedImage?.replace("public","")} 
+                    width={500} height={500}
                     alt="product image"
                     />
             </div>

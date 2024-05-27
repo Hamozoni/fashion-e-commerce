@@ -3,7 +3,7 @@ import ProductDetails from "../_components/ProductDetails";
 import RatingReviews from "../../_ui/ratingReviews/RatingsReviews";
 
 
-async function  product({params}) {
+async function  productPage({params}) {
     const {productId} = params;
     const [data] = await fetchData(`product/${productId}`);
 
@@ -20,4 +20,4 @@ async function  product({params}) {
   )
 }
 
-export default product
+export default productPage;
