@@ -1,17 +1,16 @@
 import Header from "./_components/header/Header";
+import "../globals.css";
 
 export const metadata = {
-    title: "myh store shop",
+    title: "system shop",
     description: "store for all categories products",
   };
   
   export default function AdminLayout({ children }) {
     return (
-      <html lang="en">
-        <body >
-            <Header />
-            {children}
-        </body>
-      </html>
+          <div className="">
+              <Header />
+              {children}
+          </div>
     );
   }
