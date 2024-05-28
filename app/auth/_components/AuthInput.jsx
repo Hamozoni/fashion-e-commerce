@@ -14,9 +14,11 @@ export function AuthInput({type,name,Icon}) {
         </div>
         <input 
             className={className.input} 
+            required
             type={type}
             name={name}
             placeholder={name}/>
+            
     </div>
   )
 }
