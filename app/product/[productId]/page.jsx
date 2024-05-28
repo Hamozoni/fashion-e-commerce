@@ -1,5 +1,5 @@
 import { fetchData } from "../../../lip/fetchData";
-import ProductDetails from "../_components/ProductDetails";
+import ProductDetails from "../../../components/ProductDetails";
 import RatingReviews from "../../../ui/ratingReviews/RatingsReviews";
 
 

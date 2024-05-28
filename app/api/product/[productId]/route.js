@@ -1,10 +1,10 @@
-import {prisma} from '../../../../lip/db'
+import {db} from '../../../../lip/db'
 
 export async function GET (_reg,context) {
 
     const {productId} = context.params
 
-    const data  = await prisma.product.findMany({
+    const data  = await db.product.findMany({
         where: {
             id: productId
         },

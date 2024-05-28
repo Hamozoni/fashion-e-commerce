@@ -1,12 +1,12 @@
 
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import { prisma } from  "../../../_lip/db.js"
+import { prisma as db } from  "../../../_lip/db.js"
 export async function POST (requist) {
 
     const formData  = await requist.formData();
 
-    const exestProduct = await prisma.product.findMany({where : {
+    const exestProduct = await db.product.findMany({where : {
         serialNumber : formData.get("serialNumber")
     }});
 
@@ -77,7 +77,7 @@ export async function POST (requist) {
     
 
 
-  const product = await prisma.product.create({
+  const product = await db.product.create({
         data : {
             name: formData.get("name"),
             priceInCent: Number(formData.get("priceInCent")),
