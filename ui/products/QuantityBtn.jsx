@@ -3,8 +3,8 @@
 import { FiMinus,FiPlus } from "react-icons/fi";
 import { IoTrashOutline } from "react-icons/io5";
 
-import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { decrementItemInCart, incrementItemInCart } from "../../../store/features/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { decrementItemInCart, incrementItemInCart } from "../../store/features/cartSlice";
 
 function QuantityBtn({id,selectedColor,selectedSize}) {
 

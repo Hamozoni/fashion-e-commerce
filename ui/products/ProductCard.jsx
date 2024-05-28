@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import getCurrency from "../../../lip/getCurrency";
+import getCurrency from "../../lip/getCurrency";
 
 // import { RiStarSLine } from "react-icons/ri";
 import { RiStarSFill } from "react-icons/ri";

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import getCurrency from "../../../lip/getCurrency";
-import QuantityBtn from "../../_ui/products/QuantityBtn";
+import QuantityBtn from "../../../ui/products/QuantityBtn";
 import { removeItemFromCart } from "../../../store/features/cartSlice";
 import { useAppDispatch } from "../../../store/store";
 import { MdOutlineDeleteOutline } from "react-icons/md";

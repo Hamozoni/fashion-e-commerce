@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/store";
 import {removeItemFromCart, addToCart } from "../../../store/features/cartSlice";
 import { BiMessageAltError } from "react-icons/bi";
 
-import QuantityBtn from "../../_ui/products/QuantityBtn";
+import QuantityBtn from "../../../ui/products/QuantityBtn";
 import { useState } from "react";
 import Overlay from "../../../components/Overlay";
 
