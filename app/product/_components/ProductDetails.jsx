@@ -1,6 +1,6 @@
 "use client"
 
-import getCurrency from "../../_lip/getCurrency";
+import getCurrency from "../../../lip/getCurrency";
 import SelectImage from "./SelectImage";
 import SelectSize from "./SelectSize";
 import Features from "./Features"

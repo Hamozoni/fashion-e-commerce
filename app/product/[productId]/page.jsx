@@ -1,6 +1,6 @@
-import { fetchData } from "../../_lip/fetchData";
+import { fetchData } from "../../../lip/fetchData";
 import ProductDetails from "../_components/ProductDetails";
-import RatingReviews from "../../_ui/ratingReviews/RatingsReviews";
+import RatingReviews from "../../../ui/ratingReviews/RatingsReviews";
 
 
 async function  productPage({params}) {

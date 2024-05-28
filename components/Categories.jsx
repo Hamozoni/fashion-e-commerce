@@ -1,9 +1,9 @@
 "use client"
-import Overlay from "./Overlay";
+import Overlay from "./Overlay.jsx";
 
 import { useState } from "react";
 
-import {categoriesData} from "../../_data/category.js"
+import {categoriesData} from "../data/category.js"
 import Image from "next/image";
 
 function Categories() {

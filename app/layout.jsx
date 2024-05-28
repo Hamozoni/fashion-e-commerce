@@ -1,5 +1,5 @@
 
-import MainHeader from "./_ui/components/MainHeader";
+import MainHeader from "../components/MainHeader";
 import ReduxProvider from "./ReduxProvider"
 
 import "./globals.css";

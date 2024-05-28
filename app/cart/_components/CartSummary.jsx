@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppSelector } from "../../../store/store";
-import getCurrency from "../../_lip/getCurrency";
+import getCurrency from "../../../lip/getCurrency";
 import { MdOutlineLocalShipping } from "react-icons/md";
 
 import madaLogo from "../../../public/paymentLogos/logo-mada.webp"

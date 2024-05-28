@@ -1,4 +1,4 @@
-import {prisma} from '../../../_lip/db'
+import {prisma} from '../../../../lip/db'
 
 export async function GET (req,context) {
 

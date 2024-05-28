@@ -8,7 +8,7 @@ import { BiMessageAltError } from "react-icons/bi";
 
 import QuantityBtn from "../../_ui/products/QuantityBtn";
 import { useState } from "react";
-import Overlay from "../../_ui/components/Overlay";
+import Overlay from "../../../components/Overlay";
 
 function AddToCart({product,selectedColor,selectedSize}) {
 

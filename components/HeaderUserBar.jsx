@@ -1,6 +1,6 @@
 "use client"
 import { PiShoppingCart } from "react-icons/pi";
-import { useAppSelector } from "../../../store/store";
+import { useAppSelector } from "../store/store";
 import Link from "next/link";
 
 

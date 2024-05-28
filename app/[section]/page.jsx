@@ -1,5 +1,5 @@
 
-import {fetchData} from "../_lip/fetchData";
+import {fetchData} from "../../lip/fetchData";
 import ProductCard from "../_ui/Products/ProductCard";
 
 async function page({params,searchParams}) {

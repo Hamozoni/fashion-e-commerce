@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import { categoriesData } from "../../_data/category";
+import { categoriesData } from "../data/category";
 import Link from "next/link";
 
 

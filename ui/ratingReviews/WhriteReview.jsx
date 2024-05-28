@@ -2,7 +2,7 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
-import Overlay from "../components/Overlay";
+import Overlay from "../../components/Overlay";
 
 function WhriteReview() {
 
