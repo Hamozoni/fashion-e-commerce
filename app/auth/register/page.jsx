@@ -3,12 +3,10 @@ import AuthHeader from "../_components/authHeader";
 import AuthSocial from "../_components/authSocial";
 import {AuthInput} from "../_components/authInput";
 import {registerInputs} from "../_components/authInputsData";
+import {SubmitBtn} from "../_components/submitBtn";
 
 function RegisterPage() {
 
-    const className = {
-        submitbtn: 'w-full text-center p-2 capitalize mb-4 rounded-md border border-green-50 shadow-md bg-slate-800 text-green-50 hover:bg-slate-700'
-    }
 
   return (
     <div>
@@ -26,9 +24,7 @@ function RegisterPage() {
                             />
                     ))
                 }
-                <button className={className.submitbtn}>
-                    create an account
-                </button>
+                <SubmitBtn text='create an account' />
             </form>
             <AuthSocial text="already have an account?" link='/auth/login' />
         </div>

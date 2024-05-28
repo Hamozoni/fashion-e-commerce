@@ -1,4 +1,5 @@
-import Link from "next/link"
+
+import Link from "next/link";
 import HeaderUserBar from "./HeaderUserBar";
 import Categories from "./Categories";
 import SearchBar from "./SearchBar";

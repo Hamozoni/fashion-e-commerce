@@ -1,11 +1,13 @@
 import AuthHeader from "../_components/authHeader"
 import { AuthInput } from "../_components/authInput"
 import { loginInputs } from "../_components/authInputsData"
-import AuthSocial from "../_components/authSocial"
+import AuthSocial from "../_components/authSocial";
+import {SubmitBtn} from "../_components/submitBtn";
+
 function LoginPage() {
   return (
     <div>
-        <div className="">
+        <div className="bg-white w-[450px] p-4 rounded-md shadow-md">
             <AuthHeader text='login'/>
             <form action="">
                 {
@@ -18,8 +20,9 @@ function LoginPage() {
                             />
                     ))
                 }
+                <SubmitBtn text='login' />
             </form>
-            <AuthSocial text='don not have an account' link='/auth/register' />
+            <AuthSocial text="don't have an account" link='/auth/register' />
         </div>
     </div>
   )
