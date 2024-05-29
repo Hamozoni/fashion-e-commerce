@@ -6,8 +6,10 @@ const { auth } = NextAuth(authConfig)
 export default auth((req) => {
   // req.auth
   
-  const isLogined = !!req.auth
-  console.log(isLogined);
+  const isLogined = !!req.auth;
+
+  console.log("isLogined",isLogined);
+  console.log("url",req.nextUrl);
 })
  
 // Optionally, don't invoke Middleware on some paths
