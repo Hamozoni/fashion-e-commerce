@@ -5,25 +5,12 @@ import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
-import { z} from "zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 import Loading from "./Loading";
 
-
-
- const productZSchema  =  z.object({
-    name : z.string().min(3),
-    priceInCent : z.coerce.number().int().min(100),
-    isAvailable: z.boolean(),
-    description: z.string().min(5),
-    count: z.coerce.number().int().min(1),
-    category: z.enum(["men", "women", "kids"]),
-    subCategory: z.string(),
-    aboutThisItem: z.string().min(5),
-    serialNumber: z.string().min(10).max(10),
-})
+import {productZSchema} from "../../../../validationSchemas/newProductSchemas";
 
 const product = {
     isAvailable: true,

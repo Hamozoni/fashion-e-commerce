@@ -1,13 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {z} from 'zod';
-
-const sizesZSchema = z.object({
-    name: z.string(),
-    description: z.string().min(3),
-})
-
+import {sizesZSchema} from '../../../../validationSchemas/newProductSchemas';
 
 export default function Sizes({setdata,className}) {
 

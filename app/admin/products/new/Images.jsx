@@ -1,30 +1,8 @@
 "use client";
 
 import { useEffect,useState } from "react";
-import {z} from 'zod';
+import {imagesZSchema} from '../../../../validationSchemas/newProductSchemas';
 
-const MAX_FILE_SIZE = 5000000;
-const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-
-const imagesZSchema = z.object({
-    imagePath: z
-      .any()
-      .refine((file) => file?.size <= MAX_FILE_SIZE,` Max image size is 5MB.`)
-      .refine(
-        (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-        "Only .jpg, .jpeg, .png and .webp formats are supported."
-      ),
-      color: z.string(),
-  })
-
-
-// const imagesZSchema = z.object({
-//     imagePath: z.string().refine(
-//         (file) => ACCEPTED_IMAGE_TYPES .includes(file.split('.')[file.split('.').length - 1]),
-//         "Only .jpg, .jpeg, .png and .webp formats are supported."
-//       ),
-//     color: z.string(),
-// });
 
 const formData = new FormData()
 

@@ -1,17 +1,10 @@
 "use client"
 
 import {  useEffect, useState } from "react";
-import {z} from 'zod';
-
-const specifZSchema = z.object({
-    key:  z.string().min(3),
-    value: z.string().min(3),
-})
+import {specifZSchema} from '../../../../validationSchemas/newProductSchemas';
 
 
 export default function SpecificationInputs({setData,className}) {
-
-
 
     const [specificationArr,setSpecification] = useState([{ key:'',value: ''}]);
     const [errors,setErrors] = useState(null)

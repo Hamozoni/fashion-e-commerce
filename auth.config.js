@@ -1,4 +1,4 @@
-import GitHub from "next-auth/providers/github"
+// import Credentials fron "next-auth/providers/credentials";
 
  
-export default { providers: [GitHub] }
+export default { providers: [] }
