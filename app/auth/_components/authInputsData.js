@@ -19,7 +19,7 @@ export const registerInputs = [
         Icon: IoIosLock
     },
     {
-        name: 'confirm-password',
+        name: 'confirm_password',
         type: 'password',
         Icon: IoIosLock
     }

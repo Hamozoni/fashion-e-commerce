@@ -79,7 +79,6 @@ const NewProducts = () => {
 
         setIsPendding(true);
         const test = productZSchema.safeParse(data);
-        console.log("gegegeg",data,sizes,images,specifications)
 
         const formData = new FormData();
 
