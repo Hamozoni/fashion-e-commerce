@@ -24,13 +24,22 @@ function HeaderUserBar() {
         </div>
         <div className="">
             <div className="">
-                <h5 className={className.title}>sign in</h5>
+                <Link 
+                    href="/auth/login" 
+                    className={className.title}
+                    >sign in
+                </Link>
             </div>
         </div>
         <div className="">
-            <button className={className.title}>orders</button>
+            <Link 
+                href="/orders" 
+                className={className.title}
+                >orders
+            </Link>
         </div>
-        <Link href='/cart'  className="relative cursor-pointer">
+        <Link href='/cart'  
+              className="relative cursor-pointer">
             {
                 totalItemsOnCart ?
                 <span
