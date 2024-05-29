@@ -1,6 +1,6 @@
 "use server";
 
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import {db} from "../lip/db";
 import {findUserByEmail} from "../data/user"
 import { registerSchema } from "../validationSchemas/authSchemas";
@@ -22,13 +22,20 @@ export const registerAction =  async (formData)=> {
             return {error: "email is already in use"}
         }
 
-        await db.user.create({
-            data: {
-                name,
-                email,
-                password: hassedPassword
-            }
-        })
+        try{
+            await db.user.create({
+                data: {
+                    name,
+                    email,
+                    password: hassedPassword
+                }
+            })
+        }catch (error) {
+
+            return {error}
+
+        }
+
 
     } else if(Datavalidation.error) {
         return {error: JSON.parse(Datavalidation.error)}
