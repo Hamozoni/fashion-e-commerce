@@ -8,9 +8,6 @@ async function page({params,searchParams}) {
     const {sub} = searchParams;
     const data = await fetchData(`products/${section}?sub=${sub}`);
 
-    console.log(data)
-
-
 
     return (
         <div className="p-4 lg:px-8">
