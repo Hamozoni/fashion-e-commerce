@@ -32,6 +32,7 @@ export const loginAction = async(formData)=> {
                        }
                    }
    
+                   throw error;
                }
            }
 
