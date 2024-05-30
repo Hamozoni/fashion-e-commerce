@@ -11,35 +11,34 @@ export const loginAction = async(formData)=> {
 
     const DataValidation = loginSchema.safeParse(data);
 
-    // if(DataValidation.error) {
-    //     console.log(DataValidation.error)
-    //     return {error: JSON.parse(DataValidation.error) }
-    // }
-
         const {email,password} = data;
+           if(DataValidation.success){
+               try {
+                 
+                   await signIn("credentials",{
+                      email,
+                      password,
+                      redirect : DEFAULT_LOGIN_REDIRECT
+                   })
 
-            try {
-              
-                await signIn("credentials",{
-                   email,
-                   password,
-                   redirect : DEFAULT_LOGIN_REDIRECT
-                })
-                console.log('four')
-    
-            }catch (error) {
-                console.log("five",error)
-                if(error instanceof AuthError) {
-                    switch(error.type) {
-                        case "CredentialsSignin" :
-                            return {error: "invalid credentials!"}
-                        default : 
-                           return {error : "something went wrong!"}
-                    }
-                }
+       
+               }catch (error) {
+                   if(error instanceof AuthError) {
+                       switch(error.type) {
+                           case "CredentialsSignin" :
+                               return {error: "invalid credentials!"}
+                           default : 
+                              return {error : "something went wrong!"}
+                       }
+                   }
+   
+               }
+           }
 
-        }
-        
+            if(DataValidation.error) {
+                return {error: JSON.parse(DataValidation.error) }
+            }
+                    
     
 
 }
