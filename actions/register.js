@@ -13,13 +13,13 @@ export const registerAction =  async (formData)=> {
     if(Datavalidation.success) {
         const {name,email,password,confirm_password} = data;
             if(password !== confirm_password) {
-                return {error: "passwords are not matches"}
+                return {error: "passwords are not matches!"}
             }
         const hassedPassword = await bcrypt.hash(password,10);
     
         const existingUser = await findUserByEmail(email);
         if(existingUser) {
-            return {error: "email is already in use"}
+            return {error: "email is already in use!"}
         }
 
         try{
@@ -30,6 +30,7 @@ export const registerAction =  async (formData)=> {
                     password: hassedPassword
                 }
             })
+
         }catch (error) {
 
             return {error}
