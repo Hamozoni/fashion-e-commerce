@@ -20,8 +20,8 @@ function LoginPage() {
 
         const loginTest = loginSchema.safeParse(Object.fromEntries(formData.entries()));
 
+        loginAction(formData);
         if(loginTest.success){
-            loginAction(formData);
         }
         
     };
