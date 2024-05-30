@@ -7,6 +7,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum order_status {
+  pendding
+}
+
+enum user_role {
+  USER
+  ADMIN
+}
+
 
 model order {
   id               String   @id @default(uuid())
@@ -90,6 +99,7 @@ model user {
   // username      String?         @unique
   email         String?         @unique
   emailVerified DateTime?
+  role  user_role @default(USER)
   password String?
   image         String?
   // session       session[]
@@ -163,11 +173,4 @@ model account {
 //   @@id([userId, credentialID])
 // }
 
-enum order_status {
-  pendding
-}
 
-enum user_role {
-  USER
-  ADMIN
-}
