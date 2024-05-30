@@ -9,7 +9,6 @@ import { useRef, useState, useTransition } from "react";
 import {registerAction} from "../../../actions/register";
 import { useRouter } from "next/navigation";
 import { BiError } from "react-icons/bi";
-import { IoShieldCheckmark } from "react-icons/io5";
 
 function RegisterPage() {
 
@@ -66,6 +65,7 @@ function RegisterPage() {
                             name={input.name} 
                             Icon={input.Icon} 
                             isLoading={isLoading}
+                            error={validationError ? validationError?.find(e=> e.path?.includes(input.name)) : null}
                             />
                     ))
                 }

@@ -1,6 +1,6 @@
+import { BiError } from "react-icons/bi";
 
-
-export function AuthInput({type,name,Icon,isLoading}) {
+export function AuthInput({type,name,Icon,isLoading,error}) {
 
     const className = {
         inputContainer : "flex items-center rounded-md overflow-hidden border border-gray-100 mb-2",
@@ -8,18 +8,27 @@ export function AuthInput({type,name,Icon,isLoading}) {
         inputIcon: 'bg-green-900 p-2 text-green-100',
     }
   return (
-    <div className={className.inputContainer}>
-        <div className={className.inputIcon}>
-            <Icon size={22}/>
-        </div>
-        <input
-             disabled={isLoading} 
-            className={className.input} 
-            required
-            type={type}
-            name={name}
-            placeholder={name}/>
-            
+    <div className="">
+      <div className={className.inputContainer}>
+          <div className={className.inputIcon}>
+              <Icon size={22}/>
+          </div>
+          <input
+              disabled={isLoading} 
+              className={className.input} 
+              required
+              type={type}
+              name={name}
+              placeholder={name}/>
+              
+      </div>
+      {
+        error && 
+        <h5 
+          className="p-2 pt-0 text-rose-700 font-medium capitalize flex items-center"
+          ><BiError size={20} /> {error?.message}
+        </h5>
+      }
     </div>
   )
 }
