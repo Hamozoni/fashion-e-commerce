@@ -1,7 +1,8 @@
 
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import { prisma as db } from  "../../../_lip/db.js"
+import { db } from  "../../../../lip/db"
+
 export async function POST (requist) {
 
     const formData  = await requist.formData();
@@ -83,7 +84,6 @@ export async function POST (requist) {
             priceInCent: Number(formData.get("priceInCent")),
             isAvailable: formData.get("isAvailable") === "true" ? true : false,
             description : formData.get("description"),
-            count : Number(formData.get("count")),
             category: formData.get("category"),
             subCategory: formData.get("subCategory"),
             aboutThisItem: formData.get("aboutThisItem"),

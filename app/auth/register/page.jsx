@@ -49,7 +49,7 @@ function RegisterPage() {
             }
        })
     };
-    
+
 
   return (
     <div>
@@ -71,7 +71,8 @@ function RegisterPage() {
                 }
                 {
                     serverErrror &&
-                    <h4 className="w-full p-2 my-3 font-medium capitalize rounded-md bg-rose-200 text-green-900 flex items-center justify-center">
+                    <h4 
+                        className="w-full p-2 my-3 font-medium capitalize rounded-md bg-rose-200 text-green-900 flex items-center justify-center">
                         <BiError size={22} /> {serverErrror}
                     </h4>
                 }

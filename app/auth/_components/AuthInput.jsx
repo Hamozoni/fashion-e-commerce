@@ -25,7 +25,7 @@ export function AuthInput({type,name,Icon,isLoading,error}) {
       {
         error && 
         <h5 
-          className="p-2 pt-0 text-rose-700 font-medium capitalize flex items-center"
+          className="p-2 pt-0 text-rose-500 font-medium capitalize flex items-center justify-center"
           ><BiError size={20} /> {error?.message}
         </h5>
       }

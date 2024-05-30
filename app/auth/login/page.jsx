@@ -6,23 +6,32 @@ import { loginInputs } from "../_components/authInputsData"
 import AuthSocial from "../_components/authSocial";
 import {SubmitBtn} from "../_components/submitBtn";
 import {loginAction} from "../../../actions/login";
-import { useRef } from "react";
+import { useRef, useState, useTransition } from "react";
 import { loginSchema } from "../../../validationSchemas/authSchemas";
+
+import { BiError } from "react-icons/bi";
 
 
 function LoginPage() {
 
-    const loginForm = useRef(null)
+    const loginForm = useRef(null);
+    const [isLoading,startTranation] = useTransition();
+    const [serverErrror,setServerErrror] = useState(null);
 
     const login = async()=> {
 
         const formData = new FormData(loginForm.current);
 
-        const loginTest = loginSchema.safeParse(Object.fromEntries(formData.entries()));
+        startTranation(()=> {
+            setServerErrror(null);
+            loginAction(formData)
+            .then((data)=> {
+                if(data?.error){
+                    setServerErrror(data.error);
+                }
+            })
 
-        loginAction(formData);
-        if(loginTest.success){
-        }
+        })
         
     };
 
@@ -38,10 +47,18 @@ function LoginPage() {
                             type={input.type} 
                             name={input.name} 
                             Icon={input.Icon}
+                            isLoading={isLoading}
                             />
                     ))
                 }
-                <SubmitBtn text='login' />
+                {
+                    serverErrror &&
+                    <h4 
+                        className="w-full p-2 my-3 font-medium capitalize rounded-md bg-rose-200 text-green-900 flex items-center justify-center">
+                        <BiError size={22} /> {serverErrror}
+                    </h4>
+                }
+                <SubmitBtn isLoading={isLoading} text='login' />
             </form>
             <AuthSocial text="don't have an account" link='/auth/register' />
         </div>

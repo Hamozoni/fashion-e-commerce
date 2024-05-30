@@ -5,7 +5,6 @@ export const productZSchema  =  z.object({
     priceInCent : z.coerce.number().int().min(100),
     isAvailable: z.boolean(),
     description: z.string().min(5),
-    count: z.coerce.number().int().min(1),
     category: z.enum(["men", "women", "kids"]),
     subCategory: z.string(),
     aboutThisItem: z.string().min(5),

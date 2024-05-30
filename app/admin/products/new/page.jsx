@@ -48,12 +48,6 @@ const inputsInfo = [
         place:'the subcategory of your product...'
      },
      {
-        value : 'count',
-        title: 'count',
-        type: 'number',
-        place:'how many product you want to add...'
-     },
-     {
         value : 'serialNumber',
         title: 'serial number',
         type: 'text',
