@@ -4,16 +4,19 @@ export async function GET (req,context) {
 
 
    const {section} = context.params;
-   const guery = await req.nextUrl.searchParams.get("sub");
+
+   const query = await req.nextUrl.searchParams.get("sub");
+
+   console.log(section,query)
 
    const products = await db.product.findMany({where: {
      category : section,
-     subCategory: guery
+     subCategory: query
    },
    include: {
-    images: true,
-   }
-})
+      images: true,
+      }
+   })
    console.log(products)
 
     return new Response(JSON.stringify(products))
