@@ -4,9 +4,12 @@ import HeaderUserBar from "./HeaderUserBar";
 import Categories from "./Categories";
 import SearchBar from "./SearchBar";
 import { signOut } from "next-auth/react";
+import { auth } from "../auth";
 
 
-function MainHeader() {
+async function MainHeader () {
+
+    const session = await auth()
 
     const className = {
         flex:  `flex items-center gap-8`,
@@ -27,7 +30,7 @@ function MainHeader() {
             </section>
             <button onClick={async()=> {
                 "use server"
-                await signOut(true)
+                await signOut(JSON.parse(session).user)
             }}>sign out</button>
         </div>
     </header>

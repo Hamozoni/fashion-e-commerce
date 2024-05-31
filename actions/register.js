@@ -4,7 +4,8 @@ import bcrypt from "bcryptjs";
 import {db} from "../lip/db";
 import {findUserByEmail} from "../lip/user"
 import { registerSchema } from "../validationSchemas/authSchemas";
-import {generateVerificationToken} from "../lip/token"
+import {generateVerificationToken} from "../lip/token";
+import {verifyEmail} from "../lip/mail";
 
 export const registerAction =  async (formData)=> {
 
@@ -32,6 +33,8 @@ export const registerAction =  async (formData)=> {
         });
 
         const verificationToken = await generateVerificationToken(email);
+
+        await verifyEmail(verificationToken.email,verificationToken.token)
 
 
 
