@@ -1,4 +1,4 @@
-import {db} from "../lip/db";
+import {db} from "./db";
 
 export const findUserByEmail = async (email) => {
 

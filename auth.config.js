@@ -1,6 +1,6 @@
 import Credentials from 'next-auth/providers/credentials';
 import { loginSchema } from './validationSchemas/authSchemas';
-import { findUserByEmail } from './data/user';
+import { findUserByEmail } from './lip/user';
 import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 

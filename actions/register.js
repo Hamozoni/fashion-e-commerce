@@ -2,8 +2,9 @@
 
 import bcrypt from "bcryptjs";
 import {db} from "../lip/db";
-import {findUserByEmail} from "../data/user"
+import {findUserByEmail} from "../lip/user"
 import { registerSchema } from "../validationSchemas/authSchemas";
+import {generateVerificationToken} from "../lip/token"
 
 export const registerAction =  async (formData)=> {
 
@@ -22,20 +23,16 @@ export const registerAction =  async (formData)=> {
             return {error: "email is already in use!"}
         }
 
-        try{
-            await db.user.create({
-                data: {
-                    name,
-                    email,
-                    password: hassedPassword
-                }
-            })
+        await db.user.create({
+            data: {
+                name,
+                email,
+                password: hassedPassword
+            }
+        });
 
-        }catch (error) {
+        const verificationToken = await generateVerificationToken(email);
 
-            return {error}
-
-        }
 
 
     } else if(Datavalidation.error) {

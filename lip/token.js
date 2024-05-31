@@ -1,6 +1,6 @@
 import {findVerificationTokenByEmail} from "./user";
 import {v4 as uuid} from "uuid";
-import {db} from "../lip/db";
+import {db} from "./db";
 
 export const generateVerificationToken = async(email)=> {
 
