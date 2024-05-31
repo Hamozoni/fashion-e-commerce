@@ -30,7 +30,7 @@ async function MainHeader () {
             </section>
             <button onClick={async()=> {
                 "use server"
-                await signOut(JSON.parse(session).user)
+                await signOut(session)
             }}>sign out</button>
         </div>
     </header>

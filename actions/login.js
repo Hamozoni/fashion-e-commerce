@@ -5,6 +5,7 @@ import {DEFAULT_LOGIN_REDIRECT} from "../routes";
 import { AuthError } from "next-auth";
 import { findUserByEmail } from "../lip/user";
 import { generateVerificationToken } from "../lip/token";
+import { verifyEmail } from "../lip/mail";
 
 export const loginAction = async(formData)=> {
     console.log('first')
@@ -24,6 +25,7 @@ export const loginAction = async(formData)=> {
         if(existingUser){
             if(!existingUser.emailVerfied) {
                 const verificationToken = await generateVerificationToken(existingUser.email);
+                await verifyEmail(verificationToken.email,verificationToken.token)
 
                 return {success: "email sent!"}
             }
