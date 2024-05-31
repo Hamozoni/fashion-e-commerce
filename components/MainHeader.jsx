@@ -3,6 +3,7 @@ import Link from "next/link";
 import HeaderUserBar from "./HeaderUserBar";
 import Categories from "./Categories";
 import SearchBar from "./SearchBar";
+import { signOut } from "next-auth/react";
 
 
 function MainHeader() {
@@ -24,6 +25,10 @@ function MainHeader() {
                 <Categories/>
                 <HeaderUserBar />
             </section>
+            <button onClick={async()=> {
+                "use server"
+                await signOut(true)
+            }}>sign out</button>
         </div>
     </header>
   )
