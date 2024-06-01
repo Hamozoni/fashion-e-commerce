@@ -7,7 +7,6 @@ import AuthSocial from "../_components/authSocial";
 import {SubmitBtn} from "../_components/submitBtn";
 import {loginAction} from "../../../actions/login";
 import { useRef, useState, useTransition } from "react";
-// import { loginSchema } from "../../../validationSchemas/authSchemas";
 import { ErrorSucces } from "../_components/errorSucces";
 
 

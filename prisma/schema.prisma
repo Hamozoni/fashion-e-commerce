@@ -24,7 +24,7 @@ model order {
   createdAt       DateTime     @default(now())
   updatedAt       DateTime    @updatedAt
   userId          String
-  auther user @relation(fields: [userId],references: [id])
+  auther user @relation(fields: [userId],references: [id],onDelete: Cascade)
   products product[]
   totalQuantity Int
   deliveryFree Int
@@ -61,7 +61,7 @@ model productimages {
   id        String   @id @default(uuid())
   color     String
   productId String
-  product product @relation(fields: [productId],references: [id])
+  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
   imagePath       String
 }
 
@@ -70,7 +70,7 @@ model productsizes {
   name        String
   description String?
   productId   String
-  product product @relation(fields: [productId],references: [id])
+  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
 
 }
 
@@ -80,8 +80,8 @@ model reviews {
   productId String
   autherId  String
   rating    Int    @default(7)
-  product product @relation(fields: [productId],references: [id])
-  auther  user @relation(fields: [autherId],references: [id])
+  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
+  auther  user @relation(fields: [autherId],references: [id],onDelete: Cascade)
 
 }
 
@@ -90,7 +90,7 @@ model specifications {
   key       String
   value     String
   productId String
-  product    product @relation(fields: [productId],references: [id]) 
+  product    product @relation(fields: [productId],references: [id],onDelete: Cascade) 
 }
 
 model user {
@@ -127,7 +127,7 @@ model account {
   id_token                 String? @db.Text
   session_state            String?
   refresh_token_expires_in Int?
-  user                     user?   @relation(fields: [userId], references: [id])
+  user                     user?   @relation(fields: [userId], references: [id],onDelete: Cascade)
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
