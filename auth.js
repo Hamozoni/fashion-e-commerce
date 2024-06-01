@@ -33,7 +33,7 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
 
       const existingUser = await findUserById(user.id);
 
-      if(!existingUser?.emailVerified) return false
+      if(!existingUser?.emailVerified) return {success: "verify your email"}
 
       return true
 

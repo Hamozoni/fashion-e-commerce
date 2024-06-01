@@ -12,11 +12,11 @@ export function ErrorSucces({error,sucess}) {
   return (
     <div className={`${className.error} ${error ? className.error : className.succes}`}> 
        {
-        !!error ? 
+        error ? 
         <h4>
             <BiError size={22} /> {error}
         </h4>
-        : !!sucess && 
+        : sucess && 
         <h4>
             <IoMdCheckmarkCircle size={22} /> {sucess}
         </h4>

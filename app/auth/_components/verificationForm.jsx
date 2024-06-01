@@ -24,7 +24,7 @@ export function VerificationForm() {
             return;
         }
 
-        startTransition(()=> {
+        startTransition(async()=> {
             verificationAction(token.get("token"))
             .then((data)=>{
                 setError(data.error);

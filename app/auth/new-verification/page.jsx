@@ -1,4 +1,4 @@
-import React from 'react'
+
 import AuthHeader from '../_components/authHeader'
 import Link from 'next/link';
 import {VerificationForm} from "../_components/verificationForm"

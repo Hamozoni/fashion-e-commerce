@@ -3,7 +3,7 @@ import {v4 as uuid} from "uuid";
 import {db} from "./db";
 
 
-export const findVerificationTokenByEmail = async(email)=> {
+export const findVerificationTokenByEmail = async (email)=> {
 
     try{
         const verification = await db.verificationToken.findFirst({

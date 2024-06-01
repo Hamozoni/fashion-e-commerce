@@ -22,15 +22,21 @@ function LoginPage() {
 
         const formData = new FormData(loginForm.current);
 
+        setServerErrror(null);
+        setServerSuccess(null);
+
         startTranation(()=> {
-            setServerErrror(null);
-            setServerSuccess(null);
             loginAction(formData)
             .then((data)=> {
                 if(data?.error){
+
+                    console.log(data)
                     setServerErrror(data?.error);
                     setServerSuccess(data?.success);
                 }
+            })
+            .catch((error)=> {
+                console.log(error)
             })
 
         })

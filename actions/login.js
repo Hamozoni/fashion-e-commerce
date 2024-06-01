@@ -39,6 +39,8 @@ export const loginAction = async(formData)=> {
                     redirect : DEFAULT_LOGIN_REDIRECT
                 })
 
+                return {success: "verify your email place!"}
+
     
             }catch (error) {
                 if(error instanceof AuthError) {
