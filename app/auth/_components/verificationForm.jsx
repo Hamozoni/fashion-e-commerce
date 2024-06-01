@@ -14,9 +14,22 @@ export function VerificationForm() {
     const token = useSearchParams().get("token")
 
     useEffect(()=> {
+        
+        setError(null);
+        setSuccess(null);
+
+        if(!token) {
+            setError("no token");
+            return;
+        }
 
         startTransition(()=> {
             verificationAction(token)
+            .then((data)=>{
+                setError(data.error);
+                setSuccess(data.success)
+
+            })
         })
 
     },[token]);
