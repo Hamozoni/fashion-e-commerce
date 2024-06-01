@@ -3,7 +3,7 @@ import {db} from "../lip/db";
 import {findVerificationTokekByToken} from "../lip/token";
 
 
-export const newVerification = async (token)=> { 
+export const verificationAction = async (token)=> { 
 
     const existingToken = await findVerificationTokekByToken(token);
 
