@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { ScaleLoader } from "react-spinners";
 import {verificationAction} from "../../../actions/verification"
+import { ErrorSucces } from "./errorSucces";
 
 export function VerificationForm() {
 
@@ -11,20 +12,20 @@ export function VerificationForm() {
     const [success,setSuccess] = useState(null);
     const [isLoading,startTransition] = useTransition();
 
-    const token = useSearchParams().get("token")
+    const token = useSearchParams()
 
     useEffect(()=> {
-        
+
         setError(null);
         setSuccess(null);
 
-        if(!token) {
+        if(!token.get("token")) {
             setError("no token");
             return;
         }
 
         startTransition(()=> {
-            verificationAction(token)
+            verificationAction(token.get("token"))
             .then((data)=>{
                 setError(data.error);
                 setSuccess(data.success)
@@ -37,7 +38,11 @@ export function VerificationForm() {
 
   return (
     <div className="flex justify-center items-center">
-        <ScaleLoader color="#333"/>
+        {
+            isLoading ? 
+            <ScaleLoader color="#333"/>
+            : <ErrorSucces error={error} success={success} /> 
+        }
     </div>
   )
 }

@@ -7,9 +7,8 @@ import AuthSocial from "../_components/authSocial";
 import {SubmitBtn} from "../_components/submitBtn";
 import {loginAction} from "../../../actions/login";
 import { useRef, useState, useTransition } from "react";
-import { loginSchema } from "../../../validationSchemas/authSchemas";
-
-import { BiError } from "react-icons/bi";
+// import { loginSchema } from "../../../validationSchemas/authSchemas";
+import { ErrorSucces } from "../_components/errorSucces";
 
 
 function LoginPage() {
@@ -17,6 +16,7 @@ function LoginPage() {
     const loginForm = useRef(null);
     const [isLoading,startTranation] = useTransition();
     const [serverErrror,setServerErrror] = useState(null);
+    const [serverSucces,setServerSuccess] = useState(null);
 
     const login = async()=> {
 
@@ -24,10 +24,12 @@ function LoginPage() {
 
         startTranation(()=> {
             setServerErrror(null);
+            setServerSuccess(null);
             loginAction(formData)
             .then((data)=> {
                 if(data?.error){
-                    setServerErrror(data.error);
+                    setServerErrror(data?.error);
+                    setServerSuccess(data?.success);
                 }
             })
 
@@ -51,13 +53,7 @@ function LoginPage() {
                             />
                     ))
                 }
-                {
-                    serverErrror &&
-                    <h4 
-                        className="w-full p-2 my-3 font-medium capitalize rounded-md bg-rose-200 text-green-900 flex items-center justify-center">
-                        <BiError size={22} /> {serverErrror}
-                    </h4>
-                }
+                <ErrorSucces error={serverErrror} sucess={serverSucces} />
                 <SubmitBtn isLoading={isLoading} text='login' />
             </form>
             <AuthSocial text="don't have an account" link='/auth/register' />

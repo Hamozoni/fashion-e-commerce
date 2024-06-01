@@ -1,3 +1,5 @@
+"use server";
+
 import {findUserByEmail} from "../lip/user";
 import {db} from "../lip/db";
 import {findVerificationTokekByToken} from "../lip/token";

@@ -1,8 +1,28 @@
+import { BiError } from "react-icons/bi";
+import { IoMdCheckmarkCircle } from "react-icons/io";
 
-function ErrorSucces({error,sucess}) {
+export function ErrorSucces({error,sucess}) {
+
+    const className = {
+        general: "w-full p-2 my-3 font-medium capitalize rounded-md text-green-900 flex items-center justify-center ",
+        succes: 'bg-green-300',
+        error: 'bg-rose-200'
+
+    }
   return (
-    <div>errorSucces</div>
+    <div className={`${className.error} ${error ? className.error : className.succes}`}> 
+       {
+        !!error ? 
+        <h4>
+            <BiError size={22} /> {error}
+        </h4>
+        : !!sucess && 
+        <h4>
+            <IoMdCheckmarkCircle size={22} /> {sucess}
+        </h4>
+       }
+    </div>
   )
 }
 
-export default ErrorSucces
+ 

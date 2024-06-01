@@ -8,7 +8,8 @@ import {registerSchema} from "../../../validationSchemas/authSchemas"
 import { useRef, useState, useTransition } from "react";
 import {registerAction} from "../../../actions/register";
 import { useRouter } from "next/navigation";
-import { BiError } from "react-icons/bi";
+import {ErrorSucces} from "../_components/errorSucces";
+
 
 function RegisterPage() {
 
@@ -17,6 +18,7 @@ function RegisterPage() {
     const [isLoading,startTranation] = useTransition();
     const [validationError,setValidationError] = useState(null);
     const [serverErrror,setServerErrror] = useState(null);
+    const [serverSucces,setServerSucces] = useState(null);
 
     const router = useRouter();
 
@@ -29,6 +31,7 @@ function RegisterPage() {
 
             setValidationError(null);
             setServerErrror(null);
+            setServerSucces(null)
 
             if(test.success){
                     registerAction(formData)
@@ -39,6 +42,7 @@ function RegisterPage() {
                         }else if(data.error) {
                             console.log(data.error)
                             setServerErrror(data.error);
+                            setServerSucces(data?.success)
 
                         }
                     })
@@ -69,13 +73,7 @@ function RegisterPage() {
                             />
                     ))
                 }
-                {
-                    serverErrror &&
-                    <h4 
-                        className="w-full p-2 my-3 font-medium capitalize rounded-md bg-rose-200 text-green-900 flex items-center justify-center">
-                        <BiError size={22} /> {serverErrror}
-                    </h4>
-                }
+                <ErrorSucces error={serverErrror} success={serverSucces}/>
                 <SubmitBtn isLoading={isLoading} text='create an account' />
             </form>
             <AuthSocial text="already have an account?" link='/auth/login' />
