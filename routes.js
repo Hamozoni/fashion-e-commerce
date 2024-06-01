@@ -1,4 +1,4 @@
-export const poblicRoutes = ["/"];
+export const poblicRoutes = ["/","/auth/new-verification"];
 
 export const authRoutes = ["/auth/register","/auth/login","/auth/error"];
 
