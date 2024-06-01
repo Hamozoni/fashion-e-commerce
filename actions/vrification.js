@@ -32,11 +32,17 @@ export const newVerification = async (token)=> {
                 emailVerified: new Date(),
                 email: existingToken.email
             }
+        }).then(async()=>{
+            await db.verifivationToken.delete({
+                where :{id: existingToken?.id}
+            })
         })
 
     }catch {
         return {error: "something went wrong"}
     }
+
+    return {success: "email has verified"}
 
      
 }
