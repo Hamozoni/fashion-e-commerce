@@ -1,4 +1,4 @@
-"use server"
+
 import Link from "next/link";
 import HeaderUserBar from "./HeaderUserBar";
 import Categories from "./Categories";
@@ -27,7 +27,7 @@ async function MainHeader () {
             </section>
             <form action={async()=> {
                    "use server"
-                    signOut()
+                    await signOut()
                 }}
             >
                <button >sign out</button>
