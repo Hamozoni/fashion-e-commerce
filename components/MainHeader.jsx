@@ -46,13 +46,14 @@ async function MainHeader () {
             </form>
         </div>
         {
-            isLoading && 
+            isLoading ?
             <>
               <Overlay />
               <div className="fixed top-0 left-0 w-[100vw] h-[100vh] flex justify-center items-center z-50">
                   <SyncLoader size={30} />
               </div>
             </>
+            :''
         }
     </header>
   )

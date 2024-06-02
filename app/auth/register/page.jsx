@@ -7,9 +7,7 @@ import {SubmitBtn} from "../_components/submitBtn";
 import {registerSchema} from "../../../validationSchemas/authSchemas"
 import { useRef, useState, useTransition } from "react";
 import {registerAction} from "../../../actions/register";
-import { useRouter } from "next/navigation";
 import {ErrorSucces} from "../_components/errorSucces";
-
 
 function RegisterPage() {
 
@@ -20,9 +18,7 @@ function RegisterPage() {
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSucces] = useState(null);
 
-    const router = useRouter();
-
-    const register = ()=> {
+    const register = async()=> {
 
         const formData = new FormData(registerForm.current);
         const test = registerSchema.safeParse(Object.fromEntries(formData.entries()));
@@ -31,8 +27,7 @@ function RegisterPage() {
         setServerErrror(null);
         setServerSucces(null)
 
-        startTranation(async()=> {
-
+        startTranation(()=> {
 
             if(test.success){
                     registerAction(formData)
