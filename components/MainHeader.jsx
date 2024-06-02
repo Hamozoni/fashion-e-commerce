@@ -19,9 +19,9 @@ async function MainHeader () {
         logo: `uppercase text-2xl font-extrabold text-lime-700`
     }
 
-    const signOut = ()=> {
+    const signOut = async()=> {
 
-        startTranation(async()=> {
+        startTranation(()=> {
             signOutAction();
         })
 

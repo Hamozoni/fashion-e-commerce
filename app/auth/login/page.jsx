@@ -25,6 +25,8 @@ function LoginPage() {
         setServerSuccess(null);
 
         startTranation(async()=> {
+            
+
              loginAction(formData)
             .then((data)=> {
                 if(data.error){
@@ -57,7 +59,7 @@ function LoginPage() {
                             />
                     ))
                 }
-                <ErrorSucces error={serverErrror} sucess={serverSucces} />
+                <ErrorSucces error={serverErrror} success={serverSucces} />
                 <SubmitBtn isLoading={isLoading} text='login' />
             </form>
             <AuthSocial text="don't have an account" link='/auth/register' />

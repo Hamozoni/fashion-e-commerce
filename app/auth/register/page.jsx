@@ -27,19 +27,19 @@ function RegisterPage() {
         const formData = new FormData(registerForm.current);
         const test = registerSchema.safeParse(Object.fromEntries(formData.entries()));
 
+        setValidationError(null);
+        setServerErrror(null);
+        setServerSucces(null)
+
         startTranation(async()=> {
 
-            setValidationError(null);
-            setServerErrror(null);
-            setServerSucces(null)
 
             if(test.success){
                     registerAction(formData)
                     .then((data)=> {
-                        console.log(data)
                         if(data.success) {
-                            router.push('/auth/login');
-                            setServerSucces(data?.success)
+                            setServerSucces(data.success)
+                            console.log(data.success)
                         }else if(data.error) {
                             setServerErrror(data.error);
 

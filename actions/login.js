@@ -6,6 +6,7 @@ import { AuthError } from "next-auth";
 import { findUserByEmail } from "../lip/user";
 import { generateVerificationToken } from "../lip/token";
 import { verifyEmail } from "../lip/mail";
+import bcrypt from 'bcryptjs'
 
 export const loginAction = async(formData)=> {
 
@@ -22,15 +23,22 @@ export const loginAction = async(formData)=> {
         const existingUser = await findUserByEmail(email);
 
         if(!existingUser || !existingUser.email || !existingUser.password){
-            return {error: 'Invalid credentials!'}
+            return {error: 'Oops! email or password is wrong'}
         }
+
+        const passwordMatch = await bcrypt.compare(password,existingUser.password);
+
+        if(!passwordMatch){
+            return {error: 'Oops! email or password is wrong!'}
+        }
+
 
         if(existingUser){
             if(existingUser?.emailVerified === null) {
                 const verificationToken = await generateVerificationToken(existingUser.email);
                 await verifyEmail(verificationToken.email,verificationToken.token)
 
-                return {success: "verify your email place!"}
+                return {success: "email sent to you place verify your email"}
             }
 
             try {
@@ -45,9 +53,9 @@ export const loginAction = async(formData)=> {
                 if(error instanceof AuthError) {
                     switch(error.type) {
                         case "CredentialsSignin" :
-                            return {error: "invalid credentials!"}
+                            return {error: "Oops! invalid credentials!"}
                         default : 
-                            return {error : "something went wrong!"}
+                            return {error : "Oops! something went wrong!"}
                     }
                 }
 

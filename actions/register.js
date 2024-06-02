@@ -26,21 +26,24 @@ export const registerAction =  async (formData)=> {
             return {error: "email is already in use!"}
         }
 
-        await db.user.create({
-            data: {
-                name,
-                email,
-                password: hassedPassword
-            }
-        });
+            await db.user.create({
+                data: {
+                    name,
+                    email,
+                    password: hassedPassword
+                }
+            }).catch((error)=> {
+                return {error: error}
+            })
 
-        const verificationToken = await generateVerificationToken(email);
+            const verificationToken = await generateVerificationToken(email);
+            await verifyEmail(verificationToken.email,verificationToken.token)
+            
+            
+            
+            return {success: "email sent to you place verify your email"}
 
-        await verifyEmail(verificationToken.email,verificationToken.token)
 
 
 
-    
-
-    return {success: "user created !"}
 }
