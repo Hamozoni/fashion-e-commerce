@@ -21,7 +21,7 @@ async function MainHeader () {
 
     const signOut = ()=> {
 
-        startTranation(()=> {
+        startTranation(async()=> {
             signOutAction();
         })
 

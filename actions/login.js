@@ -8,11 +8,14 @@ import { generateVerificationToken } from "../lip/token";
 import { verifyEmail } from "../lip/mail";
 
 export const loginAction = async(formData)=> {
-    console.log('first')
 
     const data = Object.fromEntries(formData.entries());
 
     const DataValidation = loginSchema.safeParse(data);
+
+        if(DataValidation?.error) {
+            return {error: JSON.parse(DataValidation.error) }
+        }
 
         const {email,password} = data;
 
@@ -23,14 +26,13 @@ export const loginAction = async(formData)=> {
         }
 
         if(existingUser){
-            if(!existingUser.emailVerfied) {
+            if(existingUser?.emailVerified === null) {
                 const verificationToken = await generateVerificationToken(existingUser.email);
                 await verifyEmail(verificationToken.email,verificationToken.token)
 
-                return {success: "email sent!"}
+                return {success: "verify your email place!"}
             }
-        }
-        if(DataValidation.success){
+
             try {
                 
                 await signIn("credentials",{
@@ -39,9 +41,6 @@ export const loginAction = async(formData)=> {
                     redirect : DEFAULT_LOGIN_REDIRECT
                 })
 
-                return {success: "verify your email place!"}
-
-    
             }catch (error) {
                 if(error instanceof AuthError) {
                     switch(error.type) {
@@ -55,11 +54,6 @@ export const loginAction = async(formData)=> {
                 throw error;
             }
         }
-
-        if(DataValidation.error) {
-            return {error: JSON.parse(DataValidation.error) }
-        }
-                    
-    
+                
 
 }

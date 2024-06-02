@@ -17,20 +17,19 @@ function LoginPage() {
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSuccess] = useState(null);
 
-    const login = async()=> {
+    const login = ()=> {
 
         const formData = new FormData(loginForm.current);
 
         setServerErrror(null);
         setServerSuccess(null);
 
-        startTranation(()=> {
-            loginAction(formData)
+        startTranation(async()=> {
+             loginAction(formData)
             .then((data)=> {
-                if(data?.error){
-
-                    console.log(data)
+                if(data.error){
                     setServerErrror(data?.error);
+                }else {
                     setServerSuccess(data?.success);
                 }
             })

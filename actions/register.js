@@ -10,9 +10,11 @@ import {verifyEmail} from "../lip/mail";
 export const registerAction =  async (formData)=> {
 
     const data = Object.fromEntries(formData.entries());
-    const Datavalidation = registerSchema.safeParse(data)
+    const Datavalidation = registerSchema.safeParse(data);
 
-    if(Datavalidation.success) {
+    if(Datavalidation.error) {
+        return {error: JSON.parse(Datavalidation.error)}
+    }
         const {name,email,password,confirm_password} = data;
             if(password !== confirm_password) {
                 return {error: "passwords are not matches!"}
@@ -38,9 +40,7 @@ export const registerAction =  async (formData)=> {
 
 
 
-    } else if(Datavalidation.error) {
-        return {error: JSON.parse(Datavalidation.error)}
-    }
+    
 
     return {success: "user created !"}
 }

@@ -22,12 +22,12 @@ function RegisterPage() {
 
     const router = useRouter();
 
-    const register =async ()=> {
+    const register = ()=> {
 
         const formData = new FormData(registerForm.current);
         const test = registerSchema.safeParse(Object.fromEntries(formData.entries()));
 
-        startTranation(()=> {
+        startTranation(async()=> {
 
             setValidationError(null);
             setServerErrror(null);
@@ -36,13 +36,12 @@ function RegisterPage() {
             if(test.success){
                     registerAction(formData)
                     .then((data)=> {
+                        console.log(data)
                         if(data.success) {
                             router.push('/auth/login');
-
-                        }else if(data.error) {
-                            console.log(data.error)
-                            setServerErrror(data.error);
                             setServerSucces(data?.success)
+                        }else if(data.error) {
+                            setServerErrror(data.error);
 
                         }
                     })

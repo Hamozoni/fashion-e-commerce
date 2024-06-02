@@ -2,12 +2,12 @@
 
 import {findUserByEmail} from "../lip/user";
 import {db} from "../lip/db";
-import {findVerificationTokekByToken} from "../lip/token";
+import {findVerificationTokenByToken} from "../lip/token";
 
 
 export const verificationAction = async (token)=> { 
 
-    const existingToken = await findVerificationTokekByToken(token);
+    const existingToken = await findVerificationTokenByToken(token);
 
     if(!existingToken){
          return {error:"token does not exist"}
