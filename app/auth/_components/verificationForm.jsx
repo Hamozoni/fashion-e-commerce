@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+import { useCallback, useEffect, useState, useTransition } from "react";
 import { ScaleLoader } from "react-spinners";
 import {verificationAction} from "../../../actions/verification"
 import { ErrorSucces } from "./errorSucces";
@@ -14,8 +14,7 @@ export function VerificationForm() {
 
     const token = useSearchParams()
 
-    useEffect(()=> {
-
+    const login = useCallback(()=> {
         setError(null);
         setSuccess(null);
 
@@ -25,24 +24,28 @@ export function VerificationForm() {
         }
 
         startTransition(async()=> {
-            verificationAction(token.get("token"))
+           await verificationAction(token.get("token"))
             .then((data)=>{
                 setError(data.error);
                 setSuccess(data.success)
 
             })
         })
+    },[token])
+    useEffect(()=> {
 
-    },[token]);
+        login()
+
+    },[login]);
 
 
   return (
     <div className="flex justify-center items-center">
-        {
-            isLoading ? 
-            <ScaleLoader color="#333"/>
-            : <ErrorSucces error={error} success={success} /> 
-        }
+                {
+                    isLoading ? 
+                    <ScaleLoader color="#333"/>
+                    : <ErrorSucces error={error} success={success} /> 
+                }
     </div>
   )
 }
