@@ -4,12 +4,24 @@ import { SiGithub } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { DEFAULT_LOGIN_REDIRECT } from "../../../routes";
+import { useTransition } from "react";
+import {PropagateLoader} from "react-spinners";
+import Overlay from "../../../components/Overlay";
 
 function AuthSocial({text,link}) {
 
+    const [isLoading,startTranation] = useTransition()
+
     const OauthSignIn = (provider)=> {
-        signIn(provider,{
-            callbackUrl: DEFAULT_LOGIN_REDIRECT
+        startTranation(async()=> {
+            signIn(provider,{
+                callbackUrl: DEFAULT_LOGIN_REDIRECT
+            })
+            .then((data)=> {
+
+                console.log(data)
+
+            })
         })
     }
 
@@ -18,24 +30,33 @@ function AuthSocial({text,link}) {
         socialBtn : "flex-1 rounded-md border border-gray-50 hover:bg-gray-100 bg-gray-50 hover:shadow-none shadow-md flex items-center justify-center py-2"
     }
   return (
-    <div>
+    <div className="relative">
         <div className="flex items-center gap-3">
             <button 
                 onClick={()=> OauthSignIn("github")}
                 className={className.socialBtn}
                 ><SiGithub size={24}/>
             </button>
-            <button className={className.socialBtn}>
+            <button 
+              onClick={()=> OauthSignIn("google")}
+              className={className.socialBtn}>
                 <FcGoogle size={24}/>
             </button>
         </div>
         <div 
-            onClick={()=> OauthSignIn("google")}
             className="text-center p-3 ">
             <Link href={link} className="capitalize text-green-800 font-medium hover:text-green-700">
                 {text}
             </Link>
         </div>
+        {
+            isLoading && <>
+              <Overlay />
+              <div className="z-50 absolute left-0 top-0 w-full flex justify-center items-center">
+                 <PropagateLoader color="green" size={30} />
+              </div>
+            </>
+        }
     </div>
   )
 }
