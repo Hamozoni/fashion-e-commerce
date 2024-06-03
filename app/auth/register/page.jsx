@@ -18,7 +18,7 @@ function RegisterPage() {
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSucces] = useState(null);
 
-    const register = async()=> {
+    const register = ()=> {
 
         const formData = new FormData(registerForm.current);
         const test = registerSchema.safeParse(Object.fromEntries(formData.entries()));

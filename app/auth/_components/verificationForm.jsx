@@ -23,8 +23,8 @@ export function VerificationForm() {
             return;
         }
 
-        startTransition(async()=> {
-           await verificationAction(token.get("token"))
+        startTransition(()=> {
+            verificationAction(token.get("token"))
             .then((data)=>{
                 setError(data.error);
                 setSuccess(data.success)

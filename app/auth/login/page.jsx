@@ -17,7 +17,7 @@ function LoginPage() {
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSuccess] = useState(null);
 
-    const login = async()=> {
+    const login = ()=> {
 
         const formData = new FormData(loginForm.current);
 
@@ -29,6 +29,7 @@ function LoginPage() {
 
              loginAction(formData)
             .then((data)=> {
+                console.log(data)
                 if(data.error){
                     setServerErrror(data?.error);
                 }else {
