@@ -15,15 +15,20 @@ async function MainHeader () {
     const [isLoading,startTranation] = useTransition()
 
     const className = {
-        flex:  `flex items-center gap-8`,
+        flex:  `flex items-center gap-8 relative`,
         logo: `uppercase text-2xl font-extrabold text-lime-700`
     }
 
-    const signOut = async()=> {
+    const signOut = ()=> {
+
+        console.log(isLoading)
 
         startTranation(()=> {
             signOutAction();
-        })
+            console.log(isLoading)
+        });
+
+        console.log(isLoading)
 
     }
   return (
@@ -41,20 +46,20 @@ async function MainHeader () {
             </section>
             <form action={signOut}
             >
+
                <button >sign out</button>
 
             </form>
-        </div>
         {
-            isLoading ?
+            isLoading &&
             <>
-              <Overlay />
-              <div className="fixed top-0 left-0 w-[100vw] h-[100vh] flex justify-center items-center z-50">
+              <Overlay onClick={()=> ''} />
+              <div className="absolute top-0 left-0 w-[100vw] h-[100vh] flex justify-center items-center z-50">
                   <SyncLoader size={30} />
               </div>
             </>
-            :''
         }
+        </div>
     </header>
   )
 }
