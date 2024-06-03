@@ -1,6 +1,6 @@
 export const poblicRoutes = ["/"];
 
-export const authRoutes = ["/auth/register","/auth/login","/auth/error","/auth/reset-passsword","/auth/new-verification"];
+export const authRoutes = ["/auth/register","/auth/login","/auth/error","/auth/reset-password","/auth/new-verification"];
 
 export const apiAuthPrefix = "/api/auth";
 

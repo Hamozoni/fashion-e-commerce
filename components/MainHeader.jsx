@@ -12,7 +12,7 @@ import {SyncLoader} from "react-spinners";
 
 async function MainHeader () {
 
-    const [isLoading,startTranation] = useTransition()
+    const [isLoading,startTranation] = useTransition();
 
     const className = {
         flex:  `flex items-center gap-8 relative`,
@@ -21,12 +21,15 @@ async function MainHeader () {
 
     const signOut = ()=> {
 
-
         startTranation(()=> {
              signOutAction()
+             .then((data)=> {
+                console.log(data)
+             })
         });
 
-    }
+    };
+
   return (
     <header className="bg-lime-100 sticky top-0 left-0 w-full z-50 py-2 px-4 lg:px-8">
         <div className={className.flex}>
