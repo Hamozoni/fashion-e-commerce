@@ -21,14 +21,10 @@ async function MainHeader () {
 
     const signOut = ()=> {
 
-        console.log(isLoading)
 
         startTranation(()=> {
-            signOutAction();
-            console.log(isLoading)
+             signOutAction()
         });
-
-        console.log(isLoading)
 
     }
   return (

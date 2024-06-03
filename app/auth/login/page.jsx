@@ -8,6 +8,7 @@ import {SubmitBtn} from "../_components/submitBtn";
 import {loginAction} from "../../../actions/login";
 import { useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
+import Link from "next/link";
 
 
 function LoginPage() {
@@ -60,10 +61,16 @@ function LoginPage() {
                             />
                     ))
                 }
+                <div className="py-3 text-center">
+                    <Link href="/auth/reset-password">
+                        forgot password?
+                    </Link>
+                </div>
                 <ErrorSucces error={serverErrror} success={serverSucces} />
                 <SubmitBtn isLoading={isLoading} text='login' />
             </form>
-            <AuthSocial text="don't have an account" link='/auth/register' />
+            
+            <AuthSocial text="don't have an account?" link='/auth/register' />
         </div>
     </div>
   )
