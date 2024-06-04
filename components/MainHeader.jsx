@@ -8,11 +8,13 @@ import { signOutAction } from "../actions/signOut";
 import { useTransition } from "react";
 import Overlay from "./Overlay";
 import {SyncLoader} from "react-spinners";
+import { useRouter } from "next/navigation";
 
 
-async function MainHeader () {
+ function MainHeader () {
 
     const [isLoading,startTranation] = useTransition();
+    const router = useRouter()
 
     const className = {
         flex:  `flex items-center gap-8 relative`,
@@ -23,8 +25,8 @@ async function MainHeader () {
 
         startTranation(()=> {
              signOutAction()
-             .then((data)=> {
-                console.log(data)
+             .then(()=> {
+                router.push('/auth/login')
              })
         });
 
@@ -43,12 +45,8 @@ async function MainHeader () {
                 <Categories/>
                 <HeaderUserBar />
             </section>
-            <form action={signOut}
-            >
 
-               <button >sign out</button>
-
-            </form>
+               <button onClick={signOut}>sign out</button>
         {
             isLoading &&
             <>
