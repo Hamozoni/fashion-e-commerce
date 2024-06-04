@@ -44,14 +44,82 @@ export const generateVerificationToken = async(email)=> {
         await db.verificationToken.delete({where: {id: exitingToken.id}})
     }
 
-    const verificationToken = await db.verificationToken.create({
-        data: {
-            token,
-            email,
-            expires
-        }
-    });
+    try{
+        const verificationToken = await db.verificationToken.create({
+            data: {
+                token,
+                email,
+                expires
+            }
+        });
+    
+        return verificationToken;
 
-    return verificationToken;
+    }catch {
+        return null;
+    }
+
+
+};
+
+
+export const findResetPasswordTokenByEmail = async (email)=> {
+
+    try{
+
+        const resetPassword = await db.resetPasswordToken.findFirst({where: {
+            email
+        }});
+
+        return resetPassword
+
+    }
+    catch{
+        return null;
+    }
+
+};
+
+export const findResetPasswordTokenByToken = async(token)=> {
+
+    try{
+
+        const resetPassword = await db.resetPasswordToken.findFirst({where: {
+            token
+        }});
+
+        return resetPassword
+
+    }
+    catch{
+        return null;
+    }
+
+};
+
+export const generateResetPasswordToken = async (email)=> {
+
+    const token = uuid();
+    const expires = new Date(new Date().getTime() + 3600 * 1000);
+
+    const exitingToken = await findResetPasswordTokenByEmail(email);
+
+    if(exitingToken) {
+        await db.resetPasswordToken.delete({where: {id: exitingToken.id}})
+    }
+
+    try{
+        const resetToken = await db.resetPasswordToken.create({
+            data: {
+                token,
+                email,
+                expires
+            }
+        });
+
+        return resetToken;
+    }catch {
+        return null
+    }
 
 }
