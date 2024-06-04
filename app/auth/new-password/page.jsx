@@ -6,6 +6,8 @@ import { IoLockClosed } from "react-icons/io5";
 import { useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
 import { SubmitBtn } from "../_components/submitBtn";
+import { AuthInput } from "../_components/authInput";
+import {newPasswordAction} from "../../../actions/newPassword";
 
 function newPasswordPage() {
 
@@ -23,10 +25,15 @@ function newPasswordPage() {
 
         const formData = new FormData(newPasswordForm.current);
 
+        formData.append("token",token)
+
 
 
         startTranation(()=> {
-
+            newPasswordAction(formData)
+            .then((data)=> {
+                console.log(data);
+            })
         })
 
     }
