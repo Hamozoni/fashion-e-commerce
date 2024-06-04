@@ -11,6 +11,10 @@ export const newPasswordAction = async (formData)=> {
     const confirmPassword = formData.get("confirm_password");
     const token = formData.get("token");
 
+    if(newPassword !== confirmPassword){
+        return {error: "passwords  are matches"}
+    }
+
     const existingToken = await findResetPasswordTokenByToken(token);
 
     if(!existingToken){
@@ -21,6 +25,12 @@ export const newPasswordAction = async (formData)=> {
 
     if(!existingUser){
         return {error: "email is not found"}
+    }
+
+    const expired =  new Date(existingToken.expires) < new Date();
+
+    if(expired){
+        return {error: "token has expired"}
     }
 
 

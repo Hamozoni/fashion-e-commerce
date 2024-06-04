@@ -17,8 +17,6 @@ function newPasswordPage() {
     const [isLoading,startTranation] = useTransition();
     const newPasswordForm = useRef();
 
-    console.log(token);
-
     const newPassword = ()=> {
         setError(null);
         setSuccess(null);
@@ -26,8 +24,6 @@ function newPasswordPage() {
         const formData = new FormData(newPasswordForm.current);
 
         formData.append("token",token)
-
-
 
         startTranation(()=> {
             newPasswordAction(formData)
