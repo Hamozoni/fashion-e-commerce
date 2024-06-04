@@ -43,7 +43,6 @@ const ResetPassword = ()=> {
             <AuthHeader text='reset password' />
             <form ref={resetForm} action={reset}>
                 <AuthInput 
-                    key='' 
                     type='email' 
                     name='email'
                     Icon={MdOutlineMail}
