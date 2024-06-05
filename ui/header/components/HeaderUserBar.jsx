@@ -34,7 +34,7 @@ function HeaderUserBar() {
                     <div className="">
                         {
                             currentUser?.image ?
-                            <Image src={currentUser?.image} width={40} height={40} />
+                            <Image src={currentUser?.image} width={30} height={30} className="rounded-full" />
                             :<FaUserLarge />
                         }
                     </div>

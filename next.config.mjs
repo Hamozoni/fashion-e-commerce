@@ -30,8 +30,14 @@ const nextConfig = {
           },
         ]
       },
-    image: {
-        domains: ['https://github.com','https://google.com'],
+    images: {
+        remotePatterns: [
+          {
+            protocol: "https",
+            hostname: "avatars.githubusercontent.com",
+            pathname: "/u/**"
+          }
+        ]
     },
 };
 
