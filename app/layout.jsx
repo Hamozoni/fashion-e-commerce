@@ -1,6 +1,8 @@
 
 import MainHeader from "../components/MainHeader";
-import ReduxProvider from "./ReduxProvider"
+import ReduxProvider from "./ReduxProvider";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "../auth";
 
 import "./globals.css";
 
@@ -9,17 +11,22 @@ export const metadata = {
   description: "store for all fashoin",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+
+  const session = await auth()
   return (
-    <html lang="en">
-    <body>
-      <ReduxProvider>
-        <main>
-            <MainHeader />
-            {children}
-        </main>
-      </ReduxProvider>
-    </body>
-  </html>
+    <SessionProvider session={session}>
+      <html lang="en">
+        <body>
+          <ReduxProvider>
+            <main>
+                <MainHeader />
+                {children}
+            </main>
+          </ReduxProvider>
+        </body>
+    </html>
+
+    </SessionProvider>
   );
 }

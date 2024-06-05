@@ -1,8 +1,10 @@
-import{ auth} from "../../../auth"
+"use client"
 
-const checkoutPage = async()=>  {
+import { useSession } from "next-auth/react";
 
-    const session =  await auth()
+const checkoutPage = ()=>  {
+
+    const session =  useSession()
   return (
     <div>{JSON.stringify(session)}</div>
   )
