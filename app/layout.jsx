@@ -1,5 +1,5 @@
 
-import MainHeader from "../components/MainHeader";
+import MainHeader from "../ui/header/MainHeader";
 import ReduxProvider from "./ReduxProvider";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "../auth";

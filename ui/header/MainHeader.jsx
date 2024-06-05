@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import HeaderUserBar from "./HeaderUserBar";
-import Categories from "./Categories";
-import SearchBar from "./SearchBar";
-import { signOutAction } from "../actions/signOut";
+import HeaderUserBar from "./components/HeaderUserBar";
+import Categories from "../../components/Categories";
+import SearchBar from "./components/SearchBar";
+import { signOutAction } from "../../actions/signOut";
 import { useTransition } from "react";
-import Overlay from "./Overlay";
+import Overlay from "../../components/Overlay";
 import {SyncLoader} from "react-spinners";
 import { useRouter } from "next/navigation";
 

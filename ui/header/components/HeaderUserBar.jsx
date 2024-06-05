@@ -1,10 +1,15 @@
 "use client"
 import { PiShoppingCart } from "react-icons/pi";
-import { useAppSelector } from "../store/store";
+import { useAppSelector } from "../../../store/store";
 import Link from "next/link";
+import {UseCurrentUser} from "../../../hooks/useCurrentUser"
+import { FaUserLarge } from "react-icons/fa6";
+import Image from "next/image";
 
 
 function HeaderUserBar() {
+
+    const currentUser = UseCurrentUser();
 
     const totalItemsOnCart = useAppSelector((state)=> state.cart.totalQuantity);
     
@@ -23,21 +28,32 @@ function HeaderUserBar() {
             </ul>
         </div>
         <div className="">
-            <div className="">
-                <Link 
-                    href="/auth/login" 
-                    className={className.title}
-                    >sign in
-                </Link>
+            <div className="cursor-pointer">
+                {
+                    currentUser ? 
+                    <div className="">
+                        {
+                            currentUser?.image ?
+                            <Image src={currentUser?.image} width={40} height={40} />
+                            :<FaUserLarge />
+                        }
+                    </div>
+                    :
+                    <Link 
+                        href="/auth/login" 
+                        className={className.title}
+                        >sign in
+                    </Link>
+                }
             </div>
         </div>
-        <div className="">
+        {/* <div className="">
             <Link 
                 href="/orders" 
                 className={className.title}
                 >orders
             </Link>
-        </div>
+        </div> */}
         <Link href='/cart'  
               className="relative cursor-pointer">
             {

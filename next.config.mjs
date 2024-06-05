@@ -30,6 +30,10 @@ const nextConfig = {
           },
         ]
       },
+    image: {
+        domains: ['https://github.com','https://google.com'],
+    },
 };
 
-export default nextConfig;
+
+export default nextConfig
