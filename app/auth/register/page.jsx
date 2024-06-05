@@ -70,7 +70,7 @@ function RegisterPage() {
                 <ErrorSucces error={serverErrror} success={serverSucces}/>
                 <SubmitBtn isLoading={isLoading} text='create an account' />
             </form>
-            <AuthSocial text="already have an account?" link='/auth/login' />
+            <AuthSocial text="already have an account?" link='/auth/login' page='signUp' />
         </div>
     </div>
   )

@@ -70,7 +70,7 @@ function LoginPage() {
                 <SubmitBtn isLoading={isLoading} text='login' />
             </form>
             
-            <AuthSocial text="don't have an account?" link='/auth/register' />
+            <AuthSocial text="don't have an account?" link='/auth/register' page='logIn' />
         </div>
     </div>
   )

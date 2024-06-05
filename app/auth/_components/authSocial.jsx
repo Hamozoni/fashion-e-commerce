@@ -8,7 +8,7 @@ import { useTransition } from "react";
 import {PropagateLoader} from "react-spinners";
 import Overlay from "../../../components/Overlay";
 
-function AuthSocial({text,link}) {
+function AuthSocial({text,link,page}) {
 
     const [isLoading,startTranation] = useTransition()
 
@@ -27,20 +27,21 @@ function AuthSocial({text,link}) {
 
     
     const className = {
-        socialBtn : "flex-1 rounded-md border border-gray-50 hover:bg-gray-100 bg-gray-50 hover:shadow-none shadow-md flex items-center justify-center py-2"
+        socialBtn : "flex-1 rounded-md border border-gray-50 hover:bg-gray-100 bg-gray-50 hover:shadow-none shadow-md flex items-center justify-center py-2 gap-3"
     }
   return (
     <div className="relative">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between">
             <button 
+               
                 onClick={()=> OauthSignIn("github")}
                 className={className.socialBtn}
-                ><SiGithub size={24}/>
+                ><SiGithub size={24}/> {page === 'logIn' ? "login " :"sign up "} with github
             </button>
             <button 
               onClick={()=> OauthSignIn("google")}
               className={className.socialBtn}>
-                <FcGoogle size={24}/>
+                <FcGoogle size={24}/> {page === 'logIn '? "login " :"sign up "} with google
             </button>
         </div>
         <div 
