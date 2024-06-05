@@ -6,7 +6,7 @@ const checkoutPage = ()=>  {
 
     const session =  useSession()
   return (
-    <div>{JSON.stringify(session)}</div>
+    <div>{JSON.stringify(session?.data?.user)}</div>
   )
 }
 
