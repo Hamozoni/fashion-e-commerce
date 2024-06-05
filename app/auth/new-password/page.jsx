@@ -28,7 +28,12 @@ function newPasswordPage() {
         startTranation(()=> {
             newPasswordAction(formData)
             .then((data)=> {
-                console.log(data);
+                if(data.error) {
+                    setError(data.error)
+                }
+                if(data.success){
+                    setSuccess(data.success)
+                }
             })
         })
 
