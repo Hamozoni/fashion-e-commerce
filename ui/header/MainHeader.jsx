@@ -9,7 +9,7 @@ import { useTransition } from "react";
 import Overlay from "../../components/Overlay";
 import {SyncLoader} from "react-spinners";
 import { useRouter } from "next/navigation";
-import { update } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 
  function MainHeader () {
@@ -17,6 +17,8 @@ import { update } from "next-auth/react";
 
     const [isLoading,startTranation] = useTransition();
     const router = useRouter()
+
+    const {update} = useSession()
 
     const className = {
         flex:  `flex items-center gap-8 relative`,

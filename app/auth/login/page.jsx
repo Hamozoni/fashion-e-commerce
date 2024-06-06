@@ -9,9 +9,12 @@ import {loginAction} from "../../../actions/login";
 import { useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 
 function LoginPage() {
+
+    const callbackUrl = useSearchParams().get("callback")
 
     const loginForm = useRef(null);
     const [isLoading,startTranation] = useTransition();
@@ -28,7 +31,7 @@ function LoginPage() {
         startTranation(()=> {
             
 
-             loginAction(formData)
+             loginAction(formData,callbackUrl)
             .then((data)=> {
                 console.log(data)
                 if(data.error){

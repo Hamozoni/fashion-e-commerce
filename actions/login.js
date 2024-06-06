@@ -8,7 +8,7 @@ import { generateVerificationToken } from "../lip/token";
 import { verifyEmail } from "../lip/mail";
 import bcrypt from 'bcryptjs'
 
-export const loginAction = async(formData)=> {
+export const loginAction = async(formData,callbackUrl)=> {
 
     const data = Object.fromEntries(formData.entries());
 
@@ -46,7 +46,7 @@ export const loginAction = async(formData)=> {
                 await signIn("credentials",{
                     email,
                     password,
-                    redirect : DEFAULT_LOGIN_REDIRECT
+                    redirect : callbackUrl || DEFAULT_LOGIN_REDIRECT
                 })
 
             }catch (error) {

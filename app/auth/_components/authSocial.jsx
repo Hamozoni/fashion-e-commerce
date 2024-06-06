@@ -7,15 +7,18 @@ import { DEFAULT_LOGIN_REDIRECT } from "../../../routes";
 import { useTransition } from "react";
 import {PropagateLoader} from "react-spinners";
 import Overlay from "../../../components/Overlay";
+import { useSearchParams } from "next/navigation";
 
 function AuthSocial({text,link,page}) {
 
+    const callbackUrl = useSearchParams().get("callback")
+
     const [isLoading,startTranation] = useTransition()
 
-    const OauthSignIn = async(provider)=> {
-        startTranation(async()=> {
-           await signIn(provider,{
-                callbackUrl: DEFAULT_LOGIN_REDIRECT
+    const OauthSignIn = (provider)=> {
+        startTranation(()=> {
+            signIn(provider,{
+                callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT
             })
             .then((data)=> {
 
