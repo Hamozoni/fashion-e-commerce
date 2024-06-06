@@ -48,6 +48,11 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
       if(session.user && token.role){
         session.user.role = token.role
       }
+      if(session.user) {
+        session.user.email = token.email;
+        session.user.name,e = token.name;
+        session.user.image = token.image;
+      }
 
       return session;
     },
@@ -59,7 +64,10 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
 
       if(!existingUser) return token;
 
-      token.role = existingUser.role
+      token.role = existingUser.role;
+      token.image = existingUser.image;
+      token.name = existingUser.name;
+      token.email = existingUser.email;
   
       return token;
     }

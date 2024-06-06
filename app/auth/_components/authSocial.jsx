@@ -41,7 +41,7 @@ function AuthSocial({text,link,page}) {
             <button 
               onClick={()=> OauthSignIn("google")}
               className={className.socialBtn}>
-                <FcGoogle size={24}/> {page === 'logIn '? "login " :"sign up "} with google
+                <FcGoogle size={24}/> {page === 'logIn'? "login " :"sign up "} with google
             </button>
         </div>
         <div 

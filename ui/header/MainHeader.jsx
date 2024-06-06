@@ -9,9 +9,11 @@ import { useTransition } from "react";
 import Overlay from "../../components/Overlay";
 import {SyncLoader} from "react-spinners";
 import { useRouter } from "next/navigation";
+import { update } from "next-auth/react";
 
 
  function MainHeader () {
+
 
     const [isLoading,startTranation] = useTransition();
     const router = useRouter()
@@ -26,6 +28,7 @@ import { useRouter } from "next/navigation";
         startTranation(()=> {
              signOutAction()
              .then(()=> {
+                update()
                 router.push('/auth/login')
              })
         });
