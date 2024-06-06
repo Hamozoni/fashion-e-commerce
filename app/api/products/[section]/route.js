@@ -1,7 +1,6 @@
-import {db} from '../../../../lip/db'
+import {db} from '../../../../lip/db';
 
 export async function GET (req,context) {
-
 
    const {section} = context.params;
 
