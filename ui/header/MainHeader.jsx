@@ -38,7 +38,7 @@ import { useSession } from "next-auth/react";
     };
 
   return (
-    <header className="bg-lime-100 sticky top-0 left-0 w-full z-50 py-2 px-4 lg:px-8">
+    <header className="sticky top-0 left-0 w-full z-50 py-2 px-4 lg:px-8 bg-green-100">
         <div className={className.flex}>
             <div className="">
                 <Link href='/' className={className.logo}>

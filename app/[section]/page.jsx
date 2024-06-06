@@ -6,7 +6,9 @@ async function page({params,searchParams}) {
 
     const {section} = params;
     const {sub} = searchParams;
-    const data = await fetchData(`products/${section}?sub=${sub}`);
+    const  Data  = await fetchData(`products/${section}?sub=${sub}`);
+
+    // console.log(data);
 
 
     return (
@@ -16,7 +18,7 @@ async function page({params,searchParams}) {
                     <ProductCard product={product}/>
                 ))
             } */}
-
+            {Data }
         </div>
     )
 }

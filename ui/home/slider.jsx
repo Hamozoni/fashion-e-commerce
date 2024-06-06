@@ -13,12 +13,12 @@ const slide = [slide1,slide2,slide3,slide4,slide5,slide6,slide7,slide8,slide9];
 
 function Slider() {
   return (
-    <div className="snap-x snap-mandatory overflow-auto m-4 lg:mx-8 rounded-lg border border-green-300 ">
-        <div className="min-w-fit flex items-center  ">
+    <div className="lg:mx-8 rounded-lg border border-green-300 snap-x snap-mandatory overflow-auto m-4  ">
+        <div className="flex items-center min-w-fit ">
             {
                 slide?.map((image)=> (
-                    <div key={image} className="relative snap-always snap-center w-full h-[250px] min-w-full  max-h-[250px]">
-                        <Image className="min-w-full h-[250px] min-h-[250px] w-full max-h-[250px]" src={image} alt="slide image"/>
+                    <div key={image} className="relative h-[250px] min-w-full  max-h-[250px] snap-always snap-center w-full">
+                        <Image className="w-full max-h-[250px] min-w-full h-[250px] min-h-[250px] " src={image} alt="slide image"/>
                         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
                     </div>
                 ))
