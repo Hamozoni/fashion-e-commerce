@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESENSD_API_KEY);
 
 export const verifyEmail = async (email,token)=> {
 
-    const confimLink = `${process.env.NEX_PUBLIC_URL}/auth/new-verification?token=${token}`;
+    const confimLink = `${process.env.NEXT_PUBLIC_URL}/auth/new-verification?token=${token}`;
 
      await resend.emails.send({
         from:"onboarding@resend.dev",
@@ -18,7 +18,7 @@ export const verifyEmail = async (email,token)=> {
 
 export const resetPasswordEmail = async(email,token)=> {
 
-   const resetLink = `${process.env.NEX_PUBLIC_URL}/auth/new-password?token=${token}`;
+   const resetLink = `${process.env.NEXT_PUBLIC_URL}/auth/new-password?token=${token}`;
 
    await resend.emails.send({
       from:"onboarding@resend.dev",
