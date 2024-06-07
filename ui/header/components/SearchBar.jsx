@@ -1,8 +1,15 @@
+"use client";
+
 import { IoSearchSharp } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useState } from "react";
+import Overlay from "../../../components/Overlay";
+import AddressMap from "../../../components/AddressMap"
 
 function SearchBar() {
+
+  const [isMapOpen,setIsMapOpen] = useState(false);
 
   const className = {
     flex : `flex items-center`,
@@ -14,7 +21,7 @@ function SearchBar() {
     <section className={`${className.flex} flex-1 gap-8`}>
 
         <div >
-            <p className={className.delivery}> 
+            <p className={className.delivery} onClick={()=> setIsMapOpen(true)}> 
               <IoLocationOutline size={22} />delivering to ...
             </p>
         </div>
@@ -39,6 +46,14 @@ function SearchBar() {
                 <IoSearchSharp size={22} />
             </button>
          </div>
+
+         {
+            isMapOpen && <>
+
+            <Overlay onClick={()=> setIsMapOpen(false)}/>
+            <AddressMap/>
+            </>
+         }
     </section>
   )
 }
