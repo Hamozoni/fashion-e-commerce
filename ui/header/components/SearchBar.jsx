@@ -51,7 +51,7 @@ function SearchBar() {
             isMapOpen && <>
 
             <Overlay onClick={()=> setIsMapOpen(false)}/>
-            <AddressMap/>
+            <AddressMap onClick={()=> setIsMapOpen(false)}/>
             </>
          }
     </section>
