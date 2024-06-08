@@ -49,6 +49,7 @@ function AddressMap() {
                         onCenterChanged={(e)=> {
                             console.log(e)
                         }}
+                        center={position}
                         defaultCenter={position}
                         defaultZoom={15}
                         gestureHandling={'greedy'}
