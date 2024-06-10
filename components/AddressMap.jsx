@@ -13,12 +13,21 @@ function AddressMap() {
     const [position,setPosition] = useState({lat: 26.3159003,lng: 50.2052888});
     const [address,setAddress] = useState({});
 
-    const mapRef = useRef()
+    const getCurrentAddress = ()=>{
+        const geocode = new window.google.maps.Geocoder();
+
+        geocode.geocode({location: position},(results,status)=> {
+
+            console.log(results)
+            // if(status === "OK")
+        })
+    }
 
     const currentPosition = (e)=> {
 
         setPosition(e.detail.latLng)
-        console.log(e.detail.latLng)
+
+        getCurrentAddress()
 
     };
 
@@ -28,6 +37,7 @@ function AddressMap() {
             navigator.geolocation.getCurrentPosition((e)=>{
 
                 setPosition({lat:e.coords.latitude,lng: e.coords.longitude});
+                getCurrentAddress()
                 
             })
                 
@@ -46,9 +56,6 @@ function AddressMap() {
                 >
                     <Map 
                         zoomControl={true}
-                        onCenterChanged={(e)=> {
-                            console.log(e)
-                        }}
                         center={position}
                         defaultCenter={position}
                         defaultZoom={15}
@@ -57,13 +64,7 @@ function AddressMap() {
                         draggableCursor={true}
                         onClick={currentPosition}
                         >
-                                {/* <AdvancedMarker position={position} >
-                                     
-                                </AdvancedMarker> */}
-                                <AdvancedMarker position={position}>
-                                   {/* <FaMapMarkerAlt size={30} /> */}
-                                </AdvancedMarker>
-                                   <Marker position={position} />
+                            <Marker position={position} />
                     </Map>
                 </APIProvider>
                 <button 
