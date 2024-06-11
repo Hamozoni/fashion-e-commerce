@@ -6,6 +6,7 @@ import {
     AdvancedMarker,
     Marker
 } from "@vis.gl/react-google-maps"
+import axios from "axios";
 import {useRef, useState } from "react";
 
 function AddressMap() {
@@ -13,21 +14,22 @@ function AddressMap() {
     const [position,setPosition] = useState({lat: 26.3159003,lng: 50.2052888});
     const [address,setAddress] = useState({});
 
-    const getCurrentAddress = ()=>{
-        const geocode = new window.google.maps.Geocoder();
+    const getCurrentAddress = async(lat,lng)=>{
 
-        geocode.geocode({location: {lat: 26.3159003,lng: 50.2052888}},(results,status)=> {
+        const geocodeApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`
+        const geocode = await axios.get(geocodeApiUrl)
 
-            console.log(results,status)
-            // if(status === "OK")
-        })
     }
 
     const currentPosition = (e)=> {
 
-        setPosition(e.detail.latLng)
+        const position = e.detail.latLng
 
-        getCurrentAddress()
+        setPosition(position)
+
+        getCurrentAddress(position.lat,position.lng);
+
+        console.log(geocode.data)
 
     };
 
