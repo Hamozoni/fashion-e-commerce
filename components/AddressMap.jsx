@@ -16,9 +16,9 @@ function AddressMap() {
     const getCurrentAddress = ()=>{
         const geocode = new window.google.maps.Geocoder();
 
-        geocode.geocode({location: position},(results,status)=> {
+        geocode.geocode({location: {lat: 26.3159003,lng: 50.2052888}},(results,status)=> {
 
-            console.log(results)
+            console.log(results,status)
             // if(status === "OK")
         })
     }
