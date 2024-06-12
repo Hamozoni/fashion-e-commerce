@@ -12,12 +12,39 @@ import {useRef, useState } from "react";
 function AddressMap() {
 
     const [position,setPosition] = useState({lat: 26.3159003,lng: 50.2052888});
+    const [formatedAddress,setFormatedAddress] = useState(null)
     const [address,setAddress] = useState({});
 
     const getCurrentAddress = (lat,lng)=>{
 
         const geocodeApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`
         fetchData(geocodeApiUrl).then((data)=> {
+
+            if(data.status.toLowerCase() === "ok"){
+                setFormatedAddress(data.result[0]?.formatted_address);
+            }
+
+            setAddress(()=> {
+                let address = {}
+
+                data.result[0]?.address_components?.map((el)=> {
+                    if(el?.types?.includes('route')) {
+                        address.route = el?.long_name
+                    }
+                    if(el?.types?.includes("sublocality")) {
+                        address.political = el?.long_name
+                    }
+                    if(el?.types?.includes("administrative_area_level_1")) {
+                        address.region = el?.long_name
+                    }
+                    if(el?.types?.includes("country")) {
+                        address.country = el?.long_name
+                    }
+                });
+
+                return address;
+                
+            })
 
             console.log(data);
         }).catch((error)=> {
