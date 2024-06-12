@@ -90,7 +90,6 @@ function AddressMap() {
                 >
                     <Map 
                         zoomControl={true}
-                        center={position}
                         defaultCenter={position}
                         defaultZoom={15}
                         gestureHandling={'greedy'}
@@ -103,7 +102,7 @@ function AddressMap() {
                 </APIProvider>
                 <button 
                     onClick={locateMe}
-                    className="absolute bottom-7 right-7 py-2 px-4 rounded-md captialize bg-green-400 text-green-950"
+                    className="absolute bottom-[30px] right-7 py-2 px-4 rounded-md captialize bg-green-400 text-green-950"
                    >locate me
                 </button>
             </div>

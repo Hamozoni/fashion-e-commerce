@@ -135,7 +135,17 @@ model account {
   @@unique([provider, providerAccountId])
   @@index([userId])
 }
- 
+
+model user_address {
+  id String @id @default(uuid())
+  email String
+  lat Decimal
+  lng Decimal
+  route String
+  political String
+  city String
+  countery String
+}
 // model session {
 //   id           String   @id @default(cuid())
 //   sessionToken String   @unique
