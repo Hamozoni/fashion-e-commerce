@@ -1,8 +1,8 @@
 "use server";
-import { findResetPasswordTokenByEmail, generateResetPasswordToken } from "../lip/token";
-import { findUserByEmail } from "../lip/user";
-import { db } from "../lip/db";
-import { resetPasswordEmail } from "../lip/mail";
+import { findResetPasswordTokenByEmail, generateResetPasswordToken } from "../../lip/token";
+import { findUserByEmail } from "../../lip/user";
+import { db } from "../../lip/db";
+import { resetPasswordEmail } from "../../lip/mail";
 
 export async function resetPasswordAction(formData) {
 

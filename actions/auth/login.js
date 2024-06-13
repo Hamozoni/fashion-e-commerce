@@ -1,11 +1,11 @@
 "use server";
-import { signIn } from "../auth";
-import {loginSchema} from "../validationSchemas/authSchemas";
-import {DEFAULT_LOGIN_REDIRECT} from "../routes";
+import { signIn } from "../../auth";
+import {loginSchema} from "../../validationSchemas/authSchemas";
+import {DEFAULT_LOGIN_REDIRECT} from "../../routes";
 import { AuthError } from "next-auth";
-import { findUserByEmail } from "../lip/user";
-import { generateVerificationToken } from "../lip/token";
-import { verifyEmail } from "../lip/mail";
+import { findUserByEmail } from "../../lip/user";
+import { generateVerificationToken } from "../../lip/token";
+import { verifyEmail } from "../../lip/mail";
 import bcrypt from 'bcryptjs'
 
 export const loginAction = async(formData,callbackUrl)=> {

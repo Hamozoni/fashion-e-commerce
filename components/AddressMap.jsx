@@ -85,6 +85,10 @@ function AddressMap({onClick}) {
         }
     }
 
+    const confirmLocation = ()=> {
+        
+    }
+
   return (
     <section 
         onClick={(e)=> {
@@ -92,14 +96,17 @@ function AddressMap({onClick}) {
                 onClick()
             }
         }}
-        className="grand fixed top-0 left-0 w-[100vw] h-[100vh] z-50 flex justify-center items-center rounded-md">
-        <div className="w-[500px] h-[600px] bg-slate-50">
+        className="grand capitalize fixed top-0 left-0 w-[100vw] h-[100vh] z-50 flex justify-center items-center ">
+        <div className="w-[500px] h-[600px] bg-slate-50 rounded-md">
             <header className="p-3">
-                <div className="flex justify-center">
-                    <h4>add new address</h4>
+                <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-xl text-green-800">add new address</h4>
                     <button onClick={onClick}>
                         <RxCross2 />
                     </button>
+                </div>
+                <div className="rounded-md p-2 border border-green-100">
+                    { formatedAddress ? <p>{formatedAddress}</p> :"your address..." }
                 </div>
             </header>
             <div className="relative w-[500px] h-[400px]" >
@@ -121,12 +128,18 @@ function AddressMap({onClick}) {
                 </APIProvider>
                 <button 
                     onClick={locateMe}
-                    className="absolute bottom-[30px] right-7 py-2 px-4 rounded-md captialize bg-green-400 text-green-950"
+                    className="absolute bottom-[30px] left-0 py-2 px-4 rounded- bg-green-400 text-green-950"
                    >locate me
                 </button>
             </div>
-            <p>{formatedAddress}</p>
-            <button disabled={!!formatedAddress}>confirm location</button>
+            {
+                !!formatedAddress && 
+                <button
+                    className="py-2 bg-green-400 text-green-950 w-full" 
+                    disabled={!!formatedAddress}
+                    >confirm location
+                </button>
+            }
 
         </div>
     </section>

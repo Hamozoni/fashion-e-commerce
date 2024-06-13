@@ -1,8 +1,8 @@
 "use server";
 
-import {findUserByEmail} from "../lip/user";
-import {db} from "../lip/db";
-import {findVerificationTokenByToken} from "../lip/token";
+import {findUserByEmail} from "../../lip/user";
+import {db} from "../../lip/db";
+import {findVerificationTokenByToken} from "../../lip/token";
 
 
 export const verificationAction = async (token)=> { 

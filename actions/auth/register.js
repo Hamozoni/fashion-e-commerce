@@ -1,11 +1,11 @@
 "use server";
 
 import bcrypt from "bcryptjs";
-import {db} from "../lip/db";
-import {findUserByEmail} from "../lip/user"
-import { registerSchema } from "../validationSchemas/authSchemas";
-import {generateVerificationToken} from "../lip/token";
-import {verifyEmail} from "../lip/mail";
+import {db} from "../../lip/db";
+import {findUserByEmail} from "../../lip/user"
+import { registerSchema } from "../../validationSchemas/authSchemas";
+import {generateVerificationToken} from "../../lip/token";
+import {verifyEmail} from "../../lip/mail";
 
 export const registerAction =  async (formData)=> {
 

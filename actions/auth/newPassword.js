@@ -1,7 +1,7 @@
 "use server";
-import { db } from "../lip/db";
-import { findResetPasswordTokenByToken } from "../lip/token";
-import { findUserByEmail } from "../lip/user";
+import { db } from "../../lip/db";
+import { findResetPasswordTokenByToken } from "../../lip/token";
+import { findUserByEmail } from "../../lip/user";
 import bcrypt from "bcryptjs";
 
 
