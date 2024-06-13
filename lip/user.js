@@ -20,3 +20,13 @@ export const findUserById = async (id) => {
     }
 }
 
+export const findUserAddressByEmail = async (email) => {
+    
+    try {
+        const address = await db.userAddress.findUnique({where: {email}})
+        return address
+    }catch {
+        return null
+    }
+}
+
