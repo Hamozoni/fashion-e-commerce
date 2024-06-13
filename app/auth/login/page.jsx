@@ -5,7 +5,7 @@ import { AuthInput } from "../_components/authInput"
 import { loginInputs } from "../_components/authInputsData"
 import AuthSocial from "../_components/authSocial";
 import {SubmitBtn} from "../_components/submitBtn";
-import {loginAction} from "../../../actions/login";
+import {loginAction} from "../../../actions/auth/login";
 import { useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
 import Link from "next/link";

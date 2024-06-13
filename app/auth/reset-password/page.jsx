@@ -4,7 +4,7 @@ import { useRef, useState, useTransition } from "react";
 import { AuthInput } from "../_components/authInput";
 
 import { MdOutlineMail } from "react-icons/md";
-import {resetPasswordAction} from "../../../actions/resetPassword";
+import {resetPasswordAction} from "../../../actions/auth/resetPassword";
 import { SubmitBtn } from "../_components/submitBtn";
 import AuthHeader from "../_components/authHeader";
 import { ErrorSucces } from "../_components/errorSucces";

@@ -4,7 +4,7 @@ import Link from "next/link";
 import HeaderUserBar from "./components/HeaderUserBar";
 import Categories from "../../components/Categories";
 import SearchBar from "./components/SearchBar";
-import { signOutAction } from "../../actions/signOut";
+import { signOutAction } from "../../actions/auth/signOut";
 import { useTransition } from "react";
 import Overlay from "../../components/Overlay";
 import {SyncLoader} from "react-spinners";

@@ -6,7 +6,7 @@ import {registerInputs} from "../_components/authInputsData";
 import {SubmitBtn} from "../_components/submitBtn";
 import {registerSchema} from "../../../validationSchemas/authSchemas"
 import { useRef, useState, useTransition } from "react";
-import {registerAction} from "../../../actions/register";
+import {registerAction} from "../../../actions/auth/register";
 import {ErrorSucces} from "../_components/errorSucces";
 
 function RegisterPage() {

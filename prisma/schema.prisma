@@ -136,7 +136,7 @@ model account {
   @@index([userId])
 }
 
-model user_address {
+model userAddress {
   id String @id @default(uuid())
   email String
   lat Decimal
@@ -145,6 +145,7 @@ model user_address {
   neighborhood String
   city String
   countery String
+  formatedAddress String
 }
 // model session {
 //   id           String   @id @default(cuid())

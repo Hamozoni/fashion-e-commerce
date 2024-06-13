@@ -7,7 +7,7 @@ import { useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
 import { SubmitBtn } from "../_components/submitBtn";
 import { AuthInput } from "../_components/authInput";
-import {newPasswordAction} from "../../../actions/newPassword";
+import {newPasswordAction} from "../../../actions/auth/newPassword";
 
 function newPasswordPage() {
 

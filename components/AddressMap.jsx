@@ -7,6 +7,8 @@ import {
 } from "@vis.gl/react-google-maps"
 import{fetchData}from "../lip/fetchData"
 import {useState } from "react";
+import { UseCurrentUser } from "../hooks/useCurrentUser";
+import {addNewAddress} from "../actions/user/addNewAddress"
 
 function AddressMap({onClick}) {
 
@@ -85,8 +87,26 @@ function AddressMap({onClick}) {
         }
     }
 
+    const user = UseCurrentUser();
+
     const confirmLocation = ()=> {
-        
+
+        console.log(user)
+
+        if(user){
+            addNewAddress(user.email,{
+                ...position,
+                ...address,
+                formatedAddress
+            })
+            .then((data)=> {
+                console.log(data)
+                if(data.success) {
+                    onClick()
+                }
+            })
+
+        }
     }
 
   return (
@@ -135,8 +155,9 @@ function AddressMap({onClick}) {
             {
                 !!formatedAddress && 
                 <button
-                    className="py-2 bg-green-400 text-green-950 w-full" 
-                    disabled={!!formatedAddress}
+                onClick={confirmLocation}
+                    className="py-2 bg-green-400 text-green-950 w-full cursor-pointer" 
+                    // disabled={!!formatedAddress}
                     >confirm location
                 </button>
             }
