@@ -123,14 +123,15 @@ CREATE TABLE `account` (
 CREATE TABLE `userAddress` (
     `id` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
-    `lat` DECIMAL(65, 30) NOT NULL,
-    `lng` DECIMAL(65, 30) NOT NULL,
+    `lat` DOUBLE NOT NULL,
+    `lng` DOUBLE NOT NULL,
     `route` VARCHAR(191) NOT NULL,
     `neighborhood` VARCHAR(191) NOT NULL,
     `city` VARCHAR(191) NOT NULL,
-    `countery` VARCHAR(191) NOT NULL,
-    `formatedAddress` VARCHAR(191) NOT NULL,
+    `country` VARCHAR(191) NOT NULL,
+    `formatedAddress` TEXT NOT NULL,
 
+    UNIQUE INDEX `userAddress_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
