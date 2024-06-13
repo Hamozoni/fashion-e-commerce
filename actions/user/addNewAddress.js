@@ -4,13 +4,13 @@ import {db} from "../../lip/db";
 
 export const addNewAddress = async (email,data)=> {
 
+    console.log(data)
+
     try{
 
         await db.user.userAddress.create({
-            where: {
-                email
-            },
             data: {
+                email,
                 ...data
             }
         })

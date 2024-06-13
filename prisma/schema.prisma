@@ -139,13 +139,13 @@ model account {
 model userAddress {
   id String @id @default(uuid())
   email String
-  lat Decimal
-  lng Decimal
+  lat Float
+  lng Float
   route String
   neighborhood String
   city String
   countery String
-  formatedAddress String
+  formatedAddress  String   @db.Text
 }
 // model session {
 //   id           String   @id @default(cuid())

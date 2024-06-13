@@ -9,12 +9,14 @@ import{fetchData}from "../lip/fetchData"
 import {useState } from "react";
 import { UseCurrentUser } from "../hooks/useCurrentUser";
 import {addNewAddress} from "../actions/user/addNewAddress"
+import { useRouter } from "next/navigation";
 
 function AddressMap({onClick}) {
 
     const [position,setPosition] = useState({lat: 26.3159003,lng: 50.2052888});
     const [formatedAddress,setFormatedAddress] = useState("")
     const [address,setAddress] = useState({});
+    const route = useRouter()
 
     const getCurrentAddress = (lat,lng)=>{
 
@@ -93,7 +95,7 @@ function AddressMap({onClick}) {
 
         console.log(user)
 
-        if(user){
+        if(!!user){
             addNewAddress(user.email,{
                 ...position,
                 ...address,
@@ -106,6 +108,9 @@ function AddressMap({onClick}) {
                 }
             })
 
+        }else {
+            route.push('/auth/login');
+            onClick();
         }
     }
 
