@@ -1,18 +1,17 @@
 "use client";
-
+import { RxCross2 } from "react-icons/rx";
 import {
     APIProvider,
     Map,
-    AdvancedMarker,
     Marker
 } from "@vis.gl/react-google-maps"
 import{fetchData}from "../lip/fetchData"
-import {useRef, useState } from "react";
+import {useState } from "react";
 
-function AddressMap() {
+function AddressMap({onClick}) {
 
     const [position,setPosition] = useState({lat: 26.3159003,lng: 50.2052888});
-    const [formatedAddress,setFormatedAddress] = useState(null)
+    const [formatedAddress,setFormatedAddress] = useState("")
     const [address,setAddress] = useState({});
 
     const getCurrentAddress = (lat,lng)=>{
@@ -88,16 +87,29 @@ function AddressMap() {
 
   return (
     <section 
-        className="fixed top-0 left-0 w-[100vw] h-[100vh] z-50 flex justify-center items-center">
-        <div className="">
-            <h4></h4>
-            <div className="w-[600px] h-[600px] relative" >
+        onClick={(e)=> {
+            if(e.target.classList.contains("grand")){
+                onClick()
+            }
+        }}
+        className="grand fixed top-0 left-0 w-[100vw] h-[100vh] z-50 flex justify-center items-center rounded-md">
+        <div className="w-[500px] h-[600px] bg-slate-50">
+            <header className="p-3">
+                <div className="flex justify-center">
+                    <h4>add new address</h4>
+                    <button onClick={onClick}>
+                        <RxCross2 />
+                    </button>
+                </div>
+            </header>
+            <div className="relative w-[500px] h-[400px]" >
                 <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}
 
                 >
                     <Map 
                         zoomControl={true}
                         defaultCenter={position}
+                        center={position}
                         defaultZoom={15}
                         gestureHandling={'greedy'}
                         disableDefaultUI={true}
@@ -113,6 +125,8 @@ function AddressMap() {
                    >locate me
                 </button>
             </div>
+            <p>{formatedAddress}</p>
+            <button disabled={!!formatedAddress}>confirm location</button>
 
         </div>
     </section>
