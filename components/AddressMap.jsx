@@ -22,25 +22,20 @@ function AddressMap() {
 
             console.log("started")
             if(data.status === "OK"){
-                console.log(data)
-                setFormatedAddress(data.result[0]?.formatted_address);
+                console.log( data?.results[0]?.address_components)
+                setFormatedAddress(data.results[0]?.formatted_address);
                const getAddress = ()=> {
 
-                    let address = {
-                        route: "",
-                        political: "",
-                        city: "",
-                        country: ""
-                    }
+                    let address = {}
     
-                    data?.result[0]?.address_components?.map((el)=> {
+                    data?.results[0]?.address_components?.map((el)=> {
     
                         console.log(el)
                         if(el?.types?.includes('route')) {
                             address.route = el?.long_name
                         }
                         if(el?.types?.includes("sublocality")) {
-                            address.political = el?.long_name
+                            address.neighborhood = el?.long_name
                         }
                         if(el?.types?.includes("administrative_area_level_1")) {
                             address.city = el?.long_name
@@ -56,7 +51,7 @@ function AddressMap() {
                 }
 
                 const address  = getAddress()
-                setAddress()
+                setAddress({...address})
             }
 
         }).catch((error)=> {

@@ -142,7 +142,7 @@ model user_address {
   lat Decimal
   lng Decimal
   route String
-  political String
+  neighborhood String
   city String
   countery String
 }
