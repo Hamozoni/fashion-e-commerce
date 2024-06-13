@@ -6,9 +6,9 @@ export const addNewAddress = async (email,data)=> {
 
     console.log(data)
 
-    try{
 
-        await db.user.userAddress.create({
+
+        await db.userAddress.create({
             data: {
                 email,
                 ...data
@@ -16,8 +16,5 @@ export const addNewAddress = async (email,data)=> {
         })
 
         return  {success: "user address has been added successfully!"}
-    }catch{
-        return  {error: "something went wrong"}
-    }
 
 }
