@@ -120,6 +120,21 @@ CREATE TABLE `account` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `userAddress` (
+    `id` VARCHAR(191) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `lat` DECIMAL(65, 30) NOT NULL,
+    `lng` DECIMAL(65, 30) NOT NULL,
+    `route` VARCHAR(191) NOT NULL,
+    `neighborhood` VARCHAR(191) NOT NULL,
+    `city` VARCHAR(191) NOT NULL,
+    `countery` VARCHAR(191) NOT NULL,
+    `formatedAddress` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `verificationToken` (
     `id` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
