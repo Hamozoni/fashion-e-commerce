@@ -6,10 +6,13 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { useState } from "react";
 import Overlay from "../../../components/Overlay";
 import AddressMap from "../../../components/AddressMap"
+import { useCurrentUser } from "../../../hooks/useCurrentUser";
 
 function SearchBar() {
 
   const [isMapOpen,setIsMapOpen] = useState(false);
+
+  const user = useCurrentUser()
 
   const className = {
     flex : `flex items-center`,
@@ -22,7 +25,7 @@ function SearchBar() {
 
         <div >
             <p className={className.delivery} onClick={()=> setIsMapOpen(true)}> 
-              <IoLocationOutline size={22} />delivering to ...
+              <IoLocationOutline size={22} />{user?.address ? user?.address?.neighborhood + " " + user?.address?.city  :"delivering to ..."}
             </p>
         </div>
          <div className={className.searchBox}>
