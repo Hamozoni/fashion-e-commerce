@@ -25,7 +25,7 @@ function SearchBar() {
 
         <div >
             <p className={className.delivery} onClick={()=> setIsMapOpen(true)}> 
-              <IoLocationOutline size={22} />{user?.address ? user?.address?.neighborhood + " " + user?.address?.city  :"delivering to ..."}
+              <IoLocationOutline size={22} />{user?.address ? user?.address?.city  :"delivering to ..."}
             </p>
         </div>
          <div className={className.searchBox}>

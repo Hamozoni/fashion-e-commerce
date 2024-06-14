@@ -7,7 +7,7 @@ import {
 } from "@vis.gl/react-google-maps"
 import{fetchData}from "../lip/fetchData"
 import {useState } from "react";
-import { UseCurrentUser } from "../hooks/useCurrentUser";
+import { useCurrentUser } from "../hooks/useCurrentUser";
 import {addNewAddress} from "../actions/user/addNewAddress"
 import { useRouter } from "next/navigation";
 
@@ -89,7 +89,7 @@ function AddressMap({onClick}) {
         }
     }
 
-    const user = UseCurrentUser();
+    const user = useCurrentUser();
 
     const confirmLocation = ()=> {
 

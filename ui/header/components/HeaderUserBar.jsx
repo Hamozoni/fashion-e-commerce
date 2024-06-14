@@ -2,14 +2,14 @@
 import { PiShoppingCart } from "react-icons/pi";
 import { useAppSelector } from "../../../store/store";
 import Link from "next/link";
-import {UseCurrentUser} from "../../../hooks/useCurrentUser"
+import {useCurrentUser} from "../../../hooks/useCurrentUser"
 import { FaUserLarge } from "react-icons/fa6";
 import Image from "next/image";
 
 
 function HeaderUserBar() {
 
-    const currentUser = UseCurrentUser();
+    const currentUser = useCurrentUser();
 
     const totalItemsOnCart = useAppSelector((state)=> state.cart.totalQuantity);
     
