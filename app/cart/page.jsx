@@ -38,7 +38,7 @@ function cartPage() {
             </div>  :
             <div className="relative max-w-fit mx-auto">
                 <Image src='/cart/emtyCart.png' width={404}  height={316} alt='emty cart'/>
-                <Link className={className.startShopping} href='/' >
+                <Link className={className.startShopping} href='/checkout' >
                     start shopping
                 </Link>
             </div>
