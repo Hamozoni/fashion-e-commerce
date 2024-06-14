@@ -17,7 +17,12 @@ function cartPage() {
         sectionTitle: 'text-green-900 font-bold text-lg mb-3 pb-3 border-b border-gray-100'
     }
 
- const cartCard = cartItems?.map((product)=> <CartItemsCard key={`${product.id}${product.selectedColor}${product.selectedSize}`} product={product}/>)
+ const cartCard = cartItems?.map((product)=> (
+     <CartItemsCard 
+        key={`${product.id}${product.selectedColor}${product.selectedSize}`} 
+        product={product}
+        />
+    ))
 
   return (
     <div className="p-4 lg:px-8">

@@ -1,12 +1,16 @@
-"use client"
-
-import { useSession } from "next-auth/react";
+import CartSummary from "../../cart/_components/CartSummary";
+import Payment from "./_components/payment.jsx"
 
 const checkoutPage = ()=>  {
 
-    const session =  useSession()
   return (
-    <div>{JSON.stringify(session?.data?.user)}</div>
+    <div className="p-3 lg:px-8">
+        <h4>payments</h4>
+        <div className="flex gap-3 justify-between">
+            <Payment />
+            <CartSummary />
+        </div>
+    </div>
   )
 }
 
