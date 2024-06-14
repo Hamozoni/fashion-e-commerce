@@ -1,5 +1,6 @@
 "use client";
 import {useCurrentUser} from "../../../../hooks/useCurrentUser";
+import UserField from "./userField"
 
 function Payment() {
 
@@ -10,16 +11,9 @@ function Payment() {
     <div>
         <form action="">
             <div className="">
-                <h3>name: </h3>
-                <div className="">
-                    <h5>{user?.name}</h5>
-                </div>
-            </div>
-            <div className="">
-                <h3>email: </h3>
-                <div className="">
-                    <h5>{user?.email}</h5>
-                </div>
+                <UserField name='name'/>
+                <UserField name='email'/>
+                <UserField name='address'/>
             </div>
         </form>
     </div>
