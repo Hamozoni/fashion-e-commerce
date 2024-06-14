@@ -10,6 +10,7 @@ import masterCLogo from "../../../public/paymentLogos/logo-mc.webp"
 import paypalLogo from "../../../public/paymentLogos/logo-paypal.webp"
 import applePayLogo from "../../../public/paymentLogos/logo-applepay.webp"
 import Image from "next/image";
+import Link from "next/link";
 
 
 function CartSummary() {
@@ -30,7 +31,7 @@ function CartSummary() {
     const className = {
         section : 'p-3 border border-gray-50 mb-3 rounded-md shadow-md',
         parts: 'flex items-center justify-between py-2 border-b border-gray-50',
-        checkoutBtn: 'w-full rounded-md py-2 bg-green-900 uppercase text-green-50 hover:bg-green-800'
+        checkoutBtn: 'min-w-full block text-center rounded-md py-2 bg-green-900 uppercase text-green-50 hover:bg-green-800'
     }
 
 
@@ -56,9 +57,9 @@ function CartSummary() {
                 <h5>total: </h5>
                 <h5> {getCurrency(totalPrice + deliveryFree)} </h5>
             </div>
-            <button className={className.checkoutBtn}>
+            <Link href='/checkout' className={className.checkoutBtn}>
                 checkout pay {getCurrency(totalPrice + deliveryFree)}
-            </button>
+            </Link>
         </div>
 
         <div className={className.section}>
