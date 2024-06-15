@@ -1,30 +1,21 @@
 
 import { IoSearchSharp } from "react-icons/io5";
-import { IoMdArrowDropdown } from "react-icons/io";
-import UserAddress from "../components/userAddress"
+import UserAddress from "../components/userAddress";
+import RearchCategories from "./searchCategories"
 
 function SearchBar() {
 
 
   const className = {
     flex : `flex items-center`,
-    searchBox: `rounded-md border bg-slate-200 border-slate-400 flex items-center w-full`,
-    catgory: `flex items-center min-h-full p-2 text-md font-medium cursor-pointer bg-slate-300`,
+    searchBox: `rounded-md border bg-slate-200 border-green-100 shadow-md flex items-center w-full`,
   };
   
   return (
     <section className={`${className.flex} gap-4 flex-1`}>
          <UserAddress />
          <div className={className.searchBox}>
-            <div className="">
-                <div className={className.catgory}>
-                     <h6>men</h6>
-                    <IoMdArrowDropdown/>
-                </div>
-                <ul>
-                    <li></li>
-                </ul>
-            </div>
+             <RearchCategories />
             <div className="w-full">
                 <input 
                      className="w-full p-2 bg-transparent text-sm font-bold "
