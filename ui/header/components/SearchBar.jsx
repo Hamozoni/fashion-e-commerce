@@ -1,33 +1,20 @@
-"use client";
 
 import { IoSearchSharp } from "react-icons/io5";
-import { IoLocationOutline } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { useState } from "react";
-import Overlay from "../../../components/Overlay";
-import AddressMap from "../../../components/AddressMap"
-import { useCurrentUser } from "../../../hooks/useCurrentUser";
+import UserAddress from "../components/userAddress"
 
 function SearchBar() {
 
-  const [isMapOpen,setIsMapOpen] = useState(false);
-
-  const user = useCurrentUser()
 
   const className = {
     flex : `flex items-center`,
     searchBox: `rounded-md border bg-slate-200 border-slate-400 flex items-center w-full`,
     catgory: `flex items-center min-h-full p-2 text-md font-medium cursor-pointer bg-slate-300`,
-    delivery: 'flex items-center gap-1 text-sm font-medium cursor-pointer hover:text-gray-700 hover:font-medium'
-  }
+  };
+  
   return (
     <section className={`${className.flex} gap-4 flex-1`}>
-
-        <div >
-            <p className={className.delivery} onClick={()=> setIsMapOpen(true)}> 
-              <IoLocationOutline size={22} />{user?.address ? user?.address?.city  :"delivering to ..."}
-            </p>
-        </div>
+         <UserAddress />
          <div className={className.searchBox}>
             <div className="">
                 <div className={className.catgory}>
@@ -49,14 +36,6 @@ function SearchBar() {
                 <IoSearchSharp size={22} />
             </button>
          </div>
-
-         {
-            isMapOpen && <>
-
-            <Overlay onClick={()=> setIsMapOpen(false)}/>
-            <AddressMap onClick={()=> setIsMapOpen(false)}/>
-            </>
-         }
     </section>
   )
 }
