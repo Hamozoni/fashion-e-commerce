@@ -21,8 +21,7 @@ import { useSession } from "next-auth/react";
     const {update} = useSession()
 
     const className = {
-        flex:  `flex items-center gap-8 relative`,
-        logo: `uppercase text-2xl font-extrabold text-lime-700`
+        flex:  'flex items-center gap-4 relative',
     }
 
     const signOut = ()=> {
@@ -38,10 +37,13 @@ import { useSession } from "next-auth/react";
     };
 
   return (
-    <header className="sticky top-0 left-0 w-full z-50 py-2 px-4 lg:px-8 bg-green-100">
-        <div className={className.flex}>
+    <header className="sticky top-0 left-0 w-full max-w-full z-50 py-2 px-4 lg:px-8 bg-green-100">
+        <div className={`${className.flex} justify-between w-full`}>
             <div className="">
-                <Link href='/' className={className.logo}>
+                <Link 
+                    href='/' 
+                    className='uppercase text-2xl font-extrabold text-lime-700'
+                    >
                     system
                 </Link>
             </div>
@@ -49,9 +51,9 @@ import { useSession } from "next-auth/react";
                 <SearchBar />
                 <Categories/>
                 <HeaderUserBar />
+                <button onClick={signOut}>sign out</button>
             </section>
 
-               <button onClick={signOut}>sign out</button>
         {
             isLoading &&
             <>

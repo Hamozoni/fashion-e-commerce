@@ -47,13 +47,13 @@ function HeaderUserBar() {
                 }
             </div>
         </div>
-        {/* <div className="">
+        <div className="">
             <Link 
                 href="/orders" 
                 className={className.title}
                 >orders
             </Link>
-        </div> */}
+        </div>
         <Link href='/cart'  
               className="relative cursor-pointer">
             {
