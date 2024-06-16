@@ -1,9 +1,9 @@
 // "use client"
-import {MoonLoader} from "react-spinners"
+import {SyncLoader} from "react-spinners"
 const loading = () => {
   return (
     <div className="w-full h-dvh flex items-center justify-center">
-        <MoonLoader/>
+        <SyncLoader/>
     </div>
   )
 }
