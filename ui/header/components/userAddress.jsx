@@ -12,7 +12,7 @@ function UserAddress() {
     const user = useCurrentUser();
     
     const className = {
-        delivery: 'flex items-center gap-1 text-sm font-medium cursor-pointer hover:text-gray-700 hover:font-medium'
+        delivery: 'flex items-center text-sm font-medium cursor-pointer hover:text-gray-700 hover:font-medium'
     }
 
   return (
