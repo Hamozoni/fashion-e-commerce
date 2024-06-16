@@ -15,26 +15,26 @@ import { useSession } from "next-auth/react";
  function MainHeader () {
 
 
-    const [isLoading,startTranation] = useTransition();
-    const router = useRouter()
+    // const [isLoading,startTranation] = useTransition();
+    // const router = useRouter()
 
-    const {update} = useSession()
+    // const {update} = useSession()
 
     const className = {
         flex:  'flex items-center gap-4 relative',
     }
 
-    const signOut = ()=> {
+    // const signOut = ()=> {
 
-        startTranation(()=> {
-             signOutAction()
-             .then(()=> {
-                update()
-                router.push('/auth/login')
-             })
-        });
+    //     startTranation(()=> {
+    //          signOutAction()
+    //          .then(()=> {
+    //             update()
+    //             router.push('/auth/login')
+    //          })
+    //     });
 
-    };
+    // };
 
   return (
     <header className="sticky top-0 left-0 w-full max-w-full z-50 py-2 px-4 lg:px-8 bg-green-50">
@@ -51,10 +51,10 @@ import { useSession } from "next-auth/react";
                 <SearchBar />
                 <Categories/>
                 <HeaderUserBar />
-                <button onClick={signOut}>sign out</button>
+                {/* <button onClick={signOut}>sign out</button> */}
             </section>
 
-        {
+        {/* {
             isLoading &&
             <>
               <Overlay onClick={()=> ''} />
@@ -62,7 +62,7 @@ import { useSession } from "next-auth/react";
                   <SyncLoader size={30} />
               </div>
             </>
-        }
+        } */}
         </div>
     </header>
   )

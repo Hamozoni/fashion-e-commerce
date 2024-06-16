@@ -1,6 +1,14 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
 
 
-const SearchPage = ()=> {
+const SearchPage = ({params})=> {
+
+    const {query} = params;
+    const category = useSearchParams().get("category")
+
+    console.log(query,category)
     return (
         <div className="">
             
