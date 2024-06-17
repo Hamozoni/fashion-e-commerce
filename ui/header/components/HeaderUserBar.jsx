@@ -8,7 +8,7 @@ import Image from "next/image";
 function HeaderUserBar() {
 
     const currentUser = useCurrentUser();
-    
+
     const className = {
         flex:  `flex items-center gap-4`,
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
@@ -16,12 +16,6 @@ function HeaderUserBar() {
     
   return (
     <section className={className.flex} >
-        <div className="">
-            <h5 className={className.title}>en</h5>
-            <ul>
-                <li></li>
-            </ul>
-        </div>
         <div className="">
             <div className="cursor-pointer">
                 {
