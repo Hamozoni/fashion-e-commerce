@@ -15,58 +15,62 @@ function HeaderUserBar() {
     const currentUser = useCurrentUser();
 
     const className = {
-        flex:  `flex items-center gap-4 relative`,
+        flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
-        ul: ' absolute left-0 top-10 min-w-fit z-50 bg-gray-100'
+        ul: 'absolute bottom-7 left-0 w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden',
+        li: 'px-4 py-2 min-w-fit block'
     };
     
   return (
-    <section className={className.flex} >
-        <div className="">
-            <div className="cursor-pointer">
-                {
-                    currentUser ? 
-                    <div className="" onClick={()=> setIsAccount(true)}>
-                        {
-                            currentUser?.image ?
-                            <Image src={currentUser?.image} width={30} height={30} className="rounded-full" />
-                            :<FaUserLarge />
-                        }
-                    </div>
-                    :
-                    <Link 
-                        href="/auth/login" 
-                        className={className.title}
-                        >sign in
-                    </Link>
-                }
-            </div>
-        </div>
-        {  isAccount &&(
-            <>
-               <Overlay onClick={()=> setIsAccount(false)}/>
-                <ul className={className.ul}>
-                    <li>
+    <div className={className.flex} >
+        <div className="relative">
+            <div className="">
+                <div className="cursor-pointer">
+                    {
+                        currentUser ? 
+                        <div className="" onClick={()=> setIsAccount(true)}>
+                            {
+                                currentUser?.image ?
+                                <Image src={currentUser?.image} width={30} height={30} className="rounded-full" />
+                                :<FaUserLarge />
+                            }
+                        </div>
+                        :
                         <Link 
-                            href="/orders" 
+                            href="/auth/login" 
                             className={className.title}
-                            >orders
+                            >sign in
                         </Link>
-                    </li>
-                    <li>
-                        <Languages />
-                    </li>
-                    <li>
-                        <Link href='/setting'>setting</Link>
-                    </li>
-                    <li>
-                    <SignOut/>
-                    </li>
-                </ul>
-            </>
-            )
-        }
-    </section>
+                    }
+                </div>
+            </div>
+            {  isAccount &&(
+                <>
+                <Overlay onClick={()=> setIsAccount(false)}/>
+                    <div className={className.ul}>
+                        <div>
+                            <Link 
+                                href="/orders" 
+                                className={className.title}
+                                >my orders
+                            </Link>
+                        </div>
+                        <div>
+                            <Languages />
+                        </div>
+                        <div>
+                            <Link href='/setting'>setting</Link>
+                        </div>
+                        <div>
+                        <SignOut/>
+                        </div>
+                    </div>
+                </>
+                )
+            }
+
+        </div>
+    </div>
   )
 }
 
