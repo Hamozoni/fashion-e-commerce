@@ -19,13 +19,13 @@ function HeaderUserBar() {
     const className = {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
-        ul: 'absolute top-10 left-[-15px] w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden py-2',
+        // ul: 'fixed top-20 right-20 w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden py-2',
         li: 'px-4 py-2 w-[150px] min-w-[150px] hover:bg-green-100 flex items-center gap-2'
     };
     
   return (
     <div className={className.flex} >
-        <div className="relative">
+        <div >
             <div className="">
                 <div className="cursor-pointer">
                     {
