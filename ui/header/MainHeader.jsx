@@ -3,7 +3,6 @@ import Link from "next/link";
 import HeaderUserBar from "./components/HeaderUserBar";
 import Categories from "../../components/Categories";
 import SearchBar from "./components/SearchBar";
-import SignOut from "./components/signOut"
 
 import HeaderCart from "./components/headerCart"
 
@@ -31,7 +30,6 @@ import HeaderCart from "./components/headerCart"
                 <Categories/>
                 <HeaderUserBar />
                 <HeaderCart/>
-                <SignOut/>
             </section>
         </div>
     </header>

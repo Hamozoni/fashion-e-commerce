@@ -7,7 +7,7 @@ function languages() {
 
   return (
     <div className="">
-        <h5 className={className.title}>en</h5>
+        <h5 className={className.title}>english</h5>
         <ul>
             <li></li>
         </ul>
