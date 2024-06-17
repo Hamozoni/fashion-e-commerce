@@ -17,8 +17,8 @@ function HeaderUserBar() {
     const className = {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
-        ul: 'absolute bottom-7 left-0 w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden',
-        li: 'px-4 py-2 min-w-fit block'
+        ul: 'absolute top-10 left-[-15px] w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden',
+        li: 'px-4 py-2 w-fit min-w-fit]'
     };
     
   return (
@@ -48,21 +48,21 @@ function HeaderUserBar() {
                 <>
                 <Overlay onClick={()=> setIsAccount(false)}/>
                     <div className={className.ul}>
-                        <div>
+                        <div className={className.li}>
                             <Link 
                                 href="/orders" 
                                 className={className.title}
                                 >my orders
                             </Link>
                         </div>
-                        <div>
+                        <div className={className.li} >
                             <Languages />
                         </div>
-                        <div>
+                        <div className={className.li}>
                             <Link href='/setting'>setting</Link>
                         </div>
-                        <div>
-                        <SignOut/>
+                        <div className={className.li}>
+                           <SignOut/>
                         </div>
                     </div>
                 </>
