@@ -1,4 +1,5 @@
 "use client";
+import { CiLogout } from "react-icons/ci";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -30,7 +31,7 @@ function SignOut() {
 
   return (
     <div>
-         <button onClick={signOut}>sign out</button>
+         <button onClick={signOut}><CiLogout /> sign out</button>
                  {
             isLoading &&
             <>

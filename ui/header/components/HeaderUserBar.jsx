@@ -7,6 +7,8 @@ import SignOut from "./signOut";
 import Languages from "./languages"
 import { useState } from "react";
 import Overlay from "../../../components/Overlay";
+import { IoSettingsOutline ,IoLanguageSharp} from "react-icons/io5";
+import { BsCartCheck } from "react-icons/bs";
 
 function HeaderUserBar() {
 
@@ -18,7 +20,7 @@ function HeaderUserBar() {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
         ul: 'absolute top-10 left-[-15px] w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden',
-        li: 'px-4 py-2 w-fit min-w-fit]'
+        li: 'px-4 py-2 w-[100px] min-w-[100px] hover:bg-green-100'
     };
     
   return (
@@ -49,6 +51,7 @@ function HeaderUserBar() {
                 <Overlay onClick={()=> setIsAccount(false)}/>
                     <div className={className.ul}>
                         <div className={className.li}>
+                            <BsCartCheck />
                             <Link 
                                 href="/orders" 
                                 className={className.title}
@@ -56,10 +59,10 @@ function HeaderUserBar() {
                             </Link>
                         </div>
                         <div className={className.li} >
-                            <Languages />
+                           <IoLanguageSharp/>  <Languages />
                         </div>
                         <div className={className.li}>
-                            <Link href='/setting'>setting</Link>
+                            <IoSettingsOutline/> <Link href='/setting'>setting</Link>
                         </div>
                         <div className={className.li}>
                            <SignOut/>
