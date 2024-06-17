@@ -31,7 +31,9 @@ function SignOut() {
 
   return (
     <div>
-         <button onClick={signOut}><CiLogout /> sign out</button>
+         <button className="flex items-center gap-2" onClick={signOut}>
+            <CiLogout  size={22}/> sign out
+        </button>
                  {
             isLoading &&
             <>

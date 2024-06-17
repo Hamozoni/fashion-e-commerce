@@ -19,8 +19,8 @@ function HeaderUserBar() {
     const className = {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
-        ul: 'absolute top-10 left-[-15px] w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden',
-        li: 'px-4 py-2 w-[100px] min-w-[100px] hover:bg-green-100'
+        ul: 'absolute top-10 left-[-15px] w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden py-2',
+        li: 'px-4 py-2 w-[150px] min-w-[150px] hover:bg-green-100 flex items-center gap-2'
     };
     
   return (
@@ -51,7 +51,7 @@ function HeaderUserBar() {
                 <Overlay onClick={()=> setIsAccount(false)}/>
                     <div className={className.ul}>
                         <div className={className.li}>
-                            <BsCartCheck />
+                            <BsCartCheck size={22} />
                             <Link 
                                 href="/orders" 
                                 className={className.title}
@@ -59,10 +59,10 @@ function HeaderUserBar() {
                             </Link>
                         </div>
                         <div className={className.li} >
-                           <IoLanguageSharp/>  <Languages />
+                           <IoLanguageSharp size={22} />  <Languages />
                         </div>
                         <div className={className.li}>
-                            <IoSettingsOutline/> <Link href='/setting'>setting</Link>
+                            <IoSettingsOutline size={22} /> <Link href='/setting'>setting</Link>
                         </div>
                         <div className={className.li}>
                            <SignOut/>
