@@ -19,7 +19,7 @@ function HeaderUserBar() {
     const className = {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
-        ul: 'absolute left-[-100px] top-32 w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden py-2',
+        ul: 'absolute left-[100px] top-32 w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden py-2',
         li: 'px-4 py-2 w-[150px] min-w-[150px] hover:bg-green-100 flex items-center gap-2'
     };
     
@@ -48,26 +48,26 @@ function HeaderUserBar() {
             </div>
             {  isAccount &&(
                 <>
-                <Overlay onClick={()=> setIsAccount(false)}/>
-                    <div className={className.ul}>
-                        <div className={className.li}>
+                    <Overlay onClick={()=> setIsAccount(false)}/>
+                    <ul className={className.ul}>
+                        <li className={className.li}>
                             <BsCartCheck size={22} />
                             <Link 
                                 href="/orders" 
                                 className={className.title}
                                 >my orders
                             </Link>
-                        </div>
-                        <div className={className.li} >
+                        </li>
+                        <li className={className.li} >
                            <IoLanguageSharp size={22} />  <Languages />
-                        </div>
-                        <div className={className.li}>
+                        </li>
+                        <li className={className.li}>
                             <IoSettingsOutline size={22} /> <Link href='/setting'>setting</Link>
-                        </div>
-                        <div className={className.li}>
+                        </li>
+                        <li className={className.li}>
                            <SignOut/>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </>
                 )
             }
