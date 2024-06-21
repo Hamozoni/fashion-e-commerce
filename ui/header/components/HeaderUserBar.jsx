@@ -6,7 +6,6 @@ import Image from "next/image";
 import SignOut from "./signOut";
 import Languages from "./languages"
 import { useState } from "react";
-import Overlay from "../../../components/Overlay";
 import { IoSettingsOutline ,IoLanguageSharp} from "react-icons/io5";
 import { BsCartCheck } from "react-icons/bs";
 
@@ -19,7 +18,8 @@ function HeaderUserBar() {
     const className = {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
-        ul: 'absolute left-[100px] top-32 w-full min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden py-2',
+        container:'fixed left-0 top-0 w-full h-dvh flex justify-center items-center',
+        ul: ' min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden py-2 ',
         li: 'px-4 py-2 w-[150px] min-w-[150px] hover:bg-green-100 flex items-center gap-2'
     };
     
@@ -47,9 +47,14 @@ function HeaderUserBar() {
                 </div>
             </div>
             {  isAccount &&(
-                <>
-                    <Overlay onClick={()=> setIsAccount(false)}/>
-                    <ul className={className.ul}>
+                <div onClick={(e)=> {
+                    e.stopPropagation();
+                    setIsAccount(false)
+
+                }}
+                className={className.container}
+                >
+                    <ul  className={className.ul} >
                         <li className={className.li}>
                             <BsCartCheck size={22} />
                             <Link 
@@ -68,7 +73,7 @@ function HeaderUserBar() {
                            <SignOut/>
                         </li>
                     </ul>
-                </>
+                </div>
                 )
             }
 
