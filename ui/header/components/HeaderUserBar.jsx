@@ -18,8 +18,8 @@ function HeaderUserBar() {
     const className = {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
-        container:'fixed left-0 top-0 w-full h-dvh flex justify-center items-center bg-transparent',
-        ul: ' min-w-fit z-50 bg-gray-100 rounded-md overflow-hidden py-2 ',
+        container:'fixed left-0 top-[100px] w-full h-dvh flex justify-between z-50',
+        ul: ' min-w-fit bg-gray-100 rounded-md overflow-hidden py-2',
         li: 'px-4 py-2 w-[150px] min-w-[150px] hover:bg-green-100 flex items-center gap-2'
     };
     
@@ -54,6 +54,7 @@ function HeaderUserBar() {
                 }}
                 className={className.container}
                 >
+                    <p></p>
                     <ul  className={className.ul} >
                         <li className={className.li}>
                             <BsCartCheck size={22} />
