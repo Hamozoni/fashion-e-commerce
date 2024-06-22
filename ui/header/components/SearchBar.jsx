@@ -14,7 +14,7 @@ function SearchBar() {
 
   const className = {
     flex : `flex items-center`,
-    searchBox: `rounded-md border bg-slate-200 border-green-100 shadow-md flex items-center w-full`,
+    searchBox: '  rounded-md border bg-slate-200 border-green-100 shadow-md flex items-center w-full',
   };
 
   const handleSubmit = ()=> {
