@@ -25,7 +25,7 @@ function SearchBar() {
   
   return (
     <section className={`${className.flex} gap-4 flex-1`}>
-         {/* <UserAddress /> */}
+         <UserAddress />
          <form action={handleSubmit}  className={className.searchBox}>
              <SearchCategories category={category} setCategory={setCategory} />
             <div className="w-full">
