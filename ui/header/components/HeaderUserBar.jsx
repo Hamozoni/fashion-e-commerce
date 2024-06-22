@@ -18,9 +18,9 @@ function HeaderUserBar() {
     const className = {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
-        container:'fixed left-0 top-[100px] w-full h-dvh flex justify-between z-50',
-        ul: ' min-w-fit bg-gray-100 rounded-md overflow-hidden py-2',
-        li: 'px-4 py-2 w-[150px] min-w-[150px] hover:bg-green-100 flex items-center gap-2'
+        container:'fixed left-0 top-0 w-full h-dvh flex justify-between z-50 bg-cyan-950 pt-[90px]',
+        ul: ' min-w-fit bg-green-100 rounded-md overflow-hidden py-2',
+        li: 'px-4 py-2 w-[150px] min-w-[150px] h-fit mt-[90px] hover:bg-green-50 flex items-center gap-2'
     };
     
   return (
