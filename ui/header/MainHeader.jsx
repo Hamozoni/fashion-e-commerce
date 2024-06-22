@@ -27,7 +27,7 @@ import HeaderCart from "./components/headerCart"
             </div>
             <section className={`${className.flex} flex-1`}>
                 <SearchBar />
-                <Categories/>
+                {/* <Categories/> */}
                 <HeaderUserBar />
                 <HeaderCart/>
             </section>

@@ -2,7 +2,7 @@
 
 import { IoSearchSharp } from "react-icons/io5";
 import UserAddress from "../components/userAddress";
-import RearchCategories from "./searchCategories"
+import SearchCategories from "./searchCategories"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -18,14 +18,16 @@ function SearchBar() {
   };
 
   const handleSubmit = ()=> {
-    router.push(`/search/${query}?category=${category}`)
+    if(query.length > 2){
+      router.push(`/search/${query}?category=${category}`)
+    }
   }
   
   return (
     <section className={`${className.flex} gap-4 flex-1`}>
-         <UserAddress />
+         {/* <UserAddress /> */}
          <form action={handleSubmit}  className={className.searchBox}>
-             <RearchCategories category={category} setCategory={setCategory} />
+             <SearchCategories category={category} setCategory={setCategory} />
             <div className="w-full">
                 <input
                     value={query}

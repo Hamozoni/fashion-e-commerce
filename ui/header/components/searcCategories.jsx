@@ -7,7 +7,7 @@ import Overlay from "../../../components/Overlay";
 
 const categories = ["all","men","women","kids"]
 
-function RearchCategories({category,setCategory}) {
+function SearchCategories({category,setCategory}) {
   
   const [isCategory,setIsCategory] = useState(false);
 
@@ -55,4 +55,4 @@ function RearchCategories({category,setCategory}) {
   )
 }
 
-export default RearchCategories
+export default SearchCategories
