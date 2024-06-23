@@ -5,6 +5,7 @@ import SearchCategories from "./searchCategories"
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppContext } from "../../../app/contextProvider";
+import Overlay from "../../../components/Overlay";
 
 function SearchBar() {
 
@@ -26,19 +27,20 @@ function SearchBar() {
   const handleSubmit = ()=> {
     if(query.length > 2){
       router.push(`/search/${query}?category=${category}`)
+      setIsMoble(false)
     }
   };
 
   const SearchForm = ({classN})=> {
     return (
-      <section className={`${classN} ${className.flex} gap-4 flex-1`}>
+      <section className={`${classN} ${className.flex} gap-4 flex-1  bg-green-100`}>
          <form action={handleSubmit}  className={className.searchBox}>
              <SearchCategories category={category} setCategory={setCategory} />
             <div className="w-full">
                 <input
                     value={query}
                     onChange={(e)=> setQuery(e.target.value)}
-                    className="w-full p-2 bg-transparent text-sm font-bold "
+                    className="w-full p-2 bg-transparent text-sm font-bold bg-gray-50 rounded-md "
                     type="text" 
                     placeholder="search myh store" 
                     />
@@ -60,7 +62,10 @@ function SearchBar() {
       <>
       {
           isMobile &&
-         <SearchForm classN='fixed left-1 top-1 w-full z-50'/>
+          <>
+             <Overlay onClick={()=> setIsMoble(false)}/>
+            <SearchForm classN='fixed left-0 top-1 w-full z-50'/>
+          </>
       }
       <button 
       onClick={()=> setIsMoble(!isMobile)}
