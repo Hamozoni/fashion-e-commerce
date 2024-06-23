@@ -13,6 +13,7 @@ function SearchBar() {
 
   console.log(innerWidth)
   const [query,setQuery] = useState('');
+  const [isMobile,setIsMoble] = useState(false);
   const [category,setCategory] = useState('all')
   const router = useRouter();
 
@@ -28,9 +29,9 @@ function SearchBar() {
     }
   };
 
-  const SearchForm = ()=> {
+  const SearchForm = ({className})=> {
     return (
-      <section className={`${className.flex} gap-4 flex-1`}>
+      <section className={`${className} ${className.flex} gap-4 flex-1`}>
          <form action={handleSubmit}  className={className.searchBox}>
              <SearchCategories category={category} setCategory={setCategory} />
             <div className="w-full">
@@ -54,11 +55,19 @@ function SearchBar() {
     <>
     {
       innerWidth > 720 ?
-       <SearchForm />
-    :(
-      <button className={className.serchBtn}>
+       <SearchForm className=''/>
+    : (
+      <>
+      {
+          isMobile &&
+         <SearchForm className='fixed left-1 top-1 w-full'/>
+      }
+      <button 
+      onClick={()=> setIsMoble(true)}
+      className={className.serchBtn}>
         <IoSearchSharp size={22} />
       </button>
+      </>
     )
     }
     
