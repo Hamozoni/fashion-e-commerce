@@ -7,7 +7,7 @@ const MobileMenu = () => {
   return (
     <section>
         <h3>
-            <TiThMenuOutline />
+            <TiThMenuOutline size={22} />
         </h3>
         <div className={className.menuContainer}>
             

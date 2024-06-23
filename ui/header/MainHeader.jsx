@@ -1,12 +1,15 @@
-
+"use client";
 import Link from "next/link";
 import HeaderUserBar from "./components/HeaderUserBar";
 import Categories from "../../components/Categories";
 import SearchBar from "./components/SearchBar";
-import UserAddress from "./components/userAddress"
+import UserAddress from "./components/userAddress";
 
-import HeaderCart from "./components/headerCart"
+import HeaderCart from "./components/headerCart";
+import MobileMenu from "./components/mobileMenu"
 
+import { AppContext } from "../../app/contextProvider";
+import { useContext } from "react";
 
  function MainHeader () {
 
@@ -14,7 +17,7 @@ import HeaderCart from "./components/headerCart"
         flex:  'flex items-center gap-4 relative',
     };
 
-
+  const {innerWidth} = useContext(AppContext)
 
 
   return (
@@ -31,9 +34,17 @@ import HeaderCart from "./components/headerCart"
             <section className={`${className.flex}`}>
                 <UserAddress/>
                 <SearchBar />
-                <Categories />
+                {
+                    innerWidth > 619 &&
+                    <Categories />
+                }
                 <HeaderUserBar />
                 <HeaderCart/>
+                {
+                    innerWidth < 620 && 
+                    <MobileMenu/>
+                    
+                }
             </section>
         </div>
     </header>
