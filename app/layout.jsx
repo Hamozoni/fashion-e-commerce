@@ -1,6 +1,7 @@
 
 import MainHeader from "../ui/header/MainHeader";
 import ReduxProvider from "./ReduxProvider";
+import ContexProvider from "./contextProvider"
 import { SessionProvider } from "next-auth/react";
 import { auth } from "../auth";
 
@@ -17,14 +18,16 @@ export default async function RootLayout({ children }) {
   return (
     <SessionProvider session={session}>
       <html lang="en">
-        <body>
-          <ReduxProvider>
-            <main>
-                <MainHeader />
-                {children}
-            </main>
-          </ReduxProvider>
-        </body>
+       <ContexProvider>
+          <body>
+            <ReduxProvider>
+              <main>
+                  <MainHeader />
+                  {children}
+              </main>
+            </ReduxProvider>
+          </body>
+       </ContexProvider>
     </html>
 
     </SessionProvider>
