@@ -1,7 +1,6 @@
 "use client";
 
 import { IoSearchSharp } from "react-icons/io5";
-import UserAddress from "../components/userAddress";
 import SearchCategories from "./searchCategories"
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -19,18 +18,19 @@ function SearchBar() {
 
   const className = {
     flex : `flex items-center`,
-    searchBox: '  rounded-md border bg-slate-200 border-green-100 shadow-md flex items-center w-full',
+    searchBox: 'rounded-md border bg-slate-200 border-green-100 shadow-md flex items-center w-full',
+    serchBtn: 'bg-lime-900 min-w-fit text-slate-300 py-2.5 px-5 min-h-full'
   };
 
   const handleSubmit = ()=> {
     if(query.length > 2){
       router.push(`/search/${query}?category=${category}`)
     }
-  }
-  
-  return (
-    <section className={`${className.flex} gap-4 flex-1`}>
-         <UserAddress />
+  };
+
+  const SearchForm = ()=> {
+    return (
+      <section className={`${className.flex} gap-4 flex-1`}>
          <form action={handleSubmit}  className={className.searchBox}>
              <SearchCategories category={category} setCategory={setCategory} />
             <div className="w-full">
@@ -42,11 +42,27 @@ function SearchBar() {
                     placeholder="search myh store" 
                     />
             </div>
-            <button className='bg-lime-900 min-w-fit text-slate-300 py-2.5 px-5 min-h-full'>
+            <button className={className.serchBtn}>
                 <IoSearchSharp size={22} />
             </button>
          </form>
     </section>
+    )
+  }
+  
+  return (
+    <>
+    {
+      innerWidth > 720 ?
+       <SearchForm />
+    :(
+      <button className={className.serchBtn}>
+        <IoSearchSharp size={22} />
+      </button>
+    )
+    }
+    
+    </>
   )
 }
 
