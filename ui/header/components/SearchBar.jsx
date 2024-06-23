@@ -29,9 +29,9 @@ function SearchBar() {
     }
   };
 
-  const SearchForm = ({className})=> {
+  const SearchForm = ({classN})=> {
     return (
-      <section className={`${className} ${className.flex} gap-4 flex-1`}>
+      <section className={`${classN} ${className.flex} gap-4 flex-1`}>
          <form action={handleSubmit}  className={className.searchBox}>
              <SearchCategories category={category} setCategory={setCategory} />
             <div className="w-full">
@@ -60,10 +60,10 @@ function SearchBar() {
       <>
       {
           isMobile &&
-         <SearchForm className='fixed left-1 top-1 w-full'/>
+         <SearchForm classN='fixed left-1 top-1 w-full z-50'/>
       }
       <button 
-      onClick={()=> setIsMoble(true)}
+      onClick={()=> setIsMoble(!isMobile)}
       className={className.serchBtn}>
         <IoSearchSharp size={22} />
       </button>
