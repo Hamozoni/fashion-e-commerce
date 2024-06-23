@@ -36,7 +36,7 @@ function SearchBar() {
       <section className={`${classN} ${className.flex} gap-4 flex-1  bg-green-100`}>
          <form action={handleSubmit}  className={className.searchBox}>
              <SearchCategories category={category} setCategory={setCategory} />
-            <div className="w-full">
+            <div className="w-full p-2">
                 <input
                     value={query}
                     onChange={(e)=> setQuery(e.target.value)}

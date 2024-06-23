@@ -3,6 +3,7 @@ import Link from "next/link";
 import HeaderUserBar from "./components/HeaderUserBar";
 import Categories from "../../components/Categories";
 import SearchBar from "./components/SearchBar";
+import UserAddress from "./components/userAddress"
 
 import HeaderCart from "./components/headerCart"
 
@@ -28,6 +29,7 @@ import HeaderCart from "./components/headerCart"
                 </Link>
             </div>
             <section className={`${className.flex}`}>
+                <UserAddress/>
                 <SearchBar />
                 <Categories />
                 <HeaderUserBar />
