@@ -3,11 +3,16 @@
 import { IoSearchSharp } from "react-icons/io5";
 import UserAddress from "../components/userAddress";
 import SearchCategories from "./searchCategories"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AppContext } from "../../../app/contextProvider";
 
 function SearchBar() {
 
+
+  const {innerWidth} = useContext(AppContext);
+
+  console.log(innerWidth)
   const [query,setQuery] = useState('');
   const [category,setCategory] = useState('all')
   const router = useRouter();
