@@ -39,7 +39,7 @@ function SignOut() {
             <>
               <Overlay onClick={()=> ''} />
               <div className="fixed top-0 left-0 w-[100vw] h-[100vh] flex justify-center items-center z-50">
-                  <SyncLoader size={30} />
+                  <SyncLoader size={22} color="#166534" />
               </div>
             </>
         }

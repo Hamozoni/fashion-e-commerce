@@ -11,19 +11,13 @@ import { useSearchParams } from "next/navigation";
 
 function AuthSocial({text,link,page}) {
 
-    const callbackUrl = useSearchParams().get("callback")
-
-    const [isLoading,startTranation] = useTransition()
+    const callbackUrl = useSearchParams().get("callback");
+    const [isLoading,startTranation] = useTransition();
 
     const OauthSignIn = (provider)=> {
         startTranation(()=> {
             signIn(provider,{
                 callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT
-            })
-            .then((data)=> {
-
-                console.log(data)
-
             })
         })
     }
@@ -36,7 +30,6 @@ function AuthSocial({text,link,page}) {
     <div className="relative">
         <div className="flex items-center justify-between">
             <button 
-               
                 onClick={()=> OauthSignIn("github")}
                 className={className.socialBtn}
                 ><SiGithub size={24}/> {page === 'logIn' ? "login " :"sign up "} with github
@@ -49,7 +42,10 @@ function AuthSocial({text,link,page}) {
         </div>
         <div 
             className="text-center p-3 ">
-            <Link href={link} className="capitalize text-green-800 font-medium hover:text-green-700">
+            <Link 
+                href={link} 
+                className="capitalize text-green-800 font-medium hover:text-green-700"
+                >
                 {text}
             </Link>
         </div>
@@ -57,7 +53,7 @@ function AuthSocial({text,link,page}) {
             isLoading && <>
               <Overlay />
               <div className="z-50 absolute left-0 top-0 w-full flex justify-center items-center">
-                 <PropagateLoader color="green" size={30} />
+                 <PropagateLoader color="#166534" size={22} />
               </div>
             </>
         }
