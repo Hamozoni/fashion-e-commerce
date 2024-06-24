@@ -8,7 +8,7 @@ const MobileMenu = () => {
   const [isCategory,setIsCategory] = useState(false)
 
     const className = {
-        menuContainer: 'flex items-center justify-center fixed left-0 top-[120px] z-50 w-full h-[120px] bg-green-100',
+        menuContainer: 'flex items-center justify-center fixed left-0 z-50 w-full bg-green-100',
     }
   return (
     <section>
@@ -19,7 +19,7 @@ const MobileMenu = () => {
           isCategory && (
             <>
               <Overlay onClick={()=> setIsCategory(false)}/>
-              <div className={className.menuContainer}>
+              <div className={className.menuContainer} style={{height:'45px',top: '48px'}}>
                   <Categories/>
               </div>
             </>
