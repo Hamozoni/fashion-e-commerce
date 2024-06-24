@@ -21,7 +21,7 @@ function SearchBar() {
   const className = {
     flex : `flex items-center`,
     searchBox: 'rounded-md border bg-slate-200 border-green-100 shadow-md flex items-center w-full',
-    serchBtn: 'bg-lime-900 min-w-fit text-slate-300 py-2.5 px-5 min-h-full'
+    serchBtn: 'bg-green-100 min-w-fit text-green-800 py-2.5 px-5 min-h-full'
   };
 
   const handleSubmit = ()=> {
@@ -33,10 +33,10 @@ function SearchBar() {
 
   const SearchForm = ({classN})=> {
     return (
-      <section className={`${classN} ${className.flex} gap-4 flex-1  bg-green-100`}>
+      <section className={`${classN} ${className.flex} gap-4 flex-1  bg-green-100 rounded-md`}>
          <form action={handleSubmit}  className={className.searchBox}>
              <SearchCategories category={category} setCategory={setCategory} />
-            <div className="w-full p-2">
+            <div className="w-full">
                 <input
                     value={query}
                     onChange={(e)=> setQuery(e.target.value)}

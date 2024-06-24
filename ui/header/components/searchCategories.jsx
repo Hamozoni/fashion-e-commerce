@@ -28,7 +28,7 @@ function SearchCategories({category,setCategory}) {
           className={className.catgory} 
           onClick={()=> setIsCategory(!isCategory)}
           >
-          <h6 className="min-w-[80px] w-[80px]">{category}</h6>
+          <h6 className="w-[55px] min-w-fit">{category}</h6>
           <IoMdArrowDropdown/>
       </div>
       {

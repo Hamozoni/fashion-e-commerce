@@ -31,17 +31,17 @@ import { useContext } from "react";
                     system
                 </Link>
             </div>
-            <section className={`${className.flex}`}>
+            <section className={`${className.flex} flex-1 justify-end`}>
                 <UserAddress/>
                 <SearchBar />
                 {
-                    innerWidth > 619 &&
+                    innerWidth > 949 &&
                     <Categories />
                 }
                 <HeaderUserBar />
                 <HeaderCart/>
                 {
-                    innerWidth < 620 && 
+                    innerWidth < 950 && 
                     <MobileMenu/>
                     
                 }
