@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className="flex align-middle justify-between bg-gray-800 p-6 lg:px-10">
         <Link href={`/`} className="text-2xl font-bold uppercase text-slate-100">
-            Admin
+          system Admin
         </Link>
         <nav className="flex align-middle gap-5">
             <Link href={`/admin/dashbourd`} className={className.link}>dashbourd</Link>
