@@ -36,7 +36,7 @@ function CartSummary() {
 
 
   return (
-    <div className="w-[350px]">
+    <div className="w-full">
         <header className={`${className.section} bg-green-50`}>
             <div className="flex items-center gap-2 max-w-fit mx-auto">
                 <MdOutlineLocalShipping size={22}/>
@@ -62,11 +62,11 @@ function CartSummary() {
             </Link>
         </div>
 
-        <div className={className.section}>
+        <footer className={className.section}>
             <ul className="flex items-center gap-2 flex-wrap justify-center">
                 {payment}
             </ul>
-        </div>
+        </footer>
     </div>
   )
 }
