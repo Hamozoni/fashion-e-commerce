@@ -6,7 +6,7 @@ export const AppContext = createContext();
 
 const ContextProvider = ({children}) => {
 
-    const [innerWidth,setInnerWidth] = useState(480);
+    const [innerWidth,setInnerWidth] = useState(0);
 
     useEffect(()=> {
         console.log(window.innerWidth);

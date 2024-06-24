@@ -8,7 +8,7 @@ const MobileMenu = () => {
   const [isCategory,setIsCategory] = useState(false)
 
     const className = {
-        menuContainer: 'fixed left-1 top-1 z-50 w-full',
+        menuContainer: 'flex items-center justify-center fixed left-0 top-[120px] z-50 w-full h-[120px] bg-green-100',
     }
   return (
     <section>
