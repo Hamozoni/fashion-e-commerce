@@ -20,7 +20,7 @@ function CategoriesCards() {
                                       </h4>
 \                                  </div>
                                     <Image 
-                                        className="max-h-[230px]"  
+                                        className="max-h-[230px] object-cover"  
                                         src={cate.image} alt={cate.name} 
                                         height="230" 
                                         width='550'

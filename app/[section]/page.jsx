@@ -13,14 +13,21 @@ async function page({params,searchParams}) {
 
 
     return (
-        <div className="p-4 lg:px-8">
-            {
-                data?.map((product)=> (
-                    <ProductCard product={product}/>
-                ))
-            }
+        <section className="p-4 lg:px-8">
+            <header>
+                <h4 className="pb-3 capitalize font-bold text-xl text-green-800"> 
+                    {section} {sub} products:
+                </h4>
+            </header>
+            <div className="flex gap-3" >
+                {
+                    data?.map((product)=> (
+                        <ProductCard product={product}/>
+                    ))
+                }
+            </div>
 
-        </div>
+        </section>
     )
 }
 

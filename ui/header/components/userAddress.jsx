@@ -1,18 +1,21 @@
 "use client";
 import {useCurrentUser} from "../../../hooks/useCurrentUser";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import Overlay  from "../../../components/Overlay"
 import AddressMap from "../../../components/AddressMap";
+import { AppContext } from "../../../app/contextProvider";
 
 function UserAddress() {
+
+    const {innerWidth} = useContext(AppContext)
 
     const [isMapOpen,setIsMapOpen] = useState(false);
     const [isUpdateAddress,setIsUpdateAddress] = useState(false);
     const user = useCurrentUser();
     
     const className = {
-        delivery: 'flex items-center text-sm font-medium cursor-pointer hover:text-gray-700 hover:font-medium'
+        delivery: 'flex items-center text-sm font-medium cursor-pointer hover:text-gray-700 hover:font-medium line-clamp-1'
     }
 
   return (
@@ -23,7 +26,7 @@ function UserAddress() {
                     user?.address ? 
                     <button className={className.delivery} onClick={()=> setIsUpdateAddress(true)}> 
                         <IoLocationOutline size={22} />
-                        {user?.address?.city}
+                        {innerWidth < 500 ? user?.address?.city.slice(0,7) + '...' : user?.address?.city}
                     </button>
                     :
                     <button className={className.delivery} onClick={()=> setIsMapOpen(true)}> 
