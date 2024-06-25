@@ -22,8 +22,8 @@ function WhriteReview() {
         {
             showModel ? 
             <>
-                <div className="fixed top-0 left-1/2 translate-x-[-50%] w-fit bg-green-50">
-                    <span><RxCross2 /></span>
+                <div className="fixed top-0 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-fit bg-green-50">
+                    <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                     <section className="">
                         <h3>Write a review</h3>
                         <p>Tell us what you think about this product</p>
