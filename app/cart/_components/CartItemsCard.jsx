@@ -10,12 +10,12 @@ function CartItemsCard({product}) {
     const dispatch = useAppDispatch();
 
   return (
-    <div className="sm:flex gap-3 items-center p-3 mb-3 rounded-md shadow-sm border border-gray-50 w-full">
+    <div className="sm:flex gap-3 items-center p-3 mb-5 rounded-md shadow-sm border border-gray-50 w-full">
         <Link 
             href={`/product/${product?.id}`}
-            className="flex items-center justify-center rounded-sm shadow-md border border-gray-50">
+            className="flex items-center justify-center mb-3 sm:mb-0">
             <Image
-                className="min-w-[150px] max-h-[150px] " 
+                className="" 
                 src={product?.image?.replace("public","")}
                 width={150}
                 height={150}
