@@ -12,10 +12,10 @@ function WhriteReview() {
 
     <div className="">
         <div className="py-5 border-b border-green-100">
-            <h6 className="text-green-800 pb-2">Share your thoughts with other customers</h6>
+            <h6 className="text-green-800 pb-2 text-lg font-bold">Share your thoughts with other customers</h6>
             <button 
                     onClick={()=> setShowModel(true)}
-                    className="px-10 py-1 rounded-md border border-green-200 hover:bg-green-100 capitalize">
+                    className="px-10 py-1 w-full bg-green-50 rounded-md border border-green-200 hover:bg-green-100 capitalize">
                     whrite a review
             </button>
         </div>
