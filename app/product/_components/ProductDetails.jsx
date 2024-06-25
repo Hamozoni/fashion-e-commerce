@@ -29,7 +29,7 @@ function ProductDetails({product}) {
     },[]);
 
   return (
-    <div className="flex gap-5">
+    <div className="md:flex gap-5">
         <ImagesGalary 
             productImages={imagesGroupBy(product.images,'color')} 
             selectedColor={selectedColor}

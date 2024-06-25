@@ -9,7 +9,7 @@ function RatingsReviews() {
         <h4 className="text-lg  font-bold text-green-950">
             Product Ratings & Reviews
         </h4>
-        <div className="flex gap-5 pt-3 ">
+        <div className="md:flex gap-5 pt-3 ">
             <RatingInfo />
             <section className="flex-1 basis-0.5">
               <h5 
