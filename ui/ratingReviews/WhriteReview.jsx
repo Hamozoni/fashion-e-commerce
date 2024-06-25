@@ -40,13 +40,31 @@ function WhriteReview() {
                         </div>
                         <form  >
                             <div className="">
-                                <label htmlFor="review"> Share your experience</label>
-                                <textarea id="review" cols="30" rows="10"></textarea>
+                                <label 
+                                    className="pb-3"
+                                    htmlFor="review"
+                                    > Share your experience
+                                </label>
+                                <textarea 
+                                    className="w-full" 
+                                    id="review" 
+                                    cols="30" 
+                                    rows="8"
+                                    placeholder="write a review..."
+                                    >
+
+                                </textarea>
 
                             </div>
                             <div className="">
                                 <label htmlFor="title"></label>
-                                <textarea id="title" cols="30" rows="10"></textarea>
+                                <textarea 
+                                    className="w-full" 
+                                    id="title" 
+                                    cols="30" 
+                                    rows="3"
+                                    placeholder="review title..."
+                                    ></textarea>
                             </div>
                             <div className="">
                                 <button>cancel</button>
