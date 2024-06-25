@@ -8,6 +8,10 @@ function WhriteReview() {
 
     const [showModel,setShowModel] = useState(false);
 
+    const className = {
+        WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] bg-green-50"
+    }
+
   return (
 
     <div className="">
@@ -22,7 +26,7 @@ function WhriteReview() {
         {
             showModel ? 
             <>
-                <div className="fixed top-0 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-fit bg-green-50">
+                <div className={className.WhriteReview}>
                     <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                     <section className="">
                         <h3>Write a review</h3>
