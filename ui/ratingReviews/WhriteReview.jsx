@@ -60,6 +60,7 @@ function WhriteReview({product}) {
     };
 
     const handleReview = ()=> {
+
         console.log("submted")
     }
   return (

@@ -79,7 +79,8 @@ model reviews {
   text      String
   productId String
   autherId  String
-  rating    Int    @default(7)
+  rating    Int    @default(3)
+  title String?
   product product @relation(fields: [productId],references: [id],onDelete: Cascade)
   auther  user @relation(fields: [autherId],references: [id],onDelete: Cascade)
 
