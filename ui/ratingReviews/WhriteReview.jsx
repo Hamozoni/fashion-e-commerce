@@ -3,13 +3,15 @@ import { RxCross2 } from "react-icons/rx";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import Overlay from "../../components/Overlay";
-
+import { BiSave } from "react-icons/bi";
+import { FcCancel } from "react-icons/fc";
 function WhriteReview() {
 
     const [showModel,setShowModel] = useState(false);
 
     const className = {
-        WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] bg-green-50"
+        WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] bg-green-50",
+        btn:'flex items-center justify-center gap-2 flex-1 border py-1 rounded-md text-lg capitalize font-bold'
     }
 
   return (
@@ -66,9 +68,13 @@ function WhriteReview() {
                                     placeholder="review title..."
                                     ></textarea>
                             </div>
-                            <div className="">
-                                <button>cancel</button>
-                                <button>save</button>
+                            <div className="flex items-center justify-between gap-3">
+                                <button className={`${className.btn} border-green-200 text-green-800`}>
+                                    <BiSave />save
+                                </button>
+                                <button className={`${className.btn} border-rose-200 text-rose-700`}>
+                                    <FcCancel/> cancel
+                                </button>
                             </div>
 
                         </form>
