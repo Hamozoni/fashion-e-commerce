@@ -23,7 +23,7 @@ async function  productPage({params}) {
         <h4 className="pb-2 text-lg font-bold text-green-900">Product description</h4>
         <aside className="text-green-800">{data?.description}</aside>
       </section>
-      <RatingReviews/>
+      <RatingReviews product={data}/>
     </section>
   )
 }

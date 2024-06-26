@@ -5,20 +5,51 @@ import { useState } from "react";
 import Overlay from "../../components/Overlay";
 import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
-function WhriteReview() {
+import Image from "next/image";
+function WhriteReview({product}) {
 
     const [showModel,setShowModel] = useState(false);
 
     const className = {
-        WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] bg-green-50",
+        WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] md:w-[550px] bg-green-50",
         btn:'flex items-center justify-center gap-2 flex-1 border py-1 rounded-md text-lg capitalize font-bold'
+    }
+
+
+    const ProductRating = ()=> {
+        return (
+            <div className="">
+                <div className="">
+                    <Image 
+                        src={product?.images[0]?.imagePath?.replace("public","")} 
+                        width={200} 
+                        height={200}
+                        />
+                </div>
+                <div className="">
+                    <h5>{product?.name}</h5>
+                    <div className="">
+                        <h6>your rating ?</h6>
+                        <div className="flex items-center">
+                            <button><FaStar/></button>
+                            <button><FaStar/></button>
+                            <button><FaStar/></button>
+                            <button><FaStar/></button>
+                            <button><FaStar/></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 
   return (
 
     <div className="">
         <div className="py-5 border-b border-green-100">
-            <h6 className="text-green-800 pb-2 text-lg font-bold">Share your thoughts with other customers</h6>
+            <h6 className="text-green-800 pb-2 text-lg font-bold"
+              >Share your thoughts with other customers
+            </h6>
             <button 
                     onClick={()=> setShowModel(true)}
                     className="px-10 py-1 w-full bg-green-50 rounded-md border border-green-200 hover:bg-green-100 capitalize">
@@ -29,26 +60,24 @@ function WhriteReview() {
             showModel ? 
             <>
                 <div className={className.WhriteReview}>
-                    <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                     <section className="">
-                        <h3>Write a review</h3>
-                        <p>Tell us what you think about this product</p>
-                        <div className="flex items-center">
-                            <button><FaStar/></button>
-                            <button><FaStar/></button>
-                            <button><FaStar/></button>
-                            <button><FaStar/></button>
-                            <button><FaStar/></button>
-                        </div>
+                        <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
+                        <header className="text-center mb-4">
+                            <h3 className="text-lg text-green-900 font-bold"
+                                >Write a review
+                            </h3>
+                            <p className="text-green-700">Tell us what you think about this product</p>
+                        </header>
+                        <ProductRating />
                         <form  >
                             <div className="">
                                 <label 
                                     className="pb-3"
                                     htmlFor="review"
-                                    > Share your experience
+                                    > Share your experience:
                                 </label>
                                 <textarea 
-                                    className="w-full" 
+                                    className="w-full p-3" 
                                     id="review" 
                                     cols="30" 
                                     rows="8"
@@ -59,23 +88,25 @@ function WhriteReview() {
 
                             </div>
                             <div className="">
-                                <label htmlFor="title"></label>
+                                <label htmlFor="title">
+                                    give it a title
+                                </label>
                                 <textarea 
-                                    className="w-full" 
+                                    className="w-full p-3" 
                                     id="title" 
                                     cols="30" 
                                     rows="3"
                                     placeholder="review title..."
                                     ></textarea>
                             </div>
-                            <div className="flex items-center justify-between gap-3">
-                                <button className={`${className.btn} border-green-200 text-green-800`}>
+                            <footer className="flex items-center justify-between gap-3">
+                                <button className={`${className.btn} border-green-200 text-green-800 hover:bg-green-100`}>
                                     <BiSave />save
                                 </button>
-                                <button className={`${className.btn} border-rose-200 text-rose-700`}>
+                                <button className={`${className.btn} border-rose-200 text-rose-700 hover:bg-rose-100`}>
                                     <FcCancel/> cancel
                                 </button>
-                            </div>
+                            </footer>
 
                         </form>
                     </section>

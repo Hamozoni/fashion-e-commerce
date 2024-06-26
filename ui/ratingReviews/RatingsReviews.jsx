@@ -2,7 +2,7 @@ import RatingInfo from "./RatingInfo";
 import WriteReview from "./WhriteReview";
 import RatingCard from './RatingCard'
 
-function RatingsReviews() {
+function RatingsReviews({product}) {
 
   return (
     <section className="py-4">
@@ -16,7 +16,7 @@ function RatingsReviews() {
                 className="text-md font-medium text-green-900 pb-2 mb-2 border-b border-gray-100"
                 >6 Reviews
               </h5>
-              <WriteReview/>
+              <WriteReview product={product}/>
               <RatingCard />
             </section>
         </div>
