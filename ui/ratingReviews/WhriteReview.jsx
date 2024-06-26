@@ -1,15 +1,24 @@
 "use client";
-import { RxCross2 } from "react-icons/rx";
+
+import { useRef, useState } from "react";
+import Image from "next/image";
+
+// icons
 import { FaStar } from "react-icons/fa";
-import { useState } from "react";
-import Overlay from "../../components/Overlay";
+import { RxCross2 } from "react-icons/rx";
 import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { CiStar } from "react-icons/ci";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import Image from "next/image";
 
-const stars = new Array(5).fill('star')
+// components
+import Overlay from "../../components/Overlay";
+
+// validations
+import {ratingSchema} from "../../validationSchemas/ratingSchema";
+
+const stars = new Array(5).fill('star');
+
 function WhriteReview({product}) {
 
     const [showModel,setShowModel] = useState(false);
@@ -59,7 +68,13 @@ function WhriteReview({product}) {
         )
     };
 
+    const formRef = useRef()
+
     const handleReview = ()=> {
+
+        const formData = new FormData(formRef?.current);
+
+        formData.set("rate",rateStars);
 
         console.log("submted")
     }
@@ -89,7 +104,7 @@ function WhriteReview({product}) {
                             <p className="text-green-700">Tell us what you think about this product</p>
                         </header>
                         <ProductRating />
-                        <form action={handleReview} >
+                        <form action={handleReview} ref={formRef}>
                             <div className="w-full">
                                 <label 
                                     className="pb-3"
