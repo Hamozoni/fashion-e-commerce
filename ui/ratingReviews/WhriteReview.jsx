@@ -6,6 +6,7 @@ import Overlay from "../../components/Overlay";
 import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { CiStar } from "react-icons/ci";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import Image from "next/image";
 
 const stars = new Array(5).fill('star')
@@ -22,7 +23,7 @@ function WhriteReview({product}) {
 
     const ProductRating = ()=> {
         return (
-            <div className="flex gap-2 mb-3">
+            <div className="flex gap-2 mb-5">
                 <div className="">
                     <Image 
                         src={product?.images[0]?.imagePath?.replace("public","")} 
@@ -30,19 +31,22 @@ function WhriteReview({product}) {
                         height={200}
                         />
                 </div>
-                <div className="">
-                    <h5>{product?.name}</h5>
+                <div className="capitalize">
+                    <h5 className="text-lg text-green-900 mb-2">{product?.name}</h5>
                     <div className="">
-                        <h6>your rating ?</h6>
-                        <div className="flex items-center">
+                        <h6 className="text-green-600">your rating ?</h6>
+                        <div className="flex items-center gap-2">
 
                             {
                                 stars?.map((_,index)=> (
-                                <button onClick={()=> setRateStars(index + 1)}>
+                                <button 
+                                    key={index} 
+                                    onClick={()=> setRateStars(index + 1)}
+                                    >
                                     {
                                         rateStars > index ?
-                                        <FaStar color="yallow"/>
-                                        : <CiStar />
+                                        <FaStar size={26} color="#eab308"/>
+                                        : <CiStar size={26} color="#eab308" />
                                     }
                                 </button>
 
@@ -53,8 +57,11 @@ function WhriteReview({product}) {
                 </div>
             </div>
         )
-    }
+    };
 
+    const handleReview = ()=> {
+        console.log("submted")
+    }
   return (
 
     <div className="">
@@ -64,15 +71,15 @@ function WhriteReview({product}) {
             </h6>
             <button 
                     onClick={()=> setShowModel(true)}
-                    className="px-10 py-1 w-full bg-green-50 rounded-md border border-green-200 hover:bg-green-100 capitalize">
-                    whrite a review
+                    className="px-10 py-1 w-full flex items-center justify-center gap-2 bg-green-50 rounded-md border border-green-200 hover:bg-green-100 capitalize">
+                   <MdOutlineDriveFileRenameOutline /> whrite a review
             </button>
         </div>
         {
             showModel ? 
             <>
                 <div className={className.WhriteReview}>
-                    <section className="w-fit">
+                    <section className="h-fit">
                         <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                         <header className="text-center mb-4">
                             <h3 className="text-lg text-green-900 font-bold"
@@ -81,8 +88,8 @@ function WhriteReview({product}) {
                             <p className="text-green-700">Tell us what you think about this product</p>
                         </header>
                         <ProductRating />
-                        <form  >
-                            <div className="">
+                        <form action={handleReview} >
+                            <div className="w-full">
                                 <label 
                                     className="pb-3"
                                     htmlFor="review"
@@ -99,27 +106,29 @@ function WhriteReview({product}) {
                                 </textarea>
 
                             </div>
-                            <div className="">
+                            <div className="w-full">
                                 <label htmlFor="title">
                                     give it a title
                                 </label>
-                                <textarea 
+                                <input 
                                     className="w-full p-3" 
                                     id="title" 
-                                    cols="30" 
-                                    rows="3"
+                                    type='text'
                                     placeholder="review title..."
-                                    ></textarea>
+                                    />
                             </div>
-                            <footer className="flex items-center justify-between gap-3">
-                                <button className={`${className.btn} border-green-200 text-green-800 hover:bg-green-100`}>
+                            <footer className="flex items-center justify-between gap-3 mt-3">
+                                <button 
+                                   type="submit"
+                                    className={`${className.btn} border-green-200 text-green-800 hover:bg-green-100`}>
                                     <BiSave />save
                                 </button>
-                                <button className={`${className.btn} border-rose-200 text-rose-700 hover:bg-rose-100`}>
+                                <button 
+                                    onClick={()=> setShowModel(false)}
+                                    className={`${className.btn} border-rose-200 text-rose-700 hover:bg-rose-100`}>
                                     <FcCancel/> cancel
                                 </button>
                             </footer>
-
                         </form>
                     </section>
                 </div>
