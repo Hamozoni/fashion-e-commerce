@@ -5,20 +5,24 @@ import { useState } from "react";
 import Overlay from "../../components/Overlay";
 import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
+import { CiStar } from "react-icons/ci";
 import Image from "next/image";
+
+const stars = new Array(5).fill('star')
 function WhriteReview({product}) {
 
     const [showModel,setShowModel] = useState(false);
+    const [rateStars,setRateStars] = useState(0);
 
     const className = {
-        WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] md:w-[550px] bg-green-50",
+        WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] md:w-[550px] bg-green-50 overflow-y-auto",
         btn:'flex items-center justify-center gap-2 flex-1 border py-1 rounded-md text-lg capitalize font-bold'
     }
 
 
     const ProductRating = ()=> {
         return (
-            <div className="">
+            <div className="flex gap-2 mb-3">
                 <div className="">
                     <Image 
                         src={product?.images[0]?.imagePath?.replace("public","")} 
@@ -31,11 +35,19 @@ function WhriteReview({product}) {
                     <div className="">
                         <h6>your rating ?</h6>
                         <div className="flex items-center">
-                            <button><FaStar/></button>
-                            <button><FaStar/></button>
-                            <button><FaStar/></button>
-                            <button><FaStar/></button>
-                            <button><FaStar/></button>
+
+                            {
+                                stars?.map((_,index)=> (
+                                <button onClick={()=> setRateStars(index + 1)}>
+                                    {
+                                        rateStars > index ?
+                                        <FaStar/>
+                                        : <CiStar />
+                                    }
+                                </button>
+
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
@@ -60,7 +72,7 @@ function WhriteReview({product}) {
             showModel ? 
             <>
                 <div className={className.WhriteReview}>
-                    <section className="">
+                    <section className="w-fit">
                         <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                         <header className="text-center mb-4">
                             <h3 className="text-lg text-green-900 font-bold"
