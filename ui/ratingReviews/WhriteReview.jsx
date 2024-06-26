@@ -41,7 +41,7 @@ function WhriteReview({product}) {
                                 <button onClick={()=> setRateStars(index + 1)}>
                                     {
                                         rateStars > index ?
-                                        <FaStar/>
+                                        <FaStar color="yallow"/>
                                         : <CiStar />
                                     }
                                 </button>
