@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
 import Image from "next/image";
 
 // icons
@@ -17,8 +18,14 @@ import ZodError  from "../../ui/zodError"
 
 // validations
 import {ratingSchema} from "../../validationSchemas/ratingSchema";
+
+// hooks
 import { useCurrentUser } from "../../hooks/useCurrentUser";
-import { useRouter } from "next/navigation";
+
+// server actions
+
+import {rateProduct} from "../../actions/productRating/rateProductAcion"
+import { DotLoader } from "react-spinners";
 
 const stars = new Array(5).fill('star');
 
@@ -79,8 +86,9 @@ function WhriteReview({product}) {
     };
 
     const [error,setError] = useState(null);
+    const router = useRouter();
+    const [isPending,startTransion] = useTransition()
 
-    const router = useRouter()
 
     const handleReview = ()=> {
 
@@ -104,6 +112,17 @@ function WhriteReview({product}) {
         const formValidation = ratingSchema.safeParse(data);
 
         if(formValidation.success){
+            setError(null);
+
+            startTransion(()=> {
+                rateProduct(data)
+                .then(data=> {
+                    if(data.success) {
+                        setShowModel(false)
+                    }
+                })
+
+            })
 
         }
 
@@ -122,6 +141,15 @@ function WhriteReview({product}) {
   return (
 
     <div className="">
+        {
+            isPending && 
+            <>
+             <Overlay onClick=''/>
+             <div className="fixed top-1/2 left-1/2 w-fit">
+                <DotLoader color="#4ade80" />
+             </div>
+            </>
+        }
         <div className="py-5 border-b border-green-100">
             <h6 className="text-green-800 pb-2 text-lg font-bold"
               >Share your thoughts with other customers
