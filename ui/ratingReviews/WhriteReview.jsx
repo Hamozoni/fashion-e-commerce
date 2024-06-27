@@ -36,12 +36,6 @@ function WhriteReview({product}) {
     const [showModel,setShowModel] = useState(false);
     const [rating,setRating] = useState(0);
 
-    const className = {
-        WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] md:w-[550px] bg-green-50 overflow-y-auto",
-        btn:'flex items-center justify-center gap-2 flex-1 border py-1 rounded-md text-lg capitalize font-bold'
-    }
-
-
     const ProductRating = ()=> {
 
         const rate = rating === 1 ? 'Meh':rating === 2 ? "Okay":rating === 3 ? 'Good':rating === 4 ? 'Fab' : rating === 5 && 'Awesome';
@@ -154,6 +148,11 @@ function WhriteReview({product}) {
         console.log(formValidation)
     };
 
+    const className = {
+        WhriteReview: "fixed top-16 z-50 p-4 max-h-[550px] rounded-md left-1/2 translate-x-[-50%] w-[380px] sm:w-[600px] bg-green-50 overflow-y-auto",
+        btn:'flex items-center justify-center gap-2 flex-1 border py-1 rounded-md text-lg capitalize font-bold'
+    }
+
 
   return (
 
@@ -181,7 +180,7 @@ function WhriteReview({product}) {
             showModel ? 
             <>
                 <div className={className.WhriteReview}>
-                    <section className="h-fit">
+                    <section className="min-h-fit">
                         <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                         <header className="text-center mb-4">
                             <h3 className="text-lg text-green-900 font-bold"
@@ -191,13 +190,14 @@ function WhriteReview({product}) {
                         </header>
                         <ProductRating />
                         <form action={handleReview} ref={reviewFormRef}>
-                            <div className="w-full">
+                            <div className="w-full capitalize">
                             <label 
                                 className="mb-3 text-lg text-green-900 font-bold"
                                 htmlFor="reviewImage"
                                 > review image:
                             </label>
-                            <input 
+                            <input
+                               className="p-2 bg-white rounded-sm text-green-900  w-full" 
                                 id='reviewImage'
                                 type="file" 
                                 name='reviewImage'
@@ -224,7 +224,7 @@ function WhriteReview({product}) {
                                 <ZodError error={error} field='rateText' />
 
                             </div>
-                            <div className="w-full">
+                            <div className="w-full capitalize">
                                 <label
                                     className="mb-3 text-lg text-green-900 font-bold" 
                                     htmlFor="rateTitle">
