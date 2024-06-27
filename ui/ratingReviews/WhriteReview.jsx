@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 // icons
@@ -13,10 +13,12 @@ import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 
 // components
 import Overlay from "../../components/Overlay";
+import ZodError  from "../../ui/zodError"
 
 // validations
 import {ratingSchema} from "../../validationSchemas/ratingSchema";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { useRouter } from "next/navigation";
 
 const stars = new Array(5).fill('star');
 
@@ -73,25 +75,47 @@ function WhriteReview({product}) {
         )
     };
 
+    const [error,setError] = useState(null);
+
+    const router = useRouter()
+
     const handleReview = ()=> {
+
+
+        if(!user) {
+          router.push('auth/login');
+          setShowModel(false);
+
+            return;
+        }
 
         const data = {
             rateText,
             rateTitle,
             rating,
-            productId: product.id,
-            autherId: user.id,
+            productId: product?.id,
+            autherId: user?.id,
         }
 
 
         const formValidation = ratingSchema.safeParse(data);
+
+        if(formValidation.success){
+
+        }
+
+        if(formValidation.error){
+            setError(formValidation.error);
+        }
 
         
 
 
 
         console.log(formValidation)
-    }
+    };
+
+
   return (
 
     <div className="">
@@ -121,7 +145,7 @@ function WhriteReview({product}) {
                         <form action={handleReview}>
                             <div className="w-full">
                                 <label 
-                                    className="pb-3"
+                                    className="mb-3 text-lg text-green-900 font-bold"
                                     htmlFor="review"
                                     > Share your experience:
                                 </label>
@@ -136,10 +160,13 @@ function WhriteReview({product}) {
                                     >
 
                                 </textarea>
+                                <ZodError error={error} field='rateText' />
 
                             </div>
                             <div className="w-full">
-                                <label htmlFor="title">
+                                <label
+                                    className="mb-3 text-lg text-green-900 font-bold" 
+                                    htmlFor="title">
                                     give it a title
                                 </label>
                                 <input 
