@@ -34,7 +34,7 @@ import { LiaStarSolid } from "react-icons/lia";
 import { FaRegUser } from "react-icons/fa";
 
 
-function RatingCard() {
+async function RatingCard() {
   return (
     <div>
         {

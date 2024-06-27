@@ -1,6 +1,7 @@
 import RatingInfo from "./RatingInfo";
 import WriteReview from "./WhriteReview";
-import RatingCard from './RatingCard'
+// import RatingCard from './RatingCard';
+import Reviews from "./reviews";
 
 function RatingsReviews({product}) {
 
@@ -17,7 +18,8 @@ function RatingsReviews({product}) {
                 >6 Reviews
               </h5>
               <WriteReview product={product}/>
-              <RatingCard />
+              {/* <RatingCard /> */}
+              <Reviews productId={product?.id}/>
             </section>
         </div>
     </section>

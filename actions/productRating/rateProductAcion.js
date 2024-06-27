@@ -1,5 +1,5 @@
 "use server";
-import { fs } from "fs/promises";
+import fs from 'fs/promises';
 import { db } from "../../lip/db";
 import { ratingSchema } from "../../validationSchemas/ratingSchema"
 
