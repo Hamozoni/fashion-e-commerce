@@ -31,7 +31,7 @@ function CategoriesCards() {
                                 {
                                     cate.subName.map((sub)=> (
                                         <Link 
-                                            href={`/${cate.name}?sub=${sub.name.replace(' & '," ")}`} 
+                                            href={`/${cate.name}?sub=${sub.name.replace(' & '," ").toLowerCase()}`} 
                                             className="hover:scale-110 border border-green-200 rounded-lg min-w-[150px] bg-white flex flex-col items-center justify-center">
                                                 <div className="translate-y-[-10px]">
                                                     <Image 

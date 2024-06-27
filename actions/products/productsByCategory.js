@@ -3,8 +3,7 @@
 import {db} from '../../lip/db';
 
 export const productsByCategoryAction = async (category,subCategory)=> {
-
-
+    
     try{
         const products = await db.product.findMany({where: {
             category,

@@ -52,16 +52,16 @@ export  const categoriesData = [
         image: men,
         subName : [
             {
-                name: "T-Shirts", 
+                name: "t-thirt", 
                 image: men_t_shirts
 
             },
             {
-                name:  "Shirts",
+                name:  "shirts",
                 image: men_shirts 
             },
             {
-                name: "Jeans & Trousers",
+                name: "jeans & Trousers",
                 image: men_jeansTrousers 
             },
             {
