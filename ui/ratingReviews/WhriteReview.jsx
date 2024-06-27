@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import Image from "next/image";
 
 // icons
@@ -35,9 +35,6 @@ function WhriteReview({product}) {
 
     const [showModel,setShowModel] = useState(false);
     const [rating,setRating] = useState(0);
-    const [rateText,setRateText] = useState(null);
-    const [rateTitle,setRateTitle] = useState(null);
-    const [reviewImage,setReviewImage] = useState()
 
     const className = {
         WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] md:w-[550px] bg-green-50 overflow-y-auto",
@@ -100,11 +97,12 @@ function WhriteReview({product}) {
 
     const [error,setError] = useState(null);
     const router = useRouter();
-    const [isPending,startTransion] = useTransition()
-
+    const [isPending,startTransion] = useTransition();
+    const reviewFormRef = useRef();
 
     const handleReview = ()=> {
 
+        const formData = new FormData(reviewFormRef.current);
 
         if(!user) {
           router.push('auth/login');
@@ -113,23 +111,27 @@ function WhriteReview({product}) {
             return;
         }
 
+        formData.append('rating',rating);
+        formData.append('productId',product?.id);
+        formData.append('autherId',user?.id);
+
         const data = {
-            rateText,
-            rateTitle,
-            rating,
-            reviewImage,
-            productId: product?.id,
+            rating: +formData.get('rating'),
+            productId: product.id,
             autherId: user?.id,
+            rateText: formData.get('rateText'),
+            rateTitle: formData.get('rateTitle'),
         }
 
 
         const formValidation = ratingSchema.safeParse(data);
 
         if(formValidation.success){
+            console.log(formValidation?.data)
             setError(null);
 
             startTransion(()=> {
-                rateProduct(data)
+                rateProduct(formData)
                 .then(data=> {
                     console.log(data)
                     if(data.success) {
@@ -188,7 +190,7 @@ function WhriteReview({product}) {
                             <p className="text-green-700">Tell us what you think about this product</p>
                         </header>
                         <ProductRating />
-                        <form action={handleReview}>
+                        <form action={handleReview} ref={reviewFormRef}>
                             <div className="w-full">
                             <label 
                                 className="mb-3 text-lg text-green-900 font-bold"
@@ -196,25 +198,24 @@ function WhriteReview({product}) {
                                 > review image:
                             </label>
                             <input 
+                                id='reviewImage'
                                 type="file" 
+                                name='reviewImage'
                                 accept="image/*"
-                                value={reviewImage}
-                                onChange={e=> setReviewImage(e.target.files[0])}
                                  />
                             </div>
                             <div className="w-full">
                                 <label 
                                     className="mb-3 text-lg text-green-900 font-bold"
-                                    htmlFor="review"
+                                    htmlFor="rateText"
                                     > Share your experience:
                                 </label>
                                 <textarea 
-                                    onChange={(e)=> setRateText(e.target.value)}
                                     className="w-full p-3" 
-                                    id="review" 
+                                    id="rateText" 
                                     cols="30" 
                                     rows="8"
-                                    value={rateText}
+                                    name='rateText'
                                     placeholder="write a review..."
                                     required
                                     >
@@ -226,15 +227,14 @@ function WhriteReview({product}) {
                             <div className="w-full">
                                 <label
                                     className="mb-3 text-lg text-green-900 font-bold" 
-                                    htmlFor="title">
+                                    htmlFor="rateTitle">
                                     give it a title
                                 </label>
                                 <input 
-                                    onChange={(e)=> setRateTitle(e.target.value)}
                                     className="w-full p-3" 
-                                    id="title" 
+                                    id="rateTitle" 
                                     type='text'
-                                    value={rateTitle}
+                                    name="rateTitle"
                                     placeholder="review title..."
                                     required
                                     />
