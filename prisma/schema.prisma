@@ -75,12 +75,13 @@ model productsizes {
 }
 
 model reviews {
-  id               String   @id @default(uuid())
-  text      String
+  id        String   @id @default(uuid())
+  rateText  String
   productId String
   autherId  String
   rating    Int    @default(3)
-  title String?
+  rateTitle String?
+  reviewImage String?
   product product @relation(fields: [productId],references: [id],onDelete: Cascade)
   auther  user @relation(fields: [autherId],references: [id],onDelete: Cascade)
 

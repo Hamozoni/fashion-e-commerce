@@ -61,10 +61,12 @@ CREATE TABLE `productsizes` (
 -- CreateTable
 CREATE TABLE `reviews` (
     `id` VARCHAR(191) NOT NULL,
-    `text` VARCHAR(191) NOT NULL,
+    `rateText` VARCHAR(191) NOT NULL,
     `productId` VARCHAR(191) NOT NULL,
     `autherId` VARCHAR(191) NOT NULL,
-    `rating` INTEGER NOT NULL DEFAULT 7,
+    `rating` INTEGER NOT NULL DEFAULT 3,
+    `rateTitle` VARCHAR(191) NULL,
+    `reviewImage` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
