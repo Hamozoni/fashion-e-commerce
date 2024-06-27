@@ -16,13 +16,18 @@ import Overlay from "../../components/Overlay";
 
 // validations
 import {ratingSchema} from "../../validationSchemas/ratingSchema";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 const stars = new Array(5).fill('star');
 
 function WhriteReview({product}) {
 
+    const user = useCurrentUser()
+
     const [showModel,setShowModel] = useState(false);
-    const [rateStars,setRateStars] = useState(0);
+    const [rating,setRating] = useState(0);
+    const [rateText,setRateText] = useState(null);
+    const [rateTitle,setRateTitle] = useState(null);
 
     const className = {
         WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] md:w-[550px] bg-green-50 overflow-y-auto",
@@ -50,10 +55,10 @@ function WhriteReview({product}) {
                                 stars?.map((_,index)=> (
                                 <button 
                                     key={index} 
-                                    onClick={()=> setRateStars(index + 1)}
+                                    onClick={()=> setRating(+index + 1)}
                                     >
                                     {
-                                        rateStars > index ?
+                                        rating > index ?
                                         <FaStar size={26} color="#eab308"/>
                                         : <CiStar size={26} color="#eab308" />
                                     }
@@ -68,15 +73,24 @@ function WhriteReview({product}) {
         )
     };
 
-    const formRef = useRef()
-
     const handleReview = ()=> {
 
-        const formData = new FormData(formRef?.current);
+        const data = {
+            rateText,
+            rateTitle,
+            rating,
+            productId: product.id,
+            autherId: user.id,
+        }
 
-        formData.set("rate",rateStars);
 
-        console.log("submted")
+        const formValidation = ratingSchema.safeParse(data);
+
+        
+
+
+
+        console.log(formValidation)
     }
   return (
 
@@ -104,7 +118,7 @@ function WhriteReview({product}) {
                             <p className="text-green-700">Tell us what you think about this product</p>
                         </header>
                         <ProductRating />
-                        <form action={handleReview} ref={formRef}>
+                        <form action={handleReview}>
                             <div className="w-full">
                                 <label 
                                     className="pb-3"
@@ -112,10 +126,12 @@ function WhriteReview({product}) {
                                     > Share your experience:
                                 </label>
                                 <textarea 
+                                    onChange={(e)=> setRateText(e.target.value)}
                                     className="w-full p-3" 
                                     id="review" 
                                     cols="30" 
                                     rows="8"
+                                    value={rateText}
                                     placeholder="write a review..."
                                     >
 
@@ -127,9 +143,11 @@ function WhriteReview({product}) {
                                     give it a title
                                 </label>
                                 <input 
+                                    onChange={(e)=> setRateTitle(e.target.value)}
                                     className="w-full p-3" 
                                     id="title" 
                                     type='text'
+                                    value={rateTitle}
                                     placeholder="review title..."
                                     />
                             </div>
