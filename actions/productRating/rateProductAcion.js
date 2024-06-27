@@ -10,6 +10,7 @@ export const rateProduct = async(data)=> {
     };
 
     if(validateForm.success) {
+        console.log(data)
         return {success: "review has been committed successfuly"}
     }
 

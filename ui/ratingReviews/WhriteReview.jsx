@@ -37,6 +37,7 @@ function WhriteReview({product}) {
     const [rating,setRating] = useState(0);
     const [rateText,setRateText] = useState(null);
     const [rateTitle,setRateTitle] = useState(null);
+    const [reviewImage,setReviewImage] = useState()
 
     const className = {
         WhriteReview: "fixed top-16 z-50 p-4 rounded-md left-1/2 translate-x-[-50%] w-[350px] md:w-[550px] bg-green-50 overflow-y-auto",
@@ -45,9 +46,12 @@ function WhriteReview({product}) {
 
 
     const ProductRating = ()=> {
+
+        const rate = rating === 1 ? 'Meh':rating === 2 ? "Okay":rating === 3 ? 'Good':rating === 4 ? 'Fab' : rating === 5 && 'Awesome';
+
         return (
             <div>
-                <div className="flex gap-2 mb-5">
+                <div className="flex gap-2 items-center">
                     <div className="">
                         <Image 
                             src={product?.images[0]?.imagePath?.replace("public","")} 
@@ -57,27 +61,36 @@ function WhriteReview({product}) {
                     </div>
                     <div className="capitalize">
                         <h5 className="text-lg text-green-900 mb-2">{product?.name}</h5>
-                        <div className="">
-                            <h6 className="text-green-600">your rating ?</h6>
-                            <div className="flex items-center gap-2">
+                    </div>
+                </div>
+                <div className="text-center mb-4">
+                    <h6 
+                        className="text-green-600"
+                        >your rating ? 
+                    </h6>
+                    <div className="flex items-center justify-center gap-2">
 
-                                {
-                                    stars?.map((_,index)=> (
-                                    <button 
-                                        key={index} 
-                                        onClick={()=> setRating(+index + 1)}
-                                        >
-                                        {
-                                            rating > index ?
-                                            <FaStar size={26} color="#eab308"/>
-                                            : <CiStar size={26} color="#eab308" />
-                                        }
-                                    </button>
+                        <div className="flex items-center justify-center gap-2">
+                            {
+                                stars?.map((_,index)=> (
+                                <button 
+                                    key={index} 
+                                    onClick={()=> setRating(+index + 1)}
+                                    >
+                                    {
+                                        rating > index ?
+                                        <FaStar size={26} color="#eab308"/>
+                                        : <CiStar size={26} color="#eab308" />
+                                    }
+                                </button>
 
-                                    ))
-                                }
-                            </div>
+                                ))
+                            }
+                            
                         </div>
+
+
+                        <span className="w-[60px]">{rate}</span>
                     </div>
                 </div>
                 <ZodError error={error} field='rating' />
@@ -104,6 +117,7 @@ function WhriteReview({product}) {
             rateText,
             rateTitle,
             rating,
+            reviewImage,
             productId: product?.id,
             autherId: user?.id,
         }
@@ -117,6 +131,7 @@ function WhriteReview({product}) {
             startTransion(()=> {
                 rateProduct(data)
                 .then(data=> {
+                    console.log(data)
                     if(data.success) {
                         setShowModel(false)
                     }
@@ -175,6 +190,19 @@ function WhriteReview({product}) {
                         <ProductRating />
                         <form action={handleReview}>
                             <div className="w-full">
+                            <label 
+                                className="mb-3 text-lg text-green-900 font-bold"
+                                htmlFor="reviewImage"
+                                > review image:
+                            </label>
+                            <input 
+                                type="file" 
+                                accept="image/*"
+                                value={reviewImage}
+                                onChange={e=> setReviewImage(e.target.files[0])}
+                                 />
+                            </div>
+                            <div className="w-full">
                                 <label 
                                     className="mb-3 text-lg text-green-900 font-bold"
                                     htmlFor="review"
@@ -188,6 +216,7 @@ function WhriteReview({product}) {
                                     rows="8"
                                     value={rateText}
                                     placeholder="write a review..."
+                                    required
                                     >
 
                                 </textarea>
@@ -207,6 +236,7 @@ function WhriteReview({product}) {
                                     type='text'
                                     value={rateTitle}
                                     placeholder="review title..."
+                                    required
                                     />
                                      <ZodError error={error} field='rateTitle' />
                             </div>
