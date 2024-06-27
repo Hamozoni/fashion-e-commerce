@@ -39,38 +39,41 @@ function WhriteReview({product}) {
 
     const ProductRating = ()=> {
         return (
-            <div className="flex gap-2 mb-5">
-                <div className="">
-                    <Image 
-                        src={product?.images[0]?.imagePath?.replace("public","")} 
-                        width={200} 
-                        height={200}
-                        />
-                </div>
-                <div className="capitalize">
-                    <h5 className="text-lg text-green-900 mb-2">{product?.name}</h5>
+            <div>
+                <div className="flex gap-2 mb-5">
                     <div className="">
-                        <h6 className="text-green-600">your rating ?</h6>
-                        <div className="flex items-center gap-2">
+                        <Image 
+                            src={product?.images[0]?.imagePath?.replace("public","")} 
+                            width={200} 
+                            height={200}
+                            />
+                    </div>
+                    <div className="capitalize">
+                        <h5 className="text-lg text-green-900 mb-2">{product?.name}</h5>
+                        <div className="">
+                            <h6 className="text-green-600">your rating ?</h6>
+                            <div className="flex items-center gap-2">
 
-                            {
-                                stars?.map((_,index)=> (
-                                <button 
-                                    key={index} 
-                                    onClick={()=> setRating(+index + 1)}
-                                    >
-                                    {
-                                        rating > index ?
-                                        <FaStar size={26} color="#eab308"/>
-                                        : <CiStar size={26} color="#eab308" />
-                                    }
-                                </button>
+                                {
+                                    stars?.map((_,index)=> (
+                                    <button 
+                                        key={index} 
+                                        onClick={()=> setRating(+index + 1)}
+                                        >
+                                        {
+                                            rating > index ?
+                                            <FaStar size={26} color="#eab308"/>
+                                            : <CiStar size={26} color="#eab308" />
+                                        }
+                                    </button>
 
-                                ))
-                            }
+                                    ))
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
+                <ZodError error={error} field='rating' />
             </div>
         )
     };
@@ -177,6 +180,7 @@ function WhriteReview({product}) {
                                     value={rateTitle}
                                     placeholder="review title..."
                                     />
+                                     <ZodError error={error} field='rateTitle' />
                             </div>
                             <footer className="flex items-center justify-between gap-3 mt-3">
                                 <button 
