@@ -1,6 +1,6 @@
-// component
+
 import ProductDetails from "../_components/ProductDetails";
-import ProductReviews from "../../../ui/productReviews/";
+import ProductReviews from "../../../ui/productReviews/productReviews";
 import {productById} from "../../../actions/products/productById"
 
 
