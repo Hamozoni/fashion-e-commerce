@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 // components
-import {ButtonWithIcon} from "../../../ui/buttons"
+import {ButtonWithIcon} from "../../../components/buttons"
 // icons
 import { LiaStarSolid } from "react-icons/lia";
 import { FaRegUser } from "react-icons/fa";

@@ -14,7 +14,7 @@ import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 
 // components
 import Overlay from "../../../components/Overlay";
-import ZodError  from "../../../ui/zodError"
+import ZodError  from "../../../components/zodError"
 
 // validations
 import {ratingSchema} from "../../../validationSchemas/ratingSchema";
@@ -26,7 +26,7 @@ import { useCurrentUser } from "../../../hooks/useCurrentUser";
 import {rateProduct} from "../../../actions/productRating/rateProductAcion";
 // loading
 import { DotLoader } from "react-spinners";
-import { ButtonWithIcon } from "../../buttons";
+import { ButtonWithIcon } from "../../../components/buttons";
 
 const stars = new Array(5).fill('star');
 
@@ -151,7 +151,7 @@ function WhriteReview({product}) {
 
     const className = {
         WhriteReview: "fixed top-16 z-50 p-4 max-h-[550px] rounded-md left-1/2 translate-x-[-50%] w-[380px] sm:w-[600px] bg-green-50 overflow-y-auto",
-        btn:'flex items-center justify-center gap-2 flex-1 border py-1 rounded-md text-lg capitalize font-bold'
+        btn:'flex items-center justify-center gap-2  border py-1 rounded-md  w-full text-sm  border-green-200 text-green-800 hover:bg-green-100 hover:scale-95 '
     }
 
 
@@ -184,18 +184,18 @@ function WhriteReview({product}) {
                         <ProductRating />
                         <form action={handleReview} ref={reviewFormRef}>
                             <div className="w-full capitalize">
-                            <label 
-                                className="mb-3 text-lg text-green-900 font-bold"
-                                htmlFor="reviewImage"
-                                > review image:
-                            </label>
-                            <input
-                               className="p-2 bg-white rounded-sm text-green-900  w-full" 
-                                id='reviewImage'
-                                type="file" 
-                                name='reviewImage'
-                                accept="image/*"
-                                 />
+                                <label 
+                                    className="mb-3 text-lg text-green-900 font-bold"
+                                    htmlFor="reviewImage"
+                                    > review image:
+                                </label>
+                                <input
+                                className="p-2 bg-white rounded-sm text-green-900  w-full" 
+                                    id='reviewImage'
+                                    type="file" 
+                                    name='reviewImage'
+                                    accept="image/*"
+                                    />
                             </div>
                             <div className="w-full">
                                 <label 
@@ -236,8 +236,8 @@ function WhriteReview({product}) {
                             <footer className="flex items-center justify-between gap-3 mt-3">
                                 <button 
                                    type="submit"
-                                    className={`${className.btn} border-green-200 text-green-800 hover:bg-green-100`}>
-                                    <BiSave />save
+                                    className={`${className.btn}`}>
+                                    <BiSave  size={16}/>save
                                 </button>
                                 <ButtonWithIcon
                                     text='cancel'

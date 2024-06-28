@@ -1,14 +1,17 @@
 "use client";
-
-import { FaHeart } from "react-icons/fa";
+import { useState } from "react";
+// icons
+import { IoMdHeart,IoIosHeartEmpty } from "react-icons/io";
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import { BiMessageAltError } from "react-icons/bi";
+import { FaCartPlus } from "react-icons/fa6";
+// redux store
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import {removeItemFromCart, addToCart } from "../../../store/features/cartSlice";
-import { BiMessageAltError } from "react-icons/bi";
-
-import QuantityBtn from "../../../ui/products/QuantityBtn";
-import { useState } from "react";
+// component
+import QuantityBtn from "../../../components/QuantityBtn";
 import Overlay from "../../../components/Overlay";
+import { ButtonWithIcon } from "../../../components/buttons";
 
 function AddToCart({product,selectedColor,selectedSize}) {
 
@@ -16,6 +19,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
 
     const dispatch = useAppDispatch();
     const [errorMessege,setErrorMessege] = useState(null);
+    const [isAddedToList,setIsAddedToList] = useState(false);
 
     const incrementItem = ()=> {
 
@@ -40,34 +44,45 @@ function AddToCart({product,selectedColor,selectedSize}) {
                 selectedSize,
             }))
         }
-    }
+    };
 
-    const className = {
-        addBtn : 'bg-green-900 text-green-100 hover:bg-green-700 flex-1 flex items-center justify-center border border-green-300 rounded-md p-5 py-2 text-md font-bold'
-    }
 
   return (
     <div className="flex items-stretch justify-center gap-2 pt-5 w-full cursor-pointer relative">
         {
             quantity ? 
             <>
-                <QuantityBtn id={product.id} selectedColor={selectedColor} selectedSize={selectedSize} />
-                <botton 
+                <QuantityBtn 
+                    id={product.id} 
+                    selectedColor={selectedColor} 
+                    selectedSize={selectedSize} 
+                    />
+                <ButtonWithIcon 
+                    text='remove'
+                    Icon={MdOutlineDeleteOutline}
+                    type='delete'
                     onClick={()=> dispatch(removeItemFromCart({id: product.id,selectedColor,selectedSize}))}
-                    className={`${className.addBtn} bg-rose-600 hover:bg-rose-700`}>
-                        remove <MdOutlineDeleteOutline size={16} />
-                </botton>
+                    />
             </>
             :
-            <botton 
+            <ButtonWithIcon 
+                text=' add to cart'
+                Icon={FaCartPlus}
+                type='primary'
                 onClick={incrementItem}
-                className={className.addBtn}>
-                add to cart
-            </botton>
+               />
         }
-        <div className="flex items-center justify-center border border-green-300 rounded-md p-3 py-2 text-xl">
-            <FaHeart className="text-rose-500" />
-        </div>
+        <button
+            onClick={()=> setIsAddedToList(!isAddedToList)} 
+            className="flex items-center justify-center border border-rose-300 rounded-md px-3 py-2 text-xl"
+            >
+            {
+                isAddedToList ?
+                <IoMdHeart size={20} className="text-rose-500 hover:scale-125" />
+                :
+                <IoIosHeartEmpty size={20}  className="text-rose-500 hover:scale-125" />
+            }
+        </button>
         {   errorMessege !== null &&
             <>
                 <Overlay onClick={()=> setErrorMessege(null)} />
