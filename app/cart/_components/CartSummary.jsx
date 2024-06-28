@@ -36,7 +36,7 @@ function CartSummary() {
 
 
   return (
-    <div className="w-full p-3 lg:p-0">
+    <div className="w-full p-3 lg:p-0 sticky top-[80px] right-0">
         <header className={`${className.section} bg-green-50`}>
             <div className="flex items-center gap-2 max-w-fit mx-auto">
                 <MdOutlineLocalShipping size={22}/>

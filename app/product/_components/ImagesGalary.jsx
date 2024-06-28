@@ -15,7 +15,7 @@ function ImagesGalary({productImages,selectedColor}) {
 
 
   return (
-    <div className="pb-6 border-b border-gray-200">
+    <div className="p-6 mb-3 flex-1 shadow-md rounded-md">
         <div className="flex items-center gap-3 sticky top-[80px] left-0">
             <div className="flex items-center justify-center gap-2 flex-col ">
                 {
@@ -35,7 +35,7 @@ function ImagesGalary({productImages,selectedColor}) {
             </div>
             <div className="min-h-[500px] max-h-[500px] flex items-center justify-center rounded-md border border-gray-100 shadow-md">
                 <Image 
-                    className="rounded-md min-h-[500px] max-h-[500px]"
+                    className="rounded-md min-h-[500px] max-h-[500px] bg-white"
                     src={selectedImage?.replace("public","")} 
                     width={500} height={500}
                     alt="product image"

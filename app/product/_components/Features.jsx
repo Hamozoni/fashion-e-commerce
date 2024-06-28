@@ -6,7 +6,7 @@ import { MdOutlineLockPerson } from "react-icons/md";
 function Features() {
 
     const className = {
-        infoLi: 'flex items-center text-center rounded-md shadow-sm border border-gray-50 p-2  flex-col text-sm font-medium text-green-800  max-w-[160px]',
+        infoLi: 'flex items-center text-center p-2  flex-col text-sm font-medium text-green-800  max-w-[160px]',
         infoLiIcon:'text-[30px] bg-gray-100  p-2 rounded-full'
     }
     

@@ -1,5 +1,5 @@
 // component
-import ReviewsHeader from "./components/reviewsHeader";
+import ReviewsDetails from "./components/reviewsDetails";
 import WriteReview from "./components/writeReview";
 import Reviews from "./components/reviews";
 
@@ -13,8 +13,8 @@ function ProductReviews({product}) {
             </h4>
         </header>
         <div className="md:flex gap-5 pt-3 ">
-            <ReviewsHeader />
-            <section className="flex-1 basis-0.5">
+            <ReviewsDetails />
+            <section className="flex-1">
               <h5 
                 className="text-md font-medium text-green-900 pb-2 mb-2 border-b border-gray-100"
                 >6 Reviews

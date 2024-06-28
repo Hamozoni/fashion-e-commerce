@@ -27,24 +27,26 @@ function ProductDetails({product}) {
     },[]);
 
   return (
-    <div className="md:flex gap-5">
+    <div className="md:flex gap-4 lg:gap-8 capitalize">
         <ImagesGalary 
             productImages={imagesGroupBy(product.images,'color')} 
             selectedColor={selectedColor}
             />
-        <div className="">
+        <div className="flex-1">
             <div>
                 <header className="pb-2">
                     <h4 className="text-sm text-green-700">
                        brand: {product?.brand}
                     </h4>
                     <h5
-                       className="text-lg text-green-800"
+                       className="text-xl text-green-9500"
                        >{product?.name}
                     </h5>
                 </header>
-                <div className="flex items-center  text-green-900 gap-3">
-                    <h4 className='text-lg font-extrabold'>{getCurrency(+product.priceInCent)}</h4>
+                <div className="flex items-center  text-green-950 gap-3">
+                    <h4 className='text-lg font-extrabold'>
+                        {getCurrency(+product.priceInCent)}
+                    </h4>
                     <p className="text-green-800 text-sm">Inclusive of VAT</p>
                 </div>
                 <Features />
@@ -59,7 +61,7 @@ function ProductDetails({product}) {
                 <Specifications 
                     specifications={product.specifications} />
                 <footer className="py-4">
-                    <h4 className="pb-2 text-lg font-bold text-green-900">about this items</h4>
+                    <h4 className="pb-2 text-lg font-bold text-green-950">about this items</h4>
                     <p 
                         className="text-green-800" 
                         ref={about} >

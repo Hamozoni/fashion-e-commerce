@@ -2,9 +2,9 @@
 function SelectSize({sizes,selectedSize,setSelectedSize}) {
 
   return (
-    <section className="py-4 border-b border-gray-100 lg:flex gap-3">
-        <h5 className="pb-2 capitalize text-lg font-bold text-green-900">sizes : </h5>
-        <ul className="flex items-center gap-1">
+    <section className="mt-3 flex gap-3">
+        <h5 className="pb-2 capitalize text-lg font-bold text-green-950">sizes : </h5>
+        <ul className="flex items-center gap-1 justify-center">
             {
               sizes?.map((size)=> (
                 <li 
