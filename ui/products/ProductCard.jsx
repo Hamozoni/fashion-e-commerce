@@ -1,20 +1,18 @@
 
 import Image from "next/image";
+// component
 import getCurrency from "../../lip/getCurrency";
-
-// import { RiStarSLine } from "react-icons/ri";
+import AddToListBtn from "../../components/addToListBtn";
+// icons
 import { RiStarSFill } from "react-icons/ri";
-// import { FiMinus } from "react-icons/fi";
-// import { GoPlus } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
 
 import Link from "next/link";
 
 function ProductCard({product}) {
 
-
    const className = {
-        card: 'w-[280px] rounded-lg overflow-hidden border border-green-100 cursor-pointer hover:border-green-300 ',
+        card: 'w-[280px] rounded-lg overflow-hidden border border-green-100 cursor-pointer hover:border-green-300 relative',
         image: 'w-[280px] max-h-[280px] max-w-[280px]',
         heart: 'absolute top-5 right-5',
    }
@@ -23,7 +21,7 @@ function ProductCard({product}) {
 
   return (
     <div className={className.card}>
-        <Link href={`/product/${product.id}`} className="relative">
+        <Link href={`/product/${product.id}`}>
             <Image 
                 className={className.image} 
                 src={product.images[1].imagePath.replace("public",'')}
@@ -31,10 +29,10 @@ function ProductCard({product}) {
                 width={280}
                 height={280}
                />
-            <div className={className.heart}>
-               <IoMdHeartEmpty size={30}/>
-            </div>
         </Link>
+        <div className={className.heart}>
+            <AddToListBtn />
+        </div>
         <div className="p-3">
             <ul className="flex justify-center gap-2 overflow-auto">
                 {

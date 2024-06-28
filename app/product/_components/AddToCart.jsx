@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 // icons
-import { IoMdHeart,IoIosHeartEmpty } from "react-icons/io";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { BiMessageAltError } from "react-icons/bi";
 import { FaCartPlus } from "react-icons/fa6";
@@ -12,6 +11,7 @@ import {removeItemFromCart, addToCart } from "../../../store/features/cartSlice"
 import QuantityBtn from "../../../components/QuantityBtn";
 import Overlay from "../../../components/Overlay";
 import { ButtonWithIcon } from "../../../components/buttons";
+import AddToListBtn from "../../../components/addToListBtn";
 
 function AddToCart({product,selectedColor,selectedSize}) {
 
@@ -19,7 +19,6 @@ function AddToCart({product,selectedColor,selectedSize}) {
 
     const dispatch = useAppDispatch();
     const [errorMessege,setErrorMessege] = useState(null);
-    const [isAddedToList,setIsAddedToList] = useState(false);
 
     const incrementItem = ()=> {
 
@@ -72,17 +71,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
                 onClick={incrementItem}
                />
         }
-        <button
-            onClick={()=> setIsAddedToList(!isAddedToList)} 
-            className="flex items-center justify-center border border-rose-300 rounded-md px-3 py-2 text-xl"
-            >
-            {
-                isAddedToList ?
-                <IoMdHeart size={20} className="text-rose-500 hover:scale-125" />
-                :
-                <IoIosHeartEmpty size={20}  className="text-rose-500 hover:scale-125" />
-            }
-        </button>
+        <AddToListBtn />
         {   errorMessege !== null &&
             <>
                 <Overlay onClick={()=> setErrorMessege(null)} />
