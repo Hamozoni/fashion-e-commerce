@@ -19,7 +19,8 @@ export const getReviewaByProductId = async(productId)=> {
 
        return {data}
     }
-    catch {
+    catch(error) {
+        console.log(error)
         return {error: "something went wrong"}
     }
 
