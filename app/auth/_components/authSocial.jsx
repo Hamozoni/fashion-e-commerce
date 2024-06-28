@@ -15,7 +15,7 @@ function AuthSocial({text,link,page}) {
     const [isLoading,startTranation] = useTransition();
 
     const OauthSignIn = (provider)=> {
-        startTranation(()=> {
+        startTranation(async()=> {
             signIn(provider,{
                 callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT
             })

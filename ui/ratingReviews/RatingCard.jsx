@@ -2,35 +2,63 @@ import Image from "next/image"
 
 import { LiaStarSolid } from "react-icons/lia";
 import { FaRegUser } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa6";
+
+const ratingStars = new Array(5).fill('start')
 
 
 async function RatingCard({review}) {
   return (
         <div className="py-7 border-b border-gray-00">
             <div className="flex items-center gap-2 pb-2">
-                {/* <Image src='/products/1a392cce-01bd-41f8-8cd9-3688080faae6-61vj2VbUKNL._AC_SY500_.jpg' width={40} height={40} alt="auther"/>
-                    */}
+                {
+                    review?.auther?.image ?
+                    <Image 
+                        src={review?.auther?.image} 
+                        width={40} height={40} 
+                        alt="auther"
+                        />
+                    :
                     <FaRegUser size={30} />
+                }
                 <div className="">
-                    <h4 className="text-green-900">{review.autherName}</h4>
-                        <p className="text-green-800 text-sm">{review.createdAt}</p>
+                    <h4 className="text-green-900">
+                        {review?.auther?.name}
+                    </h4>
+                    <time 
+                        className="text-green-800 text-sm"
+                        >{new Date(review.createdAt).toISOString()}
+                    </time>
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <div className="flex items-center text-yellow-400">
-                    <LiaStarSolid size={20}/>
-                    <LiaStarSolid size={20}/>
-                    <LiaStarSolid size={20}/>
-                    <LiaStarSolid size={20}/>
-                    <LiaStarSolid size={20}/>
+                <div className="flex items-center">
+                    {
+                        ratingStars?.map((_,index)=> (
+                            <div key={index} className="flex items-center text-yellow-400">
+                                {
+                                    review?.rating > index ?
+                                    <LiaStarSolid size={20}/>
+                                    :
+                                    <FaRegStar size={20} />
+                                }
+                            </div>
+                        ))
+                    }
                 </div>
-                <h5 >{review?.heighlight}</h5>
+                <h5 >{review?.rateTitle}</h5>
             </div>
             <div className="">
-                <aside className="text-green-800 text-sm pb-3">{review.review}</aside>
+                <article 
+                    className="text-green-800 text-sm pb-3"
+                    >{review?.rateText}
+                </article>
                 {
-                    review?.image !== null &&
-                    <Image src='/products/1a392cce-01bd-41f8-8cd9-3688080faae6-61vj2VbUKNL._AC_SY500_.jpg' width={400} height={400} alt='product image'/>
+                    review?.reviewImage &&
+                    <Image 
+                        src={review?.reviewImage?.replace('public','')} 
+                        width={400} height={400} alt='product image'
+                        />
                 }
             </div>
         </div>

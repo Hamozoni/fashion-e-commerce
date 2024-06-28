@@ -14,7 +14,7 @@ import Specifications from "./Specifications";
 function ProductDetails({product}) {
 
     const [selectedSize,setSelectedSize] = useState('');
-    const [selectedColor,setSelectedColor] = useState(product.images[0].color);
+    const [selectedColor,setSelectedColor] = useState(product?.images[0]?.color);
 
     const about = useRef();
 

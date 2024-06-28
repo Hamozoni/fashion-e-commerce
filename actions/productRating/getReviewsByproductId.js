@@ -9,10 +9,10 @@ export const getReviewaByProductId = async(productId)=> {
         where: {productId},
         include:{
             auther:{
-                email: true,
-                id: true,
-                name: true,
-                image: true
+                select : {
+                    name: true,
+                    image: true,
+                }
             }
         }
     });
