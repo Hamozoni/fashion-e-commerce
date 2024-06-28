@@ -59,7 +59,7 @@ function ReviewsDetails() {
                           <td className="text-green-800 w-[52px] pb-2 font-medium">{rate?.name}</td>
                           <td className="px-3">
                               <div className="h-5 border border-gray-200 rounded-md overflow-hidden">
-                                  <div style={{width: rate?.perc}} className="bg-green-900 h-5"></div>
+                                  <div style={{width: rate?.perc}} className="bg-yellow-400 h-5"></div>
                               </div>
                           </td>
                           <td className="text-green-800 font-medium w-[30px]"> {rate?.perc}</td>
