@@ -1,16 +1,21 @@
+
 import Image from "next/image"
 
+// components
+import {ButtonWithIcon} from "../../ui/buttons"
+// icons
 import { LiaStarSolid } from "react-icons/lia";
 import { FaRegUser } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa6";
+import { VscEdit } from "react-icons/vsc";
+import { MdDelete } from "react-icons/md";
 
-const ratingStars = new Array(5).fill('start')
+const ratingStars = new Array(5).fill('start');
 
-
-async function RatingCard({review}) {
+async function RatingCard({review,currrentUserId = null}) {
   return (
         <div className="py-7 border-b border-gray-00">
-            <div className="flex items-center gap-2 pb-2">
+            <header className="flex items-center gap-2 pb-2">
                 {
                     review?.auther?.image ?
                     <Image
@@ -22,7 +27,7 @@ async function RatingCard({review}) {
                     :
                     <FaRegUser size={30} />
                 }
-                <div className="">
+                <section className="">
                     <h4 className="text-green-900">
                         {review?.auther?.name}
                     </h4>
@@ -30,9 +35,9 @@ async function RatingCard({review}) {
                         className="text-green-800 text-sm"
                         >{new Date(review.createdAt).toDateString()}
                     </time>
-                </div>
-            </div>
-            <div className="flex items-center gap-2">
+                </section>
+            </header>
+            <section className="flex items-center gap-2">
                 <div className="flex items-center">
                     {
                         ratingStars?.map((_,index)=> (
@@ -48,7 +53,7 @@ async function RatingCard({review}) {
                     }
                 </div>
                 <h5 >{review?.rateTitle}</h5>
-            </div>
+            </section>
             <div className="">
                 <article 
                     className="text-green-800 text-sm pb-3"
@@ -62,6 +67,24 @@ async function RatingCard({review}) {
                         />
                 }
             </div>
+            {
+                currrentUserId === review?.autherId && (
+                    <footer className="flex items-center gap-3">
+                        <ButtonWithIcon 
+                          text='edit'
+                          Icon={VscEdit}
+                          type='save'
+                          onClick=''
+                        />
+                        <ButtonWithIcon 
+                          text='delete'
+                          Icon={MdDelete}
+                          type='delete'
+                          onClick=''
+                        />
+                    </footer>
+                )
+            }
         </div>
     )
 }
