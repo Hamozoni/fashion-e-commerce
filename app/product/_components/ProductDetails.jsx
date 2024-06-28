@@ -60,10 +60,10 @@ function ProductDetails({product}) {
                     specifications={product.specifications} />
                 <footer className="py-4">
                     <h4 className="pb-2 text-lg font-bold text-green-900">about this items</h4>
-                    <details 
+                    <p 
                         className="text-green-800" 
                         ref={about} >
-                    </details>
+                    </p>
                 </footer>
             </div>
             <AddToCart
