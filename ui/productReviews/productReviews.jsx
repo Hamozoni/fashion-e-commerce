@@ -12,7 +12,7 @@ function ProductReviews({product}) {
                 Product Ratings & Reviews
             </h4>
         </header>
-        <div className="md:flex gap-5 pt-3 ">
+        <div className="md:flex gap-4 lg:gap-8 pt-3 ">
             <ReviewsDetails />
             <section className="flex-1">
               <h5 
