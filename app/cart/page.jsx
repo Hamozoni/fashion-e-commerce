@@ -14,7 +14,7 @@ function cartPage() {
     console.log(cartItems)
     const className = {
         startShopping: 'border border-green-200 px-4 py-1 text-green-900 uppercase bg-green-100 hover:bg-green-50 rounded-md absolute bottom-[20px] left-[50%] translate-x-[-50%]',
-        sectionTitle: 'text-green-900 font-bold text-lg mb-3 p-3 lg:py-0 border-b border-gray-100'
+        sectionTitle: 'text-green-900 font-bold text-lg mb-3 p-3 lg:px-0 border-b border-gray-100'
     }
 
  const cartCard = cartItems?.map((product)=> (
@@ -43,7 +43,7 @@ function cartPage() {
                 </section>
               
             </div>  :
-            <div className="relative max-w-fit mx-auto">
+            <div className="relative max-w-fit mx-auto p-5">
                 <Image src='/cart/emtyCart.png' width={404}  height={316} alt='emty cart'/>
                 <Link className={className.startShopping} href='/' >
                     start shopping

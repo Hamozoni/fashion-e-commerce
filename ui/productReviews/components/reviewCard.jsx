@@ -32,6 +32,7 @@ async function ReviewCard({review,currrentUserId = null}) {
                     </h4>
                     <time 
                         className="text-green-800 text-sm"
+                        dateTime={new Date(review.createdAt).toDateString()}
                         >{new Date(review.createdAt).toDateString()}
                     </time>
                 </section>

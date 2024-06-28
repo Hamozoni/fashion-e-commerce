@@ -47,13 +47,14 @@ function CartItemsCard({product}) {
                             >
                         </p>
                     </h6>
-                    <h6 className="flex items-center gap-2"> size: 
-                        <p 
+                    <div className="flex items-center gap-2"> 
+                        <h6>size: </h6>
+                        <span 
                             className="w-[35px] h-[35px] rounded-full"
                             >
                                 {product?.selectedSize}
-                        </p>
-                    </h6>
+                        </span>
+                    </div>
                 </div>
                 <div className="border-r px-2 border-green-100">
                     <h6>price</h6>
