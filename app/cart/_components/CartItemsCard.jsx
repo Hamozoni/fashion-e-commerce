@@ -5,9 +5,18 @@ import { removeItemFromCart } from "../../../store/features/cartSlice";
 import { useAppDispatch } from "../../../store/store";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Link from "next/link";
+import { ButtonWithIcon } from "../../../components/buttons";
 
 function CartItemsCard({product}) {
     const dispatch = useAppDispatch();
+
+    const removeItem = ()=> {
+        dispatch(removeItemFromCart({
+            id: product.id,
+            selectedColor: product.selectedColor,
+            selectedSize: product.selectedSize
+        }))
+    }
 
   return (
     <div className="sm:flex gap-3 items-center p-3 mb-5 rounded-md shadow-sm border border-gray-50 w-full">
@@ -24,9 +33,12 @@ function CartItemsCard({product}) {
         </Link>
         <section>
             <Link href={`/product/${product?.id}`}>
-                <h4 className="pb-2 font-bold text-green-900 hover:text-green-800">{product?.name}</h4>
+                <h4 
+                    className="pb-2 font-bold text-green-900 text-center hover:text-green-800"
+                    >{product?.name}
+                </h4>
             </Link>
-            <div className="flex gap-5 items-center flex-wrap">
+            <div className="flex gap-5 items-center flex-wrap justify-center">
                 <div className="border-r px-2 border-green-100">
                     <h6 className="flex items-center gap-2"> color: 
                         <p 
@@ -56,11 +68,12 @@ function CartItemsCard({product}) {
                     <h6>total price</h6>
                     <h4>{getCurrency(product?.priceInCent * product?.quantity)}</h4>
                 </div>
-                <botton 
-                    onClick={()=> dispatch(removeItemFromCart({id:product.id,selectedColor:product.selectedColor,selectedSize: product.selectedSize}))}
-                    className={ `flex items-center cursor-pointer text-md font-bold text-rose-600 hover:text-rose-700`}>
-                        remove <MdOutlineDeleteOutline size={16} />
-                </botton>
+                <ButtonWithIcon 
+                    text='reove'
+                    type='delete'
+                    Icon={MdOutlineDeleteOutline}
+                    onClick={removeItem}
+                    />
             </div>
         </section>
     </div>

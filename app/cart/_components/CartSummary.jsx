@@ -29,14 +29,14 @@ function CartSummary() {
     ));
 
     const className = {
-        section : 'p-3 border border-gray-50 mb-3 rounded-md shadow-md',
-        parts: 'flex items-center justify-between py-2 border-b border-gray-50',
+        section : 'border border-gray-50 mb-3 p-3 rounded-md shadow-md',
+        parts: 'flex items-center justify-between py-3 border-b border-gray-50',
         checkoutBtn: 'min-w-full block text-center rounded-md py-2 bg-green-900 uppercase text-green-50 hover:bg-green-800'
     }
 
 
   return (
-    <div className="w-full">
+    <div className="w-full p-3 lg:p-0">
         <header className={`${className.section} bg-green-50`}>
             <div className="flex items-center gap-2 max-w-fit mx-auto">
                 <MdOutlineLocalShipping size={22}/>

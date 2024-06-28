@@ -16,8 +16,8 @@ function QuantityBtn({id,selectedColor,selectedSize}) {
         {
             quantity === 1 ? 
             <IoTrashOutline 
-                size={16}
-                className="text-xl cursor-pointer" 
+                size={15}
+                className="text-xl cursor-pointer text-rose-700" 
                 onClick={()=> dispatch(decrementItemInCart({id,selectedColor,selectedSize}))} 
             />:
             <FiMinus

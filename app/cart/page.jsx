@@ -14,7 +14,7 @@ function cartPage() {
     console.log(cartItems)
     const className = {
         startShopping: 'border border-green-200 px-4 py-1 text-green-900 uppercase bg-green-100 hover:bg-green-50 rounded-md absolute bottom-[20px] left-[50%] translate-x-[-50%]',
-        sectionTitle: 'text-green-900 font-bold text-lg mb-3 pb-3 border-b border-gray-100'
+        sectionTitle: 'text-green-900 font-bold text-lg mb-3 p-3 lg:py-0 border-b border-gray-100'
     }
 
  const cartCard = cartItems?.map((product)=> (
@@ -25,12 +25,14 @@ function cartPage() {
     ))
 
   return (
-    <div className="p-4 lg:px-8">
+    <div className="">
         {
             cartItems?.length ?
-            <div className="p-4 lg:px-8 lg:flex gap-3">
+            <div className="lg:px-8 md:flex gap-4">
                 <section className="flex-1">
-                    <h4 className={className.sectionTitle}>{totalItemsOnCart} items</h4>
+                    <h4 className={className.sectionTitle}>
+                        {totalItemsOnCart} items
+                    </h4>
                     <div className="flex-1">
                         {cartCard}
                     </div> 
