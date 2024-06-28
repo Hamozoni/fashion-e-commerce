@@ -9,11 +9,11 @@ function SelectImage({images,selectedColor,setSelectedColor}) {
   return (
 
     <section className=" py-4 border-b border-gray-100">
-        <h5 className="flex items-center gap-3 pb-2 text-lg font-bold text-green-900"> 
+        <h5 className="flex capitalize items-center gap-3 pb-2 text-lg font-bold text-green-900"> 
             colors : 
         <p 
             style={{backgroundColor:selectedColor}} 
-            className="w-[20px] h-[20px] rounded-full border-green-800 border"
+            className="w-[60px] h-[20px] rounded-full border-green-800 border"
             >
 
             </p>
