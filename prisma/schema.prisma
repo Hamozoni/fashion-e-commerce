@@ -82,6 +82,8 @@ model reviews {
   rating    Int    @default(3)
   rateTitle String?
   reviewImage String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   product product @relation(fields: [productId],references: [id],onDelete: Cascade)
   auther  user @relation(fields: [autherId],references: [id],onDelete: Cascade)
 
