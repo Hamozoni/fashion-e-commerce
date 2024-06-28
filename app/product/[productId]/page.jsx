@@ -1,6 +1,6 @@
-
+// component
 import ProductDetails from "../_components/ProductDetails";
-import RatingReviews from "../../../ui/ratingReviews/RatingsReviews";
+import ProductReviews from "../../../ui/productReviews/";
 import {productById} from "../../../actions/products/productById"
 
 
@@ -23,7 +23,7 @@ async function  productPage({params}) {
         <h4 className="pb-2 text-lg font-bold text-green-900">Product description</h4>
         <aside className="text-green-800">{data?.description}</aside>
       </section>
-      <RatingReviews product={data}/>
+      <ProductReviews product={data}/>
     </section>
   )
 }
