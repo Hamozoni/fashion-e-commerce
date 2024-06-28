@@ -157,15 +157,6 @@ function WhriteReview({product}) {
   return (
 
     <div className="">
-        {
-            isPending && 
-            <>
-             <Overlay onClick=''/>
-             <div className="fixed top-1/2 left-1/2 w-fit">
-                <DotLoader color="#4ade80" />
-             </div>
-            </>
-        }
         <div className="py-5 border-b border-green-100">
             <h6 className="text-green-800 pb-2 text-lg font-bold"
               >Share your thoughts with other customers
@@ -258,6 +249,15 @@ function WhriteReview({product}) {
                 <Overlay onClick={()=> setShowModel(false)}/>
             </>
             :''
+        }
+         {
+            isPending && 
+            <div className="z-[60]">
+              <Overlay onClick=''/>
+             <div className="fixed top-1/2 left-1/2 w-fit z-[61]">
+                <DotLoader color="#4ade80" />
+             </div>
+            </div>
         }
     </div>
   )

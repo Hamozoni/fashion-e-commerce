@@ -13,7 +13,8 @@ export const rateProduct = async(formData)=> {
         rateTitle: formData.get('rateTitle'),
         reviewImage: formData.get('reviewImage'),
     }
-
+    
+    console.log(data)
     const validateForm = ratingSchema.safeParse(data);
 
     if(validateForm.error) {
@@ -22,7 +23,7 @@ export const rateProduct = async(formData)=> {
     
     if(validateForm.success) {
 
-        if(data.reviewImage){
+        if(data.reviewImage.size > 200){
             try{
                 await fs.mkdir('public/reviewsImages',{recursive: true});
                 const imagepath = `public/reviewsImages/${crypto.randomUUID()}_${data?.reviewImage?.name}`;
@@ -35,6 +36,8 @@ export const rateProduct = async(formData)=> {
             catch {
                 return {error: "images something went wrong"}
             }
+        }else {
+            data.reviewImage = null;
         }
 
         try {
@@ -43,7 +46,6 @@ export const rateProduct = async(formData)=> {
                 ...data
             }})
 
-            console.log(data)
 
             return {success: "review has been committed successfuly"}
         }

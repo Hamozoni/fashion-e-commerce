@@ -13,7 +13,8 @@ async function RatingCard({review}) {
             <div className="flex items-center gap-2 pb-2">
                 {
                     review?.auther?.image ?
-                    <Image 
+                    <Image
+                         className="rounded-full" 
                         src={review?.auther?.image} 
                         width={40} height={40} 
                         alt="auther"
@@ -27,7 +28,7 @@ async function RatingCard({review}) {
                     </h4>
                     <time 
                         className="text-green-800 text-sm"
-                        >{new Date(review.createdAt).toISOString()}
+                        >{new Date(review.createdAt).toDateString()}
                     </time>
                 </div>
             </div>
@@ -57,7 +58,7 @@ async function RatingCard({review}) {
                     review?.reviewImage &&
                     <Image 
                         src={review?.reviewImage?.replace('public','')} 
-                        width={400} height={400} alt='product image'
+                        width={150} height={200} alt='product image'
                         />
                 }
             </div>
