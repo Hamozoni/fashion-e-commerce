@@ -107,6 +107,7 @@ function ReviewCard({review,setReviews}) {
                           text='delete'
                           Icon={MdDelete}
                           type='delete'
+                          disabled={loading}
                           onClick={handleRevomeReview}
                         />
                     </footer>

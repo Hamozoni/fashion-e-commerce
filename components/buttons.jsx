@@ -1,10 +1,11 @@
-import React from 'react'
+import {SyncLoader} from "react-spinners"
 
 export const ButtonWithIcon = ({
     text,
     Icon,
     type,
-    onClick
+    onClick,
+    disabled = false
 }) => {
 
     const className = {
@@ -18,9 +19,17 @@ export const ButtonWithIcon = ({
     <button 
         onClick={onClick}
         className={`${className.flex} ${className[type]}`}
+        disabled={disabled}
         >
-        <Icon size={16}/>
-        {text}
+          {
+            disabled ?
+              <SyncLoader />
+            :
+            <>
+              <Icon size={16}/>
+              {text}
+            </>
+          }
     </button>
   )
 }
