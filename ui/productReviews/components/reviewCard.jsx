@@ -1,5 +1,5 @@
 "use clent"
-import { useContext, useTransition } from "react";
+import { useContext, useState, useTransition } from "react";
 import Image from "next/image"
 // components
 import {ButtonWithIcon} from "../../../components/buttons"
@@ -20,10 +20,11 @@ const ratingStars = new Array(5).fill('start');
 
 function ReviewCard({review}) {
 
-     const {setReviews} = useContext(ReviewsContext)
+     const {fetchReviews} = useContext(ReviewsContext)
 
     const user = useCurrentUser();
-    const [loading,startTransition] = useTransition()
+    const [loading,startTransition] = useTransition();
+    const [isRemoveModle,setIsRemoveModle] = useState(false);
 
     const handleRevomeReview = ()=> {
 
@@ -31,7 +32,7 @@ function ReviewCard({review}) {
             removeReviewAction(review?.id,review?.reviewImage)
             .then((data)=> {
                 if(data?.success) {
-                    setReviews((rev)=> rev.filter(rev=> rev.id !== review.id))
+                    fetchReviews(review.productId)
                 }
             })
         })

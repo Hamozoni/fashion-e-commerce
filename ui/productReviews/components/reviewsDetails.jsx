@@ -19,9 +19,8 @@ function ReviewsDetails() {
       const handleRatingPrecetage = (number)=> {
         const ratingLength = reviews.filter(e=> e.rating === number)?.length;
 
-        const precentage = (ratingLength * reviews?.length) / 100;
-
-        return `${precentage}%`;
+        const precentage = (ratingLength * 100) / reviews?.length;
+        return `${Math.ceil(precentage || 0)}%`;
       }
 
   return (
