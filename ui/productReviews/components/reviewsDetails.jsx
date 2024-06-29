@@ -73,8 +73,15 @@ function ReviewsDetails() {
           </div>
           <section>
             <section className={className.sectionClass}>
-                <h6 className={className.sectionHead}>How are ratings calculated?</h6>
-                <p className={className.sectionP}>To calculate the overall star rating and percentage breakdown by star, we don’t use a simple average. Instead, our system considers things like how recent a review is and if the reviewer bought the item on System. It also analyses reviews to verify trustworthiness.</p>
+                <h6 
+                  className={className.sectionHead}
+                  >How are ratings calculated?
+              </h6>
+                <p 
+                  className={className.sectionP}
+                  >
+                    To calculate the overall star rating and percentage breakdown by star, we don’t use a simple average. Instead, our system considers things like how recent a review is and if the reviewer bought the item on System. It also analyses reviews to verify trustworthiness.
+                </p>
             </section>
             <section className={className.sectionClass}>
                 <h6 className={className.sectionHead}>How do I review this product?</h6>
