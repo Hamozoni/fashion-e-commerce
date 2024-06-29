@@ -1,36 +1,27 @@
 "use client"
+import { useContext} from "react";
 // components
 import  ReviewsAverage  from "./reviewsAverage";
+import { ReviewsContext } from "./reviewsContext";
 
-const ratings = [
-    {
-      name: '5 stars',
-      perc: "35%"
-    },
-    {
-      name: '4 stars',
-      perc: "15%"
-    },
-    {
-      name: '3 stars',
-      perc: "25%"
-    },
-    {
-      name: '2 stars',
-      perc: "17%"
-    },
-    {
-      name: '1 stars',
-      perc: "17%"
-    }
-  ]
+const ratingArray = new Array(5).fill('star');
 
 function ReviewsDetails() {
+
+  const {reviews} = useContext(ReviewsContext);
 
     const className = {
         sectionClass: 'py-3 border-b border-gray-100',
         sectionHead: 'font-bold text-lg text-green-950 pb-2',
         sectionP: 'font-medium text-sm text-green-800'
+      };
+
+      const handleRatingPrecetage = (number)=> {
+        const ratingLength = reviews.filter(e=> e.rating === number)?.length;
+
+        const precentage = (ratingLength * reviews?.length) / 100;
+
+        return `${precentage}%`;
       }
 
   return (
@@ -45,15 +36,23 @@ function ReviewsDetails() {
               <table className="min-w-full table ">
                   <tbody>
                   {
-                      ratings?.map((rate)=> (
+                      ratingArray?.map((star,index)=> (
                       <tr className="min-w-full table"> 
-                          <td className="text-green-800 w-[52px] pb-2 font-medium">{rate?.name}</td>
+                          <td className="text-green-800 w-[52px] pb-2 font-medium">
+                              {index + 1} {star}
+                            </td>
                           <td className="px-3">
                               <div className="h-5 border bg-green-50 border-green-100 rounded-md overflow-hidden">
-                                  <div style={{width: rate?.perc}} className="bg-yellow-400 h-5"></div>
+                                  <div 
+                                      style={{width: handleRatingPrecetage(index + 1)}} 
+                                      className="bg-yellow-400 h-5">
+                                    </div>
                               </div>
                           </td>
-                          <td className="text-green-800 font-medium w-[30px]"> {rate?.perc}</td>
+                          <td 
+                            className="text-green-800 font-medium w-[30px]"
+                            > {handleRatingPrecetage(index + 1)}
+                          </td>
                       </tr>
 
                       ))

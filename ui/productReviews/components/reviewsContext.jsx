@@ -10,13 +10,13 @@ import {
 import { getReviewaByProductId } from "../../../actions/productReviews/getReviewsByproductId";
 // icons
 import {SyncLoader} from "react-spinners"
-
+// context
 export const ReviewsContext = createContext();
 
 const ReviewsContextProvider = ({children,product}) => {
 
     const [reviews,setReviews] = useState([]);
-    const [reviewsAvg,setReviewsAvg] = useState(0)
+    const [reviewsAvg,setReviewsAvg] = useState(0);
     const [loading,startTransition] = useTransition();
 
     const fetchReviews = (id)=> {
@@ -26,12 +26,11 @@ const ReviewsContextProvider = ({children,product}) => {
                 if(data?.data) {
                     setReviews(data?.data);
                     const total = data?.data?.reduce((sum,rating)=> sum + rating.rating,0)
-                    setReviewsAvg(total / data?.data?.length)
-                }
-                console.log(data)
-            })
-        })
-    }
+                    setReviewsAvg(total / data?.data?.length);
+                };
+            });
+        });
+    };
 
     useEffect(()=> {
         fetchReviews(product.id)

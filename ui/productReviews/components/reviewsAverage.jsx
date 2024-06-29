@@ -32,7 +32,6 @@ const reviewsAverage = () => {
                 ))
             }
         </div>
-        <p className="text-md font-medium text-green-800">Based on 117 ratings</p>
     </div>
   )
 }
