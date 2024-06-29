@@ -16,6 +16,7 @@ export const ReviewsContext = createContext();
 const ReviewsContextProvider = ({children,product}) => {
 
     const [reviews,setReviews] = useState([]);
+    const [reviewsAvg,setReviewsAvg] = useState(0)
     const [loading,startTransition] = useTransition();
 
     const fetchReviews = (id)=> {
@@ -23,7 +24,9 @@ const ReviewsContextProvider = ({children,product}) => {
             getReviewaByProductId(id)
             .then(data=> {
                 if(data?.data) {
-                    setReviews(data?.data)
+                    setReviews(data?.data);
+                    const total = data?.data?.reduce((sum,rating)=> sum + rating.rating,0)
+                    setReviewsAvg(total / data?.data?.length)
                 }
                 console.log(data)
             })
@@ -49,6 +52,7 @@ const ReviewsContextProvider = ({children,product}) => {
             reviews,
             setReviews,
             fetchReviews,
+            reviewsAvg
             }}
         >
         {children}

@@ -1,41 +1,36 @@
 "use client";
 
-import React, { useContext, useEffect,useState } from 'react'
+import React, { useContext} from 'react'
 // icons
-import { LiaStarSolid } from 'react-icons/lia';
+import { TiStarFullOutline,TiStarHalfOutline } from "react-icons/ti";
+import { CiStar } from "react-icons/ci";
 // context
 import {ReviewsContext} from "./reviewsContext";
 
+const reviewsStars = new Array(5).fill('star')
+
 const reviewsAverage = () => {
 
-    const [reviewsAvg,setReviewsAvg] = useState(0)
-
-    const {reviews} = useContext(ReviewsContext);
-
-    useEffect(()=> {
-        console.log(reviews?.length)
-        if(reviews?.length){
-            setReviewsAvg(()=> {
-                let total = 0;
-                const average = reviews?.reduce((prev,current)=> {
-                    console.log(prev?.rating + current?.rating)
-                },0);
-                
-                console.log(average)
-            });
-        };
-
-    },[reviews]);
+    const {reviewsAvg} = useContext(ReviewsContext);
 
   return (
     <div className="flex items-center gap-2 mb-3">
-        <h5 className="text-xl font-bold text-green-950">{reviewsAvg || 0} out of 5</h5>
+        <h5 
+            className="text-xl font-bold text-green-950"
+            >{reviewsAvg?.toFixed(1) || 0} out of 5
+        </h5>
         <div className="flex items-center text-yellow-400 text-[30px]">
-        <LiaStarSolid />
-        <LiaStarSolid />
-        <LiaStarSolid />
-        <LiaStarSolid />
-        <LiaStarSolid />
+            {
+                reviewsStars?.map((_,index)=> (
+
+                    (reviewsAvg > index && reviewsAvg < index + 1)  ? 
+                    <TiStarHalfOutline />
+                    :reviewsAvg > index ?
+                    <TiStarFullOutline /> :
+                    <CiStar />
+                       
+                ))
+            }
         </div>
         <p className="text-md font-medium text-green-800">Based on 117 ratings</p>
     </div>
