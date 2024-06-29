@@ -28,6 +28,9 @@ export const addNewAddress = async (email,data)=> {
             catch {
                 return {error: "oops! something went wrong"}
             }
+            finally {
+                await db.$disconnect()
+            }
 
         }else {
 
@@ -44,6 +47,9 @@ export const addNewAddress = async (email,data)=> {
             }
             catch {
                 return {error: "oops! something went wrong"}
+            }
+            finally {
+                await db.$disconnect()
             }
 
         }

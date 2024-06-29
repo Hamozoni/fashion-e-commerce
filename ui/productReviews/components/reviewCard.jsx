@@ -1,5 +1,5 @@
+"use clent"
 import Image from "next/image"
-
 // components
 import {ButtonWithIcon} from "../../../components/buttons"
 // icons
@@ -8,10 +8,35 @@ import { FaRegUser } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa6";
 import { VscEdit } from "react-icons/vsc";
 import { MdDelete } from "react-icons/md";
+// server actions
+import {removeReviewAction} from "../../../actions/productReviews/removeReview";
+// hooks
+import { useCurrentUser } from "../../../hooks/useCurrentUser";
+import { useTransition } from "react";
 
 const ratingStars = new Array(5).fill('start');
 
-async function ReviewCard({review,currrentUserId = null}) {
+function ReviewCard({review,setReviews}) {
+
+
+
+    const user = useCurrentUser();
+    const [loading,startTransition] = useTransition()
+
+    const handleRevomeReview = ()=> {
+
+        startTransition(()=> {
+            removeReviewAction(review.id)
+            .then((data)=> {
+                if(data?.success) {
+                    setReviews((rev)=> rev.filter(rev=> rev.id !== review.id))
+                }
+            })
+        })
+
+    }
+
+
   return (
         <div className="py-7 border-b border-gray-00">
             <header className="flex items-center gap-2 pb-2">
@@ -70,7 +95,7 @@ async function ReviewCard({review,currrentUserId = null}) {
                 }
             </div>
             {
-                currrentUserId === review?.autherId && (
+                user?.id === review?.autherId && (
                     <footer className="flex items-center gap-3">
                         <ButtonWithIcon 
                           text='edit'
@@ -82,7 +107,7 @@ async function ReviewCard({review,currrentUserId = null}) {
                           text='delete'
                           Icon={MdDelete}
                           type='delete'
-                          onClick=''
+                          onClick={handleRevomeReview}
                         />
                     </footer>
                 )

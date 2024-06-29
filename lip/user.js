@@ -8,6 +8,9 @@ export const findUserByEmail = async (email) => {
     }catch {
         return null
     }
+    finally {
+        await db.$disconnect()
+    }
 }
 
 export const findUserById = async (id) => {
@@ -18,6 +21,9 @@ export const findUserById = async (id) => {
     }catch {
         return null
     }
+    finally {
+        await db.$disconnect()
+    }
 }
 
 export const findUserAddressByEmail = async (email) => {
@@ -27,6 +33,9 @@ export const findUserAddressByEmail = async (email) => {
         return address
     }catch {
         return null
+    }
+    finally {
+        await db.$disconnect()
     }
 }
 

@@ -5,6 +5,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import Overlay  from "../../../components/Overlay"
 import AddressMap from "../../../components/AddressMap";
 import { AppContext } from "../../../app/contextProvider";
+import { ButtonWithIcon } from "../../../components/buttons";
 
 function UserAddress() {
 
@@ -38,20 +39,22 @@ function UserAddress() {
                ( user?.address && isUpdateAddress) &&
                 <>
                     <Overlay onClick={()=> setIsUpdateAddress(false)}/>
-                    <ul className=" z-50 absolute left-0 top-8 min-w-[fit-content] p-3 bg-green-100 rounded-md">
+                    <ul className=" z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] max-w-full p-3 bg-green-100 rounded-md ">
                         <li>
-                            <address className="flex items-center mb-4">
-                                <IoLocationOutline size={22} />
+                            <p className="flex justify-center">
+                              <IoLocationOutline size={30} />
+                            </p>
+                            <address className=" mb-4">
                                 {user?.address?.formatedAddress}
                             </address>
                         </li>
                         <li>
-                            <button 
-
-                                onClick={()=> setIsMapOpen(true)}
-                                className="bg-green-400 py-1  rounded-md text-green-50 w-full"
-                                >update addres
-                            </button>
+                            <ButtonWithIcon
+                               text='update addres'
+                               type='primary'
+                               Icon={IoLocationOutline}
+                               onClick={()=> setIsMapOpen(true)}
+                            />
                         </li>
                     </ul>
                 </>

@@ -26,15 +26,21 @@ export const registerAction =  async (formData)=> {
             return {error: "email is already in use!"}
         }
 
+        try{
             await db.user.create({
                 data: {
                     name,
                     email,
                     password: hassedPassword
                 }
-            }).catch((error)=> {
-                return {error: error}
             })
+        }
+        catch {
+            return {error: 'opps! something went wrong'}
+        }
+        finally {
+            await db.$disconnect()
+        }
 
             const verificationToken = await generateVerificationToken(email);
             await verifyEmail(verificationToken.email,verificationToken.token)

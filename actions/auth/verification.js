@@ -43,6 +43,9 @@ export const verificationAction = async (token)=> {
     }catch {
         return {error: "something went wrong"}
     }
+    finally {
+        await db.$disconnect()
+    }
 
     return {success: "email has verified"}
 

@@ -17,8 +17,11 @@ export const productById = async (productId)=> {
     
         return {data}
 
-    }catch(error){
-        return {error: error.massege}
+    }catch {
+        return {error: "something went wrong"}
+    }
+    finally {
+        await db.$disconnect()
     }
 
 

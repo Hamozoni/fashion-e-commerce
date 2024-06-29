@@ -1,29 +1,38 @@
 "use client"
 // react
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 // component
 import ReviewCard from "./reviewCard";
-// hooks
-import { useCurrentUser } from "../../../hooks/useCurrentUser";
 // server actions
-import { getReviewaByProductId } from "../../../actions/productRating/getReviewsByproductId";
+import { getReviewaByProductId } from "../../../actions/productReviews/getReviewsByproductId";
+// loading
+import {SyncLoader} from "react-spinners"
 
  const Reviews = ({productId})=> {
 
     const [reviews,setReviews] = useState([]);
-    const user = useCurrentUser()
+    const [loading,startTransition] = useTransition()
 
     useEffect(()=> {
-
-        getReviewaByProductId(productId)
-        .then(data=> {
-            if(data?.data) {
-                setReviews(data?.data)
-            }
-            console.log(data)
+        startTransition(()=> {
+            getReviewaByProductId(productId)
+            .then(data=> {
+                if(data?.data) {
+                    setReviews(data?.data)
+                }
+                console.log(data)
+            })
         })
 
     },[productId]);
+
+    if(loading) {
+        return (
+            <div className="w-full h-72 flex items-center justify-center">
+                <SyncLoader color='#bbf7d0'/>
+            </div>
+        )
+    }
 
 
   return (
@@ -33,7 +42,7 @@ import { getReviewaByProductId } from "../../../actions/productRating/getReviews
                 <ReviewCard 
                     key={review?.id}  
                     review={review} 
-                    currrentUserId={user && user?.id}
+                    setReviews={setReviews}
                     />
             ))
         }

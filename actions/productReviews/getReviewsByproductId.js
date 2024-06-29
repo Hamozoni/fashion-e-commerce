@@ -23,5 +23,8 @@ export const getReviewaByProductId = async(productId)=> {
         console.log(error)
         return {error: "something went wrong"}
     }
+    finally {
+        await db.$disconnect()
+    }
 
 }

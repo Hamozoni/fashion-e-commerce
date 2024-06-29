@@ -15,6 +15,9 @@ export const findVerificationTokenByEmail = async (email)=> {
     }catch{
         return null
     }
+    finally {
+        await db.$disconnect()
+    }
 
 }
 
@@ -29,6 +32,9 @@ export const findVerificationTokenByToken = async(token)=> {
 
     }catch{
         return null
+    }
+    finally {
+        await db.$disconnect()
     }
 
 }
@@ -58,6 +64,9 @@ export const generateVerificationToken = async(email)=> {
     }catch {
         return null;
     }
+    finally {
+        await db.$disconnect()
+    }
 
 
 };
@@ -77,6 +86,9 @@ export const findResetPasswordTokenByEmail = async (email)=> {
     catch{
         return null;
     }
+    finally {
+        await db.$disconnect()
+    }
 
 };
 
@@ -93,6 +105,9 @@ export const findResetPasswordTokenByToken = async(token)=> {
     }
     catch{
         return null;
+    }
+    finally {
+        await db.$disconnect()
     }
 
 };
@@ -120,6 +135,9 @@ export const generateResetPasswordToken = async (email)=> {
         return resetToken;
     }catch {
         return null
+    }
+    finally {
+        await db.$disconnect()
     }
 
 }

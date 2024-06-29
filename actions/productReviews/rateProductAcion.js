@@ -52,6 +52,9 @@ export const rateProduct = async(formData)=> {
         catch {
             return {error: "something went wrong"}
         }
+        finally {
+            await db.$disconnect()
+        }
     }
 
 

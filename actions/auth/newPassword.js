@@ -52,7 +52,8 @@ export const newPasswordAction = async (formData)=> {
     }catch {
          return {error: "opps! something went wrong"}
     }
-
-
+    finally {
+        await db.$disconnect()
+    }
 
 }

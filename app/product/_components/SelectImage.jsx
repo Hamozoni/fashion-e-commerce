@@ -15,7 +15,7 @@ function SelectImage({images,selectedColor,setSelectedColor}) {
         <section className="">
             <h6 
                 style={{backgroundColor:selectedColor}} 
-                className="w-full mb-2 h-[20px] rounded-full border-green-800 border"
+                className="w-full mb-2 h-[15px] rounded-full border-green-800 border"
                 >
             </h6>
             <div className="flex items-center gap-3">

@@ -13,16 +13,14 @@ export const productsByCategoryAction = async (category,subCategory)=> {
              images: true,
              }
           })
-          console.log(products)
-       
            return {data: products}
     }catch(error){
 
         return {error: error.massege}
 
     }
-
-
-
+    finally {
+        await db.$disconnect()
+    }
 
 }

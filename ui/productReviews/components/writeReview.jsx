@@ -23,7 +23,7 @@ import {ratingSchema} from "../../../validationSchemas/ratingSchema";
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
 
 // server actions
-import {rateProduct} from "../../../actions/productRating/rateProductAcion";
+import {rateProduct} from "../../../actions/productReviews/rateProductAcion";
 // loading
 import { DotLoader } from "react-spinners";
 import { ButtonWithIcon } from "../../../components/buttons";
