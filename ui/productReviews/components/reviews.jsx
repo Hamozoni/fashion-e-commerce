@@ -12,11 +12,11 @@ import {SyncLoader} from "react-spinners"
  const Reviews = ({product})=> {
 
     const [reviews,setReviews] = useState([]);
-    const [loading,startTransition] = useTransition()
+    const [loading,startTransition] = useTransition();
 
-    useEffect(()=> {
+    const fetchReviews = (id)=> {
         startTransition(()=> {
-            getReviewaByProductId(product.id)
+            getReviewaByProductId(id)
             .then(data=> {
                 if(data?.data) {
                     setReviews(data?.data)
@@ -24,7 +24,10 @@ import {SyncLoader} from "react-spinners"
                 console.log(data)
             })
         })
+    }
 
+    useEffect(()=> {
+        fetchReviews(product.id)
     },[product.id]);
 
     if(loading) {
@@ -39,7 +42,10 @@ import {SyncLoader} from "react-spinners"
   return (
     <div className="">
         <div className="">
-            <WriteReview product={product} />
+            <WriteReview 
+                product={product} 
+                fetchReviews={fetchReviews}
+                />
         </div>
         <div className="">
             {

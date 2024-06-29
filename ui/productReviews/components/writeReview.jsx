@@ -30,7 +30,7 @@ import { ButtonWithIcon } from "../../../components/buttons";
 
 const stars = new Array(5).fill('star');
 
-function WhriteReview({product}) {
+function WhriteReview({product,fetchReviews}) {
 
     const user = useCurrentUser()
 
@@ -128,8 +128,8 @@ function WhriteReview({product}) {
             startTransion(()=> {
                 rateProduct(formData)
                 .then(data=> {
-                    console.log(data)
                     if(data.success) {
+                        fetchReviews(product.id)
                         setShowModel(false);
                     }
                 })
