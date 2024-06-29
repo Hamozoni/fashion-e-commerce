@@ -1,6 +1,5 @@
 // component
 import ReviewsDetails from "./components/reviewsDetails";
-import WriteReview from "./components/writeReview";
 import Reviews from "./components/reviews";
 
 function ProductReviews({product}) {
@@ -19,8 +18,7 @@ function ProductReviews({product}) {
                 className="text-md font-medium text-green-900 pb-2 mb-2 border-b border-gray-100"
                 >6 Reviews
               </h5>
-              <WriteReview product={product}/>
-              <Reviews productId={product?.id}/>
+              <Reviews product={product}/>
             </section>
         </div>
     </section>

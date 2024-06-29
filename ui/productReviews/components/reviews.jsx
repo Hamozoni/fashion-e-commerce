@@ -3,19 +3,20 @@
 import { useEffect, useState, useTransition } from "react";
 // component
 import ReviewCard from "./reviewCard";
+import WriteReview from "./writeReview";
 // server actions
 import { getReviewaByProductId } from "../../../actions/productReviews/getReviewsByproductId";
 // loading
 import {SyncLoader} from "react-spinners"
 
- const Reviews = ({productId})=> {
+ const Reviews = ({product})=> {
 
     const [reviews,setReviews] = useState([]);
     const [loading,startTransition] = useTransition()
 
     useEffect(()=> {
         startTransition(()=> {
-            getReviewaByProductId(productId)
+            getReviewaByProductId(product.id)
             .then(data=> {
                 if(data?.data) {
                     setReviews(data?.data)
@@ -24,7 +25,7 @@ import {SyncLoader} from "react-spinners"
             })
         })
 
-    },[productId]);
+    },[product.id]);
 
     if(loading) {
         return (
@@ -37,15 +38,20 @@ import {SyncLoader} from "react-spinners"
 
   return (
     <div className="">
-        {
-            reviews?.map((review)=> (
-                <ReviewCard 
-                    key={review?.id}  
-                    review={review} 
-                    setReviews={setReviews}
-                    />
-            ))
-        }
+        <div className="">
+            <WriteReview product={product} />
+        </div>
+        <div className="">
+            {
+                reviews?.map((review)=> (
+                    <ReviewCard 
+                        key={review?.id}  
+                        review={review} 
+                        setReviews={setReviews}
+                        />
+                ))
+            }
+        </div>
     </div>
   ) 
 }

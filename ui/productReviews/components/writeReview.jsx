@@ -142,11 +142,6 @@ function WhriteReview({product}) {
             setError(formValidation.error);
         }
 
-        
-
-
-
-        console.log(formValidation)
     };
 
     const className = {
