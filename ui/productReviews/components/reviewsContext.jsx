@@ -1,8 +1,15 @@
 "use client";
 
-import { createContext } from "react";
+import { 
+    createContext, 
+    useEffect, 
+    useState, 
+    useTransition 
+} from "react";
 // server actions
 import { getReviewaByProductId } from "../../../actions/productReviews/getReviewsByproductId";
+// icons
+import {SyncLoader} from "react-spinners"
 
 export const ReviewsContext = createContext();
 
@@ -27,6 +34,13 @@ const ReviewsContextProvider = ({children,product}) => {
         fetchReviews(product.id)
     },[product.id]);
 
+    if(loading) {
+        return (
+            <div className="w-full h-72 flex items-center justify-center">
+                <SyncLoader color='#bbf7d0'/>
+            </div>
+        )
+    }
 
   return (
     <ReviewsContext.Provider 
@@ -35,7 +49,6 @@ const ReviewsContextProvider = ({children,product}) => {
             reviews,
             setReviews,
             fetchReviews,
-            loading
             }}
         >
         {children}

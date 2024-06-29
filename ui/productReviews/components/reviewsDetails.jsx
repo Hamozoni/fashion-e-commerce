@@ -1,5 +1,6 @@
-// icons
-import { LiaStarSolid } from "react-icons/lia";
+"use client"
+// components
+import  ReviewsAverage  from "./reviewsAverage";
 
 const ratings = [
     {
@@ -39,17 +40,7 @@ function ReviewsDetails() {
            >Overall Rating
         </h5>
         <div className="sticky top-[70px]">
-          <div className="flex items-center gap-2 mb-3">
-              <h5 className="text-xl font-bold text-green-950">3.5 out of 5</h5>
-              <div className="flex items-center text-yellow-400 text-[30px]">
-                <LiaStarSolid />
-                <LiaStarSolid />
-                <LiaStarSolid />
-                <LiaStarSolid />
-                <LiaStarSolid />
-              </div>
-              <p className="text-md font-medium text-green-800">Based on 117 ratings</p>
-          </div>
+          <ReviewsAverage/>
           <div className="py-4 border border-green-50 shadow-md px-2 rounded-md">
               <table className="min-w-full table ">
                   <tbody>

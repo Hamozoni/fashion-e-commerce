@@ -1,7 +1,7 @@
 "use client";
 // react & next
 import { useRouter } from "next/navigation";
-import { useRef, useState, useTransition } from "react";
+import { useContext, useRef, useState, useTransition } from "react";
 import Image from "next/image";
 
 // icons

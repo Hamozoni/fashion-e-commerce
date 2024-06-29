@@ -4,25 +4,13 @@ import { useContext, useEffect, useState, useTransition } from "react";
 // component
 import ReviewCard from "./reviewCard";
 import WriteReview from "./writeReview";
-// loading
-import {SyncLoader} from "react-spinners"
 // context
 import {ReviewsContext} from "./reviewsContext";
 
  const Reviews = ()=> {
 
-    const {loading,reviews} = useContext(ReviewsContext)
-
-
-    if(loading) {
-        return (
-            <div className="w-full h-72 flex items-center justify-center">
-                <SyncLoader color='#bbf7d0'/>
-            </div>
-        )
-    }
-
-
+    const {reviews} = useContext(ReviewsContext);
+    
   return (
     <section className="flex-1 max-w-full">
         <h5 
