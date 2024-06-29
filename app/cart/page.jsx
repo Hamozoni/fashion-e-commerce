@@ -28,7 +28,7 @@ function cartPage() {
     <div className="">
         {
             cartItems?.length ?
-            <div className="lg:px-8 md:flex gap-4">
+            <div className="lg:px-8 md:flex gap-4 capitalize">
                 <section className="flex-1">
                     <h4 className={className.sectionTitle}>
                         {totalItemsOnCart} items

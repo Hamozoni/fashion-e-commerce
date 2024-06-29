@@ -26,7 +26,7 @@ function ReviewCard({review,setReviews}) {
     const handleRevomeReview = ()=> {
 
         startTransition(()=> {
-            removeReviewAction(review.id)
+            removeReviewAction(review?.id,review?.reviewImage)
             .then((data)=> {
                 if(data?.success) {
                     setReviews((rev)=> rev.filter(rev=> rev.id !== review.id))

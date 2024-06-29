@@ -13,13 +13,7 @@ function ProductReviews({product}) {
         </header>
         <div className="md:flex gap-4 lg:gap-8 pt-3 max-w-full ">
             <ReviewsDetails />
-            <section className="flex-1 max-w-full">
-              <h5 
-                className="text-md font-medium text-green-900 pb-2 mb-2 border-b border-gray-100"
-                >6 Reviews
-              </h5>
-              <Reviews product={product}/>
-            </section>
+            <Reviews product={product}/>
         </div>
     </section>
   )
