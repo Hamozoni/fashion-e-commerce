@@ -1,10 +1,12 @@
 "use client";
 
 import { createContext } from "react";
+// server actions
+import { getReviewaByProductId } from "../../../actions/productReviews/getReviewsByproductId";
 
 export const ReviewsContext = createContext();
 
-const ReviewsContextProvider = ({children,productId}) => {
+const ReviewsContextProvider = ({children,product}) => {
 
     const [reviews,setReviews] = useState([]);
     const [loading,startTransition] = useTransition();
@@ -22,13 +24,14 @@ const ReviewsContextProvider = ({children,productId}) => {
     }
 
     useEffect(()=> {
-        fetchReviews(productId)
-    },[productId]);
+        fetchReviews(product.id)
+    },[product.id]);
 
 
   return (
     <ReviewsContext.Provider 
         value={{
+            product,
             reviews,
             setReviews,
             fetchReviews,

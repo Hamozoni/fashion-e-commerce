@@ -2,6 +2,8 @@
 // component
 import ReviewsDetails from "./components/reviewsDetails";
 import Reviews from "./components/reviews";
+// context provider
+import ReviewsContext from "./components/reviewsContext";
 
 function ProductReviews({product}) {
 
@@ -15,7 +17,7 @@ function ProductReviews({product}) {
           </header>
           <div className="md:flex gap-4 lg:gap-8 pt-3 max-w-full ">
               <ReviewsDetails />
-              <Reviews product={product}/>
+              <Reviews />
           </div>
        </ReviewsContext>
     </section>

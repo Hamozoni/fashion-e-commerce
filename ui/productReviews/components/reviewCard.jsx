@@ -1,4 +1,5 @@
 "use clent"
+import { useContext, useTransition } from "react";
 import Image from "next/image"
 // components
 import {ButtonWithIcon} from "../../../components/buttons"
@@ -12,13 +13,14 @@ import { MdDelete } from "react-icons/md";
 import {removeReviewAction} from "../../../actions/productReviews/removeReview";
 // hooks
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
-import { useTransition } from "react";
+// context
+import { ReviewsContext } from "./reviewsContext";
 
 const ratingStars = new Array(5).fill('start');
 
-function ReviewCard({review,setReviews}) {
+function ReviewCard({review}) {
 
-
+     const {setReviews} = useContext(ReviewsContext)
 
     const user = useCurrentUser();
     const [loading,startTransition] = useTransition()

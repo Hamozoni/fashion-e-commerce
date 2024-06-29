@@ -27,12 +27,15 @@ import {rateProduct} from "../../../actions/productReviews/rateProductAcion";
 // loading
 import { PulseLoader } from "react-spinners";
 import { ButtonWithIcon } from "../../../components/buttons";
+// context
+import { ReviewsContext } from "./reviewsContext";
 
 const stars = new Array(5).fill('star');
 
-function WhriteReview({product,fetchReviews}) {
+function WhriteReview() {
 
-    const user = useCurrentUser()
+    const user = useCurrentUser();
+    const {product,fetchReviews} = useContext(ReviewsContext)
 
     const [showModel,setShowModel] = useState(false);
     const [rating,setRating] = useState(0);
