@@ -81,7 +81,7 @@ function ReviewCard({review,setReviews}) {
             </section>
             <div className="">
                 <article 
-                    className="text-green-800 text-sm pb-3"
+                    className="text-green-800 text-sm pb-3 max-w-full"
                     >{review?.rateText}
                 </article>
                 {

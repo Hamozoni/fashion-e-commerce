@@ -33,7 +33,7 @@ function ReviewsDetails() {
       }
 
   return (
-    <section className="flex-1 capitalize">
+    <section className="flex-1 capitalize max-w-full min-w-[50%]">
         <h5  
           className="text-md font-medium text-green-900 pb-2 mb-2 border-b border-gray-100"
            >Overall Rating

@@ -11,9 +11,9 @@ function ProductReviews({product}) {
                 Product Ratings & Reviews
             </h4>
         </header>
-        <div className="md:flex gap-4 lg:gap-8 pt-3 ">
+        <div className="md:flex gap-4 lg:gap-8 pt-3 max-w-full ">
             <ReviewsDetails />
-            <section className="flex-1">
+            <section className="flex-1 max-w-full">
               <h5 
                 className="text-md font-medium text-green-900 pb-2 mb-2 border-b border-gray-100"
                 >6 Reviews
