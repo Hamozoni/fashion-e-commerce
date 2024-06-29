@@ -1,4 +1,4 @@
-import {SyncLoader} from "react-spinners"
+import {PulseLoader} from "react-spinners"
 
 export const ButtonWithIcon = ({
     text,
@@ -23,7 +23,7 @@ export const ButtonWithIcon = ({
         >
           {
             disabled ?
-              <SyncLoader />
+              <PulseLoader size={10} className=" opacity-50"/>
             :
             <>
               <Icon size={16}/>

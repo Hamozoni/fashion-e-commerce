@@ -25,7 +25,7 @@ import { useCurrentUser } from "../../../hooks/useCurrentUser";
 // server actions
 import {rateProduct} from "../../../actions/productReviews/rateProductAcion";
 // loading
-import { DotLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 import { ButtonWithIcon } from "../../../components/buttons";
 
 const stars = new Array(5).fill('star');
@@ -130,7 +130,7 @@ function WhriteReview({product}) {
                 .then(data=> {
                     console.log(data)
                     if(data.success) {
-                        setShowModel(false)
+                        setShowModel(false);
                     }
                 })
 
@@ -235,9 +235,18 @@ function WhriteReview({product}) {
                             </div>
                             <footer className="flex items-center justify-between gap-3 mt-3">
                                 <button 
-                                   type="submit"
-                                    className={`${className.btn}`}>
-                                    <BiSave  size={16}/>save
+                                    disabled={isPending}
+                                    type="submit"
+                                    className={`${className.btn}`}
+                                    >
+                                        {
+                                            isPending ?  
+                                            <PulseLoader size={10} className=" opacity-50"/>
+                                            :
+                                            <>
+                                              <BiSave  size={16}/>save
+                                            </>
+                                        }
                                 </button>
                                 <ButtonWithIcon
                                     text='cancel'
@@ -252,15 +261,6 @@ function WhriteReview({product}) {
                 <Overlay onClick={()=> setShowModel(false)}/>
             </>
             :''
-        }
-         {
-            isPending && 
-            <div className="z-[60]">
-              <Overlay onClick=''/>
-             <div className="fixed top-1/2 left-1/2 w-fit z-[61]">
-                <DotLoader color="#4ade80" />
-             </div>
-            </div>
         }
     </div>
   )
