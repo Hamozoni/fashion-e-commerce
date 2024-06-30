@@ -21,7 +21,7 @@ import Overlay from "../../../components/Overlay";
 // array for rating stars
 const ratingStars = new Array(5).fill('start');
 
-function ReviewCard({review}) {
+function ReviewCard({review,index}) {
 
      const {fetchReviews,setReviews} = useContext(ReviewsContext)
 
@@ -53,13 +53,16 @@ function ReviewCard({review}) {
             .then(data=> {
                 if(data?.data) {
                     setIsEdidable(false);
-                    console.log(data?.data)
-                }
-            })
-        })
-    }
+                    setReviews((prev)=> {
+                        const updatedReviews = prev?.splice(index,1,data?.data);
+                        return updatedReviews;
+                    });
+                };
+            });
+        });
+    };
 
-    console.log(Date(review?.createdAt).getDate(),new Date(review?.updatedAt))
+    console.log(Date(review?.createdAt),new Date(review?.updatedAt))
 
     const updatedAt = new Date(review?.createdAt) === new Date(review?.updatedAt) ? "" :'updated at';
 

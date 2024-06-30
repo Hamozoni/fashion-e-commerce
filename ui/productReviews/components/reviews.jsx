@@ -22,8 +22,12 @@ import {ReviewsContext} from "./reviewsContext";
         </div>
         <div className="">
             {
-                reviews?.map((review)=> (
-                    <ReviewCard  review={review} key={review?.id} />
+                reviews?.map((review,index)=> (
+                    <ReviewCard  
+                        review={review}
+                        key={review?.id}
+                        index={index}
+                         />
                 ))
             }
         </div>
