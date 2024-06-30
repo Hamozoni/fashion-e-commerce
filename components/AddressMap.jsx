@@ -1,39 +1,45 @@
 "use client";
+import { useRouter } from "next/navigation";
+import {useState } from "react";
+// icons
 import { RxCross2 } from "react-icons/rx";
+// google map
 import {
     APIProvider,
     Map,
     Marker
-} from "@vis.gl/react-google-maps"
-import{fetchData}from "../lip/fetchData"
-import {useState } from "react";
+} from "@vis.gl/react-google-maps";
+// lip
+import{fetchData}from "../lip/fetchData";
+// hooks
 import { useCurrentUser } from "../hooks/useCurrentUser";
+// server actions
 import {addNewAddress} from "../actions/user/addNewAddress"
-import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
 
 function AddressMap({onClick}) {
 
     const [position,setPosition] = useState({lat: 26.3159003,lng: 50.2052888});
     const [formatedAddress,setFormatedAddress] = useState("")
     const [address,setAddress] = useState({});
-    const route = useRouter()
+    
+    const user = useCurrentUser();
+    const route = useRouter();
+
+
 
     const getCurrentAddress = (lat,lng)=>{
 
         const geocodeApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`
+
         fetchData(geocodeApiUrl).then((data)=> {
-
-            console.log("started")
             if(data.status === "OK"){
-                console.log( data?.results[0]?.address_components)
-                setFormatedAddress(data.results[0]?.formatted_address);
-               const getAddress = ()=> {
 
+              setFormatedAddress(data.results[0]?.formatted_address);
+               const getAddress = ()=> {
                     let address = {}
-    
                     data?.results[0]?.address_components?.map((el)=> {
-    
-                        console.log(el)
+
                         if(el?.types?.includes('route')) {
                             address.route = el?.long_name
                         }
@@ -89,22 +95,17 @@ function AddressMap({onClick}) {
         }
     }
 
-    const user = useCurrentUser();
-
     const confirmLocation = ()=> {
 
-        console.log(user)
-
         if(!!user){
-            addNewAddress(user.email,{
+             addNewAddress(user.email,{
                 ...position,
                 ...address,
                 formatedAddress
             })
             .then((data)=> {
-                console.log(data)
                 if(data.success) {
-                    onClick()
+                    onClick();
                 }
             })
 
