@@ -23,7 +23,7 @@ const ratingStars = new Array(5).fill('start');
 
 function ReviewCard({review,index}) {
 
-     const {fetchReviews,setReviews} = useContext(ReviewsContext)
+     const {setReviews} = useContext(ReviewsContext)
 
     const user = useCurrentUser();
     const [loading,startTransition] = useTransition();
@@ -39,7 +39,7 @@ function ReviewCard({review,index}) {
             removeReviewAction(review?.id,review?.reviewImage)
             .then((data)=> {
                 if(data?.success) {
-                    fetchReviews(review.productId)
+                    setReviews(prev=> prev?.filter(e=> e.id !== review?.id))
                 }
             })
         });
@@ -53,9 +53,9 @@ function ReviewCard({review,index}) {
             .then(data=> {
                 if(data?.data) {
                     setIsEdidable(false);
-                    setReviews((prev)=> {
-                        const updatedReviews = prev?.splice(index,1,data?.data);
-                        return updatedReviews;
+                    setReviews(prev=> {
+                        prev[index] = data?.data
+                        return [...prev]
                     });
                 };
             });
