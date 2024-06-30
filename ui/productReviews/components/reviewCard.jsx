@@ -8,21 +8,22 @@ import { LiaStarSolid } from "react-icons/lia";
 import { FaRegUser } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa6";
 import { VscEdit } from "react-icons/vsc";
-import { MdDelete } from "react-icons/md";
+import { MdDelete,MdOutlineSaveAs } from "react-icons/md";
 import { IoIosArrowRoundBack } from "react-icons/io";
 // server actions
 import {removeReviewAction} from "../../../actions/productReviews/removeReview";
+import {updateReviewAction} from "../../../actions/productReviews/updateReview";
 // hooks
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
 // context
 import { ReviewsContext } from "./reviewsContext";
 import Overlay from "../../../components/Overlay";
-
+// array for rating stars
 const ratingStars = new Array(5).fill('start');
 
 function ReviewCard({review}) {
 
-     const {fetchReviews} = useContext(ReviewsContext)
+     const {fetchReviews,setReviews} = useContext(ReviewsContext)
 
     const user = useCurrentUser();
     const [loading,startTransition] = useTransition();
@@ -31,7 +32,7 @@ function ReviewCard({review}) {
 
     const [reviewTitle,setReviewTitle] = useState(review?.rateTitle);
     const [reviewText,setReviewText] = useState(review?.rateText);
-    const reviewTextRef = useRef(null)
+
     const handleRevomeReview = ()=> {
 
         startTransition(()=> {
@@ -45,9 +46,17 @@ function ReviewCard({review}) {
 
     };
 
-    const handleEditReview = ()=> {
-        setIsEdidable(true)
-        reviewTextRef.current.focuse();
+    const handleUpdateReview = ()=> {
+
+        startTransition(()=> {
+            updateReviewAction(review?.id,reviewTitle,reviewText)
+            .then(data=> {
+                if(data?.data) {
+                    setIsEdidable(false);
+                    setReviews(prev=> prev[prev.indexOf(review)] = data?.data)
+                }
+            })
+        })
     }
 
 
@@ -107,7 +116,6 @@ function ReviewCard({review}) {
                 {
                     (isEdidable && review?.autherId === user?.id) ? 
                     <textarea 
-                        ref={reviewTextRef}
                         className="text-green-800 text-sm focus:outline-none w-full border-b border-green-200 focus:border-green-400"
                         value={reviewText}
                         onChange={(e)=> setReviewText(e.target.value)}
@@ -134,10 +142,11 @@ function ReviewCard({review}) {
                 user?.id === review?.autherId && (
                     <footer className="flex items-center gap-3">
                         <ButtonWithIcon 
-                          text='edit'
-                          Icon={VscEdit}
+                          text={isEdidable ? 'save' : 'edit'}
+                          Icon={isEdidable ? MdOutlineSaveAs : VscEdit}
                           type='save'
-                          onClick={handleEditReview}
+                          disabled={loading}
+                          onClick={isEdidable ? handleUpdateReview : ()=> setIsEdidable(true)}
                         />
                         <ButtonWithIcon 
                           text='delete'
