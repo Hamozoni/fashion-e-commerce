@@ -12,7 +12,7 @@ import { MdDelete,MdOutlineSaveAs } from "react-icons/md";
 import { IoIosArrowRoundBack } from "react-icons/io";
 // server actions
 import {removeReviewAction} from "../../../actions/productReviews/removeReview";
-import {updateReviewAction} from "../../../actions/productReviews/updateReview";
+import {updatereviewAction} from "../../../actions/productReviews/updateReview";
 // hooks
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
 // context
@@ -49,16 +49,19 @@ function ReviewCard({review}) {
     const handleUpdateReview = ()=> {
 
         startTransition(()=> {
-            updateReviewAction(review?.id,reviewTitle,reviewText)
+            updatereviewAction(review?.id,reviewTitle,reviewText)
             .then(data=> {
                 if(data?.data) {
                     setIsEdidable(false);
-                    setReviews(prev=> prev[prev.indexOf(review)] = data?.data)
+                    console.log(data?.data)
                 }
             })
         })
     }
 
+    console.log(Date(review?.createdAt).getDate(),new Date(review?.updatedAt))
+
+    const updatedAt = new Date(review?.createdAt) === new Date(review?.updatedAt) ? "" :'updated at';
 
   return (
         <div className="py-7 border-b border-gray-00">
@@ -81,7 +84,7 @@ function ReviewCard({review}) {
                     <time 
                         className="text-green-800 text-sm"
                         dateTime={new Date(review.createdAt).toDateString()}
-                        >{new Date(review.createdAt).toDateString()}
+                        >{updatedAt} {new Date(review?.updatedAt).toDateString()}
                     </time>
                 </section>
             </header>
