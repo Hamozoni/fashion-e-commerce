@@ -42,12 +42,12 @@ export const rateProduct = async(formData)=> {
 
         try {
 
-            await db.reviews.create({data:{
+        const review = await db.reviews.create({data:{
                 ...data
             }})
 
 
-            return {success: "review has been committed successfuly"}
+            return {review: review}
         }
         catch {
             return {error: "something went wrong"}

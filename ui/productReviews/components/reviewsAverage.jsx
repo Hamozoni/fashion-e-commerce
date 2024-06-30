@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 // icons
 import { TiStarFullOutline,TiStarHalfOutline } from "react-icons/ti";
 import { CiStar } from "react-icons/ci";
@@ -11,13 +11,19 @@ const reviewsStars = new Array(5).fill('star')
 
 const reviewsAverage = () => {
 
-    const {reviewsAvg} = useContext(ReviewsContext);
+    const {reviews} = useContext(ReviewsContext);
+    const [reviewsAvg,setReviewsAvg] = useState(0);
+
+    useEffect(()=>{
+        const total = reviews?.reduce((sum,rating)=> sum + rating.rating,0)
+        setReviewsAvg(total > 0 ? total / reviews?.length : 0);
+    },[reviews]);
 
   return (
     <div className="flex items-center gap-2 mb-3">
         <h5 
             className="text-xl font-bold text-green-950"
-            >{reviewsAvg?.toFixed(1) || 0} out of 5
+            >{reviewsAvg > 0 ? reviewsAvg?.toFixed(1) : 0} out of 5
         </h5>
         <div className="flex items-center text-yellow-400 text-[30px]">
             {

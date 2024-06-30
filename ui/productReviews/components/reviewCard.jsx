@@ -54,7 +54,7 @@ function ReviewCard({review,index}) {
                 if(data?.data) {
                     setIsEdidable(false);
                     setReviews(prev=> {
-                        prev[index] = data?.data
+                        prev[index] = {...data?.data,auther:{name: user?.name,image: user?.image}}
                         return [...prev]
                     });
                 };

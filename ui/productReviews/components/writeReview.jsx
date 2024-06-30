@@ -35,7 +35,7 @@ const stars = new Array(5).fill('star');
 function WhriteReview() {
 
     const user = useCurrentUser();
-    const {product,fetchReviews} = useContext(ReviewsContext)
+    const {product,setReviews} = useContext(ReviewsContext)
 
     const [showModel,setShowModel] = useState(false);
     const [rating,setRating] = useState(0);
@@ -131,8 +131,8 @@ function WhriteReview() {
             startTransion(()=> {
                 rateProduct(formData)
                 .then(data=> {
-                    if(data.success) {
-                        fetchReviews(product.id)
+                    if(data?.review) {
+                        setReviews(prev=> [{...data?.review,auther: {name: user?.name,image:user?.image}},...prev])
                         setShowModel(false);
                     }
                 })
