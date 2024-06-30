@@ -15,6 +15,7 @@ import {removeReviewAction} from "../../../actions/productReviews/removeReview";
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
 // context
 import { ReviewsContext } from "./reviewsContext";
+import Overlay from "../../../components/Overlay";
 
 const ratingStars = new Array(5).fill('start');
 
@@ -110,10 +111,36 @@ function ReviewCard({review}) {
                           text='delete'
                           Icon={MdDelete}
                           type='delete'
-                          disabled={loading}
-                          onClick={handleRevomeReview}
+                          onClick={()=> setIsRemoveModle(true)}
                         />
                     </footer>
+                )
+            }
+            {
+                isRemoveModle && (
+                    <>
+                       <Overlay onClick={()=> setIsRemoveModle(false)}/>
+                        <div className="bg-green-50 capitalize z-50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md w-[370px]">
+                            <h5 className="text-green-950 mb-3 font-medium text-lg">
+                                are you sure you want to delete your review ?
+                            </h5>
+                            <div className=" flex items-center gap-3">
+                                <ButtonWithIcon 
+                                    text='delete'
+                                    Icon={MdDelete}
+                                    type='delete'
+                                    disabled={loading}
+                                    onClick={handleRevomeReview}
+                                    />
+                                <ButtonWithIcon 
+                                    text='cancel'
+                                    Icon={VscEdit}
+                                    type='save'
+                                    onClick={()=> setIsRemoveModle(false)}
+                                    />
+                            </div>
+                        </div>
+                    </>
                 )
             }
         </div>
