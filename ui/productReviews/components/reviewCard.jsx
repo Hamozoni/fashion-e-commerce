@@ -9,6 +9,7 @@ import { FaRegUser } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa6";
 import { VscEdit } from "react-icons/vsc";
 import { MdDelete } from "react-icons/md";
+import { IoIosArrowRoundBack } from "react-icons/io";
 // server actions
 import {removeReviewAction} from "../../../actions/productReviews/removeReview";
 // hooks
@@ -36,9 +37,9 @@ function ReviewCard({review}) {
                     fetchReviews(review.productId)
                 }
             })
-        })
+        });
 
-    }
+    };
 
 
   return (
@@ -133,8 +134,8 @@ function ReviewCard({review}) {
                                     onClick={handleRevomeReview}
                                     />
                                 <ButtonWithIcon 
-                                    text='cancel'
-                                    Icon={VscEdit}
+                                    text='back'
+                                    Icon={IoIosArrowRoundBack}
                                     type='save'
                                     onClick={()=> setIsRemoveModle(false)}
                                     />
