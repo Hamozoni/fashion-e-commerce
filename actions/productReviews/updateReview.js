@@ -2,16 +2,17 @@
 
 import {db} from "../../lip/db"
 
-export const updatereviewAction = async (id,rateTitle,rateText)=> {
+export const updatereviewAction = async (id,data)=> {
 
     try{
         const updatedReview =  await db.reviews.update({
                 where: {id},
-                data: {rateTitle,rateText}
+                data: {...data}
             });
         return {data: updatedReview}
     }
-    catch {
+    catch (error) {
+        console.log(error)
         return {error: 'opps! something went wrong'}
     }
     finally {

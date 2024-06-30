@@ -12,8 +12,8 @@ function UserField({name}) {
                 <address>
                     {user?.address?.formatedAddress}
                 </address>
-                :
-                <h5>{user[name]}</h5>
+                :''
+                // <h5>{user[name]}</h5>
             }
         </div>
     </div>

@@ -5,16 +5,15 @@ import { useContext, useRef, useState, useTransition } from "react";
 import Image from "next/image";
 
 // icons
-import { FaStar } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
-import { CiStar } from "react-icons/ci";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 
 // components
 import Overlay from "../../../components/Overlay";
-import ZodError  from "../../../components/zodError"
+import ZodError  from "../../../components/zodError";
+import {RatingStars} from "./reviewsRating"
 
 // validations
 import {ratingSchema} from "../../../validationSchemas/ratingSchema";
@@ -38,11 +37,9 @@ function WhriteReview() {
     const {product,setReviews} = useContext(ReviewsContext)
 
     const [showModel,setShowModel] = useState(false);
-    const [rating,setRating] = useState(0);
+    const [rating,setRating] = useState(1);
 
     const ProductRating = ()=> {
-
-        const rate = rating === 1 ? 'Meh':rating === 2 ? "Okay":rating === 3 ? 'Good':rating === 4 ? 'Fab' : rating === 5 && 'Awesome';
 
         return (
             <div>
@@ -64,28 +61,7 @@ function WhriteReview() {
                         >your rating ? 
                     </h6>
                     <div className="flex items-center justify-center gap-2">
-
-                        <div className="flex items-center justify-center gap-2">
-                            {
-                                stars?.map((_,index)=> (
-                                <button 
-                                    key={index} 
-                                    onClick={()=> setRating(+index + 1)}
-                                    >
-                                    {
-                                        rating > index ?
-                                        <FaStar size={26} color="#eab308"/>
-                                        : <CiStar size={26} color="#eab308" />
-                                    }
-                                </button>
-
-                                ))
-                            }
-                            
-                        </div>
-
-
-                        <span className="w-[60px]">{rate}</span>
+                    <RatingStars rating={rating} setRating={setRating}/>
                     </div>
                 </div>
                 <ZodError error={error} field='rating' />
@@ -133,8 +109,10 @@ function WhriteReview() {
                 .then(data=> {
                     if(data?.review) {
                         setReviews(prev=> [{...data?.review,auther: {name: user?.name,image:user?.image}},...prev])
-                        setShowModel(false);
                     }
+                })
+                .finally(()=>{
+                    setShowModel(false);
                 })
 
             })

@@ -3,10 +3,9 @@ import { useContext, useRef, useState, useTransition } from "react";
 import Image from "next/image"
 // components
 import {ButtonWithIcon} from "../../../components/buttons";
+import {RatingStars} from "./reviewsRating"
 // icons
-import { LiaStarSolid } from "react-icons/lia";
 import { FaRegUser } from "react-icons/fa";
-import { FaRegStar } from "react-icons/fa6";
 import { VscEdit } from "react-icons/vsc";
 import { MdDelete,MdOutlineSaveAs } from "react-icons/md";
 import { IoIosArrowRoundBack } from "react-icons/io";
@@ -18,8 +17,7 @@ import { useCurrentUser } from "../../../hooks/useCurrentUser";
 // context
 import { ReviewsContext } from "./reviewsContext";
 import Overlay from "../../../components/Overlay";
-// array for rating stars
-const ratingStars = new Array(5).fill('start');
+
 
 function ReviewCard({review,index}) {
 
@@ -32,6 +30,7 @@ function ReviewCard({review,index}) {
 
     const [reviewTitle,setReviewTitle] = useState(review?.rateTitle);
     const [reviewText,setReviewText] = useState(review?.rateText);
+    const [rating,setRating] = useState(review?.rating);
 
     const handleRevomeReview = ()=> {
 
@@ -49,25 +48,33 @@ function ReviewCard({review,index}) {
     const handleUpdateReview = ()=> {
 
         startTransition(()=> {
-            updatereviewAction(review?.id,reviewTitle,reviewText)
+            updatereviewAction(review?.id,
+                {
+                    rateTitle: reviewTitle,
+                    rateText: reviewText,
+                    rating: +rating
+                }
+            )
             .then(data=> {
                 if(data?.data) {
-                    setIsEdidable(false);
                     setReviews(prev=> {
                         prev[index] = {...data?.data,auther:{name: user?.name,image: user?.image}}
                         return [...prev]
                     });
                 };
-            });
+            })
+            .finally(()=>{
+                setIsEdidable(false);
+            })
         });
     };
 
-    console.log(Date(review?.createdAt),new Date(review?.updatedAt))
 
-    const updatedAt = new Date(review?.createdAt) === new Date(review?.updatedAt) ? "" :'updated at';
+
+    const updatedAt = Date.parse(review?.createdAt) === Date.parse(review?.updatedAt) ? "" :'Edited at';
 
   return (
-        <div className="py-7 border-b border-gray-00">
+        <div className={`${isEdidable ? 'border border-gray-100 shadow-md rounded-md p-3':''} py-7 border-b border-gray-00`}>
             <header className="flex items-center gap-2 pb-2">
                 {
                     review?.auther?.image ?
@@ -92,20 +99,7 @@ function ReviewCard({review,index}) {
                 </section>
             </header>
             <section className="flex items-center gap-2 mb-4">
-                <div className="flex items-center">
-                    {
-                        ratingStars?.map((_,index)=> (
-                            <div key={index} className="flex items-center text-yellow-400">
-                                {
-                                    review?.rating > index ?
-                                    <LiaStarSolid size={20}/>
-                                    :
-                                    <FaRegStar size={20} />
-                                }
-                            </div>
-                        ))
-                    }
-                </div>
+                <RatingStars rating={rating} setRating={isEdidable ? setRating : ()=> ''}/>
                 {
                     (isEdidable && review?.autherId === user?.id) ?
                     <input 
@@ -136,10 +130,11 @@ function ReviewCard({review,index}) {
                 }
                 {
                     review?.reviewImage &&
-                    <div className="p-3">
-                        <Image 
+                    <div className="p-3 flex items-center justify-center">
+                        <Image
+                             className="bg-white"
                             src={review?.reviewImage?.replace('public','')} 
-                            width={150} height={200} alt='product image'
+                            width={80} height={100} alt='product image'
                             />
                     </div>
                 }
