@@ -1,5 +1,5 @@
 "use clent"
-import { useContext, useState, useTransition } from "react";
+import { useContext, useRef, useState, useTransition } from "react";
 import Image from "next/image"
 // components
 import {ButtonWithIcon} from "../../../components/buttons";
@@ -31,7 +31,7 @@ function ReviewCard({review}) {
 
     const [reviewTitle,setReviewTitle] = useState(review?.rateTitle);
     const [reviewText,setReviewText] = useState(review?.rateText);
-
+    const reviewTextRef = useRef(null)
     const handleRevomeReview = ()=> {
 
         startTransition(()=> {
@@ -44,6 +44,11 @@ function ReviewCard({review}) {
         });
 
     };
+
+    const handleEditReview = ()=> {
+        setIsEdidable(true)
+        reviewTextRef.current.focuse();
+    }
 
 
   return (
@@ -71,7 +76,7 @@ function ReviewCard({review}) {
                     </time>
                 </section>
             </header>
-            <section className="flex items-center gap-2">
+            <section className="flex items-center gap-2 mb-4">
                 <div className="flex items-center">
                     {
                         ratingStars?.map((_,index)=> (
@@ -87,8 +92,9 @@ function ReviewCard({review}) {
                     }
                 </div>
                 {
-                    isEdidable ?
+                    (isEdidable && review?.autherId === user?.id) ?
                     <input 
+                        className="border-b border-green-200 focus:border-green-400"
                         type="text" 
                         value={reviewTitle}
                         onChange={(e)=> setReviewTitle(e.target.value)}
@@ -99,8 +105,10 @@ function ReviewCard({review}) {
             </section>
             <div className="">
                 {
-                    isEdidable ? 
+                    (isEdidable && review?.autherId === user?.id) ? 
                     <textarea 
+                        ref={reviewTextRef}
+                        className="text-green-800 text-sm focus:outline-none w-full border-b border-green-200 focus:border-green-400"
                         value={reviewText}
                         onChange={(e)=> setReviewText(e.target.value)}
                         
@@ -129,7 +137,7 @@ function ReviewCard({review}) {
                           text='edit'
                           Icon={VscEdit}
                           type='save'
-                          onClick={()=> setIsEdidable(!isEdidable)}
+                          onClick={handleEditReview}
                         />
                         <ButtonWithIcon 
                           text='delete'
