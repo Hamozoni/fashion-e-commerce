@@ -2,7 +2,7 @@
 import { useContext, useState, useTransition } from "react";
 import Image from "next/image"
 // components
-import {ButtonWithIcon} from "../../../components/buttons"
+import {ButtonWithIcon} from "../../../components/buttons";
 // icons
 import { LiaStarSolid } from "react-icons/lia";
 import { FaRegUser } from "react-icons/fa";
@@ -27,6 +27,10 @@ function ReviewCard({review}) {
     const user = useCurrentUser();
     const [loading,startTransition] = useTransition();
     const [isRemoveModle,setIsRemoveModle] = useState(false);
+    const [isEdidable,setIsEdidable] = useState(false);
+
+    const [reviewTitle,setReviewTitle] = useState(review?.rateTitle);
+    const [reviewText,setReviewText] = useState(review?.rateText);
 
     const handleRevomeReview = ()=> {
 
@@ -82,13 +86,32 @@ function ReviewCard({review}) {
                         ))
                     }
                 </div>
-                <h5 >{review?.rateTitle}</h5>
+                {
+                    isEdidable ?
+                    <input 
+                        type="text" 
+                        value={reviewTitle}
+                        onChange={(e)=> setReviewTitle(e.target.value)}
+                        />
+                    :
+                  <h5 >{review?.rateTitle}</h5>
+                }
             </section>
             <div className="">
-                <article 
-                    className="text-green-800 text-sm pb-3 max-w-full break-words overflow-auto"
-                    >{review?.rateText}
-                </article>
+                {
+                    isEdidable ? 
+                    <textarea 
+                        value={reviewText}
+                        onChange={(e)=> setReviewText(e.target.value)}
+                        
+                        >
+                    </textarea>
+                    :
+                    <article 
+                        className="text-green-800 text-sm pb-3 max-w-full break-words overflow-auto"
+                        >{review?.rateText}
+                    </article>
+                }
                 {
                     review?.reviewImage &&
                     <div className="p-3">
@@ -106,7 +129,7 @@ function ReviewCard({review}) {
                           text='edit'
                           Icon={VscEdit}
                           type='save'
-                          onClick=''
+                          onClick={()=> setIsEdidable(!isEdidable)}
                         />
                         <ButtonWithIcon 
                           text='delete'

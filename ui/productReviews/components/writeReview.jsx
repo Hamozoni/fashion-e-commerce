@@ -163,7 +163,7 @@ function WhriteReview() {
             <ButtonWithIcon
                 text='whrite a review'
                 Icon={MdOutlineDriveFileRenameOutline}
-                type="primary"
+                type="save"
                 onClick={()=> setShowModel(true)}
                 />
         </div>
