@@ -12,18 +12,17 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 // server actions
 import {removeReviewAction} from "../../../actions/productReviews/removeReview";
 import {updatereviewAction} from "../../../actions/productReviews/updateReview";
-// hooks
-import { useCurrentUser } from "../../../hooks/useCurrentUser";
 // context
 import { ReviewsContext } from "./reviewsContext";
 import Overlay from "../../../components/Overlay";
+import { AppContext } from "../../../app/contextProvider";
 
 
 function ReviewCard({review,index}) {
 
      const {setReviews} = useContext(ReviewsContext)
 
-    const user = useCurrentUser();
+    const {currentUser} = useContext(AppContext);
     const [loading,startTransition] = useTransition();
     const [isRemoveModle,setIsRemoveModle] = useState(false);
     const [isEdidable,setIsEdidable] = useState(false);
@@ -58,7 +57,7 @@ function ReviewCard({review,index}) {
             .then(data=> {
                 if(data?.data) {
                     setReviews(prev=> {
-                        prev[index] = {...data?.data,auther:{name: user?.name,image: user?.image}}
+                        prev[index] = {...data?.data,auther:{name: currentUser?.name,image: currentUser?.image}}
                         return [...prev]
                     });
                 };
@@ -101,7 +100,7 @@ function ReviewCard({review,index}) {
             <section className="flex items-center gap-2 mb-4">
                 <RatingStars rating={rating} setRating={isEdidable ? setRating : ()=> ''}/>
                 {
-                    (isEdidable && review?.autherId === user?.id) ?
+                    (isEdidable && review?.autherId === currentUser?.id) ?
                     <input 
                         className="border-b border-green-200 focus:border-green-400"
                         type="text" 
@@ -114,7 +113,7 @@ function ReviewCard({review,index}) {
             </section>
             <div className="">
                 {
-                    (isEdidable && review?.autherId === user?.id) ? 
+                    (isEdidable && review?.autherId === currentUser?.id) ? 
                     <textarea 
                         className="text-green-800 text-sm focus:outline-none w-full border-b border-green-200 focus:border-green-400"
                         value={reviewText}
@@ -140,8 +139,8 @@ function ReviewCard({review,index}) {
                 }
             </div>
             {
-                user?.id === review?.autherId && (
-                    <footer className="flex items-center gap-3">
+                currentUser?.id === review?.autherId && (
+                    <footer className="flex items-center gap-1 w-[180px]">
                         <ButtonWithIcon 
                           text={isEdidable ? 'save' : 'edit'}
                           Icon={isEdidable ? MdOutlineSaveAs : VscEdit}

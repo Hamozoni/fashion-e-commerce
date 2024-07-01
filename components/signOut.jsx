@@ -22,7 +22,7 @@ function SignOut() {
              signOutAction()
              .then(()=> {
                 update();
-                setCurrentUser(null)
+                setCurrentUser(null);
              })
         });
 

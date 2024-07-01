@@ -8,14 +8,14 @@ export const AppContext = createContext();
 
 const ContextProvider = ({children}) => {
 
-  const sessionUser = useSession()?.data?.user;
+  const {data,status} = useSession();
   
   const [innerWidth,setInnerWidth] = useState(0);
-  const [currentUser,setCurrentUser] = useState(sessionUser);
+  const [currentUser,setCurrentUser] = useState(data?.user);
 
   useEffect(()=> {
-    setCurrentUser(sessionUser)
-  },[sessionUser])
+    setCurrentUser(data?.user)
+  },[data])
 
     useEffect(()=> {
         console.log(window.innerWidth);
@@ -30,7 +30,7 @@ const ContextProvider = ({children}) => {
     },[]);
 
   return (
-    <AppContext.Provider value={{innerWidth,currentUser,setCurrentUser}}>
+    <AppContext.Provider value={{innerWidth,currentUser,setCurrentUser,status}}>
         {children}
     </AppContext.Provider>
   )

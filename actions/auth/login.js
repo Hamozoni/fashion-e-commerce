@@ -14,6 +14,7 @@ export const loginAction = async(formData,callbackUrl)=> {
 
     const DataValidation = loginSchema.safeParse(data);
 
+
         if(DataValidation?.error) {
             return {error: JSON.parse(DataValidation.error) }
         }
@@ -42,7 +43,7 @@ export const loginAction = async(formData,callbackUrl)=> {
             }
 
             try {
-                
+
                 await signIn("credentials",{
                     email,
                     password,
