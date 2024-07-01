@@ -39,9 +39,6 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
 
     },
 
-    async signOut(){
-
-    } ,
 
     async session({token,session}){
 
