@@ -25,7 +25,10 @@ function UserAddress() {
             <div className="">
                 {
                     user?.address ? 
-                    <button className={className.delivery} onClick={()=> setIsUpdateAddress(true)}> 
+                    <button 
+                        className={className.delivery} 
+                        onClick={()=> setIsUpdateAddress(true)}
+                        > 
                         <IoLocationOutline size={22} />
                         {innerWidth < 500 ? user?.address?.city.slice(0,7) + '...' : user?.address?.city}
                     </button>
@@ -38,7 +41,9 @@ function UserAddress() {
             {
                ( user?.address && isUpdateAddress) &&
                 <>
-                    <Overlay onClick={()=> setIsUpdateAddress(false)}/>
+                    <Overlay 
+                        onClick={()=> setIsUpdateAddress(false)}
+                        />
                     <ul className=" z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] max-w-full p-3 bg-green-100 rounded-md ">
                         <li>
                             <p className="flex justify-center">
@@ -53,7 +58,10 @@ function UserAddress() {
                                text='update addres'
                                type='primary'
                                Icon={IoLocationOutline}
-                               onClick={()=> setIsMapOpen(true)}
+                               onClick={()=>{
+                                  setIsMapOpen(true);
+                                  setIsUpdateAddress(false)
+                               }}
                             />
                         </li>
                     </ul>

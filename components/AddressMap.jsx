@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import {useState } from "react";
+import {useEffect, useState } from "react";
 // icons
 import { RxCross2 } from "react-icons/rx";
 // google map
@@ -15,7 +15,6 @@ import{fetchData}from "../lip/fetchData";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 // server actions
 import {addNewAddress} from "../actions/user/addNewAddress"
-import { getSession } from "next-auth/react";
 
 function AddressMap({onClick}) {
 
@@ -26,7 +25,13 @@ function AddressMap({onClick}) {
     const user = useCurrentUser();
     const route = useRouter();
 
-
+    useEffect(()=> {
+        if(user?.address){
+            const {address} = user;
+            setFormatedAddress(address?.formatedAddress);
+            setPosition({lat: address?.lat, lng: address?.lng})
+        }
+    },[]);
 
     const getCurrentAddress = (lat,lng)=>{
 
@@ -100,7 +105,7 @@ function AddressMap({onClick}) {
         if(user){
 
             const reqBody = {
-                emai: user.email,
+                email: user.email,
                 data: {
                     ...position,
                     ...address,
@@ -109,6 +114,8 @@ function AddressMap({onClick}) {
             }
              addNewAddress(reqBody)
             .then((data)=> {
+
+                console.log(data)
                 if(data?.success) {
                     onClick();
                 }

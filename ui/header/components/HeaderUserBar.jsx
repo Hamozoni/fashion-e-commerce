@@ -1,21 +1,23 @@
 "use client"
 import Link from "next/link";
-import {useCurrentUser} from "../../../hooks/useCurrentUser"
-import { FaUserLarge } from "react-icons/fa6";
-import Image from "next/image";
-import SignOut from "./signOut";
-import Languages from "./languages"
 import { useState } from "react";
+import Image from "next/image";
+// icons
 import { IoSettingsOutline ,IoLanguageSharp} from "react-icons/io5";
+import { FaUserLarge } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
+// components
+import SignOut from "./signOut";
+import Languages from "./languages";
 import Overlay from "../../../components/Overlay";
+// hooks
+import {useCurrentUser} from "../../../hooks/useCurrentUser"
 
 function HeaderUserBar() {
 
     const [isAccount,setIsAccount] = useState(false)
-
     const currentUser = useCurrentUser();
-
+    
     const className = {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
