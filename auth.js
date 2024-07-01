@@ -59,7 +59,7 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
       return session;
     },
     async jwt({token}){
-      console.log("jwt",token)
+      console.log("jwt,sssss",token)
 
       if(!token.sub) return token;
 
