@@ -40,7 +40,7 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
     },
 
     async signOut(){
-      
+
     } ,
 
     async session({token,session}){
@@ -63,12 +63,10 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
     },
     async jwt({token}){
 
-
-      console.log('user',token)
-
       if(!token.sub) return token;
 
       const existingUser = await findUserById(token.sub);
+
       
       if(!existingUser) return token;
 
@@ -78,7 +76,7 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
 
       if(existingAddress) {
         token.address = existingAddress
-      }
+      };
   
       return token;
     }

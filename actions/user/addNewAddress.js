@@ -3,64 +3,73 @@
 import {db} from "../../lip/db";
 import { findUserAddressByEmail, findUserByEmail } from "../../lip/user";
 
-export const addNewAddress = async (email,data)=> {
+import {getToken} from "next-auth/jwt"
 
-    console.log(data)
+export const addNewAddress = async (req,res)=> {
 
-    const exestingUser = await findUserByEmail(email);
+    console.log(req,res)
+    const secret = process.env.AUTH_SECRET
+    const token = await getToken({req,secret});
+    // if(!token) throw new Error("nont authenticated");
 
-    if(exestingUser){
-        const exestingAddress = await findUserAddressByEmail(email);
+    console.log(token)
 
-        if(exestingAddress){
+    // const {email,data} = req;
 
-            try{
-                await db.userAddress.update({
-                    where: {email},
-                    data: {
-                        email,
-                        ...data
-                    }
-                })
+    // const exestingUser = await findUserByEmail(email);
+
+    // if(exestingUser){
+    //     const exestingAddress = await findUserAddressByEmail(email);
+
+    //     if(exestingAddress){
+
+    //         try{
+    //             await db.userAddress.update({
+    //                 where: {email},
+    //                 data: {
+    //                     email,
+    //                     ...data
+    //                 }
+    //             });
     
-                return {success: "user address has been updated successfully!"}
-            }
-            catch {
-                return {error: "oops! something went wrong"}
-            }
-            finally {
-                await db.$disconnect()
-            }
+    //             return {success: "user address has been updated successfully!"}
+    //         }
+    //         catch {
+    //             return {error: "oops! something went wrong"}
+    //         }
+    //         finally {
+    //             await db.$disconnect()
+    //         }
 
-        }else {
+    //     }else {
 
-            try {
-                await db.userAddress.create({
-                    data: {
-                        email,
-                        ...data
-                    }
-                })
+    //         try {
+    //             await db.userAddress.create({
+    //                 data: {
+    //                     email,
+    //                     ...data
+    //                 }
+    //             })
             
-                return  {success: "user address has been added successfully!"}
+    //             return  {success: "user address has been added successfully!"}
 
-            }
-            catch {
-                return {error: "oops! something went wrong"}
-            }
-            finally {
-                await db.$disconnect()
-            }
+    //         }
+    //         catch {
+    //             return {error: "oops! something went wrong"}
+    //         }
+    //         finally {
+    //             await db.$disconnect()
+    //         }
 
-        }
+    //     }
 
-    }
+    // }
 
-    if(!exestingUser) {
-        return {error: "oops! email not found"}
-    }
+    // if(!exestingUser) {
+    //     return {error: "oops! email not found"}
+    // }
 
-    return {error: "oops! something went wrong"}
+    // return {error: "oops! something went wrong"}
 
 
 }

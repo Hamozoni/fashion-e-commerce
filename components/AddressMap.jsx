@@ -97,14 +97,19 @@ function AddressMap({onClick}) {
 
     const confirmLocation = ()=> {
 
-        if(!!user){
-             addNewAddress(user.email,{
-                ...position,
-                ...address,
-                formatedAddress
-            })
+        if(user){
+
+            const reqBody = {
+                emai: user.email,
+                data: {
+                    ...position,
+                    ...address,
+                    formatedAddress 
+                }
+            }
+             addNewAddress(reqBody)
             .then((data)=> {
-                if(data.success) {
+                if(data?.success) {
                     onClick();
                 }
             })
