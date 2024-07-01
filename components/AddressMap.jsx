@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import {useEffect, useState, useTransition } from "react";
 // icons
 import { RxCross2 } from "react-icons/rx";
+import { FaLocationCrosshairs } from "react-icons/fa6";
+import { AiOutlineSave } from "react-icons/ai";
 // google map
 import {
     APIProvider,
@@ -16,6 +18,7 @@ import { useCurrentUser } from "../hooks/useCurrentUser";
 // server actions
 import {addNewAddress} from "../actions/user/addNewAddress"
 import { useSession } from "next-auth/react";
+import { ButtonWithIcon } from "./buttons";
 
 function AddressMap({onClick}) {
 
@@ -154,7 +157,7 @@ function AddressMap({onClick}) {
                     { formatedAddress ? <p>{formatedAddress}</p> :"your address..." }
                 </div>
             </header>
-            <div className="relative w-[500px] h-[400px]" >
+            <div className="w-[500px] h-[400px]" >
                 <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}
 
                 >
@@ -171,21 +174,27 @@ function AddressMap({onClick}) {
                             <Marker position={position} />
                     </Map>
                 </APIProvider>
-                <button 
-                    onClick={locateMe}
-                    className="absolute bottom-[30px] left-0 py-2 px-4 rounded- bg-green-400 text-green-950"
-                   >locate me
-                </button>
             </div>
-            {
-                !!formatedAddress && 
-                <button
-                onClick={confirmLocation}
-                    className="py-2 bg-green-400 text-green-950 w-full cursor-pointer" 
-                    // disabled={!!formatedAddress}
-                    >confirm location
-                </button>
-            }
+            <div className="">
+                <ButtonWithIcon 
+                    text="locate me"
+                    Icon={FaLocationCrosshairs}
+                    type='save'
+                    disabled={loading}
+                    onClick={locateMe}
+                />
+                {
+                    !!formatedAddress &&
+                    <ButtonWithIcon 
+                        text="save location"
+                        Icon={AiOutlineSave}
+                        type='primary'
+                        disabled={loading}
+                        onClick={confirmLocation}
+                    />
+                }
+            </div>
+            
 
         </div>
     </section>
