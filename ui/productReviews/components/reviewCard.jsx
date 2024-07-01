@@ -70,7 +70,7 @@ function ReviewCard({review,index}) {
 
 
 
-    const updatedAt = Date.parse(review?.createdAt) === Date.parse(review?.updatedAt) ? "" :'Edited at';
+    const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) ? "Edited at" :'';
 
   return (
         <div className={`${isEdidable ? 'border border-gray-100 shadow-md rounded-md p-3':''} py-7 border-b border-gray-00`}>
@@ -129,9 +129,9 @@ function ReviewCard({review,index}) {
                 }
                 {
                     review?.reviewImage &&
-                    <div className="p-3 flex items-center justify-center">
+                    <div className="p-3">
                         <Image
-                             className="bg-white"
+                            className="bg-white rounded-md"
                             src={review?.reviewImage?.replace('public','')} 
                             width={80} height={100} alt='product image'
                             />
