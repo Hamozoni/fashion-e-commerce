@@ -3,7 +3,7 @@ import { useState } from "react";
 // icons
 import { IoIosHeartEmpty, IoMdHeart } from "react-icons/io";
 
-const AddToListBtn = () => {
+const AddToListBtn = ({product}) => {
 
     const [isAddedToList,setIsAddedToList] = useState(false);
 

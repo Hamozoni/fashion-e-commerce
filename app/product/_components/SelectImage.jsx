@@ -1,10 +1,12 @@
-
+"use client"
 import Image from "next/image";
+import { useContext } from "react";
+import { ProductDetailsContext } from "./ProductDetails";
 
 
-function SelectImage({images,selectedColor,setSelectedColor}) {
+function SelectImage() {
 
-
+const {product,selectedColor,setSelectedColor} = useContext(ProductDetailsContext)
 
   return (
 
@@ -20,7 +22,7 @@ function SelectImage({images,selectedColor,setSelectedColor}) {
             </h6>
             <div className="flex items-center gap-3">
                 {
-                    Object.entries(images)?.map(([color,image])=> (
+                    Object.entries(product.images)?.map(([color,image])=> (
                         <Image 
                             onClick={()=> setSelectedColor(color)}
                             className={`max-h-[60px] min-h-[60px] max-w-[60px] rounded-md border border-gray-100 shadow-md cursor-pointer ${color === selectedColor ? 'border border-green-600 rounded-md' : ''}`}

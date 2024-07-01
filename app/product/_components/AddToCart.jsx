@@ -12,11 +12,12 @@ import QuantityBtn from "../../../components/QuantityBtn";
 import Overlay from "../../../components/Overlay";
 import { ButtonWithIcon } from "../../../components/buttons";
 import AddToListBtn from "../../../components/addToListBtn";
+import { ProductDetailsContext } from "./ProductDetails";
 
-function AddToCart({product,selectedColor,selectedSize}) {
+function AddToCart() {
 
+    const {product,selectedColor,selectedSize} = useContext(ProductDetailsContext);
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === product.id && e.selectedColor === selectedColor && e.selectedSize === selectedSize)?.quantity);
-
     const dispatch = useAppDispatch();
     const [errorMessege,setErrorMessege] = useState(null);
 
