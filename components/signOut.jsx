@@ -12,8 +12,6 @@ import { AppContext } from "../app/contextProvider";
 
 function SignOut() {
 
-
-
     const {setCurrentUser} = useContext(AppContext);
     const [isLoading,startTranation] = useTransition();
     const {update} = useSession()
@@ -23,7 +21,7 @@ function SignOut() {
         startTranation(()=> {
              signOutAction()
              .then(()=> {
-                update()
+                update();
                 setCurrentUser(null)
              })
         });

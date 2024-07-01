@@ -11,7 +11,11 @@ const ContextProvider = ({children}) => {
   const sessionUser = useSession()?.data?.user;
   
   const [innerWidth,setInnerWidth] = useState(0);
-  const [currentUser,setCurrentUser] = useState(user);
+  const [currentUser,setCurrentUser] = useState(sessionUser);
+
+  useEffect(()=> {
+    setCurrentUser(sessionUser)
+  },[sessionUser])
 
     useEffect(()=> {
         console.log(window.innerWidth);

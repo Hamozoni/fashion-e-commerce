@@ -6,10 +6,11 @@ import { loginInputs } from "../_components/authInputsData"
 import AuthSocial from "../_components/authSocial";
 import {SubmitBtn} from "../_components/submitBtn";
 import {loginAction} from "../../../actions/auth/login";
-import { useRef, useState, useTransition } from "react";
+import { useContext, useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { AppContext } from "../../contextProvider";
 
 
 function LoginPage() {
@@ -20,6 +21,13 @@ function LoginPage() {
     const [isLoading,startTranation] = useTransition();
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSuccess] = useState(null);
+    const {cuerrentUser} = useContext(AppContext);
+
+    const router = useRouter();
+
+    if(cuerrentUser) {
+        router.push("/")
+    }
 
     const login = ()=> {
 

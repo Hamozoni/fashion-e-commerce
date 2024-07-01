@@ -1,5 +1,5 @@
 "use client";
-import {useCurrentUser} from "../../../hooks/useCurrentUser";
+
 import { useContext, useState } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import Overlay  from "../../../components/Overlay"
@@ -9,11 +9,10 @@ import { ButtonWithIcon } from "../../../components/buttons";
 
 function UserAddress() {
 
-    const {innerWidth} = useContext(AppContext)
+    const {innerWidth,currentUser} = useContext(AppContext)
 
     const [isMapOpen,setIsMapOpen] = useState(false);
     const [isUpdateAddress,setIsUpdateAddress] = useState(false);
-    const user = useCurrentUser();
     
     const className = {
         delivery: 'flex items-center text-sm font-medium cursor-pointer hover:text-gray-700 hover:font-medium line-clamp-1'
@@ -24,13 +23,13 @@ function UserAddress() {
         <div >
             <div className="">
                 {
-                    user?.address ? 
+                    currentUser?.address ? 
                     <button 
                         className={className.delivery} 
                         onClick={()=> setIsUpdateAddress(true)}
                         > 
                         <IoLocationOutline size={22} />
-                        {innerWidth < 500 ? user?.address?.neighborhood.slice(0,7) + '...' : user?.address?.neighborhood}
+                        {innerWidth < 500 ? currentUser?.address?.neighborhood.slice(0,7) + '...' : currentUser?.address?.neighborhood}
                     </button>
                     :
                     <button className={className.delivery} onClick={()=> setIsMapOpen(true)}> 
@@ -39,7 +38,7 @@ function UserAddress() {
                 }
             </div>
             {
-               ( user?.address && isUpdateAddress) &&
+               ( currentUser?.address && isUpdateAddress) &&
                 <>
                     <Overlay 
                         onClick={()=> setIsUpdateAddress(false)}
@@ -50,7 +49,7 @@ function UserAddress() {
                               <IoLocationOutline size={30} />
                             </p>
                             <address className=" mb-4">
-                                {user?.address?.formatedAddress}
+                                {currentUser?.address?.formatedAddress}
                             </address>
                         </li>
                         <li>
