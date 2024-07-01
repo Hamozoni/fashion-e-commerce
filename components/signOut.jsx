@@ -1,16 +1,20 @@
 "use client";
+
 import { CiLogout } from "react-icons/ci";
 
 import { SyncLoader } from "react-spinners";
 
-import { signOutAction } from "../../../actions/auth/signOut";
-import { useTransition } from "react";
-import Overlay from "../../../components/Overlay";
+import { signOutAction } from "../actions/auth/signOut";
+import { useContext, useTransition } from "react";
+import Overlay from "./Overlay";
 import { useSession } from "next-auth/react";
+import { AppContext } from "../app/contextProvider";
 
 function SignOut() {
 
-    
+
+
+    const {setCurrentUser} = useContext(AppContext);
     const [isLoading,startTranation] = useTransition();
     const {update} = useSession()
 
@@ -20,6 +24,7 @@ function SignOut() {
              signOutAction()
              .then(()=> {
                 update()
+                setCurrentUser(null)
              })
         });
 

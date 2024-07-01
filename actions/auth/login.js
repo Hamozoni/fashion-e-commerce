@@ -46,7 +46,7 @@ export const loginAction = async(formData,callbackUrl)=> {
                 await signIn("credentials",{
                     email,
                     password,
-                    redirect : callbackUrl || DEFAULT_LOGIN_REDIRECT
+                    redirectTo : callbackUrl || DEFAULT_LOGIN_REDIRECT
                 })
 
             }catch (error) {

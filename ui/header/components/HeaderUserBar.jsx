@@ -1,22 +1,22 @@
 "use client"
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 // icons
 import { IoSettingsOutline ,IoLanguageSharp} from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
 // components
-import SignOut from "./signOut";
+import SignOut from "../../../components/signOut";
 import Languages from "./languages";
 import Overlay from "../../../components/Overlay";
 // hooks
-import {useCurrentUser} from "../../../hooks/useCurrentUser"
+import {AppContext} from "../../../app/contextProvider"
 
 function HeaderUserBar() {
 
     const [isAccount,setIsAccount] = useState(false)
-    const currentUser = useCurrentUser();
+    const {currentUser} = useContext(AppContext);
     
     const className = {
         flex: 'flex items-center gap-4',
