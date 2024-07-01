@@ -8,8 +8,6 @@ export const addNewAddress = async (req)=> {
 
     const {email,data} = req;
 
-    console.log(email)
-
     const exestingUser = await findUserByEmail(email);
 
     if(exestingUser){

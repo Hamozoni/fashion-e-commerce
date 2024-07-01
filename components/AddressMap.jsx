@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import {useEffect, useState } from "react";
+import {useEffect, useState, useTransition } from "react";
 // icons
 import { RxCross2 } from "react-icons/rx";
 // google map
@@ -15,6 +15,7 @@ import{fetchData}from "../lip/fetchData";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 // server actions
 import {addNewAddress} from "../actions/user/addNewAddress"
+import { useSession } from "next-auth/react";
 
 function AddressMap({onClick}) {
 
@@ -22,6 +23,8 @@ function AddressMap({onClick}) {
     const [formatedAddress,setFormatedAddress] = useState("")
     const [address,setAddress] = useState({});
     
+    const {update} = useSession()
+    const [loading,startTranation] = useTransition()
     const user = useCurrentUser();
     const route = useRouter();
 
@@ -100,7 +103,9 @@ function AddressMap({onClick}) {
         }
     }
 
-    const confirmLocation = ()=> {
+
+
+    const confirmLocation = async()=> {
 
         if(user){
 
@@ -112,13 +117,15 @@ function AddressMap({onClick}) {
                     formatedAddress 
                 }
             }
-             addNewAddress(reqBody)
-            .then((data)=> {
 
-                console.log(data)
-                if(data?.success) {
-                    onClick();
-                }
+            startTranation(()=> {
+                addNewAddress(reqBody)
+               .then((data)=> {
+                   if(data?.success) {
+                       onClick();
+                       update();
+                   }
+               })
             })
 
         }else {
