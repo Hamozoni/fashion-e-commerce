@@ -1,20 +1,17 @@
 "use client";
 import { CiLogout } from "react-icons/ci";
 
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { SyncLoader } from "react-spinners";
 
 import { signOutAction } from "../../../actions/auth/signOut";
 import { useTransition } from "react";
 import Overlay from "../../../components/Overlay";
+import { useSession } from "next-auth/react";
 
 function SignOut() {
 
     
     const [isLoading,startTranation] = useTransition();
-    const router = useRouter()
-
     const {update} = useSession()
 
      const signOut = ()=> {
@@ -23,7 +20,6 @@ function SignOut() {
              signOutAction()
              .then(()=> {
                 update()
-                router.push('/auth/login')
              })
         });
 
