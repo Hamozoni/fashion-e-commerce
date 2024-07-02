@@ -7,6 +7,7 @@ import Features from "./Features"
 import AddToCart from "./AddToCart";
 import Specifications from "./Specifications";
 import ImagesGalary from "./ImagesGalary";
+import AddToListBtn from "../../../components/addToListBtn";
 // lip
 import getCurrency from "../../../lip/getCurrency";
 
