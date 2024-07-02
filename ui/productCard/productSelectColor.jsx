@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+// icons
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const ProductSelectColor = ({
     productImages,

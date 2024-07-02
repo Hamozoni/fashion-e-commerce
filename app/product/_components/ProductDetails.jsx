@@ -65,8 +65,12 @@ function ProductDetails({product}) {
                         </p>
                     </footer>
                 </div>
-                <AddToCart />
             </div>
+            <AddToCart
+                product={product} 
+                selectedColor={selectedColor}
+                selectedSize={selectedSize} 
+            />
         </div>
     </ProductDetailsContext.Provider>
   )

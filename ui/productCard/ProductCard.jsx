@@ -8,8 +8,8 @@ import ProductSelectColor from "./productSelectColor"
 import getCurrency from "../../lip/getCurrency";
 import { arrayGroupBykey } from "../../lip/arrayGroupBykey";
 import { useState } from "react";
-// icons
-import { IoMdArrowDropdown } from "react-icons/io";
+import AddToCart from "../../app/product/_components/AddToCart";
+
 
 function ProductCard({product}) {
 
@@ -54,11 +54,16 @@ function ProductCard({product}) {
                 <ProductSelectColor
                    productImages={productImages}
                    selectedColor={selectedColor}
-                   setSelectedColor={selectedColor}
+                   setSelectedColor={setSelectedColor}
                 />
                 <div className="">
                     <h6>{selectedSize ? '' :'size: '}</h6>
                 </div>
+                <AddToCart 
+                    product={product} 
+                    selectedColor={selectedColor}
+                    selectedSize={selectedSize} 
+                    />
             </div>
         </div>
     </div>

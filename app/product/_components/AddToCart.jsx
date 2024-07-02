@@ -12,11 +12,8 @@ import QuantityBtn from "../../../components/QuantityBtn";
 import Overlay from "../../../components/Overlay";
 import { ButtonWithIcon } from "../../../components/buttons";
 import AddToListBtn from "../../../components/addToListBtn";
-import { ProductDetailsContext } from "./ProductDetails";
 
-function AddToCart() {
-
-    const {product,selectedColor,selectedSize} = useContext(ProductDetailsContext);
+function AddToCart({product,selectedColor,selectedSize}) {
 
     const {id,name,priceInCent,category,subCategory,serialNumber,brand,images} = product;
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.selectedColor === selectedColor && e.selectedSize === selectedSize)?.quantity);
