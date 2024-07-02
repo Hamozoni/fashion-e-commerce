@@ -3,10 +3,12 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { ProductDetailsContext } from "./ProductDetails";
 
+import {arrayGroupBykey} from "../../../lip/arrayGroupBykey";
+function ImagesGalary() {
 
-function ImagesGalary({productImages}) {
+    const {product:images,selectedColor} = useContext(ProductDetailsContext);
 
-    const {selectedColor} = useContext(ProductDetailsContext)
+    const productImages = arrayGroupBykey(images,'color');
     const [selectedImage,setSelectedImage] = useState(productImages[selectedColor][0]?.imagePath);
 
     useEffect(()=> {

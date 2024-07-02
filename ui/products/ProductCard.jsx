@@ -7,12 +7,12 @@ import AddToListBtn from "../../components/addToListBtn";
 
 function ProductCard({product}) {
 
-    const {id,name,brand,priceInCent,images,sizes} = product;
+    const {id,name,priceInCent,images} = product;
 
    const className = {
-        card: 'w-[280px] rounded-lg overflow-hidden border border-green-100 cursor-pointer hover:border-green-300 relative',
-        image: 'w-[280px] max-h-[280px] max-w-[280px]',
-        heart: 'absolute top-5 right-5',
+        card: 'w-[220px] rounded-lg overflow-hidden border border-green-100 cursor-pointer hover:border-green-300 relative',
+        image: 'w-[220px] max-h-[220px] max-w-[220px]',
+        heart: 'absolute top-2 right-2',
    }
 
  let imagesPath = []
@@ -24,8 +24,8 @@ function ProductCard({product}) {
                 className={className.image} 
                 src={images[1].imagePath.replace("public",'')}
                 alt={name}
-                width={180}
-                height={220}
+                width={220}
+                height={200}
                />
         </Link>
         <div className={className.heart}>
@@ -36,10 +36,10 @@ function ProductCard({product}) {
                 <h2 className="text-xl font-medium text-green-950">
                     {getCurrency(priceInCent)}
                 </h2>
-                <h3 
+                {/* <h3 
                     className="text-sl font-bold text-green-800"
                     > brand: <small> {brand}</small>
-                </h3>
+                </h3> */}
                 <h4 
                     className="text-md font-bold text-green-950 pb-2"
                     >{name}

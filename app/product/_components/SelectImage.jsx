@@ -4,9 +4,11 @@ import { useContext } from "react";
 import { ProductDetailsContext } from "./ProductDetails";
 
 
-function SelectImage({images}) {
+function SelectImage() {
 
-const {selectedColor,setSelectedColor} = useContext(ProductDetailsContext)
+const {product:images,selectedColor,setSelectedColor} = useContext(ProductDetailsContext);
+
+const productImages = arrayGroupBykey(images,'color');
 
   return (
 
@@ -22,7 +24,7 @@ const {selectedColor,setSelectedColor} = useContext(ProductDetailsContext)
             </h6>
             <div className="flex items-center gap-3">
                 {
-                    Object.entries(images)?.map(([color,image])=> (
+                    Object.entries(productImages)?.map(([color,image])=> (
                         <Image 
                             onClick={()=> setSelectedColor(color)}
                             className={`max-h-[60px] min-h-[60px] max-w-[60px] rounded-md border border-gray-100 shadow-md cursor-pointer ${color === selectedColor ? 'border border-green-600 rounded-md' : ''}`}
