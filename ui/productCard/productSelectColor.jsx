@@ -31,7 +31,7 @@ const ProductSelectColor = ({
         {
             isColors ? (
                 <ul 
-                    className="p-2
+                    className="p-2 z-50
                     bg-green-50 rounded-md 
                     absolute left-0 top-8 w-full 
                     border border-green-100"

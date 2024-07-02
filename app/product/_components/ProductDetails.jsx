@@ -65,12 +65,15 @@ function ProductDetails({product}) {
                         </p>
                     </footer>
                 </div>
+                <div className="flex items-center gap-2 pt-5 ">
+                    <AddToCart
+                        product={product} 
+                        selectedColor={selectedColor}
+                        selectedSize={selectedSize} 
+                    />
+                   <AddToListBtn product={product} />
+                </div>
             </div>
-            <AddToCart
-                product={product} 
-                selectedColor={selectedColor}
-                selectedSize={selectedSize} 
-            />
         </div>
     </ProductDetailsContext.Provider>
   )

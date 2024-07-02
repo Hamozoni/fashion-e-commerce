@@ -11,7 +11,6 @@ import {removeItemFromCart, addToCart } from "../../../store/features/cartSlice"
 import QuantityBtn from "../../../components/QuantityBtn";
 import Overlay from "../../../components/Overlay";
 import { ButtonWithIcon } from "../../../components/buttons";
-import AddToListBtn from "../../../components/addToListBtn";
 
 function AddToCart({product,selectedColor,selectedSize}) {
 
@@ -48,7 +47,7 @@ function AddToCart({product,selectedColor,selectedSize}) {
 
 
   return (
-    <div className="flex items-stretch justify-center gap-2 pt-5 w-full cursor-pointer relative">
+    <div className="flex items-stretch justify-center gap-2 w-full cursor-pointer relative">
         {
             quantity ? 
             <>
@@ -72,7 +71,6 @@ function AddToCart({product,selectedColor,selectedSize}) {
                 onClick={incrementItem}
                />
         }
-        <AddToListBtn product={product} />
         {   errorMessege !== null &&
             <>
                 <Overlay onClick={()=> setErrorMessege(null)} />

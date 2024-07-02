@@ -41,30 +41,27 @@ function ProductCard({product}) {
             <AddToListBtn product={product} />
         </div>
         <div className="p-3">
-            <div className="text-center">
+            <div className="text-center pb-2">
                 <h2 className="text-lg font-bold text-green-950">
                     {getCurrency(priceInCent)}
                 </h2>
                 <h4 
-                    className="text-md font-medium text-green-800 pb-2"
+                    className="text-md font-medium text-green-800 "
                     >{name}
                 </h4>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between pb-2">
                 <ProductSelectColor
                    productImages={productImages}
                    selectedColor={selectedColor}
                    setSelectedColor={setSelectedColor}
                 />
-                <div className="">
-                    <h6>{selectedSize ? '' :'size: '}</h6>
-                </div>
-                <AddToCart 
-                    product={product} 
-                    selectedColor={selectedColor}
-                    selectedSize={selectedSize} 
-                    />
             </div>
+            <AddToCart 
+                product={product} 
+                selectedColor={selectedColor}
+                selectedSize={selectedSize} 
+                />
         </div>
     </div>
   )
