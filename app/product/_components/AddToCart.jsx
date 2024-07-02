@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 // icons
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { BiMessageAltError } from "react-icons/bi";
@@ -72,7 +72,7 @@ function AddToCart() {
                 onClick={incrementItem}
                />
         }
-        <AddToListBtn />
+        <AddToListBtn product={product} />
         {   errorMessege !== null &&
             <>
                 <Overlay onClick={()=> setErrorMessege(null)} />

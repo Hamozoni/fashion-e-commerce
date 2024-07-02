@@ -1,31 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    id:'',
-    name: '',
-    priceInCent: 0,
-    imagePath:'',
-    rating: 0,
-    brand: ''
-}
-
 export const likedListSlice = createSlice({
     name: 'lakedList',
-    initialState,
+    initialState: [],
     reducers: {
         addToLikedList: (state,action)=> {
-            state?.push(action.payload)
+
+            const item = state?.find(e=> e.id === action.payload.id);
+            if(!item) {
+                state?.push(action.payload);
+            }
+
+            console.log(state.lakedList)
         },
         removeFromLikedList: (state,action)=> {
-            state?.filter(e=> e.id !== action.payload.id)
+            state?.filter(e=> e.id !== action.payload)
         },
         removeAllFromLikedList: (state)=> {
             state = {}
-        },
+        }
     }
 
 });
-
 
 export const {addToLikedList,removeFromLikedList,removeAllFromLikedList} = likedListSlice.actions;
 
