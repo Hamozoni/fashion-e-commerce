@@ -24,18 +24,22 @@ const AddToListBtn = ({product}) => {
 
         console.log(isAddedToList)
   
+    };
+
+   const className = {
+      heart: 'text-rose-500 hover:scale-125 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
     }
 
   return (
     <button
         onClick={handleToggleAddToList} 
-        className="flex items-center justify-center border border-rose-300 rounded-md px-3 py-2 text-xl"
+        className="flex items-center justify-center w-[40px] h-[40px] relative border border-rose-200 bg-rose-50 rounded-full px-3 py-2 text-xl"
         >
         {
             isAddedToList ?
-            <IoMdHeart size={20} className="text-rose-500 hover:scale-125" />
+            <IoMdHeart size={24} className={className.heart} />
             :
-            <IoIosHeartEmpty size={20}  className="text-rose-500 hover:scale-125" />
+            <IoIosHeartEmpty size={24}  className={className.heart}/>
         }
     </button>
   )

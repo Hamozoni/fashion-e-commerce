@@ -17,7 +17,9 @@ import { ProductDetailsContext } from "./ProductDetails";
 function AddToCart() {
 
     const {product,selectedColor,selectedSize} = useContext(ProductDetailsContext);
-    const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === product.id && e.selectedColor === selectedColor && e.selectedSize === selectedSize)?.quantity);
+
+    const {id,name,priceInCent,category,subCategory,serialNumber,brand,images} = product;
+    const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.selectedColor === selectedColor && e.selectedSize === selectedSize)?.quantity);
     const dispatch = useAppDispatch();
     const [errorMessege,setErrorMessege] = useState(null);
 
@@ -31,15 +33,16 @@ function AddToCart() {
             setErrorMessege('place select product size')
         }else {
             setErrorMessege(null);
+            
             dispatch(addToCart({
-                id: product.id,
-                name: product.name,
-                priceInCent: product.priceInCent,
-                category: product.category,
-                subCategory: product.subCategory,
-                serialNumber: product.serialNumber,
-                brand: product.brand,
-                image: product.images.find(e=> e.color === selectedColor).imagePath,
+                id,
+                name,
+                priceInCent,
+                category,
+                subCategory,
+                serialNumber,
+                brand,
+                image: images.find(e=> e.color === selectedColor).imagePath,
                 selectedColor,
                 selectedSize,
             }))
@@ -53,7 +56,7 @@ function AddToCart() {
             quantity ? 
             <>
                 <QuantityBtn 
-                    id={product.id} 
+                    id={id} 
                     selectedColor={selectedColor} 
                     selectedSize={selectedSize} 
                     />
@@ -61,7 +64,7 @@ function AddToCart() {
                     text='remove'
                     Icon={MdOutlineDeleteOutline}
                     type='delete'
-                    onClick={()=> dispatch(removeItemFromCart({id: product.id,selectedColor,selectedSize}))}
+                    onClick={()=> dispatch(removeItemFromCart({id,selectedColor,selectedSize}))}
                     />
             </>
             :
