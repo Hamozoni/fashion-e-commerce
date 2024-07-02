@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-// icons
-import { IoMdArrowDropdown } from "react-icons/io";
 
 const ProductSelectColor = ({
     productImages,
@@ -13,7 +11,8 @@ const ProductSelectColor = ({
     const [isColors,setIsColors] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center gap-3">
+        <h5>color: </h5>
         <button
             onClick={()=> setIsColors(!isColors)}
             className="flex items-center gap-4 
@@ -26,7 +25,6 @@ const ProductSelectColor = ({
                 >
                 {selectedColor ? '' :'color: '}
             </h6>
-            <IoMdArrowDropdown />
         </button>
         {
             isColors ? (

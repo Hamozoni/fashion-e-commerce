@@ -51,7 +51,7 @@ function ProductCard({product}) {
                     >{name}
                 </h4>
             </div>
-            <div className="flex items-center justify-between pb-2">
+            <div className="flex justify-between gap-3 pb-2">
                 <ProductSelectColor
                    productImages={productImages}
                    selectedColor={selectedColor}

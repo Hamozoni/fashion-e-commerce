@@ -2,21 +2,25 @@
 "use client";
 
 import { useState } from "react";
-// icons
-import { IoMdArrowDropdown } from "react-icons/io";
 
 const productSelectSize = ({sizes,selectedSize,setSelectedSize}) => {
 
     const [isSizes,setIsSizes] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center gap-3">
+        <h5 className="">size: </h5>
         <button 
             onClick={()=> setIsSizes(!isSizes)}
-            className="flex items-center justify-between gap-4 w-fit"
+            className="flex items-center gap-4 
+            p-1 border bg-green-50 min-w-10
+           border-green-100 
+             rounded-md uppercase"
             >
-            <h6>{selectedSize ? '' :'size: '}</h6>
-            <IoMdArrowDropdown />
+            <h6 
+                className="text-green-900 font-bold text-center text-sm w-full">
+                    {selectedSize ? selectedSize :''}
+                </h6>
         </button>
         {
             isSizes ? (
@@ -27,14 +31,14 @@ const productSelectSize = ({sizes,selectedSize,setSelectedSize}) => {
                     {
                         sizes?.map(size=> (
                             <li 
-                                className={`${selectedSize === size ? 'border border-green-500 bg-green-200' : 'hover:bg-green-100'} w-8 p-2 text-center rounded-md`}
+                                className={`${selectedSize === size.name ? 'border border-green-500 bg-green-200' : 'hover:bg-green-100'} p-2 text-center rounded-md w-full uppercase`}
                                 onClick={()=> {
-                                    setSelectedSize(size)
+                                    setSelectedSize(size.name)
                                     setIsSizes(false)
                                 }}
                                 key={size}
                                 >
-                                {size}
+                                {size?.name}
                             </li>
                         ))
                     }

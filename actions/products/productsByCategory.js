@@ -11,6 +11,7 @@ export const productsByCategoryAction = async (category,subCategory)=> {
           },
           include: {
              images: true,
+             sizes: true
              }
           })
            return {data: products}
