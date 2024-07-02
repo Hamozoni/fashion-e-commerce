@@ -3,7 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 // component
 import AddToListBtn from "../../components/addToListBtn";
-import ProductSelectColor from "./productSelectColor"
+import ProductSelectColor from "./productSelectColor";
+import ProductSelectSize from "./productSelectSize"
 // lip
 import getCurrency from "../../lip/getCurrency";
 import { arrayGroupBykey } from "../../lip/arrayGroupBykey";
@@ -13,7 +14,7 @@ import AddToCart from "../../app/product/_components/AddToCart";
 
 function ProductCard({product}) {
 
-    const {id,name,priceInCent,images} = product;
+    const {id,name,priceInCent,images,sizes} = product;
 
     const productImages = arrayGroupBykey(images,'color');
 
@@ -56,6 +57,11 @@ function ProductCard({product}) {
                    selectedColor={selectedColor}
                    setSelectedColor={setSelectedColor}
                 />
+                <ProductSelectSize
+                sizes={sizes}
+                selectedSize={selectedSize}
+                setSelectedSize={setSelectedSize}
+                 />
             </div>
             <AddToCart 
                 product={product} 
