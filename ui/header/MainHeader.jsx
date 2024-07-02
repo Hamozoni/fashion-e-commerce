@@ -1,15 +1,16 @@
 "use client";
 import Link from "next/link";
+import { useContext } from "react";
+// components
 import HeaderUserBar from "./components/HeaderUserBar";
 import Categories from "../../components/Categories";
 import SearchBar from "./components/SearchBar";
 import UserAddress from "./components/userAddress";
-
 import HeaderCart from "./components/headerCart";
-import MobileMenu from "./components/mobileMenu"
-
+import MobileMenu from "./components/mobileMenu";
+import LikedList from "./components/likedList"
+// app context
 import { AppContext } from "../../app/contextProvider";
-import { useContext } from "react";
 
  function MainHeader () {
 
@@ -39,6 +40,7 @@ import { useContext } from "react";
                     <Categories />
                 }
                 <HeaderUserBar />
+                <LikedList />
                 <HeaderCart/>
                 {
                     innerWidth < 950 && 
