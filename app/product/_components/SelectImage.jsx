@@ -2,11 +2,12 @@
 import Image from "next/image";
 import { useContext } from "react";
 import { ProductDetailsContext } from "./ProductDetails";
+import {arrayGroupBykey} from "../../../lip/arrayGroupBykey"
 
 
 function SelectImage() {
 
-const {product:images,selectedColor,setSelectedColor} = useContext(ProductDetailsContext);
+const {product:{images},selectedColor,setSelectedColor} = useContext(ProductDetailsContext);
 
 const productImages = arrayGroupBykey(images,'color');
 

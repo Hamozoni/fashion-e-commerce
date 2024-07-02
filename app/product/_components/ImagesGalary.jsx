@@ -6,7 +6,7 @@ import { ProductDetailsContext } from "./ProductDetails";
 import {arrayGroupBykey} from "../../../lip/arrayGroupBykey";
 function ImagesGalary() {
 
-    const {product:images,selectedColor} = useContext(ProductDetailsContext);
+    const {product:{images},selectedColor} = useContext(ProductDetailsContext);
 
     const productImages = arrayGroupBykey(images,'color');
     const [selectedImage,setSelectedImage] = useState(productImages[selectedColor][0]?.imagePath);
