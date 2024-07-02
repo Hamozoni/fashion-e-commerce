@@ -2,28 +2,28 @@
 // icons
 import { IoIosHeartEmpty, IoMdHeart } from "react-icons/io";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import { addToLikedList, removeFromLikedList } from "../store/features/likedListSlice";
+import { toggleLikedList} from "../store/features/likedListSlice";
 
 const AddToListBtn = ({product}) => {
 
     const dispatch = useAppDispatch();
-    const isAddedToList = useAppSelector(state=> state?.likedList);
+    const isAddedToList = useAppSelector(state=> state?.likedList?.find(e=> e.id === product?.id));
 
     const handleToggleAddToList = ()=> {
 
-      if(!!isAddedToList) {
-        dispatch(removeFromLikedList(product.id))
-      }else {
-        dispatch(addToLikedList({
-          id: product?.id,
-          name: product?.name,
-          priceInCent: product?.priceInCent,
-          imagePath: product?.images[0]?.imagePath,
-          rating: product?.rating,
-          brand: product?.brand
-        }))
-      }
-      console.log(isAddedToList)
+      const {id,name,priceInCent,rating,brand,images : [{imagePath}]} = product;
+
+        dispatch(toggleLikedList({
+          id,
+          name,
+          priceInCent,
+          imagePath,
+          rating,
+          brand
+        }));
+
+        console.log(isAddedToList)
+  
     }
 
   return (

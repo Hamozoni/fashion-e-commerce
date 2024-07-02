@@ -1,13 +1,12 @@
 
+import Link from "next/link";
 import Image from "next/image";
 // component
 import getCurrency from "../../lip/getCurrency";
 import AddToListBtn from "../../components/addToListBtn";
 // icons
 import { RiStarSFill } from "react-icons/ri";
-import { IoMdHeartEmpty } from "react-icons/io";
 
-import Link from "next/link";
 
 function ProductCard({product}) {
 
@@ -31,7 +30,7 @@ function ProductCard({product}) {
                />
         </Link>
         <div className={className.heart}>
-            <AddToListBtn />
+            <AddToListBtn product={product} />
         </div>
         <div className="p-3">
             <ul className="flex justify-center gap-2 overflow-auto">
