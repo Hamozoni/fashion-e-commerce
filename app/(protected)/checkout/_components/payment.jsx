@@ -50,15 +50,8 @@ function Payment() {
             </div>
             <div className="flex items-center gap-3">
                 <AuthInput 
-                type='number'
-                name='month'
-                Icon={MdCalendarMonth}
-                isLoading={false}
-                error={null}
-                />
-             <AuthInput 
-                type='number'
-                name='day'
+                type='month'
+                name='expire date'
                 Icon={MdCalendarMonth}
                 isLoading={false}
                 error={null}

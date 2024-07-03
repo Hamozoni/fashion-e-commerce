@@ -2,7 +2,8 @@
 import Image from "next/image";
 import Payment from "./_components/payment.jsx";
 
-import secure_payment from "../../../public/cart/securePayment.png"
+import secure_payment from "../../../public/cart/securePayment.png";
+import CartSummary from "../../cart/_components/CartSummary.jsx";
 
 const checkoutPage = ()=>  {
 
@@ -15,6 +16,7 @@ const checkoutPage = ()=>  {
           </div>
           <div>
               <Image src={secure_payment} width={800} alt='secure payment'/>
+              <CartSummary />
           </div>
 
        </div>
