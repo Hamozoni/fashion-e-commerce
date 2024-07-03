@@ -1,19 +1,22 @@
 "use client";
-import {useCurrentUser} from "../../../../hooks/useCurrentUser";
+import { useContext } from "react";
+import { AppContext } from "../../../contextProvider";
 
 function UserField({name}) {
-    const user = useCurrentUser()
+    const {currentUser} = useContext(AppContext);
+
+    if(!currentUser) return null
   return (
-    <div className="">
+    <div className="flex gap-2">
         <h3>{name}: </h3>
         <div className="">
             {
                 name === "address" ? 
                 <address>
-                    {user?.address?.formatedAddress}
+                    {currentUser?.address?.formatedAddress}
                 </address>
-                :''
-                // <h5>{user[name]}</h5>
+                :
+                <h5>{currentUser[name]}</h5>
             }
         </div>
     </div>
