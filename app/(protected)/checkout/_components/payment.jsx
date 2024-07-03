@@ -8,6 +8,7 @@ import { CiCreditCard2 } from "react-icons/ci";
 import { MdCalendarMonth } from "react-icons/md";
 import { ButtonWithIcon } from "../../../../components/buttons";
 import { IoShieldCheckmark } from "react-icons/io5";
+import  CartDetails  from "../../../cart/_components/cartDetails";
 import { CartFooter } from "../../../cart/_components/CartSummary";
 
 function Payment() {
@@ -26,18 +27,13 @@ function Payment() {
             <h5 className="text-green-900 font-bold text-xl mb-3 capitalize">card details:</h5>
         </header>
         <form action="">
-            <div className="flex gap-3">
-                <div className="flex-2 w-1/3">
-                    <AuthInput 
+                <AuthInput 
                     type='text'
                     name='name on card'
                     Icon={IoMdPerson}
                     isLoading={false}
                     error={null}
                     />
-
-                </div>
-                <div className="flex-1">
 
                 <AuthInput 
                 type='number'
@@ -46,9 +42,6 @@ function Payment() {
                 isLoading={false}
                 error={null}
                 />
-                </div>
-
-            </div>
             <div className="flex items-center gap-3">
                 <AuthInput 
                 type='month'
@@ -65,9 +58,10 @@ function Payment() {
                 error={null}
                 />
             </div>
+            <CartDetails />
             <ButtonWithIcon text='pay now' Icon={IoShieldCheckmark} type='primary' disabled={false} />
         </form>
-        <hr className="my-3" />
+        <hr className="py-3"/>
         <CartFooter />
     </div>
   )
