@@ -1,9 +1,10 @@
 
+import LikedListCard from "./likedListCard"
 
 const likedListPage = ()=> {
     return (
         <div className="">
-            likedList
+            <LikedListCard />
         </div>
     );
 };

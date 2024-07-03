@@ -10,20 +10,7 @@ const AddToListBtn = ({product}) => {
     const isAddedToList = useAppSelector(state=> state?.likedList?.find(e=> e.id === product?.id));
 
     const handleToggleAddToList = ()=> {
-
-      const {id,name,priceInCent,rating,brand,images : [{imagePath}]} = product;
-
-        dispatch(toggleLikedList({
-          id,
-          name,
-          priceInCent,
-          imagePath,
-          rating,
-          brand
-        }));
-
-        console.log(isAddedToList)
-  
+        dispatch(toggleLikedList(product));
     };
 
    const className = {
