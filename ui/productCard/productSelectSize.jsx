@@ -2,24 +2,26 @@
 "use client";
 
 import { useState } from "react";
+import { IoIosArrowForward } from "react-icons/io";
 
 const productSelectSize = ({sizes,selectedSize,setSelectedSize}) => {
 
     const [isSizes,setIsSizes] = useState(false);
 
   return (
-    <div className="relative flex items-center gap-1">
+    <div className="relative flex-1 w-full">
         <h5 className=" capitalize text-green-800">size: </h5>
         <button 
             onClick={()=> setIsSizes(!isSizes)}
-            className="p-1 border bg-green-50 min-w-10
-           border-green-100 
+            className="flex items-center justify-between  w-full p-1 border bg-green-50 min-w-10
+           border-green-200 
              rounded-md uppercase"
             >
             <h6 
-                className="text-green-900 font-bold text-center text-sm w-full">
+                className="text-green-900 font-bold text-sm">
                     {selectedSize ? selectedSize :''}
             </h6>
+            <IoIosArrowForward />
         </button>
         {
             isSizes ? (

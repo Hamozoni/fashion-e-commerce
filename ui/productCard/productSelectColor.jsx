@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import { IoIosArrowForward } from "react-icons/io";
 const ProductSelectColor = ({
     productImages,
     selectedColor,
@@ -11,11 +11,11 @@ const ProductSelectColor = ({
     const [isColors,setIsColors] = useState(false);
 
   return (
-    <div className="relative flex items-center gap-1">
+    <div className="relative flex-1">
         <h5 className=" capitalize text-green-800">color: </h5>
         <button
             onClick={()=> setIsColors(!isColors)}
-            className="p-1 border bg-green-50 gap-1
+            className="w-full flex items-center justify-between p-1 border bg-green-50
            border-green-100 
              rounded-md"
              >
@@ -24,6 +24,7 @@ const ProductSelectColor = ({
                 >
                 {selectedColor ? '' :'color: '}
             </h6>
+            <IoIosArrowForward />
         </button>
         {
             isColors ? (

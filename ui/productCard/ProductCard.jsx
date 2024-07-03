@@ -28,8 +28,8 @@ function ProductCard({product}) {
     const router = useRouter()
 
     const className = {
-            card: 'w-[200px] rounded-lg border border-green-100 cursor-pointer hover:border-green-300 relative',
-            image: 'w-[200px] min-w-[200xp] max-h-[260px] max-w-[200px] flex justify-center items-center',
+            card: 'w-[220px] rounded-lg border border-green-100 cursor-pointer hover:border-green-300 relative',
+            image: 'w-fit flex-1 min-w-[220px] max-h-[270px] max-w-[220px]',
             heart: 'absolute top-2 right-2',
             iamgebaginationBtn: 'bg-green-100 text-green-900 absolute top-1/2 hover:scale-125 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center'
     }
@@ -54,21 +54,22 @@ function ProductCard({product}) {
 
    return (
     <div className={className.card}>
-        <div  className="h-[260px] max-h-[260px] w-[200px] overflow-hidden relative">
+        <div  className="h-[270px] max-h-[270px] w-[220px] overflow-hidden relative">
             <div
                 onClick={()=> router.push(`/product/${id}`)}
                 className="flex items-center" 
-                style={{transform: `translateX(-${imagesIndex * 200}px)`}}
+                style={{transform: `translateX(-${imagesIndex * 220}px)`}}
                 >
                 {   
                     productImages[selectedColor]?.map(({imagePath,id})=> (
                         <div key={id}
                            className={className.image}>
                             <Image 
+                                className=""
                                 src={imagePath.replace("public",'')}
                                 alt='product image'
-                                width={200}
-                                height={260}
+                                width={220}
+                                height={270}
                             />
 
                         </div>
@@ -97,6 +98,20 @@ function ProductCard({product}) {
         <div className={className.heart}>
             <AddToListBtn product={product} />
         </div>
+        <ul className="flex items-center justify-center gap-2 pt-2">
+                {
+                    productImages[selectedColor]?.map(({id,color},index)=> (
+                        <li 
+                            onClick={()=> setImagesIndex(index)}
+                            key={id} 
+                            className=" w-4 h-2 rounded-full border-2 border-green-500" 
+                            style={{backgroundColor: index === imagesIndex ? color : ''}}
+                            >
+                        </li>
+
+                    ))
+                }
+            </ul>
         <div className="p-3">
             <div className="pb-2">
                 <h2 className="text-lg font-bold text-green-950 text-center ">
