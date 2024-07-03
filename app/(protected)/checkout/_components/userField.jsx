@@ -7,9 +7,9 @@ function UserField({name}) {
 
     if(!currentUser) return null
   return (
-    <div className="flex gap-2">
-        <h3>{name}: </h3>
-        <div className="">
+    <div className="flex items-center mb-3 gap-2 p-3 rounded-md capitalize bg-gray-50">
+        <h3 className="text-md font-medium text-green-950">{name}: </h3>
+        <div className="text-green-600 text-sm">
             {
                 name === "address" ? 
                 <address>
