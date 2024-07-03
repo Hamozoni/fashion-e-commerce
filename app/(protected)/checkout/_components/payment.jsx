@@ -22,7 +22,7 @@ function Payment() {
                 <UserField name='email'/>
                 <UserField name='address'/>
             </div>
-            <h5 className="text-green-950 text-xl mb-3 capitalize">card details:</h5>
+            <h5 className="text-green-900 font-bold text-xl mb-3 capitalize">card details:</h5>
         </header>
         <form action="">
             <div className="flex gap-3">
