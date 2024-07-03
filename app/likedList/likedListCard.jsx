@@ -8,7 +8,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 const LikedListCard = () => {
 
     const likedList = useAppSelector(state=> state.likedList);
-    const dispatch = useAppDispatch
+    const dispatch = useAppDispatch()
   return (
     <div>
         {
@@ -26,7 +26,7 @@ const LikedListCard = () => {
                         text='delete all'
                         type='delete'
                         Icon={MdOutlineDeleteOutline}
-                        onClick={()=>dispatch(removeAllFromLikedList())}
+                        onClick={()=>dispatch(removeAllFromLikedList('cleerAll'))}
                         />
                 </>
             ) : (

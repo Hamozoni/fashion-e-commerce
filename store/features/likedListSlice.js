@@ -13,8 +13,10 @@ export const likedListSlice = createSlice({
                 state.splice(state.indexOf(item),1);
             }
         },
-        removeAllFromLikedList: (state)=> {
-            state = []
+        removeAllFromLikedList: (state,action)=> {
+            if(action.payload === 'cleerAll') {
+                state.splice(0,state?.length)
+            }
         }
     }
 

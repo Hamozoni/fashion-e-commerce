@@ -12,8 +12,7 @@ const productSelectSize = ({sizes,selectedSize,setSelectedSize}) => {
         <h5 className=" capitalize text-green-800">size: </h5>
         <button 
             onClick={()=> setIsSizes(!isSizes)}
-            className="flex items-center gap-1 
-            p-1 border bg-green-50 min-w-10
+            className="p-1 border bg-green-50 min-w-10
            border-green-100 
              rounded-md uppercase"
             >
@@ -21,7 +20,6 @@ const productSelectSize = ({sizes,selectedSize,setSelectedSize}) => {
                 className="text-green-900 font-bold text-center text-sm w-full">
                     {selectedSize ? selectedSize :''}
             </h6>
-            <p>{isSizes ? '^' : '>'}</p>
         </button>
         {
             isSizes ? (

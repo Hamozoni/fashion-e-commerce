@@ -28,8 +28,8 @@ function ProductCard({product}) {
     const router = useRouter()
 
     const className = {
-            card: 'w-[220px] rounded-lg border border-green-100 cursor-pointer hover:border-green-300 relative',
-            image: 'w-[220px] max-h-[220px] max-w-[220px]',
+            card: 'w-[200px] rounded-lg border border-green-100 cursor-pointer hover:border-green-300 relative',
+            image: 'w-[200px] min-w-[200xp] max-h-[260px] max-w-[200px] flex justify-center items-center',
             heart: 'absolute top-2 right-2',
             iamgebaginationBtn: 'bg-green-100 text-green-900 absolute top-1/2 hover:scale-125 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center'
     }
@@ -54,22 +54,24 @@ function ProductCard({product}) {
 
    return (
     <div className={className.card}>
-        <div  className="h-[220px] max-h-[220px] overflow-hidden relative">
+        <div  className="h-[260px] max-h-[260px] w-[200px] overflow-hidden relative">
             <div
                 onClick={()=> router.push(`/product/${id}`)}
-                className="" 
-                style={{transform: `translateY(-${imagesIndex * 220}px)`}}
+                className="flex items-center" 
+                style={{transform: `translateX(-${imagesIndex * 200}px)`}}
                 >
                 {   
                     productImages[selectedColor]?.map(({imagePath,id})=> (
-                        <Image 
-                            key={id}
-                            className={className.image} 
-                            src={imagePath.replace("public",'')}
-                            alt='product image'
-                            width={220}
-                            height={200}
-                        />
+                        <div key={id}
+                           className={className.image}>
+                            <Image 
+                                src={imagePath.replace("public",'')}
+                                alt='product image'
+                                width={200}
+                                height={260}
+                            />
+
+                        </div>
                         
                     ))
                     
