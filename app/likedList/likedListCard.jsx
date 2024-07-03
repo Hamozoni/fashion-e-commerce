@@ -1,11 +1,11 @@
 "use client";
 
 import ProductCard from "../../ui/productCard/ProductCard"
-import {useAppSelecter} from "../../store/store";
+import {useAppSelector} from "../../store/store";
 
 const LikedListCard = () => {
 
-    const likedList = useAppSelecter(state=> state.likedList)
+    const likedList = useAppSelector(state=> state.likedList)
   return (
     <div>
         {
