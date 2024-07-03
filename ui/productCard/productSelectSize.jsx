@@ -8,11 +8,11 @@ const productSelectSize = ({sizes,selectedSize,setSelectedSize}) => {
     const [isSizes,setIsSizes] = useState(false);
 
   return (
-    <div className="relative flex items-center gap-3">
-        <h5 className="">size: </h5>
+    <div className="relative flex items-center gap-1">
+        <h5 className=" capitalize text-green-800">size: </h5>
         <button 
             onClick={()=> setIsSizes(!isSizes)}
-            className="flex items-center gap-4 
+            className="flex items-center gap-1 
             p-1 border bg-green-50 min-w-10
            border-green-100 
              rounded-md uppercase"
@@ -20,7 +20,8 @@ const productSelectSize = ({sizes,selectedSize,setSelectedSize}) => {
             <h6 
                 className="text-green-900 font-bold text-center text-sm w-full">
                     {selectedSize ? selectedSize :''}
-                </h6>
+            </h6>
+            <p>{isSizes ? '^' : '>'}</p>
         </button>
         {
             isSizes ? (

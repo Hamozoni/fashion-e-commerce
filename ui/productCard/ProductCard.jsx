@@ -12,6 +12,7 @@ import getCurrency from "../../lip/getCurrency";
 import { arrayGroupBykey } from "../../lip/arrayGroupBykey";
 // icons
 import { IoIosArrowForward,IoIosArrowBack} from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 
 function ProductCard({product}) {
@@ -22,9 +23,9 @@ function ProductCard({product}) {
 
     
     const [selectedColor,setSelectedColor] = useState(images[0]?.color);
-    const [selectedSize,setSelectedSize] = useState(null);
+    const [selectedSize,setSelectedSize] = useState(sizes[0]?.name);
     const [imagesIndex,setImagesIndex] = useState(0)
-    console.log(productImages[selectedColor])
+    const router = useRouter()
 
     const className = {
             card: 'w-[220px] rounded-lg border border-green-100 cursor-pointer hover:border-green-300 relative',
@@ -32,7 +33,7 @@ function ProductCard({product}) {
             heart: 'absolute top-2 right-2',
             iamgebaginationBtn: 'bg-green-100 text-green-900 absolute top-1/2 hover:scale-125 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center'
     }
-    // href={`/product/${id}`}
+
 
     const handleNext = ()=> {
         if(imagesIndex < productImages[selectedColor]?.length - 1) {
@@ -41,6 +42,12 @@ function ProductCard({product}) {
         }
     };
 
+    const handlePrev = ()=> {
+        if(imagesIndex > 0) {
+            setImagesIndex(prev=> prev - 1)
+        }
+    }
+
     useEffect(()=> {
         setImagesIndex(0)
     },[selectedColor])
@@ -48,7 +55,11 @@ function ProductCard({product}) {
    return (
     <div className={className.card}>
         <div  className="h-[220px] max-h-[220px] overflow-hidden relative">
-            <div className="" style={{transform: `translateY(-${imagesIndex * 220}px)`}}>
+            <div
+                onClick={()=> router.push(`/product/${id}`)}
+                className="" 
+                style={{transform: `translateY(-${imagesIndex * 220}px)`}}
+                >
                 {   
                     productImages[selectedColor]?.map(({imagePath,id})=> (
                         <Image 
@@ -64,29 +75,36 @@ function ProductCard({product}) {
                     
                 }
             </div>
-            <button
-                onClick={handleNext} 
-                className={`${className.iamgebaginationBtn} right-2`}>
-              <IoIosArrowForward sizes={16} />
-            </button>
-            <button
-                onClick={handleNext} 
-                className={`${className.iamgebaginationBtn} left-2`}>
-              <IoIosArrowBack sizes={16}/>
-            </button>
+            {
+                (imagesIndex === productImages[selectedColor]?.length - 1) ? null :
+                <button
+                    onClick={handleNext} 
+                    className={`${className.iamgebaginationBtn} right-2`}>
+                <IoIosArrowForward sizes={16} />
+                </button>
+            }
+            {
+                imagesIndex === 0 ? null :
+                <button
+                    onClick={handlePrev} 
+                    className={`${className.iamgebaginationBtn} left-2`}>
+                <IoIosArrowBack sizes={16}/>
+                </button>
+            }
         </div>
         <div className={className.heart}>
             <AddToListBtn product={product} />
         </div>
         <div className="p-3">
-            <div className="text-center pb-2">
-                <h2 className="text-lg font-bold text-green-950">
+            <div className="pb-2">
+                <h2 className="text-lg font-bold text-green-950 text-center ">
                     {getCurrency(priceInCent)}
                 </h2>
-                <h4 
-                    className="text-md font-medium text-green-800 "
+                <Link
+                    href={`/product/${id}`}
+                    className="text-md font-medium text-green-800 hover:text-green-700"
                     >{name}
-                </h4>
+                </Link>
             </div>
             <div className="flex justify-between gap-3 pb-2">
                 <ProductSelectColor
