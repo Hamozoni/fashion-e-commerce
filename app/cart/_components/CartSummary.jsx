@@ -58,6 +58,7 @@ function CartSummary() {
                 onClick={()=> ''}
             />
         </Link>
+        <hr className="py-3"/>
         <CartFooter />
     </div>
   )
