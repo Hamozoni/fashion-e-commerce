@@ -8,6 +8,7 @@ import { CiCreditCard2 } from "react-icons/ci";
 import { MdCalendarMonth } from "react-icons/md";
 import { ButtonWithIcon } from "../../../../components/buttons";
 import { IoShieldCheckmark } from "react-icons/io5";
+import { CartFooter } from "../../../cart/_components/CartSummary";
 
 function Payment() {
 
@@ -66,6 +67,8 @@ function Payment() {
             </div>
             <ButtonWithIcon text='pay now' Icon={IoShieldCheckmark} type='primary' disabled={false} />
         </form>
+        <hr className="my-3" />
+        <CartFooter />
     </div>
   )
 }

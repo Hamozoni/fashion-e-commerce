@@ -9,8 +9,7 @@ const cartDetails = () => {
 
     const className = {
         section : 'border border-gray-50 mb-3 p-3 rounded-md shadow-md',
-        parts: 'flex items-center justify-between py-3 border-b border-gray-50',
-        checkoutBtn: 'min-w-full block text-center rounded-md py-2 bg-green-900 uppercase text-green-50 hover:bg-green-800'
+        parts: 'flex items-center justify-between py-3 border-b border-gray-50'
     }
 
   return (
