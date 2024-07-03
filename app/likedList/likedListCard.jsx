@@ -12,22 +12,29 @@ const LikedListCard = () => {
   return (
     <div>
         {
-            !!likedList ? (
-                likedList?.map(product=> (
-                    <ProductCard key={product?.id} product={product} />
-                ))
+            !!likedList?.length ? (
+                <>
+                    <div className="">
+                        {
+                            likedList?.map(product=> (
+                            <ProductCard key={product?.id} product={product} />
+                        ))
+                        }
+
+                    </div>
+                    <ButtonWithIcon
+                        text='delete all'
+                        type='delete'
+                        Icon={MdOutlineDeleteOutline}
+                        onClick={()=>dispatch(removeAllFromLikedList())}
+                        />
+                </>
             ) : (
-                <div className="">
-                    <h3>liked lis is emty</h3>
+                <div className="text-center">
+                    <h3 className="text-lg capitalize ">liked lis is empty!</h3>
                 </div>
             )
         }
-        <ButtonWithIcon
-           text='delete all'
-           type='delete'
-           Icon={MdOutlineDeleteOutline}
-           onClick={()=>dispatch(removeAllFromLikedList())}
-         />
         
     </div>
   )
