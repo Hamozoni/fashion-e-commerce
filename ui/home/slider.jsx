@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import slide9 from "../../public/slide/slide9.jpg";
 import { IoIosArrowForward ,IoIosArrowBack} from "react-icons/io";
 import { useEffect, useState } from "react";
 
@@ -60,11 +59,11 @@ function Slider() {
   return (
     <div className="max-h-lvh relative">
         <div className="flex items-center min-w-fit h-lvh  max-h-lvh ">
-            <Image 
+            {/* <Image 
                 className="w-full object-cover h-lvh max-h-lvh  min-w-full" 
                 src={slide9} 
                 alt="slide image"
-                />
+                /> */}
             <div className="absolute left-0 top-0 w-full h-full bg-gradient-transparent" ></div>
         </div>
         <div className=" absolute left-0 top-0 w-full h-full flex items-center justify-center">
