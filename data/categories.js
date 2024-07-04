@@ -25,7 +25,6 @@ import kidsJacket from "../public/categories/subCategory/kids/jacket.png";
 import kidsJeans from "../public/categories/subCategory/kids/jeans.png";
 import kidsShirt from "../public/categories/subCategory/kids/shirt.png";
 import kidsShoes from "../public/categories/subCategory/kids/shoes.png";
-import kidsTSkirt from "../public/categories/subCategory/kids/t-shirt.png";
 
 
 export const categories = [
@@ -105,6 +104,43 @@ export const categories = [
             }
         ]
     },
-    {}
+    {
+        name: 'kids',
+        imagePath: kids,
+        dec: 'Lorem Rebum Magna Amet Lorem Magna Erat Diam Stet. Sadips Duo Stet Amet Amet Ndiam Elitr Ipsum',
+        linkPath:'/section?category=kids',
+        sub: [
+            {
+                name:'jacket',
+                imagePath: kidsJacket,
+                linkPath: '/section?category=women&sub=jacket'
+            },
+            {
+                name:'jeans',
+                imagePath: kidsJeans,
+                linkPath: '/section?category=women&sub=jeans'
+            },
+            {
+                name:'nightWear',
+                imagePath: kidsNightWear,
+                linkPath: '/section?category=women&sub=nightWear'
+            },
+            {
+                name:'dress',
+                imagePath: kidsDress,
+                linkPath: '/section?category=women&sub=dress'
+            },
+            {
+                name:'skirt',
+                imagePath: kidsShirt,
+                linkPath: '/section?category=women&sub=shirt'
+            },
+            {
+                name:'shoes',
+                imagePath: kidsShoes,
+                linkPath: '/section?category=women&sub=shoes'
+            }
+        ]
+    }
 ]
 
