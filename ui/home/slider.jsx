@@ -2,7 +2,7 @@
 import Image from "next/image";
 import slide9 from "../../public/slide/slide9.jpg";
 import { IoIosArrowForward ,IoIosArrowBack} from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const categories = [
     {
@@ -19,6 +19,8 @@ const categories = [
     },
 ]
 
+const cateLength = categories.length
+
 const className = {
    prevNextBtn: ' absolute top-1/2  -translate-y-1/2 flex justify-center items-center p-3 rounded-full bg-white hover:scale-110'
 }
@@ -28,7 +30,7 @@ function Slider() {
     const [sliderIndex,setSliderIndex] = useState(0);
 
     const handleNext = ()=> {
-        if(sliderIndex < categories?.length - 1) {
+        if(sliderIndex <  cateLength - 1) {
             setSliderIndex(prev=> prev + 1)
         }
     }
@@ -37,7 +39,17 @@ function Slider() {
         if(sliderIndex > 0) {
             setSliderIndex(prev=> prev - 1)
         }
-    }
+    };
+
+    useEffect(()=> {
+
+   const sliderInterval =  setInterval(()=> {
+    console.log(sliderIndex,cateLength)
+      
+      },5000);
+
+      return ()=> clearInterval(sliderInterval)
+    });
 
   return (
     <div className="-translate-y-16 max-h-lvh relative">
@@ -51,8 +63,8 @@ function Slider() {
         </div>
         <div className=" absolute left-0 top-0 w-full h-full flex items-center justify-center">
             <div className="">
-                <div className="p-3 lg:px-8 max-w-full overflow-hidden" style={{transform: `translateX(${(sliderIndex * categories?.length) / 100}%)`}}>
-                    <div className="min-w-fit flex">
+                <div className="p-3 lg:px-8 w-full max-w-full overflow-hidden">
+                    <div className="w-fit min-w-fit flex" style={{transform: `translateX(-${(sliderIndex * 100)}%)`}}>
                         {
                             categories?.map(({name,desc})=> (
                                 <section key={name} className="min-w-full p-4 font-extrabold lg:p-8 capitalize text-center text-green-950 ">
