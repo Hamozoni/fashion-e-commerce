@@ -56,7 +56,7 @@ function ProductDetails({product}) {
                     </div>
                     <Features />
                     <SelectSize />
-                    {/* <SelectImage /> */}
+                    <SelectImage />
                     <Specifications specifications={specifications} />
                     <footer className="py-4">
                         <h4 className="pb-2 text-lg font-bold text-green-950">about this items</h4>

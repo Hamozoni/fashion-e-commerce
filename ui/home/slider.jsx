@@ -1,31 +1,44 @@
 import Image from "next/image";
-import slide1 from "../../public/slide/slide1.webp";
-import slide2 from "../../public/slide/slide2.webp";
-import slide3 from "../../public/slide/slide3.jpg";
-import slide4 from "../../public/slide/slide4.webp";
-import slide5 from "../../public/slide/slide5.jpg";
-import slide6 from "../../public/slide/slide6.jpg";
-import slide7 from "../../public/slide/slide7.jpg";
-import slide8 from "../../public/slide/slide8.jpg";
 import slide9 from "../../public/slide/slide9.jpg";
 
-const slide = [slide1,slide2,slide3,slide4,slide5,slide6,slide7,slide8,slide9];
+const categories = [
+    {
+        name: 'Men Fashion',
+        desc : 'Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam'
+    },
+    {
+        name: 'women Fashion',
+        desc : 'Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam'
+    },
+    {
+        name: 'kidds Fashion',
+        desc : 'Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam'
+    },
+]
 
 function Slider() {
   return (
-    <div className="lg:mx-8 rounded-lg border border-green-300 snap-x snap-mandatory overflow-auto m-4  ">
-        <div className="flex items-center min-w-fit ">
-            {
-                slide?.map((image)=> (
-                    <div key={image} className="relative h-[350px] min-w-full  max-h-[350px] snap-always snap-center w-full">
-                        <Image className="w-full object-cover max-h-[250px] min-w-full h-[350px] min-h-[350px] " src={image} alt="slide image"/>
-                        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
-                    </div>
-                ))
-
-            }
-
-        
+    <div className="-translate-y-16 max-h-lvh relative">
+        <div className="flex items-center min-w-fit h-lvh  max-h-lvh ">
+            <Image 
+                className="w-full object-cover h-lvh max-h-lvh  min-w-full " 
+                src={slide9} 
+                alt="slide image"
+                />
+        </div>
+        <div className=" absolute left-0 top-0 w-full h-full flex items-center justify-center">
+            <div className="p-3 lg:px-8 max-w-full overflow-hidden">
+                <div className="min-w-fit">
+                    {
+                        categories?.map(({name,desc})=> (
+                            <section className="mi-w-full">
+                                <h2>{name}</h2>
+                                <span>{desc}</span>
+                            </section>
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     </div>
   )
