@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-gradient-transparent {
+    background-image: linear-gradient(to top,rgba(250 250 250 / 100%) 20% ,rgba(250 250 250 / 60%),rgba(250 250 250 / 20%),rgba(250 250 250 / 100%));
+}
 * {
     font-weight: 500;
     transition: all .4s;
