@@ -1,7 +1,6 @@
 "use client";
 
 import { IoSearchSharp } from "react-icons/io5";
-import SearchCategories from "./searchCategories"
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppContext } from "../../../app/contextProvider";
@@ -15,7 +14,7 @@ function SearchBar() {
   console.log(innerWidth)
   const [query,setQuery] = useState('');
   const [isMobile,setIsMoble] = useState(false);
-  const [category,setCategory] = useState('all')
+  // const [category,setCategory] = useState('all')
   const router = useRouter();
 
   const className = {
@@ -24,18 +23,18 @@ function SearchBar() {
     serchBtn: 'bg-green-100 min-w-fit text-green-800 py-2.5 px-5 min-h-full'
   };
 
-  const handleSubmit = ()=> {
-    if(query.length > 2){
-      router.push(`/search/${query}?category=${category}`)
-      setIsMoble(false)
-    }
-  };
+  // const handleSubmit = ()=> {
+  //   if(query.length > 2){
+  //     router.push(`/search/${query}?category=${category}`)
+  //     setIsMoble(false)
+  //   }
+  // };
 
   const SearchForm = ({classN})=> {
     return (
       <section className={`${classN} ${className.flex} gap-4 flex-1  bg-green-100 rounded-md`}>
-         <form action={handleSubmit}  className={className.searchBox}>
-             <SearchCategories category={category} setCategory={setCategory} />
+         <form className={className.searchBox}>
+             {/* <SearchCategories category={category} setCategory={setCategory} /> */}
             <div className="w-full">
                 <input
                     value={query}

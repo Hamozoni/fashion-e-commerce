@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useContext } from "react";
 // components
 import HeaderUserBar from "./components/HeaderUserBar";
-import Categories from "../../components/Categories";
 import SearchBar from "./components/SearchBar";
 import UserAddress from "./components/userAddress";
 import HeaderCart from "./components/headerCart";
@@ -35,10 +34,6 @@ import { AppContext } from "../../app/contextProvider";
             <section className={`${className.flex} flex-1 justify-end`}>
                 <UserAddress/>
                 <SearchBar />
-                {
-                    innerWidth > 949 &&
-                    <Categories />
-                }
                 <HeaderUserBar />
                 <LikedList />
                 <HeaderCart/>
