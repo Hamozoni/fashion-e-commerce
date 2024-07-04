@@ -44,7 +44,13 @@ function Slider() {
     useEffect(()=> {
 
    const sliderInterval =  setInterval(()=> {
-    console.log(sliderIndex,cateLength)
+    console.log(sliderIndex,cateLength);
+
+         switch(cateLength){
+            case sliderIndex + 1 : setSliderIndex(0);
+            break;
+            default : handleNext();
+         }
       
       },5000);
 
@@ -52,7 +58,7 @@ function Slider() {
     });
 
   return (
-    <div className="-translate-y-16 max-h-lvh relative">
+    <div className="max-h-lvh relative">
         <div className="flex items-center min-w-fit h-lvh  max-h-lvh ">
             <Image 
                 className="w-full object-cover h-lvh max-h-lvh  min-w-full" 
