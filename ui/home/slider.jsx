@@ -45,8 +45,8 @@ function Slider() {
   return (
     <div className="max-h-lvh relative">
         <div className="flex items-center min-w-fit h-lvh  max-h-lvh ">
-            <div className="w-full min-w-full max-w-full">
-                <div className="w-full min-w-full overflow-hidden  h-lvh max-h-lvh  min-w-full">
+            <div className="w-full max-w-full overflow-hidden">
+                <div className="w-fit min-w-fit flex flex-row-reverse" style={{transform: `translateX(${(sliderIndex * 100)}%)`}}>
                 {
                     categories?.map(({imagePath,id})=> (
                         <Image 
@@ -67,13 +67,13 @@ function Slider() {
                 <div className="p-3 lg:px-8 w-full max-w-full overflow-hidden">
                     <div className="w-fit min-w-fit flex" style={{transform: `translateX(-${(sliderIndex * 100)}%)`}}>
                         {
-                            categories?.map(({name,desc})=> (
+                            categories?.map(({name,dec})=> (
                                 <section key={name} className="min-w-full p-4 font-extrabold lg:p-8 capitalize text-center text-green-950 ">
                                     <h2 
                                         className="text-5xl"
-                                        >{name}
+                                        >{name} section
                                     </h2>
-                                    <p className="text-2xl my-4 max-w-[580px] mx-auto">{desc}</p>
+                                    <p className="text-2xl my-4 max-w-[580px] mx-auto">{dec}</p>
                                     <button
                                         className="text-xl  p-2 px-5 capitalize rounded-md border border-green-900 hover:scale-105"
                                         >start shop
