@@ -11,6 +11,7 @@ import menJeans from "../public/categories/subCategory/men/jeans.png";
 import menNightWear from "../public/categories/subCategory/men/shirt.png";
 import menShirt from "../public/categories/subCategory/men/shirt.png";
 import menTShirt from "../public/categories/subCategory/men/t-shirt.png";
+import menShoes from "../public/categories/subCategory/men/shoes.png";
 // women images
 import womenDress from "../public/categories/subCategory/women/dress.png";
 import womenJacket from "../public/categories/subCategory/women/jacket.png";
@@ -27,5 +28,83 @@ import kidsShoes from "../public/categories/subCategory/kids/shoes.png";
 import kidsTSkirt from "../public/categories/subCategory/kids/t-shirt.png";
 
 
-// export const 
+export const categories = [
+    {
+        name: 'men',
+        imagePath: men,
+        dec: 'Lorem Rebum Magna Amet Lorem Magna Erat Diam Stet. Sadips Duo Stet Amet Amet Ndiam Elitr Ipsum',
+        linkPath:'/section?category=men',
+        sub: [
+            {
+                name:'jacket',
+                imagePath: menJacket,
+                linkPath: '/section?category=men&sub=jacket'
+            },
+            {
+                name:'jeans',
+                imagePath: menJeans,
+                linkPath: '/section?category=men&sub=jeans'
+            },
+            {
+                name:'nightWear',
+                imagePath: menNightWear,
+                linkPath: '/section?category=men&sub=nightWear'
+            },
+            {
+                name:'shirt',
+                imagePath: menShirt,
+                linkPath: '/section?category=men&sub=shirt'
+            },
+            {
+                name:'tShirt',
+                imagePath: menTShirt,
+                linkPath: '/section?category=men&sub=t-shirt'
+            },
+            {
+                name:'shoes',
+                imagePath: menShoes,
+                linkPath: '/section?category=men&sub=t-shoes'
+            }
+        ]
+    },
+    {
+        name: 'women',
+        imagePath: women,
+        dec: 'Lorem Rebum Magna Amet Lorem Magna Erat Diam Stet. Sadips Duo Stet Amet Amet Ndiam Elitr Ipsum',
+        linkPath:'/section?category=women',
+        sub: [
+            {
+                name:'jacket',
+                imagePath: womenJacket,
+                linkPath: '/section?category=women&sub=jacket'
+            },
+            {
+                name:'jeans',
+                imagePath: womenJeans,
+                linkPath: '/section?category=women&sub=jeans'
+            },
+            {
+                name:'nightWear',
+                imagePath: womenNightWear,
+                linkPath: '/section?category=women&sub=nightWear'
+            },
+            {
+                name:'dress',
+                imagePath: womenDress,
+                linkPath: '/section?category=women&sub=dress'
+            },
+            {
+                name:'skirt',
+                imagePath: womenSkirt,
+                linkPath: '/section?category=women&sub=skirt'
+            },
+            {
+                name:'shoes',
+                imagePath: womenShoes,
+                linkPath: '/section?category=women&sub=shoes'
+            }
+        ]
+    },
+    {}
+]
 
