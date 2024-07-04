@@ -1,5 +1,6 @@
 import Image from "next/image";
 import slide9 from "../../public/slide/slide9.jpg";
+import { IoIosArrowForward ,IoIosArrowBack} from "react-icons/io";
 
 const categories = [
     {
@@ -16,7 +17,12 @@ const categories = [
     },
 ]
 
+const className = {
+   prevNextBtn: ' absolute top-1/2  -translate-y-1/2 flex justify-center items-center p-3 rounded-full bg-white hover:scale-110'
+}
+
 function Slider() {
+
   return (
     <div className="-translate-y-16 max-h-lvh relative">
         <div className="flex items-center min-w-fit h-lvh  max-h-lvh ">
@@ -37,10 +43,10 @@ function Slider() {
                                     className="text-5xl"
                                     >{name}
                                 </h2>
-                                <p className="text-2xl my-4 max-w-580px">{desc}</p>
+                                <p className="text-2xl my-4 max-w-[580px] mx-auto">{desc}</p>
                                 <button
-                                    className="text-2xl uppercase p-3 rounded-md border border-green-900 hover:scale-105"
-                                    >start shopping
+                                    className="text-xl  p-2 px-5 capitalize rounded-md border border-green-900 hover:scale-105"
+                                    >start shop
                                 </button>
                             </section>
                         ))
@@ -48,6 +54,12 @@ function Slider() {
                 </div>
             </div>
         </div>
+        <button className={`${className.prevNextBtn} right-3 lg:right-8`}>
+            <IoIosArrowForward size={20}/>
+        </button>
+        <button className={`${className.prevNextBtn} left-3 lg:left-8`}>
+            <IoIosArrowBack size={20} />
+        </button>
     </div>
   )
 }
