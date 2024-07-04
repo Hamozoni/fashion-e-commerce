@@ -2,21 +2,7 @@
 import Image from "next/image";
 import { IoIosArrowForward ,IoIosArrowBack} from "react-icons/io";
 import { useEffect, useState } from "react";
-
-const categories = [
-    {
-        name: 'Men Fashion',
-        desc : 'Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam'
-    },
-    {
-        name: 'women Fashion',
-        desc : 'Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam'
-    },
-    {
-        name: 'kidds Fashion',
-        desc : 'Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam'
-    },
-]
+import {categories} from "../../data/categories"
 
 const cateLength = categories.length
 
@@ -59,11 +45,21 @@ function Slider() {
   return (
     <div className="max-h-lvh relative">
         <div className="flex items-center min-w-fit h-lvh  max-h-lvh ">
-            {/* <Image 
-                className="w-full object-cover h-lvh max-h-lvh  min-w-full" 
-                src={slide9} 
-                alt="slide image"
-                /> */}
+            <div className="w-full min-w-full max-w-full">
+                <div className="w-full min-w-full overflow-hidden  h-lvh max-h-lvh  min-w-full">
+                {
+                    categories?.map(({imagePath,id})=> (
+                        <Image 
+                            key={id}
+                            className="w-full object-cover h-lvh max-h-lvh  min-w-full" 
+                            src={imagePath} 
+                            alt="slide image"
+                            />
+                    ))
+                }
+
+                </div>
+            </div>
             <div className="absolute left-0 top-0 w-full h-full bg-gradient-transparent" ></div>
         </div>
         <div className=" absolute left-0 top-0 w-full h-full flex items-center justify-center">

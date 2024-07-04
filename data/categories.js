@@ -29,6 +29,7 @@ import kidsShoes from "../public/categories/subCategory/kids/shoes.png";
 
 export const categories = [
     {
+        id: 1,
         name: 'men',
         imagePath: men,
         dec: 'Lorem Rebum Magna Amet Lorem Magna Erat Diam Stet. Sadips Duo Stet Amet Amet Ndiam Elitr Ipsum',
@@ -67,6 +68,7 @@ export const categories = [
         ]
     },
     {
+        id: 2,
         name: 'women',
         imagePath: women,
         dec: 'Lorem Rebum Magna Amet Lorem Magna Erat Diam Stet. Sadips Duo Stet Amet Amet Ndiam Elitr Ipsum',
@@ -105,6 +107,7 @@ export const categories = [
         ]
     },
     {
+        id: 3,
         name: 'kids',
         imagePath: kids,
         dec: 'Lorem Rebum Magna Amet Lorem Magna Erat Diam Stet. Sadips Duo Stet Amet Amet Ndiam Elitr Ipsum',
@@ -122,8 +125,8 @@ export const categories = [
             },
             {
                 name:'nightWear',
-                imagePath: kidsNightWear,
-                linkPath: '/section?category=women&sub=nightWear'
+                imagePath: kidsDress,
+                linkPath: '/section?category=women&sub=dress'
             },
             {
                 name:'dress',
