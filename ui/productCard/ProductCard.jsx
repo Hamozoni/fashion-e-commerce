@@ -65,7 +65,7 @@ function ProductCard({product}) {
                         <div key={id}
                            className={className.image}>
                             <Image 
-                                className=""
+                                className="rounded-md"
                                 src={imagePath.replace("public",'')}
                                 alt='product image'
                                 width={320}
@@ -94,24 +94,24 @@ function ProductCard({product}) {
                 <IoIosArrowBack sizes={20}/>
                 </button>
             }
-        </div>
-        <div className={className.heart}>
-            <AddToListBtn product={product} />
-        </div>
-        <ul className="flex items-center justify-center gap-2 pt-2">
+                    <ul className=" absolute left-0 bottom-0 w-full translate-y-full group-hover:translate-y-0 flex items-center justify-center gap-2 py-3">
                 {
                     productImages[selectedColor]?.map(({id,color},index)=> (
                         <li 
                             onClick={()=> setImagesIndex(index)}
                             key={id} 
-                            className=" w-4 h-4 rounded-full border-2 border-teal-500 hover:scale-110 shadow-md" 
-                            style={{backgroundColor: index === imagesIndex ? color : ''}}
+                            className=" w-4 h-4 rounded-full border border-teal-500 hover:scale-125 shadow-md" 
+                            style={ index === imagesIndex ? { backgroundColor: color,width: '24px',height: '24px'}: {}}
                             >
                         </li>
 
                     ))
                 }
-            </ul>
+        </ul>
+        </div>
+        <div className={className.heart}>
+            <AddToListBtn product={product} />
+        </div>
         <div className="p-3">
             <div className="pb-2">
                 <h2 className="text-lg font-bold text-green-950 text-center ">
