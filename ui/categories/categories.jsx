@@ -3,7 +3,6 @@
 import { useState } from "react";
 import {categories} from "../../data/categories";
 import { CategoryCard } from "./categoryCard";
-import {Offers} from "./offers"
 
 export const Categories = ()=> {
 
@@ -19,16 +18,15 @@ export const Categories = ()=> {
 
 
     return (
-        <div className="p-3 lg:px-8">
+        <div className="p-3 lg:px-8 -translate-y-10">
             <header className="">
-                <Offers/>
                 <div className=" flex items-center justify-center py-5 capitalize">
                     <nav>
-                        <ul className="flex items-center rounded-md bg-teal-50 overflow-hidden shadow-lg">
+                        <ul className="flex items-center rounded-md p-1 gap-2 bg-teal-50 overflow-hidden shadow-lg">
                             {
                                 categories?.map(({name})=> (
                                     <li 
-                                       className={`cursor-pointer border-r-teal-800 border-l-teal-800 text-teal-900 font-bold py-3 px-8 ${category === name ? 'bg-teal-900 text-teal-50':'hover:bg-teal-100'}`}
+                                       className={`cursor-pointer rounded-md border-r-teal-800 border-l-teal-800font-bold py-3 px-8 ${category === name ? 'bg-teal-500 text-teal-50':'bg-teal-100 text-teal-900  hover:bg-teal-50'}`}
                                         key={name}
                                         onClick={()=>handleChangeCategory(name)}
                                         >{name}

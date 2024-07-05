@@ -42,15 +42,15 @@ export function HomeSlider() {
     });
 
   return (
-    <div className="max-h-lvh relative">
-        <div className="flex items-center min-w-fit h-lvh  max-h-lvh ">
+    <div className="h-vh relative">
+        <div className="flex items-center min-w-fit h-vh ">
             <div className="w-full max-w-full overflow-hidden">
                 <div className="w-fit min-w-fit flex flex-row-reverse" style={{transform: `translateX(${(sliderIndex * 100)}%)`}}>
                 {
                     categories?.map(({imagePath,id})=> (
                         <Image 
                             key={id}
-                            className="w-full object-cover h-lvh max-h-lvh  min-w-full" 
+                            className="w-full object-cover h-vh min-w-full" 
                             src={imagePath} 
                             alt="slide image"
                             />
@@ -59,7 +59,7 @@ export function HomeSlider() {
 
                 </div>
             </div>
-            <div className="absolute left-0 top-0 w-full h-full bg-gradient-transparent" ></div>
+            <div className="absolute left-0 top-0 w-full h-vh bg-gradient-transparent" ></div>
         </div>
         <div className=" absolute left-0 top-0 w-full h-full flex items-center justify-center">
             <div className="">
