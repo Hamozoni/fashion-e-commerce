@@ -7,7 +7,7 @@ import {categories} from "../../data/categories"
 const cateLength = categories.length
 
 const className = {
-   prevNextBtn: ' absolute top-1/2  -translate-y-1/2 flex justify-center items-center p-3 rounded-full bg-white hover:scale-110'
+   prevNextBtn: ' absolute top-1/2  -translate-y-1/2 flex justify-center items-center p-3 rounded-full bg-white hover:scale-110 hover:text-teal-900 border hover:border-teal-300 hover:bg-teal-50'
 }
 
 export function HomeSlider() {
@@ -67,14 +67,14 @@ export function HomeSlider() {
                     <div className="w-fit min-w-fit flex" style={{transform: `translateX(-${(sliderIndex * 100)}%)`}}>
                         {
                             categories?.map(({name,dec})=> (
-                                <section key={name} className="min-w-full p-4 font-extrabold lg:p-8 capitalize text-center text-teal-700 ">
+                                <section key={name} className="min-w-full p-4 font-extrabold lg:p-8 capitalize text-center text-teal-950 ">
                                     <h2 
                                         className="text-5xl"
-                                        >{name}
+                                        >{name} fashion
                                     </h2>
                                     <p className="text-2xl my-4 max-w-[580px] mx-auto">{dec}</p>
                                     <button
-                                        className="text-xl  p-2 px-5 capitalize rounded-md border border-green-900 hover:scale-105"
+                                        className="text-xl  p-2 px-5 capitalize rounded-md border border-teal-200 bg-teal-50 hover:scale-105"
                                         >shop now
                                     </button>
                                 </section>
@@ -87,7 +87,7 @@ export function HomeSlider() {
                         categories?.map(({name},index)=> (
                             <li 
                                 onClick={()=> setSliderIndex(index)}
-                                className={`w-6 h-3 border-2 border-teal-600 rounded-md cursor-pointer  ${index === sliderIndex ? 'bg-teal-700 w-8 h-4' :''}`}
+                                className={`w-6 h-3 border-2 border-teal-600 rounded-md cursor-pointer  ${index === sliderIndex ? 'bg-teal-200 w-8 h-4' :''}`}
                                 key={name}></li>
                         ))
                     }

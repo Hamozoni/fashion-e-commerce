@@ -28,10 +28,10 @@ function ProductCard({product}) {
     const router = useRouter()
 
     const className = {
-            card: 'w-[220px] rounded-lg border border-green-100 cursor-pointer hover:border-green-300 relative',
-            image: 'w-fit flex-1 min-w-[220px] max-h-[270px] max-w-[220px]',
-            heart: 'absolute top-2 right-2',
-            iamgebaginationBtn: 'bg-green-100 text-green-900 absolute top-1/2 hover:scale-125 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center'
+            card: 'w-[344px] rounded-lg border border-teal-100 cursor-pointer hover:border-teal-200 relative p-3 bg-teal-50',
+            image: 'w-fit flex-1 min-w-[320px] max-h-[370px] max-w-[320px]',
+            heart: 'absolute top-4 right-4',
+            iamgebaginationBtn: 'bg-green-50 text-green-900 absolute top-1/2 hover:scale-125 -translate-y-1/2 w-8 h-10 flex items-center justify-center'
     }
 
 
@@ -54,11 +54,11 @@ function ProductCard({product}) {
 
    return (
     <div className={className.card}>
-        <div  className="h-[270px] max-h-[270px] w-[220px] overflow-hidden relative">
+        <div  className=" w-[320px] overflow-hidden relative group">
             <div
                 onClick={()=> router.push(`/product/${id}`)}
                 className="flex items-center" 
-                style={{transform: `translateX(-${imagesIndex * 220}px)`}}
+                style={{transform: `translateX(-${imagesIndex * 100}%)`}}
                 >
                 {   
                     productImages[selectedColor]?.map(({imagePath,id})=> (
@@ -68,8 +68,8 @@ function ProductCard({product}) {
                                 className=""
                                 src={imagePath.replace("public",'')}
                                 alt='product image'
-                                width={220}
-                                height={270}
+                                width={320}
+                                height={370}
                             />
 
                         </div>
@@ -82,16 +82,16 @@ function ProductCard({product}) {
                 (imagesIndex === productImages[selectedColor]?.length - 1) ? null :
                 <button
                     onClick={handleNext} 
-                    className={`${className.iamgebaginationBtn} right-2`}>
-                <IoIosArrowForward sizes={16} />
+                    className={`${className.iamgebaginationBtn} right-0 translate-x-full group-hover:translate-x-0`}>
+                <IoIosArrowForward sizes={20} />
                 </button>
             }
             {
                 imagesIndex === 0 ? null :
                 <button
                     onClick={handlePrev} 
-                    className={`${className.iamgebaginationBtn} left-2`}>
-                <IoIosArrowBack sizes={16}/>
+                    className={`${className.iamgebaginationBtn} left-0 -translate-x-full group-hover:translate-x-0`}>
+                <IoIosArrowBack sizes={20}/>
                 </button>
             }
         </div>
@@ -104,7 +104,7 @@ function ProductCard({product}) {
                         <li 
                             onClick={()=> setImagesIndex(index)}
                             key={id} 
-                            className=" w-4 h-2 rounded-full border-2 border-green-500" 
+                            className=" w-4 h-4 rounded-full border-2 border-teal-500 hover:scale-110 shadow-md" 
                             style={{backgroundColor: index === imagesIndex ? color : ''}}
                             >
                         </li>

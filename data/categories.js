@@ -39,32 +39,32 @@ export const categories = [
             {
                 name:'jacket',
                 imagePath: menJacket,
-                linkPath: '/section?category=men&sub=jacket'
+                linkPath: '/men?sub=jacket'
             },
             {
                 name:'jeans',
                 imagePath: menJeans,
-                linkPath: '/section?category=men&sub=jeans'
+                linkPath: '/men?sub=jeans'
             },
             {
                 name:'nightWear',
                 imagePath: menNightWear,
-                linkPath: '/section?category=men&sub=nightWear'
+                linkPath: '/men?sub=nightWear'
             },
             {
                 name:'shirt',
                 imagePath: menShirt,
-                linkPath: '/section?category=men&sub=shirt'
+                linkPath: '/men?sub=shirt'
             },
             {
                 name:'tShirt',
                 imagePath: menTShirt,
-                linkPath: '/section?category=men?sub=t-shirt'
+                linkPath: '/men?sub=t-shirt'
             },
             {
                 name:'shoes',
                 imagePath: menShoes,
-                linkPath: '/section?category=men&sub=t-shoes'
+                linkPath: '/men?sub=shoes'
             }
         ]
     },
