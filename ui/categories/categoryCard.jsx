@@ -8,8 +8,19 @@ export const CategoryCard = ({category})=> {
         <div className="bg-teal-50 p-3 rounded-md w-fit min-w-fit">
             <Link href={linkPath} >
                 <div className="">
-                <Image src={imagePath} width={150} height={150} alt={name}/>
-                <h3 className="text-teal-950 text-lg capitalize text-center pt-2">{name}</h3>
+                    <div className="overflow-hidden rounded-md ">
+                        <Image 
+                            className="hover:scale-110 hover:rotate-2 "
+                            src={imagePath} 
+                            width={200} 
+                            height={200} 
+                            alt={name}
+                            />
+                    </div>
+                <h3 
+                    className="text-teal-950 hover:text-teal-800 text-lg capitalize text-center pt-2"
+                    >{name}
+                </h3>
                 </div>
             </Link>
         </div>
