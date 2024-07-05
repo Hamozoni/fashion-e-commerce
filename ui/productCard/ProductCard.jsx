@@ -129,9 +129,6 @@ function ProductCard({product}) {
         </div>
         <div className="p-3">
             <div className="pb-2">
-                <h2 className="text-lg font-bold text-green-950 text-center ">
-                    {getCurrency(priceInCent)}
-                </h2>
                 <Link
                     href={`/product/${id}`}
                     className="text-md font-medium text-green-800 hover:text-green-700"
@@ -150,6 +147,9 @@ function ProductCard({product}) {
                 setSelectedSize={setSelectedSize}
                  />
             </div>
+            <h2 className="text-lg font-bold text-green-950 text-center ">
+                    {getCurrency(priceInCent)}
+                </h2>
         </div>
     </div>
   )

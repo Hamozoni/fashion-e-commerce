@@ -11,7 +11,7 @@ const ProductSelectColor = ({
     const [isColors,setIsColors] = useState(false);
 
   return (
-    <div className="relative flex-1">
+    <div className="relative flex-1 flex gap-2">
         <h5 className=" capitalize text-green-800">color: </h5>
         <button
             onClick={()=> setIsColors(!isColors)}

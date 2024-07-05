@@ -9,7 +9,7 @@ const productSelectSize = ({sizes,selectedSize,setSelectedSize}) => {
     const [isSizes,setIsSizes] = useState(false);
 
   return (
-    <div className="relative flex-1 w-full">
+    <div className="relative flex-1 w-full flex gap-2">
         <h5 className=" capitalize text-green-800">size: </h5>
         <button 
             onClick={()=> setIsSizes(!isSizes)}
