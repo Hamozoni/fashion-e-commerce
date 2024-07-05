@@ -26,7 +26,7 @@ import { AppContext } from "../../app/contextProvider";
             <div className="">
                 <Link 
                     href='/' 
-                    className='uppercase text-2xl font-extrabold text-lime-700'
+                    className='uppercase text-2xl font-extrabold text-teal-700'
                     >
                     system
                 </Link>

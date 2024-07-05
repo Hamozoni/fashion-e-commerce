@@ -1,12 +1,13 @@
 
-import Slide from "../ui/home/slider";
-
+import {HomeSlider} from "../ui/home/homeSlider";
+import {Categories} from "../ui/categories/categories";
 
 export default async function Home() {
 
   return (
     <div >
-      <Slide />
+      <HomeSlider />
+      <Categories />
     </div>
   );
 }

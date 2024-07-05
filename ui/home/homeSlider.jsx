@@ -10,7 +10,7 @@ const className = {
    prevNextBtn: ' absolute top-1/2  -translate-y-1/2 flex justify-center items-center p-3 rounded-full bg-white hover:scale-110'
 }
 
-function Slider() {
+export function HomeSlider() {
 
     const [sliderIndex,setSliderIndex] = useState(0);
 
@@ -68,15 +68,15 @@ function Slider() {
                     <div className="w-fit min-w-fit flex" style={{transform: `translateX(-${(sliderIndex * 100)}%)`}}>
                         {
                             categories?.map(({name,dec})=> (
-                                <section key={name} className="min-w-full p-4 font-extrabold lg:p-8 capitalize text-center text-green-950 ">
+                                <section key={name} className="min-w-full p-4 font-extrabold lg:p-8 capitalize text-center text-teal-700 ">
                                     <h2 
                                         className="text-5xl"
-                                        >{name} section
+                                        >{name}
                                     </h2>
                                     <p className="text-2xl my-4 max-w-[580px] mx-auto">{dec}</p>
                                     <button
                                         className="text-xl  p-2 px-5 capitalize rounded-md border border-green-900 hover:scale-105"
-                                        >start shop
+                                        >shop now
                                     </button>
                                 </section>
                             ))
@@ -88,7 +88,7 @@ function Slider() {
                         categories?.map(({name},index)=> (
                             <li 
                                 onClick={()=> setSliderIndex(index)}
-                                className={`w-6 h-3 border-2 border-green-300 rounded-md cursor-pointer  ${index === sliderIndex ? 'bg-green-950 w-8 h-4' :''}`}
+                                className={`w-6 h-3 border-2 border-teal-600 rounded-md cursor-pointer  ${index === sliderIndex ? 'bg-teal-700 w-8 h-4' :''}`}
                                 key={name}></li>
                         ))
                     }
@@ -105,5 +105,3 @@ function Slider() {
     </div>
   )
 }
-
-export default Slider
