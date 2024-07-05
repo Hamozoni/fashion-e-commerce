@@ -18,11 +18,11 @@ export const Categories = ()=> {
 
 
     return (
-        <div className="p-3 lg:px-8 -translate-y-10">
+        <div className="p-3 lg:px-8 -translate-y-32">
             <header className="">
                 <div className=" flex items-center justify-center py-5 capitalize">
                     <nav>
-                        <ul className="flex items-center rounded-md p-1 gap-2 bg-teal-50 overflow-hidden shadow-lg">
+                        <ul className="flex items-center rounded-md p-1 w-fit gap-2 bg-teal-50 overflow-hidden shadow-lg">
                             {
                                 categories?.map(({name})=> (
                                     <li 
