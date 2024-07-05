@@ -29,7 +29,6 @@ export function HomeSlider() {
     useEffect(()=> {
 
    const sliderInterval =  setInterval(()=> {
-    console.log(sliderIndex,cateLength);
 
          switch(cateLength){
             case sliderIndex + 1 : setSliderIndex(0);
