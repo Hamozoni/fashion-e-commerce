@@ -12,8 +12,8 @@ export const CategoryCard = ({category})=> {
                         <Image 
                             className="hover:scale-110 hover:rotate-2 "
                             src={imagePath} 
-                            width={150} 
-                            height={150} 
+                            width={300} 
+                            height={300} 
                             alt={name}
                             />
                     </div>
