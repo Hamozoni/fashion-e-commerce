@@ -58,7 +58,7 @@ export const categories = [
             {
                 name:'tShirt',
                 imagePath: menTShirt,
-                linkPath: '/section?category=men&sub=t-shirt'
+                linkPath: '/men?sub=t-shirt'
             },
             {
                 name:'shoes',
