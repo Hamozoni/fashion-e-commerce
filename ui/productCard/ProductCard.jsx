@@ -123,7 +123,7 @@ function ProductCard({product}) {
                 onMouseEnter={()=> setIsLikHaverd(true)}
                 onMouseLeave={()=> setIsLikHaverd(false)}
                 href={`/product/${id}`} 
-                className="flex justify-center items-center p-2 text-teal-600 bg-teal-50 rounded-full border border-teal-100">
+                className="flex justify-center items-center p-2 text-teal-800 bg-teal-50 rounded-full border border-teal-100">
                {isLikHaverd ? <TbEyeClosed size={22}/> : <FaEye size={22}/> }
             </Link>
         </div>
@@ -147,7 +147,7 @@ function ProductCard({product}) {
                 setSelectedSize={setSelectedSize}
                  />
             </div>
-            <h2 className="text-lg font-bold text-green-950 text-center ">
+            <h2 className="text-lg font-bold text-teal-950 text-center ">
                     {getCurrency(priceInCent)}
                 </h2>
         </div>

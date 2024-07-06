@@ -15,8 +15,8 @@ const ProductSelectColor = ({
         <h5 className=" capitalize text-green-800">color: </h5>
         <button
             onClick={()=> setIsColors(!isColors)}
-            className="w-full flex items-center justify-between p-1 border bg-green-50
-           border-green-100 
+            className="w-full flex items-center justify-between p-1 border cursor-pointer bg-tael-50 shadow-md text-teal-500
+           border-teal-100 
              rounded-md"
              >
             <h6 className={`${selectedColor ? 'w-7 h-5 rounded-md' :''}`} 
@@ -30,14 +30,14 @@ const ProductSelectColor = ({
             isColors ? (
                 <ul 
                     className="p-2 z-50
-                    bg-green-50 rounded-md 
-                    absolute left-0 top-8 w-full 
-                    border border-green-100"
+                    bg-teal-50 rounded-md shadow-md 
+                    absolute right-0 top-8 w-fit cursor-pointer 
+                    border border-teal-100"
                     >
                     {
                         Object.entries(productImages)?.map(([color])=> (
                             <li 
-                                className={`${selectedColor === color ? 'border-4 border-green-600' :''} mb-1 w-full h-5 rounded-md`}
+                                className={`${selectedColor === color ? 'border-2 border-teal-100 outline outline-teal-600 shadow-md' :''} mb-1 w-8 h-8 rounded-full cursor-pointer`}
                                 style={{backgroundColor: color}}
                                 key={color} 
                                 onClick={()=> {
