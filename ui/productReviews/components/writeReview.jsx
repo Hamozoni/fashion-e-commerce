@@ -27,7 +27,7 @@ import {rateProduct} from "../../../actions/productReviews/rateProductAcion";
 import { PulseLoader } from "react-spinners";
 import { ButtonWithIcon } from "../../../components/buttons";
 // context
-import { ReviewsContext } from "./reviewsContext";
+import { ReviewsContext } from "../reviewsContext";
 
 const stars = new Array(5).fill('star');
 

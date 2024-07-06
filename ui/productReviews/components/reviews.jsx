@@ -5,7 +5,7 @@ import { useContext, useEffect, useState, useTransition } from "react";
 import ReviewCard from "./reviewCard";
 import WriteReview from "./writeReview";
 // context
-import {ReviewsContext} from "./reviewsContext";
+import {ReviewsContext} from "../reviewsContext";
 
  const Reviews = ()=> {
 

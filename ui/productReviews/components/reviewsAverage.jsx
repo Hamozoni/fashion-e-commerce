@@ -5,11 +5,11 @@ import React, { useContext, useEffect, useState} from 'react'
 import { TiStarFullOutline,TiStarHalfOutline } from "react-icons/ti";
 import { CiStar } from "react-icons/ci";
 // context
-import {ReviewsContext} from "./reviewsContext";
+import {ReviewsContext} from "../reviewsContext";
 
 const reviewsStars = new Array(5).fill('star')
 
-const reviewsAverage = () => {
+export const ReviewsAverage = () => {
 
     const {reviews} = useContext(ReviewsContext);
     const [reviewsAvg,setReviewsAvg] = useState(0);
@@ -40,6 +40,4 @@ const reviewsAverage = () => {
         </div>
     </div>
   )
-}
-
-export default reviewsAverage
+};

@@ -1,8 +1,8 @@
 "use client"
 import { useContext} from "react";
 // components
-import  ReviewsAverage  from "./reviewsAverage";
-import { ReviewsContext } from "./reviewsContext";
+import  {ReviewsAverage}  from "./reviewsAverage";
+import { ReviewsContext } from "../reviewsContext";
 
 const ratingArray = new Array(5).fill('star');
 

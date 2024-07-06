@@ -13,7 +13,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import {removeReviewAction} from "../../../actions/productReviews/removeReview";
 import {updatereviewAction} from "../../../actions/productReviews/updateReview";
 // context
-import { ReviewsContext } from "./reviewsContext";
+import { ReviewsContext } from "../reviewsContext";
 import Overlay from "../../../components/Overlay";
 import { AppContext } from "../../../app/contextProvider";
 
