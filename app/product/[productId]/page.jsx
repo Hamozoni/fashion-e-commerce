@@ -13,17 +13,17 @@ async function  productPage({params}) {
   return (
     <section className="p-4 lg:px-10 ">
       <header>
-        <h4 className="pb-3 capitalize font-bold text-xl text-teal-800 border-dotted border-b-teal-100"> 
+        <h4 className="pb-3 capitalize font-bold text-2xl text-teal-900"> 
             product details:
         </h4>
       </header>
       <ProductDetails product={data} />
-      <section className="py-4 border-b border-gray-100">
+      <section className="py-5 border-b border-teal-50">
         <h4 
-          className="pb-2 text-lg font-bold text-green-900"
+          className="pb-2 text-2xl font-bold text-teal-950"
            >Product description
         </h4>
-        <p className="text-green-800">
+        <p className="text-teal-900">
           {data?.description}
         </p>
       </section>

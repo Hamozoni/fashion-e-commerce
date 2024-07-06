@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useState } from "react";
 // components
 import SelectImage from "./SelectImage";
 import SelectSize from "./SelectSize";
@@ -18,15 +18,10 @@ export const ProductDetailsContext =  createContext(null);
 
 function ProductDetails({product}) {
 
-    const {images,brand,name,priceInCent,aboutThisItem,specifications} = product;
+    const {images,brand,name,priceInCent,specifications} = product;
     const [selectedSize,setSelectedSize] = useState('');
     const [selectedColor,setSelectedColor] = useState(images[0]?.color);
 
-    const about = useRef();
-
-    // useEffect(()=> {
-    //     about.current.innerText = aboutThisItem;
-    // },[]);
 
   return (
         <ProductDetailsContext.Provider 
@@ -38,7 +33,7 @@ function ProductDetails({product}) {
                 setSelectedColor
                 }}
                 >
-                <div className="md:flex gap-4 lg:gap-8 capitalize">
+                <div className="md:flex gap-4 lg:gap-8 capitalize border-b-teal-50">
                     <ImagesGalary  /> 
                     <div className="flex-1">
                         <div>
@@ -63,13 +58,6 @@ function ProductDetails({product}) {
                             <SelectSize />
                             <SelectImage />
                             <Specifications specifications={specifications} />
-                            {/* <footer className="py-4">
-                                <h4 className="pb-2 text-lg font-bold text-green-950">about this items</h4>
-                                <p 
-                                    className="text-green-800" 
-                                    ref={about} >
-                                </p>
-                            </footer> */}
                         </div>
                         <Features />
                         <div className="flex items-center gap-2 pt-5 ">
