@@ -40,13 +40,13 @@ function ProductDetails({product}) {
             <div className="flex-1">
                 <div>
                     <header className="pb-2">
-                        <h4 className="text-sm text-green-700">
-                        brand: {brand}
-                        </h4>
                         <h5
-                        className="text-xl text-green-9500"
-                        >{name}
+                            className="text-2xl text-teal-9500"
+                            >{name}
                         </h5>
+                        <h4 className="text-sm text-teal-700">
+                            brand: {brand}
+                        </h4>
                     </header>
                     <div className="flex items-center  text-green-950 gap-3">
                         <h4 className='text-lg font-extrabold'>
