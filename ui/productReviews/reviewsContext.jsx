@@ -13,7 +13,7 @@ import {SyncLoader} from "react-spinners"
 // context
 export const ReviewsContext = createContext();
 
-export const ReviewsContextProvider = ({children,product}) => {
+const ReviewsContextProvider = ({children,product}) => {
 
     const [reviews,setReviews] = useState([]);
     const [loading,startTransition] = useTransition();
@@ -53,4 +53,6 @@ export const ReviewsContextProvider = ({children,product}) => {
     </ReviewsContext.Provider>
     
   )
-}
+};
+
+export default ReviewsContext;

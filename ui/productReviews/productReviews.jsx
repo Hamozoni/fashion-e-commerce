@@ -3,7 +3,7 @@
 import ReviewsDetails from "./components/reviewsDetails";
 import Reviews from "./components/reviews";
 // context provider
-import {ReviewsContext} from "./reviewsContext";
+import ReviewsContext from "./reviewsContext";
 
 function ProductReviews({product}) {
 
