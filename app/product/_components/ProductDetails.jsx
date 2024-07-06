@@ -12,7 +12,7 @@ import AddToListBtn from "../../../components/addToListBtn";
 import getCurrency from "../../../lip/getCurrency";
 import { ReviewsAverage } from "../../../ui/productReviews/components/reviewsAverage";
 // reviews context component
-import ReviewsContext from "../../../ui/productReviews/reviewsContext"
+import ReviewsContextProvider from "../../../ui/productReviews/reviewsContext"
 
 export const ProductDetailsContext =  createContext(null);
 
@@ -51,15 +51,15 @@ function ProductDetails({product}) {
                                 <h4 className="text-sm text-teal-700">
                                     brand: {brand}
                                 </h4>
-                                <ReviewsContext product={product}>
+                                <ReviewsContextProvider product={product}>
                                    <ReviewsAverage />
-                                </ReviewsContext>
+                                </ReviewsContextProvider>
                             </header>
-                            <div className="flex items-center  text-green-950 gap-3">
-                                <h4 className='text-lg font-extrabold'>
+                            <div className="flex items-center  text-teal-950 gap-3">
+                                <h4 className='text-2xl font-extrabold'>
                                     {getCurrency(+priceInCent)}
                                 </h4>
-                                <p className="text-green-800 text-sm">Inclusive of VAT</p>
+                                <p className="text-teal-800 text-sm">Inclusive of VAT</p>
                             </div>
                             <SelectSize />
                             <SelectImage />

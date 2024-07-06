@@ -55,4 +55,4 @@ const ReviewsContextProvider = ({children,product}) => {
   )
 };
 
-export default ReviewsContext;
+export default ReviewsContextProvider;

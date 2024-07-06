@@ -3,13 +3,13 @@
 import ReviewsDetails from "./components/reviewsDetails";
 import Reviews from "./components/reviews";
 // context provider
-import ReviewsContext from "./reviewsContext";
+import ReviewsContextProvider from "./reviewsContext";
 
 function ProductReviews({product}) {
 
   return (
     <section className="py-4">
-       <ReviewsContext product={product}>
+       <ReviewsContextProvider product={product}>
           <header>
             <h4 className="text-lg  font-bold text-green-950">
                   Product Ratings & Reviews
@@ -19,7 +19,7 @@ function ProductReviews({product}) {
               <ReviewsDetails />
               <Reviews />
           </div>
-       </ReviewsContext>
+       </ReviewsContextProvider>
     </section>
   )
 }
