@@ -11,7 +11,7 @@ function ProductReviews({product}) {
     <section className="py-5">
        <ReviewsContextProvider product={product}>
           <header>
-            <h4 className="text-2xl  font-bold text-teal-950 text-center">
+            <h4 className="text-2xl  font-bold text-teal-950  border-l-2 pl-3 mx-auto w-fit border-teal-200">
                   Product Ratings & Reviews
               </h4>
           </header>
