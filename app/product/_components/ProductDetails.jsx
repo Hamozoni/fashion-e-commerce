@@ -21,9 +21,9 @@ function ProductDetails({product}) {
 
     const about = useRef();
 
-    useEffect(()=> {
-        about.current.innerText = aboutThisItem;
-    },[]);
+    // useEffect(()=> {
+    //     about.current.innerText = aboutThisItem;
+    // },[]);
 
   return (
     <ProductDetailsContext.Provider 
@@ -54,18 +54,18 @@ function ProductDetails({product}) {
                         </h4>
                         <p className="text-green-800 text-sm">Inclusive of VAT</p>
                     </div>
-                    <Features />
                     <SelectSize />
                     <SelectImage />
-                    <Specifications specifications={specifications} />
-                    <footer className="py-4">
+                    {/* <Specifications specifications={specifications} /> */}
+                    {/* <footer className="py-4">
                         <h4 className="pb-2 text-lg font-bold text-green-950">about this items</h4>
                         <p 
                             className="text-green-800" 
                             ref={about} >
                         </p>
-                    </footer>
+                    </footer> */}
                 </div>
+                <Features />
                 <div className="flex items-center gap-2 pt-5 ">
                     <AddToCart
                         product={product} 
