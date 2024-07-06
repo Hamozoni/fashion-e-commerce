@@ -20,7 +20,7 @@ async function  productPage({params}) {
       <ProductDetails product={data} />
       <section className="py-5 border-b border-teal-50">
         <h4 
-          className="pb-2 text-2xl font-bold border-l-2 pl-3  border-teal-200 text-teal-950"
+          className="pb-2 text-2xl font-bold border-l-2 pl-3 border-teal-200 text-teal-950"
            >Product description
         </h4>
         <p className="text-teal-900">

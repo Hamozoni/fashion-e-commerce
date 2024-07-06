@@ -33,7 +33,7 @@ function ProductDetails({product}) {
                 setSelectedColor
                 }}
                 >
-                <div className="md:flex gap-4 lg:gap-8 capitalize pb-3 border-b border-teal-50">
+                <div className="md:flex gap-4 lg:gap-8 capitalize pb-3 border-b border-teal-100">
                     <ImagesGalary  /> 
                     <div className="flex-1">
                         <div>
