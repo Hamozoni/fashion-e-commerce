@@ -29,7 +29,6 @@ function ProductDetails({product}) {
     // },[]);
 
   return (
-    //   <ReviewsContext product={product}>
         <ProductDetailsContext.Provider 
             value={{
                 product,
@@ -63,7 +62,7 @@ function ProductDetails({product}) {
                             </div>
                             <SelectSize />
                             <SelectImage />
-                            {/* <Specifications specifications={specifications} /> */}
+                            <Specifications specifications={specifications} />
                             {/* <footer className="py-4">
                                 <h4 className="pb-2 text-lg font-bold text-green-950">about this items</h4>
                                 <p 
@@ -84,7 +83,6 @@ function ProductDetails({product}) {
                     </div>
                 </div>
         </ProductDetailsContext.Provider>
-        // </ReviewsContext>
   )
 }
 
