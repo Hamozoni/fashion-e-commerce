@@ -15,7 +15,7 @@ const informations = [
 export const FooterAboutWebate = ()=> {
     return (
         <div className="capitalize">
-            <div className="flex gap-5 py-3">
+            <div className="flex gap-5 py-3 justify-center">
                 {
                     informations?.map(({name,data})=> (
                         <div className="">

@@ -3,7 +3,7 @@ import { BsApple } from "react-icons/bs";
 
 export const DownloadApps = ()=> {
     const className = {
-        btn: 'flex gap-2 items-center bg-teal-50 p-2 px-4 capitalize rounded-full border border-gray-200 hover:scale-105'
+        btn: 'flex gap-2 w-full justify-center items-center bg-teal-50 p-2 px-4 capitalize rounded-full border border-gray-200 hover:scale-105'
     };
     return (
         <div className="py-3 capitalize">

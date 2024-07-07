@@ -3,26 +3,29 @@ import Link from "next/link"
 import {FooterCategories} from "./components/footerCatgories";
 import {FooterAboutWebate} from "./components/footerAboutWesite";
 import {DownloadApps} from "./components/downloadApps";
-import {SubscribeByEmail} from "./components/subscribeByEmail"
-import { CartFooter } from "../../app/cart/_components/CartSummary";
+import {SubscribeByEmail} from "./components/subscribeByEmail";
 
 export const Footer = ()=> {
     return (
         <footer className="bg-teal-950">
             <div className="p-3 lg:px-8">
-               <div className="flex gap-10 border-b border-teal-700 pb-5 mb-5">
+               <div className="md:flex gap-5 border-b border-teal-900 pb-5 mb-5">
                     <div className="">
-                        <DownloadApps />
                         <SubscribeByEmail />
+                        <DownloadApps />
                     </div>
-                    <FooterCategories />
-                    <FooterAboutWebate />
+                    <div className="lg:flex gap-5">
+                        <FooterCategories />
+                        <FooterAboutWebate />
+                    </div>
                </div>
-               <div className="flex gap-5">
-                <Link className=" text-teal-50 capitalize text-lg lg:text-3xl font-extrabold" href='/'
-                    >system
-                </Link> 
-                <CartFooter />
+               <div className="flex items-center gap-5 pb-3">
+                    <Link className=" text-teal-50 capitalize text-lg lg:text-3xl font-extrabold" href='/'
+                        >system
+                    </Link> 
+                    <div className="text-teal-200">
+                        <p>&copy;{new Date()?.getFullYear()} mohamed yahia hamozony</p>
+                    </div>
                </div>
             </div>
         </footer>

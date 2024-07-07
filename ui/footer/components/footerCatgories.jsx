@@ -5,7 +5,7 @@ import {categoriesData} from "../../../data/categoriesData";
 export const FooterCategories = ()=> {
     return (
         <div className="capitalize">
-            <div className="flex gap-5 py-3">
+            <div className="flex gap-5 py-3 justify-center">
                 {
                     categoriesData?.map(({name,sub})=> (
                         <div key={name} className="">
