@@ -44,20 +44,21 @@ function WhriteReview() {
         return (
             <div>
                 <div className="flex gap-2 items-center">
-                    <div className="">
-                        <Image 
+                    <div className="h-[150px] max-h-[150px]">
+                        <Image
+                           className="max-h-full" 
                             src={product?.images[0]?.imagePath?.replace("public","")} 
-                            width={200} 
-                            height={200}
+                            width={100} 
+                            height={150}
                             />
                     </div>
                     <div className="capitalize">
-                        <h5 className="text-lg text-green-900 mb-2">{product?.name}</h5>
+                        <h5 className="text-lg text-teal-900 mb-2">{product?.name}</h5>
                     </div>
                 </div>
                 <div className="text-center mb-4">
                     <h6 
-                        className="text-green-600"
+                        className="text-teal-600"
                         >your rating ? 
                     </h6>
                     <div className="flex items-center justify-center gap-2">
@@ -127,7 +128,7 @@ function WhriteReview() {
 
     const className = {
         WhriteReview: "fixed top-16 z-50 p-4 max-h-[550px] rounded-md left-1/2 translate-x-[-50%] w-[380px] sm:w-[600px] bg-green-50 overflow-y-auto",
-        btn:'flex items-center justify-center gap-2  border py-1 rounded-md  w-full text-sm  border-green-200 text-green-800 hover:bg-green-100 hover:scale-95 '
+        btn:'flex items-center justify-center gap-2  border py-1 rounded-md  w-full text-sm  border-green-200 text-teal-800 hover:bg-green-100 hover:scale-95 '
     }
 
 
@@ -135,7 +136,7 @@ function WhriteReview() {
 
     <div className="">
         <div className="py-5 border-b border-green-100">
-            <h6 className="text-green-800 pb-2 text-lg font-bold"
+            <h6 className="text-teal-800 pb-2 text-lg font-bold"
               >Share your thoughts with other customers
             </h6>
             <ButtonWithIcon
@@ -152,21 +153,21 @@ function WhriteReview() {
                     <section className="min-h-fit">
                         <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                         <header className="text-center mb-4">
-                            <h3 className="text-lg text-green-900 font-bold"
+                            <h3 className="text-lg text-teal-900 font-bold"
                                 >Write a review
                             </h3>
-                            <p className="text-green-700">Tell us what you think about this product</p>
+                            <p className="text-teal-700">Tell us what you think about this product</p>
                         </header>
                         <ProductRating />
                         <form action={handleReview} ref={reviewFormRef}>
                             <div className="w-full capitalize">
                                 <label 
-                                    className="mb-3 text-lg text-green-900 font-bold"
+                                    className="text-md text-gray-500 font-bold"
                                     htmlFor="reviewImage"
                                     > review image:
                                 </label>
                                 <input
-                                className="p-2 bg-white rounded-sm text-green-900  w-full" 
+                                className="p-2 my-3 bg-white rounded-md text-gray-500  w-full" 
                                     id='reviewImage'
                                     type="file" 
                                     name='reviewImage'
@@ -175,12 +176,12 @@ function WhriteReview() {
                             </div>
                             <div className="w-full">
                                 <label 
-                                    className="mb-3 text-lg text-green-900 font-bold"
+                                    className=" text-md text-gray-500 font-bold"
                                     htmlFor="rateText"
                                     > Share your experience:
                                 </label>
                                 <textarea 
-                                    className="w-full p-3" 
+                                    className="w-full p-3 my-3 text-teal-900" 
                                     id="rateText" 
                                     cols="30" 
                                     rows="8"
@@ -195,12 +196,12 @@ function WhriteReview() {
                             </div>
                             <div className="w-full capitalize">
                                 <label
-                                    className="mb-3 text-lg text-green-900 font-bold" 
+                                    className="text-lg text-gray-500 font-bold" 
                                     htmlFor="rateTitle">
                                     give it a title
                                 </label>
                                 <input 
-                                    className="w-full p-3" 
+                                    className="w-full p-3 my-3 text-teal-800" 
                                     id="rateTitle" 
                                     type='text'
                                     name="rateTitle"
