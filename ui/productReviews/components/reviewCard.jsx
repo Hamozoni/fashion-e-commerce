@@ -1,5 +1,5 @@
 "use clent"
-import { useContext, useRef, useState, useTransition } from "react";
+import { useContext, useState, useTransition } from "react";
 import Image from "next/image"
 // components
 import {ButtonWithIcon} from "../../../components/buttons";
@@ -73,7 +73,7 @@ function ReviewCard({review,index}) {
     const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) ? "Edited at" :'';
 
   return (
-        <div className={`${isEdidable ? 'border border-gray-100 shadow-md rounded-md p-3':''} py-7 border-b border-gray-00`}>
+        <div className={`${isEdidable ? 'border border-gray-100':' shadow-md rounded-md p-3'} py-7 border-b border-gray-00`}>
             <header className="flex items-center gap-2 pb-2">
                 {
                     review?.auther?.image ?
@@ -102,7 +102,7 @@ function ReviewCard({review,index}) {
                 {
                     (isEdidable && review?.autherId === currentUser?.id) ?
                     <input 
-                        className="border-b border-green-200 focus:border-green-400"
+                        className="border-b border-teal-200 focus:border-teal-400"
                         type="text" 
                         value={reviewTitle}
                         onChange={(e)=> setReviewTitle(e.target.value)}
@@ -115,7 +115,7 @@ function ReviewCard({review,index}) {
                 {
                     (isEdidable && review?.autherId === currentUser?.id) ? 
                     <textarea 
-                        className="text-green-800 text-sm focus:outline-none w-full border-b border-green-200 focus:border-green-400"
+                        className="text-teal-800 text-sm focus:outline-none w-full border-b border-teal-200 focus:border-green-400"
                         value={reviewText}
                         onChange={(e)=> setReviewText(e.target.value)}
                         
@@ -123,7 +123,7 @@ function ReviewCard({review,index}) {
                     </textarea>
                     :
                     <article 
-                        className="text-green-800 text-sm pb-3 max-w-full break-words overflow-auto"
+                        className="text-teal-800 text-sm pb-3 max-w-full break-words overflow-auto"
                         >{review?.rateText}
                     </article>
                 }
@@ -161,8 +161,8 @@ function ReviewCard({review,index}) {
                 isRemoveModle && (
                     <>
                        <Overlay onClick={()=> setIsRemoveModle(false)}/>
-                        <div className="bg-green-50 capitalize z-50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md w-[370px]">
-                            <h5 className="text-green-950 mb-3 font-medium text-lg">
+                        <div className="bg-teal-50 capitalize z-50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md w-[370px]">
+                            <h5 className="text-teal-950 mb-3 font-medium text-lg">
                                 are you sure you want to delete your review ?
                             </h5>
                             <div className=" flex items-center gap-3">
