@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { IoIosArrowForward ,IoIosArrowBack} from "react-icons/io";
 import { useEffect, useState } from "react";
-import {categories} from "../../data/categories"
+import {categoriesData} from "../../data/categoriesData"
 
-const cateLength = categories.length
+const cateLength = categoriesData.length
 
 const className = {
    prevNextBtn: ' absolute top-1/2  -translate-y-1/2 flex justify-center items-center p-3 rounded-full bg-white hover:scale-110 hover:text-teal-900 border hover:border-teal-300 hover:bg-teal-50'
@@ -47,7 +47,7 @@ export function HomeSlider() {
             <div className="w-full max-w-full overflow-hidden">
                 <div className="w-fit min-w-fit flex flex-row-reverse" style={{transform: `translateX(${(sliderIndex * 100)}%)`}}>
                 {
-                    categories?.map(({imagePath,id})=> (
+                    categoriesData?.map(({imagePath,id})=> (
                         <Image 
                             key={id}
                             className="w-full object-cover h-vh min-w-full" 
@@ -66,7 +66,7 @@ export function HomeSlider() {
                 <div className="p-3 lg:px-8 w-full max-w-full overflow-hidden">
                     <div className="w-fit min-w-fit flex" style={{transform: `translateX(-${(sliderIndex * 100)}%)`}}>
                         {
-                            categories?.map(({name,dec})=> (
+                            categoriesData?.map(({name,dec})=> (
                                 <section key={name} className="min-w-full p-4 font-extrabold lg:p-8 capitalize text-center text-teal-950 ">
                                     <h2 
                                         className="text-5xl"
@@ -84,7 +84,7 @@ export function HomeSlider() {
                 </div>
                 <ul className="flex items-center justify-center gap-2 mb-5">
                     {
-                        categories?.map(({name},index)=> (
+                        categoriesData?.map(({name},index)=> (
                             <li 
                                 onClick={()=> setSliderIndex(index)}
                                 className={`w-6 h-3 border-2 border-teal-600 rounded-md cursor-pointer  ${index === sliderIndex ? 'bg-teal-200 w-8 h-4' :''}`}

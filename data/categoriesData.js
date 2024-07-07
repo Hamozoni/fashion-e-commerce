@@ -28,7 +28,7 @@ import kidsShoes from "../public/categories/subCategory/kids/shoes.png";
 import kidsTShirt from "../public/categories/subCategory/kids/t-shirt.png";
 
 
-export const categories = [
+export const categoriesData = [
     {
         id: 1,
         name: 'men',

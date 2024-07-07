@@ -8,7 +8,7 @@ function headerCart() {
     const totalItemsOnCart = useAppSelector((state)=> state.cart.totalQuantity);
 
     const className = {
-        cartNumb: "absolute left-3 top-[-10px] w-[20px] h-[20px] rounded-full bg-teal-900 text-teal-50 flex justify-center items-center text-sm"
+        cartNumb: "absolute left-3 top-[-10px] w-[20px] h-[20px] rounded-full bg-teal-900 text-teal-500 flex justify-center items-center text-sm"
     };
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { IoSearchSharp } from "react-icons/io5";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppContext } from "../../../app/contextProvider";
 import Overlay from "../../../components/Overlay";
@@ -10,37 +10,36 @@ function SearchBar() {
 
 
   const {innerWidth} = useContext(AppContext);
-
-  console.log(innerWidth)
-  const [query,setQuery] = useState('');
-  const [isMobile,setIsMoble] = useState(false);
-  // const [category,setCategory] = useState('all')
+  const [isMobile,setIsMoble] = useState(false)
   const router = useRouter();
+
+  const searchForm = useRef()
 
   const className = {
     flex : `flex items-center`,
-    searchBox: 'rounded-full border border-teal-50 flex gap-2 items-center w-full p-1',
+    searchBox: 'rounded-full border border-teal-50 bg-white flex gap-2 items-center w-full p-1',
     serchBtn: 'bg-teal-50 min-w-fit rounded-full border-2 border-teal-200 text-teal-800 py-2.5 px-6 min-h-full'
   };
 
-  // const handleSubmit = ()=> {
-  //   if(query.length > 2){
-  //     router.push(`/search/${query}?category=${category}`)
-  //     setIsMoble(false)
-  //   }
-  // };
+  const handleSubmit = ()=> {
+
+    const formData = new FormData(searchForm?.current);
+    const query = formData.get('query');
+
+    if(query.length > 2){
+      router.push(`/search/${query}`)
+    }
+  };
 
   const SearchForm = ({classN})=> {
     return (
       <section className={`${classN} ${className.flex} gap-4 flex-1 rounded-md`}>
-         <form className={className.searchBox}>
-             {/* <SearchCategories category={category} setCategory={setCategory} /> */}
+         <form ref={searchForm} action={handleSubmit} className={className.searchBox}>
             <div className="w-full">
                 <input
-                    value={query}
-                    onChange={(e)=> setQuery(e.target.value)}
+                    name="query"
                     className="w-full py-3 px-4 bg-transparent text-sm font-bold bg-gray-50 rounded-full border-2 focus:border-teal-200 "
-                    type="text" 
+                    type="search" 
                     placeholder="search myh store" 
                     />
             </div>
