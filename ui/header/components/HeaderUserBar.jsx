@@ -25,8 +25,8 @@ function HeaderUserBar() {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-teal-900 capitalize cursor-pointer',
         container:'fixed left-0 top-0 w-full h-dvh flex justify-between z-50',
-        ul: ' fixed top-20 right-5 min-w-fit max-h-fit bg-teal-50 rounded-md  py-2 z-50 ',
-        li: 'px-4 py-2 capitalize hover:bg-teal-100 flex items-center gap-3 text-lg font-medium text-teal-900 cursor-pointer'
+        ul: 'border border-teal-300 fixed top-[70px] right-3 lg:right-8 min-w-[300px] max-h-fit bg-teal-50 rounded-md  py-2 z-50 ',
+        li: 'px-4 py-3 capitalize hover:bg-teal-100 flex items-center gap-3 text-lg font-medium text-teal-900 cursor-pointer'
     };
     
   return (
@@ -56,7 +56,7 @@ function HeaderUserBar() {
                 <>
                 <Overlay onClick={()=> setIsAccount(false)} />
                     <div className={className.ul}>
-                        <header className="p-3 mb-3 border-b border-teal-100">
+                        <header className="p-4 mb-4 border-b border-teal-100">
                             <h3 className="mb-3 text-teal-800 cursor-pointer">
                                 <GiTireIronCross/>
                             </h3>

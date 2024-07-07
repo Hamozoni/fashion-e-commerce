@@ -1,5 +1,5 @@
-
-import MainHeader from "../ui/header/MainHeader";
+import {Footer} from "../ui/footer/footer"
+import {MainHeader} from "../ui/header/MainHeader";
 import ReduxProvider from "./ReduxProvider";
 import ContexProvider from "./contextProvider"
 import { SessionProvider } from "next-auth/react";
@@ -24,6 +24,7 @@ export default async function RootLayout({ children }) {
               <main>
                   <MainHeader />
                   {children}
+                  <Footer />
               </main>
             </ReduxProvider>
           </body>

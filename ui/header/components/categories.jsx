@@ -12,20 +12,20 @@ export const Categories = ()=> {
 
     const [isSubCategories,setIsSubCategories] = useState(false);
     const [subCategories,setSubCategories] = useState(null);
-    const [category,setCategory] = useState(null);
+    const [categoryName,setCategoryName] = useState('');
 
     const className ={ 
-        cateLi : ' capitalize font-medium teat-teal-800 text-xl cursor-pointer'
+        cateLi : ' capitalize font-bold text-teal-800 text-xl cursor-pointer'
     }
     return (
         <div className=" capitalize">
             <ul className="flex items-center gap-3">
                 {
-                    categoriesData?.map(({name,imagePath,sub})=> (
+                    categoriesData?.map(({name,sub})=> (
                         <li 
                             onClick={()=> {
                                 setSubCategories(sub);
-                                setCategory({name,imagePath})
+                                setCategoryName(name);
                                 setIsSubCategories(true);
                             }} 
                             className={className.cateLi}
@@ -38,25 +38,18 @@ export const Categories = ()=> {
                 isSubCategories ?
                 <>
                  <Overlay onClick={()=> setIsSubCategories(false)} />
-                 <div className="fixed top-0 left-0 pb-3 bg-teal-50 z-50">
+                 <div className="fixed top-[70px] left-3 lg:left-8 border border-teal-300  rounded-md pb-3 bg-teal-50 z-50">
                     <nav className="">
                         <div 
                             className="px-5 py-3 cursor-pointer"
                             onClick={()=> setIsSubCategories(false)}
                             ><GiTireIronCross />
                         </div>
-                        <div className="relative py-3 px-5 border-b border-teal-100 gap-3">
-                            <Image 
-                                className="rounded-md" 
-                                src={category?.imagePath} 
-                                width={260}
-                                />
-
+                        <div className="relative p-3 gap-3">
                             <div className="absolute top-0 left-0 w-full h-full bg-gradient-transparent"></div>
-                            
                             <h3 
-                                className=" absolute left-0 bottom-0 w-full text-center py-3 text-teal-900 text-xl font-bold"
-                                >{category?.name} fashion
+                                className=" text-center text-teal-400 text-xl font-bold"
+                                >{categoryName} fashion
                             </h3>
                         </div>
                         <div className="p-3 overflow-auto">
@@ -65,7 +58,7 @@ export const Categories = ()=> {
                                     <div 
                                     onClick={()=> setIsSubCategories(false)}
                                         key={name} 
-                                        className="min-w-[300px] border-2 border-teal-100 rounded-full mb-3 hover:bg-teal-100 hover:border-teal-400">
+                                        className="min-w-[300px] border-2 border-gray-200 rounded-full mb-3 hover:bg-teal-100 hover:border-teal-400">
                                         <Link 
                                             className="flex items-center gap-3 px-3 py-2"
                                             href={linkPath}>

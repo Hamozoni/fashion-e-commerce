@@ -12,7 +12,7 @@ import { Categories } from "./components/categories";
 // app context
 import { AppContext } from "../../app/contextProvider";
 
- function MainHeader () {
+export const MainHeader = ()=> {
 
     const className = {
         flex:  'flex items-center gap-4 relative',
@@ -49,5 +49,3 @@ import { AppContext } from "../../app/contextProvider";
     </header>
   )
 }
-
-export default MainHeader
