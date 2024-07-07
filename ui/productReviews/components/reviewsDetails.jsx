@@ -12,8 +12,8 @@ function ReviewsDetails() {
 
     const className = {
         sectionClass: 'py-3 border-b border-gray-100',
-        sectionHead: 'font-bold text-lg text-green-950 pb-2',
-        sectionP: 'font-medium text-sm text-green-800'
+        sectionHead: 'font-bold text-lg text-teal-950 pb-2',
+        sectionP: 'font-medium text-sm text-teal-800'
       };
 
       const handleRatingPrecetage = (number)=> {
@@ -26,7 +26,7 @@ function ReviewsDetails() {
   return (
     <section className="flex-1 capitalize max-w-full min-w-[50%]">
         <h5  
-          className="text-md font-medium text-green-900 pb-2 mb-2 border-b border-gray-100"
+          className="text-md font-medium text-teal-900 pb-2 mb-2 border-b border-gray-100"
            >Overall Rating
         </h5>
         <div className="sticky top-[70px]">
@@ -37,11 +37,11 @@ function ReviewsDetails() {
                   {
                       ratingArray?.map((star,index)=> (
                       <tr className="min-w-full table"> 
-                          <td className="text-green-800 w-[52px] pb-2 font-medium">
+                          <td className="text-teal-800 w-[52px] pb-2 font-medium">
                               {index + 1} {star}
                             </td>
                           <td className="px-3">
-                              <div className="h-5 border bg-green-50 border-green-100 rounded-md overflow-hidden">
+                              <div className="h-5 border bg-teal-50 border-green-100 rounded-md overflow-hidden">
                                   <div 
                                       style={{width: handleRatingPrecetage(index + 1)}} 
                                       className="bg-yellow-400 h-5">
@@ -49,7 +49,7 @@ function ReviewsDetails() {
                               </div>
                           </td>
                           <td 
-                            className="text-green-800 font-medium w-[30px]"
+                            className="text-teal-800 font-medium w-[30px]"
                             > {handleRatingPrecetage(index + 1)}
                           </td>
                       </tr>

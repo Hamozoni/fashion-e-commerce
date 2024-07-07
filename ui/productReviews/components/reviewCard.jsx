@@ -73,7 +73,7 @@ function ReviewCard({review,index}) {
     const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) ? "Edited at" :'';
 
   return (
-        <div className={`${isEdidable ? 'border border-gray-100':' shadow-md rounded-md p-3'} py-7 border-b border-gray-00`}>
+        <div className={`${isEdidable ? 'border border-teal-100':' shadow-md'} my-5 rounded-md p-3 border-l-2 border-teal-300`}>
             <header className="flex items-center gap-2 pb-2">
                 {
                     review?.auther?.image ?
@@ -87,11 +87,11 @@ function ReviewCard({review,index}) {
                     <FaRegUser size={30} />
                 }
                 <section className="">
-                    <h4 className="text-green-900">
+                    <h4 className="text-teal-900 font-bold text-lg">
                         {review?.auther?.name}
                     </h4>
                     <time 
-                        className="text-green-800 text-sm"
+                        className="text-teal-700 text-sm"
                         dateTime={new Date(review.createdAt).toDateString()}
                         >{updatedAt} {new Date(review?.updatedAt).toDateString()}
                     </time>
