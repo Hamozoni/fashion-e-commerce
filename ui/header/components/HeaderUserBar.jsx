@@ -38,7 +38,7 @@ function HeaderUserBar() {
                         <div className="" onClick={()=> setIsAccount(true)}>
                             {
                                 currentUser?.image ?
-                                <Image src={currentUser?.image} width={30} height={30} className="rounded-full" />
+                                <Image src={currentUser?.image} width={40} height={40} className="rounded-full" />
                                 :<FaUserLarge />
                             }
                         </div>

@@ -8,6 +8,7 @@ import UserAddress from "./components/userAddress";
 import HeaderCart from "./components/headerCart";
 import MobileMenu from "./components/mobileMenu";
 import LikedList from "./components/likedList"
+import { Categories } from "./components/categories";
 // app context
 import { AppContext } from "../../app/contextProvider";
 
@@ -26,14 +27,15 @@ import { AppContext } from "../../app/contextProvider";
             <div className="">
                 <Link 
                     href='/' 
-                    className='uppercase text-2xl font-extrabold text-teal-500'
+                    className='uppercase text-lg lg:text-3xl font-extrabold text-teal-500'
                     >
                     system
                 </Link>
             </div>
             <section className={`${className.flex} flex-1 justify-end`}>
-                <UserAddress/>
+                <Categories />
                 <SearchBar />
+                <UserAddress/>
                 <HeaderUserBar />
                 <LikedList />
                 <HeaderCart/>

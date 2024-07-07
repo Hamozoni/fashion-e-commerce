@@ -15,7 +15,7 @@ function UserAddress() {
     const [isUpdateAddress,setIsUpdateAddress] = useState(false);
     
     const className = {
-        delivery: 'flex items-center text-sm font-medium cursor-pointer hover:text-gray-700 hover:font-medium line-clamp-1'
+        delivery: 'flex items-center text-sm font-medium cursor-pointer rounded-full border border-teal-50 p-2 text-teal-900 hover:text-teal-700 hover:bg-teal-50 hover:font-medium line-clamp-1'
     }
 
   return (

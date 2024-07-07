@@ -19,8 +19,8 @@ function SearchBar() {
 
   const className = {
     flex : `flex items-center`,
-    searchBox: 'rounded-md border bg-slate-200 border-green-100 shadow-md flex items-center w-full',
-    serchBtn: 'bg-green-100 min-w-fit text-green-800 py-2.5 px-5 min-h-full'
+    searchBox: 'rounded-full border border-teal-50 flex gap-2 items-center w-full p-1',
+    serchBtn: 'bg-teal-50 min-w-fit rounded-full border-2 border-teal-200 text-teal-800 py-2.5 px-6 min-h-full'
   };
 
   // const handleSubmit = ()=> {
@@ -32,14 +32,14 @@ function SearchBar() {
 
   const SearchForm = ({classN})=> {
     return (
-      <section className={`${classN} ${className.flex} gap-4 flex-1  bg-green-100 rounded-md`}>
+      <section className={`${classN} ${className.flex} gap-4 flex-1 rounded-md`}>
          <form className={className.searchBox}>
              {/* <SearchCategories category={category} setCategory={setCategory} /> */}
             <div className="w-full">
                 <input
                     value={query}
                     onChange={(e)=> setQuery(e.target.value)}
-                    className="w-full p-2 bg-transparent text-sm font-bold bg-gray-50 rounded-md "
+                    className="w-full py-3 px-4 bg-transparent text-sm font-bold bg-gray-50 rounded-full border-2 focus:border-teal-200 "
                     type="text" 
                     placeholder="search myh store" 
                     />
