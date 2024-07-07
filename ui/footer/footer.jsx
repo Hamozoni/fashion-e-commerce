@@ -1,13 +1,14 @@
-import Link from "next/link"
-
+// import Link from "next/link"
+import {FooterCategories} from "./components/footerCatgories"
 
 export const Footer = ()=> {
     return (
         <footer className="bg-teal-600">
             <div className="p-3 lg:px-8">
-                <Link className=" text-teal-50 capitalize text-lg lg:text-3xl font-extrabold" href='/'
+                {/* <Link className=" text-teal-50 capitalize text-lg lg:text-3xl font-extrabold" href='/'
                   >system
-               </Link> 
+               </Link>  */}
+               <FooterCategories />
             </div>
         </footer>
     )
