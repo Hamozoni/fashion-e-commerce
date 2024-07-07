@@ -38,7 +38,7 @@ export const Categories = ()=> {
                 isSubCategories ?
                 <>
                  <Overlay onClick={()=> setIsSubCategories(false)} />
-                 <div className="fixed top-0 left-0 h-svh bg-teal-50 z-50">
+                 <div className="fixed top-0 left-0 pb-3 bg-teal-50 z-50">
                     <nav className="">
                         <div 
                             className="px-5 py-3 cursor-pointer"
@@ -59,27 +59,30 @@ export const Categories = ()=> {
                                 >{category?.name} fashion
                             </h3>
                         </div>
-                        {
-                            subCategories?.map(({name,imagePath,linkPath})=> (
-                                <div 
-                                   onClick={()=> setIsSubCategories(false)}
-                                    key={name} 
-                                    className="min-w-[300px]">
-                                    <Link 
-                                        className="flex items-center gap-3 px-5 py-3 hover:bg-teal-100"
-                                        href={linkPath}>
-                                        <Image
-                                            className="rounded-full" 
-                                            src={imagePath} 
-                                            width={40} 
-                                            height={40} 
-                                            alt={name}
-                                            />
-                                        <h4>{name}</h4> 
-                                    </Link>
-                                </div>
-                            ))
-                        }
+                        <div className="p-3 overflow-auto">
+                            {
+                                subCategories?.map(({name,imagePath,linkPath})=> (
+                                    <div 
+                                    onClick={()=> setIsSubCategories(false)}
+                                        key={name} 
+                                        className="min-w-[300px] border-2 border-teal-100 rounded-full mb-3 hover:bg-teal-100 hover:border-teal-400">
+                                        <Link 
+                                            className="flex items-center gap-3 px-3 py-2"
+                                            href={linkPath}>
+                                            <Image
+                                                className="rounded-full" 
+                                                src={imagePath} 
+                                                width={40} 
+                                                height={40} 
+                                                alt={name}
+                                                />
+                                            <h4 className="text-teal-800 font-bold text-lg">{name}</h4> 
+                                        </Link>
+                                    </div>
+                                ))
+                            }
+
+                        </div>
                     </nav>
                  </div>
                 </>

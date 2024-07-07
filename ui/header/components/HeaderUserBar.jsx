@@ -6,8 +6,9 @@ import Image from "next/image";
 import { IoSettingsOutline ,IoLanguageSharp,IoCartOutline} from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart  } from "react-icons/fa";
 import { GiTireIronCross } from "react-icons/gi";
+import { LuUserX2 } from "react-icons/lu";
 // components
 import SignOut from "../../../components/signOut";
 import Languages from "./languages";
@@ -25,7 +26,7 @@ function HeaderUserBar() {
         title: 'text-md font-medium text-teal-900 capitalize cursor-pointer',
         container:'fixed left-0 top-0 w-full h-dvh flex justify-between z-50',
         ul: ' fixed top-20 right-5 min-w-fit max-h-fit bg-teal-50 rounded-md  py-2 z-50 ',
-        li: 'px-4 py-2 hover:bg-teal-100 flex items-center gap-3 text-lg font-medium text-teal-800 cursor-pointer'
+        li: 'px-4 py-2 capitalize hover:bg-teal-100 flex items-center gap-3 text-lg font-medium text-teal-900 cursor-pointer'
     };
     
   return (
@@ -45,7 +46,7 @@ function HeaderUserBar() {
                         :
                         <Link 
                             href="/auth/login" 
-                            className={className.title}
+                            className={className?.title}
                             >sign in
                         </Link>
                     }
@@ -94,6 +95,10 @@ function HeaderUserBar() {
                             <li className={className.li}>
                                 <IoSettingsOutline size={24} /> <Link href='/setting'>setting</Link>
                             </li>
+                            <li className={className.li}>
+                                <LuUserX2  size={24} /> delete my account
+                            </li>
+                            
                             <li className={className.li}>
                             <SignOut/>
                             </li>
