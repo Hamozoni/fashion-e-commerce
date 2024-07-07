@@ -27,7 +27,7 @@ export const MainHeader = ()=> {
             <div className="">
                 <Link 
                     href='/' 
-                    className='uppercase text-lg lg:text-3xl font-extrabold text-teal-500'
+                    className=' capitalize text-lg lg:text-3xl font-extrabold text-teal-500'
                     >
                     system
                 </Link>
