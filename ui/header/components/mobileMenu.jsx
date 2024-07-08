@@ -12,7 +12,7 @@ const MobileMenu = () => {
   return (
     <section>
         <h3 onClick={()=> setIsCategory(true)} className="cursor-pointer">
-            <TiThMenuOutline size={22} />
+            <TiThMenuOutline size={24} />
         </h3>
     </section>
   )

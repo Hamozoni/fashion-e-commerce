@@ -61,20 +61,20 @@ function HeaderUserBar() {
                             <h3 className="mb-3 text-teal-800 cursor-pointer">
                                 <GiTireIronCross/>
                             </h3>
-                            <div className="flex gap-2 items-center">
+                            <div className="flex">
                                 <div className="">
                                     {
                                         currentUser?.image ?
-                                        <Image src={currentUser?.image} width={40} height={40} className="rounded-full" />
+                                        <Image src={currentUser?.image} width={50} height={50} className="rounded-full" />
                                         :<FaUserLarge />
                                     }
                                 </div>
                                 <div className="">
-                                    <h4 className="text-teal-950 font-bold text-lg">{currentUser?.name}</h4>
-                                    <p className="text-teal-800 font-bold text-sm"> {currentUser?.email}</p>
+                                    <h4 className="text-teal-950 font-bold text-lg pl-3">{currentUser?.name}</h4>
+                                    <p className="text-teal-800 font-bold text-sm pl-3"> {currentUser?.email}</p>
+                                    <UserAddress />
                                 </div>
                             </div>
-                            <UserAddress />
                         </header>
                         <ul  >
                             <li className={className.li}>

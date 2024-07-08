@@ -6,8 +6,8 @@ export const DownloadApps = ()=> {
         btn: 'flex gap-2 w-full justify-center items-center bg-teal-50 p-2 px-4 capitalize rounded-full border border-gray-200 hover:scale-105'
     };
     return (
-        <div className="py-3 capitalize">
-            <header className=" mb-4">
+        <div className="py-3 mb-8 capitalize">
+            <header className=" mb-4 text-center">
                 <h4 
                     className="text-lg font-bold text-teal-50"
                     >download our apps

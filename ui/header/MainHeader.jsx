@@ -24,26 +24,33 @@ export const MainHeader = ()=> {
   return (
     <header className="sticky top-0 left-0 w-full max-w-full z-50 py-2 px-4 lg:px-8 bg-white">
         <div className={`${className.flex} justify-between lg:gap-6 w-full`}>
-            <div className="">
+            <div className="flex items-center gap-2">
+                {
+                    innerWidth < 768 && 
+                    <MobileMenu/>
+                    
+                }
                 <Link 
                     href='/' 
-                    className=' capitalize text-lg lg:text-3xl font-extrabold text-teal-500'
+                    className=' capitalize text-2xl lg:text-3xl font-extrabold text-teal-500'
                     >
                     system
                 </Link>
             </div>
             <section className={`${className.flex} flex-1 justify-end`}>
-                <Categories />
+                {
+                    innerWidth > 767 && 
+                    <Categories />
+                    
+                }
                 <SearchBar />
-                <UserAddress/>
+                {
+                    innerWidth > 991 ? 
+                    <UserAddress/> : null
+                }
                 <HeaderUserBar />
                 <LikedList />
                 <HeaderCart/>
-                {
-                    innerWidth < 950 && 
-                    <MobileMenu/>
-                    
-                }
             </section>
         </div>
     </header>
