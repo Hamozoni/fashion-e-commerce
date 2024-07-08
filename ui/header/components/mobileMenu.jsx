@@ -6,7 +6,7 @@ import Overlay from "../../../components/Overlay";
 // icons
 import { TiThMenuOutline } from "react-icons/ti";
 import { GiTireIronCross } from "react-icons/gi";
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward,IoIosArrowUp } from "react-icons/io";
 // categories data
 import { categoriesData } from "../../../data/categoriesData";
 import Image from "next/image";
@@ -15,9 +15,20 @@ import Image from "next/image";
 const MobileMenu = () => {
   
   const [isCategory,setIsCategory] = useState(false);
-  const [openedSubCategoyNmae,setOpenedSubCategoyNmae] = useState(null)
+  const [openedSubCategoyIndex,setOpenedSubCategoyIndex] = useState(null)
   
   const MobileCategories = ()=> {
+
+
+    const handleSubCatgoryOpen = (index)=> {
+      if(index === openedSubCategoyIndex) {
+        setOpenedSubCategoyIndex(null);
+      }else {
+        setOpenedSubCategoyIndex(index);
+
+      }
+    };
+
     return (
       <>
          <Overlay onClick={()=> setIsCategory(false)} />
@@ -30,16 +41,24 @@ const MobileMenu = () => {
               <ul className="py-3 h-fit min-h-fit">
                   {
                       categoriesData?.map(({name,imagePath,sub},index)=>(
-                        <li key={name} className="px-3" onClick={()=> setOpenedSubCategoyNmae(index)}>
+                        <li 
+                            key={name} 
+                            className="p-3" 
+                            onClick={()=> handleSubCatgoryOpen(index)}
+                            >
                           <div className="flex items-center justify-between cursor-pointer rounded-md p-3 border-2 border-gray-200 hover:bg-gray-100">
                             <div className="flex items-center gap-2">
                               <Image className='rounded-md' src={imagePath} width={50} alt={name}/>
                               <h5 className="text-teal-950 font-bold text-xl">{name} fashion</h5>
                             </div>
-                            <IoIosArrowForward />
+                            {
+                              index === openedSubCategoyIndex ? 
+                              <IoIosArrowUp /> :
+                              <IoIosArrowForward />
+                            }
                           </div>
                           {
-                            openedSubCategoyNmae === index &&
+                            openedSubCategoyIndex === index &&
                             <SubCatories 
                               subCategories={sub}
                               setIsSubCategories={setIsCategory}
