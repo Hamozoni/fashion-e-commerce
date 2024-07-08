@@ -22,7 +22,7 @@ export const MainHeader = ()=> {
 
 
   return (
-    <header className="sticky top-0 left-0 w-full max-w-full z-50 py-2 px-4 lg:px-8 bg-white border-b-4 border-teal-400">
+    <header className="sticky top-0 left-0 w-full max-w-full z-50 py-2 px-4 lg:px-8 bg-white border-b-8 border-teal-100">
         <div className={`${className.flex} justify-between lg:gap-6 w-full`}>
             <div className="flex items-center gap-2">
                 {

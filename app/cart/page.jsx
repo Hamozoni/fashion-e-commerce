@@ -13,8 +13,8 @@ function cartPage() {
 
     console.log(cartItems)
     const className = {
-        startShopping: 'border border-green-200 px-4 py-1 text-green-900 uppercase bg-green-100 hover:bg-green-50 rounded-md absolute bottom-[20px] left-[50%] translate-x-[-50%]',
-        sectionTitle: 'text-green-900 font-bold text-lg mb-3 p-3 lg:px-0 border-b border-gray-100'
+        startShopping: 'border border-teal-200  py-2 px-6 text-teal-950 capitalize bg-teal-50 hover:bg-teal-100 rounded-full absolute bottom-[20px] left-[50%] translate-x-[-50%]',
+        sectionTitle: 'text-teal-900 font-bold text-xl mb-4 py-5  lg:px-0 border-b border-gray-100'
     }
 
  const cartCard = cartItems?.map((product)=> (
@@ -28,23 +28,23 @@ function cartPage() {
     <div className="">
         {
             cartItems?.length ?
-            <div className="lg:px-8 lg:flex gap-4 capitalize">
-                <section className="flex-1">
+            <div className="lg:px-8 lg:flex gap-8 capitalize">
+                <section className="flex-2">
                     <h4 className={className.sectionTitle}>
-                        {totalItemsOnCart} items
+                       my cart items {totalItemsOnCart}
                     </h4>
-                    <div className="flex-1">
+                    <div >
                         {cartCard}
                     </div> 
                 </section>
-                <section>
+                <section className="flex-1">
                     <h4 className={className.sectionTitle}>cart summary</h4>
                     <CartSummary/>
                 </section>
               
             </div>  :
-            <div className="relative max-w-fit mx-auto p-5">
-                <Image src='/cart/emtyCart.png' width={404}  height={316} alt='emty cart'/>
+            <div className="relative w-full flex justify-center p-5 bg-gray-50">
+                <Image src='/cart/emtyCart.png' width={400}  height={800} alt='emty cart'/>
                 <Link className={className.startShopping} href='/' >
                     start shopping
                 </Link>
