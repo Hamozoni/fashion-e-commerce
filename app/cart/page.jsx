@@ -29,7 +29,7 @@ function cartPage() {
         {
             cartItems?.length ?
             <div className="lg:px-8 lg:flex gap-8 capitalize">
-                <section className="flex-2">
+                <section className="basis-[60%]">
                     <h4 className={className.sectionTitle}>
                        my cart items {totalItemsOnCart}
                     </h4>
@@ -37,7 +37,7 @@ function cartPage() {
                         {cartCard}
                     </div> 
                 </section>
-                <section className="flex-1">
+                <section className="basis-[40%]">
                     <h4 className={className.sectionTitle}>cart summary</h4>
                     <CartSummary/>
                 </section>

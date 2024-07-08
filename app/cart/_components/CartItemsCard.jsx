@@ -35,7 +35,7 @@ function CartItemsCard({product}) {
                 >{product?.name}
             </h4>
        </Link>
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
             <Link 
                 href={`/product/${product?.id}`}
                 className="flex items-center justify-center mb-3 sm:mb-0">
