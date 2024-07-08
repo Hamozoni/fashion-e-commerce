@@ -31,7 +31,7 @@ function CartItemsCard({product}) {
     <div className="p-3 mb-8 border-l-2 border-l-teal-400 rounded-md shadow-md border border-gray-100 w-full">
          <Link href={`/product/${product?.id}`}>
             <h4 
-                className="mb-5 text-md sm:text-xl font-bold text-teal-950 text-center hover:text-teal-800"
+                className="text-md sm:text-xl font-bold text-teal-950 text-center border-b pb-3 mb-3 border-gray-100 hover:text-teal-800"
                 >{product?.name}
             </h4>
        </Link>
@@ -40,7 +40,7 @@ function CartItemsCard({product}) {
                 href={`/product/${product?.id}`}
                 className="flex items-center justify-center mb-3 sm:mb-0">
                 <Image
-                    className={`${innerWidth > 550 ? 'max-h-[200]' :'max-h-[150]'}`}
+                    className={`${innerWidth > 550 ? 'max-h-[200px]' :'max-h-[150px]'}`}
                     src={product?.image?.replace("public","")}
                     width={innerWidth > 550 ? 150 : 100}
                     height={innerWidth > 550 ? 200 : 150}
@@ -76,7 +76,7 @@ function CartItemsCard({product}) {
                             </tr>
                         </tbody>
                     </table>
-                    <div className="flex flex-col justify-between pt-3 lg-pt-0">
+                    <div className="flex sm:flex-col justify-between pt-3 lg-pt-0">
                         <QuantityBtn 
                             id={product.id} 
                             selectedColor={product.selectedColor} 
