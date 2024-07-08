@@ -22,11 +22,11 @@ export const Categories = ()=> {
             <header className="">
                 <div className=" flex items-center justify-center py-5 capitalize">
                     <nav>
-                        <ul className="flex items-center rounded-md p-1 w-fit gap-2 bg-teal-50 overflow-hidden shadow-lg">
+                        <ul className="flex items-center rounded-full border border-teal-300 p-1 w-fit gap-2 bg-teal-50 overflow-hidden shadow-lg">
                             {
                                 categoriesData?.map(({name})=> (
                                     <li 
-                                       className={`cursor-pointer rounded-md border-r-teal-800 border-l-teal-800font-bold py-3 px-8 ${category === name ? 'bg-teal-500 text-teal-50':'bg-teal-100 text-teal-900  hover:bg-teal-50'}`}
+                                       className={`cursor-pointer rounded-full border-r-teal-800 border-l-teal-800font-bold py-2 px-8 ${category === name ? 'bg-teal-500 text-teal-50':'bg-teal-100 text-teal-900  hover:bg-teal-50'}`}
                                         key={name}
                                         onClick={()=>handleChangeCategory(name)}
                                         >{name}

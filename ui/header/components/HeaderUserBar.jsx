@@ -15,6 +15,7 @@ import Languages from "./languages";
 import Overlay from "../../../components/Overlay";
 // hooks
 import {AppContext} from "../../../app/contextProvider"
+import UserAddress from "./userAddress";
 
 function HeaderUserBar() {
 
@@ -73,6 +74,7 @@ function HeaderUserBar() {
                                     <p className="text-teal-800 font-bold text-sm"> {currentUser?.email}</p>
                                 </div>
                             </div>
+                            <UserAddress />
                         </header>
                         <ul  >
                             <li className={className.li}>

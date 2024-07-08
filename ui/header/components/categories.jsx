@@ -38,7 +38,7 @@ export const Categories = ()=> {
                 isSubCategories ?
                 <>
                  <Overlay onClick={()=> setIsSubCategories(false)} />
-                 <div className="fixed top-[70px] left-3 lg:left-8 border border-teal-300  rounded-md pb-3 bg-teal-50 z-50">
+                 <div className="fixed top-[70px] left-3 lg:left-8 border border-teal-300  rounded-md bg-teal-50 z-50">
                     <nav className="">
                         <div 
                             className="px-5 py-3 cursor-pointer"
@@ -52,7 +52,7 @@ export const Categories = ()=> {
                                 >{categoryName} fashion
                             </h3>
                         </div>
-                        <div className="p-3 overflow-auto">
+                        <div className="p-3 py-4 overflow-auto">
                             {
                                 subCategories?.map(({name,imagePath,linkPath})=> (
                                     <div 
@@ -60,7 +60,7 @@ export const Categories = ()=> {
                                         key={name} 
                                         className="min-w-[300px] border-2 border-gray-200 rounded-full mb-3 hover:bg-teal-100 hover:border-teal-400">
                                         <Link 
-                                            className="flex items-center gap-3 px-3 py-2"
+                                            className="flex items-center gap-3 p-1"
                                             href={linkPath}>
                                             <Image
                                                 className="rounded-full" 
