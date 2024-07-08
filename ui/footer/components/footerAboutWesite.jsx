@@ -19,12 +19,12 @@ export const FooterAboutWebate = ()=> {
                 {
                     informations?.map(({name,data})=> (
                         <div className="">
-                            <h4 className="text-lg text-teal-50 font-bold mb-3">{name}</h4>
+                            <h4 className="text-lg text-center text-teal-50 font-bold mb-3">{name}</h4>
                             <ul>
                                 {
                                     data?.map((name)=> (
                                         <li 
-                                            className="text-md text-teal-200 hover:text-teal-50 hover:scale-105"
+                                            className="text-md text-center text-teal-200 hover:text-teal-50 hover:scale-105"
                                             key={name}>{name}
                                         </li>
                                     ))
