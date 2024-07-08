@@ -8,7 +8,7 @@ import UserAddress from "./components/userAddress";
 import HeaderCart from "./components/headerCart";
 import MobileMenu from "./components/mobileMenu";
 import LikedList from "./components/likedList"
-import { Categories } from "./components/categories";
+import { HeaderCategories } from "./components/headerCategories";
 // app context
 import { AppContext } from "../../app/contextProvider";
 
@@ -40,7 +40,7 @@ export const MainHeader = ()=> {
             <section className={`${className.flex} flex-1 justify-end`}>
                 {
                     innerWidth > 767 && 
-                    <Categories />
+                    <HeaderCategories />
                     
                 }
                 <SearchBar />
