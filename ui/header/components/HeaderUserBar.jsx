@@ -26,8 +26,8 @@ function HeaderUserBar() {
         flex: 'flex items-center gap-4',
         title: 'text-md font-medium text-teal-900 capitalize cursor-pointer',
         container:'fixed left-0 top-0 w-full h-dvh flex justify-between z-50',
-        ul: 'border border-teal-300 fixed top-[70px] right-3 lg:right-8 min-w-[300px] max-h-fit bg-teal-50 rounded-md  py-2 z-50 ',
-        li: 'px-4 py-3 capitalize hover:bg-teal-100 flex items-center gap-3 text-lg font-medium text-teal-900 cursor-pointer'
+        ul: 'border border-teal-100 fixed top-[70px] right-3 lg:right-8 min-w-[300px] max-h-fit bg-gray-50 rounded-md  py-2 z-50 ',
+        li: 'px-4 py-3 capitalize hover:bg-gray-200 flex items-center gap-3 text-lg font-medium text-teal-950 cursor-pointer'
     };
     
   return (

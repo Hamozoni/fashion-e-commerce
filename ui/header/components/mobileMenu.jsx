@@ -32,7 +32,7 @@ const MobileMenu = () => {
     return (
       <>
          <Overlay onClick={()=> setIsCategory(false)} />
-        <div className="capitalize fixed min-w-[300px] left-3 z-[70] lg:left-8 top-[70px] w-[300px] bg-gray-50 rounded-md border border-teal-100 shadow-md">
+        <div className="capitalize fixed min-w-fit left-3 z-[70] lg:left-8 top-[70px] w-fit bg-gray-50 rounded-md border border-teal-100 shadow-md">
             <header className="flex items-center justify-between p-3">
                 <h4 className="text-teal-950 text-xl font-bold">categories</h4>
                 <button><GiTireIronCross/></button>
@@ -43,7 +43,7 @@ const MobileMenu = () => {
                       categoriesData?.map(({name,imagePath,sub},index)=>(
                         <li 
                             key={name} 
-                            className="p-3" 
+                            className="p-3 min-w-[300px] w-[300px]" 
                             onClick={()=> handleSubCatgoryOpen(index)}
                             >
                           <div className="flex items-center justify-between cursor-pointer rounded-md p-3 border-2 border-gray-200 hover:bg-gray-100">
@@ -51,11 +51,11 @@ const MobileMenu = () => {
                               <Image className='rounded-md' src={imagePath} width={50} alt={name}/>
                               <h5 className="text-teal-950 font-bold text-xl">{name} fashion</h5>
                             </div>
-                            {
-                              index === openedSubCategoyIndex ? 
-                              <IoIosArrowUp /> :
-                              <IoIosArrowForward />
-                            }
+                              <button 
+                                  className={`${index === openedSubCategoyIndex ? 'rotate-90':''}`}
+                                  >
+                                    <IoIosArrowForward />
+                              </button>
                           </div>
                           {
                             openedSubCategoyIndex === index &&

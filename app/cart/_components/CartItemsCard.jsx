@@ -18,13 +18,17 @@ function CartItemsCard({product}) {
         }))
     }
 
+    const className = {
+        tableBodyRow :' p-3 border border-teal-100'
+    }
+
   return (
-    <div className="sm:flex gap-3 items-center p-3 mb-5 rounded-md shadow-sm border border-gray-50 w-full">
+    <div className="sm:flex gap-3 p-3 mb-8 border-l-2 border-l-teal-400 rounded-md shadow-md border border-gray-100 w-full">
         <Link 
             href={`/product/${product?.id}`}
             className="flex items-center justify-center mb-3 sm:mb-0">
             <Image
-                className="" 
+                className="max-h-[150px]" 
                 src={product?.image?.replace("public","")}
                 width={150}
                 height={150}
@@ -34,47 +38,53 @@ function CartItemsCard({product}) {
         <section>
             <Link href={`/product/${product?.id}`}>
                 <h4 
-                    className="pb-2 font-bold text-green-900 text-center hover:text-green-800"
+                    className="mb-5 text-xl font-bold text-teal-950 text-center hover:text-teal-800"
                     >{product?.name}
                 </h4>
             </Link>
-            <div className="flex gap-5 items-center flex-wrap justify-center">
-                <div className="border-r px-2 border-green-100">
-                    <h6 className="flex items-center gap-2"> color: 
-                        <p 
-                            style={{backgroundColor: product?.selectedColor}}
-                            className="w-[35px] h-[15px] rounded-full"
-                            >
-                        </p>
-                    </h6>
-                    <div className="flex items-center gap-2"> 
-                        <h6>size: </h6>
-                        <span 
-                            className="w-[35px] h-[35px] rounded-full"
-                            >
-                                {product?.selectedSize}
-                        </span>
+            <div className="flex gap-3">
+                <table className=" rounded-md overflow-hidden">
+
+                    <thead className="pb-3 border-b border-gray-100">
+                        <tr className="text-teal-950 text-md font-bold">
+                            <th className={className?.tableBodyRow}>color </th>
+                            <th className={className?.tableBodyRow}>size</th>
+                            <th className={className?.tableBodyRow}>price</th>
+                            <th className={className?.tableBodyRow}>total price</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr className="text-teal-950 text-xl font-bold">
+                            <td className={className?.tableBodyRow}> 
+                                <p 
+                                    style={{backgroundColor: product?.selectedColor}}
+                                    className="w-[35px] h-[10px] rounded-full"
+                                    >
+                                </p> 
+                            </td>
+                            <td className={className?.tableBodyRow}>{product?.selectedSize}</td>
+                            <td className={className?.tableBodyRow}>{getCurrency(product?.priceInCent)}</td>
+                            <td className={className?.tableBodyRow}>{getCurrency(product?.priceInCent * product?.quantity)}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div className="flex flex-col justify-between">
+                    <QuantityBtn 
+                        id={product.id} 
+                        selectedColor={product.selectedColor} 
+                        selectedSize={product.selectedSize} 
+                        />
+                    <div className="max-w-24">
+                        <ButtonWithIcon 
+                            text='reove'
+                            type='delete'
+                            Icon={MdOutlineDeleteOutline}
+                            onClick={removeItem}
+                            />
                     </div>
                 </div>
-                <div className="border-r px-2 border-green-100">
-                    <h6>price</h6>
-                    <h4>{getCurrency(product?.priceInCent)}</h4>
-                </div>
-                <QuantityBtn 
-                    id={product.id} 
-                    selectedColor={product.selectedColor} 
-                    selectedSize={product.selectedSize} 
-                    />
-                <div className="border-r px-2 border-green-100">
-                    <h6>total price</h6>
-                    <h4>{getCurrency(product?.priceInCent * product?.quantity)}</h4>
-                </div>
-                <ButtonWithIcon 
-                    text='reove'
-                    type='delete'
-                    Icon={MdOutlineDeleteOutline}
-                    onClick={removeItem}
-                    />
             </div>
         </section>
     </div>

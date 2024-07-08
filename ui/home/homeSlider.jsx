@@ -69,10 +69,10 @@ export function HomeSlider() {
                             categoriesData?.map(({name,dec})=> (
                                 <section key={name} className="min-w-full p-4 font-extrabold lg:p-8 capitalize text-center text-teal-950 ">
                                     <h2 
-                                        className="text-5xl"
+                                        className="text-xl lg:text-5xl"
                                         >{name} fashion
                                     </h2>
-                                    <p className="text-2xl my-4 max-w-[580px] mx-auto">{dec}</p>
+                                    <p className="text-md lg:text-2xl my-4 max-w-[580px] mx-auto">{dec}</p>
                                     <button
                                         className="text-xl  p-2 px-5 capitalize rounded-md border border-teal-200 bg-teal-50 hover:scale-105"
                                         >shop now
