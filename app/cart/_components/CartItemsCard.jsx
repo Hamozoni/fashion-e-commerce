@@ -19,7 +19,7 @@ function CartItemsCard({product}) {
     }
 
     const className = {
-        tableBodyRow :' p-3 border border-teal-100'
+        tableBodyRow :' p-3 border border-gray-100'
     }
 
   return (
@@ -43,10 +43,10 @@ function CartItemsCard({product}) {
                 </h4>
             </Link>
             <div className="flex gap-3">
-                <table className=" rounded-md overflow-hidden">
+                <table className="rounded-md overflow-hidden">
 
-                    <thead className="pb-3 border-b border-gray-100">
-                        <tr className="text-teal-950 text-md font-bold">
+                    <thead className="pb-3">
+                        <tr className="text-teal-950 text-lg font-bold">
                             <th className={className?.tableBodyRow}>color </th>
                             <th className={className?.tableBodyRow}>size</th>
                             <th className={className?.tableBodyRow}>price</th>
@@ -55,7 +55,7 @@ function CartItemsCard({product}) {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="text-teal-950 text-xl font-bold">
+                        <tr className="text-teal-800 text-md font-bold">
                             <td className={className?.tableBodyRow}> 
                                 <p 
                                     style={{backgroundColor: product?.selectedColor}}
