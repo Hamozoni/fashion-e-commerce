@@ -23,7 +23,7 @@ function CartItemsCard({product}) {
     }
 
   return (
-    <div className="sm:flex gap-3 p-3 mb-8 border-l-2 border-l-teal-400 rounded-md shadow-md border border-gray-100 w-full">
+    <div className=" gap-3 p-3 mb-8 border-l-2 border-l-teal-400 rounded-md shadow-md border border-gray-100 w-full">
         <Link 
             href={`/product/${product?.id}`}
             className="flex items-center justify-center mb-3 sm:mb-0">
@@ -42,7 +42,7 @@ function CartItemsCard({product}) {
                     >{product?.name}
                 </h4>
             </Link>
-            <div className="flex gap-3">
+            <div className="lg:flex gap-3">
                 <table className="rounded-md overflow-hidden">
 
                     <thead className="pb-3">
@@ -70,7 +70,7 @@ function CartItemsCard({product}) {
                         </tr>
                     </tbody>
                 </table>
-                <div className="flex flex-col justify-between">
+                <div className="flex lg:flex-col justify-between pt-3 lg-pt-0">
                     <QuantityBtn 
                         id={product.id} 
                         selectedColor={product.selectedColor} 
