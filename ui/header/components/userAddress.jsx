@@ -43,12 +43,12 @@ function UserAddress() {
                     <Overlay 
                         onClick={()=> setIsUpdateAddress(false)}
                         />
-                    <ul className=" z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] max-w-full p-3 bg-green-100 rounded-md ">
+                    <ul className=" z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] max-w-full p-3 bg-gray-100 rounded-md shadow-md border border-gray-200">
                         <li>
                             <p className="flex justify-center">
                               <IoLocationOutline size={30} />
                             </p>
-                            <address className=" mb-4">
+                            <address className="mb-4 text-sm md:text-lg text-teal-950 font-bold">
                                 {currentUser?.address?.formatedAddress}
                             </address>
                         </li>

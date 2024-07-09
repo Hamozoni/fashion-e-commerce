@@ -145,19 +145,19 @@ function AddressMap({onClick}) {
             }
         }}
         className="grand capitalize fixed top-0 left-0 w-[100vw] h-[100vh] z-50 flex justify-center items-center ">
-        <div className="w-[500px] h-[600px] bg-slate-50 rounded-md">
-            <header className="p-3">
+        <div className="w-[400px] sm:w-[630px] md:w-[750px] max-w-[98%] h-[98%] flex flex-col border border-gray-200 bg-gray-50 rounded-md p-3">
+            <header className="py-3 flex-1">
                 <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-xl text-green-800">add new address</h4>
+                    <h4 className="text-lg text-teal-950 font-bold">add new address</h4>
                     <button onClick={onClick}>
                         <RxCross2 />
                     </button>
                 </div>
-                <div className="rounded-md p-2 border border-green-100">
+                <div className="rounded-md p-2 text-teal-900 font-bold text-sm border border-gray-200">
                     { formatedAddress ? <p>{formatedAddress}</p> :"your address..." }
                 </div>
             </header>
-            <div className="w-[500px] h-[400px]" >
+            <div className="w-full h-full flex-3" >
                 <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}
 
                 >
@@ -175,7 +175,7 @@ function AddressMap({onClick}) {
                     </Map>
                 </APIProvider>
             </div>
-            <div className="">
+            <div className="py-3 flex-1 flex gap-3">
                 <ButtonWithIcon 
                     text="locate me"
                     Icon={FaLocationCrosshairs}
