@@ -13,7 +13,7 @@ export const FooterCategories = ()=> {
                             <ul>
                                 {
                                     sub?.map(({name,linkPath})=> (
-                                        <li key={name} className="text-md text-center font-bold text-teal-200 hover:text-teal-50 hover:scale-110 cursor-pointer">
+                                        <li key={name} className="text-md font-bold text-teal-100 hover:text-teal-50 hover:scale-110 cursor-pointer">
                                             <Link href={linkPath}>
                                                {name}
                                             </Link>
