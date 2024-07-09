@@ -13,7 +13,7 @@ function ReviewsDetails() {
     const className = {
         sectionClass: 'py-3 border-b border-gray-100',
         sectionHead: 'font-bold text-lg text-teal-950 pb-2',
-        sectionP: 'font-medium text-sm text-teal-800'
+        sectionP: 'font-bold text-sm text-teal-900'
       };
 
       const handleRatingPrecetage = (number)=> {
@@ -26,8 +26,8 @@ function ReviewsDetails() {
   return (
     <section className="flex-1 capitalize max-w-full min-w-[50%]">
         <h5  
-          className="text-md font-medium text-teal-900 pb-2 mb-2 border-b border-gray-100"
-           >Overall Rating
+          className="text-lg font-bold text-teal-900 pb-2 mb-2"
+           >Overall Rating:
         </h5>
         <div className="sticky top-[70px]">
           <ReviewsAverage/>
@@ -37,7 +37,7 @@ function ReviewsDetails() {
                   {
                       ratingArray?.map((star,index)=> (
                       <tr className="min-w-full table"> 
-                          <td className="text-teal-800 w-[52px] pb-2 font-medium">
+                          <td className="text-teal-950 font-bold w-[52px] pb-2">
                               {index + 1} {star}
                             </td>
                           <td className="px-3">
@@ -49,7 +49,7 @@ function ReviewsDetails() {
                               </div>
                           </td>
                           <td 
-                            className="text-teal-800 font-medium w-[30px]"
+                            className="text-teal-900 font-bold w-[30px]"
                             > {handleRatingPrecetage(index + 1)}
                           </td>
                       </tr>
