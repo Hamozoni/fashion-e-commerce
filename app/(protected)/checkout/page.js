@@ -1,9 +1,7 @@
 
-import Image from "next/image";
 import Payment from "./_components/payment.jsx";
 
-import secure_payment from "../../../public/cart/securePayment.png";
-
+import {OrderSummary} from "./_components/orderSummary.jsx"
 const checkoutPage = ()=>  {
 
   return (
@@ -13,9 +11,9 @@ const checkoutPage = ()=>  {
           <div className="md:flex gap-3 justify-between">
               <Payment />
           </div>
-          {/* <div className="bg-amber-100">
-              <Image src={secure_payment} width={800} alt='secure payment'/>
-          </div> */}
+          <div className="bg-amber-100">
+              <OrderSummary/>
+          </div>
 
        </div>
     </div>

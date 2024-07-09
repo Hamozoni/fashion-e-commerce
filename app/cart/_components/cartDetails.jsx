@@ -1,7 +1,9 @@
 "use client";
 import { useAppSelector } from "../../../store/store";
 import getCurrency from "../../../lip/getCurrency";
-const cartDetails = () => {
+
+
+export const cartDetails = () => {
     const totalPrice = useAppSelector(state=> state.cart.totalPaid)
     const subtotal = useAppSelector(state=> state.cart.totalQuantity)
 
@@ -35,5 +37,3 @@ const cartDetails = () => {
     </div>
   )
 }
-
-export default cartDetails

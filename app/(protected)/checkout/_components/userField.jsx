@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import { AppContext } from "../../../contextProvider";
 
-function UserField({name}) {
+export function UserField({name}) {
     const {currentUser} = useContext(AppContext);
 
     if(!currentUser) return null
@@ -21,6 +21,4 @@ function UserField({name}) {
         </div>
     </div>
   )
-}
-
-export default UserField
+};

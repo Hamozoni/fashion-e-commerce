@@ -1,15 +1,16 @@
 "use client";
 import {useCurrentUser} from "../../../../hooks/useCurrentUser";
-import { AuthInput } from "../../../auth/_components/authInput";
-import UserField from "./userField"
 
 import { IoMdPerson,IoMdCard} from "react-icons/io";
 import { CiCreditCard2 } from "react-icons/ci";
 import { MdCalendarMonth } from "react-icons/md";
 import { ButtonWithIcon } from "../../../../components/buttons";
 import { IoShieldCheckmark } from "react-icons/io5";
-import  CartDetails  from "../../../cart/_components/cartDetails";
+
+import { AuthInput } from "../../../auth/_components/authInput";
+import  {CartDetails}  from "../../../cart/_components/cartDetails";
 import { CartFooter } from "../../../cart/_components/CartSummary";
+import {UserField} from "./userField"
 
 function Payment() {
 

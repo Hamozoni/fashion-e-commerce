@@ -9,7 +9,7 @@ import applePayLogo from "../../../public/paymentLogos/logo-applepay.webp"
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonWithIcon } from "../../../components/buttons";
-import CartDetails from "./cartDetails"
+import {CartDetails} from "./cartDetails"
 import { IoBagCheck } from "react-icons/io5";
 
 const className = {
@@ -37,7 +37,7 @@ export const CartFooter = ()=> {
 }
 
 
-function CartSummary() {
+export function CartSummary() {
 
 
   return (
@@ -63,5 +63,3 @@ function CartSummary() {
     </div>
   )
 }
-
-export default CartSummary
