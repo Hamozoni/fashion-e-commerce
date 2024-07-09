@@ -5,7 +5,7 @@ import likedListSlice from "./features/likedListSlice"
 
 const rootReducer = combineReducers({
     cart : cartSlice,
-    lakedList: likedListSlice
+    likedList: likedListSlice
 });
 
 export default rootReducer;
