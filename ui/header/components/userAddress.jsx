@@ -29,7 +29,7 @@ function UserAddress() {
                         onClick={()=> setIsUpdateAddress(true)}
                         > 
                         <IoLocationOutline size={22} />
-                        {innerWidth < 500 ? currentUser?.address?.neighborhood.slice(0,7) + '...' : currentUser?.address?.neighborhood}
+                        {currentUser?.address?.neighborhood}
                     </button>
                     :
                     <button className={className.delivery} onClick={()=> setIsMapOpen(true)}> 

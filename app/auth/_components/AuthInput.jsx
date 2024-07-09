@@ -3,9 +3,9 @@ import { BiError } from "react-icons/bi";
 export function AuthInput({type,name,Icon,isLoading,error}) {
 
     const className = {
-        inputContainer : "flex items-center rounded-md overflow-hidden border border-gray-100 mb-2",
-        input: 'w-full p-2 focus:bg-green-50',
-        inputIcon: 'bg-green-100 p-2 text-green-800',
+        inputContainer : "flex items-center rounded-md overflow-hidden border border-gray-200 mb-2",
+        input: 'w-full p-2 focus:bg-teal-50',
+        inputIcon: 'bg-teal-100 p-2 text-teal-950',
     }
   return (
     <div className="">
