@@ -29,10 +29,10 @@ function ProductCard({product}) {
     const [isLikHaverd,setIsLikHaverd] = useState(false)
 
     const className = {
-            card: 'w-[344px] rounded-lg border border-teal-100 cursor-pointer hover:border-teal-200 relative p-3 bg-teal-50',
+            card: 'w-[344px] rounded-lg border border-gray-100 cursor-pointer hover:border-gray-200 relative p-3',
             image: 'w-fit flex-1 min-w-[320px] max-h-[370px] max-w-[320px]',
             heart: 'absolute top-2 left-0 w-full flex items-center justify-between p-4',
-            iamgebaginationBtn: 'bg-green-50 text-green-900 absolute top-1/2 hover:scale-125 -translate-y-1/2 w-8 h-10 flex items-center justify-center'
+            iamgebaginationBtn: 'bg-green-50 shadow-md text-teal-900 absolute top-1/2 hover:scale-125 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center'
     }
 
 
@@ -78,12 +78,11 @@ function ProductCard({product}) {
                     
                 }
             </div>
-            <div className=" absolute left-0 top-0 w-full h-0  group-hover:h-full bg-gradient-transparent "></div>
             {
                 (imagesIndex === productImages[selectedColor]?.length - 1) ? null :
                 <button
                     onClick={handleNext} 
-                    className={`${className.iamgebaginationBtn} right-0 translate-x-full group-hover:translate-x-0 rounded-tl-full rounded-bl-full`}>
+                    className={`${className.iamgebaginationBtn} right-0 translate-x-full group-hover:translate-x-0`}>
                 <IoIosArrowForward sizes={20} />
                 </button>
             }
@@ -91,18 +90,18 @@ function ProductCard({product}) {
                 imagesIndex === 0 ? null :
                 <button
                     onClick={handlePrev} 
-                    className={`${className.iamgebaginationBtn} left-0 -translate-x-full group-hover:translate-x-0 rounded-tr-full rounded-br-full`}>
+                    className={`${className.iamgebaginationBtn} left-0 -translate-x-full group-hover:translate-x-0`}>
                 <IoIosArrowBack sizes={20}/>
                 </button>
             }
-            <div className=" absolute left-0 bottom-0 w-full translate-y-full group-hover:translate-y-0">
+            <div className=" absolute left-0 bottom-3 w-full translate-y-full group-hover:translate-y-0">
                 <ul className="flex items-center justify-center gap-2 py-3">
                     {
                         productImages[selectedColor]?.map(({id,color},index)=> (
                             <li 
                                 onClick={()=> setImagesIndex(index)}
                                 key={id} 
-                                className=" w-4 h-4 rounded-full border border-teal-500 hover:scale-125 shadow-md" 
+                                className=" w-4 h-4 rounded-full border-2 border-teal-500 hover:scale-125 shadow-lg" 
                                 style={ index === imagesIndex ? { backgroundColor: color,width: '24px',height: '24px'}: {}}
                                 >
                             </li>
@@ -123,15 +122,18 @@ function ProductCard({product}) {
                 onMouseEnter={()=> setIsLikHaverd(true)}
                 onMouseLeave={()=> setIsLikHaverd(false)}
                 href={`/product/${id}`} 
-                className="flex justify-center items-center p-2 text-teal-800 bg-teal-50 rounded-full border border-teal-100">
+                className="flex justify-center items-center shadow-md p-2 text-teal-900 bg-teal-50 rounded-full border border-gray-100">
                {isLikHaverd ? <TbEyeClosed size={22}/> : <FaEye size={22}/> }
             </Link>
         </div>
         <div className="p-3">
+            <h2 className="text-xl font-bold text-teal-950 text-center ">
+                {getCurrency(priceInCent)}
+            </h2>
             <div className="pb-2">
                 <Link
                     href={`/product/${id}`}
-                    className="text-md font-medium text-green-800 hover:text-green-700"
+                    className="text-lg font-bold text-teal-900 hover:text-teal-900"
                     >{name}
                 </Link>
             </div>
@@ -142,14 +144,11 @@ function ProductCard({product}) {
                    setSelectedColor={setSelectedColor}
                 />
                 <ProductSelectSize
-                sizes={sizes}
-                selectedSize={selectedSize}
-                setSelectedSize={setSelectedSize}
+                    sizes={sizes}
+                    selectedSize={selectedSize}
+                    setSelectedSize={setSelectedSize}
                  />
             </div>
-            <h2 className="text-lg font-bold text-teal-950 text-center ">
-                    {getCurrency(priceInCent)}
-                </h2>
         </div>
     </div>
   )

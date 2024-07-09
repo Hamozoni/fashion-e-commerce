@@ -10,11 +10,11 @@ const productSelectSize = ({sizes,selectedSize,setSelectedSize}) => {
 
   return (
     <div className="relative flex-1 w-full flex gap-2">
-        <h5 className=" capitalize text-teal-800">size: </h5>
+        <h5 className=" capitalize text-teal-950 font-bold text-lg">size: </h5>
         <button 
             onClick={()=> setIsSizes(!isSizes)}
-            className="flex items-center justify-between text-teal-800 shadow-md  w-full p-1 border bg-teal-50 min-w-10
-           border-green-200 
+            className="flex items-center justify-between text-teal-900 shadow-md  w-full p-1 border min-w-10
+           border-gray-100 
              rounded-md uppercase"
             >
             <h6 

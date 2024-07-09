@@ -31,7 +31,7 @@ const CartItemsCard = ({product,isCheckout = false})=> {
     <div className="p-3 mb-8 border-l-2 border-l-teal-400 border-t-2 border-t-teal-400 rounded-md shadow-md border border-gray-100 w-full">
          <Link href={`/product/${product?.id}`}>
             <h4 
-                className="text-md sm:text-xl font-bold text-teal-950 text-center border-b pb-3 mb-3 border-gray-100 hover:text-teal-800"
+                className="text-md sm:text-xl font-bold text-teal-950 text-center hover:text-teal-800"
                 >{product?.name}
             </h4>
        </Link>
