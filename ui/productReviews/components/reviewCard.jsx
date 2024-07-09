@@ -73,7 +73,7 @@ function ReviewCard({review,index}) {
     const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) ? "Edited at" :'';
 
   return (
-        <div className={`${isEdidable ? 'border border-teal-100':' shadow-md'} my-5 rounded-md p-3 border-l-2 border-teal-300`}>
+        <div className={`${isEdidable ? 'border border-gray-100':' shadow-md'} my-5 rounded-md p-3 border-l-2 border-teal-300`}>
             <header className="flex items-center gap-2 pb-2">
                 {
                     review?.auther?.image ?
@@ -87,11 +87,11 @@ function ReviewCard({review,index}) {
                     <FaRegUser size={30} />
                 }
                 <section className="">
-                    <h4 className="text-teal-900 font-bold text-lg">
+                    <h4 className="text-teal-950 font-bold text-lg">
                         {review?.auther?.name}
                     </h4>
                     <time 
-                        className="text-teal-700 text-sm"
+                        className="text-teal-900 text-sm"
                         dateTime={new Date(review.createdAt).toDateString()}
                         >{updatedAt} {new Date(review?.updatedAt).toDateString()}
                     </time>
@@ -102,20 +102,20 @@ function ReviewCard({review,index}) {
                 {
                     (isEdidable && review?.autherId === currentUser?.id) ?
                     <input 
-                        className="border-b border-teal-200 focus:border-teal-400"
+                        className="border-b text-lg border-teal-200 text-teal-950 focus:border-teal-400"
                         type="text" 
                         value={reviewTitle}
                         onChange={(e)=> setReviewTitle(e.target.value)}
                         />
                     :
-                  <h5 >{review?.rateTitle}</h5>
+                  <h5 className="text-lg text-teal-950" >{review?.rateTitle}</h5>
                 }
             </section>
             <div className="">
                 {
                     (isEdidable && review?.autherId === currentUser?.id) ? 
                     <textarea 
-                        className="text-teal-800 text-sm focus:outline-none w-full border-b border-teal-200 focus:border-green-400"
+                        className="text-teal-900 text-sm font-bold focus:outline-none w-full border-b border-teal-200 focus:border-green-400"
                         value={reviewText}
                         onChange={(e)=> setReviewText(e.target.value)}
                         
@@ -123,7 +123,7 @@ function ReviewCard({review,index}) {
                     </textarea>
                     :
                     <article 
-                        className="text-teal-800 text-sm pb-3 max-w-full break-words overflow-auto"
+                        className="text-teal-900 text-sm font-bold pb-3 max-w-full break-words overflow-auto"
                         >{review?.rateText}
                     </article>
                 }

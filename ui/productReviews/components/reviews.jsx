@@ -12,26 +12,29 @@ import {ReviewsContext} from "../reviewsContext";
     const {reviews} = useContext(ReviewsContext);
     
   return (
-    <section className="flex-1 max-w-full">
-        <h5 
-          className="text-md font-medium text-teal-900 pb-2 mb-2 border-b border-gray-100"
-           >{reviews?.length || 0} Reviews
-        </h5>
-        <div className="">
+    <div className="flex-1 max-w-full">
+        <div className="mb-8">
             <WriteReview />
         </div>
-        <div className="">
-            {
-                reviews?.map((review,index)=> (
-                    <ReviewCard  
-                        review={review}
-                        key={review?.id}
-                        index={index}
-                         />
-                ))
-            }
-        </div>
-    </section>
+        <section className="">
+          <h5 
+            className="text-md font-bold text-teal-900 pb-2 mb-2 border-b border-gray-100"
+            >{reviews?.length || 0} Reviews
+          </h5>
+          <div className="">
+              {
+                  reviews?.map((review,index)=> (
+                      <ReviewCard  
+                          review={review}
+                          key={review?.id}
+                          index={index}
+                          />
+                  ))
+              }
+
+          </div>
+        </section>
+    </div>
   ) 
 }
 

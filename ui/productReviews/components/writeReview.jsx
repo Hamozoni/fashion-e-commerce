@@ -134,9 +134,9 @@ function WhriteReview() {
 
   return (
 
-    <div className="">
-        <div className="py-5 border-b border-green-100">
-            <h6 className="text-teal-800 pb-2 text-lg font-bold"
+    <div className="mt-8">
+        <div className="py-5 border-b border-gray-100 max-w-[380px] mx-auto">
+            <h6 className="text-teal-900 text-center pb-2 text-lg font-bold"
               >Share your thoughts with other customers
             </h6>
             <ButtonWithIcon
