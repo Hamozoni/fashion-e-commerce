@@ -9,7 +9,7 @@ import { ButtonWithIcon } from "../../../components/buttons";
 import { AppContext } from "../../contextProvider";
 import { useContext } from "react";
 
-function CartItemsCard({product}) {
+function CartItemsCard({product,isCheckout = false}) {
 
     const dispatch = useAppDispatch();
 
@@ -36,17 +36,20 @@ function CartItemsCard({product}) {
             </h4>
        </Link>
         <div className="flex gap-3 items-center">
-            <Link 
-                href={`/product/${product?.id}`}
-                className="flex items-center justify-center mb-3 sm:mb-0">
-                <Image
-                    className={`${innerWidth > 550 ? 'max-h-[200px]' :'max-h-[150px]'}`}
-                    src={product?.image?.replace("public","")}
-                    width={innerWidth > 550 ? 150 : 100}
-                    height={innerWidth > 550 ? 200 : 150}
-                    alt='product image'
-                    />
-            </Link>
+            {
+                isCheckout ? null :
+                <Link 
+                    href={`/product/${product?.id}`}
+                    className="flex items-center justify-center mb-3 sm:mb-0">
+                    <Image
+                        className={`${innerWidth > 550 ? 'max-h-[200px]' :'max-h-[150px]'}`}
+                        src={product?.image?.replace("public","")}
+                        width={innerWidth > 550 ? 150 : 100}
+                        height={innerWidth > 550 ? 200 : 150}
+                        alt='product image'
+                        />
+                </Link>
+            }
             <section>
                 <div className="sm:flex gap-3">
                     <table className="rounded-md overflow-hidden">
@@ -76,21 +79,24 @@ function CartItemsCard({product}) {
                             </tr>
                         </tbody>
                     </table>
-                    <div className="flex sm:flex-col justify-between pt-3 lg-pt-0">
-                        <QuantityBtn 
-                            id={product.id} 
-                            selectedColor={product.selectedColor} 
-                            selectedSize={product.selectedSize} 
-                            />
-                        <div className="max-w-24">
-                            <ButtonWithIcon 
-                                text='reove'
-                                type='delete'
-                                Icon={MdOutlineDeleteOutline}
-                                onClick={removeItem}
+                    {
+                        isCheckout ? null : 
+                        <div className="flex sm:flex-col justify-between pt-3 lg-pt-0">
+                            <QuantityBtn 
+                                id={product.id} 
+                                selectedColor={product.selectedColor} 
+                                selectedSize={product.selectedSize} 
                                 />
+                            <div className="max-w-24">
+                                <ButtonWithIcon 
+                                    text='reove'
+                                    type='delete'
+                                    Icon={MdOutlineDeleteOutline}
+                                    onClick={removeItem}
+                                    />
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </section>
         </div>
