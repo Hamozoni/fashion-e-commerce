@@ -22,11 +22,11 @@ export const Categories = ()=> {
             <header className="">
                 <div className=" flex items-center justify-center py-5 capitalize">
                     <nav>
-                        <ul className="flex items-center rounded-full border border-teal-300 p-1 w-fit gap-2 bg-teal-50 overflow-hidden shadow-lg">
+                        <ul className="flex items-center rounded-full border border-teal-300 p-1 w-fit gap-2 bg-white overflow-hidden shadow-lg">
                             {
                                 categoriesData?.map(({name})=> (
                                     <li 
-                                       className={`cursor-pointer rounded-full border-r-teal-800 border-l-teal-800font-bold py-2 px-8 ${category === name ? 'bg-teal-500 text-teal-50':'bg-teal-100 text-teal-900  hover:bg-teal-50'}`}
+                                       className={`cursor-pointer rounded-full border-2 border-gray-200 font-bold py-1 px-8 ${category === name ? 'text-teal-50 bg-teal-700 border-teal-100 border-2':'text-teal-900  hover:bg-gray-50 hover:border-teal-300'}`}
                                         key={name}
                                         onClick={()=>handleChangeCategory(name)}
                                         >{name}
@@ -37,13 +37,17 @@ export const Categories = ()=> {
                     </nav>
                 </div>
             </header>
-            <div className="overflow-x-auto ">
-                <div className="flex items-center justify-center gap-3 min-w-fit">
-                   {
-                         subCategory?.map((suCate)=> (
-                                 <CategoryCard key={suCate.name}  category={suCate}/>
-                                ))
-                    }
+            <div className="w-full min-w-full">
+                <div className="overflow-x-auto p-3 pt-0 w-full min-w-full">
+                    <ul className="flex items-center gap-3 w-fit min-w-fit">
+                    {
+                            subCategory?.map((sub)=> (
+                                    <li key={sub?.name}   className="min-w-fit w-full flex-1">
+                                        <CategoryCard category={sub}/>
+                                    </li>
+                            ))
+                        }
+                    </ul>
                 </div>
             </div>
         </div>

@@ -74,7 +74,7 @@ export function HomeSlider() {
                                     </h2>
                                     <p className="text-md lg:text-2xl my-4 max-w-[580px] mx-auto">{dec}</p>
                                     <button
-                                        className="text-xl  p-2 px-5 capitalize rounded-md border border-teal-200 bg-teal-50 hover:scale-105"
+                                        className="text-xl  p-2 px-5 capitalize rounded-full border border-teal-200 bg-teal-50 hover:scale-105"
                                         >shop now
                                     </button>
                                 </section>
