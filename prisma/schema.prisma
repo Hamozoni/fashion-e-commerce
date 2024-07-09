@@ -7,30 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum order_status {
-  pendding
-}
-
-enum user_role {
-  USER
-  ADMIN
-}
-
-
-model order {
-  id               String   @id @default(uuid())
-  status          order_status @default(pendding)
-  pricePaidInCent Int
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime    @updatedAt
-  userId          String
-  auther user @relation(fields: [userId],references: [id],onDelete: Cascade)
-  products product[]
-  totalQuantity Int
-  deliveryFree Int
-  totalPaid Int
-}
-
 model product {
   id               String   @id @default(uuid())
   name             String
@@ -46,7 +22,7 @@ model product {
   category         String
   subCategory      String
   aboutThisItem    String   @db.Text
-  serialNumber     String @unique
+  serialNumber     String   @unique
   selectedSize     String?
   selectedColor    String?
   brand    String?
@@ -65,6 +41,14 @@ model productimages {
   imagePath       String
 }
 
+model specifications {
+  id        String   @id @default(uuid())
+  key       String
+  value     String
+  productId String
+  product    product @relation(fields: [productId],references: [id],onDelete: Cascade) 
+}
+
 model productsizes {
   id          String   @id @default(uuid())
   name        String
@@ -73,6 +57,33 @@ model productsizes {
   product product @relation(fields: [productId],references: [id],onDelete: Cascade)
 
 }
+model order {
+  id               String   @id @default(uuid())
+  status          order_status @default(PENDING)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime    @updatedAt
+  userId          String
+  auther user @relation(fields: [userId],references: [id],onDelete: Cascade)
+  products product[]
+  totalProductsQuantity Int
+  deliveryFree Int
+  totalPaidInCent Int
+  paymentId String
+  payment payment @relation(fields:[paymentId],references: [id])
+}
+
+model payment {
+  id String @id @default(uuid())
+  amountInCent Int
+  currency currency @default(SAR)
+  status payment_status @default(PENDING)
+  method payment_mothed @default(DEBIT_CARD)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId String
+  user user @relation(fields: [userId], references: [id],onDelete: Cascade)
+  order order[]
+}
 
 model reviews {
   id        String   @id @default(uuid())
@@ -80,38 +91,34 @@ model reviews {
   productId String
   autherId  String
   rating    Int    @default(3) 
-  rateTitle String
-  reviewImage String?
+  rateTitle String @db.Text
+  images reviewsImages[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   product product @relation(fields: [productId],references: [id],onDelete: Cascade)
   auther  user @relation(fields: [autherId],references: [id],onDelete: Cascade)
-
 }
 
-model specifications {
-  id               String   @id @default(uuid())
-  key       String
-  value     String
-  productId String
-  product    product @relation(fields: [productId],references: [id],onDelete: Cascade) 
+model reviewsImages {
+  id String @id @default(uuid())
+  imagePath String
+  reviewId String
+  reviews reviews @relation(fields: [reviewId],references:[id],onDelete: Cascade)
 }
+
 
 model user {
   id            String          @id @default(uuid())
   name          String?
-  // username      String?         @unique
   email         String?         @unique
   emailVerified DateTime?
   role  user_role @default(USER)
   password String?
   image         String?
-  // session       session[]
   account       account?
-  // Optional for WebAuthn support
-  // authenticator authenticator[]
-  reviews reviews[]
-  orders order[]
+  reviews   reviews[]
+  orders   order[]
+  payment  payment[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -151,18 +158,6 @@ model userAddress {
   country String
   formatedAddress  String   @db.Text
 }
-// model session {
-//   id           String   @id @default(cuid())
-//   sessionToken String   @unique
-//   userId       String
-//   expires      DateTime
-//   user         user     @relation(fields: [userId], references: [id])
- 
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
- 
-//   @@index([userId])
-// }
  
 model verificationToken {
   id         String @id @default(uuid())
@@ -182,20 +177,32 @@ model resetPasswordToken {
   @@unique([email, token])
 }
  
-// Optional for WebAuthn support
-// model authenticator {
-//   credentialID         String  @unique
-//   userId               String
-//   providerAccountId    String
-//   credentialPublicKey  String
-//   counter              Int
-//   credentialDeviceType String
-//   credentialBackedUp   Boolean
-//   transports           String?
- 
-//   user user @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
-//   @@id([userId, credentialID])
-// }
+
+enum order_status {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
+}
+enum payment_status {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum payment_mothed  {
+  DEBIT_CARD
+  CREDIT_CARD
+  PAYPAL
+  CASH
+}
+enum currency  {
+  SAR
+}
+
+enum user_role {
+  USER
+  ADMIN
+}
 
 
