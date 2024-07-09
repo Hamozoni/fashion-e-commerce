@@ -9,7 +9,7 @@ import { ButtonWithIcon } from "../../../components/buttons";
 import { AppContext } from "../../contextProvider";
 import { useContext } from "react";
 
-export function CartItemsCard({product,isCheckout = false}) {
+export const CartItemsCard = ({product,isCheckout = false})=> {
 
     const dispatch = useAppDispatch();
 
