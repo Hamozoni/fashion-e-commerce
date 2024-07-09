@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const likedListSlice = createSlice({
+const likedListSlice = createSlice({
     name: 'lakedList',
     initialState: [],
     reducers: {

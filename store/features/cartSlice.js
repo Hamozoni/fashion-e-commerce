@@ -24,7 +24,7 @@ const findItem = (state,action)=> {
     return item
 }
 
-export const cartSlice = createSlice({
+const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
