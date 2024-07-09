@@ -9,7 +9,7 @@ import { ButtonWithIcon } from "../../../components/buttons";
 import { AppContext } from "../../contextProvider";
 import { useContext } from "react";
 
-export const CartItemsCard = ({product,isCheckout = false})=> {
+const CartItemsCard = ({product,isCheckout = false})=> {
 
     const dispatch = useAppDispatch();
 
@@ -35,7 +35,7 @@ export const CartItemsCard = ({product,isCheckout = false})=> {
                 >{product?.name}
             </h4>
        </Link>
-        <div className="flex gap-3 items-center">
+        <div className={`${isCheckout ? '':'flex'} gap-3 items-center`}>
             {
                 isCheckout ? null :
                 <Link 
@@ -51,8 +51,8 @@ export const CartItemsCard = ({product,isCheckout = false})=> {
                 </Link>
             }
             <section>
-                <div className="sm:flex gap-3">
-                    <table className="rounded-md overflow-hidden">
+                <div className="sm:flex justify-between gap-3">
+                    <table className="rounded-md overflow-hidden mx-auto sm:mx-0">
 
                         <thead className="pb-3">
                             <tr className="text-teal-950 text-md sm:text-lg font-bold">
@@ -79,28 +79,27 @@ export const CartItemsCard = ({product,isCheckout = false})=> {
                             </tr>
                         </tbody>
                     </table>
-                    {
-                        isCheckout ? null : 
-                        <div className="flex sm:flex-col justify-between pt-3 lg-pt-0">
-                            <QuantityBtn 
-                                id={product.id} 
-                                selectedColor={product.selectedColor} 
-                                selectedSize={product.selectedSize} 
+                    <div className="flex sm:flex-col justify-between pt-3 lg-pt-0">
+                        <QuantityBtn 
+                            id={product.id} 
+                            selectedColor={product.selectedColor} 
+                            selectedSize={product.selectedSize} 
+                            />
+                        <div className="max-w-24">
+                            <ButtonWithIcon 
+                                text='reove'
+                                type='delete'
+                                Icon={MdOutlineDeleteOutline}
+                                onClick={removeItem}
                                 />
-                            <div className="max-w-24">
-                                <ButtonWithIcon 
-                                    text='reove'
-                                    type='delete'
-                                    Icon={MdOutlineDeleteOutline}
-                                    onClick={removeItem}
-                                    />
-                            </div>
                         </div>
-                    }
+                    </div>
                 </div>
             </section>
         </div>
 
     </div>
   )
-}
+};
+
+export default CartItemsCard

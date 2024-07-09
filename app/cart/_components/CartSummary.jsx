@@ -37,7 +37,7 @@ export const CartFooter = ()=> {
 }
 
 
-export const CartSummary = ()=> {
+ const CartSummary = ()=> {
 
 
   return (
@@ -63,3 +63,4 @@ export const CartSummary = ()=> {
     </div>
   )
 };
+export default CartSummary;

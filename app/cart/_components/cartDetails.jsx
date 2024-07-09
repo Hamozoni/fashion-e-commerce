@@ -3,7 +3,7 @@ import { useAppSelector } from "../../../store/store";
 import getCurrency from "../../../lip/getCurrency";
 
 
-export const cartDetails = () => {
+export const CartDetails = () => {
     const totalPrice = useAppSelector(state=> state.cart.totalPaid)
     const subtotal = useAppSelector(state=> state.cart.totalQuantity)
 

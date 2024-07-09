@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useAppSelector } from "../../store/store";
 import Link from "next/link";
-import {CartItemsCard} from "./_components/CartItemsCard";
-import {CartSummary} from "./_components/CartSummary";
+import CartItemsCard from "./_components/CartItemsCard";
+import CartSummary from "./_components/CartSummary";
 
 function cartPage() {
 
