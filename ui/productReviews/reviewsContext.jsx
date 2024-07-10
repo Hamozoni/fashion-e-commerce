@@ -22,6 +22,8 @@ const ReviewsContextProvider = ({children,product}) => {
         startTransition(()=> {
             getReviewaByProductId(id)
             .then(data=> {
+
+                console.log(data)
                 if(data?.data) {
                     setReviews(data?.data);
                 };

@@ -9,7 +9,7 @@ export const rateProduct = async(formData)=> {
 
    console.log(reviewImages)
 
-  const images = []
+  let images = []
 
     const data = {
         rating: +formData.get('rating'),
@@ -28,18 +28,20 @@ export const rateProduct = async(formData)=> {
     
     if(validateForm.success) {
 
-        if(reviewImages[0].size > 200){
+        if(reviewImages.length > 0){
 
             const imagesLength = reviewImages.length
             try{
 
                 for (let i = 0; i < imagesLength; i++) {
-                    await fs.mkdir('public/reviewsImages',{recursive: true});
-                    const imagePath = `public/reviewsImages/${crypto.randomUUID()}_${reviewImages[i]?.name}`;
-
-                    await fs.writeFile(imagePath,Buffer.from(await reviewImages[i]?.arrayBuffer()))
+                    if(reviewImages[i].size > 200) {
+                        await fs.mkdir('public/reviewsImages',{recursive: true});
+                        const imagePath = `public/reviewsImages/${crypto.randomUUID()}_${reviewImages[i]?.name}`;
     
-                    data.images[i] = {imagePath}
+                        await fs.writeFile(imagePath,Buffer.from(await reviewImages[i]?.arrayBuffer()))
+        
+                        images.push({imagePath})
+                    }
                 }
 
 
@@ -48,7 +50,7 @@ export const rateProduct = async(formData)=> {
                 return {error: "images something went wrong"}
             }
         }else {
-            data.images = null
+            images = null
         }
         
         try {
@@ -56,7 +58,10 @@ export const rateProduct = async(formData)=> {
             console.log(images)
 
         const review = await db.reviews.create({data:{
-                ...data
+                ...data,
+                images: {
+                    create : [...images]
+                }
             }})
 
             console.log(review)

@@ -128,19 +128,21 @@ function ReviewCard({review,index}) {
                     </article>
                 }
                 {
-                    review?.images &&
-                    <div className="p-3 flex flex-wrap">
+                    review?.images?.length > 0 ?
+                    <div className="p-3 flex max-w-full gap-1 flex-wrap">
                         {
-                            review?.images?.map(({imagePath,id})=> {
-                                <Image
-                                    key={id}
-                                    className="bg-white rounded-md"
-                                    src={imagePath?.replace('public','')} 
-                                    width={80} height={100} alt='product image'
-                                    />
-                            })
+                            review?.images?.map(({imagePath,id})=> (
+                                <div key={id} className="bg-white rounded-md ">
+                                    <Image
+                                        className=""
+                                        src={imagePath?.replace('public','')} 
+                                        width={160} height={200} alt='product image'
+                                        />
+
+                                </div>
+                            ))
                         }
-                    </div>
+                    </div> : null
                 }
             </div>
             {
