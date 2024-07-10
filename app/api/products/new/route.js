@@ -7,14 +7,24 @@ export async function POST (requist) {
 
     const formData  = await requist.formData();
 
-    const exestProduct = await db.product.findMany({where : {
-        serialNumber : formData.get("serialNumber")
-    }});
+    try {
+        const exestProduct = await db.product.findMany({where : {
+            serialNumber : formData.get("serialNumber")
+        }});
+    
+        if(exestProduct.length > 0){
+            console.log(exestProduct);
+            return new NextResponse("Error the products already added before try another product", { status: 400 })
+        }
 
-    if(exestProduct.length > 0){
-        console.log(exestProduct);
-        return new NextResponse("Error the products already added before try another product", { status: 400 })
     }
+    catch {
+        return new NextResponse("Error the products already added before try another product", { status: 500 })
+     }
+     finally {
+        await db.$disconnect()
+     }
+
 
    const specifKeys = formData.getAll("specifKey");
    const specifValues = formData.getAll("specifValue");
@@ -42,68 +52,63 @@ export async function POST (requist) {
    };
 
 
-   
-   
-   
-   const color = formData.getAll("color");
-   
-
-    
-
-        await fs.mkdir("public/products",{recursive: true});
+//loading product images in public folder
+   try{
+       const color = formData.getAll("color");
        
-        
-
+        await fs.mkdir("public/products",{recursive: true});
         const images = []
         
-           for(let i = 0;i < color.length; i++){
-
-
+            for(let i = 0;i < color.length; i++){
                 const imagesPath = formData.getAll(`imagePath-${color[i]}`);
-        
-    
                 for(let p = 0; p < imagesPath.length; p++){
-        
                     const imageUrl = `public/products/${crypto.randomUUID()}-${imagesPath[p].name}`;
-        
                     await fs.writeFile(imageUrl,Buffer.from(await imagesPath[p].arrayBuffer()))
+                    images.push({color: color[i] , imagePath : imageUrl}) 
+                };
         
-    
-                    images.push({color: color[i] , imagePath : imageUrl})
-                   
-                    
-                }
-        
-            }
-    
+            };
+
+   }
+   catch {
+    return new NextResponse("can not load images", { status: 500 })
+   }
 
 
-  const product = await db.product.create({
-        data : {
-            name: formData.get("name"),
-            priceInCent: Number(formData.get("priceInCent")),
-            isAvailable: formData.get("isAvailable") === "true" ? true : false,
-            description : formData.get("description"),
-            category: formData.get("category"),
-            subCategory: formData.get("subCategory"),
-            aboutThisItem: formData.get("aboutThisItem"),
-            serialNumber: formData.get("serialNumber"),
-            brand: formData.get("brand"),
-            specifications : {
-                create :[
-                    ...specifications
-                ]
-            },
-            sizes : {
-                create :[
-                    ...sizes
-                ]
-            },
-            images : {
-                create : [...images]
-            }
-        }})
-console.log(product)
-    return new NextResponse(product)
+    // creating new product in db
+    try {
+         const product = await db.product.create({
+               data : {
+                   name: formData.get("name"),
+                   priceInCent: Number(formData.get("priceInCent")),
+                   isAvailable: formData.get("isAvailable") === "true" ? true : false,
+                   description : formData.get("description"),
+                   category: formData.get("category"),
+                   subCategory: formData.get("subCategory"),
+                   serialNumber: formData.get("serialNumber"),
+                   brand: formData.get("brand"),
+                   specifications : {
+                       create :[
+                           ...specifications
+                       ]
+                   },
+                   sizes : {
+                       create :[
+                           ...sizes
+                       ]
+                   },
+                   images : {
+                       create : [...images]
+                   }
+               }})
+           return new NextResponse(product)
+     }
+     catch {
+        return new NextResponse("something wrent wrong", { status: 500 })
+     }
+     finally {
+        await db.$disconnect()
+     };
 
-}
+
+};
