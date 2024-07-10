@@ -4,7 +4,7 @@ import {db} from "../../lip/db"
 
 export const removeReviewAction = async (id,images)=> {
 
-    if(images){
+    if(images?.length > 0){
         try{
             for(let i = 0; i < images.length;i++) {
                 await fs.unlink(images[i]?.imagePath)

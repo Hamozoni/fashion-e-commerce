@@ -34,7 +34,7 @@ function ReviewCard({review,index}) {
     const handleRevomeReview = ()=> {
 
         startTransition(()=> {
-            removeReviewAction(review?.id,review?.reviewImage)
+            removeReviewAction(review?.id,review?.images)
             .then((data)=> {
                 if(data?.success) {
                     setReviews(prev=> prev?.filter(e=> e.id !== review?.id))
@@ -129,7 +129,7 @@ function ReviewCard({review,index}) {
                 }
                 {
                     review?.images?.length > 0 ?
-                    <div className="p-3 flex max-w-full gap-1 flex-wrap">
+                    <div className="p-3 flex max-w-full gap-1 flex-wrap justify-center items-center">
                         {
                             review?.images?.map(({imagePath,id})=> (
                                 <div key={id} className="bg-white rounded-md ">

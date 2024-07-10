@@ -40,7 +40,7 @@ export const rateProduct = async(formData)=> {
     
                         await fs.writeFile(imagePath,Buffer.from(await reviewImages[i]?.arrayBuffer()))
         
-                        images.push({imagePath})
+                        images.push({imagePath,id: crypto.randomUUID()})
                     }
                 }
 
@@ -62,8 +62,8 @@ export const rateProduct = async(formData)=> {
                 images: {
                     create : [...images]
                 }
-            }})
-
+            }});
+            review.images = images
             console.log(review)
             return {review: review}
         }
