@@ -21,11 +21,11 @@ model product {
   quantity         Int      @default(1)
   category         String
   subCategory      String
-  aboutThisItem    String   @db.Text
   serialNumber     String   @unique
   selectedSize     String?
   selectedColor    String?
   brand    String?
+  image String?
   sizes productsizes[]
   images productimages[]
   specifications specifications[]
