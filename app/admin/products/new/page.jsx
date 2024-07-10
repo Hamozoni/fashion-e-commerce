@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
-import axios from "axios";
+// import axios from "axios";
 import { useRouter } from "next/navigation";
+import {postNewProductAction} from "../../../../actions/products/postNewProduct"
 
 import Loading from "./Loading";
 
@@ -63,19 +64,15 @@ const NewProducts = () => {
     const [images,setImages] = useState([]);
     const [sizes,setSizes] = useState([]);
     const [errors,setErrors] = useState(null);
-    const [isPendding,setIsPendding] = useState(false);
+    const [isPendding,startTransition] = useTransition();
 
-    const router = useRouter()
+    // const router = useRouter();
 
-    const handleSubmit = async (event)=> {
+    const handleSubmit =  ()=> {
 
-        event.preventDefault();
-
-        setIsPendding(true);
         const test = productZSchema.safeParse(data);
 
         const formData = new FormData();
-
 
         Object.entries(data).map((key)=> {
             formData.append(key[0],key[1])
@@ -100,21 +97,25 @@ const NewProducts = () => {
         })
 
         if(test.success) {
-            const config = {
-                headers: { 'content-type': 'multipart/form-data' }
-              }
+            // const config = {
+            //     headers: { 'content-type': 'multipart/form-data' }
+            //   }
 
-            await axios.post('/api/products/new',formData, config)
-                .then(response => {
+            // await axios.post('/api/products/new',formData, config)
+            //     .then(response => {
 
-                router.push('/admin/products');
-                  console.log(response);
-                })
-                .catch(error => {
-                    console.log(error);
-                }).finally(()=> {
-                    setIsPendding(false);
-                })
+            //     router.push('/admin/products');
+            //       console.log(response);
+            //     })
+            //     .catch(error => {
+            //         console.log(error);
+            //     }).finally(()=> {
+            //         setIsPendding(false);
+            //     })
+            startTransition(()=> {
+                postNewProductAction(formData);
+            })
+
         }else {
             setErrors(JSON.parse(test.error))
         }
@@ -133,7 +134,7 @@ const NewProducts = () => {
     },[data])
     
     const className = {
-        inputsDev: '2r21 *:  QEWpb-4 mb-3  border-b border-slate-100',
+        inputsDev: 'pb-4 mb-3  border-b border-slate-100',
         inputClass : 'w-full max-w-full  text-gray-900 border-slate-200 border  focus:border-slate-400 rounded-lg p-2 my-2',
         label: 'text-lg font-medium text-slate-700',
         sumBtn: 'w-full max-w-full  rounded-lg p-2 my-2 border-slate-200 border font-bold text-xl text-slate-700 bg-slate-100 uppercase hover:shadow-md ',
@@ -141,12 +142,12 @@ const NewProducts = () => {
     };
 
   return (
-    <div className="p-4 lg:p-10 w-full max-w-full ">
+    <div className="p-4 lg:p-10 w-full max-w-full capitalize ">
         {
             isPendding ? <Loading /> : ''
         }
         <h3 className="pb-4 font-bold text-2xl">adding new product form</h3>
-        <form   onSubmit={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
+        <form   action={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
             {
                 inputsInfo.map(input=> (
                     <FormInput 

@@ -1,12 +1,9 @@
-
+"use server";
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import { db } from  "../../../../lip/db"
+import { db } from  "../../lip/db";
 
-export async function POST (requist) {
-
-    const formData  = await requist.formData();
-
+export const postNewProductAction = async (formData)=> {
 
     console.log("1",formData)
 
@@ -116,4 +113,7 @@ export async function POST (requist) {
      };
 
 
-};
+
+
+
+}
