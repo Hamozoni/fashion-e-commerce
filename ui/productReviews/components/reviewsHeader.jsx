@@ -22,7 +22,6 @@ import {ratingSchema} from "../../../validationSchemas/ratingSchema";
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
 
 // server actions
-import {rateProduct} from "../../../actions/productReviews/rateProductAcion";
 import { PostData } from "../../../lip/fetchData";
 // loading
 import { PulseLoader } from "react-spinners";
@@ -32,7 +31,7 @@ import { ReviewsContext } from "../reviewsContext";
 
 const stars = new Array(5).fill('star');
 
-function WhriteReview() {
+function ReviewsHeader() {
 
     const user = useCurrentUser();
     const {product,setReviews} = useContext(ReviewsContext)
@@ -246,4 +245,4 @@ function WhriteReview() {
   )
 }
 
-export default WhriteReview
+export default ReviewsHeader

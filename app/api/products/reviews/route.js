@@ -67,11 +67,11 @@ export async function POST (request) {
             }});
             review.images = images
             console.log(review)
-            return NextResponse.json({review: 'something went wrong'},{status:200})
+            return NextResponse.json({...review},{status:200})
         }
         catch (error){
             console.log(error)
-            return {error: "something went wrong"}
+            return NextResponse.json('something went wrong',{status:400})
         }
         finally {
             await db.$disconnect()

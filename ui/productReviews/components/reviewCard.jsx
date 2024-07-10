@@ -156,10 +156,10 @@ function ReviewCard({review,index}) {
                           onClick={isEdidable ? handleUpdateReview : ()=> setIsEdidable(true)}
                         />
                         <ButtonWithIcon 
-                          text='delete'
-                          Icon={MdDelete}
+                          text={isEdidable ? 'back' : 'delete'}
+                          Icon={isEdidable ? IoIosArrowRoundBack : MdDelete}
                           type='delete'
-                          onClick={()=> setIsRemoveModle(true)}
+                          onClick={isEdidable ? ()=> setIsEdidable(false) : ()=> setIsRemoveModle(true)}
                         />
                     </footer>
                 )

@@ -3,7 +3,7 @@
 import { useContext} from "react";
 // component
 import ReviewCard from "./reviewCard";
-import WriteReview from "./writeReview";
+import ReviewsHeader from "./ReviewsHeader";
 // context
 import {ReviewsContext} from "../reviewsContext";
 
@@ -14,7 +14,7 @@ import {ReviewsContext} from "../reviewsContext";
   return (
     <div className="flex-1 max-w-full">
         <div className="mb-8">
-            <WriteReview />
+            <ReviewsHeader />
         </div>
         <section className="">
           <h5 
