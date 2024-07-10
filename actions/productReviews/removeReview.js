@@ -2,11 +2,13 @@
 import fs from "fs/promises"
 import {db} from "../../lip/db"
 
-export const removeReviewAction = async (id,reviewImage)=> {
+export const removeReviewAction = async (id,images)=> {
 
-    if(reviewImage){
+    if(images){
         try{
-            await fs.unlink(reviewImage)
+            for(let i = 0; i < images.length;i++) {
+                await fs.unlink(images[i]?.imagePath)
+            }
         }
         catch {
             return {error: "oops! something went wrong"}

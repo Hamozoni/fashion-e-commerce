@@ -5,13 +5,15 @@ import { ratingSchema } from "../../validationSchemas/ratingSchema"
 
 export const rateProduct = async(formData)=> {
 
+   const reviewImages = formData.get('reviewImage')
+
     const data = {
         rating: +formData.get('rating'),
         productId: formData.get('productId'),
         autherId: formData.get('autherId'),
         rateText: formData.get('rateText'),
         rateTitle: formData.get('rateTitle'),
-        reviewImage: formData.get('reviewImage'),
+        images : []
     }
     
     console.log(data)
@@ -23,23 +25,29 @@ export const rateProduct = async(formData)=> {
     
     if(validateForm.success) {
 
-        if(data.reviewImage.size > 200){
+        if(reviewImages[0].size > 200){
+
+            const imagesLength = reviewImages.length
             try{
-                await fs.mkdir('public/reviewsImages',{recursive: true});
-                const imagepath = `public/reviewsImages/${crypto.randomUUID()}_${data?.reviewImage?.name}`;
 
-                await fs.writeFile(imagepath,Buffer.from(await data?.reviewImage?.arrayBuffer()))
+                for (let i = 0; i < imagesLength; i++) {
+                    await fs.mkdir('public/reviewsImages',{recursive: true});
+                    const imagepath = `public/reviewsImages/${crypto.randomUUID()}_${reviewImages[i]?.name}`;
 
-                data.reviewImage = imagepath;
+                    await fs.writeFile(imagepath,Buffer.from(await reviewImages[i]?.arrayBuffer()))
+    
+                    data.images[i]?.imagePath = imagepath;
+                }
+
 
             }
             catch {
                 return {error: "images something went wrong"}
             }
         }else {
-            data.reviewImage = null;
+            data.images = null
         }
-
+        
         try {
 
         const review = await db.reviews.create({data:{

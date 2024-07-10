@@ -186,27 +186,6 @@ const NewProducts = () => {
                     :''
                 }
             </div>
-            <div className={className.inputsDev}>
-                <label className={className.label}  htmlFor="about">about this item : </label>
-               <textarea 
-                    name="about"
-                    className={`${className.inputClass} h-20 min-h-16`}   
-                    id="about" 
-                    placeholder="about this item" 
-                    cols="10" rows="10"
-                    required
-                    onChange={e=> setData(prev=> {
-                        return {...prev,aboutThisItem : e.target.value}
-                    })}
-                    >
-
-                </textarea>
-                {
-                    (errors && errors.find((e=> e.path[0] === 'aboutThisItem')) !== undefined) ? 
-                    <p className={className.error}>{errors?.find((e=> e.path[0] === 'aboutThisItem'))?.message}</p>
-                    :''
-                }
-            </div>
             <SpecificationInputs setData={setSpecifications} className={className} />
             <Images   setData={setImages}className={className}/>
             <Sizes  setdata={setSizes} className={className} />

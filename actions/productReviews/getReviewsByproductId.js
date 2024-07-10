@@ -8,11 +8,12 @@ export const getReviewaByProductId = async(productId)=> {
        const data =  await db.reviews.findMany({
         where: {productId},
         include:{
+            images : treue,
             auther:{
                 select : {
                     name: true,
                     image: true,
-                }
+                },
             }
         }
     });
