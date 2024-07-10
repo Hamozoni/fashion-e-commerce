@@ -4,13 +4,15 @@ import { ratingSchema } from "../../../../validationSchemas/ratingSchema";
 
 import { NextResponse } from 'next/server';
 
-export async function POST (requist) {
+export async function POST (request) {
 
-    const formData  = await requist.formData();
+    const formData  = await request.formData();;
 
-   const reviewImages = formData.getAll('reviewImage');
+    const reviewImages = formData.getAll('reviewImage');
 
    console.log(reviewImages)
+
+  let images = []
 
     const data = {
         rating: +formData.get('rating'),
@@ -18,51 +20,56 @@ export async function POST (requist) {
         autherId: formData.get('autherId'),
         rateText: formData.get('rateText'),
         rateTitle: formData.get('rateTitle'),
-        images : []
     }
     
     console.log(data)
     const validateForm = ratingSchema.safeParse(data);
 
     if(validateForm.error) {
-        return {error: "something went wrong"}
+        return NextResponse.json({massage: 'values not acceptable'},{status:406})
     };
     
     if(validateForm.success) {
 
-        if(reviewImages[0].size > 200){
+        if(reviewImages.length > 0){
 
             const imagesLength = reviewImages.length
             try{
 
                 for (let i = 0; i < imagesLength; i++) {
-                    await fs.mkdir('public/reviewsImages',{recursive: true});
-                    const imagePath = `public/reviewsImages/${crypto.randomUUID()}_${reviewImages[i]?.name}`;
-
-                    await fs.writeFile(imagePath,Buffer.from(await reviewImages[i]?.arrayBuffer()))
+                    if(reviewImages[i].size > 200) {
+                        await fs.mkdir('public/reviewsImages',{recursive: true});
+                        const imagePath = `public/reviewsImages/${crypto.randomUUID()}_${reviewImages[i]?.name}`;
     
-                    data.images[i] = {imagePath}
+                        await fs.writeFile(imagePath,Buffer.from(await reviewImages[i]?.arrayBuffer()))
+        
+                        images.push({imagePath,id: crypto.randomUUID()})
+                    }
                 }
 
 
             }
             catch {
-                return {error: "images something went wrong"}
+                return NextResponse.json({massage: 'something went wrong'},{status:422})
             }
         }else {
-            data.images = null
+            images = null
         }
         
         try {
 
+
         const review = await db.reviews.create({data:{
-                ...data
-            }})
-
-
-            return {review: review}
+                ...data,
+                images: {
+                    create : [...images]
+                }
+            }});
+            review.images = images
+            console.log(review)
+            return NextResponse.json({review: 'something went wrong'},{status:200})
         }
-        catch (error) {
+        catch (error){
             console.log(error)
             return {error: "something went wrong"}
         }
@@ -70,7 +77,6 @@ export async function POST (requist) {
             await db.$disconnect()
         }
     }
-
 
 
 }

@@ -3,9 +3,9 @@ import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
 import { db } from  "../../../../lip/db"
 
-export async function POST (requist) {
+export async function POST (request) {
 
-    const formData  = await requist.formData();
+    const formData  = await request.formData();
 
 
     console.log("1",formData)

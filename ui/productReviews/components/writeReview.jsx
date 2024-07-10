@@ -23,6 +23,7 @@ import { useCurrentUser } from "../../../hooks/useCurrentUser";
 
 // server actions
 import {rateProduct} from "../../../actions/productReviews/rateProductAcion";
+import { PostData } from "../../../lip/fetchData";
 // loading
 import { PulseLoader } from "react-spinners";
 import { ButtonWithIcon } from "../../../components/buttons";
@@ -103,21 +104,21 @@ function WhriteReview() {
 
         if(formValidation.success){
             setError(null);
+                PostData('/api/products/reviews',formData)
+                .then(data => {
 
-            startTransion(()=> {
-                rateProduct(formData)
-                .then(data=> {
+                    console.log(data);
 
-                    console.log(data)
-                    if(data?.review) {
-                        setReviews(prev=> [{...data?.review,auther: {name: user?.name,image:user?.image}},...prev])
-                    }
+                        setReviews(prev=> [{...data,auther: {name: user?.name,image:user?.image}},...prev]);
+
+                        setShowModel(false);
                 })
-                .finally(()=>{
-                    setShowModel(false);
+                .catch((error)=> {
+                    console.log(error)
                 })
-
-            })
+                // .finally(()=>{
+                //     // 
+                // })
 
         }
 
