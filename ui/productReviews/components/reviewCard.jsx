@@ -128,13 +128,18 @@ function ReviewCard({review,index}) {
                     </article>
                 }
                 {
-                    review?.reviewImage &&
-                    <div className="p-3">
-                        <Image
-                            className="bg-white rounded-md"
-                            src={review?.reviewImage?.replace('public','')} 
-                            width={80} height={100} alt='product image'
-                            />
+                    review?.images &&
+                    <div className="p-3 flex flex-wrap">
+                        {
+                            review?.images?.map(({imagePath,id})=> {
+                                <Image
+                                    key={id}
+                                    className="bg-white rounded-md"
+                                    src={imagePath?.replace('public','')} 
+                                    width={80} height={100} alt='product image'
+                                    />
+                            })
+                        }
                     </div>
                 }
             </div>

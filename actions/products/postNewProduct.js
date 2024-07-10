@@ -51,11 +51,11 @@ export const postNewProductAction = async (formData)=> {
 
 
 //loading product images in public folder
+const color = formData.getAll("color");
+const images = []
    try{
-       const color = formData.getAll("color");
        
         await fs.mkdir("public/products",{recursive: true});
-        const images = []
         
             for(let i = 0;i < color.length; i++){
                 const imagesPath = formData.getAll(`imagePath-${color[i]}`);

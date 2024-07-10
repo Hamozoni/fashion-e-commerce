@@ -172,6 +172,7 @@ function WhriteReview() {
                                     type="file" 
                                     name='reviewImage'
                                     accept="image/*"
+                                    multiple
                                     />
                             </div>
                             <div className="w-full">

@@ -5,9 +5,9 @@ import FormInput from "./FormInput";
 import SpecificationInputs from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
-// import axios from "axios";
+import axios from "axios";
 import { useRouter } from "next/navigation";
-import {postNewProductAction} from "../../../../actions/products/postNewProduct"
+// import {postNewProductAction} from "../../../../actions/products/postNewProduct"
 
 import Loading from "./Loading";
 
@@ -66,9 +66,10 @@ const NewProducts = () => {
     const [errors,setErrors] = useState(null);
     const [isPendding,startTransition] = useTransition();
 
-    // const router = useRouter();
+    const router = useRouter();
 
-    const handleSubmit =  ()=> {
+    const handleSubmit =  (event)=> {
+        event.preventDefault();
 
         const test = productZSchema.safeParse(data);
 
@@ -97,26 +98,26 @@ const NewProducts = () => {
         })
 
         if(test.success) {
-            // const config = {
-            //     headers: { 'content-type': 'multipart/form-data' }
-            //   }
 
-            // await axios.post('/api/products/new',formData, config)
-            //     .then(response => {
-
-            //     router.push('/admin/products');
-            //       console.log(response);
-            //     })
-            //     .catch(error => {
-            //         console.log(error);
-            //     }).finally(()=> {
-            //         setIsPendding(false);
-            //     })
-            startTransition(()=> {
-                postNewProductAction(formData);
+            startTransition(async()=> {
+                const config = {
+                    headers: { 'content-type': 'multipart/form-data' }
+                  }
+    
+                await axios.post('/api/products/new',formData, config)
+                    .then(response => {
+    
+                    router.push('/admin/products');
+                      console.log(response);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             })
 
         }else {
+
+            console.log(JSON.parse(test.error))
             setErrors(JSON.parse(test.error))
         }
 
@@ -147,7 +148,7 @@ const NewProducts = () => {
             isPendding ? <Loading /> : ''
         }
         <h3 className="pb-4 font-bold text-2xl">adding new product form</h3>
-        <form   action={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
+        <form onSubmit={handleSubmit} className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg" >
             {
                 inputsInfo.map(input=> (
                     <FormInput 

@@ -7,7 +7,6 @@ export const productZSchema  =  z.object({
     description: z.string().min(5),
     category: z.enum(["men", "women", "kids"]),
     subCategory: z.string(),
-    aboutThisItem: z.string().min(5),
     serialNumber: z.string().min(10).max(10),
 });
 

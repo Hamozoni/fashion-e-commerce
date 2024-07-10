@@ -54,11 +54,11 @@ export async function POST (requist) {
 
 
 //loading product images in public folder
-   try{
-       const color = formData.getAll("color");
-       
+const images = []
+const color = formData.getAll("color");
+try{
+    
         await fs.mkdir("public/products",{recursive: true});
-        const images = []
         
             for(let i = 0;i < color.length; i++){
                 const imagesPath = formData.getAll(`imagePath-${color[i]}`);
@@ -72,7 +72,7 @@ export async function POST (requist) {
 
    }
    catch {
-    return new NextResponse("can not load images", { status: 500 })
+    return new NextResponse.json({error: 'opps! somthing went wrong'}, { status: 500 })
    }
 
    console.log("4",formData)
@@ -105,11 +105,16 @@ export async function POST (requist) {
                }})
 
                console.log("5",formData)
-           return new NextResponse(product)
+           return new NextResponse(product);
      }
      catch (error){
-         console.log(error)
-        return new NextResponse("something wrent wrong", { status: 500 })
+        if(images.length > 0 ){
+            images?.forEach(async({imagePath})=> {
+                await fs.unlink(imagePath)
+            })
+        }
+         console.log(JSON.parse(error))
+        return new NextResponse("smoething went wrong", { status: 500 })
      }
      finally {
         await db.$disconnect()

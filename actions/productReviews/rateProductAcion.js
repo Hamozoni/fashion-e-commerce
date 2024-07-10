@@ -5,7 +5,9 @@ import { ratingSchema } from "../../validationSchemas/ratingSchema"
 
 export const rateProduct = async(formData)=> {
 
-   const reviewImages = formData.get('reviewImage')
+   const reviewImages = formData.getAll('reviewImage');
+
+   console.log(reviewImages)
 
     const data = {
         rating: +formData.get('rating'),
@@ -32,11 +34,11 @@ export const rateProduct = async(formData)=> {
 
                 for (let i = 0; i < imagesLength; i++) {
                     await fs.mkdir('public/reviewsImages',{recursive: true});
-                    const imagepath = `public/reviewsImages/${crypto.randomUUID()}_${reviewImages[i]?.name}`;
+                    const imagePath = `public/reviewsImages/${crypto.randomUUID()}_${reviewImages[i]?.name}`;
 
-                    await fs.writeFile(imagepath,Buffer.from(await reviewImages[i]?.arrayBuffer()))
+                    await fs.writeFile(imagePath,Buffer.from(await reviewImages[i]?.arrayBuffer()))
     
-                    data.images[i]?.imagePath = imagepath;
+                    data.images[i] = {imagePath}
                 }
 
 
