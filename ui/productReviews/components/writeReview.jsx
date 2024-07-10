@@ -102,12 +102,13 @@ function WhriteReview() {
         const formValidation = ratingSchema.safeParse(data);
 
         if(formValidation.success){
-            console.log(formValidation?.data)
             setError(null);
 
             startTransion(()=> {
                 rateProduct(formData)
                 .then(data=> {
+
+                    console.log(data)
                     if(data?.review) {
                         setReviews(prev=> [{...data?.review,auther: {name: user?.name,image:user?.image}},...prev])
                     }

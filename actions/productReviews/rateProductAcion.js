@@ -9,13 +9,14 @@ export const rateProduct = async(formData)=> {
 
    console.log(reviewImages)
 
+  const images = []
+
     const data = {
         rating: +formData.get('rating'),
         productId: formData.get('productId'),
         autherId: formData.get('autherId'),
         rateText: formData.get('rateText'),
         rateTitle: formData.get('rateTitle'),
-        images : []
     }
     
     console.log(data)
@@ -52,14 +53,17 @@ export const rateProduct = async(formData)=> {
         
         try {
 
+            console.log(images)
+
         const review = await db.reviews.create({data:{
                 ...data
             }})
 
-
+            console.log(review)
             return {review: review}
         }
-        catch {
+        catch (error){
+            console.log(error)
             return {error: "something went wrong"}
         }
         finally {

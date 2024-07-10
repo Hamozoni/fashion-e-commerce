@@ -5,5 +5,5 @@ export const ratingSchema = z.object({
     productId: z.string(),
     autherId : z.string(),
     rating   : z.number().min(1),
-    rateTitle    : z.string().min(3)
+    rateTitle    : z.string().min(3),
 })
