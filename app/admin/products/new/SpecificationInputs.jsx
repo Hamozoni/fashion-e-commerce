@@ -62,18 +62,9 @@ export function SpecificationInputs() {
         </form>
 
         <footer className="flex items-center justify-center gap-5 my-3">
-            <div className="w-[100px]">
-                <ButtonWithIcon 
-                text='' 
-                Icon={IoIosAdd} 
-                type='save' 
-                disabled={false} 
-                onClick={addMore}
-                />
-            </div>
-            {
-                specification?.length > 1 ? 
-                <div className="w-[100px]">
+        {
+            specification?.length > 1 ? 
+                <div className="w-[70px]">
                     <ButtonWithIcon 
                         text='' 
                         Icon={FiMinus} 
@@ -84,7 +75,15 @@ export function SpecificationInputs() {
                 </div>
                 : null
             }
-
+            <div className="w-[70px]">
+                <ButtonWithIcon 
+                text='' 
+                Icon={IoIosAdd} 
+                type='save' 
+                disabled={false} 
+                onClick={addMore}
+                />
+            </div>
         </footer>
     </section>
   )
