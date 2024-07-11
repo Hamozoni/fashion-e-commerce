@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import {useState, useTransition } from "react";
 import   {FormInput,FormTextera} from "./FormInput";
 import {SpecificationInputs}from "./SpecificationInputs";
-import Images from "./Images";
-import Sizes from "./Sizes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 // import {postNewProductAction} from "../../../../actions/products/postNewProduct"
@@ -108,7 +106,22 @@ const NewProducts = () => {
 
                     </div>
                 </form>
-                <SpecificationInputs />
+                <SpecificationInputs 
+                    title='product specifications' 
+                    data={{
+                        name : 'specificaton key',
+                        value : 'product specificaton value',
+                        stack: 'stack quantity'
+                    }} 
+                />
+                <SpecificationInputs 
+                    title='sizes' 
+                    data={{
+                        name : 'size name',
+                        value : 'size describection',
+                        stack: 'stack quantity'
+                    }} 
+                />
             </div>
             <div className="flex items-center justify-between mt-3">
                 <div className="w-[100px]">

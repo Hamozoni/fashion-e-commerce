@@ -9,7 +9,7 @@ import { ButtonWithIcon } from "../../../../components/buttons";
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
 
-export function SpecificationInputs({title,data}) {
+export function ImagesColor() {
 
     const [errors,setErrors] = useState(null);
 

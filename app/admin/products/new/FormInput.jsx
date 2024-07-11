@@ -1,7 +1,7 @@
 import ZodError from "../../../../components/zodError";
 
 const className = {
-  inputClass : 'w-full max-w-full text-teal-900 border-gray-200 border-2  focus:border-teal-400 rounded-lg p-2 my-2',
+  inputClass : 'w-full max-w-full text-teal-900 bg-gray-50 outline-none border-b-gray-200 border-b-2 rounded-tl-md rounded-tr-md  focus:border-teal-400  p-2 my-2',
   label: 'text-lg font-bold text-gray-400 group-hover:text-teal-500',
 };
 
