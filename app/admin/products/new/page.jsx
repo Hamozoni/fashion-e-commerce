@@ -1,18 +1,19 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
-import FormInput from "./FormInput";
-import SpecificationInputs from "./SpecificationInputs";
+import   {FormInput,FormTextera} from "./FormInput";
+import {SpecificationInputs}from "./SpecificationInputs";
 import Images from "./Images";
 import Sizes from "./Sizes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 // import {postNewProductAction} from "../../../../actions/products/postNewProduct"
 
-import Loading from "./Loading";
 
-import {productZSchema} from "../../../../validationSchemas/newProductSchemas";
-import ZodError from "../../../../components/zodError";
+import { ButtonWithIcon } from "../../../../components/buttons";
+
+import { IoArrowBackOutline,IoArrowForwardSharp } from "react-icons/io5";
+import Loading from "./Loading"
 
 const inputsInfo = [
     {
@@ -51,7 +52,6 @@ const inputsInfo = [
         type: 'text',
         place:'ASIN shold be 10 '
      },
-
 ]
 
 const NewProducts = () => {
@@ -62,49 +62,12 @@ const NewProducts = () => {
     const router = useRouter();
 
     const handleSubmit =  (event)=> {
-
-        console.log(event)
-
         event.preventDefault();
-
+        const formData = new FormData(event.target);
+        console.log(Object.fromEntries(formData.entries()))
         // const test = productZSchema.safeParse(data);
 
-        // const formData = new FormData();
-
-        // if(test.success) {
-
-        //     startTransition(async()=> {
-        //         const config = {
-        //             headers: { 'content-type': 'multipart/form-data' }
-        //           }
-    
-        //         await axios.post('/api/products/new',formData, config)
-        //             .then(response => {
-    
-        //             router.push('/admin/products');
-        //               console.log(response);
-        //             })
-        //             .catch(error => {
-        //                 console.log(error);
-        //             })
-        //     })
-
-        // }else {
-
-        //     console.log(JSON.parse(test.error))
-        //     setErrors(JSON.parse(test.error))
-        // }
-
     }
-
-    
-    const className = {
-        inputsDev: 'pb-4 mb-3  border-b border-slate-100',
-        inputClass : 'w-full max-w-full  text-teal-900 border-gray-200 border-2  focus:border-teal-400 rounded-lg p-2 my-2',
-        label: 'text-lg font-bold text-teal-900',
-        sumBtn: 'w-full max-w-full  rounded-lg p-2 my-2 border-slate-200 border font-bold text-xl text-slate-700 bg-slate-100 uppercase hover:shadow-md ',
-        error: 'w-fit my-auto mb-3 text-red-600 text-center text-xs'
-    };
 
   return (
     <div className="p-4 lg:p-10 w-full max-w-full capitalize ">
@@ -115,41 +78,57 @@ const NewProducts = () => {
             className="pb-4 font-bold text-2xl text-teal-950"
             >adding new product form
         </h3>
-        <form 
-            onSubmit={handleSubmit} 
-            className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg"
-             >
-            <div className="flex items-center gap-5 flex-wrap">
-                {
-                    inputsInfo.map(input=> (
-                        <div key={input.name} className="w-[300px] max-w-full flex-grow">
-                            <FormInput 
-                                name={input.name} 
-                                label={input.label} 
-                                type={input.type}
-                                errors={errors}
-                                placeHolder={input.place}
-                            />
-                        </div>
-                    ))
-                }
-
-            </div>
-            <div className={className.inputsDev}>
-                <label className={className.label}  htmlFor="description">description : </label>
-                <textarea 
-                    name='description'  
-                    className={`${className.inputClass} h-20 min-h-16`}  
-                    id="description" 
-                    placeholder="the description of the product..." 
-                    required
+        <div className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg">
+            <div className="">
+                <form 
+                    onSubmit={handleSubmit} 
                     >
-                    
-                </textarea>
-                <ZodError error={errors} field='description' />
+                    <div className="flex items-center gap-5 flex-wrap">
+                        {
+                            inputsInfo.map(input=> (
+                                    <FormInput 
+                                         key={input.name}
+                                        name={input.name} 
+                                        label={input.label} 
+                                        type={input.type}
+                                        errors={errors}
+                                        placeHolder={input.place}
+                                    />
+                            ))
+                        }
+
+                    </div>
+                    <div >
+                        <FormTextera 
+                            label='describtion'
+                            name='describtion'
+                            placeHolder='product describtion...' 
+                            errors={errors}
+                            />
+
+                    </div>
+                </form>
+                <SpecificationInputs />
             </div>
-            <button disabled={isPendding} type="submit" className={className.sumBtn}>{isPendding ? 'loading...' : 'save'}</button>
-        </form>
+            <div className="flex items-center justify-between mt-3">
+                <div className="w-[100px]">
+                    <ButtonWithIcon
+                       text='back'
+                       Icon={IoArrowBackOutline}
+                       type='delete'
+                       disabled={false}
+                     />
+                </div>
+                <div className="w-[100px]">
+                    <ButtonWithIcon
+                       text='next'
+                       Icon={IoArrowForwardSharp}
+                       type='save'
+                       disabled={false}
+                     />
+                </div>
+            </div>
+        </div>
     </div>
   )
 }

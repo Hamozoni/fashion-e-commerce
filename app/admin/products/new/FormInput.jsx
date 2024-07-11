@@ -1,15 +1,15 @@
 import ZodError from "../../../../components/zodError";
 
-export default function FormInput({name,label,type,placeHolder,errors,required}) {
-
-  const className = {
-    inputsDev: 'pb-4 mb-3  border-b border-slate-100',
-    inputClass : 'w-full max-w-full  text-teal-900 border-gray-200 border-2  focus:border-teal-400 rounded-lg p-2 my-2',
-    label: 'text-lg font-bold text-teal-900',
+const className = {
+  inputClass : 'w-full max-w-full text-teal-900 border-gray-200 border-2  focus:border-teal-400 rounded-lg p-2 my-2',
+  label: 'text-lg font-bold text-gray-400 group-hover:text-teal-500',
 };
+
+export function FormInput({name,label,type,placeHolder,errors,required = true}) {
+
     
   return (
-    <div className={className.inputsDev}>
+    <div className="group pb-4 border-b border-gray-100 w-[300px] flex-grow">
         <label 
             className={className.label} 
             htmlFor={name}
@@ -25,5 +25,25 @@ export default function FormInput({name,label,type,placeHolder,errors,required})
         />
         <ZodError error={errors} field={name} />
     </div>
+  )
+};
+
+export const FormTextera = ({label,name,placeHolder,errors,required = true})=> {
+
+  return (
+
+    <div className="group pb-4 border-b border-gray-100 w-full">
+      <label className={className.label}  htmlFor="description">{label}* </label>
+      <textarea 
+          name={name}  
+          className={`${className.inputClass} h-20 min-h-16`}  
+          id={name} 
+          placeholder={placeHolder} 
+          required={required}
+          >
+          
+      </textarea>
+      <ZodError error={errors} field='description' />
+  </div>
   )
 }
