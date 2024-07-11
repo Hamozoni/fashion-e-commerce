@@ -1,6 +1,7 @@
 "use client";
 import { useContext } from "react";
 import { AppContext } from "../../../contextProvider";
+import UserAddress from "../../../../ui/header/components/userAddress";
 
 export function UserField({name}) {
     const {currentUser} = useContext(AppContext);
@@ -13,7 +14,7 @@ export function UserField({name}) {
             {
                 name === "address" ? 
                 <address>
-                    {currentUser?.address?.formatedAddress}
+                    {currentUser?.address ? currentUser?.address?.formatedAddress : <UserAddress />}
                 </address>
                 :
                 <h5>{currentUser[name]}</h5>
