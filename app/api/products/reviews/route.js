@@ -10,24 +10,26 @@ export async function POST (request) {
 
     const reviewImages = formData.getAll('reviewImage');
 
-   console.log(reviewImages)
+    console.log(formData);
 
-  let images = []
 
-    const data = {
-        rating: +formData.get('rating'),
-        productId: formData.get('productId'),
-        autherId: formData.get('autherId'),
-        rateText: formData.get('rateText'),
-        rateTitle: formData.get('rateTitle'),
-    }
+    const data = Object.fromEntries(formData.entries());
+
+    data.rating = Number(data.rating);
+
+    console.log(data);
+
+
     
-    console.log(data)
     const validateForm = ratingSchema.safeParse(data);
 
     if(validateForm.error) {
         return NextResponse.json({massage: 'values not acceptable'},{status:406})
     };
+
+    delete data.reviewImage
+
+    let images = []
     
     if(validateForm.success) {
 
@@ -50,6 +52,9 @@ export async function POST (request) {
 
             }
             catch {
+                for(let i = 0; i < images.length;i++) {
+                    await fs.unlink(images[i]?.imagePath)
+                }
                 return NextResponse.json({massage: 'something went wrong'},{status:422})
             }
         }else {
@@ -70,7 +75,9 @@ export async function POST (request) {
             return NextResponse.json({...review},{status:200})
         }
         catch (error){
-            console.log(error)
+            for(let i = 0; i < images.length;i++) {
+                await fs.unlink(images[i]?.imagePath)
+            }
             return NextResponse.json('something went wrong',{status:400})
         }
         finally {

@@ -1,15 +1,97 @@
-import { BiSave } from "react-icons/bi"
-import { RxCross2 } from "react-icons/rx"
-import { PulseLoader } from "react-spinners"
+"use client";
+// react & next
+import { useRouter } from "next/navigation";
+import { useContext, useRef, useState, useTransition } from "react";
 
-import {Overlay} from "../../../components/Overlay"
+// icons
+import { RxCross2 } from "react-icons/rx";
+import { BiSave } from "react-icons/bi";
+import { FcCancel } from "react-icons/fc";
+
+// components
+import Overlay from "../../../components/Overlay";
+import ZodError  from "../../../components/zodError";
+
+// validations
+import {ratingSchema} from "../../../validationSchemas/ratingSchema";
+
+// hooks
+import { useCurrentUser } from "../../../hooks/useCurrentUser";
+
+// server actions
+import { PostData } from "../../../lip/fetchData";
+// loading
+import { PulseLoader } from "react-spinners";
+import { ButtonWithIcon } from "../../../components/buttons";
+// context
+import { ReviewsContext } from "../reviewsContext";
+import { FormModelProduct } from "./formModelProduct";
 
 
-export const ReviewFormModel = ()=> {
+export const AddReviewFormModel = ({setShowModel})=> {
+
+
+    const user = useCurrentUser();
+    const {product,setReviews} = useContext(ReviewsContext)
+    const [rating,setRating] = useState(1);
+    const [error,setError] = useState(null);
+    const router = useRouter();
+    const [isPending,startTransion] = useTransition();
+
+    const reviewFormRef = useRef();
+
+    const handleReview = ()=> {
+
+        const formData = new FormData(reviewFormRef.current);
+
+        if(!user) {
+          router.push('auth/login');
+          setShowModel(false);
+            return;
+        }
+
+        formData.append('rating',Number(rating));
+        formData.append('productId',product?.id);
+        formData.append('autherId',user?.id)
+
+        console.log(Object.fromEntries(formData.entries()))
+
+        const formValidation = ratingSchema.safeParse(Object.fromEntries(formData.entries()));
+
+        if(formValidation.success){
+            setError(null);
+            startTransion(()=> {
+                PostData('/api/products/reviews',formData)
+                .then(data => {
+
+                    console.log(data);
+                        setReviews(prev=> [{...data,auther: {name: user?.name,image:user?.image}},...prev]);
+                        setShowModel(false);
+                })
+                .catch((error)=> {
+                    console.log(error)
+                })
+
+            });
+        };
+
+        if(formValidation.error){
+
+            console.log(formValidation)
+            setError(formValidation.error);
+        }
+
+    };
+
+    const className = {
+        WhriteReview: "fixed top-16 z-50  max-h-[550px] rounded-md left-1/2 translate-x-[-50%] w-[380px] sm:w-[600px] bg-gray-50 border border-gray-200 overflow-y-auto",
+        btn:'flex items-center justify-center gap-2  border py-2 rounded-full w-full text-sm font-bold  border-green-200 text-teal-800 hover:bg-green-100 hover:scale-95 '
+    };
+
     return (
         <>
             <div className={className.WhriteReview}>
-                <section className="min-h-fit">
+                <section className="min-h-fit p-3">
                     <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                     <header className="text-center mb-4">
                         <h3 className="text-lg text-teal-900 font-bold"
@@ -17,13 +99,18 @@ export const ReviewFormModel = ()=> {
                         </h3>
                         <p className="text-teal-700">Tell us what you think about this product</p>
                     </header>
-                    <ProductRating />
+                    <FormModelProduct
+                        error={error}
+                        product={product} 
+                        setRating={setRating} 
+                        rating={rating}
+                        />
                     <form action={handleReview} ref={reviewFormRef}>
                         <div className="w-full capitalize">
                             <label 
                                 className="text-md text-gray-500 font-bold"
                                 htmlFor="reviewImage"
-                                > review image:
+                                > review images:
                             </label>
                             <input
                             className="p-2 my-3 bg-white rounded-md text-gray-500  w-full" 
@@ -43,7 +130,7 @@ export const ReviewFormModel = ()=> {
                             <textarea 
                                 className="w-full p-3 my-3 text-teal-900" 
                                 id="rateText" 
-                                cols="30" 
+                                cols="20" 
                                 rows="8"
                                 name='rateText'
                                 placeholder="write a review..."
