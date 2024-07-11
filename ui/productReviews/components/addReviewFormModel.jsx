@@ -36,7 +36,7 @@ export const AddReviewFormModel = ({setShowModel})=> {
     const [rating,setRating] = useState(1);
     const [error,setError] = useState(null);
     const router = useRouter();
-    const [isPending,startTransion] = useTransition();
+    const [isPending,setisPending] = useState(false);
 
     const reviewFormRef = useRef();
 
@@ -54,32 +54,29 @@ export const AddReviewFormModel = ({setShowModel})=> {
         formData.append('productId',product?.id);
         formData.append('autherId',user?.id)
 
-        console.log(Object.fromEntries(formData.entries()))
-
         const formValidation = ratingSchema.safeParse(Object.fromEntries(formData.entries()));
-
+        setisPending(true)
         if(formValidation.success){
             setError(null);
-            startTransion(()=> {
-                PostData('/api/products/reviews',formData)
-                .then(data => {
+            PostData('/api/products/reviews',formData)
+            .then(data => {
 
-                    console.log(data);
-                        setReviews(prev=> [{...data,auther: {name: user?.name,image:user?.image}},...prev]);
-                        setShowModel(false);
-                })
-                .catch((error)=> {
-                    console.log(error)
-                })
-
-            });
+                console.log(data);
+                    setReviews(prev=> [{...data,auther: {name: user?.name,image:user?.image}},...prev]);
+                    setShowModel(false);
+            })
+            .catch((error)=> {
+                throw new Error(error?.message);
+            })
+            .finally(()=> {
+                setisPending(false);
+            })
         };
 
         if(formValidation.error){
-
-            console.log(formValidation)
             setError(formValidation.error);
-        }
+            setisPending(false)
+        };
 
     };
 
