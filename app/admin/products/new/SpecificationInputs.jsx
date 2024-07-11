@@ -1,45 +1,13 @@
 "use client"
 
 import {  useEffect, useState } from "react";
-import {specifZSchema} from '../../../../validationSchemas/newProductSchemas';
+// import {specifZSchema} from '../../../../validationSchemas/newProductSchemas';
 
 
-export default function SpecificationInputs({setData,className}) {
+export default function SpecificationInputs({className}) {
 
     const [specificationArr,setSpecification] = useState([{ key:'',value: ''}]);
-    const [errors,setErrors] = useState(null)
 
-
-    const addMore = ()=> {
-        setSpecification(prev=> {
-            return [...prev,{
-                key:'',
-                value: '',
-            }]
-        })
-    };
-
-    useEffect(()=> {
-
-    const  test = specifZSchema.array().safeParse(specificationArr);
-
-    if(test.success){
-        setErrors(null)
-        setData([...specificationArr])
-    }else {
-        setErrors(JSON.parse(test.error))
-    }
-    },[specificationArr]);
-
-    const addKey = (e,i)=> {
-
-       setSpecification(prev=> {
-            prev[i].key = e.target.value;
-            return [...prev]
-           }
-        )
- 
-    }
 
     const addValue =  (e,i)=> {
            setSpecification(prev=> {
@@ -48,6 +16,14 @@ export default function SpecificationInputs({setData,className}) {
             })
                 document.getElementById(`${'value-'+i}`).focus()
 
+    };
+    const addMore = ()=> {
+        setSpecification(prev=> {
+            return [...prev,{
+                key:'',
+                value: '',
+            }]
+        })
     };
 
     const deleteInput = (i)=> {
