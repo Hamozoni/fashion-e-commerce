@@ -9,7 +9,12 @@ import { ButtonWithIcon } from "../../../../components/buttons";
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
 
-export function SpecificationInputs({title,data}) {
+const data = {
+    name : 'specificaton key',
+    value : 'product specificaton value',
+}
+
+export function SpecificationInputs() {
 
     const [errors,setErrors] = useState(null);
 
@@ -32,14 +37,10 @@ export function SpecificationInputs({title,data}) {
 
   return (
     <section className="">
-        <h4 
-            className="text-center text-lg text-teal-900 py-3 font-bold"
-            >{title}
-        </h4>
         <form >
 
             {
-                specification?.map(({name,value,stack},index)=> (
+                specification?.map(({name,value},index)=> (
                     <div key={`${name}_${index}`} className="flex items-center gap-3 mb-3 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
                         <FormInput 
                             name={`${name} ${index}`} 
@@ -53,13 +54,6 @@ export function SpecificationInputs({title,data}) {
                             label={`${value} ${index + 1}`}
                             type='text'
                             placeHolder='specification value...'
-                            errors={errors}
-                            />
-                        <FormInput 
-                            name={`${stack} ${index}`} 
-                            label={`${stack} ${index + 1}`}
-                            type='number'
-                            placeHolder='stack quantity...'
                             errors={errors}
                             />
                     </div>

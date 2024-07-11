@@ -106,22 +106,7 @@ const NewProducts = () => {
 
                     </div>
                 </form>
-                <SpecificationInputs 
-                    title='product specifications' 
-                    data={{
-                        name : 'specificaton key',
-                        value : 'product specificaton value',
-                        stack: 'stack quantity'
-                    }} 
-                />
-                <SpecificationInputs 
-                    title='sizes' 
-                    data={{
-                        name : 'size name',
-                        value : 'size describection',
-                        stack: 'stack quantity'
-                    }} 
-                />
+                <SpecificationInputs />
             </div>
             <div className="flex items-center justify-between mt-3">
                 <div className="w-[100px]">
