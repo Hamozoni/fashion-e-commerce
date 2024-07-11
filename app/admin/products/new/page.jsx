@@ -63,35 +63,37 @@ const NewProducts = () => {
 
     const handleSubmit =  (event)=> {
 
+        console.log(event)
+
         event.preventDefault();
 
-        const test = productZSchema.safeParse(data);
+        // const test = productZSchema.safeParse(data);
 
-        const formData = new FormData();
+        // const formData = new FormData();
 
-        if(test.success) {
+        // if(test.success) {
 
-            startTransition(async()=> {
-                const config = {
-                    headers: { 'content-type': 'multipart/form-data' }
-                  }
+        //     startTransition(async()=> {
+        //         const config = {
+        //             headers: { 'content-type': 'multipart/form-data' }
+        //           }
     
-                await axios.post('/api/products/new',formData, config)
-                    .then(response => {
+        //         await axios.post('/api/products/new',formData, config)
+        //             .then(response => {
     
-                    router.push('/admin/products');
-                      console.log(response);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
-            })
+        //             router.push('/admin/products');
+        //               console.log(response);
+        //             })
+        //             .catch(error => {
+        //                 console.log(error);
+        //             })
+        //     })
 
-        }else {
+        // }else {
 
-            console.log(JSON.parse(test.error))
-            setErrors(JSON.parse(test.error))
-        }
+        //     console.log(JSON.parse(test.error))
+        //     setErrors(JSON.parse(test.error))
+        // }
 
     }
 
