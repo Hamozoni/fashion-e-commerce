@@ -13,10 +13,11 @@ import {SelectSizes} from "./selectSizes";
 const data = {
     image: 'images',
     color: 'color',
-    colorName :'color name'
+    colorName :'color name',
+    priceInHalala: 'price in halala'
 }
 
-export function ImagesColor({categoryName}) {
+export function ImagesColor() {
 
     const [errors,setErrors] = useState(null);
 
@@ -75,8 +76,8 @@ export function ImagesColor({categoryName}) {
         </header>
         <form >
                 {
-                    imagesColor?.map(({image,color,colorName},index)=> (
-                        <div className="bg-gray-50 p-2 border border-gray-200 rounded-md">
+                    imagesColor?.map(({image,color,colorName,priceInHalala},index)=> (
+                        <div className="p-2 border-2 border-gray-200 rounded-md mb-5 shadow-sm ">
                             <div key={`${image}_${index}`} className="flex items-center gap-3 mb-3 flex-wrap">
                                 <FormInput 
                                     name={`${image} ${index}`} 
@@ -95,6 +96,13 @@ export function ImagesColor({categoryName}) {
                                     label={`${colorName} ${index + 1}`}
                                     type='text'
                                     placeHolder='your color name...'
+                                    errors={errors}
+                                    />
+                                 <FormInput 
+                                    name={`${priceInHalala} ${index}`} 
+                                    label={`${priceInHalala} ${index + 1}`}
+                                    type='number'
+                                    placeHolder='price in halala...'
                                     errors={errors}
                                     />
                             </div>

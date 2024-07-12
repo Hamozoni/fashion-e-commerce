@@ -33,31 +33,37 @@ const man_women_sizes = [
         id: 1,
         name: 'small',
         shortName: 'S',
+        quantity: 0
     },
     {
         id: 2,
         name: 'medium',
         shortName: 'M',
+        quantity: 0
     },
     {
         id: 3,
         name: 'large',
         shortName: 'L',
+        quantity: 0
     },
     {
         id: 4,
         name: 'X large',
         shortName: 'XL',
+        quantity: 0
     },
     {
         id: 5,
         name: 'XX large',
         shortName: '2XL',
+        quantity: 0
     },
     {
         id: 6,
         name: 'XXX large',
         shortName: '3XL',
+        quantity: 0
     }
 ];
 
@@ -66,31 +72,37 @@ const kids_sizes = [
         id: 1,
         name: '1 to 2 years',
         shortName: '1-2Y',
+        quantity: 0
     },
     {
         id: 2,
         name: '2 to 3 years',
         shortName: '2-3Y',
+        quantity: 0
     },
     {
         id: 3,
         name: '3 to 5 years',
         shortName: '3-5Y',
+        quantity: 0
     },
     {
         id: 4,
         name: '5 to 7 years',
         shortName: '5-7Y',
+        quantity: 0
     },
     {
         id: 5,
         name: '7 to 10 years',
         shortName: '7-10Y',
+        quantity: 0
     },
     {
         id: 6,
         name: '10 to 14 years',
         shortName: '10-14Y',
+        quantity: 0
     }
 ]
 
