@@ -3,13 +3,16 @@ import { useState } from "react";
 import {categoriesData} from "../../../../data/categoriesData";
 import { IoMdArrowDropright } from "react-icons/io";
 
-export const SelectCategory = ({categoryName,setCategoryName})=> {
+export const SelectCategory = ()=> {
 
-    const [isModel,setIsModel] = useState(false)
+    const [isSubCatecoryModel,setIsSubCategoryModel] = useState(false);
+    const [isCategoryModel,setIsCategoryModel] = useState(false);
+    const [categoryName,setCategoryName] = useState('men');
+    const [subCategoryName,setSubCategoryName] = useState('');
 
    const className = {
         label: 'text-lg font-bold text-gray-500 group-hover:text-teal-500',
-        select: 'cursor-pointer px-3 py-1 flex items-center justify-between gap-3 w-[150px] rounded-md bg-gray-50 border-2',
+        select: 'cursor-pointer px-3 py-1 flex items-center justify-between gap-3 w-[180px] rounded-md bg-gray-50 border-2',
         ul:"absolute top-[110%] left-0 w-full bg-gray-50 shadow-md rounded-md border-2 border-teal-300"
     }
 
@@ -20,13 +23,13 @@ export const SelectCategory = ({categoryName,setCategoryName})=> {
 
                 <div className="relative w-fit">
                     <div 
-                         onClick={()=> setIsModel(!isModel)}
-                        className={`${isModel? 'border-teal-300' : 'border-gray-200'} ${className.select}`}>
+                         onClick={()=> setIsCategoryModel(!isCategoryModel)}
+                        className={`${isCategoryModel? 'border-teal-300' : 'border-gray-200'} ${className.select}`}>
                         <h5 className="text-lg font-medium text-teal-950">{categoryName}</h5>
-                        <IoMdArrowDropright color=" #5eead4"/>
+                        <IoMdArrowDropright size={22}/>
                     </div>
                     {
-                        isModel ? 
+                        isCategoryModel ? 
                         <ul className={className.ul}>
                             {
                                 categoriesData?.map(({name,id})=> (
@@ -49,19 +52,22 @@ export const SelectCategory = ({categoryName,setCategoryName})=> {
 
                 <div className="relative w-fit">
                     <div 
-                         onClick={()=> setIsModel(!isModel)}
-                        className={`${isModel? 'border-teal-300' : 'border-gray-200'} ${className.select}`}>
-                        <h5 className="text-lg font-medium text-teal-950">{categoryName}</h5>
-                        <IoMdArrowDropright color=" #5eead4"/>
+                         onClick={()=> setIsSubCategoryModel(!isSubCatecoryModel)}
+                        className={`${isSubCatecoryModel? 'border-teal-300' : 'border-gray-200'} ${className.select}`}>
+                        <h5 
+                            className="text-lg font-medium text-teal-950"
+                            >{subCategoryName || 'subcategory'}
+                        </h5>
+                        <IoMdArrowDropright size={22}/>
                     </div>
                     {
-                        isModel ? 
+                        isSubCatecoryModel ? 
                         <ul className={className.ul}>
                             {
                                 categoriesData?.find(e=> e.name === categoryName)?.sub?.map(({name,id})=> (
                                 <li
-                                    className={`${name === categoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
-                                    onClick={()=> setCategoryName(name)}
+                                    className={`${name === subCategoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
+                                    onClick={()=> setSubCategoryName(name)}
                                     key={id}
                                     >
                                     {name}

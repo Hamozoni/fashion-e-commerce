@@ -8,6 +8,7 @@ import { ButtonWithIcon } from "../../../../components/buttons";
 import { categoriesData } from "../../../../data/categoriesData";
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
+import {SelectSizes} from "./selectSizes";
 
 const data = {
     image: 'images',
@@ -73,32 +74,36 @@ export function ImagesColor({categoryName}) {
 
         </header>
         <form >
+                {
+                    imagesColor?.map(({image,color,colorName},index)=> (
+                        <div className="bg-gray-50 p-2 border border-gray-200 rounded-md">
+                            <div key={`${image}_${index}`} className="flex items-center gap-3 mb-3 flex-wrap">
+                                <FormInput 
+                                    name={`${image} ${index}`} 
+                                    label={`${image} ${index + 1}`}
+                                    type='file'
+                                    errors={errors}
+                                    />
+                                <FormInput 
+                                    name={`${color} ${index}`} 
+                                    label={`${color} ${index + 1}`}
+                                    type='color'
+                                    errors={errors}
+                                    />
+                                <FormInput 
+                                    name={`${colorName} ${index}`} 
+                                    label={`${colorName} ${index + 1}`}
+                                    type='text'
+                                    placeHolder='your color name...'
+                                    errors={errors}
+                                    />
+                            </div>
+                            <SelectSizes />
 
-            {
-                imagesColor?.map(({image,color,colorName},index)=> (
-                    <div key={`${image}_${index}`} className="flex items-center gap-3 mb-3 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
-                        <FormInput 
-                            name={`${image} ${index}`} 
-                            label={`${image} ${index + 1}`}
-                            type='file'
-                            errors={errors}
-                            />
-                        <FormInput 
-                            name={`${color} ${index}`} 
-                            label={`${color} ${index + 1}`}
-                            type='color'
-                            errors={errors}
-                            />
-                        <FormInput 
-                            name={`${colorName} ${index}`} 
-                            label={`${colorName} ${index + 1}`}
-                            type='text'
-                            placeHolder='your color name...'
-                            errors={errors}
-                            />
-                    </div>
-                ))
-            }
+                        </div>
+                    ))
+                }
+
         </form>
     </section>
   )
