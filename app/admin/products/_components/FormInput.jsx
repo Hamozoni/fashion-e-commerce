@@ -9,7 +9,7 @@ export function FormInput({name,label,type,placeHolder,errors,required = true}) 
 
     
   return (
-    <div className="group pb-4w-[300px] flex-grow">
+    <div className="group pb-4 flex-grow">
         <label 
             className={className.label} 
             htmlFor={name}
@@ -17,7 +17,7 @@ export function FormInput({name,label,type,placeHolder,errors,required = true}) 
         </label>
         <input 
             name={name}
-            className={type !== 'color' ? className.inputClass : 'flex'}
+            className={type !== 'color' ? className.inputClass : 'flex mt-3 rounded-full'}
             type={type} 
             id={name} 
             placeholder={placeHolder}
@@ -32,7 +32,7 @@ export const FormTextera = ({label,name,placeHolder,errors,required = true})=> {
 
   return (
 
-    <div className="group pb-4 border-b border-gray-100 w-full">
+    <div className="group pb-4 border-b border-gray-100 flex-grow w-full">
       <label className={className.label}  htmlFor="description">{label}* </label>
       <textarea 
           name={name}  

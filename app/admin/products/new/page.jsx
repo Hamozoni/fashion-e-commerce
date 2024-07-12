@@ -1,10 +1,11 @@
 "use client";
 
 import {useState, useTransition } from "react";
-import   {FormInput,FormTextera} from "./FormInput";
-import {SpecificationInputs}from "./SpecificationInputs";
+import   {FormInput,FormTextera} from "../_components/FormInput";
+import {SpecificationInputs}from "../_components/SpecificationInputs";
 import { ButtonWithIcon } from "../../../../components/buttons";
-import {ImagesColor} from "./ImagesClolors"
+import {ImagesColor} from "../_components/ImagesClolors";
+import {SelectCategory} from '../_components/selectCategory'
 import axios from "axios";
 import { useRouter } from "next/navigation";
 // import {postNewProductAction} from "../../../../actions/products/postNewProduct"
@@ -12,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 
 import { IoArrowBackOutline,IoArrowForwardSharp } from "react-icons/io5";
-import Loading from "./Loading"
+import Loading from "../_components/Loading"
 
 const inputsInfo = [
     {
@@ -64,7 +65,7 @@ const NewProducts = () => {
                 <form 
                     onSubmit={handleSubmit} 
                     >
-                    <div className="flex items-center gap-5 flex-wrap">
+                    <div className="flex  gap-5 flex-wrap">
                         {
                             inputsInfo.map(input=> (
                                     <FormInput 
@@ -78,6 +79,7 @@ const NewProducts = () => {
                             ))
                         }
 
+                        <SelectCategory />
                     </div>
                     <div >
                         <FormTextera 

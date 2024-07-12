@@ -5,7 +5,7 @@ import { FormInput } from "./FormInput";
 import { ButtonWithIcon } from "../../../../components/buttons";
 // import {specifZSchema} from '../../../../validationSchemas/newProductSchemas';
 
-
+import { categoriesData } from "../../../../data/categoriesData";
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
 
@@ -38,10 +38,40 @@ export function ImagesColor() {
 
   return (
     <section className="">
-        <h4 
-            className="text-center text-lg text-teal-900 py-3 font-bold"
-            > color details
-        </h4>
+
+        <header className="flex items-center justify-between my-3">
+            
+            <h4 
+                className="text-center text-lg text-teal-900 py-3 font-bold"
+                > color details
+            </h4>
+            <div className="flex items-center gap-5">
+                {
+                    imagesColor?.length > 1 ? 
+                    <div className="w-[100px]">
+                        <ButtonWithIcon 
+                            text='' 
+                            Icon={FiMinus} 
+                            type='delete' 
+                            disabled={false} 
+                            onClick={() => deleteInput(imagesColor?.length - 1)}
+                            />
+                    </div>
+                    : null
+                }
+                <div className="w-[100px]">
+                    <ButtonWithIcon 
+                    text='' 
+                    Icon={IoIosAdd} 
+                    type='save' 
+                    disabled={false} 
+                    onClick={addMore}
+                    />
+                </div>
+
+            </div>
+
+        </header>
         <form >
 
             {
@@ -70,32 +100,6 @@ export function ImagesColor() {
                 ))
             }
         </form>
-
-        <footer className="flex items-center justify-center gap-5 my-3">
-            <div className="w-[100px]">
-                <ButtonWithIcon 
-                text='' 
-                Icon={IoIosAdd} 
-                type='save' 
-                disabled={false} 
-                onClick={addMore}
-                />
-            </div>
-            {
-                imagesColor?.length > 1 ? 
-                <div className="w-[100px]">
-                    <ButtonWithIcon 
-                        text='' 
-                        Icon={FiMinus} 
-                        type='delete' 
-                        disabled={false} 
-                        onClick={() => deleteInput(imagesColor?.length - 1)}
-                        />
-                </div>
-                : null
-            }
-
-        </footer>
     </section>
   )
 }
