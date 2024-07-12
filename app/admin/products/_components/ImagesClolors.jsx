@@ -15,7 +15,7 @@ const data = {
     colorName :'color name'
 }
 
-export function ImagesColor() {
+export function ImagesColor({categoryName}) {
 
     const [errors,setErrors] = useState(null);
 

@@ -40,6 +40,7 @@ const NewProducts = () => {
 
     const [errors,setErrors] = useState(null);
     const [isPendding,startTransition] = useTransition();
+    const [categoryName,setCategoryName] = useState('men');
 
     const router = useRouter();
 
@@ -79,7 +80,10 @@ const NewProducts = () => {
                             ))
                         }
 
-                        <SelectCategory />
+                        <SelectCategory 
+                            categoryName={categoryName} 
+                            setCategoryName={setCategoryName}
+                        />
                     </div>
                     <div >
                         <FormTextera 
@@ -92,7 +96,7 @@ const NewProducts = () => {
                     </div>
                 </form>
                 <SpecificationInputs />
-                <ImagesColor />
+                <ImagesColor categoryName={categoryName}/>
             </div>
             <div className="flex items-center justify-between mt-3">
                 <div className="w-[100px]">
