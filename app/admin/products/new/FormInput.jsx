@@ -2,14 +2,14 @@ import ZodError from "../../../../components/zodError";
 
 const className = {
   inputClass : 'w-full max-w-full text-teal-900 bg-gray-50 outline-none border-b-gray-200 border-b-2 rounded-tl-md rounded-tr-md  focus:border-teal-400  p-2 my-2',
-  label: 'text-lg font-bold text-gray-400 group-hover:text-teal-500',
+  label: 'text-lg font-bold text-gray-500 group-hover:text-teal-500',
 };
 
 export function FormInput({name,label,type,placeHolder,errors,required = true}) {
 
     
   return (
-    <div className="group pb-4 border-b border-gray-100 w-[300px] flex-grow">
+    <div className="group pb-4w-[300px] flex-grow">
         <label 
             className={className.label} 
             htmlFor={name}
@@ -17,7 +17,7 @@ export function FormInput({name,label,type,placeHolder,errors,required = true}) 
         </label>
         <input 
             name={name}
-            className={className.inputClass}
+            className={type !== 'color' ? className.inputClass : 'flex'}
             type={type} 
             id={name} 
             placeholder={placeHolder}

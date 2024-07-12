@@ -41,7 +41,7 @@ export function SpecificationInputs() {
 
             {
                 specification?.map(({name,value},index)=> (
-                    <div key={`${name}_${index}`} className="flex items-center gap-3 mb-3 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
+                    <div key={`${name}_${index}`} className="flex items-center gap-3 mb-5 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
                         <FormInput 
                             name={`${name} ${index}`} 
                             label={`${name} ${index + 1}`}

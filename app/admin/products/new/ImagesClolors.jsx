@@ -9,21 +9,27 @@ import { ButtonWithIcon } from "../../../../components/buttons";
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
 
+const data = {
+    image: 'images',
+    color: 'color',
+    colorName :'color name'
+}
+
 export function ImagesColor() {
 
     const [errors,setErrors] = useState(null);
 
-    const [specification,setSpecification] = useState([data]);
+    const [imagesColor,setImagesColor] = useState([data]);
 
 
     const addMore = ()=> {
-        setSpecification(prev=> {
+        setImagesColor(prev=> {
             return [...prev,data]
         })
     };
 
     const deleteInput = (length)=> {
-        setSpecification(prev=> {
+        setImagesColor(prev=> {
             prev.length = length;
 
             return [...prev]
@@ -34,32 +40,30 @@ export function ImagesColor() {
     <section className="">
         <h4 
             className="text-center text-lg text-teal-900 py-3 font-bold"
-            >{title}
+            > color details
         </h4>
         <form >
 
             {
-                specification?.map(({name,value,stack},index)=> (
-                    <div key={`${name}_${index}`} className="flex items-center gap-3 mb-3 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
+                imagesColor?.map(({image,color,colorName},index)=> (
+                    <div key={`${image}_${index}`} className="flex items-center gap-3 mb-3 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
                         <FormInput 
-                            name={`${name} ${index}`} 
-                            label={`${name} ${index + 1}`}
-                            type='text'
-                            placeHolder='specification key...'
+                            name={`${image} ${index}`} 
+                            label={`${image} ${index + 1}`}
+                            type='file'
                             errors={errors}
                             />
                         <FormInput 
-                            name={`${value} ${index}`} 
-                            label={`${value} ${index + 1}`}
-                            type='text'
-                            placeHolder='specification value...'
+                            name={`${color} ${index}`} 
+                            label={`${color} ${index + 1}`}
+                            type='color'
                             errors={errors}
                             />
                         <FormInput 
-                            name={`${stack} ${index}`} 
-                            label={`${stack} ${index + 1}`}
-                            type='number'
-                            placeHolder='stack quantity...'
+                            name={`${colorName} ${index}`} 
+                            label={`${colorName} ${index + 1}`}
+                            type='text'
+                            placeHolder='your color name...'
                             errors={errors}
                             />
                     </div>
@@ -78,14 +82,14 @@ export function ImagesColor() {
                 />
             </div>
             {
-                specification?.length > 1 ? 
+                imagesColor?.length > 1 ? 
                 <div className="w-[100px]">
                     <ButtonWithIcon 
                         text='' 
                         Icon={FiMinus} 
                         type='delete' 
                         disabled={false} 
-                        onClick={() => deleteInput(specification?.length - 1)}
+                        onClick={() => deleteInput(imagesColor?.length - 1)}
                         />
                 </div>
                 : null

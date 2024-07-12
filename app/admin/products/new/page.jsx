@@ -3,12 +3,13 @@
 import {useState, useTransition } from "react";
 import   {FormInput,FormTextera} from "./FormInput";
 import {SpecificationInputs}from "./SpecificationInputs";
+import { ButtonWithIcon } from "../../../../components/buttons";
+import {ImagesColor} from "./ImagesClolors"
 import axios from "axios";
 import { useRouter } from "next/navigation";
 // import {postNewProductAction} from "../../../../actions/products/postNewProduct"
 
 
-import { ButtonWithIcon } from "../../../../components/buttons";
 
 import { IoArrowBackOutline,IoArrowForwardSharp } from "react-icons/io5";
 import Loading from "./Loading"
@@ -20,29 +21,11 @@ const inputsInfo = [
        type: 'text',
        place:'the name of the product...'
     },
-    {
-        name : 'priceInCent',
-        label: 'price',
-        type: 'number',
-        place:'the price of the product in cent...'
-     },
-     {
-        name : 'category',
-        label: 'category',
-        type: 'text',
-        place:'the category of your product...'
-     },
      {
         name : 'brand',
         label: 'brand',
         type: 'text',
         place:'the brand of your product...'
-     },
-     {
-        name : 'subCategory',
-        label: 'subcategory',
-        type: 'text',
-        place:'the subcategory of your product...'
      },
      {
         name : 'serialNumber',
@@ -107,6 +90,7 @@ const NewProducts = () => {
                     </div>
                 </form>
                 <SpecificationInputs />
+                <ImagesColor />
             </div>
             <div className="flex items-center justify-between mt-3">
                 <div className="w-[100px]">
