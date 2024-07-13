@@ -96,6 +96,10 @@ const NewProducts = () => {
 
         const valitadData = zProductShema.safeParse(data);
 
+        if(valitadData.success) {
+            
+        }
+
         console.log(data)
         console.log(valitadData)
 
