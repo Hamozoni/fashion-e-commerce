@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 
 
-import { IoArrowBackOutline,IoArrowForwardSharp } from "react-icons/io5";
+import { IoArrowBackOutline } from "react-icons/io5";
 import Loading from "../_components/Loading"
 
 
@@ -23,12 +23,13 @@ const NewProducts = () => {
     const formRef = useRef()
 
     const router = useRouter();
+    
+    const formData = new FormData(formRef.current);
 
     const handleSubmit =  ()=> {
 
-        const formData = new FormData(formRef.current);
-
         console.log(Object.fromEntries(formData.entries()))
+        console.log(formData)
 
     }
 
@@ -47,9 +48,9 @@ const NewProducts = () => {
                     ref={formRef}
                     action={handleSubmit} 
                     >
-                    <ProductInfoForm/>
+                    <ProductInfoForm formData={formData}/>
                     <SpecificationInputs />
-                    <ImagesColor />
+                    <ImagesColor formData={formData}/>
 
                     <div className="w-[200px]">
                      <ButtonWithIcon

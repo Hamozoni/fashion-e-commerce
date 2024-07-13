@@ -106,6 +106,108 @@ const kids_sizes = [
     }
 ]
 
+export const kids_shoes_sizes = [
+    {
+        id: 1,
+        name: '17 EU',
+        shortName: '17',
+        quantity: 0
+    },
+    {
+        id: 2,
+        name: '19 EU',
+        shortName: '19',
+        quantity: 0
+    },
+    {
+        id: 3,
+        name: '20 EU',
+        shortName: '20',
+        quantity: 0
+    },
+    {
+        id: 4,
+        name: '21 EU',
+        shortName: '21',
+        quantity: 0
+    },
+    {
+        id: 5,
+        name: '24 EU',
+        shortName: '24',
+        quantity: 0
+    },
+    {
+        id: 6,
+        name: '26 EU',
+        shortName: '26',
+        quantity: 0
+    },
+    {
+        id: 7,
+        name: '30 EU',
+        shortName: '30',
+        quantity: 0
+    },
+]
+
+export const shoes_sizes = [
+    {
+        id: 8,
+        name: '36 EU',
+        shortName: '36',
+        quantity: 0
+    },
+    {
+        id: 9,
+        name: '38 EU',
+        shortName: '38',
+        quantity: 0
+    },
+    {
+        id: 10,
+        name: '40 EU',
+        shortName: '40',
+        quantity: 0
+    },
+    {
+        id: 11,
+        name: '41 EU',
+        shortName: '41',
+        quantity: 0
+    },
+    {
+        id: 12,
+        name: '42 EU',
+        shortName: '42',
+        quantity: 0
+    },
+    {
+        id: 13,
+        name: '43 EU',
+        shortName: '43',
+        quantity: 0
+    },
+    {
+        id: 14,
+        name: '44 EU',
+        shortName: '44',
+        quantity: 0
+    },
+    {
+        id: 15,
+        name: '45 EU',
+        shortName: '45',
+        quantity: 0
+    },
+    {
+        id: 16,
+        name: '46 EU',
+        shortName: '46',
+        quantity: 0
+    }
+]
+
 
 
 export const categoriesData = [
@@ -153,7 +255,8 @@ export const categoriesData = [
                 linkPath: '/men?sub=shoes'
             }
         ],
-        sizes: man_women_sizes
+        sizes: man_women_sizes,
+        shoesSizes : shoes_sizes
     },
     {
         id: 2,
@@ -199,7 +302,8 @@ export const categoriesData = [
                 linkPath: '/section?category=women&sub=shoes'
             }
         ],
-        sizes: man_women_sizes
+        sizes: man_women_sizes,
+        shoesSizes : shoes_sizes
     },
     {
         id: 3,
@@ -245,7 +349,8 @@ export const categoriesData = [
                 linkPath: '/section?category=kids&sub=shoes'
             }
         ],
-        sizes: kids_sizes
+        sizes: kids_sizes,
+        shoesSizes : kids_shoes_sizes
     }
 ];
 

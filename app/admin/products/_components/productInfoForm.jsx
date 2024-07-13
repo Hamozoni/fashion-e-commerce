@@ -24,7 +24,7 @@ const inputsInfo = [
      },
 ];
 
-export const ProductInfoForm = ()=> {
+export const ProductInfoForm = ({formData})=> {
     return (
         <>
             <div className="flex  gap-5 flex-wrap">
@@ -41,7 +41,7 @@ export const ProductInfoForm = ()=> {
                 ))
             }
 
-            <SelectCategory />
+            <SelectCategory formData={formData} />
         </div>
         <div >
         <FormTextera 

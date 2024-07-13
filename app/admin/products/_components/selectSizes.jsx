@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {categoriesData} from "../../../../data/categoriesData";
 import { FormInput } from "./FormInput";
 
@@ -9,9 +9,16 @@ const className = {
 }
 
 
-export const SelectSizes = ({i})=> {
+export const SelectSizes = ({i,formData})=> {
 
     const [sizes,setSizes] = useState([]);
+
+    const isShoes = formData.get('subCatgory') === 'shoes';
+
+    const shoesSizes = categoriesData.find(e=> e.name === formData.get('category'))?.shoesSizes;
+    const elseSizes = categoriesData.find(e=> e.name === formData.get('category'))?.sizes
+
+    const sizesData = isShoes ? shoesSizes : elseSizes
       
 
     const handleSize = (size)=> {
@@ -26,9 +33,11 @@ export const SelectSizes = ({i})=> {
             setSizes(prev=> [...prev,size])
         };
 
-        console.log(sizes)
-        console.log(sizes?.includes(size))
-    }
+    };
+
+    useEffect(()=> {
+        formData.set(`size ${i}`,sizes)
+    },[sizes])
 
 
     return (
@@ -37,7 +46,7 @@ export const SelectSizes = ({i})=> {
                 <h5 className="text-center p-4 ">place slesct avalbe sizes *</h5>
                 <ul className="flex items-center justify-center  gap-3">
                     {
-                        categoriesData[0]?.sizes?.map(({name,shortName,id,quantity})=> (
+                        sizesData?.map(({name,shortName,id,quantity})=> (
                             <li 
                                 key={id}
                                 onClick={()=> handleSize({name,shortName,id,quantity})}
