@@ -55,8 +55,7 @@ const NewProducts = () => {
                 color: formData.get(`${color} ${index}`),
                 princeInHalala : 44,
                 images:  formData.getAll(`${image} ${index}`),
-                sizes: sizes[index]
-
+                sizes: sizes[index].quantity = formData.get(`quantity ${sizes[index]?.shortName} ${index}`)
             })
         })
 

@@ -41,7 +41,7 @@ export function ImagesColor({category,colors,setColors,sizes,setSizes}) {
     };
 
     useEffect(()=> {
-        const sizesLength = new Array().fill([])
+        const sizesLength = new Array(colors.length).fill([]);
         setSizes(sizesLength)
     },[category]);
 
