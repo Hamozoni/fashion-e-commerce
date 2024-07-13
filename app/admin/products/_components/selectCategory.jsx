@@ -37,7 +37,6 @@ export const SelectCategory = ({setCatgory,category})=> {
                                     className={`${name === categoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
                                     onClick={()=> {
                                         setCategoryName(name);
-                                        formData.set('category',name);
                                         setCatgory({name,sub,sizes,shoesSizes})
                                     }}
                                     key={id}
@@ -73,7 +72,10 @@ export const SelectCategory = ({setCatgory,category})=> {
                                     className={`${name === subCategoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
                                     onClick={()=> {
                                         setSubCategoryName(name);
-                                        formData.set('subCategory',name);
+                                        setCatgory(prev => {
+                                            prev.subName = name;
+                                            return {...prev}
+                                        })
                                     }}
                                     key={id}
                                     >

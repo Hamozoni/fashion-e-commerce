@@ -17,6 +17,22 @@ import Loading from "../_components/Loading"
 const NewProducts = () => {
 
     const [category,setCatgory] = useState({});
+
+    const [specifications,setSpecifications] = useState([{
+        name : 'specificaton key',
+        value : 'specificaton value',
+    }]);
+    const [colors,setColors] = useState([
+        {
+            image: 'images',
+            color: 'color',
+            colorName :'color name',
+            priceInHalala: 'price in halala'
+        }
+    ]);
+
+    const [sizes,setSizes] = useState([[]]);
+
     const [errors,setErrors] = useState(null);
     const [isPendding,startTransition] = useTransition();
 
@@ -26,10 +42,35 @@ const NewProducts = () => {
     
     const formData = new FormData(formRef.current);
 
-    const handleSubmit =  ()=> {
+    const handleSubmit =  (event)=> {
 
+        event.preventDefault();
+
+        let informations = []
+
+        colors?.map(({image,color,colorName},index)=> {
+            informations?.push({
+                colorName: formData.get(`${colorName} ${index}`),
+                color: formData.get(`${color} ${index}`),
+                princeInHalala : 44,
+                images:  formData.getAll(`${image} ${index}`),
+                sizes: sizes[index]
+
+            })
+        })
+
+        const data = {
+            name : formData.get('name'),
+            brand: formData.get('brand'),
+            serialNumber : formData.get('brand'),
+            category : category?.name,
+            subcategory: category.subName,
+            describtion: formData.get('describtion'),
+            informations,
+        }
+
+        console.log(data)
         console.log(Object.fromEntries(formData.entries()))
-        // console.log(formData)
 
     }
 
@@ -46,11 +87,21 @@ const NewProducts = () => {
             <div className="">
                 <form 
                     ref={formRef}
-                    action={handleSubmit} 
+                    onSubmit={handleSubmit} 
                     >
                     <ProductInfoForm setCatgory={setCatgory} category={category}/>
-                    <SpecificationInputs />
-                    <ImagesColor formData={formData} setCatgory={setCatgory} category={category}/>
+                    <SpecificationInputs
+                        specifications={specifications}
+                        setSpecifications={setSpecifications}
+                       />
+                    <ImagesColor
+                          formData={formData} 
+                           category={category}
+                           colors={colors}
+                           setColors={setColors}
+                           sizes={sizes}
+                           setSizes={setSizes}
+                           />
 
                     <div className="w-[200px]">
                      <ButtonWithIcon

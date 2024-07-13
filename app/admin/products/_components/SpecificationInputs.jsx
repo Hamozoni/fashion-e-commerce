@@ -14,21 +14,20 @@ const data = {
     value : 'specificaton value',
 }
 
-export function SpecificationInputs() {
+export function SpecificationInputs({specifications,setSpecifications}) {
 
     const [errors,setErrors] = useState(null);
 
-    const [specification,setSpecification] = useState([data]);
 
 
     const addMore = ()=> {
-        setSpecification(prev=> {
+        setSpecifications(prev=> {
             return [...prev,data]
         })
     };
 
     const deleteInput = (length)=> {
-        setSpecification(prev=> {
+        setSpecifications(prev=> {
             prev.length = length;
 
             return [...prev]
@@ -45,14 +44,14 @@ export function SpecificationInputs() {
             </h4>
             <div className="flex items-center gap-5">
                 {
-                    specification?.length > 1 ? 
+                    specifications?.length > 1 ? 
                         <div className="w-[70px]">
                             <ButtonWithIcon 
                                 text='' 
                                 Icon={FiMinus} 
                                 type='delete' 
                                 disabled={false} 
-                                onClick={() => deleteInput(specification?.length - 1)}
+                                onClick={() => deleteInput(specifications?.length - 1)}
                                 />
                         </div>
                         : null
@@ -72,7 +71,7 @@ export function SpecificationInputs() {
         <div >
 
             {
-                specification?.map(({name,value},index)=> (
+                specifications?.map(({name,value},index)=> (
                     <div key={`${name}_${index}`} className="flex items-center gap-3 mb-5 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
                         <FormInput 
                             name={`${name} ${index}`} 

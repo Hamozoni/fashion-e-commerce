@@ -17,21 +17,18 @@ const data = {
     priceInHalala: 'price in halala'
 }
 
-export function ImagesColor({formData,category,setCategory}) {
+export function ImagesColor({formData,category,colors,setColors,sizes,setSizes}) {
 
     const [errors,setErrors] = useState(null);
 
-    const [imagesColor,setImagesColor] = useState([data]);
-
-
     const addMore = ()=> {
-        setImagesColor(prev=> {
+        setColors(prev=> {
             return [...prev,data]
         })
     };
 
     const deleteInput = (length)=> {
-        setImagesColor(prev=> {
+        setColors(prev=> {
             prev.length = length;
 
             return [...prev]
@@ -49,14 +46,14 @@ export function ImagesColor({formData,category,setCategory}) {
             </h4>
             <div className="flex items-center gap-5">
                 {
-                    imagesColor?.length > 1 ? 
+                    colors?.length > 1 ? 
                     <div className="w-[100px]">
                         <ButtonWithIcon 
                             text='' 
                             Icon={FiMinus} 
                             type='delete' 
                             disabled={false} 
-                            onClick={() => deleteInput(imagesColor?.length - 1)}
+                            onClick={() => deleteInput(colors?.length - 1)}
                             />
                     </div>
                     : null
@@ -76,7 +73,7 @@ export function ImagesColor({formData,category,setCategory}) {
         </header>
         <div >
                 {
-                    imagesColor?.map(({image,color,colorName,priceInHalala},index)=> (
+                    colors?.map(({image,color,colorName,priceInHalala},index)=> (
                         <div className="p-2 border-2 border-gray-200 rounded-md mb-5 shadow-sm ">
                             <div key={`${image}_${index}`} className="flex items-center gap-3 mb-3 flex-wrap">
                                 <FormInput 
@@ -106,7 +103,13 @@ export function ImagesColor({formData,category,setCategory}) {
                                     errors={errors}
                                     />
                             </div>
-                            <SelectSizes i={index} formData={formData} category={category}/>
+                            <SelectSizes 
+                                i={index} 
+                                formData={formData} 
+                                category={category}
+                                sizes={sizes}
+                                setSizes={setSizes}
+                                />
 
                         </div>
                     ))
