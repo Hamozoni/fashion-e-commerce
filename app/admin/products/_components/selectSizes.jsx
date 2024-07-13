@@ -9,16 +9,13 @@ const className = {
 }
 
 
-export const SelectSizes = ({i,formData})=> {
+export const SelectSizes = ({i,formData,category})=> {
 
     const [sizes,setSizes] = useState([]);
 
-    const isShoes = formData.get('subCatgory') === 'shoes';
+    const isShoes = category?.sub?.name ?.toLowerCase() === 'shoes';
 
-    const shoesSizes = categoriesData.find(e=> e.name === formData.get('category'))?.shoesSizes;
-    const elseSizes = categoriesData.find(e=> e.name === formData.get('category'))?.sizes
-
-    const sizesData = isShoes ? shoesSizes : elseSizes
+    const sizesData = isShoes ? category?.shoesSizes : category?.sizes
       
 
     const handleSize = (size)=> {

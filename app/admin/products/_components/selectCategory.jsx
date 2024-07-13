@@ -3,7 +3,7 @@ import { useState } from "react";
 import {categoriesData} from "../../../../data/categoriesData";
 import { IoMdArrowDropright } from "react-icons/io";
 
-export const SelectCategory = ({formData})=> {
+export const SelectCategory = ({setCatgory,category})=> {
 
     const [isSubCatecoryModel,setIsSubCategoryModel] = useState(false);
     const [isCategoryModel,setIsCategoryModel] = useState(false);
@@ -32,12 +32,13 @@ export const SelectCategory = ({formData})=> {
                         isCategoryModel ? 
                         <ul className={className.ul}>
                             {
-                                categoriesData?.map(({name,id})=> (
+                                categoriesData?.map(({name,id,sub,sizes,shoesSizes})=> (
                                 <li
                                     className={`${name === categoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
                                     onClick={()=> {
                                         setCategoryName(name);
                                         formData.set('category',name);
+                                        setCatgory({name,sub,sizes,shoesSizes})
                                     }}
                                     key={id}
                                     >
@@ -67,7 +68,7 @@ export const SelectCategory = ({formData})=> {
                         isSubCatecoryModel ? 
                         <ul className={className.ul}>
                             {
-                                categoriesData?.find(e=> e.name === categoryName)?.sub?.map(({name,id})=> (
+                                category?.sub?.map(({name,id})=> (
                                 <li
                                     className={`${name === subCategoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
                                     onClick={()=> {

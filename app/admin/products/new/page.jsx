@@ -16,7 +16,7 @@ import Loading from "../_components/Loading"
 
 const NewProducts = () => {
 
-    const [data,setData] = useState(null);
+    const [category,setCatgory] = useState({});
     const [errors,setErrors] = useState(null);
     const [isPendding,startTransition] = useTransition();
 
@@ -29,7 +29,7 @@ const NewProducts = () => {
     const handleSubmit =  ()=> {
 
         console.log(Object.fromEntries(formData.entries()))
-        console.log(formData)
+        // console.log(formData)
 
     }
 
@@ -48,9 +48,9 @@ const NewProducts = () => {
                     ref={formRef}
                     action={handleSubmit} 
                     >
-                    <ProductInfoForm formData={formData}/>
+                    <ProductInfoForm setCatgory={setCatgory} category={category}/>
                     <SpecificationInputs />
-                    <ImagesColor formData={formData}/>
+                    <ImagesColor formData={formData} setCatgory={setCatgory} category={category}/>
 
                     <div className="w-[200px]">
                      <ButtonWithIcon

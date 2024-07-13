@@ -17,7 +17,7 @@ const data = {
     priceInHalala: 'price in halala'
 }
 
-export function ImagesColor({formData}) {
+export function ImagesColor({formData,category,setCategory}) {
 
     const [errors,setErrors] = useState(null);
 
@@ -106,7 +106,7 @@ export function ImagesColor({formData}) {
                                     errors={errors}
                                     />
                             </div>
-                            <SelectSizes i={index} formData={formData}/>
+                            <SelectSizes i={index} formData={formData} category={category}/>
 
                         </div>
                     ))
