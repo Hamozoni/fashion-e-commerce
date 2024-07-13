@@ -1,36 +1,48 @@
 import {z} from "zod";
 
-export const productZSchema  =  z.object({
-    name : z.string().min(3),
-    priceInCent : z.coerce.number().int().min(100),
-    isAvailable: z.boolean(),
-    description: z.string().min(5),
-    category: z.enum(["men", "women", "kids"]),
-    subCategory: z.string(),
-    serialNumber: z.string().min(10).max(10),
+
+const ACCEPTED_IMAGE_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/webp',
+];
+
+
+const IMAGES = z.object({
+  name: z.string(),
+  size: z.number().min(50000).max(5000000),
+  type: z.string().refine(type => ACCEPTED_IMAGE_TYPES.includes(type),{message:'invalid file type! must be an image'})
 });
 
-export const sizesZSchema = z.object({
-    name: z.string(),
-    description: z.string().min(3),
+const SIZES = z.object({
+    name: z.string().min(3),
+    shortName: z.string().min(1),
+    quantity: z.number().min(1)
 });
 
-const MAX_FILE_SIZE = 5000000;
-const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 
-export const imagesZSchema = z.object({
-    imagePath: z
-      .any()
-      .refine((file) => file?.size <= MAX_FILE_SIZE,` Max image size is 5MB.`)
-      .refine(
-        (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-        "Only .jpg, .jpeg, .png and .webp formats are supported."
-      ),
-      color: z.string(),
-  });
+const PRODUCT_INFO = z.object({
+  colorName: z.string().min(3),
+  color: z.string().min(3),
+  princeInHalala : z.number().min(100),
+  images:  z.any(IMAGES),
+  sizes: z.array(SIZES)
+});
 
-  
-export const specifZSchema = z.object({
-    key:  z.string().min(3),
-    value: z.string().min(3),
-})
+export const SPECIFICATUINS = z.object({
+  name:  z.string().min(3),
+  value: z.string().min(3),
+});
+
+
+export const zProductShema =  z.object({
+  name : z.string().min(3),
+  brand: z.string().min(3),
+  serialNumber : z.string().min(10).max(10),
+  category : z.string().min(3),
+  subcategory: z.string().min(3),
+  describtion: z.string().min(10),
+  specifications: z.array(SPECIFICATUINS) ,
+  informations : z.array(PRODUCT_INFO)
+});

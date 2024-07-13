@@ -6,11 +6,13 @@ import { ButtonWithIcon } from "../../../../components/buttons";
 import {ImagesColor} from "../_components/ImagesClolors";
 import {ProductInfoForm} from "../_components/productInfoForm"
 import { useRouter } from "next/navigation";
+import {zProductShema}from "../../../../validationSchemas/newProductSchemas"
 
 
 
 import { IoArrowBackOutline } from "react-icons/io5";
 import Loading from "../_components/Loading"
+import { object } from "zod";
 
 
 
@@ -55,17 +57,19 @@ const NewProducts = () => {
 
             newSizes[index] = sizes[index];
 
-            newSizes[index]['quantity'] = 55
+            sizes[index]?.map((_,i)=> {
+                newSizes[index][i].quantity = +formData.get(`quantity ${sizes[index][i]?.shortName} ${index}`)
+            })
 
-            console.log(formData.get(`quantity ${newSizes[index]?.shortName} ${index}`))
-            console.log(newSizes[index]?.shortName)
+            newSizes[index]
+            console.log(sizes)
              //
             informations?.push({
                 colorName: formData.get(`${colorName} ${index}`),
                 color: formData.get(`${color} ${index}`),
-                princeInHalala : 44,
+                princeInHalala : +formData.get(`price in halala ${index}`),
                 images:  formData.getAll(`${image} ${index}`),
-                sizes: newSizes
+                sizes: newSizes[index]
             })
         });
 
@@ -87,10 +91,13 @@ const NewProducts = () => {
             describtion: formData.get('describtion'),
             specifications: newSpecifications,
             informations,
-        }
+        };
+
+
+        const valitadData = zProductShema.safeParse(data);
 
         console.log(data)
-        console.log(Object.fromEntries(formData.entries()))
+        console.log(valitadData)
 
     }
 
