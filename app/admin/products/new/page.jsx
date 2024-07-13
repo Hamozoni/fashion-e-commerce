@@ -49,23 +49,43 @@ const NewProducts = () => {
 
         let informations = []
 
+        let newSizes = []
+
         colors?.map(({image,color,colorName},index)=> {
+
+            newSizes[index] = sizes[index];
+
+            newSizes[index]['quantity'] = 55
+
+            console.log(formData.get(`quantity ${newSizes[index]?.shortName} ${index}`))
+            console.log(newSizes[index]?.shortName)
+             //
             informations?.push({
                 colorName: formData.get(`${colorName} ${index}`),
                 color: formData.get(`${color} ${index}`),
                 princeInHalala : 44,
                 images:  formData.getAll(`${image} ${index}`),
-                sizes: sizes[index].quantity = formData.get(`quantity ${sizes[index]?.shortName} ${index}`)
+                sizes: newSizes
+            })
+        });
+
+        let newSpecifications = []
+
+        specifications?.map(({name,value},index)=> {
+            newSpecifications?.push({
+                name: formData.get(`${name} ${index}`),
+                value: formData.get(`${value} ${index}`),
             })
         })
 
         const data = {
             name : formData.get('name'),
             brand: formData.get('brand'),
-            serialNumber : formData.get('brand'),
+            serialNumber : formData.get('serialNumber'),
             category : category?.name,
             subcategory: category.subName,
             describtion: formData.get('describtion'),
+            specifications: newSpecifications,
             informations,
         }
 
