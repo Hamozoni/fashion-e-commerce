@@ -38,7 +38,7 @@ export function SpecificationInputs() {
   return (
     <section className="">
         <header
-        className="flex items-center justify-between my-3">
+             className="flex items-center justify-between my-3">
              <h4 
                 className="text-center text-lg text-teal-900 py-3 font-bold"
                 > specifications
@@ -69,7 +69,7 @@ export function SpecificationInputs() {
 
             </div>
         </header>
-        <form >
+        <div >
 
             {
                 specification?.map(({name,value},index)=> (
@@ -91,7 +91,7 @@ export function SpecificationInputs() {
                     </div>
                 ))
             }
-        </form>
+        </div>
     </section>
   )
 }

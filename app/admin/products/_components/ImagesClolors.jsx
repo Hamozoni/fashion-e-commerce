@@ -74,7 +74,7 @@ export function ImagesColor() {
             </div>
 
         </header>
-        <form >
+        <div >
                 {
                     imagesColor?.map(({image,color,colorName,priceInHalala},index)=> (
                         <div className="p-2 border-2 border-gray-200 rounded-md mb-5 shadow-sm ">
@@ -112,7 +112,7 @@ export function ImagesColor() {
                     ))
                 }
 
-        </form>
+        </div>
     </section>
   )
 }

@@ -1,53 +1,34 @@
 "use client";
 
-import {useState, useTransition } from "react";
-import   {FormInput,FormTextera} from "../_components/FormInput";
+import {useRef, useState, useTransition } from "react";
 import {SpecificationInputs}from "../_components/SpecificationInputs";
 import { ButtonWithIcon } from "../../../../components/buttons";
 import {ImagesColor} from "../_components/ImagesClolors";
-import {SelectCategory} from '../_components/selectCategory'
-import axios from "axios";
+import {ProductInfoForm} from "../_components/productInfoForm"
 import { useRouter } from "next/navigation";
-// import {postNewProductAction} from "../../../../actions/products/postNewProduct"
 
 
 
 import { IoArrowBackOutline,IoArrowForwardSharp } from "react-icons/io5";
 import Loading from "../_components/Loading"
 
-const inputsInfo = [
-    {
-       name : 'name',
-       label: 'name',
-       type: 'text',
-       place:'the name of the product...'
-    },
-     {
-        name : 'brand',
-        label: 'brand',
-        type: 'text',
-        place:'the brand of your product...'
-     },
-     {
-        name : 'serialNumber',
-        label: 'serial number',
-        type: 'text',
-        place:'ASIN shold be 10 '
-     },
-]
+
 
 const NewProducts = () => {
 
+    const [data,setData] = useState(null);
     const [errors,setErrors] = useState(null);
     const [isPendding,startTransition] = useTransition();
 
+    const formRef = useRef()
+
     const router = useRouter();
 
-    const handleSubmit =  (event)=> {
-        event.preventDefault();
-        const formData = new FormData(event.target);
+    const handleSubmit =  ()=> {
+
+        const formData = new FormData(formRef.current);
+
         console.log(Object.fromEntries(formData.entries()))
-        // const test = productZSchema.safeParse(data);
 
     }
 
@@ -63,54 +44,22 @@ const NewProducts = () => {
         <div className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg">
             <div className="">
                 <form 
+                    ref={formRef}
                     onSubmit={handleSubmit} 
                     >
-                    <div className="flex  gap-5 flex-wrap">
-                        {
-                            inputsInfo.map(input=> (
-                                    <FormInput 
-                                         key={input.name}
-                                        name={input.name} 
-                                        label={input.label} 
-                                        type={input.type}
-                                        errors={errors}
-                                        placeHolder={input.place}
-                                    />
-                            ))
-                        }
+                    <ProductInfoForm/>
+                    <SpecificationInputs />
+                    <ImagesColor />
 
-                        <SelectCategory />
-                    </div>
-                    <div >
-                        <FormTextera 
-                            label='describtion'
-                            name='describtion'
-                            placeHolder='product describtion...' 
-                            errors={errors}
-                            />
-
+                    <div className="w-[200px]">
+                    <ButtonWithIcon
+                        text='save'
+                        Icon={IoArrowBackOutline}
+                        type='save'
+                        disabled={false}
+                        />
                     </div>
                 </form>
-                <SpecificationInputs />
-                <ImagesColor />
-            </div>
-            <div className="flex items-center justify-between mt-3">
-                <div className="w-[100px]">
-                    <ButtonWithIcon
-                       text='back'
-                       Icon={IoArrowBackOutline}
-                       type='delete'
-                       disabled={false}
-                     />
-                </div>
-                <div className="w-[100px]">
-                    <ButtonWithIcon
-                       text='next'
-                       Icon={IoArrowForwardSharp}
-                       type='save'
-                       disabled={false}
-                     />
-                </div>
             </div>
         </div>
     </div>
