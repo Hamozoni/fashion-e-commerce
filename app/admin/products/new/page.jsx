@@ -31,7 +31,9 @@ const NewProducts = () => {
         }
     ]);
 
-    const [sizes,setSizes] = useState([[]]);
+    const sizesLength = new Array(colors?.length).fill([])
+
+    const [sizes,setSizes] = useState(sizesLength);
 
     const [errors,setErrors] = useState(null);
     const [isPendding,startTransition] = useTransition();
