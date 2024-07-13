@@ -16,19 +16,34 @@ export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
     const sizesData = isShoes ? category?.shoesSizes : category?.sizes
 
 
-      
+    const isElementFound = (id)=> {
+       let exsistingSize = false
+        if(Array.isArray(sizes[i])) {
+            exsistingSize = sizes[i]?.find(e=> e?.id === id);
+        }
+
+        console.log(!!exsistingSize)
+
+        return !!exsistingSize
+        
+    }
 
     const handleSize = (size)=> {
 
-        const exsistingSize = sizes[i]?.find(e=> e?.id === size?.id);
+        const exsistingSize = isElementFound(size?.id);
 
         if(!!exsistingSize) {
           const  newSizes = sizes[i]?.filter(e => e?.id !== size?.id);
 
-          setSizes(newSizes);
+          setSizes(prev=> {
+            
+            prev[i] = newSizes;
+                
+            return [...prev]
+          });
         } else {
             setSizes(prev=> {
-                prev[i] = prev[i]?.length > 0 ?  [...prev[i],size] : [size];
+                prev[i][sizes[i]?.length] = size;
                 
                 return [...prev]
             })
@@ -43,7 +58,7 @@ export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
     },[sizes]);
 
     useEffect(()=> {
-        const sizesLentg = new Array(i + 1).fill([])
+        const sizesLentg = new Array(i + 1).fill(new Array())
         setSizes(sizesLentg);
         formData.delete(`size ${i}`);
     },[category]);
@@ -59,7 +74,7 @@ export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
                             <li 
                                 key={id}
                                 onClick={()=> handleSize({name,shortName,id,quantity})}
-                                className={`${className.li} ${sizes[i]?.find(e=> e?.id === id)  ? 'border-teal-300 scale-105 shadow-md' : 'border-gray-200'}`}
+                                className={`${className.li} ${isElementFound(id)  ? 'border-teal-300 scale-105 shadow-md' : 'border-gray-200'}`}
                                 >
                                     {shortName}
                             </li>
@@ -68,7 +83,7 @@ export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
                 </ul>
 
             </div>
-            {/* <div className="flex flex-wrap gap-5 mt-4">
+            <div className="flex flex-wrap gap-5 mt-4">
                 {
                     sizes[i]?.map(({shortName,id})=> (
 
@@ -82,7 +97,7 @@ export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
                                     />
                     ))
                 }
-            </div> */}
+            </div>
         </div>
     )
 }

@@ -31,7 +31,7 @@ const NewProducts = () => {
         }
     ]);
 
-    const sizesLength = new Array(colors?.length).fill([])
+    const sizesLength = new Array(colors?.length).fill(new Array());
 
     const [sizes,setSizes] = useState(sizesLength);
 
