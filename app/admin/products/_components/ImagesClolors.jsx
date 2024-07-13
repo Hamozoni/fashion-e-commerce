@@ -1,6 +1,6 @@
 "use client"
 
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { FormInput } from "./FormInput";
 import { ButtonWithIcon } from "../../../../components/buttons";
 // import {specifZSchema} from '../../../../validationSchemas/newProductSchemas';
@@ -17,23 +17,33 @@ const data = {
     priceInHalala: 'price in halala'
 }
 
-export function ImagesColor({formData,category,colors,setColors,sizes,setSizes}) {
+export function ImagesColor({category,colors,setColors,sizes,setSizes}) {
 
     const [errors,setErrors] = useState(null);
 
     const addMore = ()=> {
+        setSizes(prev=> [...prev,[]])
         setColors(prev=> {
             return [...prev,data]
         })
     };
 
     const deleteInput = (length)=> {
+
+        setSizes(prev=> {
+            prev.length = length
+        })
         setColors(prev=> {
             prev.length = length;
 
             return [...prev]
         })
-    }
+    };
+
+    useEffect(()=> {
+        const sizesLength = new Array().fill([])
+        setSizes(sizesLength)
+    },[category]);
 
   return (
     <section className="">
@@ -104,8 +114,7 @@ export function ImagesColor({formData,category,colors,setColors,sizes,setSizes})
                                     />
                             </div>
                             <SelectSizes 
-                                i={index} 
-                                formData={formData} 
+                                i={index}  
                                 category={category}
                                 sizes={sizes}
                                 setSizes={setSizes}

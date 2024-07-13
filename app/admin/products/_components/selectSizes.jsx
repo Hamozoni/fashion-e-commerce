@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import {categoriesData} from "../../../../data/categoriesData";
 import { FormInput } from "./FormInput";
+import { arch } from "os";
 
 const className = {
     li:'text-teal-900 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-100 border-2 border-gray-200'
 }
 
 
-export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
+export const SelectSizes = ({i,category,sizes,setSizes})=> {
 
     const isShoes = category?.subName?.toLowerCase() === 'shoes';
 
@@ -28,7 +29,7 @@ export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
         
     }
 
-    const handleSize = (size)=> {
+    const handleSize = (size,length)=> {
 
         const exsistingSize = isElementFound(size?.id);
 
@@ -43,7 +44,7 @@ export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
           });
         } else {
             setSizes(prev=> {
-                prev[i][sizes[i]?.length] = size;
+                prev[i][length] = size;
                 
                 return [...prev]
             })
@@ -52,16 +53,6 @@ export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
         console.log(sizes)
 
     };
-
-    useEffect(()=> {
-        formData.set(`size ${i}`,sizes)
-    },[sizes]);
-
-    useEffect(()=> {
-        const sizesLentg = new Array(i + 1).fill(new Array())
-        setSizes(sizesLentg);
-        formData.delete(`size ${i}`);
-    },[category]);
 
 
     return (
@@ -73,7 +64,7 @@ export const SelectSizes = ({i,formData,category,sizes,setSizes})=> {
                         sizesData?.map(({name,shortName,id,quantity})=> (
                             <li 
                                 key={id}
-                                onClick={()=> handleSize({name,shortName,id,quantity})}
+                                onClick={()=> handleSize({name,shortName,id,quantity},sizes[i]?.length)}
                                 className={`${className.li} ${isElementFound(id)  ? 'border-teal-300 scale-105 shadow-md' : 'border-gray-200'}`}
                                 >
                                     {shortName}
