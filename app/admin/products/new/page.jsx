@@ -45,14 +45,14 @@ const NewProducts = () => {
             <div className="">
                 <form 
                     ref={formRef}
-                    onSubmit={handleSubmit} 
+                    action={handleSubmit} 
                     >
                     <ProductInfoForm/>
                     <SpecificationInputs />
                     <ImagesColor />
 
                     <div className="w-[200px]">
-                    <ButtonWithIcon
+                     <ButtonWithIcon
                         text='save'
                         Icon={IoArrowBackOutline}
                         type='save'
@@ -66,4 +66,4 @@ const NewProducts = () => {
   )
 }
 
-export default NewProducts
+export default NewProducts;

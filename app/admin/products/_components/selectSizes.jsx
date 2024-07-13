@@ -9,7 +9,7 @@ const className = {
 }
 
 
-export const SelectSizes = ()=> {
+export const SelectSizes = ({i})=> {
 
     const [sizes,setSizes] = useState([]);
       
@@ -56,8 +56,8 @@ export const SelectSizes = ()=> {
 
                                 <FormInput 
                                     key={id}  
-                                    name={`quantity ${shortName} *`}
-                                    label={`${shortName} size quantity`}
+                                    name={`quantity ${shortName} ${i}`}
+                                    label={`${shortName} size quantity *`}
                                     type='number'
                                     placeHolder={`place enter ${shortName} quantity..`}
                                     errors={null}

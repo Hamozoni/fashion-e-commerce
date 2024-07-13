@@ -106,7 +106,7 @@ export function ImagesColor() {
                                     errors={errors}
                                     />
                             </div>
-                            <SelectSizes />
+                            <SelectSizes i={index}/>
 
                         </div>
                     ))

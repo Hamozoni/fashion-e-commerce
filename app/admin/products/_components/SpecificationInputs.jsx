@@ -11,7 +11,7 @@ import { FiMinus } from "react-icons/fi";
 
 const data = {
     name : 'specificaton key',
-    value : 'product specificaton value',
+    value : 'specificaton value',
 }
 
 export function SpecificationInputs() {
