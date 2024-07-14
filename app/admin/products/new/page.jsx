@@ -63,7 +63,7 @@ const NewProducts = () => {
                 // router.push('/admin/products')
             })
             .catch((error)=> {
-                throw new Error(error?.message)
+                console.log(error)
             })
             .finally(()=> {
                 setIsPending(false)

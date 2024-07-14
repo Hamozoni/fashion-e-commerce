@@ -3,7 +3,6 @@ import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
 import { db } from  "../../../../lip/db"
 import { zProductShema } from '../../../../validationSchemas/newProductSchemas';
-import { create } from 'domain';
 
 export async function POST (request) {
 
@@ -15,13 +14,7 @@ export async function POST (request) {
     const specifications = JSON.parse(data.specifications);
     const details = JSON.parse(data.details);
 
-
-    console.log("11111",sizes)
-    console.log("11111",specifications)
-    console.log("11111",informations)
-    console.log("11111",details)
-    console.log("11111",data)
-    
+    console.log(data)
 
 
 
@@ -30,15 +23,21 @@ export async function POST (request) {
             serialNumber : details?.serialNumber
         }});
     
-        if(!!existProduct){
+        if(!!existProduct?.length){
             console.log(existProduct);
-            return new NextResponse.json("Error the products already added before try another product", { status: 400 })
+            return new NextResponse("Error the products already added before try another product", { status: 400 })
         }
 
     }
     catch {
-        return new NextResponse.json("opss! something went wrong", { status: 500 })
-     }
+        return new NextResponse("opss! something went wrong", { status: 500 })
+    }
+    finally {
+        await db.$disconnect()
+     };
+     
+
+     console.log('after',data);
 
 
 
@@ -53,32 +52,26 @@ try{
             for(let i = 0;i < informations.length; i++){
 
                 const id = crypto.randomUUID();
-                informations[i].id = id
+                informations[i].id = id;
+                sizes[i].infoId = id
 
                 const imagesPaths = formData.getAll(`images ${i}`);
-
-                let newImages = []
-
                 for(let index = 0; index < imagesPaths.length; index++){
 
-                    const imagePath = `/products/${crypto.randomUUID()}-${imagesPaths[index].name}`;
-                    await fs.writeFile(`public${imagePath}`,Buffer.from(await imagesPaths[index].arrayBuffer()))
+                    const imagePath = `public/products/${crypto.randomUUID()}-${imagesPaths[index].name}`;
+                    await fs.writeFile(imagePath,Buffer.from(await imagesPaths[index].arrayBuffer()))
 
-                    newImages.push({imagePath,infoId:id});
+                    images.push({imagePath,infoId:id});
 
                 }
-
-                images.push(newImages);
             };
 
    }
    catch {
-    images?.map(({image})=> {
-        image?.map(async({imagePath})=> {
+        images?.map(async({imagePath})=> {
             await fs.unlink(imagePath)
         })
-    })
-    return new NextResponse.json({error: 'opps! somthing went wrong'}, { status: 500 })
+    return new NextResponse({error: 'opps! somthing went wrong'}, { status: 500 })
    }
 
 
@@ -90,27 +83,31 @@ try{
                    specifications : {
                        create :[
                            ...specifications
-                       ],
-                       images: {
-                        create: [
-                            ...images
-                        ]
-                       }
+                       ]
                    },
                    informations : {
                     create : [
                         ...informations
-                    ]
+                    ],
+                    images: {
+                        create: 
+                            
+                        
+                    },
+                    sizes: {
+                        create: [
+                            ...sizes
+                        ]
+                    }
                    }
                }})
            return new NextResponse.json(product,{status: 200});
      }
      catch (error){
-        images?.map(({image})=> {
-            image?.map(async({imagePath})=> {
-                await fs.unlink(imagePath)
-            })
+        images?.map(async({imagePath})=> {
+            await fs.unlink(imagePath)
         })
+        console.log(error)
         return new NextResponse.json("smoething went wrong", { status: 500 })
      }
      finally {
