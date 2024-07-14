@@ -3,6 +3,7 @@ import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
 import { db } from  "../../../../lip/db"
 import { zProductShema } from '../../../../validationSchemas/newProductSchemas';
+import { create } from 'domain';
 
 export async function POST (request) {
 
@@ -14,7 +15,9 @@ export async function POST (request) {
     const specifications = JSON.parse(data.specifications);
     const details = JSON.parse(data.details);
 
-    console.log(data)
+    console.log(data);
+
+    const productId = crypto.randomUUID()
 
 
 
@@ -53,6 +56,7 @@ try{
 
                 const id = crypto.randomUUID();
                 informations[i].id = id;
+                informations[i].productId = productId;
                 sizes[i].infoId = id
 
                 const imagesPaths = formData.getAll(`images ${i}`);
@@ -77,31 +81,32 @@ try{
 
 //     // creating new product in db
     try {
+
+        informations.push({images: {create : images}});
+        informations.push({sizes: {create : sizes}});
          const product = await db.product.create({
                data : {
                    ...details,
+                   id: productId,
                    specifications : {
                        create :[
                            ...specifications
                        ]
-                   },
-                   informations : {
-                    create : [
-                        ...informations
-                    ],
-                    images: {
-                        create: 
-                            
-                        
-                    },
-                    sizes: {
-                        create: [
-                            ...sizes
-                        ]
-                    }
                    }
-               }})
-           return new NextResponse.json(product,{status: 200});
+               }});
+
+        const productInformation = await db.productInformation.createMany({
+            data: [...informations],
+            images: {
+                create: [...images]
+            },
+            sizes: {
+                create: [
+                    ...sizes
+                ]
+            }
+        })
+           return new NextResponse.json({product,productInformation},{status: 200});
      }
      catch (error){
         images?.map(async({imagePath})=> {
