@@ -9,28 +9,26 @@ const ACCEPTED_IMAGE_TYPES = [
 ];
 
 
-const IMAGES = z.object({
+export const zProductImages = z.array({
   name: z.string(),
   size: z.number().min(50000).max(5000000),
   type: z.string().refine(type => ACCEPTED_IMAGE_TYPES.includes(type),{message:'invalid file type! must be an image'})
 });
 
-const SIZES = z.object({
+export const zProductSizesS = z.array({
     name: z.string().min(3),
     shortName: z.string().min(1),
     stackQuantity: z.number().min(1)
 });
 
 
-const PRODUCT_INFO = z.object({
+export const zProductInfo = z.array({
   colorName: z.string().min(3),
   color: z.string().min(3),
   princeInHalala : z.number().min(100),
-  images:  z.any(IMAGES),
-  sizes: z.array(SIZES)
 });
 
-export const SPECIFICATUINS = z.object({
+export const zProductSpecifications = z.array({
   name:  z.string().min(3),
   value: z.string().min(3),
 });
@@ -43,6 +41,4 @@ export const zProductShema =  z.object({
   category : z.string().min(3),
   subcategory: z.string().min(3),
   describtion: z.string().min(10),
-  specifications: z.array(SPECIFICATUINS) ,
-  informations : z.array(PRODUCT_INFO)
 });

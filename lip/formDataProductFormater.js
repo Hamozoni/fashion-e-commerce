@@ -2,8 +2,9 @@
 export const formDataProductFormater = (formData,colors,specifications,sizes) => {
     let informations = []
     let newSizes = []
+    let newSizesArray = []
 
-    colors?.map(({image,color,colorName},index)=> {
+    colors?.map(({color,colorName},index)=> {
 
         newSizes[index] = sizes[index];
 
@@ -18,9 +19,13 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
             colorName: formData.get(`${colorName} ${index}`),
             color: formData.get(`${color} ${index}`),
             princeInHalala : +formData.get(`price in halala ${index}`),
-            images: formData.getAll(`${image} ${index}`) ,
-            sizes: newSizes[index]
         });
+
+        newSizesArray.push(newSizes[index])
+
+
+
+        formData.append('sizes',JSON.stringify(newSizesArray))
 
         formData.delete(`${colorName} ${index}`)
         formData.delete(`${color} ${index}`)
@@ -46,22 +51,12 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
         category : formData.get('category'),
         subcategory: formData.get('subcategory'),
         describtion: formData.get('describtion'),
-        specifications: newSpecifications,
-        informations
-    };
-
-
-    const formDataInfo =  [];
-
-    const length = informations?.length
-
-    for(let i = 0; i < length; i++){
-        informations[i].sizes = JSON.stringify(informations[i].sizes)
-        formDataInfo.push(informations[i]);
     };
 
     formData.set('specifications',JSON.stringify(specifications));
-    formData.set('informations',JSON.stringify(formDataInfo));
+    formData.set('informations',JSON.stringify(informations));
 
-    return data;
+    const size = formData.getAll('size')
+
+    return {data,specifications,informations,sizes:size};
 }

@@ -53,10 +53,9 @@ const NewProducts = () => {
         formData.set('category',category.name);
         formData.set('subcategory',category.subName);
 
-        const data = formDataProductFormater(formData,colors,specifications,sizes)
-        const valitadData = zProductShema.safeParse(data);
+        const data = formDataProductFormater(formData,colors,specifications,sizes);
+        // const valitadData = zProductShema.safeParse(data);
 
-        if(valitadData.success) {
             PostData('products/new',formData)
             .then((data)=>{
     
@@ -69,14 +68,13 @@ const NewProducts = () => {
             .finally(()=> {
                 setIsPending(false)
             });
-            console.log(data)
-        }else {
-            console.log(valitadData)
+
+            // console.log(valitadData)
             console.log(data)
             console.log(Object.fromEntries(formData.entries()))
-            setIsPending(false)
-            setErrors(valitadData?.error)
-        }
+            // setIsPending(false)
+            // setErrors(JSON.parse(valitadData?.error))
+        
 
     };
 

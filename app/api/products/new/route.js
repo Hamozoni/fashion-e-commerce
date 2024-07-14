@@ -8,10 +8,12 @@ export async function POST (request) {
 
     const formData  = await request.formData();
     const data = Object.fromEntries(formData.entries());
-    const informations = JSON.parse(data.informations)
+    const informations = JSON.parse(data.informations);
+    const sizes = JSON.parse(data.sizes);
+    const specifications = JSON.parse(data.specifications);
 
-    console.log("11111",data)
-    console.log("11111",formData)
+    console.log("11111",sizes)
+    console.log("11111",specifications)
     console.log("11111",informations)
     return NextResponse.json('done',{status: 200})
 
