@@ -7,9 +7,14 @@ import { zProductShema } from '../../../../validationSchemas/newProductSchemas';
 export async function POST (request) {
 
     const formData  = await request.formData();
+    const data = Object.fromEntries(formData.entries());
+    const informations = JSON.parse(data.informations)
+
+    console.log("11111",informations[0]?.sizes)
+    console.log("11111",formData)
+    return NextResponse.json('done',{status: 200})
 
 
-    console.log("1",formData)
 
 //     try {
 //         const exestProduct = await db.product.findMany({where : {

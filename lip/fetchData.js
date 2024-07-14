@@ -22,7 +22,7 @@ export const  PostData = async  (endPoint,formData)=> {
         headers: { 'content-type': 'multipart/form-data' }
       }
 
-    const {data} =  await axios.post(endPoint,formData, config)
+    const {data} =  await axios.post(`/api/${endPoint}`,formData, config)
 
      return data
     };  

@@ -58,7 +58,7 @@ export const AddReviewFormModel = ({setShowModel})=> {
         setisPending(true)
         if(formValidation.success){
             setError(null);
-            PostData('/api/products/reviews',formData)
+            PostData('products/reviews',formData)
             .then(data => {
 
                 console.log(data);

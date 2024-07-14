@@ -18,7 +18,7 @@ const IMAGES = z.object({
 const SIZES = z.object({
     name: z.string().min(3),
     shortName: z.string().min(1),
-    quantity: z.number().min(1)
+    stackQuantity: z.number().min(1)
 });
 
 
