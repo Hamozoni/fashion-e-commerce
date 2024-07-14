@@ -43,32 +43,32 @@ const NewProducts = () => {
 
     const router = useRouter();
     
-    const formData = new FormData(formRef.current);
-
+    
     const handleSubmit =  (event)=> {
         event.preventDefault();
-
+        
         setIsPending(true);
+        const formData = new FormData(formRef.current);
+
+        formData.set('category',category.name);
+        formData.set('subcategory',category.subName);
 
         const data = formDataProductFormater(formData,colors,specifications,sizes)
-
-
-
         const valitadData = zProductShema.safeParse(data);
 
-        PostData('products/new',formData)
-        .then((data)=>{
-
-            console.log(data)
-            // router.push('/admin/products')
-        })
-        .catch((error)=> {
-            throw new Error(error?.message)
-        })
-        .finally(()=> {
-            setIsPending(false)
-        });
         if(valitadData.success) {
+            PostData('products/new',formData)
+            .then((data)=>{
+    
+                console.log(data)
+                // router.push('/admin/products')
+            })
+            .catch((error)=> {
+                throw new Error(error?.message)
+            })
+            .finally(()=> {
+                setIsPending(false)
+            });
             console.log(data)
         }else {
             console.log(valitadData)
@@ -90,7 +90,6 @@ const NewProducts = () => {
             setCatgory,
             specifications,
             setSpecifications,
-            formData,
             colors,
             setColors,
             sizes,

@@ -51,11 +51,15 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
     };
 
 
-    const formDataInfo =  []
-    informations?.forEach((ifo)=> {
-        JSON.stringify(ifo.sizes)
-        formDataInfo.push(ifo)
-    })
+    const formDataInfo =  [];
+
+    const length = informations?.length
+
+    for(let i = 0; i < length; i++){
+        ifo.sizes[i] = JSON.stringify(ifo[i].sizes)
+        formDataInfo.push(ifo[i]);
+    };
+
     formData.set('specifications',JSON.stringify(specifications));
     formData.set('informations',JSON.stringify(formDataInfo));
 

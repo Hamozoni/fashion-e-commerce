@@ -12,7 +12,7 @@ const className = {
 
 export const SelectCategory = ()=> {
      
-    const {formData,setCatgory,category} = useContext(newProductContext);
+    const {setCatgory,category} = useContext(newProductContext);
 
     const [isSubCatecoryModel,setIsSubCategoryModel] = useState(false);
     const [isCategoryModel,setIsCategoryModel] = useState(false);
@@ -40,8 +40,7 @@ export const SelectCategory = ()=> {
                                     className={`${name === categoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
                                     onClick={()=> {
                                         setCategoryName(name);
-                                        setCatgory({name,sub,sizes,shoesSizes}),
-                                        formData.set('category',name);
+                                        setCatgory({name,sub,sizes,shoesSizes});
                                     }}
                                     key={id}
                                     >
@@ -76,7 +75,6 @@ export const SelectCategory = ()=> {
                                     className={`${name === subCategoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
                                     onClick={()=> {
                                         setSubCategoryName(name);
-                                        formData.set('subcategory',name);
                                         setCatgory(prev => {
                                             prev.subName = name;
                                             return {...prev}
