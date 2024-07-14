@@ -4,14 +4,13 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
     let newSizes = []
     let newSizesArray = []
 
-    const newFormData = new FormData();
-
     colors?.map(({color,colorName},index)=> {
 
         newSizes[index] = sizes[index];
 
         sizes[index]?.map((_,i)=> {
             newSizes[index][i].stackQuantity = +formData.get(`stackQuantity ${sizes[index][i]?.shortName} ${index}`)
+            formData.delete(`stackQuantity ${sizes[index][i]?.shortName} ${index}`)
         })
 
         newSizes[index]
@@ -22,12 +21,13 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
             princeInHalala : +formData.get(`price in halala ${index}`),
         });
 
-        newSizesArray.push(newSizes[index])
+        
+        formData.delete(`${colorName} ${index}`);
+        formData.delete(`${color} ${index}`);
+        formData.delete(`price in halala ${index}`);
 
-
-
-        newFormData.append('sizes',JSON.stringify(newSizesArray));
-        newFormData.append(`images ${index}`,formData.get(`images ${index}`));
+        newSizesArray.push(newSizes[index]);
+        formData.append('sizes',JSON.stringify(newSizesArray));
     });
 
     let newSpecifications = []
@@ -36,7 +36,10 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
         newSpecifications?.push({
             name: formData.get(`${name} ${index}`),
             value: formData.get(`${value} ${index}`),
-        })
+        });
+
+        formData.delete(`${name} ${index}`);
+        formData.delete(`${value} ${index}`)
     })
 
     const details = {
@@ -48,10 +51,17 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
         describtion: formData.get('describtion'),
     };
 
-    newFormData.set('specifications',JSON.stringify(specifications));
-    newFormData.set('informations',JSON.stringify(informations));
-    newFormData.set('details',JSON.stringify(details));
+    for(const {_,val} in details) {
+        formData.delete(val)
+    }
 
 
-    return newFormData;
+    formData.set('specifications',JSON.stringify(specifications));
+    formData.set('informations',JSON.stringify(informations));
+    formData.set('details',JSON.stringify(details));
+
+    
+
+
+    return formData;
 }
