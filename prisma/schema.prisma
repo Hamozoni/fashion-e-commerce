@@ -7,72 +7,81 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model product {
+model Product {
   id               String   @id @default(uuid())
+  type             product_types  @default(FASHION)
   name             String
-  createdAt        DateTime @default(now())
+  createdAt        DateTime  @default(now())
   updateddAt       DateTime  @updatedAt
-  priceInCent      Int
-  totalPriceInCent Int?
-  offerPriceInCent Int?     @default(0)
-  isOffer          Boolean?  @default(false)
-  isAvailable      Boolean  @default(true)
-  description      String   @db.Text
-  quantity         Int      @default(1)
+  describtion      String    @db.Text
+  orderedQuantity         Int?      @default(0)
   category         String
-  subCategory      String
+  subcategory      String
   serialNumber     String   @unique
-  selectedSize     String?
-  selectedColor    String?
   brand    String?
   image String?
-  sizes productsizes[]
-  images productimages[]
-  specifications specifications[]
-  reviews reviews[]
-  orders order[]
+  informations ProductInformation[]
+  specifications Specification[]
+  reviews Review[]
+  orders Order[]
+	@@map("products")
 }
 
-model productimages {
-  id        String   @id @default(uuid())
-  color     String
+model ProductInformation {
+  id String @id @default(uuid())
+  colorName String
+  color String
+  princeInHalala Int
+  offerPriceInHalala Int?
+  offerFinishAt DateTime?
+  images ProductImage[]
+  sizes ProductSize[]
   productId String
-  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
-  imagePath       String
+  product Product @relation(fields: [productId],references: [id],onDelete: Cascade)
 }
 
-model specifications {
+model ProductImage {
+  id String @id @default(uuid())
+  imagePath String
+  infoId String
+  info ProductInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
+}
+
+model ProductSize {
+  id String @id @default(uuid())
+  name String
+  shortName String
+  stackQuantity Int
+  infoId String
+  info ProductInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
+  @@map("productSizes")
+}
+
+model Specification {
   id        String   @id @default(uuid())
-  key       String
+  name       String
   value     String
   productId String
-  product    product @relation(fields: [productId],references: [id],onDelete: Cascade) 
+  product    Product @relation(fields: [productId],references: [id],onDelete: Cascade) 
+	@@map("specifications")
 }
-
-model productsizes {
-  id          String   @id @default(uuid())
-  name        String
-  description String?
-  productId   String
-  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
-
-}
-model order {
+model Order {
   id               String   @id @default(uuid())
   status          order_status @default(PENDING)
   createdAt       DateTime     @default(now())
   updatedAt       DateTime    @updatedAt
   userId          String
-  auther user @relation(fields: [userId],references: [id],onDelete: Cascade)
-  products product[]
+  auther User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  products Product[]
   totalProductsQuantity Int
   deliveryFree Int
   totalPaidInCent Int
   paymentId String
-  payment payment @relation(fields:[paymentId],references: [id])
+  payment Payment @relation(fields:[paymentId],references: [id])
+	@@map("orders")
 }
 
-model payment {
+model Payment {
   id String @id @default(uuid())
   amountInCent Int
   currency currency @default(SAR)
@@ -81,33 +90,36 @@ model payment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId String
-  user user @relation(fields: [userId], references: [id],onDelete: Cascade)
-  order order[]
+  user User @relation(fields: [userId], references: [id],onDelete: Cascade)
+  order Order[]
+	@@map("payments")
 }
 
-model reviews {
+model Review {
   id        String   @id @default(uuid())
   rateText  String @db.Text
   productId String
   autherId  String
   rating    Int    @default(3) 
   rateTitle String @db.Text
-  images reviewsImages[]
+  images ReviewImage[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
-  auther  user @relation(fields: [autherId],references: [id],onDelete: Cascade)
+  product Product @relation(fields: [productId],references: [id],onDelete: Cascade)
+  auther  User @relation(fields: [autherId],references: [id],onDelete: Cascade)
+	@@map("reviews")
 }
 
-model reviewsImages {
+model ReviewImage {
   id String @id @default(uuid())
   imagePath String
   reviewId String
-  reviews reviews @relation(fields: [reviewId],references:[id],onDelete: Cascade)
+  reviews Review @relation(fields: [reviewId],references:[id],onDelete: Cascade)
+	@@map("reviewsImages")
 }
 
 
-model user {
+model User {
   id            String          @id @default(uuid())
   name          String?
   email         String?         @unique
@@ -115,16 +127,17 @@ model user {
   role  user_role @default(USER)
   password String?
   image         String?
-  account       account?
-  reviews   reviews[]
-  orders   order[]
-  payment  payment[]
+  account       Account?
+  reviews   Review[]
+  orders   Order[]
+  payment  Payment[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+	@@map("users")
 }
  
-model account {
+model Account {
   id                       String  @id @default(uuid())
   userId                   String  @unique
   type                     String
@@ -138,16 +151,17 @@ model account {
   id_token                 String? @db.Text
   session_state            String?
   refresh_token_expires_in Int?
-  user                     user?   @relation(fields: [userId], references: [id],onDelete: Cascade)
+  user                     User?   @relation(fields: [userId], references: [id],onDelete: Cascade)
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
  
   @@unique([provider, providerAccountId])
   @@index([userId])
+	@@map("accounts")
 }
 
-model userAddress {
+model UserAddress {
   id String @id @default(uuid())
   email String @unique
   lat Float
@@ -157,24 +171,27 @@ model userAddress {
   city String
   country String
   formatedAddress  String   @db.Text
+	@@map("userAddress")
 }
  
-model verificationToken {
+model VerificationToken {
   id         String @id @default(uuid())
   email      String
   token      String @unique
   expires    DateTime
  
   @@unique([email, token])
+	@@map("verificationTokens")
 }
 
-model resetPasswordToken {
+model ResetPasswordToken {
   id         String @id @default(uuid())
   email      String
   token      String @unique
   expires    DateTime
  
   @@unique([email, token])
+	@@map("resetPasswordTokens")
 }
  
 
@@ -203,6 +220,10 @@ enum currency  {
 enum user_role {
   USER
   ADMIN
+}
+
+enum product_types {
+  FASHION
 }
 
 

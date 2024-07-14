@@ -1,6 +1,6 @@
 "use client";
 
-import {useRef, useState, useTransition } from "react";
+import {useRef, useState } from "react";
 import {SpecificationInputs}from "../_components/SpecificationInputs";
 import { ButtonWithIcon } from "../../../../components/buttons";
 import {ImagesColor} from "../_components/ImagesClolors";
@@ -12,7 +12,7 @@ import {zProductShema}from "../../../../validationSchemas/newProductSchemas"
 
 import { IoArrowBackOutline } from "react-icons/io5";
 import Loading from "../_components/Loading"
-import { object } from "zod";
+import { PostData } from "../../../../lip/fetchData";
 
 
 
@@ -37,7 +37,7 @@ const NewProducts = () => {
     const [sizes,setSizes] = useState([[]]);
 
     const [errors,setErrors] = useState(null);
-    const [isPendding,startTransition] = useTransition();
+    const [isPendding,setIsPending] = useState(false);
 
     const formRef = useRef()
 
@@ -46,11 +46,11 @@ const NewProducts = () => {
     const formData = new FormData(formRef.current);
 
     const handleSubmit =  (event)=> {
-
         event.preventDefault();
 
-        let informations = []
+        setIsPending(true);
 
+        let informations = []
         let newSizes = []
 
         colors?.map(({image,color,colorName},index)=> {
@@ -62,8 +62,7 @@ const NewProducts = () => {
             })
 
             newSizes[index]
-            console.log(sizes)
-             //
+
             informations?.push({
                 colorName: formData.get(`${colorName} ${index}`),
                 color: formData.get(`${color} ${index}`),
@@ -97,13 +96,23 @@ const NewProducts = () => {
         const valitadData = zProductShema.safeParse(data);
 
         if(valitadData.success) {
-            
+            PostData('api/products/new',valitadData?.data)
+            .then(()=>{
+                router.push('/admin/products')
+            })
+            .catch((error)=> {
+                throw new Error(error?.message)
+            })
+            .finally(()=> {
+                setIsPending(false)
+            });
+        }else {
+            setErrors(valitadData?.error)
         }
 
-        console.log(data)
-        console.log(valitadData)
+    };
 
-    }
+
 
   return (
     <div className="p-4 lg:p-10 w-full max-w-full capitalize ">
