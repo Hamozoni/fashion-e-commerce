@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
+model product {
   id               String   @id @default(uuid())
   type             product_types  @default(FASHION)
   name             String
@@ -20,68 +20,70 @@ model Product {
   serialNumber     String   @unique
   brand    String?
   image String?
-  informations ProductInformation[]
-  specifications Specification[]
-  reviews Review[]
-  orders Order[]
+  informations productInformation[]
+  specifications specification[]
+  reviews reviews[]
+  orders order[]
 	@@map("products")
 }
 
-model ProductInformation {
+model productInformation {
   id String @id @default(uuid())
   colorName String
   color String
   princeInHalala Int
   offerPriceInHalala Int?
   offerFinishAt DateTime?
-  images ProductImage[]
-  sizes ProductSize[]
+  images productImage[]
+  sizes productSize[]
   productId String
-  product Product @relation(fields: [productId],references: [id],onDelete: Cascade)
+  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
+	@@map("ProductInformation")
 }
 
-model ProductImage {
+model productImage {
   id String @id @default(uuid())
   imagePath String
   infoId String
-  info ProductInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
+  info productInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
+	@@map("ProductImage")
 }
 
-model ProductSize {
+model productSize {
   id String @id @default(uuid())
   name String
   shortName String
   stackQuantity Int
   infoId String
-  info ProductInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
+  info productInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
   @@map("productSizes")
 }
 
-model Specification {
+model specification {
   id        String   @id @default(uuid())
   name       String
   value     String
   productId String
-  product    Product @relation(fields: [productId],references: [id],onDelete: Cascade) 
+  product    product @relation(fields: [productId],references: [id],onDelete: Cascade) 
 	@@map("specifications")
 }
-model Order {
+model order {
   id               String   @id @default(uuid())
   status          order_status @default(PENDING)
   createdAt       DateTime     @default(now())
   updatedAt       DateTime    @updatedAt
   userId          String
-  auther User @relation(fields: [userId],references: [id],onDelete: Cascade)
-  products Product[]
+  auther user @relation(fields: [userId],references: [id],onDelete: Cascade)
+  products product[]
   totalProductsQuantity Int
   deliveryFree Int
   totalPaidInCent Int
   paymentId String
-  payment Payment @relation(fields:[paymentId],references: [id])
+  payment payment @relation(fields:[paymentId],references: [id])
 	@@map("orders")
 }
 
-model Payment {
+model payment {
   id String @id @default(uuid())
   amountInCent Int
   currency currency @default(SAR)
@@ -90,36 +92,36 @@ model Payment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId String
-  user User @relation(fields: [userId], references: [id],onDelete: Cascade)
-  order Order[]
+  user user @relation(fields: [userId], references: [id],onDelete: Cascade)
+  order order[]
 	@@map("payments")
 }
 
-model Review {
+model reviews {
   id        String   @id @default(uuid())
   rateText  String @db.Text
   productId String
   autherId  String
   rating    Int    @default(3) 
   rateTitle String @db.Text
-  images ReviewImage[]
+  images reviewImages[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  product Product @relation(fields: [productId],references: [id],onDelete: Cascade)
-  auther  User @relation(fields: [autherId],references: [id],onDelete: Cascade)
+  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
+  auther  user @relation(fields: [autherId],references: [id],onDelete: Cascade)
 	@@map("reviews")
 }
 
-model ReviewImage {
+model reviewImages {
   id String @id @default(uuid())
   imagePath String
   reviewId String
-  reviews Review @relation(fields: [reviewId],references:[id],onDelete: Cascade)
+  reviews reviews @relation(fields: [reviewId],references:[id],onDelete: Cascade)
 	@@map("reviewsImages")
 }
 
 
-model User {
+model user {
   id            String          @id @default(uuid())
   name          String?
   email         String?         @unique
@@ -127,17 +129,17 @@ model User {
   role  user_role @default(USER)
   password String?
   image         String?
-  account       Account?
-  reviews   Review[]
-  orders   Order[]
-  payment  Payment[]
+  account       account?
+  reviews   reviews[]
+  orders   order[]
+  payment  payment[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 	@@map("users")
 }
  
-model Account {
+model account {
   id                       String  @id @default(uuid())
   userId                   String  @unique
   type                     String
@@ -151,7 +153,7 @@ model Account {
   id_token                 String? @db.Text
   session_state            String?
   refresh_token_expires_in Int?
-  user                     User?   @relation(fields: [userId], references: [id],onDelete: Cascade)
+  user                     user?   @relation(fields: [userId], references: [id],onDelete: Cascade)
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -161,7 +163,7 @@ model Account {
 	@@map("accounts")
 }
 
-model UserAddress {
+model userAddress {
   id String @id @default(uuid())
   email String @unique
   lat Float
@@ -171,10 +173,12 @@ model UserAddress {
   city String
   country String
   formatedAddress  String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 	@@map("userAddress")
 }
  
-model VerificationToken {
+model verificationToken {
   id         String @id @default(uuid())
   email      String
   token      String @unique
@@ -184,7 +188,7 @@ model VerificationToken {
 	@@map("verificationTokens")
 }
 
-model ResetPasswordToken {
+model resetPasswordToken {
   id         String @id @default(uuid())
   email      String
   token      String @unique
@@ -225,5 +229,3 @@ enum user_role {
 enum product_types {
   FASHION
 }
-
-

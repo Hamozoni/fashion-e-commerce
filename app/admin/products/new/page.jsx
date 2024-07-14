@@ -58,7 +58,7 @@ const NewProducts = () => {
             newSizes[index] = sizes[index];
 
             sizes[index]?.map((_,i)=> {
-                newSizes[index][i].quantity = +formData.get(`quantity ${sizes[index][i]?.shortName} ${index}`)
+                newSizes[index][i].stackQuantity = +formData.get(`stackQuantity ${sizes[index][i]?.shortName} ${index}`)
             })
 
             newSizes[index]
@@ -98,7 +98,7 @@ const NewProducts = () => {
         if(valitadData.success) {
             PostData('api/products/new',valitadData?.data)
             .then(()=>{
-                router.push('/admin/products')
+                // router.push('/admin/products')
             })
             .catch((error)=> {
                 throw new Error(error?.message)

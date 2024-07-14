@@ -33,37 +33,37 @@ const man_women_sizes = [
         id: 1,
         name: 'small',
         shortName: 'S',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 2,
         name: 'medium',
         shortName: 'M',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 3,
         name: 'large',
         shortName: 'L',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 4,
         name: 'X large',
         shortName: 'XL',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 5,
         name: 'XX large',
         shortName: '2XL',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 6,
         name: 'XXX large',
         shortName: '3XL',
-        quantity: 0
+        stackQuantity: 0
     }
 ];
 
@@ -72,37 +72,37 @@ const kids_sizes = [
         id: 1,
         name: '1 to 2 years',
         shortName: '1-2Y',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 2,
         name: '2 to 3 years',
         shortName: '2-3Y',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 3,
         name: '3 to 5 years',
         shortName: '3-5Y',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 4,
         name: '5 to 7 years',
         shortName: '5-7Y',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 5,
         name: '7 to 10 years',
         shortName: '7-10Y',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 6,
         name: '10 to 14 years',
         shortName: '10-14Y',
-        quantity: 0
+        stackQuantity: 0
     }
 ]
 
@@ -111,43 +111,43 @@ export const kids_shoes_sizes = [
         id: 1,
         name: '17 EU',
         shortName: '17',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 2,
         name: '19 EU',
         shortName: '19',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 3,
         name: '20 EU',
         shortName: '20',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 4,
         name: '21 EU',
         shortName: '21',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 5,
         name: '24 EU',
         shortName: '24',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 6,
         name: '26 EU',
         shortName: '26',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 7,
         name: '30 EU',
         shortName: '30',
-        quantity: 0
+        stackQuantity: 0
     },
 ]
 
@@ -156,59 +156,57 @@ export const shoes_sizes = [
         id: 8,
         name: '36 EU',
         shortName: '36',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 9,
         name: '38 EU',
         shortName: '38',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 10,
         name: '40 EU',
         shortName: '40',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 11,
         name: '41 EU',
         shortName: '41',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 12,
         name: '42 EU',
         shortName: '42',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 13,
         name: '43 EU',
         shortName: '43',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 14,
         name: '44 EU',
         shortName: '44',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 15,
         name: '45 EU',
         shortName: '45',
-        quantity: 0
+        stackQuantity: 0
     },
     {
         id: 16,
         name: '46 EU',
         shortName: '46',
-        quantity: 0
+        stackQuantity: 0
     }
-]
-
-
+];
 
 export const categoriesData = [
     {
