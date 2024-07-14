@@ -1,12 +1,16 @@
 "use client"
+import { useContext } from "react";
 import { FormInput } from "./FormInput";
+import { newProductContext } from "../new/page";
 
 const className = {
     li:'text-teal-900 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-100 border-2 border-gray-200'
 }
 
 
-export const SelectSizes = ({i,category,sizes,setSizes})=> {
+export const SelectSizes = ({i})=> {
+
+    const {errors,category,sizes,setSizes} = useContext(newProductContext)
 
     const isShoes = category?.subName?.toLowerCase() === 'shoes';
 
@@ -77,7 +81,7 @@ export const SelectSizes = ({i,category,sizes,setSizes})=> {
                                     label={`${shortName} size quantity *`}
                                     type='number'
                                     placeHolder={`place enter ${shortName} quantity..`}
-                                    errors={null}
+                                    errors={errors}
                                     />
                     ))
                 }

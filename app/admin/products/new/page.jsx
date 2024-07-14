@@ -1,6 +1,6 @@
 "use client";
 
-import {useRef, useState } from "react";
+import {createContext, useRef, useState } from "react";
 import {SpecificationInputs}from "../_components/SpecificationInputs";
 import { ButtonWithIcon } from "../../../../components/buttons";
 import {ImagesColor} from "../_components/ImagesClolors";
@@ -15,12 +15,11 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import Loading from "../_components/Loading"
 import { PostData } from "../../../../lip/fetchData";
 
-
+export const newProductContext = createContext();
 
 const NewProducts = () => {
 
     const [category,setCatgory] = useState({});
-
     const [specifications,setSpecifications] = useState([{
         name : 'specificaton key',
         value : 'specificaton value',
@@ -50,10 +49,6 @@ const NewProducts = () => {
         event.preventDefault();
 
         setIsPending(true);
-
-        
-        formData.set('category',category?.name);
-        formData.set('subcategory',category.subName);
 
         const data = formDataProductFormater(formData,colors,specifications,sizes)
 
@@ -88,6 +83,20 @@ const NewProducts = () => {
 
 
   return (
+    <newProductContext.Provider 
+        value={{
+            errors,
+            category,
+            setCatgory,
+            specifications,
+            setSpecifications,
+            formData,
+            colors,
+            setColors,
+            sizes,
+            setSizes
+            }}
+    >
     <div className="p-4 lg:p-10 w-full max-w-full capitalize ">
         {
             isPendding ? <Loading /> : ''
@@ -102,19 +111,9 @@ const NewProducts = () => {
                     ref={formRef}
                     onSubmit={handleSubmit} 
                     >
-                    <ProductInfoForm setCatgory={setCatgory} category={category}/>
-                    <SpecificationInputs
-                        specifications={specifications}
-                        setSpecifications={setSpecifications}
-                       />
-                    <ImagesColor
-                          formData={formData} 
-                           category={category}
-                           colors={colors}
-                           setColors={setColors}
-                           sizes={sizes}
-                           setSizes={setSizes}
-                           />
+                    <ProductInfoForm/>
+                    <SpecificationInputs/>
+                    <ImagesColor/>
 
                     <div className="w-[200px]">
                      <ButtonWithIcon
@@ -128,6 +127,7 @@ const NewProducts = () => {
             </div>
         </div>
     </div>
+    </newProductContext.Provider>
   )
 }
 

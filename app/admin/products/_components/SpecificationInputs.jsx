@@ -1,24 +1,21 @@
 "use client"
 
-import {  useState } from "react";
+import {  useContext, useState } from "react";
 import { FormInput } from "./FormInput";
 import { ButtonWithIcon } from "../../../../components/buttons";
-// import {specifZSchema} from '../../../../validationSchemas/newProductSchemas';
-
 
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
+import { newProductContext } from "../new/page";
 
 const data = {
     name : 'specificaton key',
     value : 'specificaton value',
 }
 
-export function SpecificationInputs({specifications,setSpecifications}) {
+export function SpecificationInputs() {
 
-    const [errors,setErrors] = useState(null);
-
-
+    const {errors,specifications,setSpecifications} = useContext(newProductContext);
 
     const addMore = ()=> {
         setSpecifications(prev=> {
@@ -58,11 +55,11 @@ export function SpecificationInputs({specifications,setSpecifications}) {
                     }
                     <div className="w-[70px]">
                         <ButtonWithIcon 
-                        text='' 
-                        Icon={IoIosAdd} 
-                        type='save' 
-                        disabled={false} 
-                        onClick={addMore}
+                            text='' 
+                            Icon={IoIosAdd} 
+                            type='save' 
+                            disabled={false} 
+                            onClick={addMore}
                         />
                     </div>
 

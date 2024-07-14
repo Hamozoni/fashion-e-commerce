@@ -1,14 +1,14 @@
 "use client"
 
-import {  useEffect, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import { FormInput } from "./FormInput";
 import { ButtonWithIcon } from "../../../../components/buttons";
 // import {specifZSchema} from '../../../../validationSchemas/newProductSchemas';
 
-import { categoriesData } from "../../../../data/categoriesData";
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
 import {SelectSizes} from "./selectSizes";
+import { newProductContext } from "../new/page";
 
 const data = {
     image: 'images',
@@ -17,9 +17,9 @@ const data = {
     priceInHalala: 'price in halala'
 }
 
-export function ImagesColor({category,colors,setColors,sizes,setSizes}) {
+export function ImagesColor() {
 
-    const [errors,setErrors] = useState(null);
+    const {errors,category,colors,setColors,sizes,setSizes} = useContext(newProductContext)
 
     const addMore = ()=> {
         setSizes(prev=> [...prev,[]])
@@ -113,13 +113,7 @@ export function ImagesColor({category,colors,setColors,sizes,setSizes}) {
                                     errors={errors}
                                     />
                             </div>
-                            <SelectSizes 
-                                i={index}  
-                                category={category}
-                                sizes={sizes}
-                                setSizes={setSizes}
-                                />
-
+                            <SelectSizes  i={index} />
                         </div>
                     ))
                 }
