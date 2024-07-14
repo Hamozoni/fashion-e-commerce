@@ -7,14 +7,21 @@ import { zProductShema } from '../../../../validationSchemas/newProductSchemas';
 export async function POST (request) {
 
     const formData  = await request.formData();
+
     const data = Object.fromEntries(formData.entries());
+    const images = formData.getAll('images 0')
     const informations = JSON.parse(data.informations);
     const sizes = JSON.parse(data.sizes);
     const specifications = JSON.parse(data.specifications);
+    const details = JSON.parse(data.details);
+
 
     console.log("11111",sizes)
     console.log("11111",specifications)
     console.log("11111",informations)
+    console.log("11111",details)
+    console.log("11111",data)
+    console.log("11111",images)
     return NextResponse.json('done',{status: 200})
 
 

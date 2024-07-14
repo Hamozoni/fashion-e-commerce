@@ -4,13 +4,14 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
     let newSizes = []
     let newSizesArray = []
 
+    const newFormData = new FormData();
+
     colors?.map(({color,colorName},index)=> {
 
         newSizes[index] = sizes[index];
 
         sizes[index]?.map((_,i)=> {
             newSizes[index][i].stackQuantity = +formData.get(`stackQuantity ${sizes[index][i]?.shortName} ${index}`)
-            formData.delete(`stackQuantity ${sizes[index][i]?.shortName} ${index}`)
         })
 
         newSizes[index]
@@ -25,11 +26,8 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
 
 
 
-        formData.append('sizes',JSON.stringify(newSizesArray))
-
-        formData.delete(`${colorName} ${index}`)
-        formData.delete(`${color} ${index}`)
-        formData.delete(`price in halala ${index}`)
+        newFormData.append('sizes',JSON.stringify(newSizesArray));
+        newFormData.append(`images ${index}`,formData.get(`images ${index}`));
     });
 
     let newSpecifications = []
@@ -39,12 +37,9 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
             name: formData.get(`${name} ${index}`),
             value: formData.get(`${value} ${index}`),
         })
-
-        formData.delete(`${name} ${index}`);
-        formData.delete(`${value} ${index}`)
     })
 
-    const data = {
+    const details = {
         name : formData.get('name'),
         brand: formData.get('brand'),
         serialNumber : formData.get('serialNumber'),
@@ -53,10 +48,10 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
         describtion: formData.get('describtion'),
     };
 
-    formData.set('specifications',JSON.stringify(specifications));
-    formData.set('informations',JSON.stringify(informations));
+    newFormData.set('specifications',JSON.stringify(specifications));
+    newFormData.set('informations',JSON.stringify(informations));
+    newFormData.set('details',JSON.stringify(details));
 
-    const size = formData.getAll('size')
 
-    return {data,specifications,informations,sizes:size};
+    return newFormData;
 }

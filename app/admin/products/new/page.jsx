@@ -53,10 +53,10 @@ const NewProducts = () => {
         formData.set('category',category.name);
         formData.set('subcategory',category.subName);
 
-        const data = formDataProductFormater(formData,colors,specifications,sizes);
+        const newFormData = formDataProductFormater(formData,colors,specifications,sizes);
         // const valitadData = zProductShema.safeParse(data);
 
-            PostData('products/new',formData)
+            PostData('products/new',newFormData)
             .then((data)=>{
     
                 console.log(data)
@@ -70,8 +70,7 @@ const NewProducts = () => {
             });
 
             // console.log(valitadData)
-            console.log(data)
-            console.log(Object.fromEntries(formData.entries()))
+            console.log(Object.fromEntries(newFormData.entries()))
             // setIsPending(false)
             // setErrors(JSON.parse(valitadData?.error))
         
