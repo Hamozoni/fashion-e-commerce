@@ -3,7 +3,6 @@ import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
 import { db } from  "../../../../lip/db"
 import { zProductShema } from '../../../../validationSchemas/newProductSchemas';
-import { create } from 'domain';
 
 export async function POST (request) {
 
@@ -15,30 +14,30 @@ export async function POST (request) {
     const specifications = JSON.parse(data.specifications);
     const details = JSON.parse(data.details);
 
-    console.log(data);
+    // console.log(data);
 
 
 
-    try {
-        const existProduct = await db.product.findUnique({where : {
-            serialNumber : details?.serialNumber
-        }});
+    // try {
+    //     const existProduct = await db.product.findUnique({where : {
+    //         serialNumber : details?.serialNumber
+    //     }});
     
-        if(!!existProduct){
-            console.log(existProduct);
-            return  NextResponse.json("Error the products already added before try another product", { status: 400 })
-        }
+    //     if(!!existProduct){
+    //         console.log(existProduct);
+    //         return  NextResponse.json("Error the products already added before try another product", { status: 400 })
+    //     }
 
-    }
-    catch {
-        return  NextResponse.json("opss! something went wrong", { status: 500 })
-    }
-    finally {
-        await db.$disconnect()
-     };
+    // }
+    // catch {
+    //     return  NextResponse.json("opss! something went wrong", { status: 500 })
+    // }
+    // finally {
+    //     await db.$disconnect()
+    //  };
      
 
-     console.log('after',data);
+     console.log('after',informations);
 
 
 
@@ -48,7 +47,7 @@ let images = [];
 
 try{
     
-        await fs.mkdir("public/products",{recursive: true});
+        // await fs.mkdir("public/products",{recursive: true});
         
             for(let i = 0;i < informations.length; i++){
 
@@ -57,11 +56,11 @@ try{
                 const imagesPaths = formData.getAll(`images ${i}`);
                 for(let index = 0; index < imagesPaths.length; index++){
 
-                    const imagePath = `/products/${crypto.randomUUID()}-${imagesPaths[index].name}`;
+                    // const imagePath = `/products/${crypto.randomUUID()}-${imagesPaths[index].name}`;
 
-                    await fs.writeFile(`public${imagePath}`,Buffer.from(await imagesPaths[index].arrayBuffer()))
+                    // await fs.writeFile(`public${imagePath}`,Buffer.from(await imagesPaths[index].arrayBuffer()))
 
-                    image.push({imagePath});
+                    image.push({imagePath:'[['});
 
                 }
 
@@ -71,6 +70,7 @@ try{
                 informations[i].sizes = {create: sizes[i]}
             };
 
+            console.log(informations)
    }
    catch {
 
@@ -86,38 +86,38 @@ try{
 
     delateImages()
 
-    // return NextResponse.json('opps! somthing went wrong', { status: 500 })
+    return NextResponse.json('opps! somthing went wrong', { status: 500 })
    }
 
 
 //     // creating new product in db
-    try {
+    // try {
 
-         const product = await db.product.create({
-               data : {
-                   ...details,
-                   specifications : {
-                       create :specifications
-                   },
-                   informations : {
-                    create : informations
-                   }
-               }});
-           return NextResponse.json({product},{status: 200});
-     }
-     catch (error){
-        images?.map((image)=> {
-            image?.map(async({imagePath})=> {
-                await fs.unlink(imagePath)
-            });
+    //      const product = await db.product.create({
+    //            data : {
+    //                ...details,
+    //                specifications : {
+    //                    create :specifications
+    //                },
+    //                informations : {
+    //                 create : informations
+    //                }
+    //            }});
+    //        return NextResponse.json({product},{status: 200});
+    //  }
+    //  catch (error){
+    //     images?.map((image)=> {
+    //         image?.map(async({imagePath})=> {
+    //             await fs.unlink(imagePath)
+    //         });
     
-        });
-        console.log(error)
-        return NextResponse.json("smoething went wrong", { status: 500 })
-     }
-     finally {
-        await db.$disconnect()
-     };
+    //     });
+    //     console.log(error)
+    //     return NextResponse.json("smoething went wrong", { status: 500 })
+    //  }
+    //  finally {
+    //     await db.$disconnect()
+    //  };
 
 
 };
