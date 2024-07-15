@@ -17,23 +17,21 @@ export async function POST (request) {
 
     console.log(data);
 
-    const productId = crypto.randomUUID()
-
 
 
     try {
-        const existProduct = await db.product.findMany({where : {
+        const existProduct = await db.product.findUnique({where : {
             serialNumber : details?.serialNumber
         }});
     
-        if(!!existProduct?.length){
+        if(!!existProduct){
             console.log(existProduct);
-            return new NextResponse("Error the products already added before try another product", { status: 400 })
+            return  NextResponse.json("Error the products already added before try another product", { status: 400 })
         }
 
     }
     catch {
-        return new NextResponse("opss! something went wrong", { status: 500 })
+        return  NextResponse.json("opss! something went wrong", { status: 500 })
     }
     finally {
         await db.$disconnect()
@@ -54,66 +52,65 @@ try{
         
             for(let i = 0;i < informations.length; i++){
 
-                const id = crypto.randomUUID();
-                informations[i].id = id;
-                informations[i].productId = productId;
-                sizes[i].infoId = id
+                let image = []
 
                 const imagesPaths = formData.getAll(`images ${i}`);
                 for(let index = 0; index < imagesPaths.length; index++){
 
-                    const imagePath = `public/products/${crypto.randomUUID()}-${imagesPaths[index].name}`;
-                    await fs.writeFile(imagePath,Buffer.from(await imagesPaths[index].arrayBuffer()))
+                    const imagePath = `/products/${crypto.randomUUID()}-${imagesPaths[index].name}`;
+                    await fs.writeFile(`public${imagePath}`,Buffer.from(await imagesPaths[index].arrayBuffer()))
 
-                    images.push({imagePath,infoId:id});
+                    image.push({imagePath});
 
                 }
+
+                images[i].push(image)
+
+                informations[i].images = {create: images[i]}
+                informations[i].sizes = {create: sizes[i]}
             };
 
    }
    catch {
-        images?.map(async({imagePath})=> {
-            await fs.unlink(imagePath)
-        })
-    return new NextResponse({error: 'opps! somthing went wrong'}, { status: 500 })
+
+    images?.map((image)=> {
+        image?.map(async({imagePath})=> {
+            await fs.unlink(`public${imagePath}`)
+        });
+
+    });
+    return NextResponse.json('opps! somthing went wrong', { status: 500 })
    }
 
 
 //     // creating new product in db
     try {
 
+        informations
+
         informations.push({images: {create : images}});
         informations.push({sizes: {create : sizes}});
          const product = await db.product.create({
                data : {
                    ...details,
-                   id: productId,
                    specifications : {
-                       create :[
-                           ...specifications
-                       ]
+                       create :specifications
+                   },
+                   informations : {
+                    create : informations
                    }
                }});
-
-        const productInformation = await db.productInformation.createMany({
-            data: [...informations],
-            images: {
-                create: [...images]
-            },
-            sizes: {
-                create: [
-                    ...sizes
-                ]
-            }
-        })
-           return new NextResponse.json({product,productInformation},{status: 200});
+           return NextResponse.json({product},{status: 200});
      }
      catch (error){
-        images?.map(async({imagePath})=> {
-            await fs.unlink(imagePath)
-        })
+        images?.map((image)=> {
+            image?.map(async({imagePath})=> {
+                await fs.unlink(`public${imagePath}`)
+            });
+    
+        });
         console.log(error)
-        return new NextResponse.json("smoething went wrong", { status: 500 })
+        return NextResponse.json("smoething went wrong", { status: 500 })
      }
      finally {
         await db.$disconnect()
