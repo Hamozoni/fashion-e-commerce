@@ -34,51 +34,53 @@ export async function POST (request) {
 
 //loading product images in public folder
 
-    let images = [];
+//     let images = [];
 
 
-    const delateImages = (images)=> {
+//     const delateImages = (images)=> {
 
-        images?.map((image)=> {
-            image?.map(async({imagePath})=> {
-                await fs.unlink(`public${imagePath}`)
-            });
+//         images?.map((image)=> {
+//             image?.map(async({imagePath})=> {
+//                 await fs.unlink(`public${imagePath}`)
+//             });
     
-        });
-    }
+//         });
+//     }
 
-    try{
+//     try{
     
-        await fs.mkdir("public/products",{recursive: true});
+//         await fs.mkdir("public/products",{recursive: true});
 
-        informations?.map((info,index)=> {
-            let image = [];
-            const imageFiles = formData.getAll(`images ${index}`);
+//         informations?.map((info,index)=> {
+//             let image = [];
+//             const imageFiles = formData.getAll(`images ${index}`);
 
-            imageFiles?.map(async(imageFile)=> {
+//             imageFiles?.map(async(imageFile)=> {
 
-                    const imagePath = `/products/${crypto.randomUUID()}-${imageFile.name}`;
+//                     const imagePath = `/products/${crypto.randomUUID()}-${imageFile.name}`;
 
-                    await fs.writeFile(`public${imagePath}`,Buffer.from(await imageFile.arrayBuffer()))
+//                     await fs.writeFile(`public${imagePath}`,Buffer.from(await imageFile.arrayBuffer()))
 
-                    image.push({imagePath});
+//                     image.push({imagePath});
 
-            });
-            images[index] = image;
+//             });
+//             images[index] = image;
 
-            info.images = {create: images[index]};
-            info.sizes = {create: sizes[index]};
+//             info.images = {create: images[index]};
+//             info.sizes = {create: sizes[index]};
 
-        });
-   }
-   catch (error){
-        delateImages(images);
-        return NextResponse.json('opps! somthing went wrong', { status: 500 })
-   }
+//         });
+//    }
+//    catch (error){
+//         delateImages(images);
+//         return NextResponse.json('opps! somthing went wrong', { status: 500 })
+//    }
 
 
 
     // creating new product in db
+
+    console.log(informations)
     try {
          const product = await db.product.create({
                data : {
@@ -86,9 +88,9 @@ export async function POST (request) {
                    specifications : {
                        create :specifications
                    },
-                //    informations : {
-                //     create : informations
-                //    }
+                   informations : {
+                    create : informations
+                   }
                }});
            return NextResponse.json({product},{status: 200});
      }

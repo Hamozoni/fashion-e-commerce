@@ -6,46 +6,54 @@ CREATE TABLE `products` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updateddAt` DATETIME(3) NOT NULL,
     `describtion` TEXT NOT NULL,
-    `orderedQuantity` INTEGER NULL DEFAULT 0,
     `category` VARCHAR(191) NOT NULL,
     `subcategory` VARCHAR(191) NOT NULL,
     `serialNumber` VARCHAR(191) NOT NULL,
     `brand` VARCHAR(191) NULL,
-    `image` VARCHAR(191) NULL,
+    `priceInHalala` INTEGER NOT NULL,
+    `offerPriceInHalala` INTEGER NULL,
+    `offerExpiresAt` DATETIME(3) NULL,
+    `imagePath` VARCHAR(191) NOT NULL,
+    `size` VARCHAR(191) NOT NULL,
+    `color` VARCHAR(191) NOT NULL,
+    `colorName` VARCHAR(191) NOT NULL,
+    `quantity` INTEGER NOT NULL DEFAULT 1,
+    `totalPriceInHalala` INTEGER NULL,
 
     UNIQUE INDEX `products_serialNumber_key`(`serialNumber`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `ProductInformation` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ProductImage` (
+    `id` VARCHAR(191) NOT NULL,
+    `imagePath` VARCHAR(191) NOT NULL,
     `colorName` VARCHAR(191) NOT NULL,
-    `color` VARCHAR(191) NOT NULL,
-    `princeInHalala` INTEGER NOT NULL,
-    `offerPriceInHalala` INTEGER NULL,
-    `offerFinishAt` DATETIME(3) NULL,
     `productId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `ProductImage` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `imagePath` VARCHAR(191) NOT NULL,
-    `infoId` INTEGER NOT NULL,
+CREATE TABLE `productSizes` (
+    `id` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `shortName` VARCHAR(191) NOT NULL,
+    `stackQuantity` INTEGER NOT NULL,
+    `productId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `productSizes` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191) NOT NULL,
-    `shortName` VARCHAR(191) NOT NULL,
-    `stackQuantity` INTEGER NOT NULL,
-    `infoId` INTEGER NOT NULL,
+CREATE TABLE `productColors` (
+    `id` VARCHAR(191) NOT NULL,
+    `colorName` VARCHAR(191) NOT NULL,
+    `color` VARCHAR(191) NOT NULL,
+    `priceInHalala` INTEGER NOT NULL,
+    `offerPriceInHalala` INTEGER NULL,
+    `offerExpiresAt` DATETIME(3) NULL,
+    `productId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -204,13 +212,13 @@ CREATE TABLE `_orderToproduct` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `ProductInformation` ADD CONSTRAINT `ProductInformation_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `ProductImage` ADD CONSTRAINT `ProductImage_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ProductImage` ADD CONSTRAINT `ProductImage_infoId_fkey` FOREIGN KEY (`infoId`) REFERENCES `ProductInformation`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `productSizes` ADD CONSTRAINT `productSizes_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `productSizes` ADD CONSTRAINT `productSizes_infoId_fkey` FOREIGN KEY (`infoId`) REFERENCES `ProductInformation`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `productColors` ADD CONSTRAINT `productColors_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `specifications` ADD CONSTRAINT `specifications_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

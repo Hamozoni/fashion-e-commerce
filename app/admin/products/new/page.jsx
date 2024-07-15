@@ -60,7 +60,7 @@ const NewProducts = () => {
             .then((data)=>{
     
                 console.log(data)
-                router.push('/admin/products')
+                // router.push('/admin/products')
             })
             .catch((error)=> {
                 console.log(error)

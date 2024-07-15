@@ -18,7 +18,7 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
         informations?.push({
             colorName: formData.get(`${colorName} ${index}`),
             color: formData.get(`${color} ${index}`),
-            princeInHalala : +formData.get(`price in halala ${index}`),
+            priceInHalala : +formData.get(`price in halala ${index}`),
         });
 
         

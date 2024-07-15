@@ -14,49 +14,56 @@ model product {
   createdAt        DateTime  @default(now())
   updateddAt       DateTime  @updatedAt
   describtion      String    @db.Text
-  orderedQuantity         Int?      @default(0)
   category         String
   subcategory      String
   serialNumber     String   @unique
   brand    String?
-  image String?
-  informations productInformation[]
+  priceInHalala Int
+  offerPriceInHalala Int?
+  offerExpiresAt DateTime?
+  imagePath String
+  size String
+  color String
+  colorName String
+  quantity  Int  @default(1)
+  totalPriceInHalala Int?
+  images productImage[]
+  sizes productSize[]
+  colors productColors[]
   specifications specification[]
   reviews reviews[]
   orders order[]
 	@@map("products")
 }
 
-model productInformation {
-  id Int @id @default(autoincrement())
+model productImage {
+  id String @id @default(uuid())
+  imagePath String
   colorName String
-  color String
-  princeInHalala Int
-  offerPriceInHalala Int?
-  offerFinishAt DateTime?
-  images productImage[]
-  sizes productSize[]
   productId String
   product product @relation(fields: [productId],references: [id],onDelete: Cascade)
-	@@map("ProductInformation")
-}
-
-model productImage {
-  id Int @id @default(autoincrement())
-  imagePath String
-  infoId Int
-  info productInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
 	@@map("ProductImage")
 }
 
 model productSize {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   name String
   shortName String
   stackQuantity Int
-  infoId Int
-  info productInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
+  productId String
+  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
   @@map("productSizes")
+}
+
+model productColors {
+  id String @id @default(uuid())
+  colorName String
+  color String
+  priceInHalala Int
+  offerPriceInHalala Int?
+  offerExpiresAt DateTime?
+  productId String
+  product product @relation(fields: [productId],references: [id],onDelete: Cascade)
 }
 
 model specification {
