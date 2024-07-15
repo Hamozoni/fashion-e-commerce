@@ -56,7 +56,7 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
     }
 
 
-    formData.set('specifications',JSON.stringify(specifications));
+    formData.set('specifications',JSON.stringify(newSpecifications));
     formData.set('informations',JSON.stringify(informations));
     formData.set('details',JSON.stringify(details));
 

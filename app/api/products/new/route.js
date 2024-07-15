@@ -58,6 +58,7 @@ try{
                 for(let index = 0; index < imagesPaths.length; index++){
 
                     const imagePath = `/products/${crypto.randomUUID()}-${imagesPaths[index].name}`;
+
                     await fs.writeFile(`public${imagePath}`,Buffer.from(await imagesPaths[index].arrayBuffer()))
 
                     image.push({imagePath});
@@ -73,23 +74,25 @@ try{
    }
    catch {
 
-    images?.map((image)=> {
-        image?.map(async({imagePath})=> {
-            await fs.unlink(`public${imagePath}`)
-        });
+    const delateImages = ()=> {
 
-    });
-    return NextResponse.json('opps! somthing went wrong', { status: 500 })
+        images?.map((image)=> {
+            image?.map(async({imagePath})=> {
+                await fs.unlink(imagePath)
+            });
+    
+        });
+    }
+
+    delateImages()
+
+    // return NextResponse.json('opps! somthing went wrong', { status: 500 })
    }
 
 
 //     // creating new product in db
     try {
 
-        informations
-
-        informations.push({images: {create : images}});
-        informations.push({sizes: {create : sizes}});
          const product = await db.product.create({
                data : {
                    ...details,
@@ -105,7 +108,7 @@ try{
      catch (error){
         images?.map((image)=> {
             image?.map(async({imagePath})=> {
-                await fs.unlink(`public${imagePath}`)
+                await fs.unlink(imagePath)
             });
     
         });
