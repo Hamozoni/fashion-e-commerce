@@ -86,9 +86,9 @@ export async function POST (request) {
                    specifications : {
                        create :specifications
                    },
-                   informations : {
-                    create : informations
-                   }
+                //    informations : {
+                //     create : informations
+                //    }
                }});
            return NextResponse.json({product},{status: 200});
      }
