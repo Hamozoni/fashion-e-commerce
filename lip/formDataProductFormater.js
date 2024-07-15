@@ -2,7 +2,19 @@
 export const formDataProductFormater = (formData,colors,specifications,sizes) => {
     let informations = []
     let newSizes = []
-    let newSizesArray = []
+    let newSizesArray = [];
+    
+    let newSpecifications = []
+
+    specifications?.map(({name,value},index)=> {
+        newSpecifications?.push({
+            name: formData.get(`${name} ${index}`),
+            value: formData.get(`${value} ${index}`),
+        });
+
+        formData.delete(`${name} ${index}`);
+        formData.delete(`${value} ${index}`)
+    })
 
     colors?.map(({color,colorName},index)=> {
 
@@ -30,17 +42,6 @@ export const formDataProductFormater = (formData,colors,specifications,sizes) =>
         formData.append('sizes',JSON.stringify(newSizesArray));
     });
 
-    let newSpecifications = []
-
-    specifications?.map(({name,value},index)=> {
-        newSpecifications?.push({
-            name: formData.get(`${name} ${index}`),
-            value: formData.get(`${value} ${index}`),
-        });
-
-        formData.delete(`${name} ${index}`);
-        formData.delete(`${value} ${index}`)
-    })
 
     const details = {
         name : formData.get('name'),

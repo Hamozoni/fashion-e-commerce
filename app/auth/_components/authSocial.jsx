@@ -30,11 +30,13 @@ function AuthSocial({text,link,page}) {
     <div className="relative">
         <div className="flex items-center justify-between">
             <button 
+                disabled={isLoading}
                 onClick={()=> OauthSignIn("github")}
                 className={className.socialBtn}
                 ><SiGithub size={24}/> {page === 'logIn' ? "login " :"sign up "} with github
             </button>
             <button 
+              disabled={isLoading}
               onClick={()=> OauthSignIn("google")}
               className={className.socialBtn}>
                 <FcGoogle size={24}/> {page === 'logIn'? "login " :"sign up "} with google
@@ -51,7 +53,7 @@ function AuthSocial({text,link,page}) {
         </div>
         {
             isLoading && <>
-              <Overlay />
+              <Overlay onClick={()=>''} />
               <div className="z-50 absolute left-0 top-0 w-full flex justify-center items-center">
                  <PropagateLoader color="#166534" size={22} />
               </div>

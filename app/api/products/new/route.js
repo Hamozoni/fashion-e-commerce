@@ -8,29 +8,29 @@ export async function POST (request) {
 
     const formData  = await request.formData();
 
-    const data = Object.fromEntries(formData.entries());
-    const informations = JSON.parse(data.informations);
-    const sizes = JSON.parse(data.sizes);
-    const specifications = JSON.parse(data.specifications);
-    const details = JSON.parse(data.details);
+    // const data = Object.fromEntries(formData.entries());
+    // const informations = JSON.parse(data.informations);
+    // const sizes = JSON.parse(data.sizes);
+    // const specifications = JSON.parse(data.specifications);
+    // const details = JSON.parse(data.details);
 
-    try {
-        const existProduct = await db.product.findUnique({where : {
-            serialNumber : details?.serialNumber
-        }});
+    // try {
+    //     const existProduct = await db.product.findUnique({where : {
+    //         serialNumber : details?.serialNumber
+    //     }});
     
-        if(!!existProduct){
-            console.log(existProduct);
-            return  NextResponse.json("Error the products already added before try another product", { status: 400 })
-        }
+    //     if(!!existProduct){
+    //         console.log(existProduct);
+    //         return  NextResponse.json("Error the products already added before try another product", { status: 400 })
+    //     }
 
-    }
-    catch {
-        return  NextResponse.json("opss! something went wrong", { status: 500 })
-    }
-    finally {
-        await db.$disconnect()
-     };
+    // }
+    // catch {
+    //     return  NextResponse.json("opss! something went wrong", { status: 500 })
+    // }
+    // finally {
+    //     await db.$disconnect()
+    //  };
 
 //loading product images in public folder
 
@@ -80,28 +80,28 @@ export async function POST (request) {
 
     // creating new product in db
 
-    console.log(informations)
-    try {
-         const product = await db.product.create({
-               data : {
-                   ...details,
-                   specifications : {
-                       create :specifications
-                   },
-                   informations : {
-                    create : informations
-                   }
-               }});
-           return NextResponse.json({product},{status: 200});
-     }
-     catch (error){
-        delateImages(images);
-        console.log(error)
-        return NextResponse.json("something went wrong", { status: 500 })
-     }
-     finally {
-        await db.$disconnect()
-     };
+    // console.log(informations)
+    // try {
+    //      const product = await db.product.create({
+    //            data : {
+    //                ...details,
+    //                specifications : {
+    //                    create :specifications
+    //                },
+    //                informations : {
+    //                 create : informations
+    //                }
+    //            }});
+    //        return NextResponse.json({product},{status: 200});
+    //  }
+    //  catch (error){
+    //     delateImages(images);
+    //     console.log(error)
+    //     return NextResponse.json("something went wrong", { status: 500 })
+    //  }
+    //  finally {
+    //     await db.$disconnect()
+    //  };
 
 
 };

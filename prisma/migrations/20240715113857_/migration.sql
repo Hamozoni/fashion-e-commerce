@@ -39,6 +39,7 @@ CREATE TABLE `productSizes` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `shortName` VARCHAR(191) NOT NULL,
+    `colorName` VARCHAR(191) NOT NULL,
     `stackQuantity` INTEGER NOT NULL,
     `productId` VARCHAR(191) NOT NULL,
 

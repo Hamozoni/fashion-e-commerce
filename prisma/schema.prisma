@@ -49,6 +49,7 @@ model productSize {
   id String @id @default(uuid())
   name String
   shortName String
+  colorName String
   stackQuantity Int
   productId String
   product product @relation(fields: [productId],references: [id],onDelete: Cascade)
