@@ -28,7 +28,7 @@ model product {
 }
 
 model productInformation {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   colorName String
   color String
   princeInHalala Int
@@ -42,19 +42,19 @@ model productInformation {
 }
 
 model productImage {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   imagePath String
-  infoId String
+  infoId Int
   info productInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
 	@@map("ProductImage")
 }
 
 model productSize {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   name String
   shortName String
   stackQuantity Int
-  infoId String
+  infoId Int
   info productInformation @relation(fields: [infoId],references: [id],onDelete: Cascade)
   @@map("productSizes")
 }

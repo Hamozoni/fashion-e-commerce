@@ -14,110 +14,92 @@ export async function POST (request) {
     const specifications = JSON.parse(data.specifications);
     const details = JSON.parse(data.details);
 
-    // console.log(data);
-
-
-
-    // try {
-    //     const existProduct = await db.product.findUnique({where : {
-    //         serialNumber : details?.serialNumber
-    //     }});
+    try {
+        const existProduct = await db.product.findUnique({where : {
+            serialNumber : details?.serialNumber
+        }});
     
-    //     if(!!existProduct){
-    //         console.log(existProduct);
-    //         return  NextResponse.json("Error the products already added before try another product", { status: 400 })
-    //     }
+        if(!!existProduct){
+            console.log(existProduct);
+            return  NextResponse.json("Error the products already added before try another product", { status: 400 })
+        }
 
-    // }
-    // catch {
-    //     return  NextResponse.json("opss! something went wrong", { status: 500 })
-    // }
-    // finally {
-    //     await db.$disconnect()
-    //  };
-     
-
-     console.log('after',informations);
-
-
+    }
+    catch {
+        return  NextResponse.json("opss! something went wrong", { status: 500 })
+    }
+    finally {
+        await db.$disconnect()
+     };
 
 //loading product images in public folder
 
-let images = [];
+    let images = [];
 
-try{
-    
-        // await fs.mkdir("public/products",{recursive: true});
-        
-            for(let i = 0;i < informations.length; i++){
 
-                let image = []
-
-                const imagesPaths = formData.getAll(`images ${i}`);
-                for(let index = 0; index < imagesPaths.length; index++){
-
-                    // const imagePath = `/products/${crypto.randomUUID()}-${imagesPaths[index].name}`;
-
-                    // await fs.writeFile(`public${imagePath}`,Buffer.from(await imagesPaths[index].arrayBuffer()))
-
-                    image.push({imagePath:'[['});
-
-                }
-
-                images[i].push(image)
-
-                informations[i].images = {create: images[i]}
-                informations[i].sizes = {create: sizes[i]}
-            };
-
-            console.log(informations)
-   }
-   catch {
-
-    const delateImages = ()=> {
+    const delateImages = (images)=> {
 
         images?.map((image)=> {
             image?.map(async({imagePath})=> {
-                await fs.unlink(imagePath)
+                await fs.unlink(`public${imagePath}`)
             });
     
         });
     }
 
-    delateImages()
+    try{
+    
+        await fs.mkdir("public/products",{recursive: true});
 
-    return NextResponse.json('opps! somthing went wrong', { status: 500 })
+        informations?.map((info,index)=> {
+            let image = [];
+            const imageFiles = formData.getAll(`images ${index}`);
+
+            imageFiles?.map(async(imageFile)=> {
+
+                    const imagePath = `/products/${crypto.randomUUID()}-${imageFile.name}`;
+
+                    await fs.writeFile(`public${imagePath}`,Buffer.from(await imageFile.arrayBuffer()))
+
+                    image.push({imagePath});
+
+            });
+            images[index] = image;
+
+            info.images = {create: images[index]};
+            info.sizes = {create: sizes[index]};
+
+        });
+   }
+   catch (error){
+        delateImages(images);
+        return NextResponse.json('opps! somthing went wrong', { status: 500 })
    }
 
 
-//     // creating new product in db
-    // try {
 
-    //      const product = await db.product.create({
-    //            data : {
-    //                ...details,
-    //                specifications : {
-    //                    create :specifications
-    //                },
-    //                informations : {
-    //                 create : informations
-    //                }
-    //            }});
-    //        return NextResponse.json({product},{status: 200});
-    //  }
-    //  catch (error){
-    //     images?.map((image)=> {
-    //         image?.map(async({imagePath})=> {
-    //             await fs.unlink(imagePath)
-    //         });
-    
-    //     });
-    //     console.log(error)
-    //     return NextResponse.json("smoething went wrong", { status: 500 })
-    //  }
-    //  finally {
-    //     await db.$disconnect()
-    //  };
+    // creating new product in db
+    try {
+         const product = await db.product.create({
+               data : {
+                   ...details,
+                   specifications : {
+                       create :specifications
+                   },
+                   informations : {
+                    create : informations
+                   }
+               }});
+           return NextResponse.json({product},{status: 200});
+     }
+     catch (error){
+        delateImages(images);
+        console.log(error)
+        return NextResponse.json("something went wrong", { status: 500 })
+     }
+     finally {
+        await db.$disconnect()
+     };
 
 
 };

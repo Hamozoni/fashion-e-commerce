@@ -19,7 +19,7 @@ CREATE TABLE `products` (
 
 -- CreateTable
 CREATE TABLE `ProductInformation` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `colorName` VARCHAR(191) NOT NULL,
     `color` VARCHAR(191) NOT NULL,
     `princeInHalala` INTEGER NOT NULL,
@@ -32,20 +32,20 @@ CREATE TABLE `ProductInformation` (
 
 -- CreateTable
 CREATE TABLE `ProductImage` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `imagePath` VARCHAR(191) NOT NULL,
-    `infoId` VARCHAR(191) NOT NULL,
+    `infoId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `productSizes` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `shortName` VARCHAR(191) NOT NULL,
     `stackQuantity` INTEGER NOT NULL,
-    `infoId` VARCHAR(191) NOT NULL,
+    `infoId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -195,12 +195,12 @@ CREATE TABLE `resetPasswordTokens` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `_OrderToProduct` (
+CREATE TABLE `_orderToproduct` (
     `A` VARCHAR(191) NOT NULL,
     `B` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `_OrderToProduct_AB_unique`(`A`, `B`),
-    INDEX `_OrderToProduct_B_index`(`B`)
+    UNIQUE INDEX `_orderToproduct_AB_unique`(`A`, `B`),
+    INDEX `_orderToproduct_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
@@ -237,7 +237,7 @@ ALTER TABLE `reviewsImages` ADD CONSTRAINT `reviewsImages_reviewId_fkey` FOREIGN
 ALTER TABLE `accounts` ADD CONSTRAINT `accounts_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `_OrderToProduct` ADD CONSTRAINT `_OrderToProduct_A_fkey` FOREIGN KEY (`A`) REFERENCES `orders`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `_orderToproduct` ADD CONSTRAINT `_orderToproduct_A_fkey` FOREIGN KEY (`A`) REFERENCES `orders`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `_OrderToProduct` ADD CONSTRAINT `_OrderToProduct_B_fkey` FOREIGN KEY (`B`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `_orderToproduct` ADD CONSTRAINT `_orderToproduct_B_fkey` FOREIGN KEY (`B`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
