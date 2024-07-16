@@ -3,7 +3,8 @@ import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
 import { db } from  "../../../../lip/db"
 import { zProductShema } from '../../../../validationSchemas/newProductSchemas';
-
+let images = [];
+let sizes = [];
 export async function POST (request) {
 
     const formData  = await request.formData();
@@ -13,13 +14,6 @@ export async function POST (request) {
     const sizesArrays = JSON.parse(data.sizes);
     const specifications = JSON.parse(data.specifications);
     const details = JSON.parse(data.details);
-
-
-    console.log(data);
-    console.log(colors);
-    console.log(specifications);
-    console.log(details);
-
 
 
     try {
@@ -41,10 +35,6 @@ export async function POST (request) {
      };
 
 //loading product images in public folder
-
-    let images = [];
-    let sizes = [];
-    let productImagePath = '';
 
 
     const delateImages = (images)=> {
@@ -69,7 +59,7 @@ export async function POST (request) {
                     images.push({imagePath,colorName});
 
                     if(index === 0) {
-                        productImagePath = imagePath
+                        details.imagePath = imagePath
                     };
 
             });
@@ -82,7 +72,10 @@ export async function POST (request) {
    catch (error){
         delateImages(images);
         return NextResponse.json('opps! somthing went wrong', { status: 500 })
-   }
+   };
+
+   
+   console.log(details);
 
 
 
@@ -91,18 +84,17 @@ export async function POST (request) {
          const product = await db.product.create({
                data : {
                    ...details,
-                   imagePath: productImagePath,
                    specifications : {
                        create :specifications
                    },
                    sizes : {
-                    create : sizes
+                    create : [...sizes]
                    },
                    colors: {
-                      create : colors
+                      create : [...colors]
                    },
                    images: {
-                    create : images
+                    create : [...images]
                    }
                }});
            return NextResponse.json({product},{status: 200});

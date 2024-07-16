@@ -17,10 +17,10 @@ export const SelectSizes = ({i})=> {
     const sizesData = isShoes ? category?.shoesSizes : category?.sizes
 
 
-    const isElementFound = (id)=> {
+    const isElementFound = (shortName)=> {
        let exsistingSize = false
         if(Array.isArray(productSizes[i])) {
-            exsistingSize = productSizes[i]?.find(e=> e?.id === id);
+            exsistingSize = productSizes[i]?.find(e=> e?.shortName === shortName);
         }
 
         return !!exsistingSize
@@ -37,10 +37,10 @@ export const SelectSizes = ({i})=> {
             })
         }
 
-        const exsistingSize = isElementFound(size?.id);
+        const exsistingSize = isElementFound(shortName);
 
         if(!!exsistingSize) {
-          const  newSizes = productSizes[i]?.filter(e => e?.id !== size?.id);
+          const  newSizes = productSizes[i]?.filter(e => e?.shortName !== shortName);
 
           setProductSizes(prev=> {
             
@@ -69,8 +69,8 @@ export const SelectSizes = ({i})=> {
                         sizesData?.map(({name,shortName,id,quantity})=> (
                             <li 
                                 key={id}
-                                onClick={()=> handleSize({name,shortName,id,quantity},productSizes[i]?.length)}
-                                className={`${className.li} ${isElementFound(id)  ? 'border-teal-300 scale-105 shadow-md' : 'border-gray-200'}`}
+                                onClick={()=> handleSize({name,shortName,quantity},productSizes[i]?.length)}
+                                className={`${className.li} ${isElementFound(shortName)  ? 'border-teal-300 scale-105 shadow-md' : 'border-gray-200'}`}
                                 >
                                     {shortName}
                             </li>
