@@ -10,14 +10,13 @@ export async function POST (request) {
 
     const data = Object.fromEntries(formData.entries());
     const colors = JSON.parse(data.colors);
-    const sizes = JSON.parse(data.sizes);
+    const sizesArrays = JSON.parse(data.sizes);
     const specifications = JSON.parse(data.specifications);
     const details = JSON.parse(data.details);
 
 
     console.log(data);
     console.log(colors);
-    console.log(sizes);
     console.log(specifications);
     console.log(details);
 
@@ -44,6 +43,7 @@ export async function POST (request) {
 //loading product images in public folder
 
     let images = [];
+    let sizes = [];
 
 
     const delateImages = (images)=> {
@@ -68,7 +68,13 @@ export async function POST (request) {
                     images.push({imagePath,colorName});
 
             });
+
+            sizesArrays[index].map((size)=> {
+                sizes.push(size)
+            })
         });
+
+        details.imagePath = images[0]?.imagePath;
    }
    catch (error){
         delateImages(images);
@@ -79,9 +85,11 @@ export async function POST (request) {
 
     // creating new product in db
     try {
+        console.log(images);
          const product = await db.product.create({
                data : {
                    ...details,
+                   imagePath: 'sffefefe',
                    specifications : {
                        create :specifications
                    },

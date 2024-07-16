@@ -19,7 +19,7 @@ export const formDataProductFormater = (formData,productColors,setProductSizes,p
                     });
                     
                     return [...prev]
-                })
+                });
             });
             formData.append('sizes',JSON.stringify(productSizes));
             formData.set('colors',JSON.stringify(productColors));

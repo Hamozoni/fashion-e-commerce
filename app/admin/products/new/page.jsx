@@ -30,7 +30,7 @@ const NewProducts = () => {
     const [isPendding,setIsPending] = useState(false);
 
 
-    // const router = useRouter();
+    const router = useRouter();
 
     const formRef = useRef()
     
@@ -56,7 +56,8 @@ const NewProducts = () => {
 
         PostData('/products/new',formatedFormData)
         .then((data)=> {
-            console.log(data)
+            console.log(data);
+            router.push('/admin/products')
         })
         .catch((error)=> {
             console.log(error)
