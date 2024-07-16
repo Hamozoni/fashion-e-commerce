@@ -24,7 +24,7 @@ const NewProducts = () => {
     const [productColors,setProductColors] = useState([{color: '',colorName :'',priceInHalala: 0}]);
     const [productSizes,setProductSizes] = useState([[]]);
     const [productSpecifications,setProductSpecifications] = useState([{}]);
-    const [category,setCategory] = useState({})
+    const [category,setCategory] = useState({});
 
     const [errors,setErrors] = useState(null);
     const [isPendding,setIsPending] = useState(false);
@@ -38,25 +38,11 @@ const NewProducts = () => {
         event.preventDefault();
         // setIsPending(true);
         const formData = new FormData(formRef.current);
-        console.log(productDetails)
-        console.log(productColors)
-        console.log(productSizes)
-        console.log(productSpecifications);
 
-        productColors.map(({colorName},index)=> {
-            setProductSizes(prev=> {
-                let newSizes = []
-                prev[index].map((el)=> {
-                    el.colorName = colorName;
-
-                    newSizes.push(el)
-                })
-                return [...newSizes]
-            })
-        });
+        const formatedFormData = formDataProductFormater(formData,productColors,setProductSizes,productSizes,productDetails,productSpecifications);
 
 
-        console.log(productSizes);
+        console.log(Object.fromEntries(formatedFormData));
     };
 
 
