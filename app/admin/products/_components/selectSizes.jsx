@@ -29,9 +29,11 @@ export const SelectSizes = ({i})=> {
 
     const handleSize = (size,length)=> {
 
+        const {shortName,name} = size;
+
         if(length === 0) {
             setProductDetails(prev=> {
-                return {...prev,size:size.shortName}
+                return {...prev,size:shortName}
             })
         }
 
@@ -48,7 +50,7 @@ export const SelectSizes = ({i})=> {
           });
         } else {
             setProductSizes(prev=> {
-                prev[i][length] = size;
+                prev[i][length] = {shortName,name};
                 
                 return [...prev]
             })
