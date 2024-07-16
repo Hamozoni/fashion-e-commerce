@@ -33,7 +33,7 @@ export const FormTextera = ({label,placeHolder,errors,required = true,onClick})=
     <div className="group pb-4 border-b border-gray-100 flex-grow w-full">
       <label className={className.label}  htmlFor="description">{label}* </label>
       <textarea  
-          onClick={onClick}
+          onChange={onClick}
           className={`${className.inputClass} h-20 min-h-16`}  
           placeholder={placeHolder} 
           required={required}

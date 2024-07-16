@@ -39,7 +39,17 @@ const NewProducts = () => {
         setIsPending(true);
         const formData = new FormData(formRef.current);
 
-        const formatedFormData = formDataProductFormater(formData,productColors,setProductSizes,productSizes,productDetails,productSpecifications);
+
+
+        const formatedFormData = formDataProductFormater(
+            formData,
+            productColors,
+            setProductSizes,
+            productSizes,
+            productDetails,
+            setProductDetails,
+            productSpecifications
+        );
 
 
         console.log(Object.fromEntries(formatedFormData));

@@ -14,7 +14,7 @@ export async function POST (request) {
     const sepecifications = JSON.parse(data.sepecifications);
     const details = JSON.parse(data.details);
 
-
+    
     console.log(data);
     console.log(colors);
     console.log(sizes);
