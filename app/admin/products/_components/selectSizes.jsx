@@ -73,6 +73,7 @@ export const SelectSizes = ({i})=> {
             </div>
             <div className="flex flex-wrap gap-5 mt-4">
                 {
+                    ProductSizes[i]?.length > 0 &&
                     ProductSizes[i]?.map(({shortName,id})=> (
 
                                 <FormInput 
