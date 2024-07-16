@@ -41,19 +41,17 @@ const NewProducts = () => {
         console.log(productDetails)
         console.log(productColors)
         console.log(productSizes)
-        console.log(productImages)
         console.log(productSpecifications);
 
-
         productColors.map(({colorName},index)=> {
-
-            console.log(formData.getAll(`images_${index}`))
             setProductSizes(prev=> {
+                let newSizes = []
                 prev[index].map((el)=> {
-                    el.colorName = colorName
-                })
+                    el.colorName = colorName;
 
-                return [...prev]
+                    newSizes.push(el)
+                })
+                return [...newSizes]
             })
         });
 
