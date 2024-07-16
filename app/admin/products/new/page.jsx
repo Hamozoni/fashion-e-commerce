@@ -30,19 +30,31 @@ const NewProducts = () => {
     const [isPendding,setIsPending] = useState(false);
 
 
-    const router = useRouter();
+    // const router = useRouter();
 
     const formRef = useRef()
     
     const handleSubmit =  (event)=> {
         event.preventDefault();
-        // setIsPending(true);
+        setIsPending(true);
         const formData = new FormData(formRef.current);
 
         const formatedFormData = formDataProductFormater(formData,productColors,setProductSizes,productSizes,productDetails,productSpecifications);
 
 
         console.log(Object.fromEntries(formatedFormData));
+
+        PostData('/products/new',formatedFormData)
+        .then((data)=> {
+            console.log(data)
+        })
+        .catch((error)=> {
+            console.log(error)
+        })
+        .finally(()=> {
+            setIsPending(false)
+        })
+        
     };
 
 

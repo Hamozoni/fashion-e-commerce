@@ -8,11 +8,18 @@ export async function POST (request) {
 
     const formData  = await request.formData();
 
-    // const data = Object.fromEntries(formData.entries());
-    // const informations = JSON.parse(data.informations);
-    // const sizes = JSON.parse(data.sizes);
-    // const specifications = JSON.parse(data.specifications);
-    // const details = JSON.parse(data.details);
+    const data = Object.fromEntries(formData.entries());
+    const colors = JSON.parse(data.colors);
+    const sizes = JSON.parse(data.sizes);
+    const specifications = JSON.parse(data.specifications);
+    const details = JSON.parse(data.details);
+
+
+    console.log(data);
+    console.log(colors);
+    console.log(sizes);
+    console.log(specifications);
+    console.log(details);
 
     // try {
     //     const existProduct = await db.product.findUnique({where : {
