@@ -22,7 +22,6 @@ export function ImagesColor() {
         errors,
         productColors,
         setProductColors,
-        setProductImages,
         setProductSizes,
         category
     } = useContext(newProductContext);
@@ -93,15 +92,13 @@ export function ImagesColor() {
                     productColors?.map((_,index)=> (
                         <div className="p-2 border-2 border-gray-200 rounded-md mb-5 shadow-sm ">
                             <div key={index} className="flex items-center gap-3 mb-3 flex-wrap">
-                                <FormInput
-                                    onClick={(e)=> setProductImages(prev=> {
-                                        prev[index] = {index: `${index}`,images : e.target.files}
-                                        return prev
-                                    })} 
-                                    label={`images ${index + 1}`}
-                                    type='file'
-                                    errors={errors}
-                                    />
+                                <input 
+                                    type="file"
+                                    name={`images_${index}`}
+                                    required
+                                    multiple
+                                    accept="image/*"
+                                     />
                                 <FormInput 
                                     onClick={(e)=> setProductColors(prev=> {
                                         prev[index].color = e.target.value;

@@ -24,7 +24,6 @@ const NewProducts = () => {
     const [productColors,setProductColors] = useState([{color: '',colorName :'',priceInHalala: 0}]);
     const [productSizes,setProductSizes] = useState([[]]);
     const [productSpecifications,setProductSpecifications] = useState([{}]);
-    const [productImages,setProductImages] = useState([]);
     const [category,setCategory] = useState({})
 
     const [errors,setErrors] = useState(null);
@@ -32,12 +31,13 @@ const NewProducts = () => {
 
 
     const router = useRouter();
-    
+
+    const formRef = useRef()
     
     const handleSubmit =  (event)=> {
         event.preventDefault();
         // setIsPending(true);
-        const formData = new FormData();
+        const formData = new FormData(formRef.current);
         console.log(productDetails)
         console.log(productColors)
         console.log(productSizes)
@@ -46,9 +46,8 @@ const NewProducts = () => {
 
 
         productColors.map(({colorName},index)=> {
-            formData.set(`images_${colorName}`,productImages[index]?.images);
-            console.log(formData.getAll())
 
+            console.log(formData.getAll(`images_${index}`))
             setProductSizes(prev=> {
                 prev[index].map((el)=> {
                     el.colorName = colorName
@@ -60,9 +59,6 @@ const NewProducts = () => {
 
 
         console.log(productSizes);
-        console.log(formData.getAll())
-
-
     };
 
 
@@ -77,8 +73,6 @@ const NewProducts = () => {
             setProductColors,
             productSizes,
             setProductSizes,
-            productImages,
-            setProductImages,
             category,
             setCategory,
             productSpecifications,
@@ -96,6 +90,7 @@ const NewProducts = () => {
         <div className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg">
             <div className="">
                 <form 
+                    ref={formRef}
                     onSubmit={handleSubmit} 
                     >
                     <ProductInfoForm/>

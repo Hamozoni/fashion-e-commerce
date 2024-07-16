@@ -20,7 +20,6 @@ export function FormInput({name,label,type,placeHolder,errors,required = true,on
             type={type} 
             placeholder={placeHolder}
             required={required}
-            multiple={type === 'file'}
         />
         <ZodError error={errors} field={name} />
     </div>
