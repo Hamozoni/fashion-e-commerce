@@ -12,7 +12,7 @@ const className = {
 
 export const SelectCategory = ()=> {
      
-    const {setCatgory,category,setProductDetails} = useContext(newProductContext);
+    const {setCategory,category,setProductDetails} = useContext(newProductContext);
 
     const [isSubCatecoryModel,setIsSubCategoryModel] = useState(false);
     const [isCategoryModel,setIsCategoryModel] = useState(false);
@@ -40,9 +40,9 @@ export const SelectCategory = ()=> {
                                     className={`${name === categoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
                                     onClick={()=> {
                                         setCategoryName(name);
-                                        setCatgory({name,sub,sizes,shoesSizes});
+                                        setCategory({name,sub,sizes,shoesSizes});
                                         setProductDetails(prev=> {
-                                            prev.category = name
+                                            return {...prev,category : name}
                                         })
                                         setIsCategoryModel(false)
                                     }}
@@ -80,13 +80,13 @@ export const SelectCategory = ()=> {
                                     onClick={()=> {
                                         setSubCategoryName(name);
                                         setIsSubCategoryModel(false)
-                                        setCatgory(prev => {
+                                        setCategory(prev => {
                                             prev.subName = name;
                                             return {...prev}
                                         });
 
                                         setProductDetails(prev=> {
-                                            prev.subcategory = name
+                                            return {...prev,subcategory : name}
                                         })
                                     }}
                                     key={id}

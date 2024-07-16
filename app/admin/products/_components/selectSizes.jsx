@@ -61,7 +61,7 @@ export const SelectSizes = ({i})=> {
                         sizesData?.map(({name,shortName,id,quantity})=> (
                             <li 
                                 key={id}
-                                onClick={()=> handleSize({name,shortName,id,quantity},ProductSizes[i]?.length)}
+                                onClick={()=> handleSize({name,shortName,id,quantity},productSizes[i]?.length)}
                                 className={`${className.li} ${isElementFound(id)  ? 'border-teal-300 scale-105 shadow-md' : 'border-gray-200'}`}
                                 >
                                     {shortName}
@@ -74,12 +74,12 @@ export const SelectSizes = ({i})=> {
             <div className="flex flex-wrap gap-5 mt-4">
                 {
                     productSizes[i]?.length > 0 &&
-                    productSizes[i]?.map(({shortName,id})=> (
+                    productSizes[i]?.map(({shortName,id},index)=> (
 
                         <FormInput 
                             onClick={(e)=> setProductSizes(prev=> {
-                                prev[i].quantity = +e.target.value
-                                return prev
+                                prev[i][index].quantity = +e.target.value
+                                return [...prev]
                             })}
                             key={id}  
                             label={`${shortName} size quantity *`}

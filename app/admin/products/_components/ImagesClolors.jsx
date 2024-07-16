@@ -38,6 +38,7 @@ export function ImagesColor() {
 
         setProductSizes(prev=> {
             prev.length = length
+            return [...prev]
         })
         setProductColors(prev=> {
             prev.length = length;
@@ -103,7 +104,8 @@ export function ImagesColor() {
                                     />
                                 <FormInput 
                                     onClick={(e)=> setProductColors(prev=> {
-                                        prev[index].color = e.target.value
+                                        prev[index].color = e.target.value;
+                                        return prev
                                     })}
                                     label={`color ${index + 1}`}
                                     type='color'
@@ -111,7 +113,9 @@ export function ImagesColor() {
                                     />
                                 <FormInput
                                     onClick={(e)=> setProductColors(prev=> {
-                                        prev[index].colorNmae = e.target.value
+                                        prev[index].colorName = e.target.value;
+
+                                        return prev
                                     })}  
                                     label={`color name ${index + 1}`}
                                     type='text'
@@ -120,7 +124,9 @@ export function ImagesColor() {
                                     />
                                  <FormInput
                                     onClick={(e)=> setProductColors(prev=> {
-                                        prev[index].priceInHalala = +e.target.value
+                                        prev[index].priceInHalala = +e.target.value;
+
+                                        return prev;
                                     })} 
                                     label={`price in halala ${index + 1}`}
                                     type='number'

@@ -15,7 +15,7 @@ export function FormInput({name,label,type,placeHolder,errors,required = true,on
             >{label} * 
         </label>
         <input 
-            onClick={onClick}
+            onChange={onClick}
             className={type !== 'color' ? className.inputClass : 'flex mt-3 rounded-full'}
             type={type} 
             placeholder={placeHolder}

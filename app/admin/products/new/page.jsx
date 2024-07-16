@@ -23,49 +23,45 @@ const NewProducts = () => {
     const [productDetails,setProductDetails] = useState({});
     const [productColors,setProductColors] = useState([{color: '',colorName :'',priceInHalala: 0}]);
     const [productSizes,setProductSizes] = useState([[]]);
+    const [productSpecifications,setProductSpecifications] = useState([{}]);
     const [productImages,setProductImages] = useState([]);
     const [category,setCategory] = useState({})
 
     const [errors,setErrors] = useState(null);
     const [isPendding,setIsPending] = useState(false);
 
-    const formRef = useRef()
 
     const router = useRouter();
     
     
     const handleSubmit =  (event)=> {
         event.preventDefault();
-        
         // setIsPending(true);
-        const formData = new FormData(formRef.current);
+        const formData = new FormData();
+        console.log(productDetails)
+        console.log(productColors)
+        console.log(productSizes)
+        console.log(productImages)
+        console.log(productSpecifications);
 
-        console.log(Object.fromEntries(formData.entries()))
 
-        formData.set('category',category.name);
-        formData.set('subcategory',category.subName);
+        productColors.map(({colorName},index)=> {
+            formData.set(`images_${colorName}`,productImages[index]?.images);
+            console.log(formData.getAll())
 
-        // const newFormData = formDataProductFormater(formData,colors,specifications,sizes);
-        // const valitadData = zProductShema.safeParse(data);
+            setProductSizes(prev=> {
+                prev[index].map((el)=> {
+                    el.colorName = colorName
+                })
 
-            // PostData('products/new',newFormData)
-            // .then((data)=>{
-    
-            //     console.log(data)
-            //     // router.push('/admin/products')
-            // })
-            // .catch((error)=> {
-            //     console.log(error)
-            // })
-            // .finally(()=> {
-            //     setIsPending(false)
-            // });
+                return [...prev]
+            })
+        });
 
-            // console.log(valitadData)
-            // console.log(Object.fromEntries(newFormData.entries()))
-            // setIsPending(false)
-            // setErrors(JSON.parse(valitadData?.error))
-        
+
+        console.log(productSizes);
+        console.log(formData.getAll())
+
 
     };
 
@@ -84,7 +80,9 @@ const NewProducts = () => {
             productImages,
             setProductImages,
             category,
-            setCategory
+            setCategory,
+            productSpecifications,
+            setProductSpecifications
             }}
     >
     <div className="p-4 lg:p-10 w-full max-w-full capitalize ">
@@ -98,7 +96,6 @@ const NewProducts = () => {
         <div className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg">
             <div className="">
                 <form 
-                    ref={formRef}
                     onSubmit={handleSubmit} 
                     >
                     <ProductInfoForm/>

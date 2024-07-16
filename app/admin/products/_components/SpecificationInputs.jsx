@@ -1,6 +1,6 @@
 "use client"
 
-import {  useContext, useState } from "react";
+import {  useContext } from "react";
 import { FormInput } from "./FormInput";
 import { ButtonWithIcon } from "../../../../components/buttons";
 
@@ -8,28 +8,18 @@ import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
 import { newProductContext } from "../new/page";
 
-const data = {
-    name : 'specificaton key',
-    value : 'specificaton value',
-}
-
 export function SpecificationInputs() {
 
-    const {errors} = useContext(newProductContext);
-
-    const [specifications,setSpecifications] = useState([{
-        name : 'specificaton key',
-        value : 'specificaton value',
-    }]);
+    const {errors,productSpecifications,setProductSpecifications} = useContext(newProductContext);
 
     const addMore = ()=> {
-        setSpecifications(prev=> {
-            return [...prev,data]
+        setProductSpecifications(prev=> {
+            return [...prev,{}]
         })
     };
 
     const deleteInput = (length)=> {
-        setSpecifications(prev=> {
+        setProductSpecifications(prev=> {
             prev.length = length;
 
             return [...prev]
@@ -46,14 +36,14 @@ export function SpecificationInputs() {
             </h4>
             <div className="flex items-center gap-5">
                 {
-                    specifications?.length > 1 ? 
+                    productSpecifications?.length > 1 ? 
                         <div className="w-[70px]">
                             <ButtonWithIcon 
                                 text='' 
                                 Icon={FiMinus} 
                                 type='delete' 
                                 disabled={false} 
-                                onClick={() => deleteInput(specifications?.length - 1)}
+                                onClick={() => deleteInput(productSpecifications?.length - 1)}
                                 />
                         </div>
                         : null
@@ -73,18 +63,24 @@ export function SpecificationInputs() {
         <div >
 
             {
-                specifications?.map(({name,value},index)=> (
-                    <div key={`${name}_${index}`} className="flex items-center gap-3 mb-5 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
-                        <FormInput 
-                            name={`${name} ${index}`} 
-                            label={`${name} ${index + 1}`}
+                productSpecifications?.map((_,index)=> (
+                    <div key={index} className="flex items-center gap-3 mb-5 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
+                        <FormInput
+                            onClick={e => setProductSpecifications(prev => {
+                                prev[index].name =  e.target.value
+                                return [...prev]
+                            })}
+                            label={`name ${index + 1}`}
                             type='text'
                             placeHolder='specification key...'
                             errors={errors}
                             />
-                        <FormInput 
-                            name={`${value} ${index}`} 
-                            label={`${value} ${index + 1}`}
+                        <FormInput
+                            onClick={e => setProductSpecifications(prev => {
+                                prev[index].value = e.target.value
+                                return prev
+                            })} 
+                            label={`value ${index + 1}`}
                             type='text'
                             placeHolder='specification value...'
                             errors={errors}

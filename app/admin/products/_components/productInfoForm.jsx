@@ -14,8 +14,7 @@ export const ProductInfoForm = ()=> {
             <div className="flex  gap-5 flex-wrap">
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
-                            prev.name = e.target.value;
-                            return prev
+                            return {...prev,name: e.target.value}
                         })}
                         label='name'
                         type='text'
@@ -24,8 +23,7 @@ export const ProductInfoForm = ()=> {
                     />
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
-                            prev.brand = e.target.value;
-                            return prev
+                            return {...prev,brand:e.target.value}
                         })}
                         label='brand' 
                         type='text'
@@ -34,8 +32,7 @@ export const ProductInfoForm = ()=> {
                     />
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
-                            prev.serialNumber = e.target.value;
-                            return prev
+                            return {...prev,serialNumber: e.target.value}
                         })}
                         label='serial number'
                         type='text'
@@ -47,8 +44,7 @@ export const ProductInfoForm = ()=> {
         <div >
         <FormTextera 
             onClick={e => setProductDetails(prev=> {
-                prev.describtion = e.target.value;
-                return prev
+                return {...prev,describtion: e.target.value}
             })}
             label='describtion'
             placeHolder='product describtion...' 
