@@ -10,7 +10,7 @@ const className = {
 
 export const SelectSizes = ({i})=> {
 
-    const {errors,category,ProductSizes,setProductSizes} = useContext(newProductContext)
+    const {errors,category,productSizes,setProductSizes} = useContext(newProductContext)
 
     const isShoes = category?.subName?.toLowerCase() === 'shoes';
 
@@ -19,8 +19,8 @@ export const SelectSizes = ({i})=> {
 
     const isElementFound = (id)=> {
        let exsistingSize = false
-        if(Array.isArray(ProductSizes[i])) {
-            exsistingSize = ProductSizes[i]?.find(e=> e?.id === id);
+        if(Array.isArray(productSizes[i])) {
+            exsistingSize = productSizes[i]?.find(e=> e?.id === id);
         }
 
         return !!exsistingSize
@@ -32,7 +32,7 @@ export const SelectSizes = ({i})=> {
         const exsistingSize = isElementFound(size?.id);
 
         if(!!exsistingSize) {
-          const  newSizes = ProductSizes[i]?.filter(e => e?.id !== size?.id);
+          const  newSizes = productSizes[i]?.filter(e => e?.id !== size?.id);
 
           setProductSizes(prev=> {
             
@@ -73,20 +73,20 @@ export const SelectSizes = ({i})=> {
             </div>
             <div className="flex flex-wrap gap-5 mt-4">
                 {
-                    ProductSizes[i]?.length > 0 &&
-                    ProductSizes[i]?.map(({shortName,id})=> (
+                    productSizes[i]?.length > 0 &&
+                    productSizes[i]?.map(({shortName,id})=> (
 
-                                <FormInput 
-                                    onClick={(e)=> setProductSizes(prev=> {
-                                        prev[i].quantity = +e.target.value
-                                        return prev
-                                    })}
-                                    key={id}  
-                                    label={`${shortName} size quantity *`}
-                                    type='number'
-                                    placeHolder={`place enter ${shortName} quantity..`}
-                                    errors={errors}
-                                    />
+                        <FormInput 
+                            onClick={(e)=> setProductSizes(prev=> {
+                                prev[i].quantity = +e.target.value
+                                return prev
+                            })}
+                            key={id}  
+                            label={`${shortName} size quantity *`}
+                            type='number'
+                            placeHolder={`place enter ${shortName} quantity..`}
+                            errors={errors}
+                            />
                     ))
                 }
             </div>
