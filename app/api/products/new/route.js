@@ -11,15 +11,17 @@ export async function POST (request) {
     const data = Object.fromEntries(formData.entries());
     const colors = JSON.parse(data.colors);
     const sizes = JSON.parse(data.sizes);
-    const specifications = JSON.parse(data.specifications);
+    const sepecifications = JSON.parse(data.sepecifications);
     const details = JSON.parse(data.details);
 
 
     console.log(data);
     console.log(colors);
     console.log(sizes);
-    console.log(specifications);
+    console.log(sepecifications);
     console.log(details);
+
+    return  NextResponse.json("opss! something went wrong", { status: 200 })
 
     // try {
     //     const existProduct = await db.product.findUnique({where : {
