@@ -12,7 +12,7 @@ const className = {
 
 export const SelectCategory = ()=> {
      
-    const {setCatgory,category} = useContext(newProductContext);
+    const {setCatgory,category,setProductDetails} = useContext(newProductContext);
 
     const [isSubCatecoryModel,setIsSubCategoryModel] = useState(false);
     const [isCategoryModel,setIsCategoryModel] = useState(false);
@@ -41,6 +41,9 @@ export const SelectCategory = ()=> {
                                     onClick={()=> {
                                         setCategoryName(name);
                                         setCatgory({name,sub,sizes,shoesSizes});
+                                        setProductDetails(prev=> {
+                                            prev.category = name
+                                        })
                                         setIsCategoryModel(false)
                                     }}
                                     key={id}
@@ -80,6 +83,10 @@ export const SelectCategory = ()=> {
                                         setCatgory(prev => {
                                             prev.subName = name;
                                             return {...prev}
+                                        });
+
+                                        setProductDetails(prev=> {
+                                            prev.subcategory = name
                                         })
                                     }}
                                     key={id}

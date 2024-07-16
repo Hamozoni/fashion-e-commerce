@@ -5,21 +5,19 @@ const className = {
   label: 'text-lg font-bold text-gray-500 group-hover:text-teal-500',
 };
 
-export function FormInput({name,label,type,placeHolder,errors,required = true}) {
+export function FormInput({name,label,type,placeHolder,errors,required = true,onClick}) {
 
     
   return (
     <div className="group pb-4 flex-grow">
         <label 
             className={className.label} 
-            htmlFor={name}
             >{label} * 
         </label>
         <input 
-            name={name}
+            onClick={onClick}
             className={type !== 'color' ? className.inputClass : 'flex mt-3 rounded-full'}
             type={type} 
-            id={name} 
             placeholder={placeHolder}
             required={required}
             multiple={type === 'file'}
@@ -29,16 +27,15 @@ export function FormInput({name,label,type,placeHolder,errors,required = true}) 
   )
 };
 
-export const FormTextera = ({label,name,placeHolder,errors,required = true})=> {
+export const FormTextera = ({label,placeHolder,errors,required = true,onClick})=> {
 
   return (
 
     <div className="group pb-4 border-b border-gray-100 flex-grow w-full">
       <label className={className.label}  htmlFor="description">{label}* </label>
-      <textarea 
-          name={name}  
+      <textarea  
+          onClick={onClick}
           className={`${className.inputClass} h-20 min-h-16`}  
-          id={name} 
           placeholder={placeHolder} 
           required={required}
           >

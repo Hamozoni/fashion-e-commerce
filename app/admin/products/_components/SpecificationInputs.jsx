@@ -15,7 +15,12 @@ const data = {
 
 export function SpecificationInputs() {
 
-    const {errors,specifications,setSpecifications} = useContext(newProductContext);
+    const {errors} = useContext(newProductContext);
+
+    const [specifications,setSpecifications] = useState([{
+        name : 'specificaton key',
+        value : 'specificaton value',
+    }]);
 
     const addMore = ()=> {
         setSpecifications(prev=> {

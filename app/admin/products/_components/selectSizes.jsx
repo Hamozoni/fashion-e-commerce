@@ -10,7 +10,7 @@ const className = {
 
 export const SelectSizes = ({i})=> {
 
-    const {errors,category,sizes,setSizes} = useContext(newProductContext)
+    const {errors,category,ProductSizes,setProductSizes} = useContext(newProductContext)
 
     const isShoes = category?.subName?.toLowerCase() === 'shoes';
 
@@ -19,8 +19,8 @@ export const SelectSizes = ({i})=> {
 
     const isElementFound = (id)=> {
        let exsistingSize = false
-        if(Array.isArray(sizes[i])) {
-            exsistingSize = sizes[i]?.find(e=> e?.id === id);
+        if(Array.isArray(ProductSizes[i])) {
+            exsistingSize = ProductSizes[i]?.find(e=> e?.id === id);
         }
 
         return !!exsistingSize
@@ -32,16 +32,16 @@ export const SelectSizes = ({i})=> {
         const exsistingSize = isElementFound(size?.id);
 
         if(!!exsistingSize) {
-          const  newSizes = sizes[i]?.filter(e => e?.id !== size?.id);
+          const  newSizes = ProductSizes[i]?.filter(e => e?.id !== size?.id);
 
-          setSizes(prev=> {
+          setProductSizes(prev=> {
             
             prev[i] = newSizes;
                 
             return [...prev]
           });
         } else {
-            setSizes(prev=> {
+            setProductSizes(prev=> {
                 prev[i][length] = size;
                 
                 return [...prev]
@@ -61,7 +61,7 @@ export const SelectSizes = ({i})=> {
                         sizesData?.map(({name,shortName,id,quantity})=> (
                             <li 
                                 key={id}
-                                onClick={()=> handleSize({name,shortName,id,quantity},sizes[i]?.length)}
+                                onClick={()=> handleSize({name,shortName,id,quantity},ProductSizes[i]?.length)}
                                 className={`${className.li} ${isElementFound(id)  ? 'border-teal-300 scale-105 shadow-md' : 'border-gray-200'}`}
                                 >
                                     {shortName}
@@ -73,11 +73,14 @@ export const SelectSizes = ({i})=> {
             </div>
             <div className="flex flex-wrap gap-5 mt-4">
                 {
-                    sizes[i]?.map(({shortName,id})=> (
+                    ProductSizes[i]?.map(({shortName,id})=> (
 
                                 <FormInput 
+                                    onClick={(e)=> setProductSizes(prev=> {
+                                        prev[i].quantity = +e.target.value
+                                        return prev
+                                    })}
                                     key={id}  
-                                    name={`stackQuantity ${shortName} ${i}`}
                                     label={`${shortName} size quantity *`}
                                     type='number'
                                     placeHolder={`place enter ${shortName} quantity..`}

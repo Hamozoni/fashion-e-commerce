@@ -1,54 +1,58 @@
 "use client";
 
+import { useContext } from "react";
 import { FormTextera,FormInput } from "./FormInput";
 import {SelectCategory} from "./selectCategory";
-
-const inputsInfo = [
-    {
-       name : 'name',
-       label: 'name',
-       type: 'text',
-       place:'the name of the product...'
-    },
-     {
-        name : 'brand',
-        label: 'brand',
-        type: 'text',
-        place:'the brand of your product...'
-     },
-     {
-        name : 'serialNumber',
-        label: 'serial number',
-        type: 'text',
-        place:'ASIN shold be 10 '
-     },
-];
+import { newProductContext } from "../new/page";
 
 export const ProductInfoForm = ()=> {
+
+    const {errors,setProductDetails} = useContext(newProductContext);
+
     return (
         <>
             <div className="flex  gap-5 flex-wrap">
-            {
-                inputsInfo.map( input => (
-                        <FormInput 
-                            key={input.name}
-                            name={input.name} 
-                            label={input.label} 
-                            type={input.type}
-                            errors={null}
-                            placeHolder={input.place}
-                        />
-                ))
-            }
-
+                    <FormInput
+                        onClick={e => setProductDetails(prev=> {
+                            prev.name = e.target.value;
+                            return prev
+                        })}
+                        label='name'
+                        type='text'
+                        errors={errors}
+                        placeHolder='the name of the product...'
+                    />
+                    <FormInput
+                        onClick={e => setProductDetails(prev=> {
+                            prev.brand = e.target.value;
+                            return prev
+                        })}
+                        label='brand' 
+                        type='text'
+                        errors={errors}
+                        placeHolder='the brand of your product...'
+                    />
+                    <FormInput
+                        onClick={e => setProductDetails(prev=> {
+                            prev.serialNumber = e.target.value;
+                            return prev
+                        })}
+                        label='serial number'
+                        type='text'
+                        errors={errors}
+                        placeHolder='ASIN shold be 10'
+                />
             <SelectCategory />
         </div>
         <div >
         <FormTextera 
+            onClick={e => setProductDetails(prev=> {
+                prev.describtion = e.target.value;
+                return prev
+            })}
             label='describtion'
-            name='describtion'
             placeHolder='product describtion...' 
-            errors={null}
+            errors={errors}
             />
 
         </div>

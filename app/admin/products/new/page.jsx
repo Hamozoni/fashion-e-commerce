@@ -19,22 +19,12 @@ export const newProductContext = createContext();
 
 const NewProducts = () => {
 
-    const [category,setCatgory] = useState({});
-    const [specifications,setSpecifications] = useState([{
-        name : 'specificaton key',
-        value : 'specificaton value',
-    }]);
-    const [colors,setColors] = useState([
-        {
-            image: 'images',
-            color: 'color',
-            colorName :'color name',
-            priceInHalala: 'price in halala'
-        }
-    ]);
 
-
-    const [sizes,setSizes] = useState([[]]);
+    const [productDetails,setProductDetails] = useState({});
+    const [productColors,setProductColors] = useState([{color: '',colorName :'',priceInHalala: 0}]);
+    const [productSizes,setProductSizes] = useState([[]]);
+    const [productImages,setProductImages] = useState([]);
+    const [category,setCategory] = useState({})
 
     const [errors,setErrors] = useState(null);
     const [isPendding,setIsPending] = useState(false);
@@ -47,30 +37,32 @@ const NewProducts = () => {
     const handleSubmit =  (event)=> {
         event.preventDefault();
         
-        setIsPending(true);
+        // setIsPending(true);
         const formData = new FormData(formRef.current);
+
+        console.log(Object.fromEntries(formData.entries()))
 
         formData.set('category',category.name);
         formData.set('subcategory',category.subName);
 
-        const newFormData = formDataProductFormater(formData,colors,specifications,sizes);
+        // const newFormData = formDataProductFormater(formData,colors,specifications,sizes);
         // const valitadData = zProductShema.safeParse(data);
 
-            PostData('products/new',newFormData)
-            .then((data)=>{
+            // PostData('products/new',newFormData)
+            // .then((data)=>{
     
-                console.log(data)
-                // router.push('/admin/products')
-            })
-            .catch((error)=> {
-                console.log(error)
-            })
-            .finally(()=> {
-                setIsPending(false)
-            });
+            //     console.log(data)
+            //     // router.push('/admin/products')
+            // })
+            // .catch((error)=> {
+            //     console.log(error)
+            // })
+            // .finally(()=> {
+            //     setIsPending(false)
+            // });
 
             // console.log(valitadData)
-            console.log(Object.fromEntries(newFormData.entries()))
+            // console.log(Object.fromEntries(newFormData.entries()))
             // setIsPending(false)
             // setErrors(JSON.parse(valitadData?.error))
         
@@ -83,14 +75,16 @@ const NewProducts = () => {
     <newProductContext.Provider 
         value={{
             errors,
+            productDetails,
+            setProductDetails,
+            productColors,
+            setProductColors,
+            productSizes,
+            setProductSizes,
+            productImages,
+            setProductImages,
             category,
-            setCatgory,
-            specifications,
-            setSpecifications,
-            colors,
-            setColors,
-            sizes,
-            setSizes
+            setCategory
             }}
     >
     <div className="p-4 lg:p-10 w-full max-w-full capitalize ">

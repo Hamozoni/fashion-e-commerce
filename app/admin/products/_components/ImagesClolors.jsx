@@ -11,29 +11,35 @@ import {SelectSizes} from "./selectSizes";
 import { newProductContext } from "../new/page";
 
 const data = {
-    image: 'images',
-    color: 'color',
-    colorName :'color name',
-    priceInHalala: 'price in halala'
+    color: '',
+    colorName :'',
+    priceInHalala: 0
 }
 
 export function ImagesColor() {
 
-    const {errors,category,colors,setColors,sizes,setSizes} = useContext(newProductContext)
+    const {
+        errors,
+        productColors,
+        setProductColors,
+        setProductImages,
+        setProductSizes,
+        category
+    } = useContext(newProductContext);
 
     const addMore = ()=> {
-        setSizes(prev=> [...prev,[]])
-        setColors(prev=> {
+        setProductSizes(prev=> [...prev,[]])
+        setProductColors(prev=> {
             return [...prev,data]
         })
     };
 
     const deleteInput = (length)=> {
 
-        setSizes(prev=> {
+        setProductSizes(prev=> {
             prev.length = length
         })
-        setColors(prev=> {
+        setProductColors(prev=> {
             prev.length = length;
 
             return [...prev]
@@ -41,8 +47,8 @@ export function ImagesColor() {
     };
 
     useEffect(()=> {
-        const sizesLength = new Array(colors.length).fill([]);
-        setSizes(sizesLength)
+        const sizesLength = new Array(productColors.length).fill([]);
+        setProductSizes(sizesLength)
     },[category]);
 
   return (
@@ -56,14 +62,14 @@ export function ImagesColor() {
             </h4>
             <div className="flex items-center gap-5">
                 {
-                    colors?.length > 1 ? 
+                    productColors?.length > 1 ? 
                     <div className="w-[100px]">
                         <ButtonWithIcon 
                             text='' 
-                            Icon={FiMinus} 
+                            Icon={FiMinus}
                             type='delete' 
                             disabled={false} 
-                            onClick={() => deleteInput(colors?.length - 1)}
+                            onClick={() => deleteInput(productColors?.length - 1)}
                             />
                     </div>
                     : null
@@ -83,31 +89,40 @@ export function ImagesColor() {
         </header>
         <div >
                 {
-                    colors?.map(({image,color,colorName,priceInHalala},index)=> (
+                    productColors?.map((_,index)=> (
                         <div className="p-2 border-2 border-gray-200 rounded-md mb-5 shadow-sm ">
-                            <div key={`${image}_${index}`} className="flex items-center gap-3 mb-3 flex-wrap">
-                                <FormInput 
-                                    name={`${image} ${index}`} 
-                                    label={`${image} ${index + 1}`}
+                            <div key={index} className="flex items-center gap-3 mb-3 flex-wrap">
+                                <FormInput
+                                    onClick={(e)=> setProductImages(prev=> {
+                                        prev[index] = {index: `${index}`,images : e.target.files}
+                                        return prev
+                                    })} 
+                                    label={`images ${index + 1}`}
                                     type='file'
                                     errors={errors}
                                     />
                                 <FormInput 
-                                    name={`${color} ${index}`} 
-                                    label={`${color} ${index + 1}`}
+                                    onClick={(e)=> setProductColors(prev=> {
+                                        prev[index].color = e.target.value
+                                    })}
+                                    label={`color ${index + 1}`}
                                     type='color'
                                     errors={errors}
                                     />
-                                <FormInput 
-                                    name={`${colorName} ${index}`} 
-                                    label={`${colorName} ${index + 1}`}
+                                <FormInput
+                                    onClick={(e)=> setProductColors(prev=> {
+                                        prev[index].colorNmae = e.target.value
+                                    })}  
+                                    label={`color name ${index + 1}`}
                                     type='text'
                                     placeHolder='your color name...'
                                     errors={errors}
                                     />
-                                 <FormInput 
-                                    name={`${priceInHalala} ${index}`} 
-                                    label={`${priceInHalala} ${index + 1}`}
+                                 <FormInput
+                                    onClick={(e)=> setProductColors(prev=> {
+                                        prev[index].priceInHalala = +e.target.value
+                                    })} 
+                                    label={`price in halala ${index + 1}`}
                                     type='number'
                                     placeHolder='price in halala...'
                                     errors={errors}
