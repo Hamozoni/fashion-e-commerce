@@ -44,6 +44,7 @@ export async function POST (request) {
 
     let images = [];
     let sizes = [];
+    let productImagePath = '';
 
 
     const delateImages = (images)=> {
@@ -67,14 +68,16 @@ export async function POST (request) {
 
                     images.push({imagePath,colorName});
 
+                    if(index === 0) {
+                        productImagePath = imagePath
+                    };
+
             });
 
             sizesArrays[index].map((size)=> {
                 sizes.push(size)
             })
         });
-
-        details.imagePath = images[0]?.imagePath;
    }
    catch (error){
         delateImages(images);
@@ -85,11 +88,10 @@ export async function POST (request) {
 
     // creating new product in db
     try {
-        console.log(images);
          const product = await db.product.create({
                data : {
                    ...details,
-                   imagePath: 'sffefefe',
+                   imagePath: productImagePath,
                    specifications : {
                        create :specifications
                    },
