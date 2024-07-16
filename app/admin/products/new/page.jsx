@@ -47,7 +47,6 @@ const NewProducts = () => {
             setProductSizes,
             productSizes,
             productDetails,
-            setProductDetails,
             productSpecifications
         );
 

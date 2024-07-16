@@ -1,15 +1,6 @@
 
-export const formDataProductFormater = (formData,productColors,setProductSizes,productSizes,productDetails,setProductDetails,productSpecifications) => {
+export const formDataProductFormater = (formData,productColors,setProductSizes,productSizes,productDetails,productSpecifications) => {
 
-            setProductDetails(prev=> {
-                const moreDertails = {
-                    priceInHalala : productColors[0].priceInHalala,
-                    size : productSizes[0][0].shortName,
-                    color : productColors[0].color,
-                    colorName :productColors[0].colorName
-                }
-                return {...prev,...moreDertails}
-            });
             // giving eatch size objet prop of color name
             productColors.map(({colorName},index)=> {
                 setProductSizes(prev=> {

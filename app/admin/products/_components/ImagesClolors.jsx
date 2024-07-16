@@ -23,6 +23,7 @@ export function ImagesColor() {
         productColors,
         setProductColors,
         setProductSizes,
+        setProductDetails,
         category
     } = useContext(newProductContext);
 
@@ -100,31 +101,53 @@ export function ImagesColor() {
                                     accept="image/*"
                                      />
                                 <FormInput 
-                                    onClick={(e)=> setProductColors(prev=> {
-                                        prev[index].color = e.target.value;
-                                        return prev
-                                    })}
+                                    onClick={(e)=> {
+                                        setProductColors(prev=> {
+                                            prev[index].color = e.target.value;
+                                            return prev
+                                        });
+
+                                        if(index === 0) {
+                                            setProductDetails(prev=> {
+                                                return {...prev,color:e.target.value}
+                                            })
+                                        }
+                                   }}
                                     label={`color ${index + 1}`}
                                     type='color'
                                     errors={errors}
                                     />
                                 <FormInput
-                                    onClick={(e)=> setProductColors(prev=> {
-                                        prev[index].colorName = e.target.value;
+                                    onClick={(e)=> {
+                                        setProductColors(prev=> {
+                                            prev[index].colorName = e.target.value;
+                                            return prev
+                                        });
 
-                                        return prev
-                                    })}  
+                                        if(index === 0) {
+                                            setProductDetails(prev=> {
+                                                return {...prev,colorName:e.target.value}
+                                            })
+                                        };
+                                   }}  
                                     label={`color name ${index + 1}`}
                                     type='text'
                                     placeHolder='your color name...'
                                     errors={errors}
                                     />
                                  <FormInput
-                                    onClick={(e)=> setProductColors(prev=> {
-                                        prev[index].priceInHalala = +e.target.value;
+                                    onClick={(e)=> {
+                                        setProductColors(prev=> {
+                                            prev[index].priceInHalala = +e.target.value;
+                                            return prev;
+                                        });
 
-                                        return prev;
-                                    })} 
+                                        if(index === 0) {
+                                            setProductDetails(prev=> {
+                                                return {...prev,priceInHalala: +e.target.value}
+                                            })
+                                        };
+                                    }} 
                                     label={`price in halala ${index + 1}`}
                                     type='number'
                                     placeHolder='price in halala...'

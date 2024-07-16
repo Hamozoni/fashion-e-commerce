@@ -10,7 +10,7 @@ const className = {
 
 export const SelectSizes = ({i})=> {
 
-    const {errors,category,productSizes,setProductSizes} = useContext(newProductContext)
+    const {errors,category,productSizes,setProductSizes,setProductDetails} = useContext(newProductContext);
 
     const isShoes = category?.subName?.toLowerCase() === 'shoes';
 
@@ -28,6 +28,12 @@ export const SelectSizes = ({i})=> {
     }
 
     const handleSize = (size,length)=> {
+
+        if(length === 0) {
+            setProductDetails(prev=> {
+                return {...prev,size:size.shortName}
+            })
+        }
 
         const exsistingSize = isElementFound(size?.id);
 
@@ -77,10 +83,13 @@ export const SelectSizes = ({i})=> {
                     productSizes[i]?.map(({shortName,id},index)=> (
 
                         <FormInput 
-                            onClick={(e)=> setProductSizes(prev=> {
-                                prev[i][index].quantity = +e.target.value
-                                return [...prev]
-                            })}
+                            onClick={(e)=> {
+                                setProductSizes(prev=> {
+                                    prev[i][index].stackQuantity = +e.target.value
+                                    return [...prev]
+                                });
+                            }
+                            }
                             key={id}  
                             label={`${shortName} size quantity *`}
                             type='number'
