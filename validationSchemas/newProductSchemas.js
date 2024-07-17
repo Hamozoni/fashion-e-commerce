@@ -27,7 +27,7 @@ export const zProductSizesSchema = z.array(sizes);
 const colors = z.object({
   colorName: z.string().min(3),
   color: z.string().min(3),
-  princeInHalala : z.number().min(100),
+  priceInHalala : z.number().min(100),
 })
 export const zProductColorSchema = z.array(colors);
 

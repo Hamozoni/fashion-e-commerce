@@ -242,7 +242,7 @@ export const categoriesData = [
             },
             {
                 id: 5,
-                name:'tShirt',
+                name:'t-shirt',
                 imagePath: menTShirt,
                 linkPath: '/men?sub=t-shirt'
             },
