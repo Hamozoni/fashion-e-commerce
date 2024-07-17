@@ -37,7 +37,6 @@ const NewProducts = () => {
     const handleSubmit =  (event)=> {
 
         event.preventDefault();
-        setIsPending(true);
         const formData = new FormData(formRef.current);
 
         // retun all data in one form data
@@ -53,18 +52,22 @@ const NewProducts = () => {
             setSpeciValidError
         );
 
-        PostData('/products/new',formatedFormData)
-        .then((data)=> {
-            console.log(data);
-            router.push('/admin/products')
-        })
-        .catch((error)=> {
-            console.log(error)
-        })
-        .finally(()=> {
-            setIsPending(false)
-        });
-        
+        if(!!formatedFormData) {
+            setIsPending(true);
+            PostData('/products/new',formatedFormData)
+            .then((data)=> {
+                console.log(data);
+                router.push('/admin/products')
+            })
+            .catch((error)=> {
+                console.log(error)
+            })
+            .finally(()=> {
+                setIsPending(false)
+            });
+
+        };
+
     };
 
   return (
