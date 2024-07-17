@@ -12,12 +12,6 @@ export function FormInput({name,label,type,placeHolder,errors,required = true,on
 
     console.log(errors)
 
-    errors?.map(({path})=> {
-
-      console.log(JSON.stringify(path) === JSON.stringify(name),JSON.stringify(name),JSON.stringify(path));
-
-
-  })
 
   }
 
@@ -37,7 +31,7 @@ export function FormInput({name,label,type,placeHolder,errors,required = true,on
             required={required}
         />
         {
-          errors &&
+          errors?.find(e=> JSON.stringify(e?.path) === JSON.stringify(name)) &&
         <p className=" text-rose-500 text-sm font-medium capitalize flex items-center gap-3">
               <BiSolidError />
               {errors?.find(e=> JSON.stringify(e?.path) === JSON.stringify(name))?.message }

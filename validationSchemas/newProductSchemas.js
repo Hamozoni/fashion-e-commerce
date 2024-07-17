@@ -49,5 +49,5 @@ export const zProductDetailsSchema =  z.object({
   colorName: z.string().min(3),
   color: z.string().min(3),
   size: z.string(),
-  princeInHalala : z.number().min(100),
+  priceInHalala : z.number().min(100),
 });

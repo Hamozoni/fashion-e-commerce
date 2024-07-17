@@ -19,7 +19,6 @@ const data = {
 export function ImagesColor() {
 
     const {
-        errors,
         productColors,
         setProductColors,
         setProductSizes,
