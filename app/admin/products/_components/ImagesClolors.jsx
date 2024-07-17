@@ -114,7 +114,7 @@ export function ImagesColor() {
                                             })
                                         }
                                    }}
-                                    name='color'
+                                    name={[index,"color"]}
                                     label={`color ${index + 1}`}
                                     type='color'
                                     errors={colValidError}
@@ -132,7 +132,7 @@ export function ImagesColor() {
                                             })
                                         };
                                    }}
-                                    name='colorName'  
+                                    name={[index,"colorName"]} 
                                     label={`color name ${index + 1}`}
                                     type='text'
                                     placeHolder='your color name...'
@@ -151,7 +151,7 @@ export function ImagesColor() {
                                             })
                                         };
                                     }} 
-                                    name='priceInHalala'
+                                    name={[index,'priceInHalala']}
                                     label={`price in halala ${index + 1}`}
                                     type='number'
                                     placeHolder='price in halala...'
