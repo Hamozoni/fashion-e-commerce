@@ -24,7 +24,8 @@ export function ImagesColor() {
         setProductColors,
         setProductSizes,
         setProductDetails,
-        category
+        category,
+        colValidError
     } = useContext(newProductContext);
 
     const addMore = ()=> {
@@ -113,9 +114,10 @@ export function ImagesColor() {
                                             })
                                         }
                                    }}
+                                    name='color'
                                     label={`color ${index + 1}`}
                                     type='color'
-                                    errors={errors}
+                                    errors={colValidError}
                                     />
                                 <FormInput
                                     onClick={(e)=> {
@@ -129,7 +131,8 @@ export function ImagesColor() {
                                                 return {...prev,colorName:e.target.value}
                                             })
                                         };
-                                   }}  
+                                   }}
+                                    name='colorName'  
                                     label={`color name ${index + 1}`}
                                     type='text'
                                     placeHolder='your color name...'
@@ -148,10 +151,11 @@ export function ImagesColor() {
                                             })
                                         };
                                     }} 
+                                    name='priceInHalala'
                                     label={`price in halala ${index + 1}`}
                                     type='number'
                                     placeHolder='price in halala...'
-                                    errors={errors}
+                                    errors={colValidError}
                                     />
                             </div>
                             <SelectSizes  i={index} />

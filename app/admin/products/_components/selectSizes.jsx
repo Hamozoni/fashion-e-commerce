@@ -10,7 +10,14 @@ const className = {
 
 export const SelectSizes = ({i})=> {
 
-    const {errors,category,productSizes,setProductSizes,setProductDetails,productColors} = useContext(newProductContext);
+    const {
+        category,
+        productSizes,
+        productColors,
+        sizeValidError,
+        setProductSizes,
+        setProductDetails,
+    } = useContext(newProductContext);
 
     const isShoes = category?.subName?.toLowerCase() === 'shoes';
 
@@ -92,11 +99,12 @@ export const SelectSizes = ({i})=> {
                                 });
                             }
                             }
+                            name={`${shortName}stackQuantity`}
                             key={id}  
                             label={`${shortName} size quantity *`}
                             type='number'
                             placeHolder={`place enter ${shortName} quantity..`}
-                            errors={errors}
+                            errors={sizeValidError}
                             />
                     ))
                 }

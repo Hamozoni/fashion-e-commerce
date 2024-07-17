@@ -7,7 +7,7 @@ import { newProductContext } from "../new/page";
 
 export const ProductInfoForm = ()=> {
 
-    const {errors,setProductDetails} = useContext(newProductContext);
+    const {detValidError,setProductDetails} = useContext(newProductContext);
 
     return (
         <>
@@ -16,27 +16,30 @@ export const ProductInfoForm = ()=> {
                         onClick={e => setProductDetails(prev=> {
                             return {...prev,name: e.target.value}
                         })}
+                        name='name'
                         label='name'
                         type='text'
-                        errors={errors}
+                        errors={detValidError}
                         placeHolder='the name of the product...'
                     />
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
                             return {...prev,brand:e.target.value}
                         })}
+                        name='brand'
                         label='brand' 
                         type='text'
-                        errors={errors}
+                        errors={detValidError}
                         placeHolder='the brand of your product...'
                     />
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
                             return {...prev,serialNumber: e.target.value}
                         })}
+                        name='serialNumber'
                         label='serial number'
                         type='text'
-                        errors={errors}
+                        errors={detValidError}
                         placeHolder='ASIN shold be 10'
                 />
             <SelectCategory />
@@ -46,9 +49,10 @@ export const ProductInfoForm = ()=> {
             onClick={e => setProductDetails(prev=> {
                 return {...prev,describtion: e.target.value}
             })}
+            name='describtion'
             label='describtion'
             placeHolder='product describtion...' 
-            errors={errors}
+            errors={detValidError}
             />
 
         </div>

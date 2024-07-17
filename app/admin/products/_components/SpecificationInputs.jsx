@@ -10,7 +10,7 @@ import { newProductContext } from "../new/page";
 
 export function SpecificationInputs() {
 
-    const {errors,productSpecifications,setProductSpecifications} = useContext(newProductContext);
+    const {speciValidError,productSpecifications,setProductSpecifications} = useContext(newProductContext);
 
     const addMore = ()=> {
         setProductSpecifications(prev=> {
@@ -70,20 +70,22 @@ export function SpecificationInputs() {
                                 prev[index].name =  e.target.value
                                 return [...prev]
                             })}
+                            name='name'
                             label={`name ${index + 1}`}
                             type='text'
                             placeHolder='specification key...'
-                            errors={errors}
+                            errors={speciValidError}
                             />
                         <FormInput
                             onClick={e => setProductSpecifications(prev => {
                                 prev[index].value = e.target.value
                                 return prev
-                            })} 
+                            })}
+                            name='value' 
                             label={`value ${index + 1}`}
                             type='text'
                             placeHolder='specification value...'
-                            errors={errors}
+                            errors={speciValidError}
                             />
                     </div>
                 ))
