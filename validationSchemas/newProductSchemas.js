@@ -15,24 +15,28 @@ export const zProductImages = z.array({
   type: z.string().refine(type => ACCEPTED_IMAGE_TYPES.includes(type),{message:'invalid file type! must be an image'})
 });
 
-export const zProductSizesSchema = z.array({
-    name: z.string().min(3),
-    colorName: z.string().min(3),
-    shortName: z.string().min(1),
-    stackQuantity: z.number().min(1)
-});
+const sizes = z.object({
+  name: z.string().min(3),
+  colorName: z.string().min(3),
+  shortName: z.string().min(1),
+  stackQuantity: z.number().min(1)
+})
 
+export const zProductSizesSchema = z.array(sizes);
 
-export const zProductColorSchema = z.array({
+const colors = z.object({
   colorName: z.string().min(3),
   color: z.string().min(3),
   princeInHalala : z.number().min(100),
-});
+})
+export const zProductColorSchema = z.array(colors);
 
-export const zProductSpeciSchema = z.array({
+const specifications = z.object({
   name:  z.string().min(3),
   value: z.string().min(3),
-});
+})
+
+export const zProductSpeciSchema = z.array(specifications);
 
 
 export const zProductDetailsSchema =  z.object({
