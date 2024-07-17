@@ -21,10 +21,10 @@ async function  productPage({params}) {
       <section className="py-6 border-b border-gray-200 mb-10">
         <h4 
           className="pb-2 text-2xl font-bold text-teal-950"
-           >Product description:
+           >Product describtion:
         </h4>
         <p className="text-teal-900">
-          {data?.description}
+          {data?.describtion}
         </p>
       </section>
       <ProductReviews product={data}/>

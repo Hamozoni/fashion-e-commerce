@@ -15,7 +15,7 @@ function Specifications({specifications}) {
                         >
                         <span 
                             className="font-bold text-md text-teal-950 flex-1">
-                                {specif?.key} : 
+                                {specif?.name} : 
                         </span>
                         <span 
                             className="text-sm font-bold text-teal-900"
