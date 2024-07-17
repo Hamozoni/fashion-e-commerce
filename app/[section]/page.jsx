@@ -21,10 +21,10 @@ async function page({params,searchParams}) {
             </header>
             <div className="flex gap-3" >
                 {
-                    data?.length > 0 ?''
-                    // data?.map((product)=> (
-                    //     <ProductCard product={product}/>
-                    // ))
+                    data?.length > 0 ?
+                    data?.map((product)=> (
+                        <ProductCard product={product}/>
+                    ))
                     :
                      (
                         <div className=" h-[300px] w-full flex justify-center items-center">
