@@ -44,7 +44,6 @@ const NewProducts = () => {
         const formatedFormData = formDataProductFormater(
             formData,
             productColors,
-            setProductSizes,
             productSizes,
             productDetails,
             productSpecifications

@@ -10,7 +10,7 @@ const className = {
 
 export const SelectSizes = ({i})=> {
 
-    const {errors,category,productSizes,setProductSizes,setProductDetails} = useContext(newProductContext);
+    const {errors,category,productSizes,setProductSizes,setProductDetails,productColors} = useContext(newProductContext);
 
     const isShoes = category?.subName?.toLowerCase() === 'shoes';
 
@@ -50,7 +50,7 @@ export const SelectSizes = ({i})=> {
           });
         } else {
             setProductSizes(prev=> {
-                prev[i][length] = {shortName,name};
+                prev[i][length] = {shortName,name,colorName : productColors[i]?.colorName};
                 
                 return [...prev]
             })
