@@ -10,8 +10,8 @@ export const productById = async (productId)=> {
             include: {
                 sizes: true,
                 images:true ,
-                specifications: true
-                
+                specifications: true,
+                colors: true
             }
         })
     

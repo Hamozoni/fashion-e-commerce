@@ -18,7 +18,7 @@ export const ProductDetailsContext =  createContext(null);
 
 function ProductDetails({product}) {
 
-    const {images,brand,name,priceInCent,specifications} = product;
+    const {images,brand,name,priceInHalala,specifications} = product;
     const [selectedSize,setSelectedSize] = useState('');
     const [selectedColor,setSelectedColor] = useState(images[0]?.color);
 
@@ -51,7 +51,7 @@ function ProductDetails({product}) {
                             </header>
                             <div className="flex items-center  text-teal-950 gap-3">
                                 <h4 className='text-2xl font-extrabold'>
-                                    {getCurrency(+priceInCent)}
+                                    {getCurrency(+priceInHalala)}
                                 </h4>
                                 <p className="text-teal-800 text-sm">Inclusive of VAT</p>
                             </div>

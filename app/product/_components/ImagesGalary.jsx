@@ -21,7 +21,7 @@ function ImagesGalary() {
   return (
     <div className="mb-3 flex-1">
         <div className="flex items-center gap-2 sm:gap-5 sticky top-[80px] left-0">
-            <div className="overflow-y-auto md:min-w-fit">
+            <div className="overflow-y-auto md:min-w-fit max-h-[500px]">
                 <div className="flex items-center justify-center gap-2 flex-col min-w-fit p-1 ">
                     {
                         productImages[selectedColor]?.map((img)=> (
