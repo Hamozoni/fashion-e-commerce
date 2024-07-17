@@ -70,7 +70,7 @@ export function SpecificationInputs() {
                                 prev[index].name =  e.target.value
                                 return [...prev]
                             })}
-                            name='name'
+                            name={[index,'name']}
                             label={`name ${index + 1}`}
                             type='text'
                             placeHolder='specification key...'
@@ -81,7 +81,7 @@ export function SpecificationInputs() {
                                 prev[index].value = e.target.value
                                 return prev
                             })}
-                            name='value' 
+                            name={[index,'value']}
                             label={`value ${index + 1}`}
                             type='text'
                             placeHolder='specification value...'

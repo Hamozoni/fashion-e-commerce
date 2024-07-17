@@ -1,3 +1,4 @@
+import { BiSolidError } from "react-icons/bi";
 import ZodError from "../../../../components/zodError";
 
 const className = {
@@ -6,6 +7,20 @@ const className = {
 };
 
 export function FormInput({name,label,type,placeHolder,errors,required = true,onClick}) {
+
+  if(errors) {
+
+    console.log(errors)
+
+    errors?.map(({path})=> {
+
+      console.log(JSON.stringify(path) === JSON.stringify(name),JSON.stringify(name),JSON.stringify(path));
+
+
+  })
+
+  }
+
 
     
   return (
@@ -21,7 +36,13 @@ export function FormInput({name,label,type,placeHolder,errors,required = true,on
             placeholder={placeHolder}
             required={required}
         />
-        <ZodError error={errors} field={name} />
+        {
+          errors &&
+        <p className=" text-rose-500 text-sm font-medium capitalize flex items-center gap-3">
+              <BiSolidError />
+              {errors?.find(e=> JSON.stringify(e?.path) === JSON.stringify(name))?.message }
+          </p>
+        }
     </div>
   )
 };

@@ -136,7 +136,7 @@ export function ImagesColor() {
                                     label={`color name ${index + 1}`}
                                     type='text'
                                     placeHolder='your color name...'
-                                    errors={errors}
+                                    errors={colValidError}
                                     />
                                  <FormInput
                                     onClick={(e)=> {
