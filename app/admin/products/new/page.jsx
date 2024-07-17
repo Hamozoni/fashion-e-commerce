@@ -26,8 +26,12 @@ const NewProducts = () => {
     const [productSpecifications,setProductSpecifications] = useState([{}]);
     const [category,setCategory] = useState({});
 
-    const [errors,setErrors] = useState(null);
     const [isPendding,setIsPending] = useState(false);
+
+    const [colValidError,setDetValidError] = useState(null);
+    const [detValidError,setColValidError] = useState(null);
+    const [sizeValidError,setSizeValidError] = useState(null);
+    const [speciValidError,setSpeciValidError] = useState(null);
 
 
     const router = useRouter();
@@ -71,7 +75,6 @@ const NewProducts = () => {
   return (
     <newProductContext.Provider 
         value={{
-            errors,
             productDetails,
             setProductDetails,
             productColors,
@@ -81,7 +84,11 @@ const NewProducts = () => {
             category,
             setCategory,
             productSpecifications,
-            setProductSpecifications
+            setProductSpecifications,
+            colValidError,
+            detValidError,
+            sizeValidError,
+            speciValidError
             }}
     >
     <div className="p-4 lg:p-10 w-full max-w-full capitalize ">
