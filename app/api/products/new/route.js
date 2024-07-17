@@ -9,7 +9,7 @@ export async function POST (request) {
 
     const data = Object.fromEntries(formData.entries());
     const colors = JSON.parse(data.colors);
-    const sizesArrays = JSON.parse(data.sizes);
+    const sizes = JSON.parse(data.sizes);
     const specifications = JSON.parse(data.specifications);
     const details = JSON.parse(data.details);
 
@@ -35,7 +35,6 @@ export async function POST (request) {
 //loading product images in public folder
 
         let images = [];
-        let sizes = [];
 
         for(let index = 0;index < colors?.length; index++){
             await fs.mkdir("public/products",{recursive: true});
@@ -55,10 +54,6 @@ export async function POST (request) {
                     details.imagePath = imagePath
                 };
 
-            }
-
-            for(let s = 0; s < sizesArrays[index]?.length; s++){
-                sizes.push(sizesArrays[index][s])
             }
         }
         

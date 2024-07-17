@@ -1,60 +1,57 @@
 "use client";
-
 import {createContext, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+// components
 import {SpecificationInputs}from "../_components/SpecificationInputs";
 import { ButtonWithIcon } from "../../../../components/buttons";
 import {ImagesColor} from "../_components/ImagesClolors";
 import {ProductInfoForm} from "../_components/productInfoForm"
-import { useRouter } from "next/navigation";
-import {zProductShema}from "../../../../validationSchemas/newProductSchemas";
-import {formDataProductFormater} from "../../../../lip/formDataProductFormater"
-
-
-
-import { IoArrowBackOutline } from "react-icons/io5";
 import Loading from "../_components/Loading"
+// icons
+import { IoArrowBackOutline } from "react-icons/io5";
+// form data fomater
+import {formDataProductFormater} from "../../../../lip/formDataProductFormater";
+// axios post function
 import { PostData } from "../../../../lip/fetchData";
-
+// condex
 export const newProductContext = createContext();
 
 const NewProducts = () => {
-
-
+    // data states
     const [productDetails,setProductDetails] = useState({});
     const [productColors,setProductColors] = useState([{color: '',colorName :'',priceInHalala: 0}]);
     const [productSizes,setProductSizes] = useState([[]]);
     const [productSpecifications,setProductSpecifications] = useState([{}]);
     const [category,setCategory] = useState({});
-
+    // loadind state
     const [isPendding,setIsPending] = useState(false);
-
+    // valdatations errors states
     const [colValidError,setDetValidError] = useState(null);
     const [detValidError,setColValidError] = useState(null);
     const [sizeValidError,setSizeValidError] = useState(null);
     const [speciValidError,setSpeciValidError] = useState(null);
 
-
     const router = useRouter();
-
     const formRef = useRef()
     
     const handleSubmit =  (event)=> {
+
         event.preventDefault();
         setIsPending(true);
         const formData = new FormData(formRef.current);
 
-
-
+        // retun all data in one form data
         const formatedFormData = formDataProductFormater(
             formData,
             productColors,
+            setColValidError,
             productSizes,
+            setSizeValidError,
             productDetails,
-            productSpecifications
+            setDetValidError,
+            productSpecifications,
+            setSpeciValidError
         );
-
-
-        console.log(Object.fromEntries(formatedFormData));
 
         PostData('/products/new',formatedFormData)
         .then((data)=> {
@@ -66,11 +63,9 @@ const NewProducts = () => {
         })
         .finally(()=> {
             setIsPending(false)
-        })
+        });
         
     };
-
-
 
   return (
     <newProductContext.Provider 
