@@ -11,7 +11,7 @@ const {product:{images,colors}} = useContext(ProductDetailsContext);
 
   return (
 
-    <section className="py-4">
+    <section className="">
         <h5 className="flex capitalize items-center gap-3 pb-2 text-lg font-bold text-green-950"> 
            avalble colors:
         </h5>
@@ -22,7 +22,7 @@ const {product:{images,colors}} = useContext(ProductDetailsContext);
                     colors?.map(({colorName,color})=> (
 
                         <li 
-                            className={'border-2 border-gray-100 outline outline-teal-600 shadow-md mb-1 w-8 h-8 rounded-full cursor-pointer'}
+                            className={'border-2 border-gray-100 outline outline-teal-600 shadow-md mb-1 w-6 h-6 rounded-full cursor-pointer'}
                             style={{backgroundColor: color}}
                             key={color} 
                             onClick={()=> ''}
