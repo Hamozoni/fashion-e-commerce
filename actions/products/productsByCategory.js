@@ -2,16 +2,18 @@
 
 import {db} from '../../lip/db';
 
-export const productsByCategoryAction = async (category,subCategory)=> {
-    
+export const productsByCategoryAction = async (category,subcategory)=> {
+
+    console.log(category,subcategory)  
     try{
         const products = await db.product.findMany({where: {
             category,
-            subCategory,
+            subcategory,
           },
           include: {
              images: true,
-             sizes: true
+             sizes: true,
+             colors: true
              }
           })
            return {data: products}

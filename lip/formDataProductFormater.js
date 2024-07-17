@@ -32,9 +32,9 @@ export const formDataProductFormater = (
         console.log(JSON.parse(validateColor?.error))
     };
 
-    let sizes = []
+    const sizes = []
 
-    for(let index = 0;index < productColors;index++){
+    for(let index = 0;index < productColors?.length;index++){
         for(let s = 0; s < productSizes[index]?.length; s++){
             sizes.push(productSizes[index][s])
         };
