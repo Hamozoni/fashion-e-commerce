@@ -94,18 +94,12 @@ export function ImagesColor() {
                         <div className="p-2 border-2 border-gray-200 rounded-md mb-5 shadow-sm ">
                             <div key={index} className="flex items-center gap-3 mb-3 flex-wrap">
                             <FormInput
-                                    onClick={(e)=> {
-                                        setProductColors(()=> {
-                                            productColors[index].colorName = e.target.value;
+                                    onClick={(e)=> setProductColors(()=> {
+                                            prev[index].colorName = e.target.value;
 
-                                            return productColors
-                                        });
-                                        if(index === 0) {
-                                            setProductDetails(prev=> {
-                                                return {...prev,colorName:e.target.value}
-                                            })
-                                        };
-                                   }}
+                                            return [...prev]
+                                        })
+                                   }
                                     name={[index,"colorName"]} 
                                     label={`color name ${index + 1}`}
                                     type='text'
@@ -113,20 +107,14 @@ export function ImagesColor() {
                                     errors={colValidError}
                                     />
                                  <FormInput
-                                    onClick={(e)=> {
-                                        setProductColors(()=>{
-                                            productColors[index].priceInHalala = +e.target.value;
+                                    onClick={(e)=>  setProductColors(()=>{
+                                            prev[index].priceInHalala = +e.target.value;
 
-                                            return prev
+                                            return [...prev]
                                         
-                                        });
+                                        })
 
-                                        if(index === 0) {
-                                            setProductDetails(prev=> {
-                                                return {...prev,priceInHalala: +e.target.value}
-                                            })
-                                        };
-                                    }} 
+                                    } 
                                     name={[index,'priceInHalala']}
                                     label={`price in halala ${index + 1}`}
                                     type='number'
@@ -141,18 +129,10 @@ export function ImagesColor() {
                                     accept="image/*"
                                      />
                                 <FormInput 
-                                    onClick={(e)=> {
-                                        setProductColors(()=>{
-                                            productColors[index].color = e.target.value;
-                                            return prev
-                                        });
-
-                                        if(index === 0) {
-                                            setProductDetails(prev=> {
-                                                return {...prev,color:e.target.value}
-                                            })
-                                        }
-                                   }}
+                                    onClick={(e)=> setProductColors((prev)=>{
+                                            prev[index].color = e.target.value;
+                                            return [...prev]
+                                        })}
                                     name={[index,"color"]}
                                     label={`color ${index + 1}`}
                                     type='color'

@@ -40,8 +40,15 @@ export const SelectSizes = ({i})=> {
 
         if(length === 0) {
             setProductDetails(prev=> {
-                return {...prev,size:shortName}
-            })
+
+                const moreInfo = {
+                    size:shortName,
+                    colorName : productColors[i]?.colorName,
+                    priceInHalala:productColors[i]?.priceInHalala,
+                    color: productColors[i]?.color
+                }
+                return {...prev,...moreInfo}
+            });
         }
 
         const exsistingSize = isElementFound(shortName);
