@@ -49,11 +49,8 @@ function ProductDetails({data}) {
                                 </h4>
                                 <p className="text-teal-800 text-sm">Inclusive of VAT</p>
                             </div>
-                            <div className="flex items-center gap-4">
-                                <SelectSize />
-                                <SelectImage />
-
-                            </div>
+                            <SelectSize />
+                            <SelectImage />
                             <Specifications />
                         </div>
                         <Features />

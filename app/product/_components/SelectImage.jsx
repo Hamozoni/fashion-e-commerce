@@ -6,7 +6,7 @@ import { ProductDetailsContext } from "./ProductDetails";
 
 function SelectImage() {
 
-const {product:{colors,color : productColor},setProduct} = useContext(ProductDetailsContext);
+const {product:{colors,color : productColor,images},setProduct} = useContext(ProductDetailsContext);
 
 
   return (
@@ -22,14 +22,18 @@ const {product:{colors,color : productColor},setProduct} = useContext(ProductDet
                     colors?.map(({colorName,color,priceInHalala})=> (
 
                         <li 
-                            className={`${color === productColor ? 'outline-2 outline-black shadow-md' :' ' } border-2 border-teal-600  mb-1 w-6 h-6 rounded-full cursor-pointer`}
+                            className={`${color === productColor ? 'bg-black' :' ' } border-2 border-teal-600  mb-1 w-6 h-6 rounded-full cursor-pointer`}
                             style={{backgroundColor: color}}
                             key={color} 
                             onClick={()=> setProduct((prev)=> {
-                                prev.color = color;
-                                prev.colorName = colorName;
-                                prev.priceInHalala = priceInHalala
-                                return prev;
+                                const modified = {
+                                    color :color,
+                                    colorName : colorName,
+                                    priceInHalala : priceInHalala,
+                                    imagePath : images.find(e => e.colorName === colorName).imagePath
+
+                                }
+                                return {...prev,...modified};
                             })}
                             >
                         </li>
