@@ -18,8 +18,8 @@ const CartItemsCard = ({product,isCheckout = false})=> {
     const removeItem = ()=> {
         dispatch(removeItemFromCart({
             id: product.id,
-            selectedColor: product.selectedColor,
-            selectedSize: product.selectedSize
+            color: product.color,
+            size: product.size
         }))
     }
 
@@ -43,7 +43,7 @@ const CartItemsCard = ({product,isCheckout = false})=> {
                     className="flex items-center justify-center mb-3 sm:mb-0">
                     <Image
                         className={`${innerWidth > 550 ? 'max-h-[200px]' :'max-h-[150px]'}`}
-                        src={product?.image?.replace("public","")}
+                        src={product?.imagePath}
                         width={innerWidth > 550 ? 150 : 100}
                         height={innerWidth > 550 ? 200 : 150}
                         alt='product image'
@@ -67,14 +67,14 @@ const CartItemsCard = ({product,isCheckout = false})=> {
                             <tr className="text-teal-900 text-sm sm:text-md font-bold">
                                 <td className={className?.tableBodyRow}> 
                                     <p 
-                                        style={{backgroundColor: product?.selectedColor}}
+                                        style={{backgroundColor: product?.color}}
                                         className="w-[35px] h-[10px] rounded-full"
                                         >
                                     </p> 
                                 </td>
-                                <td className={className?.tableBodyRow}>{product?.selectedSize}</td>
-                                <td className={className?.tableBodyRow}>{getCurrency(product?.priceInCent)}</td>
-                                <td className={className?.tableBodyRow}>{getCurrency(product?.priceInCent * product?.quantity)}</td>
+                                <td className={className?.tableBodyRow}>{product?.size}</td>
+                                <td className={className?.tableBodyRow}>{getCurrency(product?.priceInHalala)}</td>
+                                <td className={className?.tableBodyRow}>{getCurrency(product?.priceInHalala * product?.quantity)}</td>
 
                             </tr>
                         </tbody>
@@ -82,8 +82,8 @@ const CartItemsCard = ({product,isCheckout = false})=> {
                     <div className="flex sm:flex-col justify-between pt-3 lg-pt-0">
                         <QuantityBtn 
                             id={product.id} 
-                            selectedColor={product.selectedColor} 
-                            selectedSize={product.selectedSize} 
+                            color={product.color} 
+                            size={product.size} 
                             />
                         <div className="max-w-24">
                             <ButtonWithIcon 
