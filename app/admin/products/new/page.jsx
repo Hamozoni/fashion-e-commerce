@@ -19,7 +19,7 @@ export const newProductContext = createContext();
 const NewProducts = () => {
     // data states
     const [productDetails,setProductDetails] = useState({});
-    const [productColors,setProductColors] = useState([{color: '',colorName :'',priceInHalala: 0}]);
+    const [productColors,setProductColors] = useState([{}]);
     const [productSizes,setProductSizes] = useState([[]]);
     const [productSpecifications,setProductSpecifications] = useState([{}]);
     const [category,setCategory] = useState({});

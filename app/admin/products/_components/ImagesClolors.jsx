@@ -10,19 +10,12 @@ import { FiMinus } from "react-icons/fi";
 import {SelectSizes} from "./selectSizes";
 import { newProductContext } from "../new/page";
 
-const data = {
-    color: '',
-    colorName :'',
-    priceInHalala: 0
-}
-
 export function ImagesColor() {
 
     const {
         productColors,
         setProductColors,
         setProductSizes,
-        setProductDetails,
         category,
         colValidError
     } = useContext(newProductContext);
@@ -30,7 +23,7 @@ export function ImagesColor() {
     const addMore = ()=> {
         setProductSizes(prev=> [...prev,[]])
         setProductColors(prev=> {
-            return [...prev,data]
+            return [...prev,{}]
         })
     };
 
@@ -94,7 +87,7 @@ export function ImagesColor() {
                         <div className="p-2 border-2 border-gray-200 rounded-md mb-5 shadow-sm ">
                             <div key={index} className="flex items-center gap-3 mb-3 flex-wrap">
                             <FormInput
-                                    onClick={(e)=> setProductColors(()=> {
+                                    onClick={(e)=> setProductColors((prev)=> {
                                             prev[index].colorName = e.target.value;
 
                                             return [...prev]
@@ -107,7 +100,7 @@ export function ImagesColor() {
                                     errors={colValidError}
                                     />
                                  <FormInput
-                                    onClick={(e)=>  setProductColors(()=>{
+                                    onClick={(e)=>  setProductColors((prev)=>{
                                             prev[index].priceInHalala = +e.target.value;
 
                                             return [...prev]
