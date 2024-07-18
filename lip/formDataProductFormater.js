@@ -17,6 +17,8 @@ export const formDataProductFormater = (
     setSpeciValidError
 ) => {
 
+    console.log(productColors);
+
     const validateDetails = zProductDetailsSchema?.safeParse(productDetails);
     if(validateDetails.success) {
         setDetValidError(null)

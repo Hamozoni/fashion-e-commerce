@@ -93,36 +93,11 @@ export function ImagesColor() {
                     productColors?.map((_,index)=> (
                         <div className="p-2 border-2 border-gray-200 rounded-md mb-5 shadow-sm ">
                             <div key={index} className="flex items-center gap-3 mb-3 flex-wrap">
-                                <input 
-                                    type="file"
-                                    name={`images_${index}`}
-                                    required
-                                    multiple
-                                    accept="image/*"
-                                     />
-                                <FormInput 
+                            <FormInput
                                     onClick={(e)=> {
-                                        setProductColors(prev=> {
-                                            prev[index].color = e.target.value;
-                                            return [...prev]
-                                        });
-
-                                        if(index === 0) {
-                                            setProductDetails(prev=> {
-                                                return {...prev,color:e.target.value}
-                                            })
-                                        }
-                                   }}
-                                    name={[index,"color"]}
-                                    label={`color ${index + 1}`}
-                                    type='color'
-                                    errors={colValidError}
-                                    />
-                                <FormInput
-                                    onClick={(e)=> {
-                                        setProductColors(prev=> {
-                                            prev[index].colorName = e.target.value;
-                                            return [...prev]
+                                        setProductColors(()=> {
+                                            productColors[index].colorName = e.target.value;
+                                            return [...productColors]
                                         });
 
                                         if(index === 0) {
@@ -139,9 +114,9 @@ export function ImagesColor() {
                                     />
                                  <FormInput
                                     onClick={(e)=> {
-                                        setProductColors(prev=> {
-                                            prev[index].priceInHalala = +e.target.value;
-                                            return [...prev];
+                                        setProductColors(()=> {
+                                            productColors[index].priceInHalala = +e.target.value;
+                                            return [...productColors];
                                         });
 
                                         if(index === 0) {
@@ -154,6 +129,31 @@ export function ImagesColor() {
                                     label={`price in halala ${index + 1}`}
                                     type='number'
                                     placeHolder='price in halala...'
+                                    errors={colValidError}
+                                    />
+                                <input 
+                                    type="file"
+                                    name={`images_${index}`}
+                                    required
+                                    multiple
+                                    accept="image/*"
+                                     />
+                                <FormInput 
+                                    onClick={(e)=> {
+                                        setProductColors(()=> {
+                                            productColors[index].color = e.target.value;
+                                            return [...productColors]
+                                        });
+
+                                        if(index === 0) {
+                                            setProductDetails(prev=> {
+                                                return {...prev,color:e.target.value}
+                                            })
+                                        }
+                                   }}
+                                    name={[index,"color"]}
+                                    label={`color ${index + 1}`}
+                                    type='color'
                                     errors={colValidError}
                                     />
                             </div>
