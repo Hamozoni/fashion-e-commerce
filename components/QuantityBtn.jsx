@@ -6,9 +6,9 @@ import { IoTrashOutline } from "react-icons/io5";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { decrementItemInCart, incrementItemInCart } from "../store/features/cartSlice";
 
-function QuantityBtn({id,selectedColor,selectedSize}) {
+function QuantityBtn({id,color,size}) {
 
-    const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.selectedColor === selectedColor && e.selectedSize === selectedSize)?.quantity);
+    const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.color === color && e.size === size)?.quantity);
     const dispatch = useAppDispatch();
 
   return (
@@ -18,12 +18,12 @@ function QuantityBtn({id,selectedColor,selectedSize}) {
             <IoTrashOutline 
                 size={15}
                 className="text-xl cursor-pointer text-rose-700" 
-                onClick={()=> dispatch(decrementItemInCart({id,selectedColor,selectedSize}))} 
+                onClick={()=> dispatch(decrementItemInCart({id,color,size}))} 
             />:
             <FiMinus
                 size={16}
                 className="text-xl cursor-pointer" 
-                onClick={()=> dispatch(decrementItemInCart({id,selectedColor,selectedSize}))} 
+                onClick={()=> dispatch(decrementItemInCart({id,color,size}))} 
             />
         }
         <h5 
@@ -33,7 +33,7 @@ function QuantityBtn({id,selectedColor,selectedSize}) {
         <FiPlus
             size={16} 
             className="text-xl cursor-pointer" 
-            onClick={()=> dispatch(incrementItemInCart({id,selectedColor,selectedSize}))}/>
+            onClick={()=> dispatch(incrementItemInCart({id,color,size}))}/>
     </div>
   )
 }

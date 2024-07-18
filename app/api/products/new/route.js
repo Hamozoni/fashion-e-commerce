@@ -50,7 +50,7 @@ export async function POST (request) {
 
                 images.push({imagePath,colorName: colors[index]?.colorName});
 
-                if(index === 0) {
+                if(index === 0 && i === 0) {
                     details.imagePath = imagePath
                 };
 

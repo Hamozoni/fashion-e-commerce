@@ -1,10 +1,10 @@
-"use client"
+
 import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { ProductDetailsContext } from "./ProductDetails";
 function ImagesGalary() {
 
-    const {product:{images,imagePath,color},setProduct} = useContext(ProductDetailsContext)
+    const {product:{images,imagePath,colorName},setProduct} = useContext(ProductDetailsContext)
 
   return (
     <div className="mb-3 flex-1">
@@ -13,13 +13,13 @@ function ImagesGalary() {
                 <div className="flex items-center justify-center gap-2 flex-col min-w-fit p-1 ">
                     {
                         images?.map((img)=> (
-                            img.color === color ? 
+                            img.colorName === colorName ? 
                             <Image 
-                                className={`shadow-md rounded-md mb-2 md:min-w-[100px] md:max-w-[100px]  md:min-h-[100px] md:max-h-[100px] ${selectedImage === img?.imagePath && 'border-2 border-teal-400'} hover:scale-105 cursor-pointer`}
+                                className={`shadow-md rounded-md mb-2 md:min-w-[100px] md:max-w-[100px]  md:min-h-[100px] md:max-h-[100px] ${imagePath === img?.imagePath && 'border-2 border-teal-400'} hover:scale-105 cursor-pointer`}
                                 onClick={()=> setProduct(prev=> {
-                                    const newPath = img?.imagePath;
+                                    const imagePath = img?.imagePath;
 
-                                    return {...prev,newPath}
+                                    return {...prev,imagePath}
                                 })} 
                                 key={img.id} 
                                 src={img?.imagePath} 

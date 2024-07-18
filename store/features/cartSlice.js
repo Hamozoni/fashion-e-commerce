@@ -10,7 +10,7 @@ const initialState = {
 const getTotal = (state)=> {
 
     state.totalQuantity = state.products.reduce((total,curr)=> (total += curr.quantity),0);
-    state.totalPaid = state.products.reduce((total,curr)=> (total += curr.priceInCent * curr.quantity),0);
+    state.totalPaid = state.products.reduce((total,curr)=> (total += curr.priceInHalala * curr.quantity),0);
     state.deliveryFree = state.totalPaid  > 14999 ? 0 : 1700;
 
     return state;
@@ -18,8 +18,8 @@ const getTotal = (state)=> {
 
 const findItem = (state,action)=> {
 
-    const {id,selectedColor,selectedSize} = action.payload;
-    const item = state.products.find(el=> el.id === id && el.selectedColor === selectedColor && el.selectedSize === selectedSize);
+    const {id,color,size} = action.payload;
+    const item = state.products.find(el=> el.id === id && el.color === color && el.size === size);
 
     return item
 }
