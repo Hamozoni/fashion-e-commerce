@@ -104,7 +104,7 @@ export function ImagesColor() {
                                     onClick={(e)=> {
                                         setProductColors(prev=> {
                                             prev[index].color = e.target.value;
-                                            return prev
+                                            return [...prev]
                                         });
 
                                         if(index === 0) {
@@ -122,7 +122,7 @@ export function ImagesColor() {
                                     onClick={(e)=> {
                                         setProductColors(prev=> {
                                             prev[index].colorName = e.target.value;
-                                            return prev
+                                            return [...prev]
                                         });
 
                                         if(index === 0) {
@@ -141,7 +141,7 @@ export function ImagesColor() {
                                     onClick={(e)=> {
                                         setProductColors(prev=> {
                                             prev[index].priceInHalala = +e.target.value;
-                                            return prev;
+                                            return [...prev];
                                         });
 
                                         if(index === 0) {
