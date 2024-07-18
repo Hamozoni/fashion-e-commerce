@@ -16,21 +16,15 @@ import ReviewsContextProvider from "../../../ui/productReviews/reviewsContext"
 
 export const ProductDetailsContext =  createContext(null);
 
-function ProductDetails({product}) {
+function ProductDetails({data}) {
 
-    const {images,brand,name,priceInHalala,specifications} = product;
-    const [selectedSize,setSelectedSize] = useState('');
-    const [selectedColor,setSelectedColor] = useState(images[0]?.color);
-
+    const [product,setProduct]= useState(data);
 
   return (
         <ProductDetailsContext.Provider 
             value={{
                 product,
-                selectedSize,
-                setSelectedSize,
-                selectedColor,
-                setSelectedColor
+                setProduct,
                 }}
                 >
                 <div className="md:flex gap-4 lg:gap-8 capitalize pb-3 border-b border-teal-100">
@@ -40,10 +34,10 @@ function ProductDetails({product}) {
                             <header className="pb-2">
                                 <h5
                                     className="text-2xl text-teal-9500"
-                                    >{name}
+                                    >{product?.name}
                                 </h5>
                                 <h4 className="text-sm text-teal-700">
-                                    brand: {brand}
+                                    brand: {product?.brand}
                                 </h4>
                                 <ReviewsContextProvider product={product}>
                                    <ReviewsAverage />
@@ -51,7 +45,7 @@ function ProductDetails({product}) {
                             </header>
                             <div className="flex items-center  text-teal-950 gap-3">
                                 <h4 className='text-2xl font-extrabold'>
-                                    {getCurrency(+priceInHalala)}
+                                    {getCurrency(+product?.priceInHalala)}
                                 </h4>
                                 <p className="text-teal-800 text-sm">Inclusive of VAT</p>
                             </div>
@@ -60,14 +54,12 @@ function ProductDetails({product}) {
                                 <SelectImage />
 
                             </div>
-                            <Specifications specifications={specifications} />
+                            <Specifications />
                         </div>
                         <Features />
                         <div className="flex items-center gap-2 pt-5 ">
                             <AddToCart
                                 product={product} 
-                                selectedColor={selectedColor}
-                                selectedSize={selectedSize} 
                             />
                         <AddToListBtn product={product} />
                         </div>

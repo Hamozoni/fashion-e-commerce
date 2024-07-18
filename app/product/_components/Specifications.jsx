@@ -1,5 +1,11 @@
+"use client"
 
-function Specifications({specifications}) {
+import { useContext } from "react"
+import { ProductDetailsContext } from "./ProductDetails"
+
+function Specifications() {
+
+    const {product: {specifications}} = useContext(ProductDetailsContext);
 
   return (
 

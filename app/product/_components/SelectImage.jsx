@@ -6,7 +6,7 @@ import { ProductDetailsContext } from "./ProductDetails";
 
 function SelectImage() {
 
-const {product:{images,colors}} = useContext(ProductDetailsContext);
+const {product:{colors,color : productColor},setProduct} = useContext(ProductDetailsContext);
 
 
   return (
@@ -19,13 +19,18 @@ const {product:{images,colors}} = useContext(ProductDetailsContext);
             <ul className="flex items-center gap-3">
                 {
 
-                    colors?.map(({colorName,color})=> (
+                    colors?.map(({colorName,color,priceInHalala})=> (
 
                         <li 
-                            className={'border-2 border-gray-100 outline outline-teal-600 shadow-md mb-1 w-6 h-6 rounded-full cursor-pointer'}
+                            className={`${color === productColor ? 'outline-2 outline-black shadow-md' :' ' } border-2 border-teal-600  mb-1 w-6 h-6 rounded-full cursor-pointer`}
                             style={{backgroundColor: color}}
                             key={color} 
-                            onClick={()=> ''}
+                            onClick={()=> setProduct((prev)=> {
+                                prev.color = color;
+                                prev.colorName = colorName;
+                                prev.priceInHalala = priceInHalala
+                                return prev;
+                            })}
                             >
                         </li>
                     ))

@@ -17,7 +17,7 @@ async function  productPage({params}) {
             product details:
         </h4>
       </header>
-      <ProductDetails product={data} />
+      <ProductDetails data={data} />
       <section className="py-6 border-b border-gray-200 mb-10">
         <h4 
           className="pb-2 text-2xl font-bold text-teal-950"
