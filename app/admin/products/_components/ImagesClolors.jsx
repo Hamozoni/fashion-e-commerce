@@ -95,7 +95,11 @@ export function ImagesColor() {
                             <div key={index} className="flex items-center gap-3 mb-3 flex-wrap">
                             <FormInput
                                     onClick={(e)=> {
-                                        setProductColors(()=>[...productColors,productColors[index].colorName = e.target.value]);
+                                        setProductColors(()=> {
+                                            productColors[index].colorName = e.target.value;
+
+                                            return productColors
+                                        });
                                         if(index === 0) {
                                             setProductDetails(prev=> {
                                                 return {...prev,colorName:e.target.value}
@@ -110,7 +114,12 @@ export function ImagesColor() {
                                     />
                                  <FormInput
                                     onClick={(e)=> {
-                                        setProductColors(()=>[...productColors,productColors[index].priceInHalala = +e.target.value]);
+                                        setProductColors(()=>{
+                                            productColors[index].priceInHalala = +e.target.value;
+
+                                            return prev
+                                        
+                                        });
 
                                         if(index === 0) {
                                             setProductDetails(prev=> {
@@ -133,7 +142,10 @@ export function ImagesColor() {
                                      />
                                 <FormInput 
                                     onClick={(e)=> {
-                                        setProductColors(()=>[...productColors,productColors[index].color = e.target.value]);
+                                        setProductColors(()=>{
+                                            productColors[index].color = e.target.value;
+                                            return prev
+                                        });
 
                                         if(index === 0) {
                                             setProductDetails(prev=> {
