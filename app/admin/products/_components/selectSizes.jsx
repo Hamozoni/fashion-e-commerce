@@ -38,14 +38,14 @@ export const SelectSizes = ({i})=> {
 
         const {shortName,name} = size;
 
-        if(length === 0) {
+        if(length === 0 && i === 0) {
             setProductDetails(prev=> {
 
                 const moreInfo = {
                     size:shortName,
-                    colorName : productColors[i]?.colorName,
-                    priceInHalala:productColors[i]?.priceInHalala,
-                    color: productColors[i]?.color
+                    colorName : productColors[0]?.colorName,
+                    priceInHalala:productColors[0]?.priceInHalala,
+                    color: productColors[0]?.color
                 }
                 return {...prev,...moreInfo}
             });

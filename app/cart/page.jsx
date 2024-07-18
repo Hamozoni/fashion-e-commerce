@@ -19,7 +19,7 @@ function cartPage() {
 
  const cartCard = cartItems?.map((product)=> (
      <CartItemsCard 
-        key={`${product.id}${product.selectedColor}${product.selectedSize}`} 
+        key={`${product.id}${product.color}${product.size}`} 
         product={product}
         />
     ))
