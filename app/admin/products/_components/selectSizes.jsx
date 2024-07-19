@@ -19,8 +19,7 @@ export const SelectSizes = ({i})=> {
         setProductDetails,
     } = useContext(newProductContext);
 
-    const isShoes = category?.subName?.toLowerCase() === 'shoes';
-
+    const isShoes = category?.subName?.toLowerCase() === 'shoes' || category?.subName?.toLowerCase() === 'jeans';
     const sizesData = isShoes ? category?.shoesSizes : category?.sizes
 
 
@@ -38,7 +37,7 @@ export const SelectSizes = ({i})=> {
 
         const {shortName,name} = size;
 
-        if(length === 0 && i === 0) {
+        if(i === 0) {
             setProductDetails(prev=> {
 
                 const moreInfo = {
