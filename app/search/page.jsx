@@ -42,8 +42,8 @@ const SearchPage = ()=> {
             {
                 isLoading ? <Loading /> : null
             }
-            <header>
-                <h3>search results: </h3>
+            <header className="mb-4 mt-3">
+                <h3 className="text-xl font-bold text-teal-950 capitalize">search results: {data?.length}</h3>
             </header>
             <div className="">
                 {

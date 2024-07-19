@@ -1,6 +1,6 @@
 "use client";
 
-import ProductCard from "../../ui/productCard/ProductCard"
+import {ProductCard} from "../../ui/productCard/ProductCard"
 import {useAppDispatch, useAppSelector} from "../../store/store";
 import { ButtonWithIcon } from "../../components/buttons";
 import { removeAllFromLikedList } from "../../store/features/likedListSlice";

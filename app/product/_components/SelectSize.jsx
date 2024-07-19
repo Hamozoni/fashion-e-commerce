@@ -10,7 +10,7 @@ export const SizesOptions = ({product,setProduct})=> {
 
             colorName === product?.colorName ?
             <li 
-                className={`${product.size === shortName ? "border-teal-200  bg-teal-600 text-teal-50": "hover:bg-green-100 text-teal-800"} min-w-[50px] uppercase text-center  border-2 rounded-md p-3 py-1 hover:scale-105 cursor-pointer`}
+                className={`${product.size === shortName ? "border-teal-200  bg-teal-600 text-teal-50": "hover:bg-green-100 text-teal-800"} min-w-[50px] uppercase text-center  border-2 rounded-full p-3 py-1 hover:scale-105 cursor-pointer`}
                 onClick={()=> setProduct(prev=> {
                   const size = shortName;
 

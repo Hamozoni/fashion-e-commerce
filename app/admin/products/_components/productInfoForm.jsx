@@ -14,7 +14,7 @@ export const ProductInfoForm = ()=> {
             <div className="flex  gap-5 flex-wrap">
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
-                            return {...prev,name: e.target.value}
+                            return {...prev,name: e.target.value.toLowerCase()}
                         })}
                         name={['name']}
                         label='name'
@@ -24,7 +24,7 @@ export const ProductInfoForm = ()=> {
                     />
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
-                            return {...prev,brand:e.target.value}
+                            return {...prev,brand:e.target.value.toLowerCase()}
                         })}
                         name={['brand']}
                         label='brand' 

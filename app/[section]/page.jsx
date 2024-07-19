@@ -1,5 +1,5 @@
 
-import ProductCard from "../../ui/productCard/ProductCard";
+import {ProductCard} from "../../ui/productCard/ProductCard";
 
 import {productsByCategoryAction} from "../../actions/products/productsByCategory"
 
