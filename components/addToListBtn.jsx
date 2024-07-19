@@ -4,7 +4,7 @@ import { IoIosHeartEmpty, IoMdHeart } from "react-icons/io";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { toggleLikedList} from "../store/features/likedListSlice";
 
-const AddToListBtn = ({product}) => {
+export const AddToListBtn = ({product}) => {
 
     const dispatch = useAppDispatch();
     const isAddedToList = useAppSelector(state=> state?.likedList?.find(e=> e.id === product?.id));
@@ -30,6 +30,4 @@ const AddToListBtn = ({product}) => {
         }
     </button>
   )
-}
-
-export default AddToListBtn
+};

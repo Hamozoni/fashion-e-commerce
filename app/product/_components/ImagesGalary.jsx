@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useContext} from "react";
 import { ProductDetailsContext } from "./ProductDetails";
-function ImagesGalary() {
+export function ImagesGalary() {
 
     const {product:{images,imagePath,colorName},setProduct} = useContext(ProductDetailsContext)
 
@@ -44,6 +44,4 @@ function ImagesGalary() {
 
     </div>
   )
-}
-
-export default ImagesGalary
+};

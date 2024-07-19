@@ -1,13 +1,13 @@
 "use client"
 import { createContext, useState } from "react";
 // components
-import SelectImage from "./SelectImage";
-import SelectSize from "./SelectSize";
-import Features from "./Features"
-import AddToCart from "./AddToCart";
-import Specifications from "./Specifications";
-import ImagesGalary from "./ImagesGalary";
-import AddToListBtn from "../../../components/addToListBtn";
+import {SelectColor} from "./SelectColor";
+import {SelectSize} from "./SelectSize";
+import {Features} from "./Features"
+import {AddToCart}from "./AddToCart";
+import {Specifications}from "./Specifications";
+import {ImagesGalary} from "./ImagesGalary";
+import {AddToListBtn }from "../../../components/addToListBtn";
 // lip
 import getCurrency from "../../../lip/getCurrency";
 import { ReviewsAverage } from "../../../ui/productReviews/components/reviewsAverage";
@@ -50,7 +50,7 @@ function ProductDetails({data}) {
                                 <p className="text-teal-800 text-sm">Inclusive of VAT</p>
                             </div>
                             <SelectSize />
-                            <SelectImage />
+                            <SelectColor />
                             <Specifications />
                         </div>
                         <Features />

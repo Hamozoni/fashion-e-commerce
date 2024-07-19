@@ -9,7 +9,7 @@ import {removeItemFromCart, addToCart } from "../../../store/features/cartSlice"
 import QuantityBtn from "../../../components/QuantityBtn";
 import { ButtonWithIcon } from "../../../components/buttons";
 
-function AddToCart({product}) {
+export function AddToCart({product}) {
 
     const {id,name,priceInHalala,category,subcategory,serialNumber,brand,color,size,imagePath} = product;
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.color === color && e.size === size)?.quantity);
@@ -58,6 +58,4 @@ function AddToCart({product}) {
         }
     </div>
   )
-}
-
-export default AddToCart
+};

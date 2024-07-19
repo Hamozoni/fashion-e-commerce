@@ -3,7 +3,7 @@
 import { useContext } from "react"
 import { ProductDetailsContext } from "./ProductDetails"
 
-function Specifications() {
+export function Specifications() {
 
     const {product: {specifications}} = useContext(ProductDetailsContext);
 
@@ -34,6 +34,4 @@ function Specifications() {
         </ul>
     </section>
   )
-}
-
-export default Specifications
+};

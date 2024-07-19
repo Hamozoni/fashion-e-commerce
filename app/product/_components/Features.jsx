@@ -3,7 +3,7 @@ import { TbArrowBackUp } from "react-icons/tb";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { MdOutlineLockPerson } from "react-icons/md";
 
-function Features() {
+export function Features() {
 
     const className = {
         infoLi: 'flex items-center text-center p-2  flex-col text-sm font-medium max-w-[160px]',
@@ -33,6 +33,4 @@ function Features() {
         </ul>
     </div>
   )
-}
-
-export default Features
+};
