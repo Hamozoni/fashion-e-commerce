@@ -18,7 +18,7 @@ const className = {
     heart: 'absolute top-2 left-0 w-full flex items-center justify-between p-4',
 };
 
-function ProductCard({product}) {
+export function ProductCard({product}) {
 
    const [productDetails,setProductDetails] = useState(product);
 
@@ -74,6 +74,4 @@ function ProductCard({product}) {
         </div>
     </div>
   )
-}
-
-export default ProductCard
+};

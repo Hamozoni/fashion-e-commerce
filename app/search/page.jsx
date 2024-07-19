@@ -3,7 +3,9 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import {fetchData} from '../../lip/fetchData'
+import {fetchData} from '../../lip/fetchData';
+import {Loading} from "../../components/Loading";
+import {ProductCard} from "../../ui/productCard/ProductCard"
 
 
 const SearchPage = ()=> {
@@ -36,8 +38,20 @@ const SearchPage = ()=> {
 
 
     return (
-        <div className="">
-            
+        <div className="min-h-screen p-3 lg:px-8">
+            {
+                isLoading ? <Loading /> : null
+            }
+            <header>
+                <h3>search results: </h3>
+            </header>
+            <div className="">
+                {
+                    data?.map((product)=> (
+                        <ProductCard product={product} />
+                    ))
+                }
+            </div>
         </div>
     )
 }

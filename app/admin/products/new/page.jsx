@@ -6,7 +6,7 @@ import {SpecificationInputs}from "../_components/SpecificationInputs";
 import { ButtonWithIcon } from "../../../../components/buttons";
 import {ImagesColor} from "../_components/ImagesClolors";
 import {ProductInfoForm} from "../_components/productInfoForm"
-import Loading from "../_components/Loading"
+import {Loading }from "../../../../components/Loading";
 // icons
 import { IoArrowBackOutline } from "react-icons/io5";
 // form data fomater
@@ -112,7 +112,7 @@ const NewProducts = () => {
                         text='save'
                         Icon={IoArrowBackOutline}
                         type='save'
-                        disabled={false}
+                        disabled={isPendding}
                         />
                     </div>
                 </form>
