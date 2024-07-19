@@ -3,15 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 // component
-import AddToListBtn from "../../components/addToListBtn";
-import AddToCart from "../../app/product/_components/AddToCart";
+import {AddToListBtn} from "../../components/addToListBtn";
+import {AddToCart} from "../../app/product/_components/AddToCart";
+import {ColorOptions} from "../../app/product/_components/SelectColor"
+import {SizesOptions} from "../../app/product/_components/SelectSize"
 // lip
 import getCurrency from "../../lip/getCurrency";
-import { arrayGroupBykey } from "../../lip/arrayGroupBykey";
 // icons
-import { IoIosArrowForward,IoIosArrowBack} from "react-icons/io";
-import { FaEye } from "react-icons/fa";
-import { TbEyeClosed } from "react-icons/tb";
 
 
 function ProductCard({product}) {
@@ -50,18 +48,8 @@ function ProductCard({product}) {
         </div>
         <div className={className.heart}>
             <AddToListBtn product={productDetails} />
-            <Link 
-                // onMouseEnter={()=> setIsLikHaverd(true)}
-                // onMouseLeave={()=> setIsLikHaverd(false)}
-                href={`/product/${productDetails?.id}`} 
-                className="flex justify-center items-center shadow-md p-2 text-teal-900 bg-teal-50 rounded-full border border-gray-100">
-               {/* {isLikHaverd ? <TbEyeClosed size={22}/> : <FaEye size={22}/> } */}
-            </Link>
         </div>
         <div className="p-3">
-            <h2 className="text-xl font-bold text-teal-950 text-center ">
-                {getCurrency(productDetails?.priceInHalala)}
-            </h2>
             <div className="pb-2">
                 <Link
                     href={`/product/${productDetails?.id}`}
@@ -69,6 +57,17 @@ function ProductCard({product}) {
                     >{productDetails?.name}
                 </Link>
             </div>
+            <ColorOptions 
+                product={productDetails}
+                setProduct={setProductDetails}
+                />
+            <sizesOptions
+                product={productDetails}
+                setProduct={setProductDetails}
+             />
+            <h2 className="text-xl font-bold text-teal-950 text-center ">
+                {getCurrency(productDetails?.priceInHalala)}
+            </h2>
             {/* <div className=" ">
               <AddToCart 
                 product={product} 
