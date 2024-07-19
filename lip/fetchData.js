@@ -10,7 +10,7 @@ const options = {
         }
     };
 
-    const {data} = await axios.request(options)
+    const {data} = await axios(options)
 
     return data;
 };

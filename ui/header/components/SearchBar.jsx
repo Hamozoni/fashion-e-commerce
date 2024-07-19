@@ -27,7 +27,7 @@ function SearchBar() {
     const query = formData.get('query');
 
     if(query.length > 2){
-      router.push(`/search/${query}`)
+      router.push(`/search?query=${query}`)
     }
   };
 

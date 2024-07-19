@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import {fetchData} from '../../../lip/fetchData'
+import {fetchData} from '../../lip/fetchData'
 
 
 const SearchPage = ()=> {
@@ -15,10 +15,12 @@ const SearchPage = ()=> {
 
     const searchQuery = searchParams.get('query');
 
+    console.log(searchQuery);
+
     useEffect(()=> {
         setError(null);
         setIsLoading(true);
-        fetchData(`search/:${searchQuery}`)
+        fetchData(`search?query=${searchQuery}`)
         .then((data)=> {
             setData(data);
             console.log(data)
