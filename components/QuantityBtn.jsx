@@ -12,7 +12,7 @@ function QuantityBtn({id,color,size}) {
     const dispatch = useAppDispatch();
 
   return (
-    <div className="flex items-center justify-center gap-2  border border-green-100 shadow-sm rounded-md p-2">
+    <div className="flex items-center justify-center gap-2  border border-green-100 shadow-sm rounded-full p-2">
         {
             quantity === 1 ? 
             <IoTrashOutline 

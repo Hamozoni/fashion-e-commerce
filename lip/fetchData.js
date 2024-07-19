@@ -4,7 +4,7 @@ export const  fetchData = async  (endPoint)=> {
     
 const options = {
     method: 'GET',
-    url: endPoint,
+    url: `/api/${endPoint}`,
         headers: {
             accept: 'application/json',
         }

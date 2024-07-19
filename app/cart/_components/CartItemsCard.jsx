@@ -23,7 +23,7 @@ const CartItemsCard = ({product,isCheckout = false})=> {
 
 
   return (
-    <div className="p-3 mb-8 border-l-2 border-l-teal-400 border-t-2 border-t-teal-400 rounded-md shadow-md border border-gray-100 w-full">
+    <div className="p-3 mb-8 sm:border-l-2 sm:border-l-teal-400 sm:border-t-2 sm:border-t-teal-400 rounded-md shadow-md border border-gray-100 w-full">
         <div className={`${isCheckout ? '':'flex'} gap-3`}>
             {
                 isCheckout ? null :
