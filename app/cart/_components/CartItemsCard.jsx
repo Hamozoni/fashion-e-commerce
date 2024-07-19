@@ -13,15 +13,13 @@ const CartItemsCard = ({product,isCheckout = false})=> {
 
     const dispatch = useAppDispatch();
 
-    const {innerWidth} = useContext(AppContext)
+    const {innerWidth} = useContext(AppContext);
+    const {name,id,color,colorName,size,imagePath,priceInHalala,quantity} = product;
 
-    const removeItem = ()=> {
-        dispatch(removeItemFromCart({
-            id: product.id,
-            color: product.color,
-            size: product.size
-        }))
-    }
+    const linkHref = {
+        pathname : `/product/${id}`,
+        query: {color,colorName,size,imagePath,priceInHalala}
+     };
 
     const className = {
         tableBodyRow :'p-3 border border-gray-100'
@@ -29,21 +27,21 @@ const CartItemsCard = ({product,isCheckout = false})=> {
 
   return (
     <div className="p-3 mb-8 border-l-2 border-l-teal-400 border-t-2 border-t-teal-400 rounded-md shadow-md border border-gray-100 w-full">
-         <Link href={`/product/${product?.id}`}>
+         <Link href={linkHref}>
             <h4 
                 className="text-md sm:text-xl font-bold text-teal-950 text-center hover:text-teal-800"
-                >{product?.name}
+                >{name}
             </h4>
        </Link>
         <div className={`${isCheckout ? '':'flex'} gap-3 items-center`}>
             {
                 isCheckout ? null :
                 <Link 
-                    href={`/product/${product?.id}`}
+                    href={linkHref}
                     className="flex items-center justify-center mb-3 sm:mb-0">
                     <Image
                         className={`${innerWidth > 550 ? 'max-h-[200px]' :'max-h-[150px]'}`}
-                        src={product?.imagePath}
+                        src={imagePath}
                         width={innerWidth > 550 ? 150 : 100}
                         height={innerWidth > 550 ? 200 : 150}
                         alt='product image'
@@ -67,30 +65,30 @@ const CartItemsCard = ({product,isCheckout = false})=> {
                             <tr className="text-teal-900 text-sm sm:text-md font-bold">
                                 <td className={className?.tableBodyRow}> 
                                     <p 
-                                        style={{backgroundColor: product?.color}}
+                                        style={{backgroundColor: color}}
                                         className="w-[35px] h-[10px] rounded-full"
                                         >
                                     </p> 
                                 </td>
-                                <td className={className?.tableBodyRow}>{product?.size}</td>
-                                <td className={className?.tableBodyRow}>{getCurrency(product?.priceInHalala)}</td>
-                                <td className={className?.tableBodyRow}>{getCurrency(product?.priceInHalala * product?.quantity)}</td>
+                                <td className={className?.tableBodyRow}>{size}</td>
+                                <td className={className?.tableBodyRow}>{getCurrency(priceInHalala)}</td>
+                                <td className={className?.tableBodyRow}>{getCurrency(priceInHalala * quantity)}</td>
 
                             </tr>
                         </tbody>
                     </table>
                     <div className="flex sm:flex-col justify-between pt-3 lg-pt-0">
                         <QuantityBtn 
-                            id={product.id} 
-                            color={product.color} 
-                            size={product.size} 
+                            id={id} 
+                            color={color} 
+                            size={size} 
                             />
                         <div className="max-w-24">
                             <ButtonWithIcon 
                                 text='reove'
                                 type='delete'
                                 Icon={MdOutlineDeleteOutline}
-                                onClick={removeItem}
+                                onClick={()=> dispatch(removeItemFromCart({id,color,size}))}
                                 />
                         </div>
                     </div>

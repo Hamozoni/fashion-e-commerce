@@ -22,9 +22,14 @@ function ProductCard({product}) {
 
    const [productDetails,setProductDetails] = useState(product);
 
-   const {id,color,colorName,size,imagePath} = productDetails;
+   const {id,color,colorName,size,imagePath,priceInHalala} = productDetails;
 
-   const linkHref = `/product/${id}?color=${color}$colorName=${colorName}&size=${size}&imagePath=${imagePath}`
+   console.log(colorName);
+
+   const linkHref = {
+      pathname : `/product/${id}`,
+      query: {color,colorName,size,imagePath,priceInHalala}
+   };
     
    return (
     <div className={className.card}>

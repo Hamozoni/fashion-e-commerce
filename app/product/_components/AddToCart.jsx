@@ -11,7 +11,7 @@ import { ButtonWithIcon } from "../../../components/buttons";
 
 export function AddToCart({product}) {
 
-    const {id,name,priceInHalala,category,subcategory,serialNumber,brand,color,size,imagePath} = product;
+    const {id,name,priceInHalala,category,subcategory,colorName,serialNumber,brand,color,size,imagePath} = product;
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.color === color && e.size === size)?.quantity);
     const dispatch = useAppDispatch();
 
@@ -26,6 +26,7 @@ export function AddToCart({product}) {
             brand,
             imagePath,
             color,
+            colorName,
             size,
         }));
     };

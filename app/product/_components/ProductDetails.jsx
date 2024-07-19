@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 // components
 import {SelectColor} from "./SelectColor";
 import {SelectSize} from "./SelectSize";
@@ -13,12 +13,39 @@ import getCurrency from "../../../lip/getCurrency";
 import { ReviewsAverage } from "../../../ui/productReviews/components/reviewsAverage";
 // reviews context component
 import ReviewsContextProvider from "../../../ui/productReviews/reviewsContext"
+import { useSearchParams } from "next/navigation";
 
 export const ProductDetailsContext =  createContext(null);
 
 function ProductDetails({data}) {
 
     const [product,setProduct]= useState(data);
+
+    const searchParams = useSearchParams();
+
+    useEffect(()=> {
+
+        const searchParamsObject = Object.fromEntries(searchParams.entries());
+        const {
+            color,
+            colorName,
+            size,imagePath,
+            priceInHalala
+        } = searchParamsObject;
+
+        console.log(searchParamsObject)
+
+        setProduct((prev)=> {
+            const selectedValues = {
+                color,
+                colorName,
+                size,imagePath,
+                priceInHalala
+            }
+
+            return {...prev,...selectedValues}
+        })
+    },[]);
 
   return (
         <ProductDetailsContext.Provider 
