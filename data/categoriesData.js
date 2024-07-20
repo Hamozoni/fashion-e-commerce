@@ -230,9 +230,9 @@ export const categoriesData = [
             },
             {
                 id: 3,
-                name:'nightWear',
+                name:'pants',
                 imagePath: menNightWear,
-                linkPath: '/men?sub=nightWear'
+                linkPath: '/men?sub=pants'
             },
             {
                 id: 4,
@@ -277,9 +277,9 @@ export const categoriesData = [
             },
             {
                 id: 3,
-                name:'nightWear',
+                name:'pants',
                 imagePath: womenNightWear,
-                linkPath: '/section?category=women&sub=nightWear'
+                linkPath: '/section?category=women&sub=pants'
             },
             {
                 id: 4,
