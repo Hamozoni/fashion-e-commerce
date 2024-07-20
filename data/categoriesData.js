@@ -267,37 +267,37 @@ export const categoriesData = [
                 id: 1,
                 name:'jacket',
                 imagePath: womenJacket,
-                linkPath: '/section?category=women&sub=jacket'
+                linkPath: '/women?sub=jacket'
             },
             {
                 id: 2,
                 name:'jeans',
                 imagePath: womenJeans,
-                linkPath: '/section?category=women&sub=jeans'
+                linkPath: '/women?sub=jeans'
             },
             {
                 id: 3,
                 name:'pants',
                 imagePath: womenNightWear,
-                linkPath: '/section?category=women&sub=pants'
+                linkPath: '/women?sub=pants'
             },
             {
                 id: 4,
                 name:'dress',
                 imagePath: womenDress,
-                linkPath: '/section?category=women&sub=dress'
+                linkPath: '/women?sub=dress'
             },
             {
                 id: 5,
                 name:'skirt',
                 imagePath: womenSkirt,
-                linkPath: '/section?category=women&sub=skirt'
+                linkPath: '/women?sub=skirt'
             },
             {
                 id: 6,
                 name:'shoes',
                 imagePath: womenShoes,
-                linkPath: '/section?category=women&sub=shoes'
+                linkPath: '/women?sub=shoes'
             }
         ],
         sizes: man_women_sizes,
@@ -320,31 +320,31 @@ export const categoriesData = [
                 id: 2,
                 name:'jeans',
                 imagePath: kidsJeans,
-                linkPath: '/section?category=kids&sub=jeans'
+                linkPath: '/kids?sub=jeans'
             },
             {
                 id: 3,
                 name:'dress',
                 imagePath: kidsDress,
-                linkPath: '/section?category=kids&sub=dress'
+                linkPath: '/kids?sub=dress'
             },
             {
                 id: 4,
                 name:'t-shirt',
                 imagePath: kidsTShirt,
-                linkPath: '/section?category=kids&sub=t-shirt'
+                linkPath: '/kids?sub=t-shirt'
             },
             {
                 id: 5,
                 name:'shirt',
                 imagePath: kidsShirt,
-                linkPath: '/section?category=kids&sub=shirt'
+                linkPath: '/kids?sub=shirt'
             },
             {
                 id: 6,
                 name:'shoes',
                 imagePath: kidsShoes,
-                linkPath: '/section?category=kids&sub=shoes'
+                linkPath: '/kids?sub=shoes'
             }
         ],
         sizes: kids_sizes,
