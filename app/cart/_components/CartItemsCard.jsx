@@ -75,7 +75,7 @@ const CartItemsCard = ({product,isCheckout = false})=> {
                                         text='' 
                                         Icon={MdOutlineDeleteOutline} 
                                         type='delete'
-                                        onClick={()=> dispatch(removeItemFromCart(id))}
+                                        onClick={()=> dispatch(removeItemFromCart(id,color,size))}
                                     />
                                 </div>
                                 : null
