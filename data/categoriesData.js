@@ -314,7 +314,7 @@ export const categoriesData = [
                 id: 1,
                 name:'jacket',
                 imagePath: kidsJacket,
-                linkPath: '/section?categkids&sub=jacket'
+                linkPath: '/kids?sub=jacket'
             },
             {
                 id: 2,
