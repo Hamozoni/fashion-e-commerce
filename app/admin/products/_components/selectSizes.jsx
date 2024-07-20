@@ -37,7 +37,7 @@ export const SelectSizes = ({i})=> {
 
         const {shortName,name} = size;
 
-        if(i === 0) {
+
             setProductDetails(prev=> {
 
                 const moreInfo = {
@@ -48,7 +48,7 @@ export const SelectSizes = ({i})=> {
                 }
                 return {...prev,...moreInfo}
             });
-        }
+
 
         const exsistingSize = isElementFound(shortName);
 
