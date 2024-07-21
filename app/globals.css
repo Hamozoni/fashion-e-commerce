@@ -33,6 +33,7 @@ img {
 
 ::-webkit-scrollbar {
 scrollbar-width: 0;
+display: none;
 }
 input {
     outline: none;

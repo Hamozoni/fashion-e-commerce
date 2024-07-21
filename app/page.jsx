@@ -9,7 +9,9 @@ export default async function Home() {
     <div >
       <HomeSlider />
       <Categories />
-      <HomeProducts />
+      <HomeProducts category='men'/>
+      <HomeProducts category='women'/>
+      <HomeProducts category='kids'/>
     </div>
   );
 }

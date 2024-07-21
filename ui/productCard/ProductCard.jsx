@@ -14,8 +14,8 @@ import { useRouter } from "next/navigation";
 
 
 const className = {
-    card: 'w-[280px] rounded-lg border border-gray-100 cursor-pointer hover:border-gray-200 relative',
-    image: 'min-w-[200px] max-w-[200px] max-h-[280px] ',
+    card: 'w-[220px] rounded-lg border border-gray-100 cursor-pointer hover:border-gray-200 relative',
+    image: 'min-w-[220px] max-w-[220px] max-h-[280px] object-cover ',
     heart: 'absolute top-2 left-0 w-full flex items-center justify-between p-4',
 };
 
@@ -39,12 +39,12 @@ export function ProductCard({product}) {
         <div className="relative">
             <Link href={linkHref}>
                 <div
-                    className="w-[220px] min-w-[200px] min-h-[280px] max-h-[280px] flex items-center justify-center overflow-hidden">
+                    className="w-[220px] min-w-[220px] min-h-[280px] max-h-[280px] flex items-center justify-center overflow-hidden">
                         <Image 
                             className={className.image}
                             src={productDetails?.imagePath}
                             alt='product image'
-                            width={200}
+                            width={220}
                             height={280}
                         />
                 </div>
@@ -61,14 +61,14 @@ export function ProductCard({product}) {
             <AddToListBtn product={productDetails} />
         </div>
         <div className="p-3">
-            <div className="pb-2 text-center ">
+            <div className="text-center ">
                 <Link
                     href={linkHref}
                     className="text-lg font-bold text-teal-900 hover:text-teal-900 line-clamp-2 capitalize"
                     >{productDetails?.name}
                 </Link>
             </div>
-            <div className="flex items-center justify-center mb-1">
+            <div className="flex items-center my-2 overflow-x-auto">
                 <SizesOptions 
                     product={productDetails} 
                     setProduct={setProductDetails}

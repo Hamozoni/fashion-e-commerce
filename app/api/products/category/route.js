@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { db } from "../../../lip/db";
+import { db } from "../../../../lip/db";
 
 
 export const GET = async (req)=> {
@@ -9,7 +9,14 @@ export const GET = async (req)=> {
 
 
     try{
-        const data = await db.product.findMany({where: {category}});
+        const data = await db.product.findMany({
+            where: {category},
+            include: {
+                images: true,
+                colors: true,
+                sizes: true
+            }
+        });
 
         return NextResponse.json(data,{status: 200});
     }catch (error) {
