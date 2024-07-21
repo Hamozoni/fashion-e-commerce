@@ -29,7 +29,7 @@ export const HomeProducts = ({category})=> {
 
 
     return (
-        <section className="p-3 lg:px-8">
+        <section className="p-3 lg:px-8 mb-10">
             <h4 className="text-2xl capitalize text-teal-950 font-bold mb-8">products for {category} may you like : </h4>
             <div className="">
                 {
@@ -37,7 +37,7 @@ export const HomeProducts = ({category})=> {
                     <div className="flex flex-wrap gap-5">
                         {
                             products?.map((product)=> (
-                                <ProductCard product={product} />
+                                <ProductCard key={product.id} product={product} />
                             ))
                         }
                     </div>

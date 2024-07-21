@@ -9,9 +9,11 @@ export default async function Home() {
     <div >
       <HomeSlider />
       <Categories />
-      <HomeProducts category='men'/>
-      <HomeProducts category='women'/>
-      <HomeProducts category='kids'/>
+      <div className=" translate-y-[-80px]">
+        <HomeProducts category='men'/>
+        <HomeProducts category='women'/>
+        <HomeProducts category='kids'/>
+      </div>
     </div>
   );
 }
