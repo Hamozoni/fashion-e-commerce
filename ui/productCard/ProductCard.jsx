@@ -36,37 +36,42 @@ export function ProductCard({product}) {
     
    return (
     <div className={className.card}>
-        <Link href={linkHref}>
-            <div
-                className="w-[220px] min-w-[200px] max-h-[280px] flex items-center justify-center overflow-hidden">
-                    <Image 
-                        className={className.image}
-                        src={productDetails?.imagePath}
-                        alt='product image'
-                        width={200}
-                        height={280}
-                    />
+        <div className="relative">
+            <Link href={linkHref}>
+                <div
+                    className="w-[220px] min-w-[200px] max-h-[280px] flex items-center justify-center overflow-hidden">
+                        <Image 
+                            className={className.image}
+                            src={productDetails?.imagePath}
+                            alt='product image'
+                            width={200}
+                            height={280}
+                        />
+                </div>
+            </Link>
+
+            <div className=" absolute left-0 bottom-0 w-full flex items-center justify-center">
+                <ColorOptions 
+                    product={productDetails}
+                    setProduct={setProductDetails}
+                />
             </div>
-        </Link>
+        </div>
         <div className={className.heart}>
             <AddToListBtn product={productDetails} />
         </div>
         <div className="p-3">
-            <h2 className="text-xl font-bold text-teal-950 text-center ">
-                {getCurrency(productDetails?.priceInHalala)}
-            </h2>
             <div className="pb-2 text-center ">
                 <Link
                     href={linkHref}
-                    className="text-lg font-bold text-teal-900 hover:text-teal-900"
+                    className="text-lg font-bold text-teal-900 hover:text-teal-900 line-clamp-2 capitalize"
                     >{productDetails?.name}
                 </Link>
+                <h2 className="text-xl font-bold text-teal-950 text-center ">
+                    {getCurrency(productDetails?.priceInHalala)}
+                </h2>
             </div>
             <div className="flex justify-center items-center gap-3 flex-col mb-2">
-                <ColorOptions 
-                    product={productDetails}
-                    setProduct={setProductDetails}
-                    />
                 <SizesOptions
                     product={productDetails}
                     setProduct={setProductDetails}
