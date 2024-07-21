@@ -6,7 +6,7 @@ import {fetchData} from "../../lip/fetchData";
 import Loading from "../../app/loading";
 import { ProductCard } from "../productCard/ProductCard";
 import { ButtonWithIcon } from "../../components/buttons";
-import { HiOutlinePlusSmall } from "react-icons/hi2";
+import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 
 import {ScrollLeft,ScrollRight} from "../../components/scrollingBotton"
@@ -15,7 +15,9 @@ export const HomeProducts = ({category})=> {
 
     const [products,setProducts] = useState([]);
     const [isLoading,setisLoading] = useState(false);
-    const [error,setError] = useState(null)
+    const [error,setError] = useState(null);
+
+    const [leftScroll,setLeftScroll] = useState(0)
 
     useEffect(()=> {
         setisLoading(true)
@@ -37,20 +39,27 @@ export const HomeProducts = ({category})=> {
 
     const productsContainerRef = useRef();
 
-    const scrollLeft = ()=> {
-        productsContainerRef.current.scrollBy({
-            top: 0,
-            left: 220,
-            behavior: 'smooth'
-        })
+
+    const handleScroll = (e)=> {
+        setLeftScroll(e.target.scrollLeft);
+        console.log(e)
     };
+
 
     const scrollRight = ()=> {
         productsContainerRef.current.scrollBy({
             top: 0,
+            left: 220,
+            behavior: 'smooth'
+        });
+    };
+
+    const scrollLeft = ()=> {
+        productsContainerRef.current.scrollBy({
+            top: 0,
             left: -220,
             behavior: 'smooth'
-        })
+        });
     };
 
 
@@ -60,7 +69,7 @@ export const HomeProducts = ({category})=> {
             <div className="relative lg:px-[40px]">
                 {
                     isLoading ? <Loading /> : 
-                    <div ref={productsContainerRef} className="flex gap-5 overflow-x-auto">
+                    <div onScroll={handleScroll} ref={productsContainerRef} className="flex gap-5 overflow-x-auto">
                         {
                             products?.map((product)=> (
                                 <ProductCard key={product.id} product={product} />
@@ -71,14 +80,20 @@ export const HomeProducts = ({category})=> {
                         </div>
                     </div>
                 }
-                <ScrollLeft onClick={scrollLeft} />
-                <ScrollRight onClick={scrollRight} />
+                <ScrollLeft 
+                    onClick={scrollLeft} 
+                    leftScroll={leftScroll}
+                    />
+                <ScrollRight 
+                    onClick={scrollRight}
+                    leftScroll={leftScroll} 
+                    />
             </div>
             <div  className=" w-[120px] mx-auto mt-4">
                 <Link href={`/category?category=${category}`}>
                     <ButtonWithIcon 
                         text='see all' 
-                        Icon={HiOutlinePlusSmall}
+                        Icon={IoIosArrowDown}
                         type='primary'
                         onClick={()=> ''}
                     />
