@@ -4,7 +4,7 @@ import { useContext} from "react";
 import { ProductDetailsContext } from "./ProductDetails";
 export function ImagesGalary() {
 
-    const {product:{images,imagePath,colorName},setProduct} = useContext(ProductDetailsContext)
+    const {product:{images,imagePath,colorName,color},setProduct} = useContext(ProductDetailsContext)
 
   return (
     <div className="mb-3 flex-1">
@@ -15,7 +15,8 @@ export function ImagesGalary() {
                         images?.map((img)=> (
                             img.colorName === colorName ? 
                             <Image 
-                                className={`shadow-md rounded-md mb-2 md:min-w-[100px] md:max-w-[100px]  md:min-h-[100px] md:max-h-[100px] ${imagePath === img?.imagePath && 'border-2 border-teal-400'} hover:scale-105 cursor-pointer`}
+                                className={`shadow-md rounded-md mb-2 md:min-w-[100px] md:max-w-[100px]  md:min-h-[100px] md:max-h-[100px] ${imagePath === img?.imagePath && 'border-2'} hover:scale-105 cursor-pointer`}
+                                style={{borderColor: color}}
                                 onClick={()=> setProduct(prev=> {
                                     const imagePath = img?.imagePath;
 

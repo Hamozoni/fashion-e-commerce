@@ -68,6 +68,12 @@ export function ProductCard({product}) {
                     >{productDetails?.name}
                 </Link>
             </div>
+            <div className="flex items-center justify-center mb-1">
+                <SizesOptions 
+                    product={productDetails} 
+                    setProduct={setProductDetails}
+                    />
+            </div>
             <div className="flex items-center justify-between gap-3">
                 <h2 className="text-xl font-bold text-teal-950 text-center ">
                     {getCurrency(productDetails?.priceInHalala)}

@@ -10,7 +10,8 @@ export const SizesOptions = ({product,setProduct})=> {
 
             colorName === product?.colorName ?
             <li 
-                className={`${product.size === shortName ? "border-teal-200  bg-teal-600 text-teal-50": "hover:bg-green-100 text-teal-800"} min-w-[50px] uppercase text-center  border-2 rounded-full p-3 py-1 hover:scale-105 cursor-pointer`}
+                className={`${product.size === shortName ? "border-2": "hover:bg-teal-50 text-teal-800"} min-w-[50px] uppercase text-center  border-2 rounded-full p-3 py-1 hover:scale-105 cursor-pointer`}
+                style={product.size === shortName ? {borderColor: product.color}: {}}
                 onClick={()=> setProduct(prev=> {
                   const size = shortName;
 
@@ -37,7 +38,7 @@ export function SelectSize() {
     <section className="mt-3">
         <h5 
             className="pb-2 capitalize text-sm font-bold text-green-950"
-            >avalble sizes:
+            >avalble sizes: {product?.sizes?.find(e=> e.shortName === product.size)?.name}
           </h5>
           <SizesOptions 
               product={product} 

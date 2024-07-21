@@ -45,7 +45,7 @@ export function SelectColor() {
 
     <section className="mt-2">
         <h5 className="flex capitalize items-center gap-3 text-sm font-bold text-green-950"> 
-           avalble colors:
+           avalble colors: {product?.colorName}
         </h5>
         <ColorOptions 
             product={product}  
