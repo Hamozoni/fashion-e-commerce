@@ -9,7 +9,7 @@ import {removeItemFromCart, addToCart } from "../../../store/features/cartSlice"
 import QuantityBtn from "../../../components/QuantityBtn";
 import { ButtonWithIcon } from "../../../components/buttons";
 
-export function AddToCart({product}) {
+export function AddToCart({product,isFromCard=false}) {
 
     const {id,name,priceInHalala,category,subcategory,colorName,serialNumber,brand,color,size,imagePath} = product;
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.color === color && e.size === size)?.quantity);
@@ -42,18 +42,21 @@ export function AddToCart({product}) {
                     color={color} 
                     size={size} 
                     />
-                <ButtonWithIcon 
-                    text='remove'
-                    Icon={MdOutlineDeleteOutline}
-                    type='delete'
-                    onClick={()=> dispatch(removeItemFromCart({id,color,size}))}
-                    />
+                    {
+                        isFromCard ? null :
+                        <ButtonWithIcon 
+                            text='remove'
+                            Icon={MdOutlineDeleteOutline}
+                            type='delete'
+                            onClick={()=> dispatch(removeItemFromCart({id,color,size}))}
+                            />
+                    }
             </>
             :
             <ButtonWithIcon 
-                text=' add to cart'
+                text={isFromCard ? '' : ' add to cart'}
                 Icon={FaCartPlus}
-                type='primary'
+                type={isFromCard ?'save' :'primary'}
                 onClick={incrementItem}
                />
         }

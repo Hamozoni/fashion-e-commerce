@@ -5,15 +5,15 @@ import { ProductDetailsContext } from "./ProductDetails";
 export const ColorOptions = ({product,setProduct})=> {
     return (
         <section className="mt-3">
-        <ul className="flex items-center gap-3">
+        <ul className="flex items-center gap-2">
             {
 
                 product?.colors?.map(({colorName,color,priceInHalala})=> (
 
                     <li 
-                        className={`${colorName === product.colorName ? 'border-teal-400 scale-105': '' } border-2 border-gray-200   mb-1 w-8 h-8 rounded-full shadow-md cursor-pointer`}
-                        style={{backgroundColor: color}}
+                        className={`${colorName === product.colorName ? 'border-2 bg-white shadow-xl' : ''} flex items-center justify-center   mb-1 w-8 h-8 rounded-full shadow-md cursor-pointer`}
                         key={color} 
+                        style={{borderColor: color}}
                         onClick={()=> setProduct((prev)=> {
                             const modified = {
                                 color :color,
@@ -25,6 +25,9 @@ export const ColorOptions = ({product,setProduct})=> {
                             return {...prev,...modified};
                         })}
                         >
+                            <div style={{backgroundColor: color}} className="w-4 h-4 rounded-full">
+
+                            </div>
                     </li>
                 ))
                 
