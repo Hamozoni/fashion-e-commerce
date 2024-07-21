@@ -9,12 +9,13 @@ import {ColorOptions} from "../../app/product/_components/SelectColor"
 import {SizesOptions} from "../../app/product/_components/SelectSize"
 // lip
 import getCurrency from "../../lip/getCurrency";
+import { useRouter } from "next/navigation";
 // icons
 
 
 const className = {
-    card: 'w-[344px] rounded-lg border border-gray-100 cursor-pointer hover:border-gray-200 relative p-3',
-    image: 'w-fit flex-1 min-w-[320px] max-h-[370px] max-w-[320px]',
+    card: 'w-[280px] rounded-lg border border-gray-100 cursor-pointer hover:border-gray-200 relative',
+    image: 'min-w-[200px max-w-[200px] max-h-[280px] ',
     heart: 'absolute top-2 left-0 w-full flex items-center justify-between p-4',
 };
 
@@ -26,6 +27,8 @@ export function ProductCard({product}) {
 
    console.log(colorName);
 
+   const router = useRouter()
+
    const linkHref = {
       pathname : `/product/${id}`,
       query: {color,colorName,size,imagePath,priceInHalala}
@@ -33,15 +36,17 @@ export function ProductCard({product}) {
     
    return (
     <div className={className.card}>
-        <Link href={linkHref} className=" w-[320px] overflow-hidden flex  relative group">
-            <Image 
-                className={className.image}
-                src={productDetails?.imagePath}
-                alt='product image'
-                width={320}
-                height={370}
-            />
-       </Link>
+        <div
+            onClick={()=> router.push(linkHref)}
+            className="w-[220px] min-w-[200px] max-h-[280px] flex items-center justify-center overflow-hidden">
+                <Image 
+                    className={className.image}
+                    src={productDetails?.imagePath}
+                    alt='product image'
+                    width={200}
+                    height={280}
+                />
+        </div>
         <div className={className.heart}>
             <AddToListBtn product={productDetails} />
         </div>
