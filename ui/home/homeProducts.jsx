@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {fetchData} from "../../lip/fetchData";
 
 import Loading from "../../app/loading";
@@ -9,7 +9,8 @@ import { ButtonWithIcon } from "../../components/buttons";
 import { HiOutlinePlusSmall } from "react-icons/hi2";
 import Link from "next/link";
 
-import { IoIosArrowBack } from "react-icons/io";
+import {ScrollLeft,ScrollRight} from "../../components/scrollingBotton"
+
 export const HomeProducts = ({category})=> {
 
     const [products,setProducts] = useState([]);
@@ -32,18 +33,34 @@ export const HomeProducts = ({category})=> {
         })
     },[category]);
 
-    const className = {
-        nextPrevBtn : "absolute cursor-pointer hover:scale-110 top-1/4 w-[40px] h-[40px] border-2 border-l-teal-300 rounded-full flex items-center justify-center bg-teal-50"
-    }
+
+
+    const productsContainerRef = useRef();
+
+    const scrollLeft = ()=> {
+        productsContainerRef.current.scrollBy({
+            top: 0,
+            left: 220,
+            behavior: 'smooth'
+        })
+    };
+
+    const scrollRight = ()=> {
+        productsContainerRef.current.scrollBy({
+            top: 0,
+            left: -220,
+            behavior: 'smooth'
+        })
+    };
 
 
     return (
         <section className="p-3 lg:px-8 mb-10">
             <h4 className="text-2xl capitalize text-teal-950 font-bold mb-8">products for {category} may you like : </h4>
-            <div className="relative">
+            <div className="relative lg:px-[40px]">
                 {
                     isLoading ? <Loading /> : 
-                    <div className="flex gap-5 overflow-x-auto">
+                    <div ref={productsContainerRef} className="flex gap-5 overflow-x-auto">
                         {
                             products?.map((product)=> (
                                 <ProductCard key={product.id} product={product} />
@@ -54,9 +71,8 @@ export const HomeProducts = ({category})=> {
                         </div>
                     </div>
                 }
-                <botton className={`${className.nextPrevBtn} left-0`}>
-                   <IoIosArrowBack size={24} color='#5eead4'/>
-                </botton>
+                <ScrollLeft onClick={scrollLeft} />
+                <ScrollRight onClick={scrollRight} />
             </div>
             <div  className=" w-[120px] mx-auto mt-4">
                 <Link href={`/category?category=${category}`}>
