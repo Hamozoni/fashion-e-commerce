@@ -36,17 +36,18 @@ export function ProductCard({product}) {
     
    return (
     <div className={className.card}>
-        <div
-            onClick={()=> router.push(linkHref)}
-            className="w-[220px] min-w-[200px] max-h-[280px] flex items-center justify-center overflow-hidden">
-                <Image 
-                    className={className.image}
-                    src={productDetails?.imagePath}
-                    alt='product image'
-                    width={200}
-                    height={280}
-                />
-        </div>
+        <Link href={linkHref}>
+            <div
+                className="w-[220px] min-w-[200px] max-h-[280px] flex items-center justify-center overflow-hidden">
+                    <Image 
+                        className={className.image}
+                        src={productDetails?.imagePath}
+                        alt='product image'
+                        width={200}
+                        height={280}
+                    />
+            </div>
+        </Link>
         <div className={className.heart}>
             <AddToListBtn product={productDetails} />
         </div>
