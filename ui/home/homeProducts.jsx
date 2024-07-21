@@ -5,6 +5,11 @@ import {fetchData} from "../../lip/fetchData";
 
 import Loading from "../../app/loading";
 import { ProductCard } from "../productCard/ProductCard";
+import { ButtonWithIcon } from "../../components/buttons";
+import { HiOutlinePlusSmall } from "react-icons/hi2";
+import Link from "next/link";
+
+import { IoIosArrowBack } from "react-icons/io";
 export const HomeProducts = ({category})=> {
 
     const [products,setProducts] = useState([]);
@@ -27,11 +32,15 @@ export const HomeProducts = ({category})=> {
         })
     },[category]);
 
+    const className = {
+        nextPrevBtn : "absolute cursor-pointer hover:scale-110 top-1/4 w-[40px] h-[40px] border-2 border-l-teal-300 rounded-full flex items-center justify-center bg-teal-50"
+    }
+
 
     return (
         <section className="p-3 lg:px-8 mb-10">
             <h4 className="text-2xl capitalize text-teal-950 font-bold mb-8">products for {category} may you like : </h4>
-            <div className="">
+            <div className="relative">
                 {
                     isLoading ? <Loading /> : 
                     <div className="flex gap-5 overflow-x-auto">
@@ -40,8 +49,25 @@ export const HomeProducts = ({category})=> {
                                 <ProductCard key={product.id} product={product} />
                             ))
                         }
+                        <div className="min-w-[150px] min-h-full flex items-center justify-center">
+                            <button className=" capitalize text-xl text-teal-950 font-bold">load more</button>
+                        </div>
                     </div>
                 }
+                <botton className={`${className.nextPrevBtn} left-0`}>
+                   <IoIosArrowBack size={24} color='#5eead4'/>
+                </botton>
+            </div>
+            <div  className=" w-[120px] mx-auto mt-4">
+                <Link href={`/category?category=${category}`}>
+                    <ButtonWithIcon 
+                        text='see all' 
+                        Icon={HiOutlinePlusSmall}
+                        type='primary'
+                        onClick={()=> ''}
+                    />
+                </Link>
+
             </div>
         </section>
     )
