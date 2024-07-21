@@ -31,7 +31,6 @@ export const GET = async (req)=> {
             }
         });
 
-
         const filteredData = data.filter(e => e.id !== id);
 
         return NextResponse.json(filteredData,{status: 200});

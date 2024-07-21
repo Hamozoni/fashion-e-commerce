@@ -11,7 +11,7 @@ export const ColorOptions = ({product,setProduct})=> {
                 product?.colors?.map(({colorName,color,priceInHalala})=> (
 
                     <li 
-                        className={`${colorName === product.colorName ? 'border-2 bg-white shadow-xl' : ''} flex items-center justify-center   mb-1 w-8 h-8 rounded-full shadow-md cursor-pointer`}
+                        className={`${colorName === product.colorName ? 'border-2 shadow-xl' : ''} flex items-center justify-center   mb-1 w-8 h-8 rounded-full shadow-md cursor-pointer`}
                         key={color} 
                         style={{borderColor: color}}
                         onClick={()=> setProduct((prev)=> {

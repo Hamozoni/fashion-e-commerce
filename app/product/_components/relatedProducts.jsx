@@ -12,7 +12,7 @@ export const RelatedProducts = ({id})=> {
     const [error,setError] = useState(null)
 
     useEffect(()=> {
-        fetchData(`products/relatedById?id${id}`)
+        fetchData(`products/relatedById?id=${id}`)
         .then((data)=> {
             setError(null);
             console.log(data)
@@ -28,8 +28,8 @@ export const RelatedProducts = ({id})=> {
 
     return (
         <section>
-            <h4>related products:</h4>
-            <div className="">
+            <h4 className="mb-5 text-teal-950 text-2xl font-bold capitalize">related products:</h4>
+            <div className="flex gap-5 overflow-x-auto">
                 {
                     isLoading ? <Loading /> :
                     products?.map((product)=> (

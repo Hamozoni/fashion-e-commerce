@@ -13,7 +13,7 @@ export const HomeProducts = ({category})=> {
 
     useEffect(()=> {
         setisLoading(true)
-        fetchData(`products/category?category=${category}`)
+        fetchData(`products/category?category=${category}&page=1`)
         .then((data)=> {
             setProducts(data);
             console.log(data);
@@ -34,7 +34,7 @@ export const HomeProducts = ({category})=> {
             <div className="">
                 {
                     isLoading ? <Loading /> : 
-                    <div className="flex flex-wrap gap-5">
+                    <div className="flex gap-5 overflow-x-auto">
                         {
                             products?.map((product)=> (
                                 <ProductCard key={product.id} product={product} />
