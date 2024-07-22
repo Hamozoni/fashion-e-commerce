@@ -7,8 +7,7 @@ import Loading from "../../app/loading";
 import { ProductCard } from "../productCard/ProductCard";
 import Link from "next/link";
 
-import {ScrollLeft,ScrollRight} from "../../components/scrollingBotton"
-import { PulseLoader } from "react-spinners";
+import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../../components/buttons";
 
 export const Products = ({category,page,onClick})=> {
 
@@ -102,26 +101,19 @@ export const Products = ({category,page,onClick})=> {
                                 <ProductCard key={product.id} product={product} />
                             ))
                         }
-                        {
-                            isThereMoreData ? 
-                            <div className="min-w-[200px] min-h-full flex items-center justify-center">
-                                {
-                                    isLoadingMore ? <PulseLoader color="#115e59"/> :
-                                    <button
-                                        onClick={onClick} 
-                                        className=" capitalize text-xl text-teal-800 font-medium hover:scale-95"                                            >load more
-                                    </button>
-                                }
-                            </div>
-                            : null
-                        }
+
+                        <LoadMoreBtn 
+                            isMoreData={isThereMoreData} 
+                            isLoadingMore={isLoadingMore} 
+                            onClick={onClick}
+                           />
                     </div>
                 }
-                <ScrollLeft 
+                <ScrollLeftBtn 
                     onClick={scrollLeft} 
                     leftScroll={leftScroll}
                     />
-                <ScrollRight 
+                <ScrollRightBtn 
                     onClick={scrollRight}
                     leftScrollEnds={leftScrollEnds}
                     />
