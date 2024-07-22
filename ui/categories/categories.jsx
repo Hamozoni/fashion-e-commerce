@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import {categoriesData} from "../../data/categoriesData";
-import { CategoryCard } from "./categoryCard";
+import { SubcategoryCard } from "./subcategoryCard";
 
 export const Categories = ()=> {
 
@@ -43,7 +43,7 @@ export const Categories = ()=> {
                     {
                             subCategory?.map((sub)=> (
                                     <li key={sub?.name}   className="min-w-fit w-full flex-1">
-                                        <CategoryCard category={sub}/>
+                                        <SubcategoryCard sub={sub}/>
                                     </li>
                             ))
                         }

@@ -3,7 +3,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
 const className = {
-    nextPrevBtn : "absolute cursor-pointer hover:scale-110 hover:border-teal-300 top-1/2 -translate-y-1/2 w-[40px] h-[40px] border-2 rounded-full flex items-center justify-center bg-teal-50"
+    nextPrevBtn : "absolute cursor-pointer hover:scale-110 hover:border-teal-300 top-1/2 -translate-y-1/2 w-[40px] h-[40px] border-2 rounded-full flex items-center justify-center"
 };
 
 export const ScrollLeft = ({onClick,leftScroll})=> {

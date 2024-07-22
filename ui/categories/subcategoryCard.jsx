@@ -1,9 +1,9 @@
 import Image from "next/image"
 import Link from "next/link";
 
-export const CategoryCard = ({category})=> {
+export const SubcategoryCard = ({sub})=> {
 
-    const {name,imagePath,linkPath} = category;
+    const {name,imagePath,linkPath} = sub;
     return (
         <div className="bg-gray-50 p-1 rounded-md shadow-md">
             <Link href={linkPath} >
