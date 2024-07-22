@@ -4,8 +4,8 @@ import { useState } from "react";
 import {CategoryProducts} from "./categoryProducts";
 import Image from "next/image";
 
-import offerImage from "../../public/categories/sliders/offer-2.webp"
-import offer2Image from "../../public/categories/sliders/offer-1.jpg"
+import offerImage from "../../public/categories/sliders/offer-1.jpg"
+import offer2Image from "../../public/categories/sliders/offer-2.webp"
 
 export const CategoriesProducts = ()=> {
 

@@ -15,7 +15,7 @@ import { AppContext } from "../../app/contextProvider";
 
 const className = {
     card: ' rounded-lg border border-gray-100 cursor-pointer hover:border-gray-200 relative',
-    heart: 'absolute top-2 left-0 w-full flex items-center justify-between p-4',
+    heart: 'absolute top-2 left-2',
 };
 
 

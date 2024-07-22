@@ -20,7 +20,7 @@ async function page({params,searchParams}) {
                     {section} {sub} products:
                 </h4>
             </header>
-            <div className="flex gap-3" >
+            <div className="flex flex-wrap gap-2 sm:gap-4" >
                 {
                     data?.length > 0 ?
                     data?.map((product)=> (

@@ -14,19 +14,19 @@ export const AddToListBtn = ({product}) => {
     };
 
    const className = {
-      heart: 'text-rose-500 hover:scale-125 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
+      heart: 'text-rose-500 hover:scale-125'
     }
 
   return (
     <button
         onClick={handleToggleAddToList} 
-        className="flex items-center justify-center w-[40px] h-[40px] relative border border-rose-200 bg-rose-50 rounded-full px-3 py-2 text-xl"
+        className=""
         >
         {
             isAddedToList ?
-            <IoMdHeart size={24} className={className.heart} />
+            <IoMdHeart size={30} className={className.heart} />
             :
-            <IoIosHeartEmpty size={24}  className={className.heart}/>
+            <IoIosHeartEmpty size={30}  className={className.heart}/>
         }
     </button>
   )

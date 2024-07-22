@@ -12,7 +12,7 @@ export default async function Home() {
     <div >
       <HomeSlider />
       <CategoriesNav />
-      <div className="translate-y-[-100px]">
+      <div className=" mt-[-100px]">
           <CategoriesProducts />
       </div>
     </div>
