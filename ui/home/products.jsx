@@ -55,7 +55,7 @@ export const Products = ({category,page,onClick})=> {
 
     const handleScroll = (e)=> {
 
-        const scrollEnds = (e.target.children.length * 200) - (e.target.scrollLeft + e.target.clientWidth) + 280
+        const scrollEnds = (e.target.children.length * 240) - (e.target.scrollLeft + e.target.clientWidth)
         setLeftScroll(e.target.scrollLeft);
         setLeftScrollEnds(scrollEnds)
     };
