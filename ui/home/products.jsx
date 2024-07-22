@@ -16,7 +16,8 @@ export const Products = ({category,page,onClick})=> {
 
     const [products,setProducts] = useState([]);
     const [isLoading,setisLoading] = useState(false);
-    const [isLoadingMore,setisLoadingMore] = useState(false);
+    const [isLoadingMore,setIsLoadingMore] = useState(false);
+    const [isThereMoreData,setIsThereMoreData] = useState(true);
     const [error,setError] = useState(null);
 
     const [leftScroll,setLeftScroll] = useState(0)
@@ -24,13 +25,17 @@ export const Products = ({category,page,onClick})=> {
 
     useEffect(()=> {
         if (products.length > 0) {
-            setisLoadingMore(true)
+            setIsLoadingMore(true)
         }else {
             setisLoading(true);
         }
         fetchData(`products/category?category=${category}&page=${page}`)
         .then((data)=> {
-            setProducts(prev => [...prev,...data]);
+            if(data?.length > 0) {
+                setProducts(prev => [...prev,...data]);
+            }else {
+                setIsThereMoreData(false)
+            }
             console.log(data);
             setError(null);
         })
@@ -39,7 +44,7 @@ export const Products = ({category,page,onClick})=> {
         })
         .finally(()=> {
              setisLoading(false);
-             setisLoadingMore(false)
+             setIsLoadingMore(false)
         });
     },[category,page]);
 
@@ -85,16 +90,20 @@ export const Products = ({category,page,onClick})=> {
                                 <ProductCard key={product.id} product={product} />
                             ))
                         }
-                        <div className="min-w-[200px] min-h-full flex items-center justify-center">
-                            {
-                                isLoadingMore ? <PulseLoader /> :
-                                <button
-                                    onClick={onClick} 
-                                    className=" capitalize text-xl text-teal-950 font-bold"
-                                        >load more
-                                </button>
-                            }
-                        </div>
+                        {
+                            isThereMoreData ? 
+                            <div className="min-w-[200px] min-h-full flex items-center justify-center">
+                                {
+                                    isLoadingMore ? <PulseLoader /> :
+                                    <button
+                                        onClick={onClick} 
+                                        className=" capitalize text-xl text-teal-950 font-bold"
+                                            >load more
+                                    </button>
+                                }
+                            </div>
+                            : null
+                        }
                     </div>
                 }
                 <ScrollLeft 
