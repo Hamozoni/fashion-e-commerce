@@ -12,8 +12,8 @@ export const SubcategoryCard = ({sub})=> {
                         <Image 
                             className="rotate-2 group-hover:rotate-0 group-hover:scale-110 "
                             src={imagePath} 
-                            width={200} 
-                            height={200} 
+                            width={240} 
+                            height={240} 
                             alt={name}
                             />
                         <h3 

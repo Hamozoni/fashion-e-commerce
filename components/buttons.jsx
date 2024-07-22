@@ -64,19 +64,13 @@ export const ScrollRightBtn = ({onClick,leftScrollEnds})=> {
      )
 };
 
-export const LoadMoreBtn = ({isMoreData,isLoadingMore,onClick})=> {
+export const LoadMoreBtn = ({isLoadingMore,onClick})=> {
     return (
 
-            isMoreData ? 
-            <div className="min-w-[200px] min-h-full flex items-center justify-center">
-                {
-                    isLoadingMore ? <PulseLoader color="#115e59"/> :
-                    <button
-                        onClick={onClick} 
-                        className=" capitalize text-xl text-teal-800 font-medium hover:scale-95"                                            >load more
-                    </button>
-                }
-            </div>
-            : null
+        isLoadingMore ? <PulseLoader color="#115e59"/> :
+        <button
+            onClick={onClick} 
+            className=" capitalize text-xl text-teal-800 font-medium hover:scale-95"                                            >load more
+        </button>
     )
 }

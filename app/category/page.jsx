@@ -7,6 +7,7 @@ import { fetchData } from "../../lip/fetchData";
 import { ProductCard } from "../../ui/productCard/ProductCard";
 import Loading from "../loading";
 import { PulseLoader } from "react-spinners";
+import { LoadMoreBtn } from "../../components/buttons";
 
 
 const CatecoryPage = () => {
@@ -19,7 +20,7 @@ const CatecoryPage = () => {
   const [isLoading,setIsLoading] = useState(false);
   const [isDataDone,setIsDataDone] = useState(false);
   const [isLoadingMore,setIsLoadingMore] = useState(false);
-  const [page,setPage] = useState(1);
+  const [page,setPage] = useState(2);
 
   useEffect(()=> {
 
@@ -31,7 +32,7 @@ const CatecoryPage = () => {
 
     fetchData(`products/category?category=${section}&page=${page}`)
     .then((data)=> {
-        if(data?.length > 0) {
+        if(data?.length === 0) {
           setIsDataDone(true);
         }
 
@@ -51,10 +52,10 @@ const CatecoryPage = () => {
     <div className="p-3 lg:px-8">
         <header>
           <nav>
-            <ul className=" flex items-center overflow-x-auto gap-3">
+            <ul className=" flex items-center overflow-x-auto gap-3 min-w-fit">
                {
                 subcategories?.map((sub)=> (
-                  <li key={sub?.id}>
+                  <li key={sub?.id} className="min-w-fit w-full flex-1">
                      <SubcategoryCard sub={sub} />
                   </li>
 
@@ -66,7 +67,7 @@ const CatecoryPage = () => {
         <section>
             <h5 className="text-xl text-teal-950 capitalize mt-10 mb-5 font-bold" >products for {section} :</h5>
             <div className=""> 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex justify-center flex-wrap gap-4">
                   {
                     isLoading ? <Loading /> : 
                     products?.map((product)=> (
@@ -76,13 +77,12 @@ const CatecoryPage = () => {
               </div>
               {
                 isDataDone ? null :
-                <button
-                    className="w-fit mx-auto mt-5" 
-                    onClick={()=> setPage(page + 1)}
-                    disabled={isLoadingMore}
-                    >{isLoadingMore ? <PulseLoader /> :'load more'}
-                
-                </button>
+                <div className="max-w-fit mx-auto">
+                   <LoadMoreBtn 
+                      isLoadingMore={isLoadingMore} 
+                      onClick={()=> setPage(page + 1)} 
+                      />
+                </div>
               }
             </div>
         </section>

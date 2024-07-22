@@ -42,7 +42,7 @@ export const Categories = ()=> {
                     <ul className="flex items-center gap-3 w-fit min-w-fit">
                     {
                             subCategory?.map((sub)=> (
-                                    <li key={sub?.name}   className="min-w-fit w-full flex-1">
+                                    <li key={sub?.name} className="min-w-fit w-full flex-1">
                                         <SubcategoryCard sub={sub}/>
                                     </li>
                             ))

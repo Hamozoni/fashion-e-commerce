@@ -102,11 +102,17 @@ export const Products = ({category,page,onClick})=> {
                             ))
                         }
 
-                        <LoadMoreBtn 
-                            isMoreData={isThereMoreData} 
-                            isLoadingMore={isLoadingMore} 
-                            onClick={onClick}
-                           />
+                        {
+                            isThereMoreData ? 
+                            <div className="min-w-[200px] min-h-full flex items-center justify-center">
+                                <LoadMoreBtn 
+                                    isLoadingMore={isLoadingMore} 
+                                    onClick={onClick}
+                                   />
+                            </div>
+                            : null
+                        }
+
                     </div>
                 }
                 <ScrollLeftBtn 
