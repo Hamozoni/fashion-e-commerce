@@ -1,7 +1,7 @@
 
 import {HomeSlider} from "../ui/home/homeSlider";
 import {Categories} from "../ui/categories/categories";
-import {HomeProducts} from "../ui/home/homeProducts"
+import {CategoriesProducts} from "../ui/home/categoriesProducts"
 
 export default async function Home() {
 
@@ -9,11 +9,7 @@ export default async function Home() {
     <div >
       <HomeSlider />
       <Categories />
-      <div className=" translate-y-[-80px]">
-        <HomeProducts category='men'/>
-        <HomeProducts category='women'/>
-        <HomeProducts category='kids'/>
-      </div>
+      <CategoriesProducts />
     </div>
   );
 }

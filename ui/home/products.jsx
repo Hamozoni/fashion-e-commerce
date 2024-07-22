@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {fetchData} from "../../lip/fetchData";
 
 import Loading from "../../app/loading";
@@ -10,20 +10,27 @@ import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 
 import {ScrollLeft,ScrollRight} from "../../components/scrollingBotton"
+import { PulseLoader } from "react-spinners";
 
-export const HomeProducts = ({category})=> {
+export const Products = ({category,page,onClick})=> {
 
     const [products,setProducts] = useState([]);
     const [isLoading,setisLoading] = useState(false);
+    const [isLoadingMore,setisLoadingMore] = useState(false);
     const [error,setError] = useState(null);
 
     const [leftScroll,setLeftScroll] = useState(0)
+    const [leftScrollEnds,setLeftScrollEnds] = useState(200);
 
     useEffect(()=> {
-        setisLoading(true)
-        fetchData(`products/category?category=${category}&page=1`)
+        if (products.length > 0) {
+            setisLoadingMore(true)
+        }else {
+            setisLoading(true);
+        }
+        fetchData(`products/category?category=${category}&page=${page}`)
         .then((data)=> {
-            setProducts(data);
+            setProducts(prev => [...prev,...data]);
             console.log(data);
             setError(null);
         })
@@ -31,9 +38,10 @@ export const HomeProducts = ({category})=> {
             setError(error);
         })
         .finally(()=> {
-             setisLoading(false)
-        })
-    },[category]);
+             setisLoading(false);
+             setisLoadingMore(false)
+        });
+    },[category,page]);
 
 
 
@@ -41,9 +49,10 @@ export const HomeProducts = ({category})=> {
 
 
     const handleScroll = (e)=> {
+
+        const scrollEnds = (e.target.children.length * 200) - (e.target.scrollLeft + e.target.clientWidth) + 280
         setLeftScroll(e.target.scrollLeft);
-        console.log((e.target.children.length * 200) - (e.target.scrollLeft - e.target.clientWidth));
-        console.log(e.target.clientWidth);
+        setLeftScrollEnds(scrollEnds)
     };
 
 
@@ -76,8 +85,15 @@ export const HomeProducts = ({category})=> {
                                 <ProductCard key={product.id} product={product} />
                             ))
                         }
-                        <div className="min-w-[150px] min-h-full flex items-center justify-center">
-                            <button className=" capitalize text-xl text-teal-950 font-bold">load more</button>
+                        <div className="min-w-[200px] min-h-full flex items-center justify-center">
+                            {
+                                isLoadingMore ? <PulseLoader /> :
+                                <button
+                                    onClick={onClick} 
+                                    className=" capitalize text-xl text-teal-950 font-bold"
+                                        >load more
+                                </button>
+                            }
                         </div>
                     </div>
                 }
@@ -87,7 +103,7 @@ export const HomeProducts = ({category})=> {
                     />
                 <ScrollRight 
                     onClick={scrollRight}
-                    leftScroll={leftScroll} 
+                    leftScrollEnds={leftScrollEnds}
                     />
             </div>
             <div  className=" w-[120px] mx-auto mt-4">

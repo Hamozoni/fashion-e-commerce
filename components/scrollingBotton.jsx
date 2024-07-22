@@ -19,8 +19,9 @@ export const ScrollLeft = ({onClick,leftScroll})=> {
     )
 };
 
-export const ScrollRight = ({onClick,leftScroll})=> {
+export const ScrollRight = ({onClick,leftScrollEnds})=> {
      return (
+        leftScrollEnds <= 1 ? null :
         <botton 
             onClick={onClick}
             className={`${className.nextPrevBtn} right-0 border-r-teal-300`}>
