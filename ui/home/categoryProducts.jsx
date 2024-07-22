@@ -78,7 +78,7 @@ export const CategoryProducts = ({category,page,onClick})=> {
 
 
     return (
-        <section className="p-3 lg:px-8 mb-10">
+        <section className="">
             <header className="flex items-center justify-between mb-8">
                  <h4 
                     className=" text-lg sm:text-xl capitalize text-teal-950 font-bold "

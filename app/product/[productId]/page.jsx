@@ -4,6 +4,7 @@ import ProductReviews from "../../../ui/productReviews/productReviews";
 // server actions
 import {productById} from "../../../actions/products/productById";
 import {RelatedProducts} from "../_components/relatedProducts"
+import { MoreProducts } from "../../[section]/moreProducts";
 
 
 async function  productPage({params}) {
@@ -30,6 +31,7 @@ async function  productPage({params}) {
       </section>
       <RelatedProducts id={productId} />
       <ProductReviews product={data}/>
+      <MoreProducts category={data?.category} />
     </section>
   )
 }

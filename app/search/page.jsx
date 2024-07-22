@@ -45,7 +45,7 @@ const SearchPage = ()=> {
             <header className="mb-4 mt-3">
                 <h3 className="text-xl font-bold text-teal-950 capitalize">search results: {data?.length}</h3>
             </header>
-            <div className="">
+            <div className="flex flex-wrap gap-5 justify-center">
                 {
                     data?.map((product)=> (
                         <ProductCard product={product} />

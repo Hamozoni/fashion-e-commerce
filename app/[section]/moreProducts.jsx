@@ -8,7 +8,7 @@ export const MoreProducts = ({category})=> {
     const [page,setPage] = useState(1);
 
     return (
-        <div className="mt-5">
+        <div className="mt-10">
             <CategoryProducts 
                 category={category} 
                 page={page} 
