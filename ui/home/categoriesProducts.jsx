@@ -32,7 +32,7 @@ export const CategoriesProducts = ()=> {
             <div className="">
               <Image width={width} height={200} src={offerImage}  alt="offer"/>
            </div>
-            <div className="p-3 lg:px-8 mb-10">
+            <div className="p-3 lg:px-8">
                 <CategoryProducts 
                     category='men' 
                     page={menPage} 
