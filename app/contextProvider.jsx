@@ -28,27 +28,35 @@ const ContextProvider = ({children}) => {
         return ()=> window.removeEventListener('resize',getWidth);
     },[]);
 
-    useEffect(()=> {
-      const storageTheme = localStorage.getItem('theme')
-       if(storageTheme){
-          document.documentElement.classList.add(storageTheme);
-       }else {
-          if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-            localStorage.setItem('theme','dark');
-            document.documentElement.classList.add(storageTheme);
-          }
-         if(theme === 'user device'){
-  
+    const handleTheme = ()=> {
+      const storageTheme = localStorage.getItem('theme');
 
-         }else if (theme === 'dark') {
-            if(!document.documentElement.classList.includes('dark')) {
-              document.documentElement.classList.add(storageTheme);
-            }
-         }else {
-             document.documentElement.classList.remove('dark');
-         }
-       }
-    },[theme]);
+      const useDevice = ()=> {
+        if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+            localStorage.setItem('theme','user device');
+            document.documentElement.classList.add('dark');
+        }else {
+           document.documentElement.classList.remove('dark');
+        }
+      }
+
+     if(storageTheme){
+        if(storageTheme === 'user device'){
+            useDevice();
+            setTheme(storageTheme);
+        }else if (storageTheme === 'dark') {
+            document.documentElement.classList.add(storageTheme);
+            setTheme(storageTheme);
+        }else {
+            document.documentElement.classList.remove('dark');
+            setTheme('light');
+        }
+     }else {
+        useDevice();
+     }
+    };
+
+    useEffect(handleTheme,[theme]);
 
   return (
     <AppContext.Provider 
@@ -58,7 +66,8 @@ const ContextProvider = ({children}) => {
           setCurrentUser,
           status,
           theme,
-          setTheme
+          setTheme,
+          handleTheme,
         }}
         >
         {children}
