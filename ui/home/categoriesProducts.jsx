@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 import {Products} from "./products";
+import Image from "next/image";
+
+import offerImage from "../../public/categories/sliders/offer-2.webp"
+import offer2Image from "../../public/categories/sliders/offer-1.jpg"
 
 export const CategoriesProducts = ()=> {
 
@@ -21,23 +25,33 @@ export const CategoriesProducts = ()=> {
         setKidsPage(kidsPage + 1);
     };
 
+    const width = window.innerWidth
+
     return (
-        <div className=" translate-y-[-80px]">
-            <Products 
-                category='men' 
-                page={menPage} 
-                onClick={handleMenPage}
-                />
-            <Products 
-                category='women' 
-                page={womenPage}
-                onClick={handleWomenPage}
-                />
-            <Products 
-                category='kids' 
-                page={kidsPage}
-                onClick={handleKidsPage}
-                />
-      </div>
+        <div className="">
+            <div className="">
+              <Image width={width} height={200} src={offerImage}  alt="offer"/>
+           </div>
+            <div className="">
+                <Products 
+                    category='men' 
+                    page={menPage} 
+                    onClick={handleMenPage}
+                    />
+                <Products 
+                    category='women' 
+                    page={womenPage}
+                    onClick={handleWomenPage}
+                    />
+                <Products 
+                    category='kids' 
+                    page={kidsPage}
+                    onClick={handleKidsPage}
+                    />
+            </div>
+            <div className="">
+              <Image width={width} height={200} src={offer2Image}  alt="offer"/>
+           </div>
+        </div>
     )
 }

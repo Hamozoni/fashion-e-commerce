@@ -1,12 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState } from "react";
 import {fetchData} from "../../lip/fetchData";
 
 import Loading from "../../app/loading";
 import { ProductCard } from "../productCard/ProductCard";
-import { ButtonWithIcon } from "../../components/buttons";
-import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 
 import {ScrollLeft,ScrollRight} from "../../components/scrollingBotton"
@@ -55,7 +53,9 @@ export const Products = ({category,page,onClick})=> {
 
     const handleScroll = (e)=> {
 
-        const scrollEnds = (e.target.children.length * 240) - (e.target.scrollLeft + e.target.clientWidth)
+        const scrollEnds = (e.target.children.length * 235) - (e.target.scrollLeft + e.target.clientWidth);
+
+        console.log(scrollEnds)
         setLeftScroll(e.target.scrollLeft);
         setLeftScrollEnds(scrollEnds)
     };
@@ -80,7 +80,19 @@ export const Products = ({category,page,onClick})=> {
 
     return (
         <section className="p-3 lg:px-8 mb-10">
-            <h4 className="text-2xl capitalize text-teal-950 font-bold mb-8">products for {category} may you like : </h4>
+            <header className="flex items-center justify-between mb-8">
+                 <h4 
+                    className=" text-lg sm:text-xl capitalize text-teal-950 font-bold "
+                    >for {category} may you like : 
+                </h4>
+
+                <Link 
+                    className="text-sm capitalize text-teal-800 font-bold hover:text-teal-700"
+                    href={`/category?category=${category}`}>
+                     see all
+                </Link>
+
+            </header>
             <div className="relative lg:px-[40px]">
                 {
                     isLoading ? <Loading /> : 
@@ -114,17 +126,6 @@ export const Products = ({category,page,onClick})=> {
                     onClick={scrollRight}
                     leftScrollEnds={leftScrollEnds}
                     />
-            </div>
-            <div  className=" w-[120px] mx-auto mt-4">
-                <Link href={`/category?category=${category}`}>
-                    <ButtonWithIcon 
-                        text='see all' 
-                        Icon={IoIosArrowDown}
-                        type='primary'
-                        onClick={()=> ''}
-                    />
-                </Link>
-
             </div>
         </section>
     )
