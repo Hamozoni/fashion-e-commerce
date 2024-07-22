@@ -3,12 +3,13 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import Image from "next/image";
 // icons
-import { IoSettingsOutline ,IoLanguageSharp,IoCartOutline} from "react-icons/io5";
+import {IoLanguageSharp,IoCartOutline} from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
 import { FaRegHeart  } from "react-icons/fa";
 import { GiTireIronCross } from "react-icons/gi";
 import { LuUserX2 } from "react-icons/lu";
+import { MdOutlineDarkMode } from "react-icons/md";
 // components
 import SignOut from "../../../components/signOut";
 import Languages from "./languages";
@@ -95,7 +96,7 @@ function HeaderUserBar() {
                             <IoLanguageSharp size={24} />  <Languages />
                             </li>
                             <li className={className.li}>
-                                <IoSettingsOutline size={24} /> <Link href='/setting'>setting</Link>
+                                <MdOutlineDarkMode size={24} /> appearance
                             </li>
                             <li className={className.li}>
                                 <LuUserX2  size={24} /> delete my account
