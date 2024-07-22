@@ -42,7 +42,8 @@ export const HomeProducts = ({category})=> {
 
     const handleScroll = (e)=> {
         setLeftScroll(e.target.scrollLeft);
-        console.log(e)
+        console.log((e.target.children.length * 200) - (e.target.scrollLeft - e.target.clientWidth));
+        console.log(e.target.clientWidth);
     };
 
 

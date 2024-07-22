@@ -25,8 +25,6 @@ export function ProductCard({product}) {
 
    const {id,color,colorName,size,imagePath,priceInHalala} = productDetails;
 
-   console.log(colorName);
-
    const router = useRouter()
 
    const linkHref = {
