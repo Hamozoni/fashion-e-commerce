@@ -64,7 +64,7 @@ export const Products = ({category,page,onClick})=> {
     const scrollRight = ()=> {
         productsContainerRef.current.scrollBy({
             top: 0,
-            left: 220,
+            left: 440,
             behavior: 'smooth'
         });
     };
@@ -72,7 +72,7 @@ export const Products = ({category,page,onClick})=> {
     const scrollLeft = ()=> {
         productsContainerRef.current.scrollBy({
             top: 0,
-            left: -220,
+            left: -440,
             behavior: 'smooth'
         });
     };
@@ -93,7 +93,7 @@ export const Products = ({category,page,onClick})=> {
                 </Link>
 
             </header>
-            <div className="relative lg:px-[40px]">
+            <div className="relative">
                 {
                     isLoading ? <Loading /> : 
                     <div onScroll={handleScroll} ref={productsContainerRef} className="flex gap-5 overflow-x-auto">
@@ -106,11 +106,10 @@ export const Products = ({category,page,onClick})=> {
                             isThereMoreData ? 
                             <div className="min-w-[200px] min-h-full flex items-center justify-center">
                                 {
-                                    isLoadingMore ? <PulseLoader /> :
+                                    isLoadingMore ? <PulseLoader color="#115e59"/> :
                                     <button
                                         onClick={onClick} 
-                                        className=" capitalize text-xl text-teal-950 font-bold"
-                                            >load more
+                                        className=" capitalize text-xl text-teal-800 font-medium hover:scale-95"                                            >load more
                                     </button>
                                 }
                             </div>
