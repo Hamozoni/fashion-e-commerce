@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { fetchData } from "../../lip/fetchData";
 import { ProductCard } from "../../ui/productCard/ProductCard";
 import Loading from "../loading";
-import { PulseLoader } from "react-spinners";
 import { LoadMoreBtn } from "../../components/buttons";
 
 
@@ -77,7 +76,7 @@ const CatecoryPage = () => {
               </div>
               {
                 isDataDone ? null :
-                <div className="max-w-fit mx-auto">
+                <div className="max-w-fit mx-auto mt-6">
                    <LoadMoreBtn 
                       isLoadingMore={isLoadingMore} 
                       onClick={()=> setPage(page + 1)} 

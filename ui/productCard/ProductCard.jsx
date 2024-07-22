@@ -35,15 +35,15 @@ export function ProductCard({product}) {
     };
     
     const { innerWidth } = useContext(AppContext);
-    const cardWidth = innerWidth > 630 ? 220 : 160;
+    const imageWidth = innerWidth < 400 ? 160 : innerWidth  <  440 ?  180 : innerWidth < 460 ?  200 : 220;
     const cardHeight = innerWidth > 630 ? 280 : 200;
     
 
     const imageStyle = useMemo(()=> {
         return {
-            width: cardWidth,
-            maxWidth: cardWidth,
-            minWidth: cardWidth,
+            width: imageWidth,
+            maxWidth: imageWidth,
+            minWidth: imageWidth,
             height: cardHeight,
             minHeight: cardHeight,
             maxHeight: cardHeight
@@ -52,9 +52,9 @@ export function ProductCard({product}) {
 
     const cardStyle = useMemo(()=> {
         return {
-            width: cardWidth,
-            maxWidth: cardWidth,
-            minWidth: cardWidth,
+            width: imageWidth,
+            maxWidth: imageWidth,
+            minWidth: imageWidth,
         }
     },[innerWidth]);
     
@@ -72,7 +72,7 @@ export function ProductCard({product}) {
                             className={className.image}
                             src={productDetails?.imagePath}
                             alt='product image'
-                            width={innerWidth > 630 ? 220 : 160}
+                            width={imageWidth}
                             height={innerWidth > 630 ? 280 : 200}
                         />
                 </div>
@@ -92,7 +92,7 @@ export function ProductCard({product}) {
             <div className="text-center ">
                 <Link
                     href={linkHref}
-                    className="text-lg font-bold text-teal-900 hover:text-teal-900 line-clamp-2 capitalize"
+                    className="text-sm sm:text-lg font-bold text-teal-900 hover:text-teal-900 line-clamp-2 capitalize"
                     >{productDetails?.name}
                 </Link>
             </div>
@@ -102,8 +102,8 @@ export function ProductCard({product}) {
                     setProduct={setProductDetails}
                     />
             </div>
-            <div className="flex items-center justify-between gap-3">
-                <h2 className="text-xl font-bold text-teal-950 text-center ">
+            <div className="sm:flex items-center justify-between gap-3">
+                <h2 className="text-lg mb-2 sm:mb-0 sm:text-xl font-bold text-teal-950 text-center ">
                     {getCurrency(productDetails?.priceInHalala)}
                 </h2>
                 <AddToCart 
