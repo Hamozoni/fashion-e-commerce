@@ -11,11 +11,15 @@ const CatecoryPage = () => {
   const subcategories = categoriesData.find(e=> e.name === section).sub;
 
   return (
-    <div className="">
+    <div className="p-3 lg:px-8 flex gap-3">
+      <div className="">
+
+      </div>
+
+      <aside>
         <header>
-          <h4>{section} section</h4>
           <nav>
-            <ul>
+            <ul className=" flex items-center overflow-x-auto gap-3">
                {
                 subcategories?.map((sub)=> (
                   <li key={sub?.id}>
@@ -27,6 +31,14 @@ const CatecoryPage = () => {
             </ul>
           </nav>
         </header>
+        <section>
+            <h5 className="text-xl text-teal-950 capitalize py-5 font-bold" >products for {section} :</h5>
+            <div className="">
+                
+            </div>
+        </section>
+
+      </aside>
     </div>
   )
 }
