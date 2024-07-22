@@ -1,7 +1,7 @@
 "use client"
 import { useSearchParams } from "next/navigation"
 import { categoriesData } from "../../data/categoriesData"
-import { SubcategoryCard } from "../../ui/categories/subcategoryCard";
+import { SubcategoryCard } from "../../ui/categoriesCard/subcategoryCard";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../lip/fetchData";
 import { ProductCard } from "../../ui/productCard/ProductCard";

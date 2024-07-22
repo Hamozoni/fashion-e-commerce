@@ -15,7 +15,6 @@ import { AppContext } from "../../app/contextProvider";
 
 const className = {
     card: ' rounded-lg border border-gray-100 cursor-pointer hover:border-gray-200 relative',
-    image: ' max-h-[280px] object-cover ',
     heart: 'absolute top-2 left-0 w-full flex items-center justify-between p-4',
 };
 
@@ -68,12 +67,11 @@ export function ProductCard({product}) {
                     style={imageStyle}
                     className=" min-h-[280px] max-h-[280px] flex items-center justify-center overflow-hidden">
                         <Image
-                            style={imageStyle} 
-                            className={className.image}
+                            className='object-contain'
                             src={productDetails?.imagePath}
                             alt='product image'
                             width={imageWidth}
-                            height={innerWidth > 630 ? 280 : 200}
+                            height={cardHeight}
                         />
                 </div>
             </Link>
@@ -96,7 +94,7 @@ export function ProductCard({product}) {
                     >{productDetails?.name}
                 </Link>
             </div>
-            <div className="flex items-center my-2 overflow-x-auto">
+            <div className="flex items-center my-3 overflow-x-auto">
                 <SizesOptions 
                     product={productDetails} 
                     setProduct={setProductDetails}

@@ -9,7 +9,7 @@ import Link from "next/link";
 
 import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../../components/buttons";
 
-export const Products = ({category,page,onClick})=> {
+export const CategoryProducts = ({category,page,onClick})=> {
 
     const [products,setProducts] = useState([]);
     const [isLoading,setisLoading] = useState(false);

@@ -1,5 +1,6 @@
 
 import {ProductCard} from "../../ui/productCard/ProductCard";
+import {MoreProducts} from "./moreProducts"
 
 import {productsByCategoryAction} from "../../actions/products/productsByCategory"
 
@@ -33,6 +34,7 @@ async function page({params,searchParams}) {
                     )
                 }
             </div>
+            <MoreProducts category={section} />
 
         </section>
     )

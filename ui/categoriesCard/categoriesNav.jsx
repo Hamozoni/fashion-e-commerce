@@ -4,7 +4,7 @@ import { useState } from "react";
 import {categoriesData} from "../../data/categoriesData";
 import { SubcategoryCard } from "./subcategoryCard";
 
-export const Categories = ()=> {
+export const CategoriesNav = ()=> {
 
     const [category,setCategory] = useState(categoriesData[0]?.name);
     const [subCategory,setSubCategory] = useState(categoriesData[0]?.sub);

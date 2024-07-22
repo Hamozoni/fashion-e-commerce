@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {Products} from "./products";
+import {CategoryProducts} from "./categoryProducts";
 import Image from "next/image";
 
 import offerImage from "../../public/categories/sliders/offer-2.webp"
@@ -33,17 +33,17 @@ export const CategoriesProducts = ()=> {
               <Image width={width} height={200} src={offerImage}  alt="offer"/>
            </div>
             <div className="">
-                <Products 
+                <CategoryProducts 
                     category='men' 
                     page={menPage} 
                     onClick={handleMenPage}
                     />
-                <Products 
+                <CategoryProducts 
                     category='women' 
                     page={womenPage}
                     onClick={handleWomenPage}
                     />
-                <Products 
+                <CategoryProducts 
                     category='kids' 
                     page={kidsPage}
                     onClick={handleKidsPage}
