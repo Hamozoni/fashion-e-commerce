@@ -66,7 +66,7 @@ export function ProductCard({product}) {
             <Link href={linkHref}>
                 <div
                     style={imageStyle}
-                    className=" min-h-[280px] max-h-[280px] flex items-center justify-center overflow-hidden">
+                    className=" min-h-[280px] max-h-[280px] flex items-center justify-center bg-white overflow-hidden">
                         <Image
                             className='object-contain'
                             src={productDetails?.imagePath}

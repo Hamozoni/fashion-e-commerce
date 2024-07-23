@@ -13,7 +13,7 @@ async function page({params,searchParams}) {
     return (
         <section className="p-4 lg:px-8">
             <header>
-                <h4 className="pb-3 capitalize font-bold text-xl text-green-800"> 
+                <h4 className="pb-3 capitalize font-bold text-xl text-teal-950 dark:text-teal-100"> 
                     {section} {sub} products:
                 </h4>
             </header>

@@ -21,7 +21,7 @@ export const SubCatories = ({subCategories,setIsSubCategories})=> {
                 <li 
                     onClick={()=> setIsSubCategories(false)}
                     key={name} 
-                    className="w-full border-2 border-gray-200 rounded-full mb-3 hover:bg-teal-100 hover:border-teal-400">
+                    className="w-full border border-gray-200 dark:border-stone-800 rounded-full mb-3 hover:bg-teal-100 dark:hover:bg-stone-800 hover:border-teal-400">
                     <Link 
                         className="flex items-center gap-3 p-1"
                         href={linkPath}>
@@ -32,7 +32,7 @@ export const SubCatories = ({subCategories,setIsSubCategories})=> {
                             height={40} 
                             alt={name}
                             />
-                        <h4 className="text-teal-800 font-bold text-lg">{name}</h4> 
+                        <h4 className="text-teal-900 dark:text-teal-50 font-normal text-lg">{name}</h4> 
                     </Link>
                 </li>
             ))
@@ -55,19 +55,12 @@ export const HeaderCategories = ()=> {
         return (
             <>
             <Overlay onClick={()=> setIsSubCategories(false)} />
-            <div className="fixed top-[70px] left-3 lg:left-8 border min-w-[300px] border-teal-100 shadow-md  rounded-md bg-gray-50 z-[70]">
+            <div className="fixed top-[70px] left-3 lg:left-8 border min-w-[300px] border-teal-100 shadow-md  rounded-md bg-gray-50 dark:bg-stone-950 z-[70]">
                <nav className="">
                    <div 
                        className="px-5 py-3 cursor-pointer"
                        onClick={()=> setIsSubCategories(false)}
                        ><GiTireIronCross />
-                   </div>
-                   <div className="relative p-3 gap-3">
-                       <div className="absolute top-0 left-0 w-full h-full bg-gradient-transparent"></div>
-                       <h3 
-                           className=" text-center text-teal-950 text-xl font-bold"
-                           >{categoryName} fashion
-                       </h3>
                    </div>
                    <SubCatories 
                         subCategories={subCategories}

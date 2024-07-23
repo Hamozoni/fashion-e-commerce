@@ -30,13 +30,13 @@ export const MobileMenu = () => {
     return (
       <>
          <Overlay onClick={()=> setIsCategory(false)} />
-        <div className="capitalize fixed min-w-fit left-0 z-[70] h-screen max-h-screen top-0 w-fit bg-gray-50">
+        <div className="capitalize fixed min-w-fit left-0 z-[70] h-screen max-h-screen top-0 w-fit bg-gray-50 dark:bg-stone-950">
             <header className="flex items-center justify-between p-3">
-                <h4 className="text-teal-950 text-xl font-bold">categories</h4>
-                <button><GiTireIronCross/></button>
+                <h4 className="text-teal-950 dark:text-teal-50 text-xl font-bold">categories</h4>
+                <button className="text-teal-950 dark:text-teal-50"><GiTireIronCross/></button>
             </header>
-            <div className="h-[500px] max-h-[500px] overflow-y-auto">
-              <ul className="py-3 h-fit min-h-fit">
+            <div className="h-[90%] max-h-[90%] overflow-y-auto">
+              <ul className="py-1 h-fit min-h-fit">
                   {
                       categoriesData?.map(({name,imagePath,sub},index)=>(
                         <li 
@@ -44,13 +44,13 @@ export const MobileMenu = () => {
                             className="p-3 min-w-[300px] w-[300px]" 
                             onClick={()=> handleSubCatgoryOpen(index)}
                             >
-                          <div className="flex items-center justify-between cursor-pointer rounded-md p-3 border-2 border-gray-200 hover:bg-gray-100">
+                          <div className="flex items-center justify-between cursor-pointer  px-3 pb-5 border-b border-gray-100 dark:border-stone-800">
                             <div className="flex items-center gap-2">
                               <Image className='rounded-md' src={imagePath} width={50} alt={name}/>
-                              <h5 className="text-teal-950 font-bold text-xl">{name} fashion</h5>
+                              <h5 className="text-teal-950 dark:text-teal-100 font-bold text-lg">{name} fashion</h5>
                             </div>
                               <button 
-                                  className={`${index === openedSubCategoyIndex ? 'rotate-90':''}`}
+                                  className={`${index === openedSubCategoyIndex ? 'rotate-90':''} text-teal-950 dark:text-teal-100`}
                                   >
                                     <IoIosArrowForward />
                               </button>
