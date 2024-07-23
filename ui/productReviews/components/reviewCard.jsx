@@ -2,7 +2,7 @@
 import { useContext, useState, useTransition } from "react";
 import Image from "next/image"
 // components
-import {ButtonWithIcon} from "../../../components/buttons";
+import {ButtonWithIcon} from "../../../buttons/buttons";
 import {RatingStars} from "./reviewsRating"
 // icons
 import { FaRegUser } from "react-icons/fa";
@@ -14,7 +14,7 @@ import {removeReviewAction} from "../../../actions/productReviews/removeReview";
 import {updatereviewAction} from "../../../actions/productReviews/updateReview";
 // context
 import { ReviewsContext } from "../reviewsContext";
-import Overlay from "../../../components/Overlay";
+import Overlay from "../../../models/Overlay";
 import { AppContext } from "../../../app/contextProvider";
 
 

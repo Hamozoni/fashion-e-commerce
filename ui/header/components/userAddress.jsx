@@ -2,10 +2,10 @@
 
 import { useContext, useState } from "react";
 import { IoLocationOutline } from "react-icons/io5";
-import Overlay  from "../../../components/Overlay"
-import AddressMap from "../../../components/AddressMap";
+import Overlay  from "../../../models/Overlay"
+import AddressMap from "../../../models/AddressMap";
 import { AppContext } from "../../../app/contextProvider";
-import { ButtonWithIcon } from "../../../components/buttons";
+import { ButtonWithIcon } from "../../../buttons/buttons";
 
 function UserAddress() {
 

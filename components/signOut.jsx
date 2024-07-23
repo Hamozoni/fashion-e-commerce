@@ -6,7 +6,7 @@ import { SyncLoader } from "react-spinners";
 
 import { signOutAction } from "../actions/auth/signOut";
 import { useContext, useTransition } from "react";
-import Overlay from "./Overlay";
+import Overlay from "../models/Overlay";
 import { useSession } from "next-auth/react";
 import { AppContext } from "../app/contextProvider";
 

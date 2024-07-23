@@ -7,7 +7,7 @@ import Loading from "../../app/loading";
 import { ProductCard } from "../productCard/ProductCard";
 import Link from "next/link";
 
-import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../../components/buttons";
+import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../../buttons/buttons";
 
 export const CategoryProducts = ({category,page,onClick})=> {
 

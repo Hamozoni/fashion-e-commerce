@@ -9,14 +9,14 @@ import { BsCartCheck } from "react-icons/bs";
 import { FaRegHeart  } from "react-icons/fa";
 import { GiTireIronCross } from "react-icons/gi";
 import { LuUserX2 } from "react-icons/lu";
-import { MdOutlineDarkMode } from "react-icons/md";
 // components
-import SignOut from "../../../components/signOut";
-import Languages from "./languages";
-import Overlay from "../../../components/Overlay";
+import SignOut from "../components/signOut";
+import Languages from "../ui/header/components/languages";
+import Overlay from "./Overlay";
+import {ThemeModel} from "./themeModel";
 // hooks
-import {AppContext} from "../../../app/contextProvider"
-import UserAddress from "./userAddress";
+import {AppContext} from "../app/contextProvider"
+import UserAddress from "../ui/header/components/userAddress";
 
 function HeaderUserBar() {
 
@@ -95,9 +95,7 @@ function HeaderUserBar() {
                             <li className={className.li} >
                             <IoLanguageSharp size={24} />  <Languages />
                             </li>
-                            <li className={className.li}>
-                                <MdOutlineDarkMode size={24} /> appearance
-                            </li>
+                            <ThemeModel />
                             <li className={className.li}>
                                 <LuUserX2  size={24} /> delete my account
                             </li>

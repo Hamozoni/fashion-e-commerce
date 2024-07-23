@@ -9,7 +9,7 @@ import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 
 // components
-import Overlay from "../../../components/Overlay";
+import Overlay from "../../../models/Overlay";
 import ZodError  from "../../../components/zodError";
 
 // validations
@@ -22,7 +22,7 @@ import { useCurrentUser } from "../../../hooks/useCurrentUser";
 import { PostData } from "../../../lip/fetchData";
 // loading
 import { PulseLoader } from "react-spinners";
-import { ButtonWithIcon } from "../../../components/buttons";
+import { ButtonWithIcon } from "../../../buttons/buttons";
 // context
 import { ReviewsContext } from "../reviewsContext";
 import { FormModelProduct } from "./formModelProduct";

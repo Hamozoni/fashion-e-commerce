@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useContext } from "react";
 // components
-import HeaderUserBar from "./components/HeaderUserBar";
+import HeaderUserBar from "../../models/HeaderUserBar";
 import SearchBar from "./components/SearchBar";
 import UserAddress from "./components/userAddress";
 import HeaderCart from "./components/headerCart";

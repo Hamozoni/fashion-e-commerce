@@ -7,7 +7,7 @@ import {Features} from "./Features"
 import {AddToCart}from "./AddToCart";
 import {Specifications}from "./Specifications";
 import {ImagesGalary} from "./ImagesGalary";
-import {AddToListBtn }from "../../../components/addToListBtn";
+import {AddToListBtn }from "../../../buttons/addToListBtn";
 // lip
 import getCurrency from "../../../lip/getCurrency";
 import { ReviewsAverage } from "../../../ui/productReviews/components/reviewsAverage";

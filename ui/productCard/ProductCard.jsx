@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {useContext, useMemo, useState } from "react";
 // component
-import {AddToListBtn} from "../../components/addToListBtn";
+import {AddToListBtn} from "../../buttons/addToListBtn";
 import {AddToCart} from "../../app/product/_components/AddToCart";
 import {ColorOptions} from "../../app/product/_components/SelectColor"
 import {SizesOptions} from "../../app/product/_components/SelectSize"

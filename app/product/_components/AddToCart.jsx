@@ -6,8 +6,8 @@ import { FaCartPlus } from "react-icons/fa6";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import {removeItemFromCart, addToCart } from "../../../store/features/cartSlice";
 // component
-import QuantityBtn from "../../../components/QuantityBtn";
-import { ButtonWithIcon } from "../../../components/buttons";
+import QuantityBtn from "../../../buttons/QuantityBtn";
+import { ButtonWithIcon } from "../../../buttons/buttons";
 
 export function AddToCart({product,isFromCard=false}) {
 

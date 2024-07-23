@@ -2,7 +2,7 @@
 import { useState } from "react";
 // components
 import { SubCatories } from "./headerCategories";
-import Overlay from "../../../components/Overlay";
+import Overlay from "../../../models/Overlay";
 // icons
 import { TiThMenuOutline } from "react-icons/ti";
 import { GiTireIronCross } from "react-icons/gi";

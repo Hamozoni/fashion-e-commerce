@@ -18,7 +18,7 @@ import { useCurrentUser } from "../hooks/useCurrentUser";
 // server actions
 import {addNewAddress} from "../actions/user/addNewAddress"
 import { useSession } from "next-auth/react";
-import { ButtonWithIcon } from "./buttons";
+import { ButtonWithIcon } from "../buttons/buttons";
 
 function AddressMap({onClick}) {
 
