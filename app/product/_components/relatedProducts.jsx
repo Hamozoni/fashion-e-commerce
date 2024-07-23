@@ -1,9 +1,11 @@
 "use client"
-
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+// fetch api
 import { fetchData } from "../../../lip/fetchData";
-import { ProductCard } from "../../../cards/ProductCard";
-import Loading from "../../loading"
+// components
+import { ProductCard } from "../../../ui/cards/productCard";
+// loader
+import Loading from "../../loading";
 
 export const RelatedProducts = ({id})=> {
 

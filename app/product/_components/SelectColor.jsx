@@ -1,6 +1,6 @@
 "use client"
 import { useContext } from "react";
-import { ProductDetailsContext } from "./ProductDetails";
+import { ProductDetailsContext } from "./poductDetails";
 
 export const ColorOptions = ({product,setProduct})=> {
     return (

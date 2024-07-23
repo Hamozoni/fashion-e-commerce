@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 
 import {fetchData} from '../../lip/fetchData';
 import {Loading} from "../../components/Loading";
-import {ProductCard} from "../../ui/productCard/ProductCard"
-
+import {ProductCard} from "../../ui/cards/productCard";
 
 const SearchPage = ()=> {
 

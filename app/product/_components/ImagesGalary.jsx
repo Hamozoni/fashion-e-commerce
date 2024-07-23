@@ -1,7 +1,9 @@
 
 import Image from "next/image";
 import { useContext} from "react";
-import { ProductDetailsContext } from "./ProductDetails";
+
+import { ProductDetailsContext } from "./poductDetails";
+
 export function ImagesGalary() {
 
     const {product:{images,imagePath,colorName,color},setProduct} = useContext(ProductDetailsContext)

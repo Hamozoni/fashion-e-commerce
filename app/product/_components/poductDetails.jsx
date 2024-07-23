@@ -1,23 +1,23 @@
 "use client"
 import { createContext, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 // components
-import {SelectColor} from "./SelectColor";
-import {SelectSize} from "./SelectSize";
-import {Features} from "./Features"
-import {AddToCart}from "../../../buttons/AddToCart";
-import {Specifications}from "./Specifications";
-import {ImagesGalary} from "./ImagesGalary";
-import {AddToListBtn }from "../../../buttons/addToListBtn";
+import {SelectColor} from "./selectColor";
+import {SelectSize} from "./selectSize";
+import {Features} from "./features"
+import {AddToCart}from "../../../ui/buttons/addToCart";
+import {Specifications}from "./specifications";
+import {ImagesGalary} from "./imagesGalary";
+import {AddToListBtn }from "../../../ui/buttons/addToListBtn";
 // lip
-import getCurrency from "../../../lip/getCurrency";
+import {getCurrency} from "../../../lip/getCurrency";
 import { ReviewsAverage } from "../../../ui/productReviews/components/reviewsAverage";
 // reviews context component
-import ReviewsContextProvider from "../../../ui/productReviews/reviewsContext"
-import { useSearchParams } from "next/navigation";
+import {ReviewsContextProvider} from "../../../ui/productReviews/reviewsContext"
 
 export const ProductDetailsContext =  createContext(null);
 
-function ProductDetails({data}) {
+export function ProductDetails({data}) {
 
     const [product,setProduct]= useState(data);
 
@@ -91,6 +91,4 @@ function ProductDetails({data}) {
                 </div>
         </ProductDetailsContext.Provider>
   )
-}
-
-export default ProductDetails;
+};

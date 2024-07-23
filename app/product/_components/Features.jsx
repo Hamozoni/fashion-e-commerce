@@ -1,3 +1,4 @@
+// icons
 import { BsCashCoin } from "react-icons/bs";
 import { TbArrowBackUp } from "react-icons/tb";
 import { CiDeliveryTruck } from "react-icons/ci";

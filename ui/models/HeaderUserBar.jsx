@@ -16,7 +16,7 @@ import {Overlay} from "./overlay";
 import {ThemeModel} from "./themeModel";
 import {UserAddress} from "../header/components/userAddress";
 // hooks
-import {AppContext} from "../app/contextProvider"
+import {AppContext} from "../../app/contextProvider"
 
 function HeaderUserBar() {
 
