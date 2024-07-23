@@ -15,8 +15,8 @@ export const ButtonWithIcon = ({
     const className = {
         flex: 'flex items-center justify-center shadow-md hover:shadow-none gap-2 font-bold text-sm w-full py-2 px-4 border capitalize rounded-full hover:scale-95',
         primary: 'bg-teal-200 dark:bg-teal-950  border-teal-400 dark:border-teal-800 hover:bg-teal-100 dark:hover:bg-teal-900 text-green-900 dark:text-teal-100',
-        delete: 'bg-rose-100  border-rose-200 hover:bg-rose-50 text-rose-700',
-        save: 'bg-teal-50  border-teal-300 hover:bg-teal-100 text-teal-600',
+        delete: 'border-rose-200 dark:border-rose-800 text-rose-700',
+        save: 'border-teal-300 dark:border-teal-950 text-teal-600',
     }
 
   return (

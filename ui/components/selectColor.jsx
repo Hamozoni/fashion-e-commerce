@@ -25,7 +25,7 @@ export const ColorOptions = ({product,setProduct})=> {
                             return {...prev,...modified};
                         })}
                         >
-                            <div style={{backgroundColor: color}} className="w-4 h-4 rounded-full">
+                            <div style={{backgroundColor: color}} className="w-4 h-4 rounded-full border border-teal-700 dark:border-teal-50">
 
                             </div>
                     </li>

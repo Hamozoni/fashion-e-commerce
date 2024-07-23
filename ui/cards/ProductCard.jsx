@@ -102,7 +102,7 @@ export function ProductCard({product}) {
                     />
             </div>
             <div className="sm:flex items-center justify-between gap-3">
-                <h2 className="text-sm mb-2 sm:mb-0 sm:text-lg font-bold text-teal-900 dark:text-teal-100 text-center ">
+                <h2 className="text-sm mb-2 sm:mb-0 sm:text-[16px] font-medium text-teal-900 dark:text-teal-100 text-center ">
                     {getCurrency(productDetails?.priceInHalala)}
                 </h2>
                 <AddToCart 
