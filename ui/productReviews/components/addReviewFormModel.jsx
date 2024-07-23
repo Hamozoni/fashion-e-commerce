@@ -10,7 +10,7 @@ import { FcCancel } from "react-icons/fc";
 
 // components
 import Overlay from "../../../models/Overlay";
-import ZodError  from "../../../components/zodError";
+import ZodError  from "../../components/zodError";
 
 // validations
 import {ratingSchema} from "../../../validationSchemas/ratingSchema";

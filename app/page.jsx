@@ -1,6 +1,6 @@
 
 import {HomeSlider} from "../ui/home/homeSlider";
-import {CategoriesNav} from "../ui/categoriesCard/categoriesNav";
+import {CategoriesNav} from "../ui/components/categoriesNav";
 import {CategoriesProducts} from "../ui/home/categoriesProducts"
 
 

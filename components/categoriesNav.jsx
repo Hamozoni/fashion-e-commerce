@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import {categoriesData} from "../../data/categoriesData";
-import { SubcategoryCard } from "./subcategoryCard";
+import { SubcategoryCard } from "../cards/subcategoryCard";
 
 export const CategoriesNav = ()=> {
 
