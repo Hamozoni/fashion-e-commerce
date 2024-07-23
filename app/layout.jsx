@@ -19,7 +19,7 @@ export default async function RootLayout({ children }) {
     <SessionProvider session={session}>
       <html lang="en">
        <ContexProvider>
-          <body>
+          <body className="dark:bg-black">
             <ReduxProvider>
               <main>
                   <MainHeader />

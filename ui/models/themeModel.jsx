@@ -5,6 +5,14 @@ import { useContext, useState } from "react";
 import {AppContext} from "../../app/contextProvider";
 // icons
 import { IoIosArrowForward ,IoIosArrowDown} from "react-icons/io";
+import { MdOutlineDarkMode,MdDarkMode ,MdLightMode,MdOutlineDevicesOther} from "react-icons/md";
+import { GiCheckMark } from "react-icons/gi";
+
+const themeOptions = [
+    {name: 'user device',Icon: MdOutlineDevicesOther},
+    {name: 'dark',Icon: MdDarkMode},
+    {name: 'light',Icon: MdLightMode},
+];
 
 export const ThemeModel = ()=> {
 
@@ -17,16 +25,16 @@ export const ThemeModel = ()=> {
     };
 
     const className = {
-        li: "px-4 py-3 capitalize hover:bg-gray-200 text-lg font-medium text-teal-950 cursor-pointer"
+        li: "capitalize px-4 py-2  text-sm font-bold text-teal-950 cursor-pointer flex items-center justify-between"
     }
 
     return (
-            <li className={className.li}>
+            <li className=''>
                 <button
                     onClick={()=> setIsTheme(!isTheme)}
-                    className='flex items-center justify-between'>
-                   <div className="flex items-center gap-3">
-                       <MdOutlineDarkMode size={24} /> appearance
+                    className='border-b border-b-gray-200 flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100  text-lg font-medium text-teal-950 '>
+                   <div className="flex items-center gap-3 capitalize">
+                       <MdOutlineDarkMode size={24} /> theme: <small><b>{theme}</b></small>
                     </div> 
                     {
                         isTheme ? 
@@ -36,22 +44,27 @@ export const ThemeModel = ()=> {
                 </button>
                 {
                     isTheme ? 
-                    <ul>
-                            <li 
-                                className={className.li}
-                                onClick={()=> themeHandler('user device')}
-                                >user device
-                            </li>
-                            <li 
-                                className={className.li}
-                                onClick={()=> themeHandler('dark')}
-                                >dark
-                            </li>
-                            <li 
-                                className={className.li}
-                                onClick={()=> themeHandler('light')}
-                                >light
-                            </li>
+                    <ul className="bg-white border-b border-b-gray-200 dark:bg-black">
+
+                        {
+                            themeOptions?.map(({name,Icon})=> (
+                                <li 
+                                    className={`${theme === name ? 'bg-gray-300' :'hover:bg-gray-200'} ${className.li}`}
+                                    key={name} 
+                                    onClick={()=> themeHandler(name)}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                           <Icon />
+                                           {name}
+                                        </div>
+                                        {
+                                            theme === name ?
+                                            <GiCheckMark />
+                                            : null
+                                        }
+                                </li>
+                            ))
+                        }
                     </ul>
                     : null
 

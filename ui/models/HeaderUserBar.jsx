@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import Image from "next/image";
 // icons
-import {IoLanguageSharp,IoCartOutline} from "react-icons/io5";
+import {IoCartOutline} from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
 import { FaRegHeart  } from "react-icons/fa";

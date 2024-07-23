@@ -53,7 +53,8 @@ const ContextProvider = ({children}) => {
         }
      }else {
         useDevice();
-     }
+     };
+     console.log( document.documentElement.classList)
     };
 
     useEffect(handleTheme,[theme]);
