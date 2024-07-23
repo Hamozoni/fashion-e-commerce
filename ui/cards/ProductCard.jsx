@@ -5,8 +5,8 @@ import {useContext, useMemo, useState } from "react";
 // component
 import {AddToListBtn} from "../buttons/addToListBtn";
 import {AddToCart} from "../buttons/AddToCart";
-import {ColorOptions} from "../../app/product/_components/selectColor"
-import {SizesOptions} from "../../app/product/_components/selectSize"
+import {ColorOptions} from "../../app/product/_components/SelectColor"
+import {SizesOptions} from "../../app/product/_components/SelectSize"
 // lip
 import {getCurrency} from "../../lip/getCurrency";
 import { AppContext } from "../../app/contextProvider";

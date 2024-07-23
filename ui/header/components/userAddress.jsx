@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 // icons
 import { IoLocationOutline } from "react-icons/io5";
 // overlay model
-import {Overlay}  from "../../models/overlay";
+import {Overlay}  from "../../models/Overlay";
 // map model
 import {AddressMap} from "../../models/addressMap";
 // app context

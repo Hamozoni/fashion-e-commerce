@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 // server actions
 import { signOutAction } from "../../actions/auth/signOut";
 // overlay model
-import {Overlay} from "../models/overlay";
+import {Overlay} from "../models/Overlay";
 // app context
 import { AppContext } from "../../app/contextProvider";
 

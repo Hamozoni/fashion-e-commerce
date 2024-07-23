@@ -9,7 +9,7 @@ import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 
 // components
-import {Overlay} from "./overlay";
+import {Overlay} from "./Overlay";
 import {ZodError}  from "../components/zodError";
 import { ButtonWithIcon } from "../buttons/buttons";
 import {ReviewModelProduct } from "./reviewModelProduct";

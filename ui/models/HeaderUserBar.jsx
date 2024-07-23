@@ -11,14 +11,13 @@ import { GiTireIronCross } from "react-icons/gi";
 import { LuUserX2 } from "react-icons/lu";
 // components
 import {SignOut} from "../buttons/signOut";
-import {Languages} from "../header/components/languages";
-import {Overlay} from "./overlay";
+import {Overlay} from "./Overlay";
 import {ThemeModel} from "./themeModel";
 import {UserAddress} from "../header/components/userAddress";
 // hooks
 import {AppContext} from "../../app/contextProvider"
 
-function HeaderUserBar() {
+export function HeaderUserBar() {
 
     const [isAccount,setIsAccount] = useState(false)
     const {currentUser} = useContext(AppContext);
@@ -92,9 +91,6 @@ function HeaderUserBar() {
                             <li className={className.li} >
                             <FaRegHeart size={24} />  <Link href='/likedList'>my wistList</Link>
                             </li>
-                            <li className={className.li} >
-                            <IoLanguageSharp size={24} />  <Languages />
-                            </li>
                             <ThemeModel />
                             <li className={className.li}>
                                 <LuUserX2  size={24} /> delete my account
@@ -113,6 +109,4 @@ function HeaderUserBar() {
         </div>
     </div>
   )
-}
-
-export default HeaderUserBar
+};

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 // components
 import { SubCatories } from "../header/components/headerCategories";
-import {Overlay} from "./overlay";
+import {Overlay} from "./Overlay";
 // icons
 import { TiThMenuOutline } from "react-icons/ti";
 import { GiTireIronCross } from "react-icons/gi";
@@ -11,13 +11,13 @@ import { IoIosArrowForward } from "react-icons/io";
 // categories data
 import { categoriesData } from "../../data/categoriesData";
 
-const MobileMenu = () => {
+export const MobileMenu = () => {
   
   const [isCategory,setIsCategory] = useState(false);
   const [openedSubCategoyIndex,setOpenedSubCategoyIndex] = useState(null)
   
   const MobileCategories = ()=> {
-    
+
     const handleSubCatgoryOpen = (index)=> {
       if(index === openedSubCategoyIndex) {
         setOpenedSubCategoyIndex(null);
@@ -86,6 +86,4 @@ const MobileMenu = () => {
         }
     </section>
   )
-}
-
-export default MobileMenu
+};

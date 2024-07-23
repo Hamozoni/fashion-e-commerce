@@ -55,4 +55,4 @@ export const MainHeader = ()=> {
         </div>
     </header>
   )
-}
+};
