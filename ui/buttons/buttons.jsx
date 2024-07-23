@@ -39,7 +39,7 @@ export const ButtonWithIcon = ({
 };
 
 const className = {
-    nextPrevBtn : "absolute cursor-pointer hover:scale-110 hover:border-teal-300 top-1/2 -translate-y-1/2 w-[40px] h-[40px] border-2 rounded-full flex items-center justify-center"
+    nextPrevBtn : "absolute cursor-pointer hover:scale-110 border-gray-200 hover:border-teal-300 top-1/2 -translate-y-1/2 w-[40px] h-[40px] border-2 rounded-full flex items-center justify-center"
 };
 
 export const ScrollLeftBtn = ({onClick,leftScroll})=> {
@@ -72,7 +72,7 @@ export const LoadMoreBtn = ({isLoadingMore,onClick})=> {
         isLoadingMore ? <PulseLoader color="#115e59"/> :
         <button
             onClick={onClick} 
-            className=" capitalize text-xl text-teal-800 font-medium hover:scale-95"                                            >load more
+            className=" capitalize text-xl text-teal-800 dark:text-teal-100 font-medium hover:scale-95"                                            >load more
         </button>
     )
 }

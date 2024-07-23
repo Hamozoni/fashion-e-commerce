@@ -36,7 +36,7 @@ export function ProductCard({product}) {
     
     const { innerWidth } = useContext(AppContext);
     const imageWidth = innerWidth < 400 ? 160 : innerWidth  <  440 ?  180 : innerWidth < 460 ?  200 : 220;
-    const cardHeight = innerWidth > 630 ? 280 : 200;
+    const cardHeight = innerWidth < 400 ? 200 : innerWidth < 600 ? 260 : 280;
     
 
     const imageStyle = useMemo(()=> {

@@ -30,7 +30,7 @@ export const MobileMenu = () => {
     return (
       <>
          <Overlay onClick={()=> setIsCategory(false)} />
-        <div className="capitalize fixed min-w-fit left-3 z-[70] lg:left-8 top-[70px] w-fit bg-gray-50 rounded-md border border-teal-100 shadow-md">
+        <div className="capitalize fixed min-w-fit left-0 z-[70] h-screen max-h-screen top-0 w-fit bg-gray-50">
             <header className="flex items-center justify-between p-3">
                 <h4 className="text-teal-950 text-xl font-bold">categories</h4>
                 <button><GiTireIronCross/></button>
@@ -71,13 +71,10 @@ export const MobileMenu = () => {
       </>
     )
   }
-    const className = {
-        menuContainer: 'flex items-center justify-center fixed left-0 z-50 w-full bg-green-100',
-    };
 
   return (
     <section>
-        <h3 onClick={()=> setIsCategory(true)} className="cursor-pointer">
+        <h3 onClick={()=> setIsCategory(true)} className="cursor-pointer text-teal-900 dark:text-teal-100">
             <TiThMenuOutline size={26} />
         </h3>
         {
