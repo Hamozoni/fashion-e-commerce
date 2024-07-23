@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Link from "next/link";
 // components
 import{ QuantityBtn} from "../buttons/quantityBtn";
-import { ButtonWithIcon } from "../../../components/buttons";
+import { ButtonWithIcon } from "../buttons/buttons";
 // redux store
 import { useAppDispatch } from "../../store/store";
 import { removeItemFromCart } from "../../store/features/cartSlice";

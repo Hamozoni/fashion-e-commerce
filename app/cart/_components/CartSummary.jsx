@@ -8,7 +8,7 @@ import masterCLogo from "../../../public/paymentLogos/logo-mc.webp";
 import paypalLogo from "../../../public/paymentLogos/logo-paypal.webp";
 import applePayLogo from "../../../public/paymentLogos/logo-applepay.webp";
 // components
-import { ButtonWithIcon } from "../../../components/buttons";
+import { ButtonWithIcon } from "../../../ui/buttons/buttons";
 // icons
 import { MdOutlineLocalShipping } from "react-icons/md";
 import {CartDetails} from "./cartDetails"

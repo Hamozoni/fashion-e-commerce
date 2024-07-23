@@ -11,9 +11,9 @@ import { GiTireIronCross } from "react-icons/gi";
 import { LuUserX2 } from "react-icons/lu";
 // components
 import {SignOut} from "../buttons/signOut";
-import {Overlay} from "./Overlay";
+import {Overlay} from "./overlay";
 import {ThemeModel} from "./themeModel";
-// import {UserAddress} from "../header/components/userAddress";
+import {UserAddress} from "../header/components/userAddress";
 // hooks
 import {AppContext} from "../../app/contextProvider"
 
@@ -58,9 +58,6 @@ export function HeaderUserBar() {
                 <Overlay onClick={()=> setIsAccount(false)} />
                     <div className={className.ul}>
                         <header className="p-4 mb-4 border-b border-teal-100 dark:border-teal-950">
-                            {/* <h3 className="mb-3 text-teal-800 dark:text-teal-100 cursor-pointer">
-                                <GiTireIronCross/>
-                            </h3> */}
                             <div className="flex">
                                 <div className="">
                                     {
@@ -72,7 +69,6 @@ export function HeaderUserBar() {
                                 <div className="">
                                     <h4 className="text-teal-950 dark:text-teal-50 font-bold text-lg pl-3">{currentUser?.name}</h4>
                                     <p className="text-teal-800 dark:text-teal-100 font-bold text-sm pl-3"> {currentUser?.email}</p>
-                                    {/* <UserAddress /> */}
                                 </div>
                             </div>
                         </header>
@@ -92,6 +88,9 @@ export function HeaderUserBar() {
                             <FaRegHeart size={24} />  <Link href='/likedList'>my wistList</Link>
                             </li>
                             <ThemeModel />
+                            <li className={className.li}>
+                                  <UserAddress />
+                            </li>
                             <li className={className.li}>
                                 <LuUserX2  size={24} /> delete my account
                             </li>

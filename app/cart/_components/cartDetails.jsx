@@ -1,6 +1,6 @@
 "use client";
 import { useAppSelector } from "../../../store/store";
-import getCurrency from "../../../lip/getCurrency";
+import {getCurrency }from "../../../lip/getCurrency";
 
 
 export const CartDetails = () => {

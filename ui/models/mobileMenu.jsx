@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 // components
 import { SubCatories } from "../header/components/headerCategories";
-import {Overlay} from "./Overlay";
+import {Overlay} from "./overlay";
 // icons
 import { TiThMenuOutline } from "react-icons/ti";
 import { GiTireIronCross } from "react-icons/gi";

@@ -1,21 +1,18 @@
 "use client";
-import { useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import Image from "next/image";
-// icons
-import { IoIosArrowForward ,IoIosArrowBack} from "react-icons/io";
+
 // data
-import {categoriesData} from "../../data/categoriesData"
+import {categoriesData} from "../../data/categoriesData";
+import { ScrollLeftBtn, ScrollRightBtn } from "../buttons/buttons";
 
 const cateLength = categoriesData.length
-// tailwind class
-const className = {
-   prevNextBtn: ' absolute top-1/2  -translate-y-1/2 flex justify-center items-center p-3 rounded-full bg-white hover:scale-110 hover:text-teal-900 border hover:border-teal-300 hover:bg-teal-50'
-}
 
 export function HomeSlider() {
 
-    const [sliderIndex,setSliderIndex] = useState(0);
+    const themeMode = document.documentElement.classList.contains('dark')
 
+    const [sliderIndex,setSliderIndex] = useState(0);
     const handleNext = ()=> {
         if(sliderIndex <  cateLength - 1) {
             setSliderIndex(prev=> prev + 1)
@@ -61,7 +58,9 @@ export function HomeSlider() {
 
                 </div>
             </div>
-            <div className="absolute left-0 top-0 w-full h-vh bg-gradient-transparent" ></div>
+            <div 
+                className={`${themeMode ? 'bg-gradient-transparent-dark': 'bg-gradient-transparent'} absolute left-0 top-0 w-full h-vh`} 
+                ></div>
         </div>
         <div className=" absolute left-0 top-0 w-full h-full flex items-center justify-center">
             <div className="">
@@ -71,10 +70,10 @@ export function HomeSlider() {
                             categoriesData?.map(({name,dec})=> (
                                 <section key={name} className="min-w-full p-4 font-extrabold lg:p-8 capitalize text-center text-teal-950 ">
                                     <h2 
-                                        className="text-xl lg:text-5xl"
+                                        className="text-2xl sm:text-4xl text-teal-950 dark:text-teal-50"
                                         >{name} fashion
                                     </h2>
-                                    <p className="text-md lg:text-2xl my-4 max-w-[580px] mx-auto">{dec}</p>
+                                    <p className="text-lg sm:text-2xl text-teal-900 dark:text-teal-100 my-4 max-w-[580px] mx-auto">{dec}</p>
                                     <button
                                         className="text-xl  p-2 px-5 capitalize rounded-full border border-teal-200 bg-teal-50 hover:scale-105"
                                         >shop now
@@ -97,12 +96,14 @@ export function HomeSlider() {
 
             </div>
         </div>
-        <button onClick={handleNext} className={`${className.prevNextBtn} right-3 lg:right-8`}>
-            <IoIosArrowForward size={20}/>
-        </button>
-        <button onClick={handlePrev} className={`${className.prevNextBtn} left-3 lg:left-8`}>
-            <IoIosArrowBack size={20} />
-        </button>
+        <ScrollLeftBtn 
+            onClick={handleNext} 
+            leftScroll={10} 
+            />
+         <ScrollRightBtn 
+            onClick={handlePrev} 
+            leftScrollEnds={10} 
+            />
     </div>
   )
 }

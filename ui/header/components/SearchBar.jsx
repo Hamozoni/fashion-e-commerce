@@ -4,7 +4,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import { useContext, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppContext } from "../../../app/contextProvider";
-import {Overlay} from "../../models/Overlay";
+import {Overlay} from "../../models/overlay";
 
 export function SearchBar() {
 
@@ -17,7 +17,7 @@ export function SearchBar() {
 
   const className = {
     flex : `flex items-center`,
-    searchBox: 'rounded-full border border-teal-50 dark:border-teal-800 bg-white dark:bg-teal-950 flex gap-2 items-center w-full p-1',
+    searchBox: 'bg-white dark:bg-black flex gap-2 items-center w-full p-1',
     serchBtn: 'min-w-fit rounded-full border-2 border-teal-200 dark:border-teal-900 text-teal-800 dark:text-teal-100 py-2.5 px-6 min-h-full'
   };
 

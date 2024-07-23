@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 // icons
 import { IoLocationOutline } from "react-icons/io5";
 // overlay model
-import {Overlay}  from "../../models/Overlay";
+import {Overlay}  from "../../models/overlay";
 // map model
 import {AddressMap} from "../../models/addressMap";
 // app context
@@ -20,7 +20,7 @@ export function UserAddress() {
     const [isUpdateAddress,setIsUpdateAddress] = useState(false);
     
     const className = {
-        delivery: 'flex items-center text-sm font-medium cursor-pointer rounded-full border border-teal-50 p-2 text-teal-900 hover:text-teal-700 hover:bg-teal-50 hover:font-medium line-clamp-1'
+        delivery: 'flex items-center gap-3 text-sm font-medium cursor-pointer  border-teal-50 text-teal-900 dark:text-teal-100 hover:text-teal-700 dark:hover:text-teal-50 line-clamp-1'
     }
 
   return (
@@ -33,12 +33,12 @@ export function UserAddress() {
                         className={className.delivery} 
                         onClick={()=> setIsUpdateAddress(true)}
                         > 
-                        <IoLocationOutline size={22} />
+                        <IoLocationOutline size={24} />
                         {currentUser?.address?.neighborhood}
                     </button>
                     :
                     <button className={className.delivery} onClick={()=> setIsMapOpen(true)}> 
-                        <IoLocationOutline size={22} /> delivery to ?
+                        <IoLocationOutline size={24} /> delivery to ?
                     </button>
                 }
             </div>

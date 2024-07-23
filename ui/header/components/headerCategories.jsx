@@ -5,7 +5,7 @@ import { useState } from "react";
 // categories data
 import { categoriesData } from "../../../data/categoriesData";
 // components
-import {Overlay} from "../../models/Overlay";
+import {Overlay} from "../../models/overlay";
 // icons
 import { GiTireIronCross } from "react-icons/gi";
 // styles
