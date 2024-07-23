@@ -5,8 +5,9 @@ import { useContext, useState } from "react";
 import {AppContext} from "../../app/contextProvider";
 // icons
 import { IoIosArrowForward ,IoIosArrowDown} from "react-icons/io";
-import { MdOutlineDarkMode,MdDarkMode ,MdLightMode,MdOutlineDevicesOther} from "react-icons/md";
+import { MdDarkMode ,MdLightMode,MdOutlineDevicesOther} from "react-icons/md";
 import { GiCheckMark } from "react-icons/gi";
+import { IoInvertModeOutline } from "react-icons/io5";
 
 const themeOptions = [
     {name: 'user device',Icon: MdOutlineDevicesOther},
@@ -25,16 +26,17 @@ export const ThemeModel = ()=> {
     };
 
     const className = {
-        li: "capitalize px-4 py-2  text-sm font-bold text-teal-950 cursor-pointer flex items-center justify-between"
+        li: "capitalize px-4 py-2  text-sm font-bold text-teal-950 dark:text-teal-100 cursor-pointer flex items-center justify-between",
+        btn: "border-b border-b-gray-200 dark:border-b-teal-950 flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-teal-950 text-sm font-medium text-teal-950 dark:text-teal-100 "
     }
 
     return (
             <li className=''>
                 <button
                     onClick={()=> setIsTheme(!isTheme)}
-                    className='border-b border-b-gray-200 flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100  text-lg font-medium text-teal-950 '>
+                    className={className.btn}>
                    <div className="flex items-center gap-3 capitalize">
-                       <MdOutlineDarkMode size={24} /> theme: <small><b>{theme}</b></small>
+                       <IoInvertModeOutline size={24} /> theme: <small><b>{theme}</b></small>
                     </div> 
                     {
                         isTheme ? 
@@ -44,12 +46,12 @@ export const ThemeModel = ()=> {
                 </button>
                 {
                     isTheme ? 
-                    <ul className="bg-white border-b border-b-gray-200 dark:bg-black">
+                    <ul className="bg-white dark:bg-black border-b border-b-gray-200 dark:border-b-teal-950 ">
 
                         {
                             themeOptions?.map(({name,Icon})=> (
                                 <li 
-                                    className={`${theme === name ? 'bg-gray-300' :'hover:bg-gray-200'} ${className.li}`}
+                                    className={`${theme === name ? 'bg-gray-300 dark:bg-teal-800' :'hover:bg-gray-200 dark:hover:bg-teal-950'} ${className.li}`}
                                     key={name} 
                                     onClick={()=> themeHandler(name)}
                                     >

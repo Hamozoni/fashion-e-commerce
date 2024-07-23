@@ -13,7 +13,7 @@ import { LuUserX2 } from "react-icons/lu";
 import {SignOut} from "../buttons/signOut";
 import {Overlay} from "./Overlay";
 import {ThemeModel} from "./themeModel";
-import {UserAddress} from "../header/components/userAddress";
+// import {UserAddress} from "../header/components/userAddress";
 // hooks
 import {AppContext} from "../../app/contextProvider"
 
@@ -24,10 +24,10 @@ export function HeaderUserBar() {
     
     const className = {
         flex: 'flex items-center gap-4',
-        title: 'text-md font-medium text-teal-900 capitalize cursor-pointer',
+        title: 'text-md font-medium text-teal-900 dark:text-teal-100 capitalize cursor-pointer',
         container:'fixed left-0 top-0 w-full h-dvh flex justify-between z-50',
-        ul: 'border border-teal-100 fixed top-[70px] right-3 lg:right-8 min-w-[300px] max-h-fit bg-gray-50 rounded-md  py-2 z-50 ',
-        li: 'px-4 py-3 capitalize hover:bg-gray-200 flex items-center gap-3 text-lg font-medium text-teal-950 cursor-pointer'
+        ul: 'fixed top-0 right-0  min-w-[300px] max-h-screen h-screen bg-gray-50 dark:bg-black py-2 z-50 ',
+        li: 'px-4 py-3 capitalize hover:bg-gray-200 dark:hover:bg-teal-950 flex items-center gap-3 text-sm font-medium text-teal-950 dark:text-teal-100 cursor-pointer'
     };
     
   return (
@@ -57,10 +57,10 @@ export function HeaderUserBar() {
                 <>
                 <Overlay onClick={()=> setIsAccount(false)} />
                     <div className={className.ul}>
-                        <header className="p-4 mb-4 border-b border-teal-100">
-                            <h3 className="mb-3 text-teal-800 cursor-pointer">
+                        <header className="p-4 mb-4 border-b border-teal-100 dark:border-teal-950">
+                            {/* <h3 className="mb-3 text-teal-800 dark:text-teal-100 cursor-pointer">
                                 <GiTireIronCross/>
-                            </h3>
+                            </h3> */}
                             <div className="flex">
                                 <div className="">
                                     {
@@ -70,13 +70,13 @@ export function HeaderUserBar() {
                                     }
                                 </div>
                                 <div className="">
-                                    <h4 className="text-teal-950 font-bold text-lg pl-3">{currentUser?.name}</h4>
-                                    <p className="text-teal-800 font-bold text-sm pl-3"> {currentUser?.email}</p>
-                                    <UserAddress />
+                                    <h4 className="text-teal-950 dark:text-teal-50 font-bold text-lg pl-3">{currentUser?.name}</h4>
+                                    <p className="text-teal-800 dark:text-teal-100 font-bold text-sm pl-3"> {currentUser?.email}</p>
+                                    {/* <UserAddress /> */}
                                 </div>
                             </div>
                         </header>
-                        <ul  >
+                        <ul  className="max-h-full overflow-y-auto">
                             <li className={className.li}>
                                 <BsCartCheck size={24} />
                                 <Link 
