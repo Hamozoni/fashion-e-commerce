@@ -5,7 +5,7 @@ export const SubcategoryCard = ({sub})=> {
 
     const {name,imagePath,linkPath} = sub;
     return (
-        <div className="bg-gray-50 p-1 rounded-md shadow-md">
+        <div className="bg-gray-50 dark:bg-teal-950 p-1 rounded-md shadow-md">
             <Link href={linkPath} >
                 <div className="">
                     <div className="overflow-hidden rounded-md relative group">
@@ -17,7 +17,7 @@ export const SubcategoryCard = ({sub})=> {
                             alt={name}
                             />
                         <h3 
-                            className="text-teal-950 hover:text-teal-800 text-xl capitalize text-center pt-2 absolute left-0 bottom-0 w-full bg-gray-50 group-hover:translate-y-full"
+                            className="text-teal-950 dark:text-teal-100 text-xl capitalize text-center pt-2 absolute left-0 bottom-0 w-full bg-gray-50 dark:bg-teal-950 group-hover:translate-y-full"
                             >{name}
                        </h3>
                     </div>

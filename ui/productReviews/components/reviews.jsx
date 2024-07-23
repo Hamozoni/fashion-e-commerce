@@ -2,7 +2,7 @@
 // react
 import { useContext} from "react";
 // component
-import {ReviewCard} from "../cards/reviewCard";
+import {ReviewCard} from "../../cards/reviewCard";
 import {ReviewsHeader} from "./reviewsHeader";
 // context
 import {ReviewsContext} from "../reviewsContext";

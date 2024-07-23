@@ -5,8 +5,8 @@ import {useContext, useMemo, useState } from "react";
 // component
 import {AddToListBtn} from "../buttons/addToListBtn";
 import {AddToCart} from "../buttons/AddToCart";
-import {ColorOptions} from "../../app/product/_components/SelectColor"
-import {SizesOptions} from "../../app/product/_components/SelectSize"
+import {ColorOptions} from "../components/selectColor"
+import {SizesOptions} from "../components/selectSize"
 // lip
 import {getCurrency} from "../../lip/getCurrency";
 import { AppContext } from "../../app/contextProvider";
@@ -14,8 +14,9 @@ import { AppContext } from "../../app/contextProvider";
 
 
 const className = {
-    card: ' rounded-lg border border-gray-100 cursor-pointer hover:border-gray-200 relative',
+    card: ' rounded-lg border border-gray-100 dark:border-teal-950 cursor-pointer hover:border-gray-200 dark:hover:border-teal-900 relative overflow-hidden hover:scale-105',
     heart: 'absolute top-2 left-2',
+    title: "text-sm sm:text-[18px] font-bold text-teal-900 dark:text-teal-50 hover:text-teal-900 dark:hover:text-teal-100 line-clamp-2 capitalize"
 };
 
 
@@ -87,10 +88,10 @@ export function ProductCard({product}) {
             <AddToListBtn product={productDetails} />
         </div>
         <div className="p-3">
-            <div className="text-center ">
+            <div className="">
                 <Link
                     href={linkHref}
-                    className="text-sm sm:text-lg font-bold text-teal-900 hover:text-teal-900 line-clamp-2 capitalize"
+                    className={className.title}
                     >{productDetails?.name}
                 </Link>
             </div>
@@ -101,7 +102,7 @@ export function ProductCard({product}) {
                     />
             </div>
             <div className="sm:flex items-center justify-between gap-3">
-                <h2 className="text-lg mb-2 sm:mb-0 sm:text-xl font-bold text-teal-950 text-center ">
+                <h2 className="text-sm mb-2 sm:mb-0 sm:text-lg font-bold text-teal-900 dark:text-teal-100 text-center ">
                     {getCurrency(productDetails?.priceInHalala)}
                 </h2>
                 <AddToCart 

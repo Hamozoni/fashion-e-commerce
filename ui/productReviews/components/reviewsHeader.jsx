@@ -4,8 +4,8 @@ import { useState } from "react";
 // icons
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 // component
-import { ButtonWithIcon } from "../buttons/buttons";
-import {AddReviewFormModel} from "../models/addReviewFormModel";
+import { ButtonWithIcon } from "../../buttons/buttons";
+import {AddReviewFormModel} from "../../models/addReviewFormModel";
 
 
 export function ReviewsHeader() {

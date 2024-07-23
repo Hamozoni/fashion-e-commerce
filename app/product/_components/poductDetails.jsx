@@ -2,8 +2,8 @@
 import { createContext, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 // components
-import {SelectColor} from "./SelectColor";
-import {SelectSize} from "./SelectSize";
+import {SelectColor} from "../../../ui/components/selectColor";
+import {SelectSize} from "../../../ui/components/selectSize";
 import {Features} from "./Features"
 import {AddToCart}from "../../../ui/buttons/addToCart";
 import {Specifications}from "./Specifications";

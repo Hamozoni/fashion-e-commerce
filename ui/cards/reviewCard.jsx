@@ -10,11 +10,11 @@ import { VscEdit } from "react-icons/vsc";
 import { MdDelete,MdOutlineSaveAs } from "react-icons/md";
 import { IoIosArrowRoundBack } from "react-icons/io";
 // server actions
-import {removeReviewAction} from "../../../actions/productReviews/removeReview";
-import {updatereviewAction} from "../../../actions/productReviews/updateReview";
+import {removeReviewAction} from "../../actions/productReviews/removeReview";
+import {updatereviewAction} from "../../actions/productReviews/updateReview";
 // context
 import { ReviewsContext } from "../productReviews/reviewsContext";
-import { AppContext } from "../../../app/contextProvider";
+import { AppContext } from "../../app/contextProvider";
 // overlay model
 import {Overlay} from "../models/overlay";
 

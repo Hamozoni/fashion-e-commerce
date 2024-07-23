@@ -1,6 +1,6 @@
 "use client";
 import { useContext } from "react"
-import { ProductDetailsContext } from "./poductDetails";
+import { ProductDetailsContext } from "../../app/product/_components/poductDetails";
 
 export const SizesOptions = ({product,setProduct})=> {
   return (
@@ -10,7 +10,7 @@ export const SizesOptions = ({product,setProduct})=> {
 
             colorName === product?.colorName ?
             <li 
-                className={`${product.size === shortName ? "border-2 shadow-md": "hover:bg-teal-50 hover:scale-105 text-teal-800"} uppercase text-center text-sm  border-2 rounded-full min-w-fit p-3 py-1 cursor-pointer`}
+                className={`${product.size === shortName ? "border-2 shadow-md": "hover:bg-teal-50 dark:hover:bg-teal-950 dark:text-teal-100 hover:scale-105 text-teal-800"} uppercase text-center text-sm  border-2 rounded-full min-w-fit p-3 py-1 cursor-pointer`}
                 style={product.size === shortName ? {borderColor: product.color}: {}}
                 onClick={()=> setProduct(prev=> {
                   const size = shortName;
@@ -37,7 +37,7 @@ export function SelectSize() {
   return (
     <section className="mt-3">
         <h5 
-            className="pb-2 capitalize text-sm font-bold text-green-950"
+            className="pb-2 capitalize text-sm font-bold text-green-950 dark:text-teal-50"
             >avalble sizes: {product?.sizes?.find(e=> e.shortName === product.size)?.name}
           </h5>
           <SizesOptions 

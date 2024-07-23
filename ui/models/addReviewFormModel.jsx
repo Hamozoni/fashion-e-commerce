@@ -9,7 +9,7 @@ import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 
 // components
-import {Overlay} from "./Overlay";
+import {Overlay} from "./overlay";
 import {ZodError}  from "../components/zodError";
 import { ButtonWithIcon } from "../buttons/buttons";
 import {ReviewModelProduct } from "./reviewModelProduct";
@@ -20,7 +20,7 @@ import { PostData } from "../../lip/fetchData";
 // loading
 import { PulseLoader } from "react-spinners";
 // context
-import { ReviewsContext } from "../../productReviews/reviewsContext";
+import { ReviewsContext } from "../productReviews/reviewsContext";
 import { AppContext } from "../../app/contextProvider";
 
 export const AddReviewFormModel = ({setShowModel})=> {

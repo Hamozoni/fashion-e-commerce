@@ -5,7 +5,7 @@ import{ Reviews} from "./components/reviews";
 // context provider
 import {ReviewsContextProvider} from "./reviewsContext";
 
-function ProductReviews({product}) {
+export function ProductReviews({product}) {
 
   return (
     <section className="py-5">
@@ -22,6 +22,4 @@ function ProductReviews({product}) {
        </ReviewsContextProvider>
     </section>
   )
-}
-
-export default ProductReviews
+};
