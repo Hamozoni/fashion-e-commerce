@@ -46,12 +46,12 @@ export const ThemeModel = ()=> {
                 </button>
                 {
                     isTheme ? 
-                    <ul className="bg-white dark:bg-black border-b border-b-gray-200 dark:border-b-teal-950 ">
+                    <ul className="bg-white dark:bg-teal-950 border-b border-b-gray-200 dark:border-b-teal-900 ">
 
                         {
                             themeOptions?.map(({name,Icon})=> (
                                 <li 
-                                    className={`${theme === name ? 'bg-gray-300 dark:bg-teal-800' :'hover:bg-gray-200 dark:hover:bg-teal-950'} ${className.li}`}
+                                    className={`${theme === name ? 'bg-gray-300 dark:bg-teal-800' :'hover:bg-gray-200 dark:hover:bg-teal-900'} ${className.li}`}
                                     key={name} 
                                     onClick={()=> themeHandler(name)}
                                     >

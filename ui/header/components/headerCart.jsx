@@ -24,7 +24,7 @@ export function HeaderCart() {
                 </div>
                 :''
             }
-            <PiShoppingCart size={28}/>
+            <PiShoppingCart className="text-teal-950 dark:text-teal-50" size={28}/>
         </Link>
     </div>
   )

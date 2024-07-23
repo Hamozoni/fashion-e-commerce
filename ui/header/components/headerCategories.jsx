@@ -10,7 +10,7 @@ import {Overlay} from "../../models/Overlay";
 import { GiTireIronCross } from "react-icons/gi";
 // styles
 const className ={ 
-    cateLi : ' capitalize font-bold text-teal-800 text-xl cursor-pointer'
+    cateLi : ' capitalize font-bold text-teal-800 dark:text-teal-100 text-xl cursor-pointer'
 };
 
 export const SubCatories = ({subCategories,setIsSubCategories})=> {

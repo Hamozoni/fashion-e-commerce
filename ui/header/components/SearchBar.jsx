@@ -17,8 +17,8 @@ export function SearchBar() {
 
   const className = {
     flex : `flex items-center`,
-    searchBox: 'rounded-full border border-teal-50 bg-white flex gap-2 items-center w-full p-1',
-    serchBtn: 'bg-teal-50 min-w-fit rounded-full border-2 border-teal-200 text-teal-800 py-2.5 px-6 min-h-full'
+    searchBox: 'rounded-full border border-teal-50 dark:border-teal-800 bg-white dark:bg-teal-950 flex gap-2 items-center w-full p-1',
+    serchBtn: 'min-w-fit rounded-full border-2 border-teal-200 dark:border-teal-900 text-teal-800 dark:text-teal-100 py-2.5 px-6 min-h-full'
   };
 
   const handleSubmit = ()=> {
@@ -38,7 +38,7 @@ export function SearchBar() {
             <div className="w-full">
                 <input
                     name="query"
-                    className="w-full py-3 px-4 bg-transparent text-sm font-bold bg-gray-50 rounded-full border-2 focus:border-teal-200 "
+                    className="w-full py-3 px-4 bg-transparent text-sm text-teal-950 dark:text-teal-50 font-bold rounded-full border-2 border-teal-50 dark:border-teal-900 focus:border-teal-200 "
                     type="search" 
                     placeholder="search myh store" 
                     />
