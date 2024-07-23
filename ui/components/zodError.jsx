@@ -1,5 +1,5 @@
 import { BiSolidError } from "react-icons/bi";
-const ZodError = ({error,field})=> {
+export const ZodError = ({error,field})=> {
     return (
         error?.issues?.find(e=> e?.path?.includes(field)) &&
 
@@ -12,5 +12,3 @@ const ZodError = ({error,field})=> {
     )
 
 };
-
-export default ZodError;

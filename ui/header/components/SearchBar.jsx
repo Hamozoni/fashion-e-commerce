@@ -4,9 +4,9 @@ import { IoSearchSharp } from "react-icons/io5";
 import { useContext, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppContext } from "../../../app/contextProvider";
-import Overlay from "../../../models/Overlay";
+import {Overlay} from "../../models/overlay";
 
-function SearchBar() {
+export function SearchBar() {
 
 
   const {innerWidth} = useContext(AppContext);
@@ -76,6 +76,4 @@ function SearchBar() {
     
     </>
   )
-}
-
-export default SearchBar
+};

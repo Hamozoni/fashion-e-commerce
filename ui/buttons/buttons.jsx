@@ -1,5 +1,7 @@
+// icons
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+// loader
 import { PulseLoader } from "react-spinners";
 
 export const ButtonWithIcon = ({

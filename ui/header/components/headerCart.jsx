@@ -3,7 +3,7 @@ import Link from "next/link"
 import { PiShoppingCart } from "react-icons/pi";
 import { useAppSelector } from "../../../store/store";
 
-function headerCart() {
+export function headerCart() {
 
     const totalItemsOnCart = useAppSelector((state)=> state.cart.totalQuantity);
 
@@ -28,6 +28,4 @@ function headerCart() {
         </Link>
     </div>
   )
-}
-
-export default headerCart
+};

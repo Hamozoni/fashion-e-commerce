@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import {useEffect, useState, useTransition } from "react";
+import {useContext, useEffect, useState, useTransition } from "react";
 // icons
 import { RxCross2 } from "react-icons/rx";
 import { FaLocationCrosshairs } from "react-icons/fa6";
@@ -11,24 +11,25 @@ import {
     Map,
     Marker
 } from "@vis.gl/react-google-maps";
-// lip
-import{fetchData}from "../lip/fetchData";
-// hooks
-import { useCurrentUser } from "../hooks/useCurrentUser";
+// fetch api
+import{fetchData}from "../../lip/fetchData";
 // server actions
-import {addNewAddress} from "../actions/user/addNewAddress"
-import { useSession } from "next-auth/react";
+import {addNewAddress} from "../../actions/user/addNewAddress";
+// component
 import { ButtonWithIcon } from "../buttons/buttons";
+// app context
+import { AppContext } from "../../app/contextProvider";
+import { useSession } from "next-auth/react";
 
-function AddressMap({onClick}) {
+export function AddressMap({onClick}) {
 
     const [position,setPosition] = useState({lat: 26.3159003,lng: 50.2052888});
     const [formatedAddress,setFormatedAddress] = useState("")
     const [address,setAddress] = useState({});
     
-    const {update} = useSession()
+    const {update} = useSession();
     const [loading,startTranation] = useTransition()
-    const user = useCurrentUser();
+    const {user} = useContext(AppContext);
     const route = useRouter();
 
     useEffect(()=> {
@@ -199,6 +200,4 @@ function AddressMap({onClick}) {
         </div>
     </section>
   )
-}
-
-export default AddressMap
+};

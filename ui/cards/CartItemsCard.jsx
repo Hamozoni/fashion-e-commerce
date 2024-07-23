@@ -1,15 +1,20 @@
 import Image from "next/image";
-import getCurrency from "../lip/getCurrency";
-import QuantityBtn from "../../../components/QuantityBtn";
-import { removeItemFromCart } from "../store/features/cartSlice";
-import { useAppDispatch } from "../store/store";
-import { MdOutlineDeleteOutline } from "react-icons/md";
-import Link from "next/link";
-import { ButtonWithIcon } from "../../../components/buttons";
-import { AppContext } from "../app/contextProvider";
 import { useContext } from "react";
+import Link from "next/link";
+// components
+import{ QuantityBtn} from "../buttons/quantityBtn";
+import { ButtonWithIcon } from "../../../components/buttons";
+// redux store
+import { useAppDispatch } from "../../store/store";
+import { removeItemFromCart } from "../../store/features/cartSlice";
+// app context
+import { AppContext } from "../../app/contextProvider";
+// lip
+import {getCurrency} from "../../lip/getCurrency";
+// icons
+import { MdOutlineDeleteOutline } from "react-icons/md";
 
-const CartItemsCard = ({product,isCheckout = false})=> {
+export const CartItemsCard = ({product,isCheckout = false})=> {
 
     const dispatch = useAppDispatch();
 
@@ -88,5 +93,3 @@ const CartItemsCard = ({product,isCheckout = false})=> {
     </div>
   )
 };
-
-export default CartItemsCard

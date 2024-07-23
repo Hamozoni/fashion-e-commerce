@@ -3,10 +3,10 @@
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { FaCartPlus } from "react-icons/fa6";
 // redux store
-import { useAppDispatch, useAppSelector } from "../store/store";
-import {removeItemFromCart, addToCart } from "../store/features/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import {removeItemFromCart, addToCart } from "../../store/features/cartSlice";
 // component
-import QuantityBtn from "./QuantityBtn";
+import {QuantityBtn} from "./quantityBtn";
 import { ButtonWithIcon } from "./buttons";
 
 export function AddToCart({product,isFromCard=false}) {

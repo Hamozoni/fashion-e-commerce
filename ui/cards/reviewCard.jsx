@@ -2,8 +2,8 @@
 import { useContext, useState, useTransition } from "react";
 import Image from "next/image"
 // components
-import {ButtonWithIcon} from "../../../buttons/buttons";
-import {RatingStars} from "./reviewsRating"
+import {ButtonWithIcon} from "../buttons/buttons";
+import {RatingStars} from "../productReviews/components/reviewsRating"
 // icons
 import { FaRegUser } from "react-icons/fa";
 import { VscEdit } from "react-icons/vsc";
@@ -13,10 +13,10 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import {removeReviewAction} from "../../../actions/productReviews/removeReview";
 import {updatereviewAction} from "../../../actions/productReviews/updateReview";
 // context
-import { ReviewsContext } from "../reviewsContext";
-import Overlay from "../../../models/Overlay";
+import { ReviewsContext } from "../productReviews/reviewsContext";
 import { AppContext } from "../../../app/contextProvider";
-
+// overlay model
+import {Overlay} from "../models/overlay";
 
 function ReviewCard({review,index}) {
 

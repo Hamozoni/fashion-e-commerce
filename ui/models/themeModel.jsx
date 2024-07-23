@@ -1,15 +1,15 @@
 "use client"
 
 import { useContext, useState } from "react";
-
-import {AppContext} from "../app/contextProvider";
+// context
+import {AppContext} from "../../app/contextProvider";
+// icons
 import { IoIosArrowForward ,IoIosArrowDown} from "react-icons/io";
 
 export const ThemeModel = ()=> {
 
     const {theme,handleTheme} = useContext(AppContext);
-
-    const [isTheme,setIsTheme] = useState(false)
+    const [isTheme,setIsTheme] = useState(false);
 
     const themeHandler = (theme)=> {
         localStorage.setItem('theme',theme);

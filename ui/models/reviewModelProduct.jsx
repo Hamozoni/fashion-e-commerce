@@ -1,6 +1,6 @@
 import Image from "next/image"
-import ZodError from "../../../components/zodError"
-import { RatingStars } from "./reviewsRating"
+import {ZodError} from "../components/zodError"
+import { RatingStars } from "../productReviews/components/reviewsRating"
 
 
 export const FormModelProduct = ({error,product,rating,setRating}) => {

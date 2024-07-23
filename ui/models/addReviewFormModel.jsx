@@ -1,7 +1,7 @@
 "use client";
 // react & next
 import { useRouter } from "next/navigation";
-import { useContext, useRef, useState, useTransition } from "react";
+import { useContext, useRef, useState } from "react";
 
 // icons
 import { RxCross2 } from "react-icons/rx";
@@ -9,29 +9,23 @@ import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 
 // components
-import Overlay from "../../../models/Overlay";
-import ZodError  from "../../components/zodError";
-
+import {Overlay} from "./overlay";
+import {ZodError}  from "../components/zodError";
+import { ButtonWithIcon } from "../buttons/buttons";
+import {ReviewModelProduct } from "./reviewModelProduct";
 // validations
-import {ratingSchema} from "../../../validationSchemas/ratingSchema";
-
-// hooks
-import { useCurrentUser } from "../../../hooks/useCurrentUser";
-
+import {ratingSchema} from "../../validationSchemas/ratingSchema";
 // server actions
-import { PostData } from "../../../lip/fetchData";
+import { PostData } from "../../lip/fetchData";
 // loading
 import { PulseLoader } from "react-spinners";
-import { ButtonWithIcon } from "../../../buttons/buttons";
 // context
-import { ReviewsContext } from "../reviewsContext";
-import { FormModelProduct } from "./formModelProduct";
-
+import { ReviewsContext } from "../../productReviews/reviewsContext";
+import { AppContext } from "../../app/contextProvider";
 
 export const AddReviewFormModel = ({setShowModel})=> {
 
-
-    const user = useCurrentUser();
+    const {user} = useContext(AppContext);
     const {product,setReviews} = useContext(ReviewsContext)
     const [rating,setRating] = useState(1);
     const [error,setError] = useState(null);
@@ -96,7 +90,7 @@ export const AddReviewFormModel = ({setShowModel})=> {
                         </h3>
                         <p className="text-teal-700">Tell us what you think about this product</p>
                     </header>
-                    <FormModelProduct
+                    <ReviewModelProduct
                         error={error}
                         product={product} 
                         setRating={setRating} 

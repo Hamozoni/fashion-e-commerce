@@ -1,12 +1,12 @@
 "use client";
-
+// icons
 import { FiMinus,FiPlus } from "react-icons/fi";
 import { IoTrashOutline } from "react-icons/io5";
+// redux store
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { decrementItemInCart, incrementItemInCart } from "../../store/features/cartSlice";
 
-import { useAppDispatch, useAppSelector } from "../store/store";
-import { decrementItemInCart, incrementItemInCart } from "../store/features/cartSlice";
-
-function QuantityBtn({id,color,size}) {
+export function QuantityBtn({id,color,size}) {
 
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.color === color && e.size === size)?.quantity);
     const dispatch = useAppDispatch();
@@ -36,6 +36,4 @@ function QuantityBtn({id,color,size}) {
             onClick={()=> dispatch(incrementItemInCart({id,color,size}))}/>
     </div>
   )
-}
-
-export default QuantityBtn
+};

@@ -2,12 +2,12 @@
 import Link from "next/link";
 import { useContext } from "react";
 // components
-import HeaderUserBar from "../../models/HeaderUserBar";
-import SearchBar from "./components/SearchBar";
-import UserAddress from "./components/userAddress";
-import HeaderCart from "./components/headerCart";
-import MobileMenu from "../../models/mobileMenu";
-import LikedList from "./components/likedList"
+import {HeaderUserBar} from "../models/headerUserBar";
+import {SearchBar} from "./components/searchBar";
+import {UserAddress} from "./components/userAddress";
+import {HeaderCart} from "./components/headerCart";
+import {MobileMenu} from "../models/mobileMenu";
+import {LikedList} from "./components/likedList"
 import { HeaderCategories } from "./components/headerCategories";
 // app context
 import { AppContext } from "../../app/contextProvider";

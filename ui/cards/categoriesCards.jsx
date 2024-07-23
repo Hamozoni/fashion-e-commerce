@@ -1,10 +1,10 @@
 
 import Image from "next/image";
-import { categoriesData } from "../data/category";
 import Link from "next/link";
 
+import { categoriesData } from "../../data/category";
 
-function CategoriesCards() {
+export function CategoriesCards() {
 
   return (
     <div className="">
@@ -59,6 +59,4 @@ function CategoriesCards() {
 
     </div>
   )
-}
-
-export default CategoriesCards
+};

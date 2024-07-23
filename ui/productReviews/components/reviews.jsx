@@ -2,12 +2,12 @@
 // react
 import { useContext} from "react";
 // component
-import ReviewCard from "./reviewCard";
-import ReviewsHeader from "./ReviewsHeader";
+import {ReviewCard} from "../cards/reviewCard";
+import {ReviewsHeader} from "./reviewsHeader";
 // context
 import {ReviewsContext} from "../reviewsContext";
 
- const Reviews = ()=> {
+export const Reviews = ()=> {
 
     const {reviews} = useContext(ReviewsContext);
     
@@ -36,6 +36,4 @@ import {ReviewsContext} from "../reviewsContext";
         </section>
     </div>
   ) 
-}
-
-export default Reviews;
+};

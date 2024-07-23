@@ -1,13 +1,14 @@
 "use client";
 
-import {useEffect, useRef, useState } from "react";
-import {fetchData} from "../../lip/fetchData";
-
-import Loading from "../../app/loading";
-import { ProductCard } from "../../cards/ProductCard";
 import Link from "next/link";
-
-import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../../buttons/buttons";
+import {useEffect, useRef, useState } from "react";
+// fetch api
+import {fetchData} from "../../lip/fetchData";
+// loader
+import Loading from "../../app/loading";
+// components
+import { ProductCard } from "../cards/productCard";
+import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../buttons/buttons";
 
 export const CategoryProducts = ({category,page,onClick})=> {
 

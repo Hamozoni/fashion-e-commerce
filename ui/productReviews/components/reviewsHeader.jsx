@@ -4,11 +4,11 @@ import { useState } from "react";
 // icons
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 // component
-import { ButtonWithIcon } from "../../../buttons/buttons";
-import {AddReviewFormModel} from "./addReviewFormModel";
+import { ButtonWithIcon } from "../buttons/buttons";
+import {AddReviewFormModel} from "../models/addReviewFormModel";
 
 
-function ReviewsHeader() {
+export function ReviewsHeader() {
 
     const [showModel,setShowModel] = useState(false);
 
@@ -33,6 +33,4 @@ function ReviewsHeader() {
         }
     </div>
   )
-}
-
-export default ReviewsHeader
+};

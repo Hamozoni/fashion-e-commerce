@@ -1,11 +1,13 @@
 "use client";
-import Image from "next/image";
-import { IoIosArrowForward ,IoIosArrowBack} from "react-icons/io";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+// icons
+import { IoIosArrowForward ,IoIosArrowBack} from "react-icons/io";
+// data
 import {categoriesData} from "../../data/categoriesData"
 
 const cateLength = categoriesData.length
-
+// tailwind class
 const className = {
    prevNextBtn: ' absolute top-1/2  -translate-y-1/2 flex justify-center items-center p-3 rounded-full bg-white hover:scale-110 hover:text-teal-900 border hover:border-teal-300 hover:bg-teal-50'
 }

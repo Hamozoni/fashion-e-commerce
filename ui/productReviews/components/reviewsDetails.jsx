@@ -6,7 +6,7 @@ import { ReviewsContext } from "../reviewsContext";
 
 const ratingArray = new Array(5).fill('star');
 
-function ReviewsDetails() {
+export function ReviewsDetails() {
 
   const {reviews} = useContext(ReviewsContext);
 
@@ -86,6 +86,4 @@ function ReviewsDetails() {
         </div>
     </section>
   )
-}
-
-export default ReviewsDetails
+};

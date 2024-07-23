@@ -5,7 +5,7 @@ import { FaRegHeart } from "react-icons/fa";
 import {useAppSelector} from "../../../store/store"
 import Link from "next/link";
 
-const LikedList = () => {
+export const LikedList = () => {
 
     const likedListItemsLength = useAppSelector(state=> state.likedList?.length);
 
@@ -36,6 +36,4 @@ const LikedList = () => {
         
     </div>
   )
-}
-
-export default LikedList
+};

@@ -1,16 +1,15 @@
 "use client";
+import Image from "next/image";
 import { useState } from "react";
 // components
-import { SubCatories } from "../ui/header/components/headerCategories";
-import Overlay from "./Overlay";
+import { SubCatories } from "../header/components/headerCategories";
+import {Overlay} from "./overlay";
 // icons
 import { TiThMenuOutline } from "react-icons/ti";
 import { GiTireIronCross } from "react-icons/gi";
 import { IoIosArrowForward } from "react-icons/io";
 // categories data
-import { categoriesData } from "../data/categoriesData";
-import Image from "next/image";
-
+import { categoriesData } from "../../data/categoriesData";
 
 const MobileMenu = () => {
   
@@ -18,8 +17,7 @@ const MobileMenu = () => {
   const [openedSubCategoyIndex,setOpenedSubCategoyIndex] = useState(null)
   
   const MobileCategories = ()=> {
-
-
+    
     const handleSubCatgoryOpen = (index)=> {
       if(index === openedSubCategoyIndex) {
         setOpenedSubCategoyIndex(null);

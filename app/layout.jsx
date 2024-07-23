@@ -1,5 +1,5 @@
 import {Footer} from "../ui/footer/footer"
-import {MainHeader} from "../ui/header/MainHeader";
+import {MainHeader} from "../ui/header/mainHeader";
 import ReduxProvider from "./ReduxProvider";
 import ContexProvider from "./contextProvider"
 import { SessionProvider } from "next-auth/react";

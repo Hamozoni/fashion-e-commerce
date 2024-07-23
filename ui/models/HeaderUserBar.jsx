@@ -10,13 +10,13 @@ import { FaRegHeart  } from "react-icons/fa";
 import { GiTireIronCross } from "react-icons/gi";
 import { LuUserX2 } from "react-icons/lu";
 // components
-import SignOut from "../buttons/signOut";
-import Languages from "../ui/header/components/languages";
-import Overlay from "./Overlay";
+import {SignOut} from "../buttons/signOut";
+import {Languages} from "../header/components/languages";
+import {Overlay} from "./overlay";
 import {ThemeModel} from "./themeModel";
+import {UserAddress} from "../header/components/userAddress";
 // hooks
 import {AppContext} from "../app/contextProvider"
-import UserAddress from "../ui/header/components/userAddress";
 
 function HeaderUserBar() {
 

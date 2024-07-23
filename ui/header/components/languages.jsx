@@ -1,5 +1,5 @@
 
-function languages() {
+export function languages() {
 
     const className = {
         title: 'text-md font-medium text-emerald-900 capitalize cursor-pointer',
@@ -13,6 +13,4 @@ function languages() {
         </ul>
     </div>
   )
-}
-
-export default languages
+};

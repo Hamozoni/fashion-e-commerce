@@ -1,8 +1,9 @@
 "use client";
 // icons
 import { IoIosHeartEmpty, IoMdHeart } from "react-icons/io";
-import { useAppDispatch, useAppSelector } from "../store/store";
-import { toggleLikedList} from "../store/features/likedListSlice";
+// redux store
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { toggleLikedList} from "../../store/features/likedListSlice";
 
 export const AddToListBtn = ({product}) => {
 

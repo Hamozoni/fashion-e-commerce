@@ -1,13 +1,18 @@
 "use client";
 
 import { useContext, useState } from "react";
+// icons
 import { IoLocationOutline } from "react-icons/io5";
-import Overlay  from "../../../models/Overlay"
-import AddressMap from "../../../models/AddressMap";
+// overlay model
+import {Overlay}  from "../../models/overlay";
+// map model
+import {AddressMap} from "../../models/addressMap";
+// app context
 import { AppContext } from "../../../app/contextProvider";
-import { ButtonWithIcon } from "../../../buttons/buttons";
+// component
+import { ButtonWithIcon } from "../../buttons/buttons";
 
-function UserAddress() {
+export function UserAddress() {
 
     const {innerWidth,currentUser} = useContext(AppContext)
 
@@ -77,6 +82,4 @@ function UserAddress() {
         }
     </>
   )
-}
-
-export default UserAddress
+};
