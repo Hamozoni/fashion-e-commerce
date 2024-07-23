@@ -6,7 +6,7 @@ import HeaderUserBar from "../../models/HeaderUserBar";
 import SearchBar from "./components/SearchBar";
 import UserAddress from "./components/userAddress";
 import HeaderCart from "./components/headerCart";
-import MobileMenu from "./components/mobileMenu";
+import MobileMenu from "../../models/mobileMenu";
 import LikedList from "./components/likedList"
 import { HeaderCategories } from "./components/headerCategories";
 // app context

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { fetchData } from "../../../lip/fetchData";
-import { ProductCard } from "../../../ui/productCard/ProductCard";
+import { ProductCard } from "../../../cards/ProductCard";
 import Loading from "../../loading"
 
 export const RelatedProducts = ({id})=> {

@@ -4,7 +4,7 @@ import {useEffect, useRef, useState } from "react";
 import {fetchData} from "../../lip/fetchData";
 
 import Loading from "../../app/loading";
-import { ProductCard } from "../productCard/ProductCard";
+import { ProductCard } from "../../cards/ProductCard";
 import Link from "next/link";
 
 import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../../buttons/buttons";

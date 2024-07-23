@@ -10,7 +10,7 @@ import { FaRegHeart  } from "react-icons/fa";
 import { GiTireIronCross } from "react-icons/gi";
 import { LuUserX2 } from "react-icons/lu";
 // components
-import SignOut from "../components/signOut";
+import SignOut from "../buttons/signOut";
 import Languages from "../ui/header/components/languages";
 import Overlay from "./Overlay";
 import {ThemeModel} from "./themeModel";

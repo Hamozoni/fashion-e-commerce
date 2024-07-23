@@ -1,12 +1,12 @@
 import Image from "next/image";
-import getCurrency from "../../../lip/getCurrency";
+import getCurrency from "../lip/getCurrency";
 import QuantityBtn from "../../../components/QuantityBtn";
-import { removeItemFromCart } from "../../../store/features/cartSlice";
-import { useAppDispatch } from "../../../store/store";
+import { removeItemFromCart } from "../store/features/cartSlice";
+import { useAppDispatch } from "../store/store";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Link from "next/link";
 import { ButtonWithIcon } from "../../../components/buttons";
-import { AppContext } from "../../contextProvider";
+import { AppContext } from "../app/contextProvider";
 import { useContext } from "react";
 
 const CartItemsCard = ({product,isCheckout = false})=> {

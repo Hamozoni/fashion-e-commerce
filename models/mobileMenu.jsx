@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
 // components
-import { SubCatories } from "./headerCategories";
-import Overlay from "../../../models/Overlay";
+import { SubCatories } from "../ui/header/components/headerCategories";
+import Overlay from "./Overlay";
 // icons
 import { TiThMenuOutline } from "react-icons/ti";
 import { GiTireIronCross } from "react-icons/gi";
-import { IoIosArrowForward,IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 // categories data
-import { categoriesData } from "../../../data/categoriesData";
+import { categoriesData } from "../data/categoriesData";
 import Image from "next/image";
 
 

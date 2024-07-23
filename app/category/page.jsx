@@ -4,7 +4,7 @@ import { categoriesData } from "../../data/categoriesData"
 import { SubcategoryCard } from "../../ui/categoriesCard/subcategoryCard";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../lip/fetchData";
-import { ProductCard } from "../../ui/productCard/ProductCard";
+import { ProductCard } from "../../cards/ProductCard";
 import Loading from "../loading";
 import { LoadMoreBtn } from "../../components/buttons";
 

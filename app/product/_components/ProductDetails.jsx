@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from "react";
 import {SelectColor} from "./SelectColor";
 import {SelectSize} from "./SelectSize";
 import {Features} from "./Features"
-import {AddToCart}from "./AddToCart";
+import {AddToCart}from "../../../buttons/AddToCart";
 import {Specifications}from "./Specifications";
 import {ImagesGalary} from "./ImagesGalary";
 import {AddToListBtn }from "../../../buttons/addToListBtn";
