@@ -1,16 +1,17 @@
 "use client";
-import {useEffect, useState } from "react";
+import {useContext, useEffect, useState } from "react";
 import Image from "next/image";
 
 // data
 import {categoriesData} from "../../data/categoriesData";
 import { ScrollLeftBtn, ScrollRightBtn } from "../buttons/buttons";
+import { AppContext } from "../../app/contextProvider";
 
 const cateLength = categoriesData.length
 
 export function HomeSlider() {
 
-    const themeMode = document.documentElement.classList.contains('dark')
+    const [themeMode,setThemeMode] = useState(document.documentElement.classList.contains('dark'))
 
     const [sliderIndex,setSliderIndex] = useState(0);
     const handleNext = ()=> {
@@ -18,6 +19,12 @@ export function HomeSlider() {
             setSliderIndex(prev=> prev + 1)
         }
     }
+
+    const {theme} = useContext(AppContext);
+
+    useEffect(()=> {
+        setThemeMode(document.documentElement.classList.contains('dark'))
+    },[theme]);
 
     const handlePrev = ()=> {
         if(sliderIndex > 0) {
@@ -75,7 +82,7 @@ export function HomeSlider() {
                                     </h2>
                                     <p className="text-lg sm:text-2xl text-teal-900 dark:text-teal-100 my-4 max-w-[580px] mx-auto">{dec}</p>
                                     <button
-                                        className="text-xl  p-2 px-5 capitalize rounded-full border border-teal-200 bg-teal-50 hover:scale-105"
+                                        className="text-lg sm:text-xl text-teal-900 dark:text-teal-100  p-1 px-5 capitalize rounded-full border border-teal-600 dark:border-teal-200 hover:scale-105"
                                         >shop now
                                     </button>
                                 </section>
