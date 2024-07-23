@@ -1,5 +1,5 @@
 
-import LikedListCard from "./likedListCard"
+import {LikedListCard} from "./likedListCard"
 
 const likedListPage = ()=> {
     return (

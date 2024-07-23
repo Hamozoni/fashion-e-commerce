@@ -1,16 +1,17 @@
 "use client"
-import { useSearchParams } from "next/navigation"
-import { categoriesData } from "../../data/categoriesData"
-import { SubcategoryCard } from "../../ui/categoriesCard/subcategoryCard";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+// data
+import { categoriesData } from "../../data/categoriesData";
 import { fetchData } from "../../lip/fetchData";
-import { ProductCard } from "../../cards/ProductCard";
+// components
+import { SubcategoryCard } from "../../ui/cards/subcategoryCard";
+import { ProductCard } from "../../ui/cards/productCard";
+import { LoadMoreBtn } from "../../ui/buttons/buttons";
 import Loading from "../loading";
-import { LoadMoreBtn } from "../../components/buttons";
-
 
 const CatecoryPage = () => {
-
+  
   const searchParam = useSearchParams();
   const section = searchParam.get('category');
   const subcategories = categoriesData.find(e=> e.name === section).sub;

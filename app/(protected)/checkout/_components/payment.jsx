@@ -1,21 +1,17 @@
 "use client";
-import {useCurrentUser} from "../../../../hooks/useCurrentUser";
-
+// icons
 import { IoMdPerson,IoMdCard} from "react-icons/io";
 import { CiCreditCard2 } from "react-icons/ci";
 import { MdCalendarMonth } from "react-icons/md";
-import { ButtonWithIcon } from "../../../../components/buttons";
 import { IoShieldCheckmark } from "react-icons/io5";
-
+// components
+import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import { AuthInput } from "../../../auth/_components/authInput";
 import  {CartDetails}  from "../../../cart/_components/cartDetails";
 import { CartFooter } from "../../../cart/_components/CartSummary";
 import {UserField} from "./userField"
 
-function Payment() {
-
-    const user = useCurrentUser()
-
+export function Payment() {
 
   return (
     <div className="flex-1 lg:flex-2 bg-white p-3 rounded-md shadow-md">
@@ -66,6 +62,4 @@ function Payment() {
         <CartFooter />
     </div>
   )
-}
-
-export default Payment
+};

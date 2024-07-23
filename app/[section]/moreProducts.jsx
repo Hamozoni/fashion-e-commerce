@@ -2,7 +2,6 @@
 import { useState } from "react";
 import {CategoryProducts} from "../../ui/home/categoryProducts";
 
-
 export const MoreProducts = ({category})=> {
 
     const [page,setPage] = useState(1);

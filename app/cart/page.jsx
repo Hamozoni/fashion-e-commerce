@@ -1,27 +1,27 @@
 "use client"
-
-import Image from "next/image";
-import { useAppSelector } from "../../store/store";
 import Link from "next/link";
-import CartItemsCard from "./_components/CartItemsCard";
-import CartSummary from "./_components/CartSummary";
+import Image from "next/image";
+// components
+import {CartItemsCard} from "../../ui/cards/cartItemsCard";
+import {CartSummary} from "./_components/CartSummary";
+// redux store
+import { useAppSelector } from "../../store/store";
 
 function cartPage() {
 
     const cartItems = useAppSelector(state=> state.cart.products);
     const totalItemsOnCart = useAppSelector((state)=> state.cart.totalQuantity);
 
-    console.log(cartItems)
     const className = {
         startShopping: 'border border-teal-200  py-2 px-6 text-teal-950 capitalize bg-teal-50 hover:bg-teal-100 rounded-full absolute bottom-[20px] left-[50%] translate-x-[-50%]',
         sectionTitle: 'text-teal-900 font-bold text-center lg:text-left text-xl w-full py-5  lg:px-0'
-    }
+    };
 
- const cartCard = cartItems?.map((product)=> (
-     <CartItemsCard 
-        key={`${product.id}${product.color}${product.size}`} 
-        product={product}
-        />
+    const cartCard = cartItems?.map((product)=> (
+        <CartItemsCard 
+            key={`${product.id}${product.color}${product.size}`} 
+            product={product}
+            />
     ))
 
   return (

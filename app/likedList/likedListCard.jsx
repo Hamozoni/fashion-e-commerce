@@ -1,14 +1,18 @@
 "use client";
-
-import {ProductCard} from "../../ui/productCard/ProductCard"
+// redux store
 import {useAppDispatch, useAppSelector} from "../../store/store";
-import { ButtonWithIcon } from "../../components/buttons";
 import { removeAllFromLikedList } from "../../store/features/likedListSlice";
+// components
+import {ProductCard} from "../../ui/cards/productCard"
+import { ButtonWithIcon } from "../../ui/buttons/buttons";
+// icons
 import { MdOutlineDeleteOutline } from "react-icons/md";
-const LikedListCard = () => {
+
+export const LikedListCard = () => {
 
     const likedList = useAppSelector(state=> state.likedList);
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+
   return (
     <div>
         {
@@ -38,6 +42,4 @@ const LikedListCard = () => {
         
     </div>
   )
-}
-
-export default LikedListCard
+};

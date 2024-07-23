@@ -1,22 +1,23 @@
 
-import { MdOutlineLocalShipping } from "react-icons/md";
-
-import madaLogo from "../../../public/paymentLogos/logo-mada.webp"
-import visaLogo from "../../../public/paymentLogos/logo-visa.webp"
-import masterCLogo from "../../../public/paymentLogos/logo-mc.webp"
-import paypalLogo from "../../../public/paymentLogos/logo-paypal.webp"
-import applePayLogo from "../../../public/paymentLogos/logo-applepay.webp"
 import Image from "next/image";
 import Link from "next/link";
+//payments logos images
+import madaLogo from "../../../public/paymentLogos/logo-mada.webp";
+import visaLogo from "../../../public/paymentLogos/logo-visa.webp";
+import masterCLogo from "../../../public/paymentLogos/logo-mc.webp";
+import paypalLogo from "../../../public/paymentLogos/logo-paypal.webp";
+import applePayLogo from "../../../public/paymentLogos/logo-applepay.webp";
+// components
 import { ButtonWithIcon } from "../../../components/buttons";
+// icons
+import { MdOutlineLocalShipping } from "react-icons/md";
 import {CartDetails} from "./cartDetails"
 import { IoBagCheck } from "react-icons/io5";
-
+// tailwind class
 const className = {
     section : 'border border-gray-50 mb-3 p-3 rounded-md shadow-md',
     parts: 'flex items-center justify-between py-3 border-b border-gray-50',
 }
-
 
 export const CartFooter = ()=> {
     const paymentLogos = [madaLogo,visaLogo,masterCLogo,applePayLogo,paypalLogo];
@@ -37,7 +38,7 @@ export const CartFooter = ()=> {
 }
 
 
- const CartSummary = ()=> {
+export const CartSummary = ()=> {
 
 
   return (
@@ -63,4 +64,3 @@ export const CartFooter = ()=> {
     </div>
   )
 };
-export default CartSummary;

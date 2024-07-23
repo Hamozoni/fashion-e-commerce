@@ -1,7 +1,7 @@
 
-import Payment from "./_components/payment.jsx";
+import {Payment} from "./_components/payment.jsx";
+import {OrderSummary }from "./_components/orderSummary.jsx";
 
-import OrderSummary from "./_components/orderSummary.jsx"
 const checkoutPage = ()=>  {
 
   return (
