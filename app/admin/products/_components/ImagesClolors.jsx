@@ -51,7 +51,7 @@ export function ImagesColor() {
         <header className="flex items-center justify-between my-3">
             
             <h4 
-                className="text-center text-lg text-teal-900 py-3 font-bold"
+                className="text-center text-lg text-teal-900 dark:text-teal-100 py-3 font-bold"
                 > color details
             </h4>
             <div className="flex items-center gap-5">
@@ -84,7 +84,7 @@ export function ImagesColor() {
         <div >
                 {
                     productColors?.map((_,index)=> (
-                        <div className="p-2 border-2 border-gray-200 rounded-md mb-5 shadow-sm ">
+                        <div className="p-2 border-2 border-gray-200 dark:border-stone-800 rounded-md mb-5 shadow-sm ">
                             <div key={index} className="flex items-center gap-3 mb-3 flex-wrap">
                             <FormInput
                                     onClick={(e)=> setProductColors((prev)=> {

@@ -31,7 +31,7 @@ export function SpecificationInputs() {
         <header
              className="flex items-center justify-between my-3">
              <h4 
-                className="text-center text-lg text-teal-900 py-3 font-bold"
+                className="text-center text-lg text-teal-900 dark:text-teal-100 py-3 font-bold"
                 > specifications
             </h4>
             <div className="flex items-center gap-5">
@@ -64,7 +64,7 @@ export function SpecificationInputs() {
 
             {
                 productSpecifications?.map((_,index)=> (
-                    <div key={index} className="flex items-center gap-3 mb-5 flex-wrap bg-gray-50 p-2 border border-gray-200 rounded-md">
+                    <div key={index} className="flex items-center gap-3 mb-5 flex-wrap bg-gray-50 dark:bg-stone-900 p-2 border border-gray-200 dark:border-stone-800 rounded-md">
                         <FormInput
                             onClick={e => setProductSpecifications(prev => {
                                 prev[index].name =  e.target.value

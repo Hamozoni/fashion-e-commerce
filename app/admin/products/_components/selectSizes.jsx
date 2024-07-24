@@ -4,7 +4,7 @@ import { FormInput } from "./FormInput";
 import { newProductContext } from "../new/page";
 
 const className = {
-    li:'text-teal-900 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-100 border-2 border-gray-200'
+    li:'text-teal-900 dark:text-teal-100 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-stone-900 border-2 border-gray-200'
 }
 
 

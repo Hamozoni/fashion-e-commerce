@@ -6,7 +6,7 @@ import {SpecificationInputs}from "../_components/SpecificationInputs";
 import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import {ImagesColor} from "../_components/ImagesClolors";
 import {ProductInfoForm} from "../_components/productInfoForm"
-import {Loading }from "../../../../ui/components/Loading";
+import {Loading} from "../../../../ui/models/Loading";
 // icons
 import { IoArrowBackOutline } from "react-icons/io5";
 // form data fomater
@@ -94,10 +94,10 @@ const NewProducts = () => {
             isPendding ? <Loading /> : ''
         }
         <h3 
-            className="pb-4 font-bold text-2xl text-teal-950"
+            className="pb-4 font-bold text-2xl text-teal-950 dark:text-teal-50"
             >adding new product form
         </h3>
-        <div className="w-full max-w-full  border border-slate-100 p-4 rounded-md shadow-lg">
+        <div className="w-full max-w-full  border border-slate-100 dark:border-stone-700 p-4 rounded-md shadow-lg">
             <div className="">
                 <form 
                     ref={formRef}

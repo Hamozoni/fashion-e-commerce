@@ -5,9 +5,9 @@ import { IoMdArrowDropright } from "react-icons/io";
 import { newProductContext } from "../new/page";
 
 const className = {
-    label: 'text-lg font-bold text-gray-500 group-hover:text-teal-500',
-    select: 'cursor-pointer px-3 py-1 flex items-center justify-between gap-3 w-[180px] rounded-md bg-gray-50 border-2',
-    ul:"absolute top-[110%] left-0 w-full bg-gray-50 shadow-md rounded-md border-2 border-teal-300"
+    label: 'text-lg font-bold text-gray-500 dark:text-stone-300 group-hover:text-teal-500',
+    select: 'cursor-pointer px-3 py-1 flex items-center justify-between gap-3 w-[180px] rounded-md bg-gray-50 dark:bg-stone-950 ',
+    ul:"w-full bg-gray-50 dark:bg-stone-950 shadow-md rounded-md"
 }
 
 export const SelectCategory = ()=> {
@@ -24,12 +24,14 @@ export const SelectCategory = ()=> {
             <div className="flex flex-col gap-3 mb-3 group">
                 <h4 className={className.label}>category *</h4>
 
-                <div className="relative w-fit">
+                <div className={`${isCategoryModel? 'border-teal-300' : 'border-gray-200 dark:border-stone-700'} w-fit`}>
                     <div 
                          onClick={()=> setIsCategoryModel(!isCategoryModel)}
-                         className={`${isCategoryModel? 'border-teal-300' : 'border-gray-200'} ${className.select}`}>
-                        <h5 className="text-lg font-medium text-teal-950">{categoryName}</h5>
-                        <IoMdArrowDropright size={22}/>
+                         className={` ${className.select}`}>
+                        <h5 className="text-lg font-medium text-teal-950 dark:text-teal-50">
+                            {categoryName}
+                        </h5>
+                        <IoMdArrowDropright className="text-teal-950 dark:text-teal-50" size={22}/>
                     </div>
                     {
                         isCategoryModel ? 
@@ -76,7 +78,7 @@ export const SelectCategory = ()=> {
                             {
                                 category?.sub?.map(({name,id})=> (
                                 <li
-                                    className={`${name === subCategoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
+                                    className={`${name === subCategoryName ? 'bg-gray-200 dark:bg-stone-800' : 'hover:bg-gray-100 dark:hover:bg-stone-700'} px-3 p-1 cursor-pointer text-sm font-medium text-teal-900 dark:text-teal-50`}
                                     onClick={()=> {
                                         setSubCategoryName(name);
                                         setIsSubCategoryModel(false)
