@@ -8,12 +8,12 @@ export function Features() {
 
     const className = {
         infoLi: 'flex items-center text-center p-2  flex-col text-sm font-medium max-w-[160px]',
-        infoLiIcon:'text-[30px] bg-gray-100  p-2 rounded-full text-teal-950',
-        infoSpan: 'text-teal-900 font-bold text-sm'
+        infoLiIcon:'text-[30px] bg-gray-100 dark:bg-stone-900  p-2 rounded-full text-teal-950 dark:text-teal-50 ',
+        infoSpan: 'text-teal-900 dark:text-teal-100 font-medium text-sm'
     }
     
   return (
-    <div className="py-4 border-b border-gray-100 overflow-x-auto">
+    <div className="py-4 border-b border-gray-100 dark:border-stone-900  overflow-x-auto">
         <ul className="flex items-center gap-3 min-w-fit">
             <li className={className.infoLi}>
                 <BsCashCoin className={className.infoLiIcon} size={40}/>

@@ -30,8 +30,10 @@ export const RelatedProducts = ({id})=> {
 
     return (
         <section>
-            <h4 className="mb-5 text-teal-950 text-2xl font-bold capitalize">related products:</h4>
-            <div className="flex gap-5 overflow-x-auto">
+            <h4 className="text-teal-950 dark:text-teal-50 text-2xl font-bold capitalize">
+                related products:
+            </h4>
+            <div className="flex gap-5 overflow-x-auto py-5">
                 {
                     isLoading ? <Loading /> :
                     products?.map((product)=> (

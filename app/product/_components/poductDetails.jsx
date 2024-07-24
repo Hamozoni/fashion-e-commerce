@@ -4,10 +4,10 @@ import { useSearchParams } from "next/navigation";
 // components
 import {SelectColor} from "../../../ui/components/selectColor";
 import {SelectSize} from "../../../ui/components/selectSize";
-import {Features} from "./Features"
+import {Features} from "./features"
 import {AddToCart} from "../../../ui/buttons/addToCart";
-import {Specifications}from "./Specifications";
-import {ImagesGalary} from "./ImagesGalary";
+import {Specifications}from "./specifications";
+import {ImagesGalary} from "./imagesGalary";
 import {AddToListBtn }from "../../../ui/buttons/addToListBtn";
 // lip
 import {getCurrency} from "../../../lip/getCurrency";

@@ -44,7 +44,7 @@ export function SelectColor() {
   return (
 
     <section className="mt-2">
-        <h5 className="flex capitalize items-center gap-3 text-sm font-bold text-green-950"> 
+        <h5 className="flex capitalize items-center gap-3 text-sm font-bold text-green-950 dark:text-teal-50"> 
            avalble colors: {product?.colorName}
         </h5>
         <ColorOptions 
