@@ -25,7 +25,7 @@ async function  productPage({params}) {
           className="pb-2 text-lg sm:text-2xl font-bold text-teal-950 dark:text-teal-50"
            >Product describtion:
         </h4>
-        <p className="text-teal-900 dark:text-teal-100">
+        <p className="text-teal-900 dark:text-teal-100 text-sm">
           {data?.describtion}
         </p>
       </section>

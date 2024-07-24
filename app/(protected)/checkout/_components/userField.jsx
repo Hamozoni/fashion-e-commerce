@@ -8,9 +8,9 @@ export function UserField({name}) {
 
     if(!currentUser) return null
   return (
-    <div className="flex items-center mb-3 gap-2 p-3 rounded-md capitalize bg-gray-50">
-        <h3 className="text-md font-bold text-teal-950">{name}: </h3>
-        <div className="text-teal-900 text-sm">
+    <div className="flex items-center mb-3 gap-2 p-3 rounded-md bg-gray-50 dark:bg-black">
+        <h3 className="text-md font-bold text-teal-950 dark:text-teal-50 capitalize">{name}: </h3>
+        <div className="text-teal-900 dark:text-teal-100 text-sm">
             {
                 name === "address" ? 
                 <address>

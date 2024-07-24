@@ -27,10 +27,10 @@ function cartPage() {
     ))
 
   return (
-    <div className="">
+    <div className="p-3 lg:px-8 ">
         {
             cartItems?.length ?
-            <div className="lg:px-8 lg:flex gap-8 capitalize">
+            <div className="lg:flex gap-8 capitalize">
                 <section className="basis-[60%]">
                     <h4 className={`${className.sectionTitle} flex items-center gap-3`}>
                       <FaCartShopping /> my cart items {totalItemsOnCart}

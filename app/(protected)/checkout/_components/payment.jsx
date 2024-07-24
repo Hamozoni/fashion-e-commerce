@@ -14,14 +14,16 @@ import {UserField} from "./userField"
 export function Payment() {
 
   return (
-    <div className="flex-1 lg:flex-2 bg-white p-3 rounded-md shadow-md">
+    <div className="flex-1 lg:flex-2 bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 p-3 rounded-md shadow-md">
         <header>
             <div className="">
                 <UserField name='name'/>
                 <UserField name='email'/>
                 <UserField name='address'/>
             </div>
-            <h5 className="text-green-900 font-bold text-xl mb-3 capitalize">card details:</h5>
+            <h5 className="text-teal-950 dark:text-teal-50 font-bold text-lg sm:text-xl mb-3 capitalize">
+                card details:
+            </h5>
         </header>
         <form action="">
                 <AuthInput 
@@ -56,10 +58,15 @@ export function Payment() {
                 />
             </div>
             <CartDetails />
-            <ButtonWithIcon text='pay now' Icon={IoShieldCheckmark} type='primary' disabled={false} />
+            <CartFooter />
+            <hr className="my-3"/>
+            <ButtonWithIcon 
+                text='pay now' 
+                Icon={IoShieldCheckmark} 
+                type='primary' 
+                disabled={false} 
+                />
         </form>
-        <hr className="py-3"/>
-        <CartFooter />
     </div>
   )
 };

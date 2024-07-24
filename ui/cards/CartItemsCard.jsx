@@ -14,7 +14,7 @@ import {getCurrency} from "../../lip/getCurrency";
 // icons
 import { MdOutlineDeleteOutline } from "react-icons/md";
 
-export const CartItemsCard = ({product,isCheckout = false})=> {
+export const CartItemsCard = ({product})=> {
 
     const dispatch = useAppDispatch();
 
@@ -33,21 +33,18 @@ export const CartItemsCard = ({product,isCheckout = false})=> {
 
   return (
     <div className="p-3 mb-8 rounded-md shadow-md border border-gray-100 dark:border-stone-900 w-full">
-        <div className={`${isCheckout ? '':'flex'} gap-3`}>
-            {
-                isCheckout ? null :
-                <Link 
-                    href={linkHref}
-                    className="flex items-center justify-center mb-3 sm:mb-0">
-                    <Image
-                        className={`${innerWidth > 550 ? 'max-h-[200px] min-h-[200px] max-w-[150px] min-w-[150px]' :'max-h-[150px] min-h-[150px] max-w-[100px] min-w-[100px]'} bg-white object-contain`}
-                        src={imagePath}
-                        width={innerWidth > 550 ? 150 : 100}
-                        height={innerWidth > 550 ? 200 : 150}
-                        alt='product image'
-                        />
-                </Link>
-            }
+        <div className={`flex gap-3`}>
+            <Link 
+                href={linkHref}
+                className="flex items-center justify-center sm:mb-0">
+                <Image
+                    className={`${innerWidth > 550 ? 'max-h-[200px] min-h-[200px] max-w-[150px] min-w-[150px]' :'max-h-[150px] min-h-[150px] max-w-[100px] min-w-[100px]'} bg-white object-contain rounded-md`}
+                    src={imagePath}
+                    width={innerWidth > 550 ? 150 : 100}
+                    height={innerWidth > 550 ? 200 : 150}
+                    alt='product image'
+                    />
+            </Link>
             <section className="w-full">
                 <Link href={linkHref}>
                     <h4 
