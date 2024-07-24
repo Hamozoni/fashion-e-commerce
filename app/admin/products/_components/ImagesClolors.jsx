@@ -45,41 +45,18 @@ export function ImagesColor() {
         setProductSizes(sizesLength)
     },[category]);
 
-  return (
-    <section className="">
+    const className = {
+        addRemovBtn : 'w-[70px] cursor-pointer hover:scale-105 rounded-full flex items-center justify-center border-2'
+    }
 
-        <header className="flex items-center justify-between my-3">
-            
+  return (
+    <section className="mb-10">
+
+        <header className="my-3">
             <h4 
                 className="text-center text-lg text-teal-900 dark:text-teal-100 py-3 font-bold"
                 > color details
             </h4>
-            <div className="flex items-center gap-5">
-                {
-                    productColors?.length > 1 ? 
-                    <div className="w-[100px]">
-                        <ButtonWithIcon 
-                            text='' 
-                            Icon={FiMinus}
-                            type='delete' 
-                            disabled={false} 
-                            onClick={() => deleteInput(productColors?.length - 1)}
-                            />
-                    </div>
-                    : null
-                }
-                <div className="w-[100px]">
-                    <ButtonWithIcon 
-                    text='' 
-                    Icon={IoIosAdd} 
-                    type='save' 
-                    disabled={false} 
-                    onClick={addMore}
-                    />
-                </div>
-
-            </div>
-
         </header>
         <div >
                 {
@@ -136,6 +113,24 @@ export function ImagesColor() {
                         </div>
                     ))
                 }
+
+               <div 
+                     
+                    className="flex items-center justify-center gap-5">
+                {
+                    productColors?.length > 1 ? 
+                    <div
+                        onClick={() => deleteInput(productColors?.length - 1)}
+                        className={`${className.addRemovBtn} text-rose-600 border-rose-600`}>
+                        <FiMinus size={24} />
+                    </div>
+                    : null
+                }
+                <div  onClick={addMore} className={`${className.addRemovBtn} text-teal-300 border-teal-300`}>
+                    <IoIosAdd size={24}/>
+                </div>
+
+            </div>
 
         </div>
     </section>

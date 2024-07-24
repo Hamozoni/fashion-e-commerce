@@ -2,7 +2,6 @@
 
 import {  useContext } from "react";
 import { FormInput } from "./FormInput";
-import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
@@ -24,41 +23,20 @@ export function SpecificationInputs() {
 
             return [...prev]
         })
+    };
+
+    const className = {
+        addRemovBtn : 'w-[70px] cursor-pointer hover:scale-105 rounded-full flex items-center justify-center border-2'
     }
 
   return (
-    <section className="">
+    <section className="mb-10">
         <header
-             className="flex items-center justify-between my-3">
+             className="my-3">
              <h4 
                 className="text-center text-lg text-teal-900 dark:text-teal-100 py-3 font-bold"
                 > specifications
             </h4>
-            <div className="flex items-center gap-5">
-                {
-                    productSpecifications?.length > 1 ? 
-                        <div className="w-[70px]">
-                            <ButtonWithIcon 
-                                text='' 
-                                Icon={FiMinus} 
-                                type='delete' 
-                                disabled={false} 
-                                onClick={() => deleteInput(productSpecifications?.length - 1)}
-                                />
-                        </div>
-                        : null
-                    }
-                    <div className="w-[70px]">
-                        <ButtonWithIcon 
-                            text='' 
-                            Icon={IoIosAdd} 
-                            type='save' 
-                            disabled={false} 
-                            onClick={addMore}
-                        />
-                    </div>
-
-            </div>
         </header>
         <div >
 
@@ -90,6 +68,23 @@ export function SpecificationInputs() {
                     </div>
                 ))
             }
+            <div className="flex items-center justify-center gap-5">
+                {
+                    productSpecifications?.length > 1 ? 
+                        <div 
+                            onClick={() => deleteInput(productSpecifications?.length - 1)}
+                            className={`${className.addRemovBtn} border-rose-600 text-rose-600`}>
+                            <FiMinus size={24}/>
+                        </div>
+                        : null
+                    }
+                    <div 
+                        onClick={addMore} 
+                        className={`${className.addRemovBtn} border-teal-300 text-teal-300`}>
+                        <IoIosAdd size={24}/>
+                    </div>
+
+            </div>
         </div>
     </section>
   )

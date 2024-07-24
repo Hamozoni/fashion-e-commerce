@@ -7,7 +7,7 @@ import {SubscribeByEmail} from "./components/subscribeByEmail";
 
 export const Footer = ()=> {
     return (
-        <footer className="bg-teal-950 dark:bg-stone-900 border-t-8 border-teal-200 mt-4">
+        <footer className="bg-teal-950 dark:bg-stone-900 border-b-8 border-teal-200 mt-4">
             <div className="p-3 lg:px-8">
                <div className="md:flex gap-5 xl:gap-10 border-b border-teal-900 pb-5 mb-5">
                     <div className="">
