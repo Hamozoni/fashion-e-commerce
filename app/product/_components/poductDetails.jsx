@@ -62,7 +62,7 @@ export function ProductDetails({data}) {
                                     className="text:lg sm:text-2xl text-teal-9500 text-teal-950 dark:text-teal-50"
                                     >{product?.name}
                                 </h5>
-                                <h4 className="text-sm text-teal-700 dark:text-teal-200">
+                                <h4 className="text-xm sm:text-sm text-teal-700 dark:text-teal-200">
                                     brand: {product?.brand}
                                 </h4>
                                 <ReviewsContextProvider product={product}>

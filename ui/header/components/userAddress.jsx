@@ -47,20 +47,24 @@ export function UserAddress() {
                 <>
                     <Overlay 
                         onClick={()=> setIsUpdateAddress(false)}
-                        />
-                    <ul className=" z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] max-w-full p-3 bg-gray-100 rounded-md shadow-md border border-gray-200">
+                    />
+                    <ul 
+                        className=" z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
+                        w-[700px] max-w-full p-3 bg-gray-100 dark:bg-stone-950 
+                        rounded-md shadow-md border border-gray-200 dark:border-stone-800"
+                        >
                         <li>
                             <p className="flex justify-center">
                               <IoLocationOutline size={30} />
                             </p>
-                            <address className="mb-4 text-sm md:text-lg text-teal-950 font-bold">
+                            <address className="mb-4 text-sm text-center text-teal-950 dark:text-teal-50 font-bold">
                                 {currentUser?.address?.formatedAddress}
                             </address>
                         </li>
-                        <li>
+                        <li className="max-w-[180px] mx-auto">
                             <ButtonWithIcon
                                text='update addres'
-                               type='primary'
+                               type='save'
                                Icon={IoLocationOutline}
                                onClick={()=>{
                                   setIsMapOpen(true);

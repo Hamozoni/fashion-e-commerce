@@ -146,10 +146,12 @@ export function AddressMap({onClick}) {
             }
         }}
         className="grand capitalize fixed top-0 left-0 w-[100vw] h-[100vh] z-50 flex justify-center items-center ">
-        <div className="w-[400px] sm:w-[630px] md:w-[750px] max-w-[98%] h-[98%] flex flex-col border border-gray-200 bg-gray-50 rounded-md p-3">
+        <div className="w-[400px] sm:w-[630px] md:w-[750px] max-w-[98%] h-[98%] flex flex-col border border-gray-200 dark:bg-stone-950 bg-gray-50 rounded-md p-3">
             <header className="py-3 flex-1">
                 <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-lg text-teal-950 font-bold">add new address</h4>
+                    <h4 className="text-lg text-teal-950 font-bold">
+                        add new address
+                    </h4>
                     <button onClick={onClick}>
                         <RxCross2 />
                     </button>
