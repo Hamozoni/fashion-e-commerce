@@ -26,9 +26,13 @@ export const CartItemsCard = ({product,isCheckout = false})=> {
         query: {color,colorName,size,imagePath,priceInHalala}
      };
 
+     const className = {
+        text: 'text-sm sm:text-lg text-teal-900 dark:text-teal-100'
+     }
+
 
   return (
-    <div className="p-3 mb-8 sm:border-l-2 sm:border-l-teal-400 sm:border-t-2 sm:border-t-teal-400 rounded-md shadow-md border border-gray-100 w-full">
+    <div className="p-3 mb-8 rounded-md shadow-md border border-gray-100 dark:border-stone-900 w-full">
         <div className={`${isCheckout ? '':'flex'} gap-3`}>
             {
                 isCheckout ? null :
@@ -36,7 +40,7 @@ export const CartItemsCard = ({product,isCheckout = false})=> {
                     href={linkHref}
                     className="flex items-center justify-center mb-3 sm:mb-0">
                     <Image
-                        className={`${innerWidth > 550 ? 'max-h-[200px]' :'max-h-[150px]'}`}
+                        className={`${innerWidth > 550 ? 'max-h-[200px] min-h-[200px] max-w-[150px] min-w-[150px]' :'max-h-[150px] min-h-[150px] max-w-[100px] min-w-[100px]'} bg-white object-contain`}
                         src={imagePath}
                         width={innerWidth > 550 ? 150 : 100}
                         height={innerWidth > 550 ? 200 : 150}
@@ -46,23 +50,23 @@ export const CartItemsCard = ({product,isCheckout = false})=> {
             }
             <section>
                 <Link href={linkHref}>
-                        <h4 
-                            className="text-lg sm:text-xl font-bold text-teal-950 hover:text-teal-800"
-                            >{name}
-                        </h4>
+                    <h4 
+                        className="text-sm sm:text-xl font-bold text-teal-950 dark:text-teal-50 hover:opacity-95"
+                        >{name}
+                    </h4>
                 </Link>
                 <div className="flex justify-between items-center mt-3">
                     <div className="">
                         <div className="flex gap-3 items-center lg-pt-0">
-                            <h5 className="text-lg text-teal-900">
+                            <h5 className={className.text}>
                                 {getCurrency(priceInHalala)} × {quantity}
                             </h5>
                         </div>
                         <div className="">
-                            <h5 className="text-lg text-teal-900">
+                            <h5 className={className.text}>
                                 color:  <small>{colorName}</small> 
                             </h5>
-                            <h5 className="text-lg text-teal-900">
+                            <h5 className={className.text}>
                                 size:  <small>{size}</small>
                             </h5>
                         </div>
@@ -80,7 +84,7 @@ export const CartItemsCard = ({product,isCheckout = false})=> {
                                         text='' 
                                         Icon={MdOutlineDeleteOutline} 
                                         type='delete'
-                                        onClick={()=> dispatch(removeItemFromCart(id,color,size))}
+                                        onClick={()=> dispatch(removeItemFromCart({id,color,size}))}
                                     />
                                 </div>
                                 : null
