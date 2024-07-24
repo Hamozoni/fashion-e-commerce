@@ -8,7 +8,7 @@ import {ImagesColor} from "../_components/ImagesClolors";
 import {ProductInfoForm} from "../_components/productInfoForm"
 import {Loading} from "../../../../ui/models/Loading";
 // icons
-import { IoArrowBackOutline } from "react-icons/io5";
+import { CiSaveDown2 } from "react-icons/ci";
 // form data fomater
 import {formDataProductFormater} from "../../../../lip/formDataProductFormater";
 // axios post function
@@ -107,10 +107,10 @@ const NewProducts = () => {
                     <SpecificationInputs/>
                     <ImagesColor/>
 
-                    <div className="w-[200px]">
+                    <div className="w-[200px] mx-auto">
                      <ButtonWithIcon
                         text='save'
-                        Icon={IoArrowBackOutline}
+                        Icon={CiSaveDown2}
                         type='save'
                         disabled={isPendding}
                         />

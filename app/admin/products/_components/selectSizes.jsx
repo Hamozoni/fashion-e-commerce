@@ -76,7 +76,9 @@ export const SelectSizes = ({i})=> {
     return (
         <div className="">
             <div className="">
-                <h5 className="text-center p-4 ">place slesct avalbe sizes *</h5>
+                <h5 className="text-center p-4 text-teal-900 dark:text-teal-50 text-lg">
+                    place slesct avalbe sizes *
+                </h5>
                 <ul className="flex items-center justify-center  gap-3">
                     {
                         sizesData?.map(({name,shortName,id,quantity})=> (
