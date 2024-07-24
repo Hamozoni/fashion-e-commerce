@@ -3,10 +3,10 @@ import {createContext, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 // components
 import {SpecificationInputs}from "../_components/SpecificationInputs";
-import { ButtonWithIcon } from "../../../../components/buttons";
+import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import {ImagesColor} from "../_components/ImagesClolors";
 import {ProductInfoForm} from "../_components/productInfoForm"
-import {Loading }from "../../../../components/Loading";
+import {Loading }from "../../../../ui/components/Loading";
 // icons
 import { IoArrowBackOutline } from "react-icons/io5";
 // form data fomater

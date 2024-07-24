@@ -2,7 +2,7 @@
 
 import {  useContext } from "react";
 import { FormInput } from "./FormInput";
-import { ButtonWithIcon } from "../../../../components/buttons";
+import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
