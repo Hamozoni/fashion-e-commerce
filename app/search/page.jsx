@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import {fetchData} from '../../lip/fetchData';
-import {Loading} from "../../components/Loading";
+import {Loading} from "../../ui/models/Loading";
 import {ProductCard} from "../../ui/cards/productCard";
 
 const SearchPage = ()=> {
