@@ -15,8 +15,8 @@ import {CartDetails} from "./cartDetails"
 import { IoBagCheck } from "react-icons/io5";
 // tailwind class
 const className = {
-    section : 'border border-gray-50 mb-3 p-3 rounded-md shadow-md',
-    parts: 'flex items-center justify-between py-3 border-b border-gray-50',
+    section : 'border border-gray-50 dark:border-stone-800 mb-3 p-3 rounded-md shadow-md',
+    parts: 'flex items-center justify-between py-3 border-b border-gray-50 dark:border-stone-800',
 }
 
 export const CartFooter = ()=> {
@@ -43,14 +43,16 @@ export const CartSummary = ()=> {
 
   return (
     <div className="w-full p-3 lg:p-0 sticky top-[80px] right-0">
-        <header className={`${className.section} bg-green-50`}>
+        <header className={`${className.section} bg-green-50 dark:bg-stone-900`}>
             <div className="flex items-center gap-2 max-w-fit mx-auto">
-                <MdOutlineLocalShipping size={22}/>
-                <h4 className="uppercase text-green-900">free shipping</h4>
-                <p className="text-sm text-green-800">on orders over <strong > SAR 150 </strong></p>
+                <MdOutlineLocalShipping className="text-teal-900 dark:text-teal-100" size={22}/>
+                <h4 className="uppercase text-teal-950 dark:text-teal-50">free shipping</h4>
+                <p className="text-sm text-teal-900 dark:text-teal-100">on orders over <strong > SAR 150 </strong></p>
             </div>
         </header>
         <CartDetails />
+        <CartFooter />
+        <hr className="my-4 text-teal-100 dark:text-stone-800"/>
         <Link href='/checkout'>
             <ButtonWithIcon 
                 text='check out' 
@@ -59,8 +61,6 @@ export const CartSummary = ()=> {
                 onClick={()=> ''}
             />
         </Link>
-        <hr className="py-3"/>
-        <CartFooter />
     </div>
   )
 };

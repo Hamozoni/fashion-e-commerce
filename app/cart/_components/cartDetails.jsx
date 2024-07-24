@@ -4,16 +4,16 @@ import {getCurrency }from "../../../lip/getCurrency";
 
 
 export const CartDetails = () => {
+
     const totalPrice = useAppSelector(state=> state.cart.totalPaid)
     const subtotal = useAppSelector(state=> state.cart.totalQuantity)
-
     const deliveryFree = useAppSelector(state=> state.cart.deliveryFree);
 
     const className = {
-        section : 'border border-gray-50 mb-3 p-3 rounded-md shadow-md capitalize',
-        parts: 'flex items-center justify-between py-2 border-b border-gray-50',
-        money: 'text-green-900 text-md font-bold',
-        title:'text-teal-950 text-lg font-bold'
+        section : 'border border-gray-50 dark:border-stone-900 mb-3 p-3 rounded-md shadow-md capitalize',
+        parts: 'flex items-center justify-between py-2 border-b border-gray-50 dark:border-stone-900 ',
+        money: 'text-teal-900 dark:text-teal-100 text-sm font-bold',
+        title:'text-teal-950 dark:text-teal-50 text-sm font-bold'
     }
 
   return (

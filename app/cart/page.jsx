@@ -6,6 +6,8 @@ import {CartItemsCard} from "../../ui/cards/cartItemsCard";
 import {CartSummary} from "./_components/CartSummary";
 // redux store
 import { useAppSelector } from "../../store/store";
+// icons
+import { FaCartShopping } from "react-icons/fa6";
 
 function cartPage() {
 
@@ -13,8 +15,8 @@ function cartPage() {
     const totalItemsOnCart = useAppSelector((state)=> state.cart.totalQuantity);
 
     const className = {
-        startShopping: 'border border-teal-200  py-2 px-6 text-teal-950 capitalize bg-teal-50 hover:bg-teal-100 rounded-full absolute bottom-[20px] left-[50%] translate-x-[-50%]',
-        sectionTitle: 'text-teal-900 font-bold text-center lg:text-left text-xl w-full py-5  lg:px-0'
+        startShopping: 'border border-teal-200 dark:border-stone-900  py-2 px-6 text-teal-950 dark:text-teal-50 capitalize bg-teal-50 dark:bg-stone-700 rounded-full absolute bottom-[20px] left-[50%] translate-x-[-50%]',
+        sectionTitle: 'text-teal-900 dark:text-teal-100 font-bold text-center lg:text-left text-xl w-full py-5  lg:px-0'
     };
 
     const cartCard = cartItems?.map((product)=> (
@@ -30,8 +32,8 @@ function cartPage() {
             cartItems?.length ?
             <div className="lg:px-8 lg:flex gap-8 capitalize">
                 <section className="basis-[60%]">
-                    <h4 className={className.sectionTitle}>
-                       my cart items {totalItemsOnCart}
+                    <h4 className={`${className.sectionTitle} flex items-center gap-3`}>
+                      <FaCartShopping /> my cart items {totalItemsOnCart}
                     </h4>
                     <div >
                         {cartCard}

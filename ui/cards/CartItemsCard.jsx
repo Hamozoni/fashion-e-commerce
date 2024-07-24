@@ -48,14 +48,14 @@ export const CartItemsCard = ({product,isCheckout = false})=> {
                         />
                 </Link>
             }
-            <section>
+            <section className="w-full">
                 <Link href={linkHref}>
                     <h4 
                         className="text-sm sm:text-xl font-bold text-teal-950 dark:text-teal-50 hover:opacity-95"
                         >{name}
                     </h4>
                 </Link>
-                <div className="flex justify-between items-center mt-3">
+                <div className="flex justify-between items-center mt-3 w-full">
                     <div className="">
                         <div className="flex gap-3 items-center lg-pt-0">
                             <h5 className={className.text}>
