@@ -1,15 +1,17 @@
 
 "use client";
 import {useAppSelector} from "../../../../store/store";
-import {CartItemCard} from "../../../../ui/cards/cartItemsCard";
+import {CartItemsCard} from "../../../../ui/cards/cartItemsCard";
 
-export const OrderSummary = ()=> {
+const OrderSummary = ()=> {
+
     const orderItems = useAppSelector( state => state.cart.products);
+
     return (
         <div className="capitalize">
             {
                 orderItems?.map(product=> (
-                    <CartItemCard 
+                    <CartItemsCard 
                         key={product.id} 
                         product={product} 
                         isCheckout={true}
@@ -18,4 +20,6 @@ export const OrderSummary = ()=> {
             }
         </div>
     )
-};
+}
+
+export default OrderSummary

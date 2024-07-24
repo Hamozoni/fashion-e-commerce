@@ -1,6 +1,6 @@
 
 import {Payment} from "./_components/payment";
-import {OrderSummary} from "./_components/orderSummary";
+import OrderSummary from "./_components/orderSummary";
 
 const checkoutPage = ()=>  {
 
@@ -20,4 +20,4 @@ const checkoutPage = ()=>  {
   )
 }
 
-export default checkoutPage
+export default checkoutPage;
