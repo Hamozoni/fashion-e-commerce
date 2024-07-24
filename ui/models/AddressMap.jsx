@@ -26,6 +26,7 @@ export function AddressMap({onClick}) {
     const [position,setPosition] = useState({lat: 26.3159003,lng: 50.2052888});
     const [formatedAddress,setFormatedAddress] = useState("")
     const [address,setAddress] = useState({});
+    const [isLocateMeCenter,setIsLocateMeCenter] = useState(false);
     
     const {update} = useSession();
     const [loading,startTranation] = useTransition()
@@ -89,6 +90,7 @@ export function AddressMap({onClick}) {
         setPosition(position)
 
         getCurrentAddress(position.lat,position.lng);
+        setIsLocateMeCenter(false)
 
 
     };
@@ -97,9 +99,9 @@ export function AddressMap({onClick}) {
         if(navigator.geolocation){
 
             navigator.geolocation.getCurrentPosition((e)=>{
-
                 setPosition({lat:e.coords.latitude,lng: e.coords.longitude});
                 getCurrentAddress(e.coords.latitude,e.coords.longitude);
+                setIsLocateMeCenter(true)
                 
             })
                 
@@ -146,17 +148,17 @@ export function AddressMap({onClick}) {
             }
         }}
         className="grand capitalize fixed top-0 left-0 w-[100vw] h-[100vh] z-50 flex justify-center items-center ">
-        <div className="w-[400px] sm:w-[630px] md:w-[750px] max-w-[98%] h-[98%] flex flex-col border border-gray-200 dark:bg-stone-950 bg-gray-50 rounded-md p-3">
+        <div className="w-[400px] sm:w-[630px] md:w-[750px] max-w-[98%] h-[98%] flex flex-col border border-gray-200 dark:border-stone-700 bg-gray-50 dark:bg-stone-950 rounded-md p-3">
             <header className="py-3 flex-1">
                 <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-lg text-teal-950 font-bold">
+                    <h4 className="text-lg text-teal-950 dark:text-teal-50 font-bold">
                         add new address
                     </h4>
-                    <button onClick={onClick}>
-                        <RxCross2 />
+                    <button onClick={onClick} className="text-teal-950 dark:text-teal-50" >
+                        <RxCross2 size={24} />
                     </button>
                 </div>
-                <div className="rounded-md p-2 text-teal-900 font-bold text-sm border border-gray-200">
+                <div className="rounded-md p-2 text-teal-900 dark:text-teal-100 font-bold text-sm border border-gray-200 dark:border-stone-700">
                     { formatedAddress ? <p>{formatedAddress}</p> :"your address..." }
                 </div>
             </header>
@@ -167,7 +169,7 @@ export function AddressMap({onClick}) {
                     <Map 
                         zoomControl={true}
                         defaultCenter={position}
-                        center={position}
+                        center={isLocateMeCenter ? position : null}
                         defaultZoom={15}
                         gestureHandling={'greedy'}
                         disableDefaultUI={true}
