@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import {SelectColor} from "../../../ui/components/selectColor";
 import {SelectSize} from "../../../ui/components/selectSize";
 import {Features} from "./Features"
-import {AddToCart}from "../../../ui/buttons/addToCart";
+import {AddToCart} from "../../../ui/buttons/addToCart";
 import {Specifications}from "./Specifications";
 import {ImagesGalary} from "./ImagesGalary";
 import {AddToListBtn }from "../../../ui/buttons/addToListBtn";
@@ -20,7 +20,6 @@ export const ProductDetailsContext =  createContext(null);
 export function ProductDetails({data}) {
 
     const [product,setProduct]= useState(data);
-
     const searchParams = useSearchParams();
 
     useEffect(()=> {
@@ -60,10 +59,10 @@ export function ProductDetails({data}) {
                         <div>
                             <header className="pb-2">
                                 <h5
-                                    className="text-2xl text-teal-9500"
+                                    className="text:lg sm:text-2xl text-teal-9500 text-teal-950 dark:text-teal-50"
                                     >{product?.name}
                                 </h5>
-                                <h4 className="text-sm text-teal-700">
+                                <h4 className="text-sm text-teal-700 dark:text-teal-200">
                                     brand: {product?.brand}
                                 </h4>
                                 <ReviewsContextProvider product={product}>
@@ -71,10 +70,10 @@ export function ProductDetails({data}) {
                                 </ReviewsContextProvider>
                             </header>
                             <div className="flex items-center  text-teal-950 gap-3">
-                                <h4 className='text-2xl font-extrabold'>
+                                <h4 className='text-lg sm:text-2xl font-extrabold text-teal-900 dark:text-teal-100'>
                                     {getCurrency(+product?.priceInHalala)}
                                 </h4>
-                                <p className="text-teal-800 text-sm">Inclusive of VAT</p>
+                                <p className="text-teal-800 dark:text-teal-200 text-sm">Inclusive of VAT</p>
                             </div>
                             <SelectSize />
                             <SelectColor />
