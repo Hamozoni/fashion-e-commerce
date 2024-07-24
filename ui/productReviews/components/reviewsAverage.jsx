@@ -22,7 +22,7 @@ export const ReviewsAverage = () => {
   return (
     <div className="flex items-center gap-2 mb-3">
         <h5 
-            className="text-xl font-bold teal-green-950"
+            className="text-sm sm:text-lg font-bold text-teal-950 dark:text-teal-50"
             >{reviewsAvg > 0 ? reviewsAvg?.toFixed(1) : 0} out of 5
         </h5>
         <div className="flex items-center text-yellow-400 text-[30px]">

@@ -65,9 +65,11 @@ const CatecoryPage = () => {
           </nav>
         </header>
         <section>
-            <h5 className="text-xl text-teal-950 capitalize mt-10 mb-5 font-bold" >products for {section} :</h5>
+            <h5 className="text-lg sm:text-xl text-teal-950 dark:text-teal-50 capitalize mt-10 mb-5 font-bold" >
+              products for {section} :
+            </h5>
             <div className=""> 
-              <div className="flex justify-center flex-wrap gap-2 sm:gap-4">
+              <div className="flex flex-wrap gap-2 sm:gap-4">
                   {
                     isLoading ? <Loading /> : 
                     products?.map((product)=> (

@@ -18,7 +18,7 @@ export const Reviews = ()=> {
         </div>
         <section className="">
           <h5 
-            className="text-md font-bold text-teal-900 pb-2 mb-2 border-b border-gray-100"
+            className="text-md font-bold text-teal-900 dark:text-teal-100 pb-2 mb-2 border-b border-gray-100 dark:border-stone-900"
             >{reviews?.length || 0} Reviews
           </h5>
           <div className="">

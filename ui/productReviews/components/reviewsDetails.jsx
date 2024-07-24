@@ -11,9 +11,9 @@ export function ReviewsDetails() {
   const {reviews} = useContext(ReviewsContext);
 
     const className = {
-        sectionClass: 'py-3 border-b border-gray-100',
-        sectionHead: 'font-bold text-lg text-teal-950 pb-2',
-        sectionP: 'font-bold text-sm text-teal-900'
+        sectionClass: 'py-3 border-b border-gray-100 dark:border-stone-900',
+        sectionHead: 'font-bold text-lg text-teal-950 dark:text-teal-50 pb-2',
+        sectionP: 'font-bold text-sm text-teal-900 dark:text-teal-100'
       };
 
       const handleRatingPrecetage = (number)=> {
@@ -26,22 +26,22 @@ export function ReviewsDetails() {
   return (
     <section className="flex-1 capitalize max-w-full min-w-[50%]">
         <h5  
-          className="text-lg font-bold text-teal-900 pb-2 mb-2"
+          className="text-lg font-bold text-teal-900 dark:text-teal-100 pb-2 mb-2"
            >Overall Rating:
         </h5>
         <div className="sticky top-[70px]">
           <ReviewsAverage/>
-          <div className="py-4 border border-green-50 shadow-md px-2 rounded-md">
+          <div className="py-4 border border-teal-50 dark:border-stone-900 shadow-md px-2 rounded-md">
               <table className="min-w-full table ">
                   <tbody>
                   {
                       ratingArray?.map((star,index)=> (
                       <tr className="min-w-full table"> 
-                          <td className="text-teal-950 font-bold w-[52px] pb-2">
+                          <td className="text-teal-950 dark:text-teal-50 font-bold w-[52px] pb-2">
                               {index + 1} {star}
                             </td>
                           <td className="px-3">
-                              <div className="h-5 border bg-teal-50 border-green-100 rounded-md overflow-hidden">
+                              <div className="h-5 border bg-teal-50 dark:bg-stone-900 border-teal-100 dark:border-stone-800 rounded-md overflow-hidden">
                                   <div 
                                       style={{width: handleRatingPrecetage(index + 1)}} 
                                       className="bg-yellow-400 h-5">
@@ -49,7 +49,7 @@ export function ReviewsDetails() {
                               </div>
                           </td>
                           <td 
-                            className="text-teal-900 font-bold w-[30px]"
+                            className="text-teal-900 dark:text-teal-50 font-bold w-[30px]"
                             > {handleRatingPrecetage(index + 1)}
                           </td>
                       </tr>

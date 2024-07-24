@@ -15,8 +15,8 @@ export function ReviewsHeader() {
   return (
 
     <div className="mt-8">
-        <div className="py-5 border-b border-gray-100 max-w-[380px] mx-auto">
-            <h6 className="text-teal-900 text-center pb-2 text-lg font-bold"
+        <div className="py-5 border-b border-gray-100 dark:border-stone-900 max-w-[380px] mx-auto">
+            <h6 className="text-teal-900 dark:text-teal-100 text-center pb-2 text-lg font-bold"
               >Share your thoughts with other customers
             </h6>
             <ButtonWithIcon
