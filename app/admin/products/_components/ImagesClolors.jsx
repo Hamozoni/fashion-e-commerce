@@ -91,13 +91,22 @@ export function ImagesColor() {
                                     placeHolder='price in halala...'
                                     errors={colValidError}
                                     />
-                                <input 
-                                    type="file"
-                                    name={`images_${index}`}
-                                    required
-                                    multiple
-                                    accept="image/*"
-                                     />
+                                    <div className="">
+                                        <label 
+                                             className="text-lg font-bold text-gray-500 dark:text-stone-300 group-hover:text-teal-500"
+                                             htmlFor="images"
+                                             >images *
+                                        </label>
+                                        <input 
+                                            id='images'
+                                            type="file"
+                                            name={`images_${index}`}
+                                            required
+                                            multiple
+                                            accept="image/*"
+                                            />
+
+                                    </div>
                                 <FormInput 
                                     onClick={(e)=> setProductColors((prev)=>{
                                             prev[index].color = e.target.value;
