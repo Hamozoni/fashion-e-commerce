@@ -91,9 +91,9 @@ export function ImagesColor() {
                                     placeHolder='price in halala...'
                                     errors={colValidError}
                                     />
-                                    <div className="">
+                                    <div className="flex flex-col gap-4 mb-5">
                                         <label 
-                                             className="text-lg font-bold text-gray-500 dark:text-stone-300 group-hover:text-teal-500"
+                                             className="text-lg font-bold text-gray-500 dark:text-stone-300"
                                              htmlFor="images"
                                              >images *
                                         </label>
