@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 import {categoriesData} from "../../../../data/categoriesData";
 import { newProductContext } from "../new/page";
-import { IoMdArrowDropright } from "react-icons/io";
+import { IoMdArrowDropright,IoMdArrowDropdown } from "react-icons/io";
 import { GiCheckMark } from "react-icons/gi";
 
 const className = {
@@ -19,7 +19,7 @@ export const SelectCategory = ()=> {
 
     const [isSubCatecoryModel,setIsSubCategoryModel] = useState(false);
     const [isCategoryModel,setIsCategoryModel] = useState(false);
-    const [categoryName,setCategoryName] = useState('men');
+    const [categoryName,setCategoryName] = useState('');
     const [subCategoryName,setSubCategoryName] = useState('');
 
     return (
@@ -31,8 +31,12 @@ export const SelectCategory = ()=> {
                     <div 
                          onClick={()=> setIsCategoryModel(!isCategoryModel)}
                          className={` ${className.select} text-lg font-medium text-teal-950 dark:text-teal-50`}>
-                        <h5 >{categoryName}</h5>
-                        <IoMdArrowDropright size={22}/>
+                        <h5 >{categoryName || 'category'}</h5>
+                        {
+                            isCategoryModel ? 
+                            <IoMdArrowDropdown size={22}/> :
+                            <IoMdArrowDropright size={22}/>
+                        }
                     </div>
                     {
                         isCategoryModel ? 
@@ -73,7 +77,11 @@ export const SelectCategory = ()=> {
                          onClick={()=> setIsSubCategoryModel(!isSubCatecoryModel)}
                         className={`${className.select} text-lg font-medium text-teal-950 dark:text-teal-50`}>
                         <h5 >{subCategoryName || 'subcategory'}</h5>
-                        <IoMdArrowDropright size={22}/>
+                        {
+                            isSubCatecoryModel ? 
+                            <IoMdArrowDropdown size={22}/> :
+                            <IoMdArrowDropright size={22}/>
+                        }
                     </div>
                     {
                         isSubCatecoryModel ? 
@@ -105,7 +113,8 @@ export const SelectCategory = ()=> {
                                 </li>
                             ))
                             }
-                        </ul> : null
+                        </ul> : 
+                        <p>select category first</p>
                     }
 
                 </div>
