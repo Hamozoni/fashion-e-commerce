@@ -39,7 +39,7 @@ export const SelectCategory = ()=> {
                             {
                                 categoriesData?.map(({name,id,sub,sizes,shoesSizes})=> (
                                 <li
-                                    className={`${name === categoryName ? 'bg-gray-200' : 'hover:bg-gray-100'} px-3 p-1 cursor-pointer text-lg font-medium text-teal-900 `}
+                                    className={`${name === categoryName ? 'bg-gray-200 dark:bg-stone-950' : 'hover:bg-gray-100 dark:hover:bg-slate-900'} px-3 p-1 cursor-pointer text-sm font-medium text-teal-900 dark:text-teal-100`}
                                     onClick={()=> {
                                         setCategoryName(name);
                                         setCategory({name,sub,sizes,shoesSizes});
