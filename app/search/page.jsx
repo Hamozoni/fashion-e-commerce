@@ -42,7 +42,9 @@ const SearchPage = ()=> {
                 isLoading ? <Loading /> : null
             }
             <header className="mb-4 mt-3">
-                <h3 className="text-xl font-bold text-teal-950 capitalize">search results: {data?.length}</h3>
+                <h3 className="text-xl font-bold text-teal-950 dark:text-teal-50 capitalize"
+                >search results: {data?.length}
+            </h3>
             </header>
             <div className="flex flex-wrap gap-5 justify-center">
                 {
