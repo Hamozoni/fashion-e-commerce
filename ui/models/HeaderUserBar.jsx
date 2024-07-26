@@ -53,7 +53,7 @@ export function HeaderUserBar() {
                     }
                 </div>
             </div>
-            {  isAccount &&(
+            {  (isAccount && currentUser) &&(
                 <>
                 <Overlay onClick={()=> setIsAccount(false)} />
                     <div className={className.ul}>

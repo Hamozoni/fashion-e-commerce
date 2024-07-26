@@ -32,18 +32,20 @@ export function ProductDetails({data}) {
             priceInHalala
         } = searchParamsObject;
 
-        console.log(searchParamsObject)
+        if(color && colorName && size && imagePath && priceInHalala) {
+            setProduct((prev)=> {
+                const selectedValues = {
+                    color,
+                    colorName,
+                    size,imagePath,
+                    priceInHalala
+                }
+    
+                return {...prev,...selectedValues}
+            });
 
-        setProduct((prev)=> {
-            const selectedValues = {
-                color,
-                colorName,
-                size,imagePath,
-                priceInHalala
-            }
+        };
 
-            return {...prev,...selectedValues}
-        })
     },[]);
 
   return (

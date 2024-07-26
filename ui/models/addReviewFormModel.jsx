@@ -1,12 +1,10 @@
 "use client";
 // react & next
-import { useRouter } from "next/navigation";
 import { useContext, useRef, useState } from "react";
 
 // icons
 import { RxCross2 } from "react-icons/rx";
 import { BiSave } from "react-icons/bi";
-import { FcCancel } from "react-icons/fc";
 
 // components
 import {Overlay} from "./overlay";
@@ -17,8 +15,6 @@ import {FormModelProduct } from "./reviewModelProduct";
 import {ratingSchema} from "../../validationSchemas/ratingSchema";
 // server actions
 import { PostData } from "../../lip/fetchData";
-// loading
-import { PulseLoader } from "react-spinners";
 // context
 import { ReviewsContext } from "../productReviews/reviewsContext";
 import { AppContext } from "../../app/contextProvider";
@@ -29,7 +25,6 @@ export const AddReviewFormModel = ({setShowModel})=> {
     const {product,setReviews} = useContext(ReviewsContext)
     const [rating,setRating] = useState(1);
     const [error,setError] = useState(null);
-    const router = useRouter();
     const [isPending,setisPending] = useState(false);
 
     const reviewFormRef = useRef();
@@ -37,12 +32,6 @@ export const AddReviewFormModel = ({setShowModel})=> {
     const handleReview = ()=> {
 
         const formData = new FormData(reviewFormRef.current);
-
-        if(!currentUser) {
-          router.push('auth/login');
-          setShowModel(false);
-            return;
-        }
 
         formData.append('rating',Number(rating));
         formData.append('productId',product?.id);
@@ -54,8 +43,6 @@ export const AddReviewFormModel = ({setShowModel})=> {
             setError(null);
             PostData('products/reviews',formData)
             .then(data => {
-
-                console.log(data);
                     setReviews(prev=> [{...data,auther: {name: currentUser?.name,image:currentUser?.image}},...prev]);
                     setShowModel(false);
             })

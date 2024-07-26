@@ -6,11 +6,11 @@ export default async function middleware (req) {
 
   const {pathname} = req.nextUrl
 
-  const protectedRoutes = ['/api/products/new','/checkout'];
+  const protectedRoutes = ['/api/products/new','/checkout','/admin','/admin/products/new'];
 
-  if(protectedRoutes.some(route=> pathname.startsWith(route))) {
+  if(protectedRoutes.some( route => pathname.startsWith(route))) {
 
-    const token = getToken({req,secret:process.env.AUTH_SECRET});
+    const token = await getToken({req,secret:process.env.AUTH_SECRET});
 
     if(!token) {
 
@@ -26,11 +26,11 @@ export default async function middleware (req) {
 
   }
 
-  return NextResponse.next()
+  return null
 
 }
  
 // Optionally, don't invoke Middleware on some paths
 export const config = {
-  matcher: ['/api/products/new','checkout'],
+  matcher: ['/api/products/new','/checkout','/admin']
 }

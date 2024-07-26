@@ -7,7 +7,7 @@ import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { ButtonWithIcon } from "../../buttons/buttons";
 import {AddReviewFormModel} from "../../models/addReviewFormModel";
 import { AppContext } from "../../../app/contextProvider";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter} from "next/navigation";
 
 
 export function ReviewsHeader() {
@@ -16,16 +16,16 @@ export function ReviewsHeader() {
 
     const {currentUser} = useContext(AppContext);
 
-    const router = useRouter()
+    const router = useRouter();
+    const pathname = usePathname();
 
     const handleReviewsModel = ()=> {
 
       if(currentUser) {
         setShowModel(true)
       }else {
-        router.push('/auth/login')
-      }
-
+        router.push(`/auth/login?callback=${pathname}`)
+      };
 
     };
 
@@ -44,9 +44,11 @@ export function ReviewsHeader() {
                 />
         </div>
         {
-            showModel ? 
-             <AddReviewFormModel setShowModel={setShowModel}/>
-            :''
+            showModel && (
+              currentUser ?
+              <AddReviewFormModel setShowModel={setShowModel}/>
+              : ''
+            )
         }
     </div>
   )
