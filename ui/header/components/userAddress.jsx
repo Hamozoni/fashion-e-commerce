@@ -11,6 +11,7 @@ import {AddressMap} from "../../models/addressMap";
 import { AppContext } from "../../../app/contextProvider";
 // component
 import { ButtonWithIcon } from "../../buttons/buttons";
+import { usePathname, useRouter } from "next/navigation";
 
 export function UserAddress() {
 
@@ -22,6 +23,9 @@ export function UserAddress() {
     const className = {
         delivery: 'flex items-center gap-3 text-sm font-medium cursor-pointer  border-teal-50 text-teal-900 dark:text-teal-100 hover:text-teal-700 dark:hover:text-teal-50 line-clamp-1'
     };
+
+    const router = useRouter();
+    const pathname = usePathname()
 
   return (
       <>
@@ -39,7 +43,7 @@ export function UserAddress() {
                     :
                     <button 
                         className={className.delivery} 
-                        onClick={()=> setIsMapOpen(true)}> 
+                        onClick={()=> router.push(`/auth/login?callback=${pathname}`)}> 
                         <IoLocationOutline size={24} /> delivery to ?
                     </button>
                 }
