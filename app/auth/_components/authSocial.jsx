@@ -6,8 +6,9 @@ import Link from "next/link";
 import { DEFAULT_LOGIN_REDIRECT } from "../../../routes";
 import { useTransition } from "react";
 import {PropagateLoader} from "react-spinners";
-import Overlay from "../../../components/Overlay";
+import {Overlay }from "../../../ui/models/overlay";
 import { useSearchParams } from "next/navigation";
+import { ButtonWithIcon } from "../../../ui/buttons/buttons";
 
 function AuthSocial({text,link,page}) {
 
@@ -20,27 +21,26 @@ function AuthSocial({text,link,page}) {
                 callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT
             })
         })
-    }
-
+    };
     
-    const className = {
-        socialBtn : "flex-1 rounded-md border border-gray-50 hover:bg-gray-100 bg-gray-50 hover:shadow-none shadow-md flex items-center justify-center py-2 gap-3"
-    }
   return (
     <div className="relative">
-        <div className="flex items-center justify-between">
-            <button 
-                disabled={isLoading}
+        <div className="flex items-center justify-between gap-5">
+            <ButtonWithIcon 
+                text={page === 'logIn' ? "login " :"sign up "} 
+                Icon={SiGithub}
+                type='save'
                 onClick={()=> OauthSignIn("github")}
-                className={className.socialBtn}
-                ><SiGithub size={24}/> {page === 'logIn' ? "login " :"sign up "} with github
-            </button>
-            <button 
-              disabled={isLoading}
-              onClick={()=> OauthSignIn("google")}
-              className={className.socialBtn}>
-                <FcGoogle size={24}/> {page === 'logIn'? "login " :"sign up "} with google
-            </button>
+                disabled={isLoading}
+                />
+
+            <ButtonWithIcon 
+                text={page === 'logIn' ? "login " :"sign up "} 
+                Icon={FcGoogle}
+                type='save'
+                onClick={()=> OauthSignIn("google")}
+                disabled={isLoading}
+                />
         </div>
         <div 
             className="text-center p-3 ">

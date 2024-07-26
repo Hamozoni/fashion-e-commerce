@@ -58,7 +58,7 @@ function LoginPage() {
 
   return (
     <div>
-        <div className="bg-white w-[450px] p-4 rounded-md shadow-md">
+        <div className="bg-white dark:bg-stone-950 w-[450px] p-4 rounded-md shadow-md">
             <AuthHeader text='login'/>
             <form ref={loginForm} action={login}>
                 {
@@ -73,7 +73,7 @@ function LoginPage() {
                     ))
                 }
                 <div className="py-3 text-center">
-                    <Link href="/auth/reset-password">
+                    <Link href="/auth/reset-password text-teal-950 dark:text-teal-50 font-bold text-sm">
                         forgot password?
                     </Link>
                 </div>
