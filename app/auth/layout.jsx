@@ -5,7 +5,7 @@ export const metadata = {
 
 export default function AuthLatout ({children}){
     return (
-        <div className="flex items-center justify-center h-[90vh] bg-green-50">
+        <div className="flex items-center justify-center h-[90vh]">
             {children}
         </div>
     )

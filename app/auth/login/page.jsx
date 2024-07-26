@@ -4,13 +4,15 @@ import AuthHeader from "../_components/authHeader"
 import { AuthInput } from "../_components/authInput"
 import { loginInputs } from "../_components/authInputsData"
 import AuthSocial from "../_components/authSocial";
-import {SubmitBtn} from "../_components/submitBtn";
 import {loginAction} from "../../../actions/auth/login";
 import { useContext, useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AppContext } from "../../contextProvider";
+import { ButtonWithIcon } from "../../../ui/buttons/buttons";
+
+import { BiLogInCircle } from "react-icons/bi";
 
 
 function LoginPage() {
@@ -58,7 +60,7 @@ function LoginPage() {
 
   return (
     <div>
-        <div className="bg-white dark:bg-stone-950 w-[450px] p-4 rounded-md shadow-md">
+        <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-[450px] p-4 rounded-md shadow-md">
             <AuthHeader text='login'/>
             <form ref={loginForm} action={login}>
                 {
@@ -73,12 +75,22 @@ function LoginPage() {
                     ))
                 }
                 <div className="py-3 text-center">
-                    <Link href="/auth/reset-password text-teal-950 dark:text-teal-50 font-bold text-sm">
+                    <Link className="text-teal-950 dark:text-teal-50 font-bold text-sm" href="/auth/reset-password">
                         forgot password?
                     </Link>
                 </div>
-                <ErrorSucces error={serverErrror} success={serverSucces} />
-                <SubmitBtn isLoading={isLoading} text='login' />
+                <ErrorSucces 
+                    error={serverErrror} 
+                    success={serverSucces} 
+                    />
+
+                <ButtonWithIcon 
+                    text='logIn' 
+                    Icon={BiLogInCircle} 
+                    type='primary' 
+                    onClick={()=>''} 
+                    disabled={isLoading}
+                    />
             </form>
             
             <AuthSocial text="don't have an account?" link='/auth/register' page='logIn' />

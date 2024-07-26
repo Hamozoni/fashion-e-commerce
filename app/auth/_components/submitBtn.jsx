@@ -7,7 +7,11 @@ export function SubmitBtn({isLoading,text}) {
     }
 
   return (
-    <button disabled={isLoading} className={className.submitbtn}>
+
+    
+    <button 
+        disabled={isLoading} 
+        className={className.submitbtn}>
         {isLoading ? < PulseLoader size={20} color="#fff"/>: text}
     </button>
     )

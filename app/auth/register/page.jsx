@@ -3,11 +3,13 @@ import AuthHeader from "../_components/authHeader";
 import AuthSocial from "../_components/authSocial";
 import {AuthInput} from "../_components/authInput";
 import {registerInputs} from "../_components/authInputsData";
-import {SubmitBtn} from "../_components/submitBtn";
 import {registerSchema} from "../../../validationSchemas/authSchemas"
 import { useRef, useState, useTransition } from "react";
 import {registerAction} from "../../../actions/auth/register";
 import {ErrorSucces} from "../_components/errorSucces";
+import { ButtonWithIcon } from "../../../ui/buttons/buttons";
+
+import { LuClipboardSignature } from "react-icons/lu";
 
 function RegisterPage() {
 
@@ -51,7 +53,7 @@ function RegisterPage() {
 
   return (
     <div>
-        <div className=" bg-white w-[450px] p-4 rounded-md shadow-md">
+        <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-[450px] p-4 rounded-md shadow-md">
             <AuthHeader text='create an account'/>
             <form ref={registerForm}  action={register}>
 
@@ -68,7 +70,13 @@ function RegisterPage() {
                     ))
                 }
                 <ErrorSucces error={serverErrror} success={serverSucces}/>
-                <SubmitBtn isLoading={isLoading} text='create an account' />
+                <ButtonWithIcon 
+                    text='create an account' 
+                    Icon={LuClipboardSignature} 
+                    type='primary' 
+                    onClick={()=>''} 
+                    disabled={isLoading}
+                    />
             </form>
             <AuthSocial text="already have an account?" link='/auth/login' page='signUp' />
         </div>

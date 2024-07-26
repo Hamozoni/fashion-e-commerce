@@ -22,12 +22,12 @@ function AuthSocial({text,link,page}) {
             })
         })
     };
-    
+
   return (
-    <div className="relative">
+    <div className="relative mt-5">
         <div className="flex items-center justify-between gap-5">
             <ButtonWithIcon 
-                text={page === 'logIn' ? "login " :"sign up "} 
+                text={page === 'logIn' ? "login with github" :"signUp with github"} 
                 Icon={SiGithub}
                 type='save'
                 onClick={()=> OauthSignIn("github")}
@@ -35,7 +35,7 @@ function AuthSocial({text,link,page}) {
                 />
 
             <ButtonWithIcon 
-                text={page === 'logIn' ? "login " :"sign up "} 
+                text={page === 'logIn' ? "login with google" :"signUp with google"} 
                 Icon={FcGoogle}
                 type='save'
                 onClick={()=> OauthSignIn("google")}
@@ -46,7 +46,7 @@ function AuthSocial({text,link,page}) {
             className="text-center p-3 ">
             <Link 
                 href={link} 
-                className="capitalize text-green-800 font-medium hover:text-green-700"
+                className="capitalize text-teal-900 dark:text-teal-100 font-medium hover:text-teal-800 dark:hover:text-teal-50 "
                 >
                 {text}
             </Link>
