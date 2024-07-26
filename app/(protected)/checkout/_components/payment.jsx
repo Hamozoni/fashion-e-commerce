@@ -9,7 +9,10 @@ import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import { AuthInput } from "../../../auth/_components/authInput";
 import  {CartDetails}  from "../../../cart/_components/cartDetails";
 import { CartFooter } from "../../../cart/_components/CartSummary";
-import {UserField} from "./userField"
+import {UserField} from "./userField";
+
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 export function Payment() {
 
