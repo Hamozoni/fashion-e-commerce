@@ -17,7 +17,7 @@ export default  async function middleware (req) {
 
   if(protectedRoutes.some(route=> pathname.startsWith(route))){
 
-    const token = await getToken({req});
+    const token = await getToken({req,secret:process.env.AUTH_SECRET});
 
       if(!token){
 
