@@ -137,7 +137,6 @@ export function AddressMap({onClick}) {
             onClick();
         }
     };
-    
 
   return (
     <section 
