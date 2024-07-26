@@ -1,48 +1,36 @@
-import NextAuth from "next-auth";
-import authConfig from "./auth.config";
+import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
 
-import {poblicRoutes,authRoutes,apiAuthPrefix,DEFAULT_LOGIN_REDIRECT} from "./routes";
-
-
-const { auth } = NextAuth(authConfig)
  
-export default auth((req) => {
-  // req.auth
-  
-  const isLogined = !!req.auth;
+export default async function middleware (req) {
+
   const {pathname} = req.nextUrl
 
-  const isApiAuthRoute = pathname?.startsWith(apiAuthPrefix);
-  const isPublicRoute = poblicRoutes?.includes(pathname);
-  const isAuthRoute = authRoutes?.includes(pathname);
+  const protectedRoutes = ['/api/products/new','/checkout'];
 
-  if(isApiAuthRoute){
-    return null
-  };
+  if(protectedRoutes.some(route=> pathname.startsWith(route))) {
 
-  if(isAuthRoute){
-    if(isLogined){
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT,req.nextUrl))
-    }
-    return null
-  }
+    const token = getToken({req,secret:process.env.AUTH_SECRET});
 
-  if(!isLogined && !isPublicRoute) {
+    if(!token) {
 
-    let callback = pathname;
-    if(req.nextUrl.search){
-      callback += req.nextUrl.search
+      let callback = pathname;
+  
+      if(req.nextUrl.search){
+        callback += req.nextUrl.search;
+      }
+  
+      const encodedCallbackUrl = encodeURIComponent(callback)
+      return NextResponse.redirect(new URL(`/auth/login?callback=${encodedCallbackUrl}`,req.nextUrl));
     }
 
-    const encodedCallbackUrl = encodeURIComponent(callback)
-    return Response.redirect(new URL(`/auth/login?callback=${encodedCallbackUrl}`,req.nextUrl))
   }
 
-  return null
+  return NextResponse.next()
 
-})
+}
  
 // Optionally, don't invoke Middleware on some paths
 export const config = {
-  matcher: [ '/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ['/api/products/new','checkout'],
 }
