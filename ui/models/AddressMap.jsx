@@ -12,7 +12,7 @@ import {
     Marker
 } from "@vis.gl/react-google-maps";
 // fetch api
-import{fetchData}from "../../lip/fetchData";
+import{fetchLocationData}from "../../lip/fetchData";
 // server actions
 import {addNewAddress} from "../../actions/user/addNewAddress";
 // component
@@ -45,7 +45,8 @@ export function AddressMap({onClick}) {
 
         const geocodeApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`
 
-        fetchData(geocodeApiUrl).then((data)=> {
+        fetchLocationData(geocodeApiUrl).then((data)=> {
+            console.log(data)
             if(data.status === "OK"){
 
               setFormatedAddress(data.results[0]?.formatted_address);
@@ -99,6 +100,8 @@ export function AddressMap({onClick}) {
         if(navigator.geolocation){
 
             navigator.geolocation.getCurrentPosition((e)=>{
+
+                console.log({lat:e.coords.latitude,lng: e.coords.longitude})
                 setPosition({lat:e.coords.latitude,lng: e.coords.longitude});
                 getCurrentAddress(e.coords.latitude,e.coords.longitude);
                 setIsLocateMeCenter(true)

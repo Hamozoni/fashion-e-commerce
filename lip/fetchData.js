@@ -15,6 +15,21 @@ const options = {
     return data;
 };
 
+export const  fetchLocationData = async  (endPoint)=> {
+    
+  const options = {
+      method: 'GET',
+      url: endPoint,
+          headers: {
+              accept: 'application/json',
+          }
+      };
+  
+      const {data} = await axios(options)
+  
+      return data;
+  };
+
 
 export const  PostData = async  (endPoint,formData)=> {
     
