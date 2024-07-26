@@ -46,7 +46,6 @@ export function AddressMap({onClick}) {
         const geocodeApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`
 
         fetchLocationData(geocodeApiUrl).then((data)=> {
-            console.log(data)
             if(data.status === "OK"){
 
               setFormatedAddress(data.results[0]?.formatted_address);
@@ -78,6 +77,8 @@ export function AddressMap({onClick}) {
             }
 
         }).catch((error)=> {
+
+
             
         })
         
@@ -98,21 +99,15 @@ export function AddressMap({onClick}) {
 
     const locateMe = ()=> {
         if(navigator.geolocation){
-
             navigator.geolocation.getCurrentPosition((e)=>{
-
-                console.log({lat:e.coords.latitude,lng: e.coords.longitude})
                 setPosition({lat:e.coords.latitude,lng: e.coords.longitude});
                 getCurrentAddress(e.coords.latitude,e.coords.longitude);
                 setIsLocateMeCenter(true)
                 
-            })
-                
+            });       
 
-        }
-    }
-
-
+        };
+    };
 
     const confirmLocation = async()=> {
 
@@ -141,7 +136,8 @@ export function AddressMap({onClick}) {
             route.push('/auth/login');
             onClick();
         }
-    }
+    };
+    
 
   return (
     <section 
