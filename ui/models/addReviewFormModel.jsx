@@ -25,7 +25,7 @@ import { AppContext } from "../../app/contextProvider";
 
 export const AddReviewFormModel = ({setShowModel})=> {
 
-    const {user} = useContext(AppContext);
+    const {currentUser} = useContext(AppContext);
     const {product,setReviews} = useContext(ReviewsContext)
     const [rating,setRating] = useState(1);
     const [error,setError] = useState(null);
@@ -38,7 +38,7 @@ export const AddReviewFormModel = ({setShowModel})=> {
 
         const formData = new FormData(reviewFormRef.current);
 
-        if(!user) {
+        if(!currentUser) {
           router.push('auth/login');
           setShowModel(false);
             return;
@@ -46,7 +46,7 @@ export const AddReviewFormModel = ({setShowModel})=> {
 
         formData.append('rating',Number(rating));
         formData.append('productId',product?.id);
-        formData.append('autherId',user?.id)
+        formData.append('autherId',currentUser?.id)
 
         const formValidation = ratingSchema.safeParse(Object.fromEntries(formData.entries()));
         setisPending(true)
@@ -56,7 +56,7 @@ export const AddReviewFormModel = ({setShowModel})=> {
             .then(data => {
 
                 console.log(data);
-                    setReviews(prev=> [{...data,auther: {name: user?.name,image:user?.image}},...prev]);
+                    setReviews(prev=> [{...data,auther: {name: currentUser?.name,image:currentUser?.image}},...prev]);
                     setShowModel(false);
             })
             .catch((error)=> {
@@ -75,8 +75,7 @@ export const AddReviewFormModel = ({setShowModel})=> {
     };
 
     const className = {
-        WhriteReview: "fixed top-16 z-50  max-h-[550px] rounded-md left-1/2 translate-x-[-50%] w-[380px] sm:w-[600px] bg-gray-50 border border-gray-200 overflow-y-auto",
-        btn:'flex items-center justify-center gap-2  border py-2 rounded-full w-full text-sm font-bold  border-green-200 text-teal-800 hover:bg-green-100 hover:scale-95 '
+        WhriteReview: "fixed top-16 z-50  max-h-[550px] rounded-md left-1/2 translate-x-[-50%] w-[380px] sm:w-[600px] bg-gray-50 dark:bg-stone-950 border border-gray-200 dark:border-stone-800 overflow-y-auto",
     };
 
     return (
@@ -85,10 +84,12 @@ export const AddReviewFormModel = ({setShowModel})=> {
                 <section className="min-h-fit p-3">
                     <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                     <header className="text-center mb-4">
-                        <h3 className="text-lg text-teal-900 font-bold"
+                        <h3 className="text-lg text-teal-950 dark:text-teal-50 font-bold"
                             >Write a review
                         </h3>
-                        <p className="text-teal-700">Tell us what you think about this product</p>
+                        <p className="text-teal-900 dark:text-teal-100">
+                            Tell us what you think about this product
+                        </p>
                     </header>
                     <FormModelProduct
                         error={error}
@@ -99,12 +100,12 @@ export const AddReviewFormModel = ({setShowModel})=> {
                     <form action={handleReview} ref={reviewFormRef}>
                         <div className="w-full capitalize">
                             <label 
-                                className="text-md text-gray-500 font-bold"
+                                className="text-md text-stone-700 dark:text-stone-400  font-bold"
                                 htmlFor="reviewImage"
                                 > review images:
                             </label>
                             <input
-                            className="p-2 my-3 bg-white rounded-md text-gray-500  w-full" 
+                                className="p-2 my-3 bg-transparent rounded-md text-stone-700 dark:text-stone-400  w-full" 
                                 id='reviewImage'
                                 type="file" 
                                 name='reviewImage'
@@ -114,12 +115,12 @@ export const AddReviewFormModel = ({setShowModel})=> {
                         </div>
                         <div className="w-full">
                             <label 
-                                className=" text-md text-gray-500 font-bold"
+                                className=" text-md text-stone-700 dark:text-stone-400 font-bold"
                                 htmlFor="rateText"
                                 > Share your experience:
                             </label>
                             <textarea 
-                                className="w-full p-3 my-3 text-teal-900" 
+                                className="w-full p-3 my-3 border border-stone-400 dark:border-stone-800 rounded-md  bg-transparent text-stone-700 dark:text-stone-400 min-h-fit" 
                                 id="rateText" 
                                 cols="20" 
                                 rows="8"
@@ -134,12 +135,12 @@ export const AddReviewFormModel = ({setShowModel})=> {
                         </div>
                         <div className="w-full capitalize">
                             <label
-                                className="text-lg text-gray-500 font-bold" 
+                                className="text-lg  text-stone-700 dark:text-stone-400  font-bold" 
                                 htmlFor="rateTitle">
                                 give it a title
                             </label>
                             <input 
-                                className="w-full p-3 my-3 text-teal-800" 
+                                className="w-full p-3 my-3 border border-stone-400 dark:border-stone-800 rounded-md bg-transparent  text-stone-700 dark:text-stone-400 " 
                                 id="rateTitle" 
                                 type='text'
                                 name="rateTitle"
@@ -149,26 +150,17 @@ export const AddReviewFormModel = ({setShowModel})=> {
                                 <ZodError error={error} field='rateTitle' />
                         </div>
                         <footer className="flex items-center justify-between gap-3 mt-3">
-                            <button 
-                                disabled={isPending}
-                                type="submit"
-                                className={`${className.btn}`}
-                                >
-                                    {
-                                        isPending ?  
-                                        <PulseLoader size={10} className=" opacity-50"/>
-                                        :
-                                        <>
-                                        <BiSave  size={16}/>save
-                                        </>
-                                    }
-                            </button>
                             <ButtonWithIcon
-                                text='cancel'
-                                Icon={FcCancel}
-                                type="delete"
-                                onClick={()=> setShowModel(false)}
+                                text='save'
+                                Icon={BiSave}
+                                type="primary"
+                                disabled={isPending}
                                 />
+                            <div   
+                                onClick={()=> setShowModel(false)} 
+                                className="text-rose-600 cursor-pointer min-w-1/2 w-1/2 flex items-center justify-center">
+                                    cancel
+                                </div>
                         </footer>
                     </form>
                 </section>

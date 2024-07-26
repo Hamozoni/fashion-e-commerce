@@ -68,12 +68,16 @@ export function ReviewCard({review,index}) {
         });
     };
 
+    const className = {
+        card: 'my-5 rounded-md p-3 border-l-2 border-r-2 border-teal-300 '
+    }
+
 
 
     const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) ? "Edited at" :'';
 
   return (
-        <div className={`${isEdidable ? 'border border-gray-100':' shadow-md'} my-5 rounded-md p-3 border-l-2 border-teal-300`}>
+        <div className={`${isEdidable ? 'border border-gray-100 dark:border-stone-700':' shadow-md'} ${className.card} `}>
             <header className="flex items-center gap-2 pb-2">
                 {
                     review?.auther?.image ?
@@ -87,11 +91,11 @@ export function ReviewCard({review,index}) {
                     <FaRegUser size={30} />
                 }
                 <section className="">
-                    <h4 className="text-teal-950 font-bold text-lg">
+                    <h4 className="text-teal-950 dark:text-teal-50 font-bold text-lg">
                         {review?.auther?.name}
                     </h4>
                     <time 
-                        className="text-teal-900 text-sm"
+                        className="text-teal-900 dark:text-teal-100 text-sm"
                         dateTime={new Date(review.createdAt).toDateString()}
                         >{updatedAt} {new Date(review?.updatedAt).toDateString()}
                     </time>
@@ -102,20 +106,22 @@ export function ReviewCard({review,index}) {
                 {
                     (isEdidable && review?.autherId === currentUser?.id) ?
                     <input 
-                        className="border-b text-lg border-teal-200 text-teal-950 focus:border-teal-400"
+                        className="border-b bg-transparent text-lg border-teal-200 text-teal-950 dark:text-teal-50 focus:border-teal-400"
                         type="text" 
                         value={reviewTitle}
                         onChange={(e)=> setReviewTitle(e.target.value)}
                         />
                     :
-                  <h5 className="text-lg text-teal-950" >{review?.rateTitle}</h5>
+                  <h5 className="text-lg text-teal-950 dark:text-teal-50" >
+                    {review?.rateTitle}
+                </h5>
                 }
             </section>
             <div className="">
                 {
                     (isEdidable && review?.autherId === currentUser?.id) ? 
                     <textarea 
-                        className="text-teal-900 text-sm font-bold focus:outline-none w-full border-b border-teal-200 focus:border-green-400"
+                        className="text-teal-900 bg-transparent dark:text-teal-100 text-sm font-bold h-[100px] focus:outline-none w-full border-b border-teal-200 focus:border-green-400"
                         value={reviewText}
                         onChange={(e)=> setReviewText(e.target.value)}
                         
@@ -123,7 +129,7 @@ export function ReviewCard({review,index}) {
                     </textarea>
                     :
                     <article 
-                        className="text-teal-900 text-sm font-bold pb-3 max-w-full break-words overflow-auto"
+                        className="text-teal-900 dark:text-teal-100  text-sm font-bold pb-3 max-w-full break-words overflow-auto"
                         >{review?.rateText}
                     </article>
                 }
@@ -132,7 +138,7 @@ export function ReviewCard({review,index}) {
                     <div className="p-3 flex max-w-full gap-1 flex-wrap justify-center items-center">
                         {
                             review?.images?.map(({imagePath,id})=> (
-                                <div key={id} className="bg-white rounded-md ">
+                                <div key={id} className="bg-white dark:bg-stone-950 rounded-md ">
                                     <Image
                                         className=""
                                         src={imagePath?.replace('public','')} 
@@ -151,7 +157,7 @@ export function ReviewCard({review,index}) {
                         <ButtonWithIcon 
                           text={isEdidable ? 'save' : 'edit'}
                           Icon={isEdidable ? MdOutlineSaveAs : VscEdit}
-                          type='save'
+                          type='primary'
                           disabled={loading}
                           onClick={isEdidable ? handleUpdateReview : ()=> setIsEdidable(true)}
                         />
@@ -168,8 +174,8 @@ export function ReviewCard({review,index}) {
                 isRemoveModle && (
                     <>
                        <Overlay onClick={()=> setIsRemoveModle(false)}/>
-                        <div className="bg-teal-50 capitalize z-50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md w-[370px]">
-                            <h5 className="text-teal-950 mb-3 font-medium text-lg">
+                        <div className="bg-teal-50 dark:bg-stone-950 capitalize z-50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md w-[370px]">
+                            <h5 className="text-teal-950 dark:text-teal-50  mb-3 font-medium text-lg">
                                 are you sure you want to delete your review ?
                             </h5>
                             <div className=" flex items-center gap-3">

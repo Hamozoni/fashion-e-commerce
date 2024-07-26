@@ -30,12 +30,12 @@ export function AddressMap({onClick}) {
     
     const {update} = useSession();
     const [loading,startTranation] = useTransition()
-    const {user} = useContext(AppContext);
+    const {currentUser} = useContext(AppContext);
     const route = useRouter();
 
     useEffect(()=> {
-        if(user?.address){
-            const {address} = user;
+        if(currentUser?.address){
+            const {address} = currentUser;
             setFormatedAddress(address?.formatedAddress);
             setPosition({lat: address?.lat, lng: address?.lng})
         }
@@ -66,7 +66,7 @@ export function AddressMap({onClick}) {
                             address.country = el?.long_name
                         }
                     });
-                    console.log(address)
+
     
                     return address;
                     
@@ -111,10 +111,10 @@ export function AddressMap({onClick}) {
 
     const confirmLocation = async()=> {
 
-        if(user){
+        if(currentUser){
 
             const reqBody = {
-                email: user.email,
+                email: currentUser.email,
                 data: {
                     ...position,
                     ...address,
