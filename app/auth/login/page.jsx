@@ -23,12 +23,12 @@ function LoginPage() {
     const [isLoading,startTranation] = useTransition();
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSuccess] = useState(null);
-    const {cuerrentUser} = useContext(AppContext);
+    const {currentUser} = useContext(AppContext);
 
     const router = useRouter();
 
-    if(cuerrentUser) {
-        router.push("/")
+    if(currentUser) {
+         router.push("/");
     }
 
     const login = ()=> {
@@ -43,7 +43,6 @@ function LoginPage() {
 
              loginAction(formData,callbackUrl)
             .then((data)=> {
-                console.log(data)
                 if(data.error){
                     setServerErrror(data?.error);
                 }else {

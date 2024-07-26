@@ -1,16 +1,33 @@
 "use client";
 // react & next
-import { useState } from "react";
+import { useContext, useState } from "react";
 // icons
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 // component
 import { ButtonWithIcon } from "../../buttons/buttons";
 import {AddReviewFormModel} from "../../models/addReviewFormModel";
+import { AppContext } from "../../../app/contextProvider";
+import { useRouter } from "next/navigation";
 
 
 export function ReviewsHeader() {
 
     const [showModel,setShowModel] = useState(false);
+
+    const {currentUser} = useContext(AppContext);
+
+    const router = useRouter()
+
+    const handleReviewsModel = ()=> {
+
+      if(currentUser) {
+        setShowModel(true)
+      }else {
+        router.push('/auth/login')
+      }
+
+
+    };
 
   return (
 
@@ -23,7 +40,7 @@ export function ReviewsHeader() {
                 text='whrite a review'
                 Icon={MdOutlineDriveFileRenameOutline}
                 type="save"
-                onClick={()=> setShowModel(true)}
+                onClick={handleReviewsModel}
                 />
         </div>
         {

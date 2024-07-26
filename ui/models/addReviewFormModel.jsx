@@ -12,7 +12,7 @@ import { FcCancel } from "react-icons/fc";
 import {Overlay} from "./overlay";
 import {ZodError}  from "../components/zodError";
 import { ButtonWithIcon } from "../buttons/buttons";
-import {ReviewModelProduct } from "./reviewModelProduct";
+import {FormModelProduct } from "./reviewModelProduct";
 // validations
 import {ratingSchema} from "../../validationSchemas/ratingSchema";
 // server actions
@@ -90,7 +90,7 @@ export const AddReviewFormModel = ({setShowModel})=> {
                         </h3>
                         <p className="text-teal-700">Tell us what you think about this product</p>
                     </header>
-                    <ReviewModelProduct
+                    <FormModelProduct
                         error={error}
                         product={product} 
                         setRating={setRating} 

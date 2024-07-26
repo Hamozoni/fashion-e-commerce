@@ -4,12 +4,14 @@ import AuthSocial from "../_components/authSocial";
 import {AuthInput} from "../_components/authInput";
 import {registerInputs} from "../_components/authInputsData";
 import {registerSchema} from "../../../validationSchemas/authSchemas"
-import { useRef, useState, useTransition } from "react";
+import { useContext, useRef, useState, useTransition } from "react";
 import {registerAction} from "../../../actions/auth/register";
 import {ErrorSucces} from "../_components/errorSucces";
 import { ButtonWithIcon } from "../../../ui/buttons/buttons";
 
 import { LuClipboardSignature } from "react-icons/lu";
+import { AppContext } from "../../contextProvider";
+import { useRouter } from "next/navigation";
 
 function RegisterPage() {
 
@@ -19,6 +21,12 @@ function RegisterPage() {
     const [validationError,setValidationError] = useState(null);
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSucces] = useState(null);
+    const {currentUser} = useContext(AppContext);
+    const router = useRouter()
+
+    if(currentUser) {
+        router.push('/')
+    }
 
     const register = ()=> {
 

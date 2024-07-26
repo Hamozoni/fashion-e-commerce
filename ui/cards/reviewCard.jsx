@@ -18,7 +18,7 @@ import { AppContext } from "../../app/contextProvider";
 // overlay model
 import {Overlay} from "../models/overlay";
 
-function ReviewCard({review,index}) {
+export function ReviewCard({review,index}) {
 
      const {setReviews} = useContext(ReviewsContext)
 
@@ -193,6 +193,4 @@ function ReviewCard({review,index}) {
             }
         </div>
     )
-}
-
-export default ReviewCard
+};

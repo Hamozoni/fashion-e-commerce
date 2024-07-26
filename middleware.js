@@ -23,7 +23,7 @@ export default  async function middleware (req) {
 
         const url = req.nextUrl.clone();
         url.pathname = '/auth/login';
-        url.searchParams.set('callbackUrl',req.nextUrl.href);
+        url.searchParams.set('callback',req.nextUrl.href);
         return NextResponse.redirect(url)
       }
 
