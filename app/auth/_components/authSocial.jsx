@@ -5,10 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { DEFAULT_LOGIN_REDIRECT } from "../../../routes";
 import { useTransition } from "react";
-import {PropagateLoader} from "react-spinners";
-import {Overlay }from "../../../ui/models/overlay";
 import { useSearchParams } from "next/navigation";
 import { ButtonWithIcon } from "../../../ui/buttons/buttons";
+import { Loading } from "../../../ui/models/Loading";
 
 function AuthSocial({text,link,page}) {
 
@@ -52,12 +51,7 @@ function AuthSocial({text,link,page}) {
             </Link>
         </div>
         {
-            isLoading && <>
-              <Overlay onClick={()=>''} />
-              <div className="z-50 absolute left-0 top-0 w-full flex justify-center items-center">
-                 <PropagateLoader color="#166534" size={22} />
-              </div>
-            </>
+            isLoading && <Loading/>
         }
     </div>
   )

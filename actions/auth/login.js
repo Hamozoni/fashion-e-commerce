@@ -36,7 +36,7 @@ export const loginAction = async(formData,callbackUrl)=> {
         if(existingUser && passwordMatch){
             if(existingUser?.emailVerified === null) {
                 const verificationToken = await generateVerificationToken(existingUser.email);
-                
+
                 await verifyEmail(verificationToken.email,verificationToken.token);
 
                 return {success: "email sent to you place verify your email"}

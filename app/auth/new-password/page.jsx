@@ -10,6 +10,7 @@ import { AuthInput } from "../_components/authInput";
 import {newPasswordAction} from "../../../actions/auth/newPassword";
 import { LuSend } from "react-icons/lu";
 import { ButtonWithIcon } from "../../../ui/buttons/buttons";
+import Link from "next/link";
 
 function newPasswordPage() {
 
@@ -36,7 +37,6 @@ function newPasswordPage() {
                 }
                 if(data.success){
                     setSuccess(data.success);
-                    router.push('/');
                 }
             })
         })
@@ -47,22 +47,40 @@ function newPasswordPage() {
     <div className=" bg-white dark:bg-stone-950 w-[450px] p-4 rounded-md shadow-md">
         <AuthHeader text='new password' />
         <form ref={newPasswordForm} action={newPassword}>
-            <AuthInput 
-                type='password' 
-                name='new_password'
-                Icon={IoLockClosed}
-                isLoading={isLoading}
-                />
-            <AuthInput 
-                type='password' 
-                name='confirm_password'
-                Icon={IoLockClosed}
-                isLoading={isLoading}
-                />
+
+            {
+                success ? null : 
+                <>
+                    <AuthInput 
+                        type='password' 
+                        name='new_password'
+                        Icon={IoLockClosed}
+                        isLoading={isLoading}
+                        />
+                    <AuthInput 
+                        type='password' 
+                        name='confirm_password'
+                        Icon={IoLockClosed}
+                        isLoading={isLoading}
+                        />
+                </>
+            }
                 <ErrorSucces error={error} success={success} />
 
                 {
-                    success ? null :
+                    success ?
+
+                    <div className="text-center">
+
+                        <Link 
+                            className=" capitalize text-teal-950 dark:text-teal-50 hover:scale-110"
+                            href='/auth/login'
+                            > go back to logIn
+                        </Link>
+
+                    </div>
+                    
+                    :
                    <ButtonWithIcon 
                         text='send new password' 
                         Icon={LuSend} 
