@@ -66,6 +66,7 @@ function RegisterPage() {
             <form ref={registerForm}  action={register}>
 
                 {
+                    serverSucces ? null :
                     registerInputs.map((input)=> (
                         <AuthInput 
                             key={input.name}
@@ -78,15 +79,22 @@ function RegisterPage() {
                     ))
                 }
                 <ErrorSucces error={serverErrror} success={serverSucces}/>
-                <ButtonWithIcon 
-                    text='create an account' 
-                    Icon={LuClipboardSignature} 
-                    type='primary' 
-                    onClick={()=>''} 
-                    disabled={isLoading}
-                    />
+
+                {
+                    serverSucces ? null :
+                        <ButtonWithIcon 
+                            text='create an account' 
+                            Icon={LuClipboardSignature} 
+                            type='primary' 
+                            onClick={()=>''} 
+                            disabled={isLoading}
+                            />
+                }
             </form>
-            <AuthSocial text="already have an account?" link='/auth/login' page='signUp' />
+            {
+                serverSucces ? null :
+                <AuthSocial text="already have an account?" link='/auth/login' page='signUp' />
+            }
         </div>
     </div>
   )

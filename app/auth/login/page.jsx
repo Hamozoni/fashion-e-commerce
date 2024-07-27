@@ -47,6 +47,7 @@ function LoginPage() {
                     setServerErrror(data?.error);
                 }else {
                     setServerSuccess(data?.success);
+                    router.refresh()
                 }
             })
             .catch((error)=> {
