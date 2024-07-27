@@ -41,24 +41,27 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
 
 
     async session({token,session}){
-
-      if(token.sub && session.user){
-        session.user.id = token.sub 
-      };
-
-      if(session.user && token.role){
-        session.user.role = token.role
-      };
+  
 
       if(session.user) {
-        if(token.address){
+        session.user.role = token.role;
+        session.user.id = token.id ;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.image;
+
+
+        if(token?.address){
           session.user.address = token.address;
         };
       };
 
+      console.log('session',session)
+
       return session;
     },
-    async jwt({token}){
+    async jwt({token,user}){
+      
 
       if(!token.sub) return token;
 
@@ -69,13 +72,15 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
 
       const existingAddress = await findUserAddressByEmail(existingUser.email);
 
-      token.role = existingUser.role;
-
+      token.role = existingUser?.role;
+      token.id = existingUser?.id;
+      token.image = existingUser?.image;
       if(existingAddress) {
         token.address = existingAddress
       };
 
-      token.address = existingAddress
+
+      console.log('jwt',token,user)
   
       return token;
     }

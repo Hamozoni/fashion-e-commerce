@@ -1,7 +1,6 @@
 "use server";
 import { signIn } from "../../auth";
 import {loginSchema} from "../../validationSchemas/authSchemas";
-import {DEFAULT_LOGIN_REDIRECT} from "../../routes";
 import { AuthError } from "next-auth";
 import { findUserByEmail } from "../../lip/user";
 import { generateVerificationToken } from "../../lip/token";
@@ -17,7 +16,7 @@ export const loginAction = async(formData,callbackUrl)=> {
 
         if(DataValidation?.error) {
             return {error: JSON.parse(DataValidation.error) }
-        }
+        };
 
         const {email,password} = data;
 
@@ -34,10 +33,11 @@ export const loginAction = async(formData,callbackUrl)=> {
         }
 
 
-        if(existingUser){
+        if(existingUser && passwordMatch){
             if(existingUser?.emailVerified === null) {
                 const verificationToken = await generateVerificationToken(existingUser.email);
-                await verifyEmail(verificationToken.email,verificationToken.token)
+                
+                await verifyEmail(verificationToken.email,verificationToken.token);
 
                 return {success: "email sent to you place verify your email"}
             }
@@ -47,7 +47,7 @@ export const loginAction = async(formData,callbackUrl)=> {
                 await signIn("credentials",{
                     email,
                     password,
-                    redirectTo : callbackUrl || DEFAULT_LOGIN_REDIRECT
+                    redirectTo : callbackUrl || '/'
                 })
 
             }catch (error) {
