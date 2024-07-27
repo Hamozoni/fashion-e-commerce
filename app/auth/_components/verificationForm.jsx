@@ -5,6 +5,7 @@ import { useEffect, useState, useTransition } from "react";
 import { ScaleLoader } from "react-spinners";
 import {verificationAction} from "../../../actions/auth/verification"
 import { ErrorSucces } from "./errorSucces";
+import Link from "next/link";
 
 export function VerificationForm() {
 
@@ -39,7 +40,7 @@ export function VerificationForm() {
 
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="">
         {
             isLoading ? 
             <ScaleLoader color="#2dd4bf"/>
@@ -47,8 +48,8 @@ export function VerificationForm() {
         }
         {
             success ? 
-            <div className="text-center">
-              <Link 
+            <div className="text-center mt-5">
+              <Link
                   className='w-full p-4 capitalize text-teal-950 hover:scale-110 dark:text-teal-50 font-bold'
                   href='/auth/login'
                   >back to login

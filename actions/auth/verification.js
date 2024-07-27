@@ -24,6 +24,14 @@ export const verificationAction = async (token)=> {
     if(!existingUser) {
         return {error: "email is not found"}
     }
+    if(existingUser?.emailVerified) {
+
+        await db.verificationToken.delete({
+            where :{id: existingToken?.id}
+        });
+
+        return {success: 'email has been verified'}
+    }
 
     try{
         await db.user.update({
@@ -34,10 +42,20 @@ export const verificationAction = async (token)=> {
                 emailVerified: new Date(),
                 email: existingToken.email
             }
+
+          
         }).then(async()=>{
-            await db.verifivationToken.delete({
-                where :{id: existingToken?.id}
-            })
+            try {
+                await db.verificationToken.delete({
+                    where :{id: existingToken?.id}
+                })
+
+                return {success: 'email has been verified'}
+            }
+            catch (error){
+                return {error: "something went wrong"}
+            }
+
         })
 
     }catch {
