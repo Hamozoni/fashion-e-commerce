@@ -13,23 +13,28 @@ import { AppContext } from "../../contextProvider";
 import { ButtonWithIcon } from "../../../ui/buttons/buttons";
 
 import { BiLogInCircle } from "react-icons/bi";
+import { useSession } from "next-auth/react";
 
 
 function LoginPage() {
 
-    const callbackUrl = useSearchParams().get("callback")
+    const callback = useSearchParams().get("callback");
+
+
 
     const loginForm = useRef(null);
     const [isLoading,startTranation] = useTransition();
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSuccess] = useState(null);
-    const {currentUser} = useContext(AppContext);
+    const {currentUser,setCurrentUser} = useContext(AppContext);
 
     const router = useRouter();
 
     if(currentUser) {
          router.push("/");
     }
+
+    const {data : session} = useSession();
 
     const login = ()=> {
 
@@ -41,13 +46,13 @@ function LoginPage() {
         startTranation(()=> {
             
 
-             loginAction(formData,callbackUrl)
+             loginAction(formData,callback)
             .then((data)=> {
                 if(data.error){
                     setServerErrror(data?.error);
                 }else {
+                    setCurrentUser(session?.user)
                     setServerSuccess(data?.success);
-                    router.refresh()
                 }
             })
             .catch((error)=> {
