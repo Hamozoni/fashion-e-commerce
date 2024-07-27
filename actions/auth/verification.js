@@ -48,6 +48,4 @@ export const verificationAction = async (token)=> {
     }
 
     return {success: "email has verified"}
-
-     
 }

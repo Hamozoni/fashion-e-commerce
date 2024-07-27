@@ -31,7 +31,8 @@ export function VerificationForm() {
 
             })
         })
-    },[token])
+    },[token]);
+
     useEffect(()=> {
 
         login()
@@ -43,7 +44,7 @@ export function VerificationForm() {
     <div className="flex justify-center items-center">
                 {
                     isLoading ? 
-                    <ScaleLoader color="#333"/>
+                    <ScaleLoader color="#2dd4bf"/>
                     : <ErrorSucces error={error} success={success} /> 
                 }
     </div>
