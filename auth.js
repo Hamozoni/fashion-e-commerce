@@ -53,11 +53,9 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
         };
       };
 
-      console.log('session',session)
-
       return session;
     },
-    async jwt({token,user}){
+    async jwt({token}){
       
 
       if(!token.sub) return token;
@@ -74,10 +72,7 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
       token.image = existingUser?.image;
       if(existingAddress) {
         token.address = existingAddress
-      };
-
-
-      console.log('jwt',token,user)
+      }
   
       return token;
     }

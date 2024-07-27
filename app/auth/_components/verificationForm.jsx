@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
@@ -7,15 +7,16 @@ import {verificationAction} from "../../../actions/auth/verification"
 import { ErrorSucces } from "./errorSucces";
 import Link from "next/link";
 
-export function VerificationForm() {
+export function VerificationForm(context) {
 
-    const [error,setError] = useState(null);
-    const [success,setSuccess] = useState(null);
-    const [isLoading,startTransition] = useTransition();
 
-    const searchPaams = useSearchParams();
+    // const [error,setError] = useState(null);
+    // const [success,setSuccess] = useState(null);
+    // const [isLoading,startTransition] = useTransition();
 
-    const token = searchPaams.get('token');
+    // const searchPaams = useSearchParams();
+
+    // const token = searchPaams.get('token');
 
     useEffect(()=> {
 

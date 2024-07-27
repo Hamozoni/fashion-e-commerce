@@ -10,7 +10,6 @@ export const verifyEmail = async (email,token)=> {
     const emailContainer = `
     <div>
        <header> <h1> System Store </h1> <h3>Hello</h3> </header>
-       <hr/>
        <p>We received a request to verify your email for the system store account associated with ${email}</p>
        <a href=${confimLink}>Verify Your Email</a>
        <p>If you didn’t make this request, or if you’re having trouble signing in, contact us via our support site. No changes have been made to your account.</p>
@@ -34,7 +33,6 @@ export const resetPasswordEmail = async(email,token)=> {
    const emailContainer = `
    <div>
       <header> <h1> System Store </h1> <h3>Hello</h3> </header>
-      <hr/>
       <p>We received a request to reset the password for the system store account associated with ${email}</p>
       <a href=${resetLink}>Reset Password</a>
       <p>If you didn’t make this request, or if you’re having trouble signing in, contact us via our support site. No changes have been made to your account.</p>
