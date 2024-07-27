@@ -8,17 +8,16 @@ export const AppContext = createContext();
 
 const ContextProvider = ({children}) => {
 
-  const {data,status} = useSession();
+  const {data,status,update} = useSession();
 
-  console.log(data);
   
   const [innerWidth,setInnerWidth] = useState(0);
   const [currentUser,setCurrentUser] = useState(data?.user);
-
+  
   const [theme,setTheme] = useState('user device');
-
+  
   useEffect(()=> {
-      setCurrentUser(data?.user);
+    setCurrentUser(data?.user);
     },[data]);
 
     useEffect(()=> {
