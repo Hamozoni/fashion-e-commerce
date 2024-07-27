@@ -3,6 +3,7 @@ import AuthHeader from '../_components/authHeader'
 import {VerificationForm} from "../_components/verificationForm"
 
 function verificationPage() {
+
   return (
     <div className="">
         <div 

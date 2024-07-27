@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { ScaleLoader } from "react-spinners";
 import {verificationAction} from "../../../actions/auth/verification"
 import { ErrorSucces } from "./errorSucces";
@@ -35,7 +35,7 @@ export function VerificationForm() {
             })
         })
 
-    },[]);
+    },[token]);
 
 
   return (
