@@ -43,13 +43,13 @@ export const loginAction = async(formData,callbackUrl)=> {
             }
 
             try {
-
                 await signIn("credentials",{
                     email,
                     password,
                     redirectTo : callbackUrl || '/'
-                })
+                });
 
+                return {seccess: 'user loged in'}
             }catch (error) {
                 if(error instanceof AuthError) {
                     switch(error.type) {

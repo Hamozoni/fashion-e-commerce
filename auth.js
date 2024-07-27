@@ -29,11 +29,11 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
 
     async signIn({user,account}){
 
-      if(account?.provider !== "credentials") return true 
+      if(account?.provider !== "credentials") return user 
       
       const existingUser = await findUserById(user.id);
 
-      if(existingUser?.emailVerified !== null) return true;
+      if(existingUser?.emailVerified !== null) return user;
 
       return false
 
@@ -55,12 +55,15 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
 
       return session;
     },
-    async jwt({token}){
+    async jwt({token,user}){
+
+
+      if(!user)  return token
       
 
-      if(!token.sub) return token;
+      if(!user.id) return token;
 
-      const existingUser = await findUserById(token.sub);
+      const existingUser = await findUserById(user.id);
 
       
       if(!existingUser) return token;

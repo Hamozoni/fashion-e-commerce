@@ -32,9 +32,10 @@ function LoginPage() {
 
     if(currentUser) {
          router.push("/");
-    }
+    };
 
-    const {data : session} = useSession();
+    const {update} = useSession()
+
 
     const login = ()=> {
 
@@ -51,7 +52,7 @@ function LoginPage() {
                 if(data.error){
                     setServerErrror(data?.error);
                 }else {
-                    setCurrentUser(session?.user)
+                    update()
                     setServerSuccess(data?.success);
                 }
             })

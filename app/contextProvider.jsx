@@ -9,6 +9,8 @@ export const AppContext = createContext();
 const ContextProvider = ({children}) => {
 
   const {data,status} = useSession();
+
+  console.log(data);
   
   const [innerWidth,setInnerWidth] = useState(0);
   const [currentUser,setCurrentUser] = useState(data?.user);

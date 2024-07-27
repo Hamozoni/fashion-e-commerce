@@ -1,6 +1,8 @@
 
 import AuthHeader from '../_components/authHeader';
 import {verificationAction} from "../../../actions/auth/verification"
+import { ErrorSucces } from '../_components/errorSucces';
+import Link from 'next/link';
 // import {VerificationForm} from "../_components/verificationForm"
 
 async function verificationPage(context) {
