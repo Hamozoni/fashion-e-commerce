@@ -1,6 +1,8 @@
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 
+export { auth as middleware } from "./auth";
+
 export default async function auth (req) {
 
   const {pathname} = req.nextUrl
@@ -33,5 +35,3 @@ export default async function auth (req) {
 export const config = {
   matcher: ['/api/products/new','/checkout','/admin']
 }
-
-// export { auth as middleware } from "./auth";

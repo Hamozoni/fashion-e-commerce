@@ -18,7 +18,7 @@ export const MainHeader = ()=> {
         flex:  'flex items-center gap-4 relative',
     };
 
-  const {innerWidth} = useContext(AppContext)
+  const {innerWidth} = useContext(AppContext);
 
 
   return (
