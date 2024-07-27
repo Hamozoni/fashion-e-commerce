@@ -15,8 +15,8 @@ const ContextProvider = ({children}) => {
 
   const [theme,setTheme] = useState('user device');
 
-    useEffect(()=> {
-      setCurrentUser(data?.user)
+  useEffect(()=> {
+      setCurrentUser(data?.user);
     },[data]);
 
     useEffect(()=> {
