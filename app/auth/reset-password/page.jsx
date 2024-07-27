@@ -3,11 +3,14 @@
 import { useRef, useState, useTransition } from "react";
 import { AuthInput } from "../_components/authInput";
 
-import { MdOutlineMail } from "react-icons/md";
 import {resetPasswordAction} from "../../../actions/auth/resetPassword";
 import { SubmitBtn } from "../_components/submitBtn";
 import AuthHeader from "../_components/authHeader";
 import { ErrorSucces } from "../_components/errorSucces";
+import { ButtonWithIcon } from "../../../ui/buttons/buttons";
+
+import { MdOutlineMail } from "react-icons/md";
+import { LuSend } from "react-icons/lu";
 
 const ResetPassword = ()=> {
 
@@ -39,7 +42,7 @@ const ResetPassword = ()=> {
 
 
     return (
-        <div className=" bg-white w-[450px] p-4 rounded-md shadow-md">
+        <div className=" bg-white dark:bg-stone-950 w-[450px] p-4 rounded-md shadow-md">
             <AuthHeader text='reset password' />
             <form ref={resetForm} action={reset}>
                 <AuthInput 
@@ -48,9 +51,19 @@ const ResetPassword = ()=> {
                     Icon={MdOutlineMail}
                     isLoading={isLoading}
                     />
-                    <ErrorSucces error={error} success={success} />
 
-                    <SubmitBtn isLoading={isLoading} text='submit' />
+                   <ErrorSucces error={error} success={success} />
+                    {
+                        success ? null :
+                        <ButtonWithIcon 
+                            text='send' 
+                            Icon={LuSend} 
+                            type='primary' 
+                            disabled={isLoading} 
+                            onClick={()=> ''}
+                             />
+                    }
+
 
             </form>
         </div>

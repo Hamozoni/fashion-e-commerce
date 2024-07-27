@@ -74,7 +74,7 @@ function LoginPage() {
                     ))
                 }
                 <div className="py-3 text-center">
-                    <Link className="text-teal-950 dark:text-teal-50 font-bold text-sm" href="/auth/reset-password">
+                    <Link className="text-teal-950 dark:text-teal-50 hover:scale-110 font-bold text-sm" href="/auth/reset-password">
                         forgot password?
                     </Link>
                 </div>
