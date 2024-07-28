@@ -7,12 +7,10 @@ import { useSession } from "next-auth/react";
 // server actions
 import { signOutAction } from "../../actions/auth/signOut";
 // app context
-import { AppContext } from "../../app/contextProvider";
 import { Loading } from "../models/Loading";
 
 export function SignOut() {
 
-    const {setCurrentUser} = useContext(AppContext);
     const [isLoading,startTranation] = useTransition();
     const {update} = useSession()
 
@@ -22,7 +20,6 @@ export function SignOut() {
              signOutAction()
              .then(()=> {
                 update();
-                setCurrentUser(null);
              })
         });
 

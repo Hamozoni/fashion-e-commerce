@@ -2,6 +2,7 @@ import {Footer} from "../ui/footer/footer"
 import {MainHeader} from "../ui/header/mainHeader";
 import ReduxProvider from "./ReduxProvider";
 import ContexProvider from "./contextProvider"
+import { SessionProvider } from "next-auth/react";
 import { auth } from "../auth";
 
 import "./globals.css";
@@ -15,6 +16,7 @@ export default async function RootLayout({ children }) {
 
   const session = await auth()
   return (
+    <SessionProvider session={session}>
       <html lang="en">
        <ContexProvider session={session?.user}>
           <body className="dark:bg-black">
@@ -28,5 +30,7 @@ export default async function RootLayout({ children }) {
           </body>
        </ContexProvider>
     </html>
+
+    </SessionProvider>
   );
 }

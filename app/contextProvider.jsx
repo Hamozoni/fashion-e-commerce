@@ -12,6 +12,8 @@ const ContextProvider = ({children,session}) => {
   const [currentUser,setCurrentUser] = useState(session);
   
   const [theme,setTheme] = useState('user device');
+
+  console.log(session)
   
   useEffect(()=> {
     setCurrentUser(session);

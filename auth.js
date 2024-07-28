@@ -42,40 +42,39 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
 
     async session({token,session}){
   
-
       if(session.user) {
         session.user.role = token.role;
         session.user.id = token.id ;
         session.user.image = token.image;
-
-        if(token?.address){
-          session.user.address = token.address;
-        };
+        
+              if(token.address){
+                session.user.address = token.address;
+              }
+        
       };
+      
 
       return session;
     },
     async jwt({token,user}){
 
+      if(!token.sub) return token;
 
-      if(!user)  return token
-      
-
-      if(!user.id) return token;
-
-      const existingUser = await findUserById(user.id);
+      const existingUser = await findUserById(token.sub);
 
       
       if(!existingUser) return token;
 
-      const existingAddress = await findUserAddressByEmail(existingUser.email);
+      const existingAddress = await findUserAddressByEmail(token.email);
 
-      token.role = existingUser?.role;
-      token.id = existingUser?.id;
-      token.image = existingUser?.image;
-      if(existingAddress) {
-        token.address = existingAddress
+      console.log(existingAddress)
+      if(user) {
+        token.role = existingUser?.role;
+        token.id = existingUser?.id;
+        token.image = existingUser?.image;
       }
+      token.address = existingAddress
+
   
       return token;
     }
