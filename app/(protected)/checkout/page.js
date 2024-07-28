@@ -7,7 +7,7 @@ const className = {
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
+console.log(process.env.NEXT_PUBLIC_STRIPE_KEY)
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 const checkoutPage = ()=>  {
@@ -30,7 +30,7 @@ const checkoutPage = ()=>  {
                       {
                           mode: 'payment',
                           amount: 4555,
-                          currency: 'sar'
+                          currency: 'usd'
                       }
                   }
                   >

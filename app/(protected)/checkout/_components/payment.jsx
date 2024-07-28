@@ -4,8 +4,8 @@ import { IoShieldCheckmark } from "react-icons/io5";
 import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import  {CartDetails}  from "../../../cart/_components/cartDetails";
 import {UserField} from "./userField";
-import { useElements, useStripe,Elements } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useElements, useStripe,PaymentElement } from "@stripe/react-stripe-js";
+import { useEffect, useState } from "react";
 
 
 
@@ -18,7 +18,54 @@ export function Payment() {
     const [error,setError] = useState(null);
     const [isLoading,setIsLoading] = useState();
 
-    
+    useEffect(()=> {
+
+        fetch("/api/paymentIntent",{
+            method: "POST",
+            headers: {
+                "Content_Type": "application/json",
+            },
+            body: JSON.stringify({amount: 4525})
+        })
+        .then((res)=> res.json())
+        .then((data)=> setClientSecret(data?.clientSecret))
+        .catch((error)=> {
+            console.log(error)
+        })
+
+    },[]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        setIsLoading(true);
+
+        if(!stripe || !elements) return
+
+        const {error: submitError} = await elements.submit();
+
+        if(submitError) {
+            setError(submitError?.message);
+            setIsLoading(false);
+
+            return
+        }
+
+        const data = await stripe.confirmPayment({
+            elements,
+            clientSecret,
+            confirmParams: {
+                return_url : `${process.env.NEXT_PUBLIC_URL}/paymetSuccess?amount=${4525}`
+            }
+        });
+
+        console.log(data);
+        if(data?.error){
+        }
+
+
+    }
+
 
 
   return (
@@ -34,16 +81,17 @@ export function Payment() {
             </h5>
         </header>
 
-        <form action="">
+        <form onSubmit={handleSubmit}>
             <CartDetails />
             <hr className="my-3"/>
 
+           {clientSecret && <PaymentElement />}
 
             <ButtonWithIcon 
                 text='pay now' 
                 Icon={IoShieldCheckmark} 
                 type='primary' 
-                disabled={false} 
+                disabled={isLoading} 
                 />
         </form>
     </div>

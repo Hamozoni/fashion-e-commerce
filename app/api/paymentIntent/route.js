@@ -7,19 +7,23 @@ export async function POST (req) {
 
     try {
         const {amount} = await req.json();
+        console.log(amount)
 
-        const paymentIntent = await stripe.paymentIntent.create({
-            amount,
-            currency: 'sar',
-            automatic_payment_motheds: {
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount:45222,
+            currency: 'usd',
+            automatic_payment_methods: {
                 enabled: true
             }
         });
+
+        console.log(paymentIntent)
 
         return NextResponse.json({clientSecret:paymentIntent.client_secret},{status: 200})
 
     }
     catch (error) {
+        console.log(error)
         return NextResponse.json({error},{status: 500});
     };
 };
