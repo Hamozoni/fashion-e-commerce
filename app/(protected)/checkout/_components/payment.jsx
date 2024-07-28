@@ -5,7 +5,9 @@ import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import  {CartDetails}  from "../../../cart/_components/cartDetails";
 import {UserField} from "./userField";
 import { useElements, useStripe,PaymentElement } from "@stripe/react-stripe-js";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import { useAppSelector } from "../../../../store/store";
+import { AppContext } from "../../../contextProvider";
 
 
 
@@ -14,26 +16,17 @@ export function Payment() {
     const stripe = useStripe();
     const elements = useElements();
 
-    const [clientSecret,setClientSecret] = useState('');
+    const [paymentIntentId,setPaymentIntentId] = useState('');
     const [error,setError] = useState(null);
     const [isLoading,setIsLoading] = useState();
 
-    useEffect(()=> {
+    const totalPaidInCent = useAppSelector(state=> state.cart.totalPaid)
+    const totalProductsQuantity = useAppSelector(state=> state.cart.totalQuantity)
+    const deliveryFree = useAppSelector(state=> state.cart.deliveryFree);
+    const products = useAppSelector(state=> state.cart.products);
 
-        fetch("/api/paymentIntent",{
-            method: "POST",
-            headers: {
-                "Content_Type": "application/json",
-            },
-            body: JSON.stringify({amount: 4525})
-        })
-        .then((res)=> res.json())
-        .then((data)=> setClientSecret(data?.clientSecret))
-        .catch((error)=> {
-            console.log(error)
-        })
+    const {currentUser} = useContext(AppContext);
 
-    },[]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,31 +35,50 @@ export function Payment() {
 
         if(!stripe || !elements) return
 
-        const {error: submitError} = await elements.submit();
+        
+        try{
+            const {error: submitError} = await elements.submit();
+    
+            if(submitError) {
+                setError(submitError?.message);
+                setIsLoading(false);
+    
+                return
+            }
 
-        if(submitError) {
-            setError(submitError?.message);
-            setIsLoading(false);
+            const {error,paymetIntent} =  await stripe.createPayment({
+                   amount: totalPaidInCent,
+                   currency: 'sar'
+              })
+      
+              if(error){
+                  setError(submitError?.message);
+                  return
+              }
 
-            return
+              setPaymentIntentId(paymetIntent.id);
+
+              fetch('/api/confirmPayment',{
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json"
+                },
+                body: JSON.stringify({
+                    paymentId: paymentIntentId,
+                    products,
+                    deliveryFree,
+                    totalProductsQuantity,
+                    userId: currentUser,
+                    totalPaidInCent
+                })
+              })
+
+
+        }
+        catch (eror) {
+            setError(error.message)
         }
 
-        await stripe.confirmPayment({
-            elements,
-            clientSecret,
-        }).then((data)=> {
-            con
-        })
-        .catch(()=> {
-
-        })
-        .finally(()=> {
-            setIsLoading(false);
-        })
-
-        console.log(data);
-        if(data?.error){
-        }
 
 
     }
@@ -90,7 +102,7 @@ export function Payment() {
             <CartDetails />
             <hr className="my-3"/>
 
-           {clientSecret && <PaymentElement />}
+           <PaymentElement />
 
             <ButtonWithIcon 
                 text='pay now' 
