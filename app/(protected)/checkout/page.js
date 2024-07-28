@@ -1,10 +1,15 @@
-
+"use client"
 import {Payment} from "./_components/payment";
-import OrderSummary from "./_components/orderSummary";
 
 const className = {
    titleText: 'text-xl font-bold text-teal-950 dark:text-teal-50 mb-4 capitalize'
-}
+};
+
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
+
 const checkoutPage = ()=>  {
 
   return (
@@ -14,13 +19,24 @@ const checkoutPage = ()=>  {
               <h4 className={className.titleText}>
                 your order summary:
               </h4>
-              <OrderSummary/>
           </section>
           <section className="basis-[45%]">
               <h4 className={className.titleText}>
                 payments
               </h4>
-              <Payment />
+              <Elements 
+                  stripe={stripePromise}
+                  options={
+                      {
+                          mode: 'payment',
+                          amount: 4555,
+                          currency: 'sar'
+                      }
+                  }
+                  >
+                  <Payment />
+
+              </Elements>
           </section>
        </div>
     </div>
