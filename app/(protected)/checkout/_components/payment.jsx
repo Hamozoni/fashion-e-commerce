@@ -98,11 +98,13 @@ export function Payment() {
             </h5>
         </header>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}  >
+            <div className="bg-gray-50 mb-3 p-3 rounded-md">
+                <PaymentElement />
+                
+            </div>
             <CartDetails />
             <hr className="my-3"/>
-
-           <PaymentElement />
 
             <ButtonWithIcon 
                 text='pay now' 

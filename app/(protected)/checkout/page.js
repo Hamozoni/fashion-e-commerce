@@ -14,13 +14,8 @@ const checkoutPage = ()=>  {
 
   return (
     <div className="p-3 lg:px-8">
-       <div className="md:flex gap-8 capitalize">
-          <section className="basis-[55%]">
-              <h4 className={className.titleText}>
-                your order summary:
-              </h4>
-          </section>
-          <section className="basis-[45%]">
+       <div className="flex justify-center items-center gap-8 capitalize">
+          <section className="max-w-full w-[400px]">
               <h4 className={className.titleText}>
                 payments
               </h4>
