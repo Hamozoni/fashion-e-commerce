@@ -54,9 +54,6 @@ export function Payment() {
         await stripe.confirmPayment({
             elements,
             clientSecret,
-            confirmParams: {
-                return_url : `${process.env.NEXT_PUBLIC_URL}/paymet_success?amount=${4525}`
-            }
         }).then((data)=> {
             con
         })
