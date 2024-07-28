@@ -30,7 +30,7 @@ const checkoutPage = ()=>  {
                       {
                           mode: 'payment',
                           amount: 4555,
-                          currency: 'usd'
+                          currency: 'sar'
                       }
                   }
                   >

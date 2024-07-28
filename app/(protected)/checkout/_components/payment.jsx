@@ -51,13 +51,21 @@ export function Payment() {
             return
         }
 
-        const data = await stripe.confirmPayment({
+        await stripe.confirmPayment({
             elements,
             clientSecret,
             confirmParams: {
-                return_url : `${process.env.NEXT_PUBLIC_URL}/paymetSuccess?amount=${4525}`
+                return_url : `${process.env.NEXT_PUBLIC_URL}/paymet_success?amount=${4525}`
             }
-        });
+        }).then((data)=> {
+            con
+        })
+        .catch(()=> {
+
+        })
+        .finally(()=> {
+            setIsLoading(false);
+        })
 
         console.log(data);
         if(data?.error){
