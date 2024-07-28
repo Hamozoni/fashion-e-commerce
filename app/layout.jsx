@@ -22,7 +22,7 @@ export default async function RootLayout({ children }) {
           <body className="dark:bg-black">
             <ReduxProvider>
               <main>
-                  <MainHeader />
+                  <MainHeader currentUser={session?.user} />
                   {children}
                   <Footer />
               </main>
