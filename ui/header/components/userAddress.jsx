@@ -43,7 +43,13 @@ export function UserAddress() {
                     :
                     <button 
                         className={className.delivery} 
-                        onClick={()=> router.push(`/auth/login?callback=${pathname}`)}> 
+                        onClick={()=> {
+                            if(!!currentUser) {
+                                setIsMapOpen(true);
+                            }else {
+                                router.push(`/auth/login?callback=${pathname}`)
+                            }
+                            }}> 
                         <IoLocationOutline size={24} /> delivery to ?
                     </button>
                 }
