@@ -1,7 +1,10 @@
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 
-export { auth as middleware } from "./auth";
+import NextAuth from "next-auth"
+import authConfig from "./auth.config";
+ 
+export const { auth: middleware } = NextAuth(authConfig)
 
 export default async function auth (req) {
 
