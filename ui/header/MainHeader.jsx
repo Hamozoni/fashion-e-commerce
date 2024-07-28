@@ -12,13 +12,13 @@ import { HeaderCategories } from "./components/headerCategories";
 // app context
 import { AppContext } from "../../app/contextProvider";
 
-export const MainHeader = ({currentUser})=> {
+export const MainHeader = ()=> {
 
     const className = {
         flex:  'flex items-center gap-4 relative',
     };
 
-  const {innerWidth} = useContext(AppContext);
+  const {innerWidth} = useContext(AppContext)
 
 
   return (
@@ -48,7 +48,7 @@ export const MainHeader = ({currentUser})=> {
                     innerWidth > 991 ? 
                     <UserAddress/> : null
                 }
-                <HeaderUserBar currentUser={currentUser}/>
+                <HeaderUserBar />
                 <LikedList />
                 <HeaderCart/>
             </section>

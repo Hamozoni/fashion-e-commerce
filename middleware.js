@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import NextAuth from "next-auth"
 import authConfig from "./auth.config";
  
-export const { auth: middleware } = NextAuth(authConfig)
+// export const { auth: middleware } = NextAuth(authConfig)
 
 export default async function auth (req) {
 

@@ -2,23 +2,20 @@
 
 import { useEffect, useState,createContext} from "react";
 // next auth session
-import { useSession } from "next-auth/react";
 // creating context
 export const AppContext = createContext();
 
-const ContextProvider = ({children}) => {
-
-  const {data,status,update} = useSession();
+const ContextProvider = ({children,session}) => {
 
   
   const [innerWidth,setInnerWidth] = useState(0);
-  const [currentUser,setCurrentUser] = useState(data?.user);
+  const [currentUser,setCurrentUser] = useState(session);
   
   const [theme,setTheme] = useState('user device');
   
   useEffect(()=> {
-    setCurrentUser(data?.user);
-    },[data]);
+    setCurrentUser(session);
+    },[session]);
 
     useEffect(()=> {
         setInnerWidth(window.innerWidth);
@@ -66,7 +63,6 @@ const ContextProvider = ({children}) => {
           innerWidth,
           currentUser,
           setCurrentUser,
-          status,
           theme,
           setTheme,
           handleTheme,

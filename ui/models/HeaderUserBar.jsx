@@ -17,10 +17,10 @@ import {UserAddress} from "../header/components/userAddress";
 // hooks
 import {AppContext} from "../../app/contextProvider"
 
-export function HeaderUserBar({currentUser}) {
+export function HeaderUserBar() {
 
     const [isAccount,setIsAccount] = useState(false)
-    // const {currentUser} = useContext(AppContext);
+    const {currentUser} = useContext(AppContext);
     
     const className = {
         flex: 'flex items-center gap-4',
