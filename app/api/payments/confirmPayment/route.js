@@ -30,17 +30,17 @@ export  async function POST (req) {
         const order = await db.order.create({
             data: {
                 paymentId,
-                deliveryFree,
+                deliveryFree: Number(deliveryFree),
                 userId,
-                totalPaidInCent,
-                totalProductsQuantity,
+                totalPaidInCent: Number(totalPaidInCent),
+                totalProductsQuantity :Number(totalProductsQuantity),
                 products : {
                     create : JSON.parse(products)
                 },
                 payment : {
                     create : {
                         id: paymentId,
-                        amountInCent: totalPaidInCent,
+                        amountInCent: Number(totalPaidInCent),
                         status: "COMPLETED",
                         userId
                     }

@@ -18,6 +18,8 @@ import {AppContext} from "../../../contextProvider"
     const products = useAppSelector(state=> state.cart.products);
     const {currentUser} = useContext(AppContext);
 
+    console.log(products);
+
     const searchParams = useSearchParams();
 
     const {payment_intent} = Object.fromEntries(searchParams.entries());
