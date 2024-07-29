@@ -16,6 +16,8 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 
 export const CartItemsCard = ({product})=> {
 
+    console.log(product)
+
     const dispatch = useAppDispatch();
 
     const {innerWidth} = useContext(AppContext);
