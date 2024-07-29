@@ -65,7 +65,7 @@ export function Payment() {
                     "Content-Type" : "application/json"
                 },
                 body: JSON.stringify({
-                    paymentId: paymentIntentId,
+                    paymentId: paymetIntent,
                     products,
                     deliveryFree,
                     totalProductsQuantity,
