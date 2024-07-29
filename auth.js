@@ -66,8 +66,6 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
       if(!existingUser) return token;
 
       const existingAddress = await findUserAddressByEmail(token.email);
-
-      console.log(existingAddress)
       if(user) {
         token.role = existingUser?.role;
         token.id = existingUser?.id;

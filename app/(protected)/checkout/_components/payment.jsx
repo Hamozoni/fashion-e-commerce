@@ -9,6 +9,7 @@ import { useContext, useState } from "react";
 import { useAppSelector } from "../../../../store/store";
 import { AppContext } from "../../../contextProvider";
 import { getCurrency } from "../../../../lip/getCurrency";
+import { PostData } from "../../../../lip/fetchData";
 
 
 
@@ -34,18 +35,18 @@ export function Payment() {
 
         setIsLoading(true);
 
-        if(!stripe || !elements) return
+        // if(!stripe || !elements) return
 
         
         try{
-            const {error: submitError} = await elements.submit();
+            // const {error: submitError} = await elements.submit();
     
-            if(submitError) {
-                setError(submitError?.message);
-                setIsLoading(false);
+            // if(submitError) {
+            //     setError(submitError?.message);
+            //     setIsLoading(false);
     
-                return
-            }
+            //     return
+            // }
 
             const {error,paymetIntent} =  await stripe.createPayment({
                    amount: totalPaidInCent,
@@ -59,25 +60,30 @@ export function Payment() {
 
               setPaymentIntentId(paymetIntent.id);
 
-              fetch('/api/confirmPayment',{
-                method: "POST",
-                headers: {
-                    "Content-Type" : "application/json"
-                },
-                body: JSON.stringify({
-                    paymentId: paymetIntent,
-                    products,
-                    deliveryFree,
-                    totalProductsQuantity,
-                    userId: currentUser,
-                    totalPaidInCent
-                })
-              })
+              const formData = new FormData();
+              
+              formData.set('paymentId',paymetIntent);
+              formData.set('products',JSON.stringify(products));
+              formData.set('deliveryFree',deliveryFree);
+              formData.set('totalProductsQuantity',totalProductsQuantity);
+              formData.set('userId', currentUser.id);
+              formData.set('totalPaidInCent',totalPaidInCent);
 
+              PostData('/api/confirmPayment',formData)
+            .then((data)=> {
+                console.log(data)
+            })
+            .catch((error)=> {
+                console.log(error)
+            })
+            .finally(()=> {
+                setIsLoading(false)
+            })
 
         }
-        catch (eror) {
-            setError(error.message)
+        catch (error) {
+            setError(error.message);
+            setIsLoading(false)
         }
 
 
