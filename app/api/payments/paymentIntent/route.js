@@ -6,11 +6,15 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 export async function POST (req) {
 
     try {
-        const {amount} = await req.json();
+        const formData = await req.formData();
+
+        const amount = formData.get('amount')
+
+
         console.log(amount)
 
         const paymentIntent = await stripe.paymentIntents.create({
-            amount:45222,
+            amount:amount,
             currency: 'sar',
             automatic_payment_methods: {
                 enabled: true

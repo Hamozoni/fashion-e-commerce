@@ -1,10 +1,10 @@
 import Stripe from "stripe";
-import {db} from '../../../lip/db';
+import {db} from '../../../../lip/db';
 import { NextResponse } from "next/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export default async function POST (req) {
+export  async function POST (req) {
 
 
     

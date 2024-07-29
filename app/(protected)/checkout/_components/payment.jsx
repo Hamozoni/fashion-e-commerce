@@ -5,11 +5,11 @@ import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import  {CartDetails}  from "../../../cart/_components/cartDetails";
 import {UserField} from "./userField";
 import { useElements, useStripe,PaymentElement } from "@stripe/react-stripe-js";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAppSelector } from "../../../../store/store";
 import { AppContext } from "../../../contextProvider";
 import { getCurrency } from "../../../../lip/getCurrency";
-import { PostData } from "../../../../lip/fetchData";
+import {PostData } from "../../../../lip/fetchData";
 
 
 
@@ -18,71 +18,67 @@ export function Payment() {
     const stripe = useStripe();
     const elements = useElements();
 
-    const [paymentIntentId,setPaymentIntentId] = useState('');
+    const [clientSecret,setClientSecret] = useState('');
     const [error,setError] = useState(null);
     const [isLoading,setIsLoading] = useState();
 
     const totalPaidInCent = useAppSelector(state=> state.cart.totalPaid)
-    const totalProductsQuantity = useAppSelector(state=> state.cart.totalQuantity)
-    const deliveryFree = useAppSelector(state=> state.cart.deliveryFree);
-    const products = useAppSelector(state=> state.cart.products);
-
     const {currentUser} = useContext(AppContext);
 
+    useEffect(()=> {
 
-    const handleSubmit =  (e) => {
+        const formData = new FormData();
+
+        formData.set('amount',totalPaidInCent);
+        setIsLoading(true);
+        PostData('payments/paymentIntent',formData)
+        .then((data)=> {
+            console.log(data);
+
+            setClientSecret(data?.clientSecret);
+        })
+        .catch((error)=> {
+            console.log(error)
+        })
+        .finally(()=> {
+            setIsLoading(false)
+        });
+    },[totalPaidInCent]);
+
+
+    const handleSubmit = async (e) => {
+
         e.preventDefault();
-
         setIsLoading(true);
 
-        // if(!stripe || !elements) return
+        const {error : submitError} = await elements.submit();
+        if(submitError) {
+            setError(error?.message);
+            setIsLoading(false);
+            return
+        };
 
-            // const {error: submitError} = await elements.submit();
+       const {error}  =  await stripe.confirmPayment({
+                elements,
+                clientSecret,
+                confirmParams: {
+                    receipt_email: currentUser.email,
+                    return_url: `${process.env.NEXT_PUBLIC_URL}/checkout/successfulPayment`
+                }
+            });
+
+            if(error) {
+                setIsLoading(false);
+                setError(error?.message);
+                return
+
+            }
+
+
+
+        }
+
     
-            // if(submitError) {
-            //     setError(submitError?.message);
-            //     setIsLoading(false);
-    
-            //     return
-            // }
-
-            // const {error,paymetIntent} =  await stripe.createPayment({
-            //        amount: totalPaidInCent,
-            //        currency: 'sar'
-            //   })
-      
-            //   if(error){
-            //     console.log(error)
-            //       setError(submitError?.message);
-            //       return
-            //   }
-
-            //   setPaymentIntentId(paymetIntent.id);
-
-              const formData = new FormData();
-              
-            //   formData.set('paymentId',paymetIntent);
-              formData.set('products',JSON.stringify(products));
-              formData.set('deliveryFree',deliveryFree);
-              formData.set('totalProductsQuantity',totalProductsQuantity);
-              formData.set('userId', currentUser.id);
-              formData.set('totalPaidInCent',totalPaidInCent);
-
-              PostData('/api/confirmPayment',formData)
-            .then((data)=> {
-                console.log(data)
-            })
-            .catch((error)=> {
-                console.log(error)
-            })
-            .finally(()=> {
-                setIsLoading(false)
-            })
-
-
-
-
-    }
 
 
 
@@ -116,4 +112,4 @@ export function Payment() {
         </form>
     </div>
   )
-};
+}
