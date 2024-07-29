@@ -15,7 +15,7 @@ const checkoutPage = ()=>  {
   return (
     <div className="p-3 lg:px-8">
        <div className="flex justify-center items-center gap-8 capitalize">
-          <section className="max-w-full w-[400px]">
+          <section className="max-w-full w-[500px]">
               <h4 className={className.titleText}>
                 payments
               </h4>

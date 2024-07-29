@@ -8,6 +8,7 @@ import { useElements, useStripe,PaymentElement } from "@stripe/react-stripe-js";
 import { useContext, useState } from "react";
 import { useAppSelector } from "../../../../store/store";
 import { AppContext } from "../../../contextProvider";
+import { getCurrency } from "../../../../lip/getCurrency";
 
 
 
@@ -107,7 +108,7 @@ export function Payment() {
             <hr className="my-3"/>
 
             <ButtonWithIcon 
-                text='pay now' 
+                text={`pay ${getCurrency(totalPaidInCent)}`} 
                 Icon={IoShieldCheckmark} 
                 type='primary' 
                 disabled={isLoading} 
