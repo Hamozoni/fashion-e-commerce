@@ -19,7 +19,7 @@ export function AddToCart({product,isFromCard=false}) {
         dispatch(addToCart({
             id,
             name,
-            priceInHalala,
+            priceInHalala: +priceInHalala,
             category,
             subcategory,
             serialNumber,

@@ -24,7 +24,7 @@ export function ProductCard({product}) {
 
    const [productDetails,setProductDetails] = useState(product);
 
-   console.log(productDetails)
+   console.log(product)
 
    const {id,color,colorName,size,imagePath,priceInHalala} = productDetails;
 
