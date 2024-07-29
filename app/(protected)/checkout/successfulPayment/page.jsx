@@ -29,7 +29,7 @@ import {AppContext} from "../../../contextProvider"
         
         formData.set('paymentId',payment_intent);
         formData.set('products',JSON.stringify(products));
-        formData.set('deliveryFree',deliveryFree);
+        formData.set('deliveryFree',+deliveryFree);
         formData.set('totalProductsQuantity',totalProductsQuantity);
         formData.set('userId', currentUser.id);
         formData.set('totalPaidInCent',totalPaidInCent);
@@ -57,7 +57,7 @@ import {AppContext} from "../../../contextProvider"
 
     return (
         <div className="">
-
+            <p>454</p>
         </div>
     )
 

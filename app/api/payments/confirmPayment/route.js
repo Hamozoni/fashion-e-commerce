@@ -1,13 +1,8 @@
-import Stripe from "stripe";
 import {db} from '../../../../lip/db';
 import { NextResponse } from "next/server";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export  async function POST (req) {
-
-
-    
     
     try {
 
@@ -22,43 +17,40 @@ export  async function POST (req) {
             totalPaidInCent
         } = Object.fromEntries(formData.entries());
 
-        JSON.parse(products);
+        const findOrder = await db.order.findFirst({
+            where: {
+                paymentId
+            }
+        });
 
-        console.log(            paymentId,
-            products,
-            deliveryFree, 
-            totalProductsQuantity,
-            userId,
-            totalPaidInCent);
+        if(findOrder) {
+            return NextResponse.json({order:findOrder},{status: 200});
+        }
 
-            return NextResponse.json({order: "done"},{status: 200});
+        const order = await db.order.create({
+            data: {
+                paymentId,
+                deliveryFree,
+                userId,
+                totalPaidInCent,
+                totalProductsQuantity,
+                products : {
+                    create : JSON.parse(products)
+                },
+                payment : {
+                    create : {
+                        id: paymentId,
+                        amountInCent: totalPaidInCent,
+                        status: "COMPLETED",
+                        userId
+                    }
+                }
 
-        // const {id,status} = await stripe.paymentIntents.retrieve(paymentId);
-        // status.toUpperCase();
-        // const order = await db.order.create({
-        //     data: {
-        //         paymentId: id,
-        //         deliveryFree,
-        //         userId,
-        //         totalPaidInCent,
-        //         totalProductsQuantity,
-        //         products : {
-        //             create : products
-        //         },
-        //         payment : {
-        //             create : {
-        //                 id,
-        //                 amountInCent: totalPaidInCent,
-        //                 status,
-        //                 userId
-        //             }
-        //         }
-
-        //     }
-        // });
+            }
+        });
 
 
-        // return NextResponse.json(order,{status: 200});
+        return NextResponse.json(order,{status: 200});
 
     }
     catch (error) {
