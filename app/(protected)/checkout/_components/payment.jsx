@@ -30,15 +30,13 @@ export function Payment() {
     const {currentUser} = useContext(AppContext);
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit =  (e) => {
         e.preventDefault();
 
         setIsLoading(true);
 
         // if(!stripe || !elements) return
 
-        
-        try{
             // const {error: submitError} = await elements.submit();
     
             // if(submitError) {
@@ -48,21 +46,22 @@ export function Payment() {
             //     return
             // }
 
-            const {error,paymetIntent} =  await stripe.createPayment({
-                   amount: totalPaidInCent,
-                   currency: 'sar'
-              })
+            // const {error,paymetIntent} =  await stripe.createPayment({
+            //        amount: totalPaidInCent,
+            //        currency: 'sar'
+            //   })
       
-              if(error){
-                  setError(submitError?.message);
-                  return
-              }
+            //   if(error){
+            //     console.log(error)
+            //       setError(submitError?.message);
+            //       return
+            //   }
 
-              setPaymentIntentId(paymetIntent.id);
+            //   setPaymentIntentId(paymetIntent.id);
 
               const formData = new FormData();
               
-              formData.set('paymentId',paymetIntent);
+            //   formData.set('paymentId',paymetIntent);
               formData.set('products',JSON.stringify(products));
               formData.set('deliveryFree',deliveryFree);
               formData.set('totalProductsQuantity',totalProductsQuantity);
@@ -80,11 +79,6 @@ export function Payment() {
                 setIsLoading(false)
             })
 
-        }
-        catch (error) {
-            setError(error.message);
-            setIsLoading(false)
-        }
 
 
 
