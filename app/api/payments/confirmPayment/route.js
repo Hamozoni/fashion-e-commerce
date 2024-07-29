@@ -29,14 +29,13 @@ export  async function POST (req) {
 
         const payment = await db.payment.create({
             data : {
-                payment : {
+
                     id: paymentId,
                     amountInCent: Number(totalPaidInCent),
                     status: "COMPLETED",
                     userId
                 }
                 
-            }
         })
 
         const order = await db.order.create({
