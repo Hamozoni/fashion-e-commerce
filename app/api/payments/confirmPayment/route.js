@@ -35,19 +35,29 @@ export  async function POST (req) {
                     deliveryFree: Number(deliveryFree),
                     totalPaidInCent: Number(totalPaidInCent),
                     totalProductsQuantity :Number(totalProductsQuantity),
-                    userId,
                     products : {
                         create : JSON.parse(products)
                     
                     },
-                    // payment: {
-                    //     create:[ 
-                    //         {id: paymentId,
-                    //         amountInCent: Number(totalPaidInCent),
-                    //         status: "COMPLETED",
-                    //         userId,}]
+                    auther: {
+                        create :{
+                            id: userId
+                        }
+                    },
+                    payment: {
+                        create:
+                            {
+                            id: paymentId,
+                            amountInCent: Number(totalPaidInCent),
+                            status: "COMPLETED",
+                            user: {
+                                create :{
+                                    id: userId
+                                }
+                            },
+                        }
                         
-                    // }
+                    }
             }
         });
 

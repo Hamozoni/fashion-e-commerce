@@ -86,8 +86,9 @@ model order {
   totalProductsQuantity Int
   deliveryFree Int
   totalPaidInCent Int
+  paymentClientSecret String? @unique
   paymentId String
-  payment payment @relation(fields:[paymentId],references: [id])
+  payment payment @relation(fields: [paymentId], references: [id])
 	@@map("orders")
 }
 
@@ -101,7 +102,8 @@ model payment {
   updatedAt DateTime @updatedAt
   userId String
   user user @relation(fields: [userId], references: [id],onDelete: Cascade)
-  order order[]
+  clientSecret String? @unique
+  order order[] 
 	@@map("payments")
 }
 
