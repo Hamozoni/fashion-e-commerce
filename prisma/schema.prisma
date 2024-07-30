@@ -83,7 +83,7 @@ model orderProducts {
   updateddAt       DateTime  @updatedAt
   category         String
   subcategory      String
-  serialNumber     String @unique
+  serialNumber     String
   brand    String?
   priceInHalala Int
   offerPriceInHalala Int?
@@ -122,7 +122,7 @@ model payment {
   updatedAt DateTime @updatedAt
   userId String
   user user @relation(fields: [userId], references: [id],onDelete: Cascade)
-  clientSecret String @unique
+  clientSecret String
   orderId String
   order order @relation(fields: [orderId], references: [id])
 	@@map("payments")
