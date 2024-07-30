@@ -10,6 +10,7 @@ export  async function POST (req) {
         const formData =  await req.formData()
         
         const {
+            clientSecret,
             paymentId,
             products,
             deliveryFree, 
@@ -35,14 +36,12 @@ export  async function POST (req) {
                     deliveryFree: Number(deliveryFree),
                     totalPaidInCent: Number(totalPaidInCent),
                     totalProductsQuantity :Number(totalProductsQuantity),
+                    paymentClientSecret: clientSecret,
+                    paymentId,
+                    userId,
                     products : {
                         create : JSON.parse(products)
                     
-                    },
-                    auther: {
-                        create :{
-                            id: userId
-                        }
                     },
                     payment: {
                         create:
@@ -50,11 +49,8 @@ export  async function POST (req) {
                             id: paymentId,
                             amountInCent: Number(totalPaidInCent),
                             status: "COMPLETED",
-                            user: {
-                                create :{
-                                    id: userId
-                                }
-                            },
+                            clientSecret,
+                            userId,
                         }
                         
                     }

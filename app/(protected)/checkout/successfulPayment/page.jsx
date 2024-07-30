@@ -22,13 +22,17 @@ import {AppContext} from "../../../contextProvider"
 
     const searchParams = useSearchParams();
 
-    const {payment_intent} = Object.fromEntries(searchParams.entries());
+    const {payment_intent,payment_intent_client_secret} = Object.fromEntries(searchParams.entries());
+
 
     useEffect(()=> {
 
         setIsLoading(true);
         const formData = new FormData();
-        
+
+
+
+        formData.set('clientSecret',payment_intent_client_secret);
         formData.set('paymentId',payment_intent);
         formData.set('products',JSON.stringify(products));
         formData.set('deliveryFree',+deliveryFree);
