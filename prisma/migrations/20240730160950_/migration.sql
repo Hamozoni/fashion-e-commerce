@@ -70,6 +70,30 @@ CREATE TABLE `specifications` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `orderProducts` (
+    `id` VARCHAR(191) NOT NULL,
+    `type` ENUM('FASHION') NOT NULL DEFAULT 'FASHION',
+    `name` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updateddAt` DATETIME(3) NOT NULL,
+    `category` VARCHAR(191) NOT NULL,
+    `subcategory` VARCHAR(191) NOT NULL,
+    `serialNumber` VARCHAR(191) NOT NULL,
+    `brand` VARCHAR(191) NULL,
+    `priceInHalala` INTEGER NOT NULL,
+    `offerPriceInHalala` INTEGER NULL,
+    `offerExpiresAt` DATETIME(3) NULL,
+    `imagePath` VARCHAR(191) NOT NULL,
+    `size` VARCHAR(191) NOT NULL,
+    `color` VARCHAR(191) NOT NULL,
+    `colorName` VARCHAR(191) NOT NULL,
+    `quantity` INTEGER NOT NULL DEFAULT 1,
+    `orderId` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `orders` (
     `id` VARCHAR(191) NOT NULL,
     `status` ENUM('PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED') NOT NULL DEFAULT 'PENDING',
@@ -206,15 +230,6 @@ CREATE TABLE `resetPasswordTokens` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- CreateTable
-CREATE TABLE `_orderToproduct` (
-    `A` VARCHAR(191) NOT NULL,
-    `B` VARCHAR(191) NOT NULL,
-
-    UNIQUE INDEX `_orderToproduct_AB_unique`(`A`, `B`),
-    INDEX `_orderToproduct_B_index`(`B`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
 -- AddForeignKey
 ALTER TABLE `ProductImage` ADD CONSTRAINT `ProductImage_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -226,6 +241,9 @@ ALTER TABLE `productColors` ADD CONSTRAINT `productColors_productId_fkey` FOREIG
 
 -- AddForeignKey
 ALTER TABLE `specifications` ADD CONSTRAINT `specifications_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `orderProducts` ADD CONSTRAINT `orderProducts_orderId_fkey` FOREIGN KEY (`orderId`) REFERENCES `orders`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `orders` ADD CONSTRAINT `orders_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -247,9 +265,3 @@ ALTER TABLE `reviewsImages` ADD CONSTRAINT `reviewsImages_reviewId_fkey` FOREIGN
 
 -- AddForeignKey
 ALTER TABLE `accounts` ADD CONSTRAINT `accounts_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `_orderToproduct` ADD CONSTRAINT `_orderToproduct_A_fkey` FOREIGN KEY (`A`) REFERENCES `orders`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `_orderToproduct` ADD CONSTRAINT `_orderToproduct_B_fkey` FOREIGN KEY (`B`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
