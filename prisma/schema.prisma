@@ -32,7 +32,6 @@ model product {
   colors productColors[]
   specifications specification[]
   reviews reviews[]
-  orders order[]
 	@@map("products")
 }
 
@@ -75,6 +74,28 @@ model specification {
   product    product @relation(fields: [productId],references: [id],onDelete: Cascade) 
 	@@map("specifications")
 }
+
+model orderProducts {
+  id               String   @id @default(uuid())
+  type             product_types  @default(FASHION)
+  name             String
+  createdAt        DateTime  @default(now())
+  updateddAt       DateTime  @updatedAt
+  category         String
+  subcategory      String
+  serialNumber     String
+  brand    String?
+  priceInHalala Int
+  offerPriceInHalala Int?
+  offerExpiresAt DateTime?
+  imagePath String
+  size String
+  color String
+  colorName String
+  quantity  Int  @default(1)
+  orderId String
+  order order @relation(fields: [orderId],references: [id],onDelete: Cascade)
+}
 model order {
   id               String   @id @default(uuid())
   status          order_status @default(PENDING)
@@ -82,12 +103,12 @@ model order {
   updatedAt       DateTime    @updatedAt
   userId          String
   auther user @relation(fields: [userId],references: [id],onDelete: Cascade)
-  products product[]
   totalProductsQuantity Int
   deliveryFree Int
   totalPaidInCent Int
   paymentClientSecret String @unique
   payment payment[]
+  products orderProducts[]
 	@@map("orders")
 }
 

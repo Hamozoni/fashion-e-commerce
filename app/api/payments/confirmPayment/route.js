@@ -19,9 +19,9 @@ export  async function POST (req) {
             totalPaidInCent
         } = Object.fromEntries(formData.entries());
 
-        const findOrder = await db.order.findFirst({
+        const findOrder = await db.order.findUnique({
             where: {
-                paymentId
+                paymentClientSecret: clientSecret
             }
         });
 
@@ -37,7 +37,6 @@ export  async function POST (req) {
                     totalPaidInCent: Number(totalPaidInCent),
                     totalProductsQuantity :Number(totalProductsQuantity),
                     paymentClientSecret: clientSecret,
-                    paymentId,
                     userId,
                     products : {
                         create : JSON.parse(products)
