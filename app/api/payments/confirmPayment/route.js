@@ -1,3 +1,4 @@
+import { create } from 'domain';
 import {db} from '../../../../lip/db';
 import { NextResponse } from "next/server";
 
@@ -27,32 +28,31 @@ export  async function POST (req) {
             return NextResponse.json({order:findOrder},{status: 200});
         }
 
-        const payment = await db.payment.create({
-            data : {
-
-                    id: paymentId,
-                    amountInCent: Number(totalPaidInCent),
-                    status: "COMPLETED",
-                    userId
-                }
-                
-        })
 
         const order = await db.order.create({
+
             data: {
-                paymentId,
-                deliveryFree: Number(deliveryFree),
-                userId,
-                totalPaidInCent: Number(totalPaidInCent),
-                totalProductsQuantity :Number(totalProductsQuantity),
-                products : {
-                    create : JSON.parse(products)
-                }
+                    deliveryFree: Number(deliveryFree),
+                    totalPaidInCent: Number(totalPaidInCent),
+                    totalProductsQuantity :Number(totalProductsQuantity),
+                    userId,
+                    products : {
+                        create : JSON.parse(products)
+                    
+                    },
+                    // payment: {
+                    //     create:[ 
+                    //         {id: paymentId,
+                    //         amountInCent: Number(totalPaidInCent),
+                    //         status: "COMPLETED",
+                    //         userId,}]
+                        
+                    // }
             }
         });
 
 
-        return NextResponse.json({order,payment},{status: 200});
+        return NextResponse.json(order,{status: 200});
 
     }
     catch (error) {
