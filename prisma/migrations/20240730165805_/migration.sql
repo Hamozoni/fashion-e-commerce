@@ -90,6 +90,7 @@ CREATE TABLE `orderProducts` (
     `quantity` INTEGER NOT NULL DEFAULT 1,
     `orderId` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `orderProducts_id_key`(`id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -122,6 +123,7 @@ CREATE TABLE `payments` (
     `clientSecret` VARCHAR(191) NOT NULL,
     `orderId` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `payments_clientSecret_key`(`clientSecret`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

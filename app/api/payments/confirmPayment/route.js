@@ -19,15 +19,17 @@ export  async function POST (req) {
             totalPaidInCent
         } = Object.fromEntries(formData.entries());
 
-        const findOrder = await db.order.findUnique({
-            where: {
-                paymentClientSecret: clientSecret
-            }
-        });
+        console.log('userId',userId)
 
-        if(findOrder) {
-            return NextResponse.json({order:findOrder},{status: 200});
-        }
+        // const findOrder = await db.order.findUnique({
+        //     where: {
+        //         paymentClientSecret: clientSecret
+        //     }
+        // });
+
+        // if(findOrder) {
+        //     return NextResponse.json({order:findOrder},{status: 200});
+        // }
 
 
         const order = await db.order.create({
