@@ -88,7 +88,7 @@ model order {
   totalPaidInCent Int
   paymentClientSecret String? @unique
   paymentId String
-  payment payment @relation(fields: [paymentId], references: [id])
+  payment payment[]
 	@@map("orders")
 }
 
@@ -103,7 +103,8 @@ model payment {
   userId String
   user user @relation(fields: [userId], references: [id],onDelete: Cascade)
   clientSecret String? @unique
-  order order[] 
+  orderId String
+  order order @relation(fields: [orderId], references: [id])
 	@@map("payments")
 }
 
