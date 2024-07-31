@@ -124,7 +124,7 @@ model ordersPayment {
   userId String
   clientSecret String
   orderId String
-  order customerOrder @relation(fields: [orderId], references: [id])
+  order customerOrder @relation(fields: [orderId], references: [id],onDelete: Cascade)
 	@@map("ordersPayments")
 }
 
