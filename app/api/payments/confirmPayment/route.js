@@ -24,15 +24,17 @@ export  async function POST (req) {
         console.log('paymentId',paymentId)
         console.log('totalProductsQuantity',totalProductsQuantity)
 
-        // const findOrder = await db.order.findUnique({
-        //     where: {
-        //         paymentClientSecret: clientSecret
-        //     }
-        // });
+        const findOrder = await db.customerOrder.findFirst({
+            where: {
+                paymentClientSecret: clientSecret
+            }
+        });
 
-        // if(findOrder) {
-        //     return NextResponse.json({order:findOrder},{status: 200});
-        // }
+        if(findOrder) {
+            return NextResponse.json({order:findOrder},{status: 200});
+        }
+
+        const uuid = crypto.randomUUID()
 
 
         const order = await db.customerOrder.create({
@@ -47,13 +49,13 @@ export  async function POST (req) {
                         create : JSON.parse(products)
                     
                     },
-                    ordersPayment: {
+                    payment: {
                         create:
                             {
                             id: paymentId,
                             amountInCent: Number(totalPaidInCent),
                             status: "COMPLETED",
-                            clientSecret,
+                            clientSecret:clientSecret,
                             userId,
                         }
                         

@@ -29,6 +29,11 @@ import {AppContext} from "../../../contextProvider"
 
     useEffect(()=> {
 
+
+    },[]);
+
+    const handleOrder = ()=> {
+        
         setIsLoading(true);
         const formData = new FormData();
 
@@ -53,8 +58,7 @@ import {AppContext} from "../../../contextProvider"
         .finally(()=> {
             setIsLoading(false)
         });
-
-    },[]);
+    }
 
     if(isLoading) {
         return <Loading />
@@ -64,7 +68,7 @@ import {AppContext} from "../../../contextProvider"
     }
 
     return (
-        <div className="">
+        <div className="" onClick={handleOrder}>
             <p>454</p>
         </div>
     )
