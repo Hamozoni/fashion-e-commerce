@@ -30,7 +30,7 @@ export function AddressMap({onClick}) {
     
     const {update} = useSession();
     const [loading,startTranation] = useTransition()
-    const {currentUser} = useContext(AppContext);
+    const {currentUser,setCurrentUser} = useContext(AppContext);
     const route = useRouter();
 
     useEffect(()=> {
@@ -39,7 +39,7 @@ export function AddressMap({onClick}) {
             setFormatedAddress(address?.formatedAddress);
             setPosition({lat: address?.lat, lng: address?.lng})
         }
-    },[]);
+    },[currentUser?.address]);
 
     const getCurrentAddress = (lat,lng)=>{
 
@@ -125,7 +125,12 @@ export function AddressMap({onClick}) {
             startTranation(()=> {
                 addNewAddress(reqBody)
                .then((data)=> {
-                   if(data?.success) {
+                   console.log(data);
+                   if(data?.data) {
+
+                    setCurrentUser(prev=> {
+                        return {...prev,address: data.data}
+                    })
                        onClick();
                        update();
                    }

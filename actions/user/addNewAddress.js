@@ -16,7 +16,7 @@ export const addNewAddress = async (req)=> {
         if(exestingAddress){
 
             try{
-                await db.userAddress.update({
+                const userAddress =   await db.userAddress.update({
                         where: {email},
                         data: {
                             email,
@@ -24,7 +24,7 @@ export const addNewAddress = async (req)=> {
                         }
                     });
     
-                return {success: true}
+                return {data: userAddress}
             }
             catch (error){
                 console.log(error)
@@ -37,14 +37,14 @@ export const addNewAddress = async (req)=> {
         }else {
 
             try {
-                await db.userAddress.create({
+             const userAddress =   await db.userAddress.create({
                     data: {
                         email,
                         ...data
                     }
                 })
             
-                return  {success: "user address has been added successfully!"}
+                return  {data: userAddress}
 
             }
             catch {
