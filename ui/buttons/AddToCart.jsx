@@ -22,7 +22,7 @@ export function AddToCart({product,isFromCard=false}) {
             priceInHalala: +priceInHalala,
             category,
             subcategory,
-            serialNumber: serialNumber.replace(serialNumber.slice(0,5),color.slice(0,4) + size.slice(0,1) ),
+            serialNumber: `${serialNumber}${colorName}${size}`,
             brand,
             imagePath,
             color,
