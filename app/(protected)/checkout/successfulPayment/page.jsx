@@ -38,7 +38,6 @@ import {AppContext} from "../../../contextProvider"
         const formData = new FormData();
 
 
-
         formData.set('clientSecret',payment_intent_client_secret);
         formData.set('paymentId',payment_intent);
         formData.set('products',JSON.stringify(products));

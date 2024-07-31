@@ -76,14 +76,15 @@ model specification {
 }
 
 model orderProducts {
-  id               String   @id @default(uuid()) 
+  cartId String   @id @default(uuid()) 
+  id     String 
   type             product_types  @default(FASHION)
   name             String
   createdAt        DateTime  @default(now())
   updateddAt       DateTime  @updatedAt
   category         String
   subcategory      String
-  serialNumber     String
+  serialNumber     String @unique
   brand    String?
   priceInHalala Int
   offerPriceInHalala Int?
