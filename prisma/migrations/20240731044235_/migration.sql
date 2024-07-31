@@ -90,6 +90,7 @@ CREATE TABLE `orderProducts` (
     `quantity` INTEGER NOT NULL DEFAULT 1,
     `orderId` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `orderProducts_serialNumber_key`(`serialNumber`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -122,6 +123,7 @@ CREATE TABLE `payments` (
     `clientSecret` VARCHAR(191) NOT NULL,
     `orderId` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `payments_clientSecret_key`(`clientSecret`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -247,9 +249,6 @@ ALTER TABLE `orderProducts` ADD CONSTRAINT `orderProducts_orderId_fkey` FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE `orders` ADD CONSTRAINT `orders_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `payments` ADD CONSTRAINT `payments_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `payments` ADD CONSTRAINT `payments_orderId_fkey` FOREIGN KEY (`orderId`) REFERENCES `orders`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
