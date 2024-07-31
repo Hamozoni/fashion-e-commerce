@@ -20,6 +20,9 @@ export  async function POST (req) {
         } = Object.fromEntries(formData.entries());
 
         console.log('userId',userId)
+        console.log('clientSecret',clientSecret)
+        console.log('paymentId',paymentId)
+        console.log('totalProductsQuantity',totalProductsQuantity)
 
         // const findOrder = await db.order.findUnique({
         //     where: {
@@ -38,7 +41,7 @@ export  async function POST (req) {
                     deliveryFree: Number(deliveryFree),
                     totalPaidInCent: Number(totalPaidInCent),
                     totalProductsQuantity :Number(totalProductsQuantity),
-                    paymentClientSecret: clientSecret,
+                    paymentClientSecret: paymentId,
                     userId,
                     products : {
                         create : JSON.parse(products)

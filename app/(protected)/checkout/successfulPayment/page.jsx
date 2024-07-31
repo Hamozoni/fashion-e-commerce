@@ -24,6 +24,8 @@ import {AppContext} from "../../../contextProvider"
 
     const {payment_intent,payment_intent_client_secret} = Object.fromEntries(searchParams.entries());
 
+    console.log(payment_intent,payment_intent_client_secret)
+
 
     useEffect(()=> {
 
