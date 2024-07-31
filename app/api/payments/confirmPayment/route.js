@@ -45,10 +45,10 @@ export  async function POST (req) {
                     totalProductsQuantity :Number(totalProductsQuantity),
                     paymentClientSecret: clientSecret,
                     userId,
-                    // products : {
-                    //     create : JSON.parse(products)
+                    products : {
+                        create : JSON.parse(products)
                     
-                    // },
+                    },
                     payment: {
                         create:
                             {
