@@ -1,20 +1,38 @@
-
-import React from 'react'
+"use client";
+import React, { useContext, useEffect, useState } from 'react'
 import { fetchData } from '../../../lip/fetchData';
+import { AppContext } from '../../contextProvider';
 
-async function orderPage() {
+import Loading from "../../loading";
 
-  let data = null;
+function orderPage() {
 
-  const fetchApiData = async ()=> {
-       fetchData('orders')
-       .then((data)=> {
-          console.log(data)
-       })
-  }
+  const [orders,setOrders] = useState([]);
+  const [isLoading,setIsLoading] = useState(false);
+  const [error,setError] = useState(null);
 
-  fetchApiData()
+  const {currentUser: {id}} = useContext(AppContext);
 
+
+  useEffect(()=> {
+
+    setIsLoading(true);
+
+      fetchData(`orders?userId=${id}`)
+      .then((data)=> {
+        console.log(data)
+      })
+      .catch((error)=> {
+        console.log(error)
+      })
+      .finally(()=> {
+           setIsLoading(false)
+      })
+
+
+  },[id]);
+
+  if(isLoading) return <Loading />
 
   return (
     <div>orderPage</div>
