@@ -4,6 +4,7 @@ import { fetchData } from '../../../lip/fetchData';
 import { AppContext } from '../../contextProvider';
 
 import Loading from "../../loading";
+import { useRouter } from 'next/navigation';
 
 function orderPage() {
 
@@ -12,6 +13,14 @@ function orderPage() {
   const [error,setError] = useState(null);
 
   const {currentUser: {id}} = useContext(AppContext);
+
+  const router = useRouter()
+
+  if(!id) {
+     router.push('/auth/login');
+
+     return;
+  }
 
 
   useEffect(()=> {

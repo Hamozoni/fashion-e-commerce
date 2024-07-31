@@ -1,11 +1,12 @@
-import { auth } from "../../../auth";
 
 import { NextResponse } from "next/server";
 export async function GET (req) {
 
-    const session = await auth()
+    const {searchParams} = new URL(req.url);
 
-    console.log('orders token',session.user)
+    const userId = searchParams.get('userId');
+
+    console.log('orders user id',userId)
 
     return NextResponse.json('deeeeeeeeeeeeeeeeeeeeeeeeeeee',{status:200})
 
