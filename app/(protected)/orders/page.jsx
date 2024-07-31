@@ -1,6 +1,10 @@
 import React from 'react'
 
-function orderPage() {
+async function orderPage() {
+
+  let data = null;
+
+  
   return (
     <div>orderPage</div>
   )
