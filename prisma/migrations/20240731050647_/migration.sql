@@ -90,12 +90,11 @@ CREATE TABLE `orderProducts` (
     `quantity` INTEGER NOT NULL DEFAULT 1,
     `orderId` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `orderProducts_serialNumber_key`(`serialNumber`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `orders` (
+CREATE TABLE `customerOrders` (
     `id` VARCHAR(191) NOT NULL,
     `status` ENUM('PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED') NOT NULL DEFAULT 'PENDING',
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -106,12 +105,12 @@ CREATE TABLE `orders` (
     `totalPaidInCent` INTEGER NOT NULL,
     `paymentClientSecret` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `orders_paymentClientSecret_key`(`paymentClientSecret`),
+    UNIQUE INDEX `customerOrders_paymentClientSecret_key`(`paymentClientSecret`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `payments` (
+CREATE TABLE `ordersPayments` (
     `id` VARCHAR(191) NOT NULL,
     `amountInCent` INTEGER NOT NULL,
     `currency` ENUM('SAR') NOT NULL DEFAULT 'SAR',
@@ -123,7 +122,6 @@ CREATE TABLE `payments` (
     `clientSecret` VARCHAR(191) NOT NULL,
     `orderId` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `payments_clientSecret_key`(`clientSecret`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -245,13 +243,13 @@ ALTER TABLE `productColors` ADD CONSTRAINT `productColors_productId_fkey` FOREIG
 ALTER TABLE `specifications` ADD CONSTRAINT `specifications_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `orderProducts` ADD CONSTRAINT `orderProducts_orderId_fkey` FOREIGN KEY (`orderId`) REFERENCES `orders`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `orderProducts` ADD CONSTRAINT `orderProducts_orderId_fkey` FOREIGN KEY (`orderId`) REFERENCES `customerOrders`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `orders` ADD CONSTRAINT `orders_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `customerOrders` ADD CONSTRAINT `customerOrders_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `payments` ADD CONSTRAINT `payments_orderId_fkey` FOREIGN KEY (`orderId`) REFERENCES `orders`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `ordersPayments` ADD CONSTRAINT `ordersPayments_orderId_fkey` FOREIGN KEY (`orderId`) REFERENCES `customerOrders`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `reviews` ADD CONSTRAINT `reviews_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

@@ -35,7 +35,7 @@ export  async function POST (req) {
         // }
 
 
-        const order = await db.order.create({
+        const order = await db.customerOrder.create({
 
             data: {
                     deliveryFree: Number(deliveryFree),
@@ -47,17 +47,17 @@ export  async function POST (req) {
                         create : JSON.parse(products)
                     
                     },
-                    // payment: {
-                    //     create:
-                    //         {
-                    //         id: paymentId,
-                    //         amountInCent: Number(totalPaidInCent),
-                    //         status: "COMPLETED",
-                    //         clientSecret,
-                    //         userId,
-                    //     }
+                    ordersPayment: {
+                        create:
+                            {
+                            id: paymentId,
+                            amountInCent: Number(totalPaidInCent),
+                            status: "COMPLETED",
+                            clientSecret,
+                            userId,
+                        }
                         
-                    // }
+                    }
             }
         });
 

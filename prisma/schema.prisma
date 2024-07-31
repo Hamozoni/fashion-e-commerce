@@ -83,7 +83,7 @@ model orderProducts {
   updateddAt       DateTime  @updatedAt
   category         String
   subcategory      String
-  serialNumber     String @unique
+  serialNumber     String
   brand    String?
   priceInHalala Int
   offerPriceInHalala Int?
@@ -94,9 +94,9 @@ model orderProducts {
   colorName String
   quantity  Int  @default(1)
   orderId String
-  order order @relation(fields: [orderId],references: [id],onDelete: Cascade)
+  order customerOrder @relation(fields: [orderId],references: [id],onDelete: Cascade)
 }
-model order {
+model customerOrder {
   id               String   @id @default(uuid())
   status          order_status @default(PENDING)
   createdAt       DateTime     @default(now())
@@ -107,12 +107,12 @@ model order {
   deliveryFree Int
   totalPaidInCent Int
   paymentClientSecret String @unique
-  payment payment[]
+  payment ordersPayment[]
   products orderProducts[]
-	@@map("orders")
+	@@map("customerOrders")
 }
 
-model payment {
+model ordersPayment {
   id String @id @default(uuid())
   amountInCent Int
   currency currency @default(SAR)
@@ -121,10 +121,10 @@ model payment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId String
-  clientSecret String @unique
+  clientSecret String
   orderId String
-  order order @relation(fields: [orderId], references: [id])
-	@@map("payments")
+  order customerOrder @relation(fields: [orderId], references: [id])
+	@@map("ordersPayments")
 }
 
 model reviews {
@@ -161,7 +161,7 @@ model user {
   image         String?
   account       account?
   reviews   reviews[]
-  orders   order[]
+  orders   customerOrder[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
