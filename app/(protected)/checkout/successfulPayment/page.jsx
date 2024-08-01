@@ -6,11 +6,15 @@ import {PostData} from "../../../../lip/fetchData";
 import {Loading} from "../../../../ui/models/Loading"
 import { useSearchParams } from "next/navigation";
 import {AppContext} from "../../../contextProvider"
+import { OrderSummary } from "../../orders/orderSummary";
+
+import { IoCheckmark } from "react-icons/io5";
  
  const successfulPayment = () => {
 
     const [error,setError] = useState(null);
     const [isLoading,setIsLoading] = useState();
+    const [order,setOrder] = useState({})
 
     const totalPaidInCent = useAppSelector(state=> state.cart.totalPaid)
     const totalProductsQuantity = useAppSelector(state=> state.cart.totalQuantity)
@@ -28,12 +32,6 @@ import {AppContext} from "../../../contextProvider"
 
 
     useEffect(()=> {
-
-
-    },[]);
-
-    const handleOrder = ()=> {
-        
         setIsLoading(true);
         const formData = new FormData();
 
@@ -49,6 +47,7 @@ import {AppContext} from "../../../contextProvider"
         PostData('payments/confirmPayment',formData)
         .then((data)=> {
             console.log(data)
+            setOrder(data?.order)
         })
         .catch((error)=> {
             console.log(error);
@@ -57,7 +56,8 @@ import {AppContext} from "../../../contextProvider"
         .finally(()=> {
             setIsLoading(false)
         });
-    }
+    },[]);
+
 
     if(isLoading) {
         return <Loading />
@@ -67,8 +67,22 @@ import {AppContext} from "../../../contextProvider"
     }
 
     return (
-        <div className="" onClick={handleOrder}>
-            <p>454</p>
+        <div className="p-3 md:px-8 max-w-[700px] mx-auto" >
+            <header className="mb-6">
+                <h2 className="text-center text-2xl capitalize text-teal-950 dark:text-teal-50 font-bold mb-4"
+                     >successful
+                </h2>
+                <div className="mx-auto w-[200px] h-[200px] rounded-full bg-teal-100 text-teal-700 flex items-center justify-center">
+                    <IoCheckmark size={160}/>
+                </div>
+            </header>
+            <OrderSummary 
+                address={currentUser?.address} 
+                data={{
+                    deliveryFree: order?.deliveryFree,
+                    totalPaidInCent:order?.totalPaidInCent
+                    }}
+                />
         </div>
     )
 

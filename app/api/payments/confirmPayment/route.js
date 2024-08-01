@@ -1,4 +1,4 @@
-import { create } from 'domain';
+
 import {db} from '../../../../lip/db';
 import { NextResponse } from "next/server";
 
@@ -24,18 +24,15 @@ export  async function POST (req) {
         console.log('paymentId',paymentId)
         console.log('totalProductsQuantity',totalProductsQuantity)
 
-        const findOrder = await db.customerOrder.findFirst({
+        const findOrder = await db.customerOrder.findUnique({
             where: {
                 paymentClientSecret: clientSecret
             }
         });
 
-        if(findOrder) {
+        if(!!findOrder) {
             return NextResponse.json({order:findOrder},{status: 200});
         }
-
-        const uuid = crypto.randomUUID()
-
 
         const order = await db.customerOrder.create({
 

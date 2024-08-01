@@ -1,3 +1,4 @@
+import { getCurrency } from "../../../lip/getCurrency"
 
 export const OrderSummary = ({address,data:{deliveryFree,totalPaidInCent}})=> {
 
