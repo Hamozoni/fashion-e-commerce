@@ -58,14 +58,14 @@ const cartSlice = createSlice({
             state.products.splice(state.products.indexOf(item),1)
             getTotal(state);
         },
-        clearAllItemsFromCat : (state)=> {
-            state?.products.splice(0,state?.products?.length)
-            return state;
+        clearAllItemsFromCart : (state,action)=> {
+            state?.products.splice(0,state?.products.length);
+            getTotal(state);
         }
         
     }
 });
 
-export const {incrementItemInCart,decrementItemInCart,removeItemFromCart,addToCart,clearAllItemsFromCat} = cartSlice.actions;
+export const {incrementItemInCart,decrementItemInCart,removeItemFromCart,addToCart,clearAllItemsFromCart} = cartSlice.actions;
 
 export default cartSlice.reducer;

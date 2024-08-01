@@ -9,7 +9,7 @@ import { OrderSummary } from "../../orders/orderSummary";
 
 import { IoCheckmark } from "react-icons/io5";
 import { ClimbingBoxLoader } from "react-spinners";
-import { clearAllItemsFromCat } from "../../../../store/features/cartSlice";
+import { clearAllItemsFromCart } from "../../../../store/features/cartSlice";
 import {useAppDispatch} from "../../../../store/store"
  
  const successfulPayment = () => {
@@ -45,7 +45,7 @@ import {useAppDispatch} from "../../../../store/store"
         .then((data)=> {
             console.log(data)
             setOrder(data?.order)
-            dispatch(clearAllItemsFromCat())
+            dispatch(clearAllItemsFromCart())
         })
         .catch((error)=> {
             console.log(error);
@@ -67,23 +67,7 @@ import {useAppDispatch} from "../../../../store/store"
             </div>
         )
     }
-    if(error) {
-        return (
-            <div className="h-screen flex items-center justify-center capitalize">
-                <div className="">
-                    <p className="text-lg font-bold uppercase text-teal-950 dark:text-teal-50 text-center mb-5">
-                        opps! something went wrong place don't close the page and try agian
-                    </p>
-                    
-                    <button
-                       onClick={handlePlacingOrder}
-                       className="text-lg font-bold uppercase text-teal-950 dark:text-teal-50 text-center"
-                       >try again
-                    </button>
-                </div>
-            </div>
-        )
-    }
+    if(error) return <Error onClick={handlePlacingOrder} />
 
     return (
         <div className="p-3 md:px-8 max-w-[700px] mx-auto" >

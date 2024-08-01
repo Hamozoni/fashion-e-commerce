@@ -7,7 +7,7 @@ import {CartSummary} from "./_components/CartSummary";
 // redux store
 import { useAppSelector } from "../../store/store";
 import { useAppDispatch } from "../../store/store";
-import {clearAllItemsFromCat} from "../../store/features/cartSlice"
+import {clearAllItemsFromCart} from "../../store/features/cartSlice"
 
 function cartPage() {
 
@@ -40,7 +40,7 @@ function cartPage() {
                             my cart items {totalItemsOnCart}
                         </h4>
                         <p 
-                            onChange={()=> dispatch(clearAllItemsFromCat())}
+                            onClick={()=> dispatch(clearAllItemsFromCart())}
                             className="text-red-500 text-sm font-bold cursor-pointer min-w-fit">
                                 delete all
                             </p>
