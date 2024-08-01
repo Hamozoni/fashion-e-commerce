@@ -3,12 +3,12 @@
 import { useContext, useEffect, useState } from "react";
 import {useAppSelector} from "../../../../store/store";
 import {PostData} from "../../../../lip/fetchData";
-import {Loading} from "../../../../ui/models/Loading"
 import { useSearchParams } from "next/navigation";
 import {AppContext} from "../../../contextProvider"
 import { OrderSummary } from "../../orders/orderSummary";
 
 import { IoCheckmark } from "react-icons/io5";
+import { ClimbingBoxLoader } from "react-spinners";
  
  const successfulPayment = () => {
 
@@ -60,7 +60,11 @@ import { IoCheckmark } from "react-icons/io5";
 
 
     if(isLoading) {
-        return <Loading />
+        return (
+            <div className="h-screen flex items-center justify-center capitalize">
+                    <ClimbingBoxLoader color="#0d9488" size={60} />
+            </div>
+        )
     }
     if(error) {
         return <p>something went wrong</p>
@@ -69,12 +73,12 @@ import { IoCheckmark } from "react-icons/io5";
     return (
         <div className="p-3 md:px-8 max-w-[700px] mx-auto" >
             <header className="mb-6">
-                <h2 className="text-center text-2xl capitalize text-teal-950 dark:text-teal-50 font-bold mb-4"
-                     >successful
-                </h2>
-                <div className="mx-auto w-[200px] h-[200px] rounded-full bg-teal-100 text-teal-700 flex items-center justify-center">
+                <div className="mx-auto w-[200px] h-[200px] rounded-full bg-teal-100 text-teal-700 flex items-center justify-center mb-4">
                     <IoCheckmark size={160}/>
                 </div>
+                <h2 className="text-center text-2xl capitalize text-teal-950 dark:text-teal-50 font-bold "
+                     >successeded
+                </h2>
             </header>
             <OrderSummary 
                 address={currentUser?.address} 

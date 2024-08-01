@@ -50,12 +50,17 @@ export const OrdersContainer = ()=> {
     return (
         <div className="">
             {
-              orders?.map(({id,createdAt,products, deliveryFree,totalPaidInCent}) => (
-                <div key={id} className=" capitalize mb-5">
+              orders?.map(({id,createdAt,products, deliveryFree,totalPaidInCent,status}) => (
+                <div key={id} className=" capitalize mb-16 pb-8 border-b dark:border-stone-800">
                     <header className="md:flex items-center justify-between">
-                       <h4 className={className.title_2}
-                           >order ID : <small>{id}</small>
-                        </h4>
+                        <div className="flex items-center gap-4">
+                            <h4 className={className.title_2}
+                                >order ID : <small>{id}</small>
+                            </h4>
+                            <h4 className={className.title_2}
+                                >status : <small>{status}</small>
+                            </h4>
+                        </div>
                         <div className=" flex items-center gap-4">
                                 <h6 className={className.title_2}
                                     > order date :  
@@ -72,7 +77,7 @@ export const OrdersContainer = ()=> {
                             >items: {products?.length}
                         </h6>
                        <div className="md:flex items-start gap-5">
-                            <div className="">
+                            <div className="flex-[50%]  lg:flex-[65%]">
                                 {
                                     products.map((product)=> (
                                         <CartItemsCard 
