@@ -10,7 +10,12 @@ export async function GET (req) {
         const userId = searchParams.get('userId');
 
         const orders = await db.customerOrder.findMany({
-            where : {userId}
+            where : {
+                userId
+            },
+            include : {
+                products: true
+            }
         });
 
     

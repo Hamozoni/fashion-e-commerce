@@ -34,6 +34,27 @@ export const OrdersContainer = ()=> {
 
     return (
         <div className="">
+            {
+              orders?.map(order => (
+                <div key={order.id} className="">
+                    <header>
+                       <h4>order id : {order.id}</h4>
+                       <div className="">
+                            <h6> order date : <time datetime={order.createdAt}></time></h6>
+                            <h6>stimated dilevry : {Date(order.createdAt + 1000 * 60 * 60 * 60 * 24 * 3)}</h6>
+                       </div>
+                       <div className="">
+                           {
+                               order.products.map((item)=> (
+                                  <OrderCard key={item.cartId} />
+                               ))
+                           }
+                       </div>
+                    </header>
+
+                </div>
+              ))  
+            }
              
         </div>
     )
