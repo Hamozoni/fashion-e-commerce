@@ -14,7 +14,7 @@ import {getCurrency} from "../../lip/getCurrency";
 // icons
 import { MdOutlineDeleteOutline } from "react-icons/md";
 
-export const CartItemsCard = ({product})=> {
+export const CartItemsCard = ({product,isOrdered = false})=> {
 
     console.log(product)
 
@@ -50,7 +50,7 @@ export const CartItemsCard = ({product})=> {
             <section className="w-full">
                 <Link href={linkHref}>
                     <h4 
-                        className="text-sm sm:text-xl font-bold text-teal-950 dark:text-teal-50 hover:opacity-95"
+                        className="text-sm sm:text-xl font-bold text-teal-950 dark:text-teal-50 hover:opacity-95 line-clamp-3"
                         >{name}
                     </h4>
                 </Link>
@@ -71,13 +71,16 @@ export const CartItemsCard = ({product})=> {
                         </div>
                     </div>
                     <div className="flex flex-col justify-between gap-2">
-                        <QuantityBtn 
-                            id={id} 
-                            color={color} 
-                            size={size} 
-                            />
+                        {
+                            isOrdered ? null :
+                            <QuantityBtn 
+                                id={id} 
+                                color={color} 
+                                size={size} 
+                                />
+                        }
                             {
-                                quantity > 1 ?
+                                (quantity > 1 && !isOrdered )?
                                 <div className="">
                                     <ButtonWithIcon 
                                         text='' 
