@@ -6,8 +6,6 @@ import {CartItemsCard} from "../../ui/cards/cartItemsCard";
 import {CartSummary} from "./_components/CartSummary";
 // redux store
 import { useAppSelector } from "../../store/store";
-// icons
-import { FaCartShopping } from "react-icons/fa6";
 
 function cartPage() {
 
@@ -33,7 +31,7 @@ function cartPage() {
             <div className="lg:flex gap-8 capitalize">
                 <section className="basis-[60%]">
                     <h4 className={`${className.sectionTitle} flex items-center gap-3`}>
-                      <FaCartShopping /> my cart items {totalItemsOnCart}
+                       my cart items {totalItemsOnCart}
                     </h4>
                     <div >
                         {cartCard}
