@@ -50,24 +50,27 @@ export const OrdersContainer = ()=> {
         <div className="">
             {
               orders?.map(({id,createdAt,products, deliveryFree,totalPaidInCent}) => (
-                <div key={id} className="">
-                    <header className="capitalize">
-                       <h4 className={className.title_1}
+                <div key={id} className=" capitalize mb-5">
+                    <header className="md:flex items-center justify-between">
+                       <h4 className={className.title_2}
                            >order ID : <small>{id}</small>
                         </h4>
-                       <div className=" flex items-center gap-8">
-                            <h6 className={className.title_2}
-                                > order date : 
-                                <time datetime={createdAt}>{new Date(createdAt).toDateString()}</time>
-                            </h6>
-                            <h6 className={className.title_2}>stimated dilevry : 
-                                {new Date(new Date(createdAt).setDate(new Date(createdAt).getDate() + 3)).toDateString()}
-                            </h6>
-                       </div>
+                        <div className=" flex items-center gap-4">
+                                <h6 className={className.title_2}
+                                    > order date :  
+                                    <small>{ "  " + new Date(createdAt).toDateString()}</small>
+                                </h6>
+                                <h6 className={className.title_2}>stimated dilevry : 
+                                   <small>
+                                        {new Date(new Date(createdAt).setDate(new Date(createdAt).getDate() + 3)).toDateString()}
+                                    </small>
+                                </h6>
+                        </div>
+                       </header>
                        <h6 className={className.title_1}
                             >items: {products?.length}
                         </h6>
-                       <div className="md:flex gap-5">
+                       <div className="md:flex items-start gap-5">
                             <div className="">
                                 {
                                     products.map((product)=> (
@@ -79,14 +82,18 @@ export const OrdersContainer = ()=> {
                                     ))
                                 }
                             </div>
-                            <div className=" capitalize">
+                            <div className=" capitalize bg-gray-50 dark:bg-stone-950 shadow-md p-3 rounded-md sticky top-[100px]">
                                 <div className=" mb-4">
                                     <h5 className={className.title_1} >delivery </h5>
                                     <div className="">
-                                        <p className={className.title_2}> 
-                                            address:  <small>{address?.neighborhood}</small>
-                                        </p>
-                                        <address>{address?.formatedAddress}</address>
+                                        <h5 className={className.title_2}> 
+                                            address:
+                                        </h5>
+                                        <small>
+                                            <address className={className.title_2}>
+                                               {address?.formatedAddress}
+                                            </address>
+                                        </small>
                                     </div>
                                     <p className={className.title_2}
                                         >delivery fee: {deliveryFree === 0 ? 'free': getCurrency(deliveryFree)}
@@ -120,8 +127,6 @@ export const OrdersContainer = ()=> {
                             </div>
 
                        </div>
-                    </header>
-
                 </div>
               ))  
             }
