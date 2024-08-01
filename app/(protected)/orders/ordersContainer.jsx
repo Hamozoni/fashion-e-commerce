@@ -41,24 +41,30 @@ export const OrdersContainer = ()=> {
 
     if(error) return <p>error</p>
 
+    const className = {
+        title_1: "text-teal-950 dark:text-teal-50 text-lg font-bold",
+        title_2: "text-teal-900 dark:text-teal-100 text-sm font-bold",
+    }
+
     return (
         <div className="">
             {
               orders?.map(({id,createdAt,products, deliveryFree,totalPaidInCent}) => (
                 <div key={id} className="">
                     <header className="capitalize">
-                       <h4 className="text-teal-900 dark:text-teal-100 text-lg font-bold" 
+                       <h4 className={className.title_1}
                            >order ID : <small>{id}</small>
                         </h4>
                        <div className=" flex items-center gap-8">
-                            <h6 className="text-sm font-bold text-teal-900 dark:text-teal-100"
+                            <h6 className={className.title_2}
                                 > order date : 
                                 <time datetime={createdAt}>{new Date(createdAt).toDateString()}</time>
                             </h6>
-                            <h6 className="text-sm font-bold text-teal-900 dark:text-teal-100">stimated dilevry : 
-                                {new Date(new Date(createdAt).setDate(new Date(createdAt).getDate() + 3)).toDateString()}</h6>
+                            <h6 className={className.title_2}>stimated dilevry : 
+                                {new Date(new Date(createdAt).setDate(new Date(createdAt).getDate() + 3)).toDateString()}
+                            </h6>
                        </div>
-                       <h6 className="text-lg font-bold text-teal-900 dark:text-teal-100"
+                       <h6 className={className.title_1}
                             >items: {products?.length}
                         </h6>
                        <div className="">
@@ -73,33 +79,41 @@ export const OrdersContainer = ()=> {
                                     ))
                                 }
                             </div>
-                        <div className="">
+                        <div className=" capitalize">
                             <div className="">
-                                <h5>delivery </h5>
+                                <h5 className={className.title_1} >delivery </h5>
                                 <div className="">
-                                    <p> address:  {address?.neighborhood}</p>
+                                    <p className={className.title_2}> 
+                                        address:  <small>{address?.neighborhood}</small>
+                                    </p>
                                     <address>{address?.formatedAddress}</address>
                                 </div>
-                                <p>delivery fee: {deliveryFree === 0 ? 'free': getCurrency(deliveryFree)}</p>
+                                <p className={className.title_2}
+                                    >delivery fee: {deliveryFree === 0 ? 'free': getCurrency(deliveryFree)}
+                                </p>
                             </div>
                             <div className="">
-                                <h5>order summary</h5>
+                                <h5 className={className.title_1}>order summary</h5>
                                 <div className="">
-                                    <div className="">
-                                        <h6>subtotal:</h6>
-                                        <h5>{getCurrency(totalPaidInCent - (totalPaidInCent / 100) * 15)}</h5>
+                                    <div className="flex items-center justify-between">
+                                        <h6 className={className.title_2}>subtotal:</h6>
+                                        <h5 className={className.title_2}>
+                                            {getCurrency(totalPaidInCent - (totalPaidInCent / 100) * 15)}
+                                        </h5>
                                     </div>
-                                    <div className="">
-                                        <h6>delivery fee:</h6>
-                                        <h5>{deliveryFree === 0 ? 'free': getCurrency(deliveryFree)}</h5>
+                                    <div className="flex items-center justify-between">
+                                        <h6 className={className.title_2}>delivery fee:</h6>
+                                        <h5 className={className.title_2}>
+                                            {deliveryFree === 0 ? 'free': getCurrency(deliveryFree)}
+                                        </h5>
                                     </div>
-                                    <div className="">
-                                        <h6>tax:</h6>
-                                        <h5>{getCurrency((totalPaidInCent / 100) * 15)}</h5>
+                                    <div className="flex items-center justify-between">
+                                        <h6 className={className.title_2}>tax:</h6>
+                                        <h5 className={className.title_2}>{getCurrency((totalPaidInCent / 100) * 15)}</h5>
                                     </div>
-                                    <div className="">
-                                        <h6>totla:</h6>
-                                        <h5>{getCurrency(totalPaidInCent)}</h5>
+                                    <div className="flex items-center justify-between">
+                                        <h6 className={className.title_1}>totla:</h6>
+                                        <h5 className={className.title_1}>{getCurrency(totalPaidInCent)}</h5>
                                     </div>
                                 </div>
                             </div>
