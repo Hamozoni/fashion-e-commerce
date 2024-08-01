@@ -57,11 +57,17 @@ const cartSlice = createSlice({
             const item = findItem(state,action)
             state.products.splice(state.products.indexOf(item),1)
             getTotal(state);
+        },
+        clearAllItemsFromCat : (state)=> {
+            state?.products = []
+            state?.totalQuantity =  0
+            state?.deliveryFree = 0
+            state?.totalPaid =  0
         }
         
     }
 });
 
-export const {incrementItemInCart,decrementItemInCart,removeItemFromCart,addToCart} = cartSlice.actions;
+export const {incrementItemInCart,decrementItemInCart,removeItemFromCart,addToCart,clearAllItemsFromCat} = cartSlice.actions;
 
 export default cartSlice.reducer;

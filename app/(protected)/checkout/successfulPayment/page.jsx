@@ -9,6 +9,8 @@ import { OrderSummary } from "../../orders/orderSummary";
 
 import { IoCheckmark } from "react-icons/io5";
 import { ClimbingBoxLoader } from "react-spinners";
+import { clearAllItemsFromCat } from "../../../../store/features/cartSlice";
+import {useDispatch} from "../../../../store/store"
  
  const successfulPayment = () => {
 
@@ -21,21 +23,16 @@ import { ClimbingBoxLoader } from "react-spinners";
     const deliveryFree = useAppSelector(state=> state.cart.deliveryFree);
     const products = useAppSelector(state=> state.cart.products);
     const {currentUser} = useContext(AppContext);
+    const dispatch = useDispatch()
 
-    console.log(products);
 
     const searchParams = useSearchParams();
 
     const {payment_intent,payment_intent_client_secret} = Object.fromEntries(searchParams.entries());
 
-    console.log(payment_intent,payment_intent_client_secret)
-
-
-    useEffect(()=> {
+    const handlePlacingOrder = ()=> {
         setIsLoading(true);
         const formData = new FormData();
-
-
         formData.set('clientSecret',payment_intent_client_secret);
         formData.set('paymentId',payment_intent);
         formData.set('products',JSON.stringify(products));
@@ -48,6 +45,7 @@ import { ClimbingBoxLoader } from "react-spinners";
         .then((data)=> {
             console.log(data)
             setOrder(data?.order)
+            dispatch(clearAllItemsFromCat())
         })
         .catch((error)=> {
             console.log(error);
@@ -56,7 +54,10 @@ import { ClimbingBoxLoader } from "react-spinners";
         .finally(()=> {
             setIsLoading(false)
         });
-    },[]);
+    }
+
+
+    useEffect(handlePlacingOrder,[]);
 
 
     if(isLoading) {
@@ -67,7 +68,21 @@ import { ClimbingBoxLoader } from "react-spinners";
         )
     }
     if(error) {
-        return <p>something went wrong</p>
+        return (
+            <div className="h-screen flex items-center justify-center capitalize">
+                <div className="">
+                    <p className="text-lg font-bold uppercase text-teal-950 dark:text-teal-50 text-center mb-5">
+                        opps! something went wrong place don't close the page and try agian
+                    </p>
+                    
+                    <button
+                       onClick={handlePlacingOrder}
+                       className="text-lg font-bold uppercase text-teal-950 dark:text-teal-50 text-center"
+                       >try again
+                    </button>
+                </div>
+            </div>
+        )
     }
 
     return (
