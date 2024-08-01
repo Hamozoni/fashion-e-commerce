@@ -22,7 +22,7 @@ export const OrdersContainer = ()=> {
         .then((data)=> {
 
             console.log(data);
-            setOrders(data);
+            setOrders(data.orders);
         })
         .catch((error)=> {
 
@@ -43,23 +43,37 @@ export const OrdersContainer = ()=> {
             {
               orders?.map(({id,createdAt,products}) => (
                 <div key={id} className="">
-                    <header>
-                       <h4>order id : {id}</h4>
-                       <div className="">
-                            <h6> order date : <time datetime={createdAt}>{createdAt}</time></h6>
-                            <h6>stimated dilevry : {Date(createdAt + 1000 * 60 * 60 * 60 * 24 * 3)}</h6>
+                    <header className="capitalize">
+                       <h4 className="text-teal-900 dark:text-teal-100 text-lg font-bold" 
+                           >order ID : <small>{id}</small>
+                        </h4>
+                       <div className=" flex items-center gap-8">
+                            <h6 className="text-sm font-bold text-teal-900 dark:text-teal-100"
+                                > order date : 
+                                <time datetime={createdAt}>{new Date(createdAt).toDateString()}</time>
+                            </h6>
+                            <h6 className="text-sm font-bold text-teal-900 dark:text-teal-100">stimated dilevry : 
+                                {new Date(new Date(createdAt).setDate(new Date(createdAt).getDate() + 3)).toDateString()}</h6>
                        </div>
-                       <h6>items: {products?.length}</h6>
+                       <h6 className="text-lg font-bold text-teal-900 dark:text-teal-100"
+                            >items: {products?.length}
+                        </h6>
                        <div className="">
-                           {
-                               products.map((product)=> (
-                                  <CartItemsCard 
-                                        key={product.cartId} 
-                                        product={product} 
-                                        isOrdered={true} 
-                                        />
-                               ))
-                           }
+                        <div className="">
+                            {
+                                products.map((product)=> (
+                                    <CartItemsCard 
+                                            key={product.cartId} 
+                                            product={product} 
+                                            isOrdered={true} 
+                                            />
+                                ))
+                            }
+                        </div>
+                        <div className="">
+
+                        </div>
+
                        </div>
                     </header>
 
