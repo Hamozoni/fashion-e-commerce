@@ -19,11 +19,6 @@ export  async function POST (req) {
             totalPaidInCent
         } = Object.fromEntries(formData.entries());
 
-        console.log('userId',userId)
-        console.log('clientSecret',clientSecret)
-        console.log('paymentId',paymentId)
-        console.log('totalProductsQuantity',totalProductsQuantity)
-
         const findOrder = await db.customerOrder.findUnique({
             where: {
                 paymentClientSecret: clientSecret
@@ -59,6 +54,14 @@ export  async function POST (req) {
                     }
             }
         });
+
+        const user = await db.user.findFirst({where : {id: userId},include : {address: true}});
+
+        const {deliveryFree : de ,totalPaidInCent: tot} = order;
+
+        const { email,address} = user;
+        
+        await ordersEmail(email,address,{deliveryFree : de,totalPaidInCent: tot})
 
 
         return NextResponse.json(order,{status: 200});

@@ -1,5 +1,7 @@
 
 import {Resend} from "resend";
+import { OrderSummary } from "../app/(protected)/orders/orderSummary";
+import { getCurrency } from "./getCurrency";
 
 const resend = new Resend(process.env.RESENSD_API_KEY);
 
@@ -7,7 +9,7 @@ export const verifyEmail = async (email,token)=> {
 
     const confimLink = `${process.env.NEXT_PUBLIC_URL}/auth/new-verification?token=${token}`;
 
-    const emailContainer = `
+    const emailContent = `
     <div>
        <header> <h1> System Store </h1> <h3>Hello</h3> </header>
        <p>We received a request to verify your email for the system store account associated with ${email}</p>
@@ -20,7 +22,7 @@ export const verifyEmail = async (email,token)=> {
         from:"onboarding@resend.dev",
         to: email,
         subject: "Verify Your Email",
-        html: emailContainer
+        html: emailContent
      })
 
 };
@@ -30,7 +32,7 @@ export const resetPasswordEmail = async(email,token)=> {
    const resetLink = `${process.env.NEXT_PUBLIC_URL}/auth/new-password?token=${token}`;
 
 
-   const emailContainer = `
+   const emailContent = `
    <div>
       <header> <h1> System Store </h1> <h3>Hello</h3> </header>
       <p>We received a request to reset the password for the system store account associated with ${email}</p>
@@ -43,7 +45,29 @@ export const resetPasswordEmail = async(email,token)=> {
       from:"onboarding@resend.dev",
       to: email,
       subject: "Reset Password Email",
-      html: emailContainer
+      html: emailContent
    });
 
+};
+
+export const ordersEmail = async (email,address,data)=> {
+
+ const emailContent =  `<div className="">
+        Hello ${email}
+      <h5 >Your Order Summary</h5>
+      <div className="">
+         <h6 >Subtotal: ${getCurrency(data?.totalPaidInCent - (data?.totalPaidInCent / 100) * 15)}</h6>
+         <h6 >Delivery Fee: ${data?.deliveryFree === 0 ? 'Free': getCurrency(data?.deliveryFree)}</h6>
+         <h6 >Tax: ${getCurrency((data?.totalPaidInCent / 100) * 15)}</h6>
+         <h6 >Totla: ${getCurrency(data?.totalPaidInCent)}</h6>
+         <h5>Address</h5>
+         <p>${address.formatedAddress}</p>
+      </div>
+   </div>`
+   await resend.emails.send({
+      from:"onboarding@resend.dev",
+      to: email,
+      subject: "Your Order Summary",
+      html : emailContent
+   })
 }
