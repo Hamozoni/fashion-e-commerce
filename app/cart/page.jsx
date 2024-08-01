@@ -6,6 +6,8 @@ import {CartItemsCard} from "../../ui/cards/cartItemsCard";
 import {CartSummary} from "./_components/CartSummary";
 // redux store
 import { useAppSelector } from "../../store/store";
+import { useAppDispatch } from "../../store/store";
+import {clearAllItemsFromCat} from "../../store/features/cartSlice"
 
 function cartPage() {
 
@@ -22,7 +24,9 @@ function cartPage() {
             key={`${product.id}${product.color}${product.size}`} 
             product={product}
             />
-    ))
+    ));
+
+    const dispatch = useAppDispatch()
 
   return (
     <div className="p-3 lg:px-8 ">
@@ -30,9 +34,17 @@ function cartPage() {
             cartItems?.length ?
             <div className="lg:flex gap-8 capitalize">
                 <section className="basis-[60%]">
-                    <h4 className={`${className.sectionTitle} flex items-center gap-3`}>
-                       my cart items {totalItemsOnCart}
-                    </h4>
+                    <header className="flex items-center justify-between">
+
+                        <h4 className={`${className.sectionTitle} flex items-center gap-3`}>
+                            my cart items {totalItemsOnCart}
+                        </h4>
+                        <p 
+                            onChange={()=> dispatch(clearAllItemsFromCat())}
+                            className="text-red-500 text-sm font-bold cursor-pointer min-w-fit">
+                                delete all
+                            </p>
+                    </header>
                     <div >
                         {cartCard}
                     </div> 

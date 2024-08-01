@@ -10,7 +10,7 @@ import { OrderSummary } from "../../orders/orderSummary";
 import { IoCheckmark } from "react-icons/io5";
 import { ClimbingBoxLoader } from "react-spinners";
 import { clearAllItemsFromCat } from "../../../../store/features/cartSlice";
-import {useDispatch} from "../../../../store/store"
+import {useAppDispatch} from "../../../../store/store"
  
  const successfulPayment = () => {
 
@@ -23,7 +23,7 @@ import {useDispatch} from "../../../../store/store"
     const deliveryFree = useAppSelector(state=> state.cart.deliveryFree);
     const products = useAppSelector(state=> state.cart.products);
     const {currentUser} = useContext(AppContext);
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
 
     const searchParams = useSearchParams();

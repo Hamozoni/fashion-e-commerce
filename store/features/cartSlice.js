@@ -59,10 +59,8 @@ const cartSlice = createSlice({
             getTotal(state);
         },
         clearAllItemsFromCat : (state)=> {
-            state?.products = []
-            state?.totalQuantity =  0
-            state?.deliveryFree = 0
-            state?.totalPaid =  0
+            state?.products.splice(0,state?.products?.length)
+            return state;
         }
         
     }
