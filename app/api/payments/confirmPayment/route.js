@@ -16,7 +16,8 @@ export  async function POST (req) {
             deliveryFree, 
             totalProductsQuantity,
             userId,
-            totalPaidInCent
+            totalPaidInCent,
+            userImail
         } = Object.fromEntries(formData.entries());
 
         const findOrder = await db.customerOrder.findUnique({
@@ -55,21 +56,18 @@ export  async function POST (req) {
             }
         });
 
-        const user = await db.user.findFirst({where : {id: userId},include : {address: true}});
+        const address = await db.userAddress.findUnique({where : {email: userImail}});
 
         const {deliveryFree : de ,totalPaidInCent: tot} = order;
 
-        const { email,address} = user;
-        
-        await ordersEmail(email,address,{deliveryFree : de,totalPaidInCent: tot})
+
+        await ordersEmail(userImail,address,{deliveryFree : de,totalPaidInCent: tot})
 
 
         return NextResponse.json(order,{status: 200});
 
     }
     catch (error) {
-
-        console.log(error)
         return NextResponse.json("something went wrong",{status: 500});
     }
 }

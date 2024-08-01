@@ -39,6 +39,7 @@ import {useAppDispatch} from "../../../../store/store"
         formData.set('deliveryFree',+deliveryFree);
         formData.set('totalProductsQuantity',totalProductsQuantity);
         formData.set('userId', currentUser.id);
+        formData.set('userImail', currentUser.email);
         formData.set('totalPaidInCent',totalPaidInCent);
 
         PostData('payments/confirmPayment',formData)
