@@ -1,14 +1,29 @@
 
 import { NextResponse } from "next/server";
+import { db } from "../../../lip/db";
+
 export async function GET (req) {
 
-    const {searchParams} = new URL(req.url);
+    try{
+        const {searchParams} = new URL(req.url);
 
-    const userId = searchParams.get('userId');
+        const userId = searchParams.get('userId');
 
-    console.log('orders user id',userId)
+        const orders = await db.customerOrder.findMany({
+            where : {userId}
+        });
 
-    return NextResponse.json('deeeeeeeeeeeeeeeeeeeeeeeeeeee',{status:200})
+    
+        return NextResponse.json(orders,{status:200})
+    
+
+    }
+    catch (error){
+
+        return NextResponse.json(error,{status: 500})
+    }
+
+
 
 
 

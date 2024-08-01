@@ -1,11 +1,9 @@
 "use client";
 
-
-
 import { useContext, useEffect, useState } from "react";
 import {AppContext} from "../../contextProvider";
 import {fetchData} from "../../../lip/fetchData";
-import {Loading} from "../../loading";
+import Loading from "../../loading";
 
 export const OrdersContainer = ()=> {
 
