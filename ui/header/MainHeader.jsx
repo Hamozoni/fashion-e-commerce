@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useContext } from "react";
+import {usePathname} from "next/navigation"
 // components
 import {HeaderUserBar} from "../models/headerUserBar";
 import {SearchBar} from "./components/searchBar";
@@ -14,6 +15,11 @@ import { AppContext } from "../../app/contextProvider";
 
 export const MainHeader = ()=> {
 
+    const pathname = usePathname();
+
+    console.log(pathname)
+  
+
     const className = {
         flex:  'flex items-center gap-4 relative',
     };
@@ -22,6 +28,8 @@ export const MainHeader = ()=> {
 
 
   return (
+
+    pathname?.startsWith("/admin") ? null :
     <header className="sticky top-0 left-0 w-full max-w-full z-50 py-2 px-4 lg:px-8 bg-white dark:bg-black border-t-8 border-teal-100">
         <div className={`${className.flex} justify-between lg:gap-6 w-full`}>
             <div className="flex items-center gap-2">

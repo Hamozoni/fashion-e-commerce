@@ -2,8 +2,6 @@
 
 import {  useContext, useEffect} from "react";
 import { FormInput } from "./FormInput";
-import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
-// import {specifZSchema} from '../../../../validationSchemas/newProductSchemas';
 
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";

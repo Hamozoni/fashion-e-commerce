@@ -1,6 +1,6 @@
 "use client"
 import { useContext, useState } from "react";
-import {categoriesData} from "../../../../data/categoriesData";
+import {categoriesData} from "../../../../../data/categoriesData";
 import { newProductContext } from "../new/page";
 import { IoMdArrowDropright,IoMdArrowDropdown } from "react-icons/io";
 import { GiCheckMark } from "react-icons/gi";

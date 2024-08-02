@@ -7,7 +7,6 @@ import {IoCartOutline} from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
 import { FaRegHeart  } from "react-icons/fa";
-import { GiTireIronCross } from "react-icons/gi";
 import { LuUserX2 } from "react-icons/lu";
 // components
 import {SignOut} from "../buttons/signOut";

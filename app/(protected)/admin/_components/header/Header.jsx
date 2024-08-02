@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link";
+import { HeaderUserBar } from "../../../../../ui/models/headerUserBar";
 
 
 const Header = () => {
@@ -18,6 +19,7 @@ const Header = () => {
             <Link href={`/admin/products`} className={className.link} >products</Link>
             <Link href={`/admin/customers`} className={className.link} >customers</Link>
             <Link href={`/admin/customers`} className={className.link} >sales</Link>
+            <HeaderUserBar />
         </nav>
     </header>
   )
