@@ -4,8 +4,8 @@ import { IoAdd } from "react-icons/io5";
 
 const Products = () => {
   return (
-    <div className="p-4 lg:px-10">
-      <nav className="flex justify-between align-middle"> 
+    <div className="p-3 lg:px-8">
+      <nav className="flex justify-between align-middle py-4"> 
          <h5 className="text-lg font-bold uppercase">
           products
          </h5>
