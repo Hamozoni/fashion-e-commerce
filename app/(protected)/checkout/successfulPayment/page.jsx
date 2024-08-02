@@ -49,8 +49,10 @@ import {useAppDispatch} from "../../../../store/store"
             dispatch(clearAllItemsFromCart())
         })
         .catch((error)=> {
-            console.log(error);
-            setError(error);
+
+            const {response: {data}} = error
+            console.log(data?.error);
+            setError(data?.error);
         })
         .finally(()=> {
             setIsLoading(false)
@@ -70,7 +72,7 @@ import {useAppDispatch} from "../../../../store/store"
             </div>
         )
     }
-    if(error) return <Error onClick={handlePlacingOrder} />
+    if(!!error) return <Error onClick={handlePlacingOrder} />
 
     return (
         <div className="p-3 md:px-8 max-w-[700px] mx-auto" >

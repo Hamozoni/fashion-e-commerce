@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 
 
 export  async function POST (req) {
+
+    return NextResponse.json({error:"something went wrong"},{status: 500});
     
     try {
 
