@@ -2,11 +2,9 @@
 import {db} from '../../../../lip/db';
 import { NextResponse } from "next/server";
 
-
+import {ordersEmail} from "../../../../lip/mail"
 export  async function POST (req) {
 
-    return NextResponse.json({error:"something went wrong"},{status: 500});
-    
     try {
 
         const formData =  await req.formData()
@@ -27,6 +25,8 @@ export  async function POST (req) {
                 paymentClientSecret: clientSecret
             }
         });
+
+
 
         if(findOrder) {
             return NextResponse.json({order:findOrder},{status: 200});
@@ -58,18 +58,20 @@ export  async function POST (req) {
             }
         });
 
-        const address = await db.userAddress.findUnique({where : {email: userImail}});
+        const address = await db.userAddress.findUnique({where: {email: userImail}})
 
-        const {deliveryFree : de ,totalPaidInCent: tot} = order;
-
-
-        await ordersEmail(userImail,address,{deliveryFree : de,totalPaidInCent: tot})
-
+        await ordersEmail(
+           userImail,
+           address,
+           {
+               deliveryFree : order.deliveryFree,
+               totalPaidInCent: order.totalPaidInCent
+           });
 
         return NextResponse.json(order,{status: 200});
 
     }
     catch (error) {
-        return NextResponse.json("something went wrong",{status: 500});
+        return NextResponse.json({error:"something went wrong"},{status: 500});
     }
 }

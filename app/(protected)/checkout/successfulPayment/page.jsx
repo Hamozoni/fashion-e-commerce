@@ -33,6 +33,7 @@ import {useAppDispatch} from "../../../../store/store";
     const {payment_intent,payment_intent_client_secret} = Object.fromEntries(searchParams.entries());
 
     const handlePlacingOrder = ()=> {
+        setError(null);
         setIsLoading(true);
         const formData = new FormData();
         formData.set('clientSecret',payment_intent_client_secret);
@@ -48,13 +49,13 @@ import {useAppDispatch} from "../../../../store/store";
         .then((data)=> {
             console.log(data)
             setOrder(data?.order)
-            dispatch(clearAllItemsFromCart())
+            dispatch(clearAllItemsFromCart());
         })
         .catch((error)=> {
 
-            const {response: {data}} = error
-            console.log(data?.error);
-            setError(data?.error);
+            const {response} = error
+            console.log(response?.data?.error);
+            setError(response?.data?.error);
         })
         .finally(()=> {
             setIsLoading(false)

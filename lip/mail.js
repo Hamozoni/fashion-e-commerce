@@ -52,16 +52,16 @@ export const resetPasswordEmail = async(email,token)=> {
 
 export const ordersEmail = async (email,address,data)=> {
 
- const emailContent =  `<div className="">
+ const emailContent =  `<div>
         Hello ${email}
-      <h5 >Your Order Summary</h5>
+      <h3 >Your Order Summary</h3>
       <div className="">
-         <h6 >Subtotal: ${getCurrency(data?.totalPaidInCent - (data?.totalPaidInCent / 100) * 15)}</h6>
-         <h6 >Delivery Fee: ${data?.deliveryFree === 0 ? 'Free': getCurrency(data?.deliveryFree)}</h6>
-         <h6 >Tax: ${getCurrency((data?.totalPaidInCent / 100) * 15)}</h6>
-         <h6 >Totla: ${getCurrency(data?.totalPaidInCent)}</h6>
-         <h5>Address</h5>
-         <p>${address.formatedAddress}</p>
+         <h4 >Subtotal: ${getCurrency(data?.totalPaidInCent - (data?.totalPaidInCent / 100) * 15)}</h4>
+         <h4 >Delivery Fee: ${data?.deliveryFree === 0 ? 'Free': getCurrency(data?.deliveryFree)}</h4>
+         <h4 >Tax: ${getCurrency((data?.totalPaidInCent / 100) * 15)}</h4>
+         <h4 >Totla: ${getCurrency(data?.totalPaidInCent)}</h4>
+         <h3>Address</h3>
+         <address>${address.formatedAddress}</address>
       </div>
    </div>`
    await resend.emails.send({
