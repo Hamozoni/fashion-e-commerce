@@ -65,7 +65,8 @@ export  async function POST (req) {
            address,
            {
                deliveryFree : order.deliveryFree,
-               totalPaidInCent: order.totalPaidInCent
+               totalPaidInCent: order.totalPaidInCent,
+               orderId: order.id
            });
 
         return NextResponse.json(order,{status: 200});

@@ -53,7 +53,7 @@ export const resetPasswordEmail = async(email,token)=> {
 export const ordersEmail = async (email,address,data)=> {
 
  const emailContent =  `<div>
-        Hello ${email}
+       <h2>Your Order ID : ${data?.orderId}</h2>
       <h3 >Your Order Summary</h3>
       <div className="">
          <h4 >Subtotal: ${getCurrency(data?.totalPaidInCent - (data?.totalPaidInCent / 100) * 15)}</h4>

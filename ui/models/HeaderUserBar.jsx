@@ -73,7 +73,7 @@ export function HeaderUserBar() {
                             </div>
                         </header>
                         <ul  className="max-h-full overflow-y-auto">
-                            <li className={className.li}>
+                            <li onClick={()=> setIsAccount(false)} className={className.li}>
                                 <BsCartCheck size={24} />
                                 <Link 
                                     href="/orders" 
@@ -81,21 +81,21 @@ export function HeaderUserBar() {
                                     >my orders
                                 </Link>
                             </li>
-                            <li className={className.li} >
+                            <li onClick={()=> setIsAccount(false)} className={className.li} >
                             <IoCartOutline size={24} />  <Link href='/cart'>cart</Link>
                             </li>
-                            <li className={className.li} >
+                            <li onClick={()=> setIsAccount(false)} className={className.li} >
                             <FaRegHeart size={24} />  <Link href='/likedList'>my wistList</Link>
                             </li>
                             <ThemeModel />
-                            <li className={className.li}>
+                            <li onClick={()=> setIsAccount(false)} className={className.li}>
                                   <UserAddress />
                             </li>
-                            <li className={className.li}>
+                            <li onClick={()=> setIsAccount(false)} className={className.li}>
                                 <LuUserX2  size={24} /> delete my account
                             </li>
                             
-                            <li className={className.li}>
+                            <li onClick={()=> setIsAccount(false)} className={className.li}>
                             <SignOut/>
                             </li>
                         </ul>

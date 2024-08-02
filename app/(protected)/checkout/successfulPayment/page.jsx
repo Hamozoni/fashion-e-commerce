@@ -71,7 +71,7 @@ import {useAppDispatch} from "../../../../store/store";
     if(isLoading) {
         return (
             <div className="h-screen flex items-center justify-center capitalize">
-                    <ClimbingBoxLoader color="#0d9488" size={60} />
+                <ClimbingBoxLoader color="#0d9488" size={60} />
             </div>
         )
     }
