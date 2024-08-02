@@ -5,7 +5,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { GoPeople } from "react-icons/go";
 import { MdOutlineLocalOffer,MdOutlinePropane } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
-import { ThemeModel } from "../../../../../ui/models/themeModel";
+import { ThemeModel } from "../../../../ui/models/themeModel";
 import { usePathname } from "next/navigation";
 
 const navData = [
@@ -16,15 +16,15 @@ const navData = [
   {name: 'sales',link: '/admin/sales',Icon: MdOutlineLocalOffer},
 ]
 
-const Header = () => {
+export const Navbar = () => {
 
   const pathname = usePathname()
 
   const className = {
-     link: 'capitalize m-0 px-3 lg:px-5 py-2 text-sm font-bold text-teal-900 dark:text-teal-100 hover:bg-gray-200 dark:hover:bg-teal-950 hover:text-black-500 flex items-center gap-2 w-fit min-w-[250px]',
+     link: 'capitalize m-0 px-3 lg:px-5 py-2 text-sm font-bold text-teal-900 dark:text-teal-100 hover:bg-gray-100 dark:hover:bg-teal-950 hover:text-black-500 flex items-center gap-2 w-fit min-w-[250px]',
   }
   return (
-    <header className="">
+    <section className="">
       <h4 className="p-3 lg:px-5 ">
         <Link href={`/`} className="text-3xl font-bold uppercase text-teal-400">
              system
@@ -39,7 +39,7 @@ const Header = () => {
             <Link 
                 key={link}
                 href={link} 
-                className={className.link}>
+                className={`${className.link} ${pathname === link ? 'bg-gray-200 dark:bg-teal-950' : ''}`}>
                 <Icon size={24}/>  {name}
             </Link>
             ))
@@ -48,8 +48,6 @@ const Header = () => {
             <ThemeModel />
           </div>
         </nav>
-    </header>
+    </section>
   )
-}
-
-export default Header
+};
