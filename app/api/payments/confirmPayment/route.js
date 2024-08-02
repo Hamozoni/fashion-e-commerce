@@ -26,7 +26,7 @@ export  async function POST (req) {
             }
         });
 
-        if(!!findOrder) {
+        if(findOrder) {
             return NextResponse.json({order:findOrder},{status: 200});
         }
 

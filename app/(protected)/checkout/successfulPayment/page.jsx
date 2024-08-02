@@ -58,7 +58,9 @@ import {useAppDispatch} from "../../../../store/store"
     }
 
 
-    useEffect(handlePlacingOrder,[]);
+    useEffect(()=>{
+        handlePlacingOrder()
+    },[]);
 
 
     if(isLoading) {
