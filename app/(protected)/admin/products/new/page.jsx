@@ -89,11 +89,11 @@ const NewProducts = () => {
             speciValidError
             }}
     >
-    <div className="p-4 lg:p-10 w-full max-w-full capitalize ">
+    <div className="w-full max-w-full capitalize ">
         {
             isPendding ? <Loading /> : ''
         }
-        <div className="w-full max-w-full  border border-slate-100 dark:border-stone-900 p-4 rounded-md shadow-lg">
+        <div className="w-full max-w-full  border border-slate-100 dark:border-stone-900 rounded-md shadow-lg">
             <div className="">
                 <form 
                     ref={formRef}

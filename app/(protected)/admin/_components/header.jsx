@@ -10,7 +10,7 @@ export const Header = ()=> {
     const pathname = usePathname();
 
     return (
-        <header className="bg-teal-50 dark:bg-stone-900 p-3 lg:px-8 sticky top-0 border-t-4 border-t-teal-300">
+        <header className="bg-teal-100 dark:bg-stone-900 p-3 lg:px-8 sticky top-0 border-t-4 border-t-teal-300">
             <div className=" capitalize flex items-center justify-between">
 
                 <div className="flex items-center gap-2">
