@@ -24,7 +24,7 @@ export const Navbar = () => {
      link: 'capitalize m-0 px-3 lg:px-5 py-2 text-sm font-bold text-teal-900 dark:text-teal-100 hover:bg-gray-100 dark:hover:bg-teal-950 hover:text-black-500 flex items-center gap-2 w-fit min-w-[250px]',
   }
   return (
-    <section className="">
+    <section className="border-t-4 border-t-teal-600">
       <h4 className="p-3 lg:px-5 ">
         <Link href={`/`} className="text-3xl font-bold uppercase text-teal-400">
              system
