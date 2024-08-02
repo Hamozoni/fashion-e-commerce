@@ -7,8 +7,8 @@ export const metadata = {
   
   export default function AdminLayout({ children }) {
     return (
-          <div className="flex items-start gap-3">
-            <aside>
+          <div className="flex items-start">
+            <aside className="bg-teal-50 dark:bg-stone-950 sticky top-0 left-0 h-screen">
               <Header />
 
             </aside>

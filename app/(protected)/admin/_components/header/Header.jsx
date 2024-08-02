@@ -6,40 +6,47 @@ import { GoPeople } from "react-icons/go";
 import { MdOutlineLocalOffer,MdOutlinePropane } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import { ThemeModel } from "../../../../../ui/models/themeModel";
+import { usePathname } from "next/navigation";
+
+const navData = [
+  {name: 'dashboard',link: '/admin/dashboard',Icon: LuLayoutDashboard},
+  {name: 'products',link: '/admin/products',Icon: MdOutlinePropane},
+  {name: 'add new product',link: '/admin/products/new',Icon: IoMdAdd},
+  {name: 'customers',link: '/admin/customers',Icon: GoPeople},
+  {name: 'sales',link: '/admin/sales',Icon: MdOutlineLocalOffer},
+]
 
 const Header = () => {
 
+  const pathname = usePathname()
+
   const className = {
-     link: 'capitalize m-0 py-3 px-4 text-md font-medium text-slate-200 hover:bg-gray-600 hover:text-black-500 flex items-center gap-2 w-fit min-w-[200px]',
+     link: 'capitalize m-0 px-3 lg:px-5 py-2 text-sm font-bold text-teal-900 dark:text-teal-100 hover:bg-gray-200 dark:hover:bg-teal-950 hover:text-black-500 flex items-center gap-2 w-fit min-w-[250px]',
   }
   return (
-    <header className=" bg-gray-800">
-      <h4 className="p-3">
-        <Link href={`/`} className="text-2xl font-bold uppercase text-slate-100">
+    <header className="">
+      <h4 className="p-3 lg:px-5 ">
+        <Link href={`/`} className="text-3xl font-bold uppercase text-teal-400">
              system
         </Link>
 
       </h4>
-        <nav className="flex flex-col gap-5 mt-3 sticky top-0 left-0 h-screen">
+        <nav className="flex flex-col gap-5 mt-3">
+
+          {
+            navData?.map(({name,link,Icon})=> (
+
             <Link 
-                 href={`/admin/dashboard`} className={className.link}>
-                <LuLayoutDashboard size={24}/>  dashboard
+                key={link}
+                href={link} 
+                className={className.link}>
+                <Icon size={24}/>  {name}
             </Link>
-            <Link href={`/admin/products`} className={className.link} >
-               <MdOutlinePropane size={24} /> products
-            </Link>
-            <Link href={`/admin/products/new`} className={className.link} >
-               <IoMdAdd size={24} /> add new product
-            </Link>
-            <Link href={`/admin/customers`} className={className.link} >
-                <GoPeople size={24}/>  customers
-              </Link>
-            <Link href={`/admin/customers`} className={className.link} >
-               <MdOutlineLocalOffer size={24} /> sales
-            </Link>
-            <div >
-              <ThemeModel />
-            </div>
+            ))
+          }
+          <div >
+            <ThemeModel />
+          </div>
         </nav>
     </header>
   )
