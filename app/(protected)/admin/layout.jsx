@@ -7,9 +7,15 @@ export const metadata = {
   
   export default function AdminLayout({ children }) {
     return (
-          <div className="">
+          <div className="flex items-start gap-3">
+            <aside>
               <Header />
+
+            </aside>
+            <aside>
+
               {children}
+            </aside>
           </div>
     );
   }
