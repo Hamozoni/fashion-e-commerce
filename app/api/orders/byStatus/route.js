@@ -17,7 +17,9 @@ export async function GET (req) {
                 products: true, 
                 customer : {
                     select : {
-                        email: true
+                        email: true,
+                        name : true,
+                        image: true
                     }
                 }
             }

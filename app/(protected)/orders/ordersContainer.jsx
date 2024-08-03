@@ -7,6 +7,7 @@ import Loading from "../../loading";
 import { CartItemsCard } from "../../../ui/cards/cartItemsCard";
 
 import { OrderSummary } from "./orderSummary";
+import {OrdersHeader} from "./ordersHeader";
 
 export const OrdersContainer = ()=> {
 
@@ -52,47 +53,26 @@ export const OrdersContainer = ()=> {
             {
               orders?.map(({id,createdAt,products, deliveryFree,totalPaidInCent,status}) => (
                 <div key={id} className=" capitalize mb-16 pb-8 border-b dark:border-stone-800">
-                    <header className="md:flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                            <h4 className={className.title_2}
-                                >order ID : <small>{id}</small>
-                            </h4>
-                            <h4 className={className.title_2}
-                                >status : <small>{status}</small>
-                            </h4>
+                    <OrdersHeader
+                       data={{id,createdAt,products,status}}
+                      />
+                    <div className="md:flex items-start gap-5">
+                        <div className="flex-[50%]  lg:flex-[65%]">
+                            {
+                                products.map((product)=> (
+                                    <CartItemsCard 
+                                        key={product.cartId} 
+                                        product={product} 
+                                        isOrdered={true} 
+                                        />
+                                ))
+                            }
                         </div>
-                        <div className=" flex items-center gap-4">
-                                <h6 className={className.title_2}
-                                    > order date :  
-                                    <small>{ "  " + new Date(createdAt).toDateString()}</small>
-                                </h6>
-                                <h6 className={className.title_2}>stimated dilevry : 
-                                   <small>
-                                        {new Date(new Date(createdAt).setDate(new Date(createdAt).getDate() + 3)).toDateString()}
-                                    </small>
-                                </h6>
-                        </div>
-                       </header>
-                       <h6 className={className.title_1}
-                            >items: {products?.length}
-                        </h6>
-                       <div className="md:flex items-start gap-5">
-                            <div className="flex-[50%]  lg:flex-[65%]">
-                                {
-                                    products.map((product)=> (
-                                        <CartItemsCard 
-                                                key={product.cartId} 
-                                                product={product} 
-                                                isOrdered={true} 
-                                                />
-                                    ))
-                                }
-                            </div>
-                            <OrderSummary 
-                                address={address} 
-                                data={{deliveryFree,totalPaidInCent}} 
-                                />
-                       </div>
+                        <OrderSummary 
+                            address={address} 
+                            data={{deliveryFree,totalPaidInCent}} 
+                            />
+                    </div>
                 </div>
               ))  
             }
