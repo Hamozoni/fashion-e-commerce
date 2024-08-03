@@ -21,8 +21,9 @@ export const OrderCard = ({data})=> {
 
     return (
         <div className="capitalize relative p-3 rounded-md bg-gray-50 dark:bg-stone-950 mb-3 border border-gray-300 dark:border-stone-700">
-            <button className=" absolute top-2 right-2 w-[35px] h-[35px] rounded-full border dark:border-teal-100  border-teal-900 text-teal-900 dark:text-teal-100 flex items-center justify-center">
-                <TfiMoreAlt size={22} />
+            <button 
+                className=" absolute top-2 right-2 w-[30px] h-[30px] rounded-full border dark:border-teal-100  border-teal-900 text-teal-900 dark:text-teal-100 flex items-center justify-center">
+                <TfiMoreAlt size={20} />
             </button>
             <div className="">
                 <div className="flex lg:flex-row flex-col gap-5">

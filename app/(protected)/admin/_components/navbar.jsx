@@ -41,14 +41,14 @@ export const Navbar = () => {
           (isMenu && innerWidth < 768) ? <Overlay onClick={()=> setIsMenu(false)} /> : 
           <button
               onClick={()=> setIsMenu(true)} 
-              className=" text-teal-400 fixed top-[20px] md:-left-full left-[15px] z-[80] w-[60px]"
+              className=" text-teal-400 fixed top-[15px] md:-left-full left-[15px] z-[70] w-[60px]"
               >
-              <TiThMenuOutline size={30} />
+              <TiThMenuOutline size={40} />
           </button>
         }
 
       
-      <section className={`${isMenu ? '' : '-translate-x-full md:translate-x-0'} border-t-4 border-t-teal-300 w-[250px] z-[60] fixed md:sticky left-0 bg-white top-0 h-screen min-w-fit dark:bg-black flex flex-col justify-between pb-4`}>
+      <section className={`${isMenu ? '' : '-translate-x-full md:translate-x-0'} border-t-4 border-t-teal-300 w-[250px] z-[70] fixed md:sticky left-0 bg-white top-0 h-screen min-w-fit dark:bg-black flex flex-col justify-between pb-4`}>
         <div className="max-h-full overflow-y-auto">
           <h4 className="p-3 py-4 lg:px-8 mb-6">
             <Link href={`/`} className="text-3xl font-bold uppercase text-teal-400">
