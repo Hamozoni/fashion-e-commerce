@@ -17,13 +17,21 @@ const className = {
 
 export const OrderCard = ({data})=> {
 
-    const {id,createdAt,products,status,customer,totalPaidInCent,deliveryFree,userId} = data;
+    const {
+        id,createdAt,
+        products,
+        status,
+        customer,
+        totalPaidInCent,
+        deliveryFree,
+        userId,clientSecret
+    } = data;
 
     const [isProducts,setIsProducts] = useState(false)
 
     return (
         <div className="capitalize relative p-3 rounded-md bg-gray-50 dark:bg-stone-950 mb-3 border border-gray-300 dark:border-stone-700">
-            <Editing />
+            <Editing clientSecret={clientSecret} status={status} />
             <div className="">
                 <div className="flex lg:flex-row flex-col gap-5">
                     <div className=" flex-[33%]">

@@ -5,11 +5,20 @@ import { TfiMoreAlt } from "react-icons/tfi";
 
 import {navStatus} from "./page";
 
-export const Editing = ()=>{
+export const Editing = ({clientSecret,status})=>{
 
     const [isEditing,setIsEditing] = useState(false);
-    const [openedSection,setOpenedSection] = useState(null)
+    const [openedSection,setOpenedSection] = useState(null);
 
+    const className = {
+        li : 'flex items-center gap-2 text-teal-950 py-1  dark:text-teal-50'
+    };
+
+    const handleUpdateStatus = (status)=> {
+
+
+    }
+    
     return (
         <div className="absolute top-2 right-2">
             <button
@@ -27,11 +36,15 @@ export const Editing = ()=>{
                             >edit status
                             {
                                 openedSection ===  'status' ?
-                                <ul>
+                                <ul className="mt-2">
                                     {
-                                        navStatus?.map(({name,Icon})=> {
-                                            <li className="flex items-center gap-2" key={name}><Icon />{name}</li>
-                                        })
+                                        navStatus?.map(({name,Icon})=> (
+                                            status.toLowerCase() !== name  &&
+                                            <li 
+                                                className={className.li}
+                                                key={name}><Icon />{name}
+                                            </li>
+                                        ))
                                     }
                                 </ul>
                                  : null
