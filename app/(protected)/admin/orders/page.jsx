@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 import { MdPendingActions } from "react-icons/md";
 import { GrCompliance } from "react-icons/gr";
 import { GiReturnArrow } from "react-icons/gi";
+import { IoIosCloudDownload } from "react-icons/io";
 
 import { fetchData } from "../../../../lip/fetchData";
 import Loading from "../../../loading";
-import {Error} from "../../../../ui/components/error"
+import {Error} from "../../../../ui/components/error";
+import {OrdersHeader} from "../../orders/ordersHeader"
+import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
+import Image from "next/image";
  
 const navStatus = [
     {name: 'pending',Icon: MdPendingActions},
@@ -28,22 +32,20 @@ const className = {
 export default function ordersPage () {
 
     const [status,setStatus] = useState('pending');
-    const [orders,setOrders] = useState({});
+    const [orders,setOrders] = useState();
     const [error,setError] = useState(null);
     const [isLoading,setIsLoading] = useState(false);
+    const [page,setPage] = useState(1);
 
     const fetchOrders = ()=> {
         setError(null)
         setIsLoading(true);
 
-        fetchData(`orders/byStatus?status=${status?.toUpperCase()}`)
+        fetchData(`orders/byStatus?status=${status?.toUpperCase()}&page=${page}`)
         .then((data)=> {
-
-            console.log(data);
             setOrders(data);
         })
         .catch((error)=> {
-
             setError(error);
             console.log(error)
         })
@@ -54,10 +56,10 @@ export default function ordersPage () {
 
     useEffect(()=> {
         fetchOrders();
-    },[status]);
+    },[status,page]);
 
     return (
-        <div className="">
+        <div className="p-3 lg:px-8">
             <nav className="p-3 my-5">
                 <ul className="flex items-center justify-center cursor-pointer gap-4 text-teal-950 dark:text-teal-50 text-[16px] font-bold capitalize">
                 {
@@ -73,9 +75,34 @@ export default function ordersPage () {
                 }
                 </ul>
             </nav>
-            {
-                isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> : ''
-            }
+            <div className="">
+                {
+                    isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> :
+                    orders?.map(({id,createdAt,products,status,customer})=> (
+                        <div key={id} className="capitalize p-3 rounded-md bg-gray-50 mb-3 border border-gray-200">
+                            <div className="flex items-start gap-3">
+                                <div className="flex items-start gap-2">
+                                    <Image className="rounded-md" src={customer?.image} width={40} height={60} alt="customer"/>
+                                    <div className="">
+                                        <h5>{customer?.name}</h5>
+                                        <h6>{customer?.emial}</h6>
+                                    </div>
+                                </div>
+                                <OrdersHeader data={{id,createdAt,status}} />
+
+                            </div>
+                        </div>
+                    ))
+                }
+                <div className="max-w-[150px] mx-auto my-3">
+
+                    <ButtonWithIcon 
+                        text='load more'
+                        type='save'
+                        Icon={IoIosCloudDownload}
+                        />
+                </div>
+            </div>
 
         </div>
     )

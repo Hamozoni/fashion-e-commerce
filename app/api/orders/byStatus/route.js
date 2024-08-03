@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { db } from "../../../../lip/db";
-import { findUserAddressByEmail } from "../../../../lip/user";
 
 export async function GET (req) {
 
@@ -8,11 +7,18 @@ export async function GET (req) {
         const {searchParams} = new URL(req.url);
 
         const status = searchParams.get('status');
+        const page = searchParams.get('page');
+        const take = 10
 
         const orders = await db.customerOrder.findMany({
             where : {
                 status
             },
+            orderBy: {
+                createdAt: 'desc'
+            },
+            take,
+            skip: ( take * +page) - take,
             include : {
                 products: true, 
                 customer : {

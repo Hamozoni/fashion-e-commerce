@@ -56,6 +56,9 @@ export const OrdersContainer = ()=> {
                     <OrdersHeader
                        data={{id,createdAt,products,status}}
                       />
+                    <h6 className={className.title_1}
+                        >items: {products?.length}
+                    </h6>
                     <div className="md:flex items-start gap-5">
                         <div className="flex-[50%]  lg:flex-[65%]">
                             {
