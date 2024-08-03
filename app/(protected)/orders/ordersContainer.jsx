@@ -21,7 +21,7 @@ export const OrdersContainer = ()=> {
     useEffect(()=> {
         setIsLoading(true);
 
-        fetchData(`orders?userId=${id}`)
+        fetchData(`orders/customer?userId=${id}`)
         .then((data)=> {
 
             console.log(data);

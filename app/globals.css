@@ -15,7 +15,7 @@
     max-height: calc(100vh - 90px);
 
 }
-* {
+*,::after,::before {
     font-weight: 500;
     transition: all .4s;
     box-sizing: border-box;

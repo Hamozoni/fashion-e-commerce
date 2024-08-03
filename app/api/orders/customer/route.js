@@ -1,7 +1,7 @@
 
 import { NextResponse } from "next/server";
-import { db } from "../../../lip/db";
-import { findUserAddressByEmail } from "../../../lip/user";
+import { db } from "../../../../lip/db";
+import { findUserAddressByEmail } from "../../../../lip/user";
 
 export async function GET (req) {
 
