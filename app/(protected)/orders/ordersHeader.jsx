@@ -10,7 +10,7 @@ export const OrdersHeader = ({data : {id,createdAt,status}})=> {
     return (
         <header>
             <div >
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4 gap-y-0">
                     <h4 className={className.title_2}
                         >order ID : <small>{id}</small>
                     </h4>
