@@ -1,11 +1,13 @@
 "use client"
+import { useState } from "react";
 import Image from "next/image";
+
 import { OrdersHeader } from "../../orders/ordersHeader";
 import { OrderPayment } from "../../orders/orderSummary";
-import { RiArrowDownWideLine,RiArrowUpWideFill } from "react-icons/ri";
-import { TfiMoreAlt } from "react-icons/tfi";
-import { useState } from "react";
 import { CartItemsCard } from "../../../../ui/cards/cartItemsCard";
+import {Editing} from "../orders/editing";
+
+import { RiArrowDownWideLine,RiArrowUpWideFill } from "react-icons/ri";
 
 const className = {
     li: 'relative flex items-center gap-2 before:absolute before:-bottom-2  before:left-1 before:w-0 hover:before:w-full before:h-[1px]',
@@ -21,10 +23,7 @@ export const OrderCard = ({data})=> {
 
     return (
         <div className="capitalize relative p-3 rounded-md bg-gray-50 dark:bg-stone-950 mb-3 border border-gray-300 dark:border-stone-700">
-            <button 
-                className=" absolute top-2 right-2 w-[30px] h-[30px] rounded-full border dark:border-teal-100  border-teal-900 text-teal-900 dark:text-teal-100 flex items-center justify-center">
-                <TfiMoreAlt size={18} />
-            </button>
+            <Editing />
             <div className="">
                 <div className="flex lg:flex-row flex-col gap-5">
                     <div className=" flex-[33%]">
