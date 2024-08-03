@@ -7,11 +7,13 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { GoPeople } from "react-icons/go";
 import { MdOutlineLocalOffer,MdOutlinePropane,MdShoppingCartCheckout } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
+import { TiThMenuOutline } from "react-icons/ti";
 
 import { ThemeModel } from "../../../../ui/models/themeModel";
 import { SignOut } from "../../../../ui/buttons/signOut";
 import { Overlay } from "../../../../ui/models/overlay";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../../contextProvider";
 
 const navData = [
   {name: 'dashboard',link: '/admin/dashboard',Icon: LuLayoutDashboard},
@@ -26,23 +28,32 @@ export const Navbar = () => {
 
   const pathname = usePathname();
 
-  const [isMenu,setIsMenu] = useState(false);
+  const [isMenu,setIsMenu] = useState(true);
+  const {innerWidth} = useContext(AppContext);
 
   const className = {
      link: 'capitalize m-0 px-3 lg:px-8 py-2 text-sm font-bold dark:text-teal-100  hover:text-black-500 flex items-center rounded-tr-full rounded-br-full gap-2 w-fit min-w-[250px]',
-  }
+  };
+
   return (
     <>
         {
-          isMenu ? <Overlay onClick={()=> setIsMenu(false)} /> : null
+          (isMenu && innerWidth < 768) ? <Overlay onClick={()=> setIsMenu(false)} /> : 
+          <button
+              onClick={()=> setIsMenu(true)} 
+              className=" text-teal-400 fixed top-[20px] md:-left-full left-[15px] z-[80] w-[60px]"
+              >
+              <TiThMenuOutline size={30} />
+          </button>
         }
-      <section className={`${isMenu ? '-translate-x-full' : ''} border-t-4 border-t-teal-300 h-full flex flex-col justify-between pb-4`}>
+
+      
+      <section className={`${isMenu ? '' : '-translate-x-full md:translate-x-0'} border-t-4 border-t-teal-300 w-[250px] z-[60] fixed md:sticky left-0 bg-white top-0 h-screen min-w-fit dark:bg-black flex flex-col justify-between pb-4`}>
         <div className="max-h-full overflow-y-auto">
           <h4 className="p-3 py-4 lg:px-8 mb-6">
             <Link href={`/`} className="text-3xl font-bold uppercase text-teal-400">
                 system
             </Link>
-
           </h4>
             <nav className="flex flex-col gap-5 mt-3">
 

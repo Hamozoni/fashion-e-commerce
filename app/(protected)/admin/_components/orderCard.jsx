@@ -30,7 +30,7 @@ export const OrderCard = ({data})=> {
                         <h5 className={className.title_1}>order info</h5>
                         <OrdersHeader data={{id,createdAt,status}} />
                     </div>
-                    <div className="flex items-start gap-5 flex-[67%] ">
+                    <div className="sm:flex items-start gap-5 flex-[67%] ">
                         <div className="flex-[50%]">
                             <OrderPayment 
                                 totalPaidInCent={totalPaidInCent}
@@ -79,7 +79,7 @@ export const OrderCard = ({data})=> {
                         <div className="flex gap-3 min-w-fit">
                             {
                                 products?.map((item)=> (
-                                    <div key={item?.cartId} className="w-[300px] min-w-[300px]">
+                                    <div key={item?.cartId} className="w-[380px] min-w-[380px]">
                                         <CartItemsCard product={item} isOrdered={true}/>
                                     </div>
                                 ))
