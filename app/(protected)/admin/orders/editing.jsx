@@ -11,7 +11,7 @@ export const Editing = ({clientSecret,status})=>{
     const [openedSection,setOpenedSection] = useState(null);
 
     const className = {
-        li : 'flex items-center gap-2 text-teal-950 py-1  dark:text-teal-50'
+        li : 'flex items-center gap-2 text-teal-950 py-1 dark:text-teal-50 hover:text-teal-800 dark:text-teal-200'
     };
 
     const handleUpdateStatus = (status)=> {
