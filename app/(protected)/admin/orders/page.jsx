@@ -14,7 +14,7 @@ import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import {OrderCard} from "../_components/orderCard";
 
  
-const navStatus = [
+export const navStatus = [
     {name: 'pending',Icon: MdPendingActions},
     {name: 'processing',Icon: LuSettings2},
     {name: 'complated',Icon: GrCompliance},
