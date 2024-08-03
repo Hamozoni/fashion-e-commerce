@@ -86,32 +86,33 @@ export default function ordersPage () {
                         <div key={id} className="capitalize p-3 rounded-md bg-gray-50 dark:bg-stone-950 mb-3 border border-gray-300 dark:border-stone-700">
                             <div className="">
                                 
-                                <div className="lg:flex">
+                                <div className="flex lg:flex-row flex-col gap-5">
                                     <div className=" flex-[33%]">
                                          <h5 className={className.title_1}>order info</h5>
                                          <OrdersHeader data={{id,createdAt,status}} />
                                     </div>
-                                    <div className="flex items-start justify-between flex-[67%] ">
-                                        <div className="flex-[50%]">
+                                    <div className="flex items-start gap-5 flex-[67%] ">
+                                        <div className="flex-[60%]">
+                                            <OrderPayment 
+                                                totalPaidInCent={totalPaidInCent}
+                                                deliveryFree={deliveryFree} 
+                                                />
+                                        </div>
+                                        <div className="flex-[40%]">
                                             <h5 className={className.title_1}>customer info</h5>
-                                            <div className="flex items-start gap-2 min-w-fit">
+                                            <div className="flex items-start justify-between gap-2 min-w-fit">
                                                 <Image className="rounded-md" src={customer?.image} width={50} height={80} alt="customer"/>
                                                 <div className="">
                                                     <h5 className={className.title_1}>{customer?.name}</h5>
-                                                    <h6  className={className.title_2}>{customer?.email}</h6>
+                                                    <h6  className={`${className.title_2} line-clamp-1 lowercase`}>
+                                                        <small>{customer?.email}</small>
+                                                    </h6>
                                                 </div>
                                             </div>
 
                                             <h6 className={className.title_1}
                                                 >order items: {products?.length}
                                             </h6>
-
-                                        </div>
-                                        <div className="flex-[50%]">
-                                            <OrderPayment 
-                                                totalPaidInCent={totalPaidInCent}
-                                                deliveryFree={deliveryFree} 
-                                                />
 
                                         </div>
 
