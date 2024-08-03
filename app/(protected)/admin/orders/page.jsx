@@ -1,9 +1,14 @@
 "use client";
+import { useEffect, useState } from "react";
+
 import { MdPendingActions } from "react-icons/md";
 import { GrCompliance } from "react-icons/gr";
 import { GiReturnArrow } from "react-icons/gi";
-import { useEffect, useState } from "react";
 
+import { fetchData } from "../../../../lip/fetchData";
+import {Loading} from "../../../loading";
+import {Error} from "../../../../ui/components/error"
+ 
 const navStatus = [
     {name: 'pending',Icon: MdPendingActions},
     {name: 'complated',Icon: GrCompliance},
@@ -18,12 +23,33 @@ const className = {
 export default function ordersPage () {
 
     const [status,setStatus] = useState('pending');
+    const [orders,setOrders] = useState({});
+    const [error,setError] = useState(null);
+    const [isLoading,setIsLoading] = useState(false);
+
+    const fetchOrders = ()=> {
+        setError(null)
+        setIsLoading(true);
+
+        fetchData(`orders/byStatus?status=${status}`)
+        .then((data)=> {
+
+            console.log(data);
+            setOrders(data);
+        })
+        .catch((error)=> {
+
+            setError(error);
+            console.log(error)
+        })
+        .finally(()=> {
+            setIsLoading(false)
+        })
+    }
 
     useEffect(()=> {
-
-    },[status])
-
-
+        fetchOrders();
+    },[status]);
 
     return (
         <div className="">
@@ -42,6 +68,9 @@ export default function ordersPage () {
                 }
                 </ul>
             </nav>
+            {
+                isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> : ''
+            }
 
         </div>
     )
