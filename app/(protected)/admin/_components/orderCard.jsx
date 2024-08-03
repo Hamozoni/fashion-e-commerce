@@ -58,21 +58,25 @@ export const OrderCard = ({data})=> {
                 </div>
 
             </div>
-            <div className="">
+            <div className="max-w-full">
                 <button onClick={()=> setIsProducts(!isProducts)}>
                     <RiArrowDownWideLine />
                 </button>
-                {
-                    isProducts ? <div className="">
-                        {
-                            products?.map((item)=> (
-                                <div key={item?.cartId} className="">
-                                    <CartItemsCard product={item} />
-                                </div>
-                            ))
-                        }
-                    </div> : null
-                }
+                <div className=" max-w-full overflow-x-auto">
+                    {
+                        isProducts ? 
+                        <div className="flex gap-3 min-w-fit">
+                            {
+                                products?.map((item)=> (
+                                    <div key={item?.cartId} className="w-[300px] min-w-[300px]">
+                                        <CartItemsCard product={item} isOrdered={true}/>
+                                    </div>
+                                ))
+                            }
+                        </div> : null
+                    }
+
+                </div>
             </div>
         </div>
     )

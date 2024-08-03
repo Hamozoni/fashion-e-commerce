@@ -78,7 +78,7 @@ export default function ordersPage () {
                 }
                 </ul>
             </nav>
-            <div className="">
+            <div className="max-w-full">
                 {
                     isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> :
                     orders?.map((order)=> (
