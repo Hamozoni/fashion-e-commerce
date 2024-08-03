@@ -5,6 +5,7 @@ import { MdPendingActions } from "react-icons/md";
 import { GrCompliance } from "react-icons/gr";
 import { GiReturnArrow } from "react-icons/gi";
 import { IoIosCloudDownload } from "react-icons/io";
+import { LuSettings2 } from "react-icons/lu";
 
 import { fetchData } from "../../../../lip/fetchData";
 import Loading from "../../../loading";
@@ -15,6 +16,7 @@ import {OrderCard} from "../_components/orderCard";
  
 const navStatus = [
     {name: 'pending',Icon: MdPendingActions},
+    {name: 'processing',Icon: LuSettings2},
     {name: 'complated',Icon: GrCompliance},
     {name: 'cancelled',Icon: GiReturnArrow},
 ];
