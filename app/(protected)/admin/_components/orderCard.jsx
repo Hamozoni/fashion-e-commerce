@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { OrdersHeader } from "../../orders/ordersHeader";
 import { OrderPayment } from "../../orders/orderSummary";
-import { RiArrowDownWideLine } from "react-icons/ri";
+import { RiArrowDownWideLine,RiArrowUpWideFill } from "react-icons/ri";
 import { useState } from "react";
 import { CartItemsCard } from "../../../../ui/cards/cartItemsCard";
 
@@ -25,18 +25,15 @@ export const OrderCard = ({data})=> {
                     <div className=" flex-[33%]">
                         <h5 className={className.title_1}>order info</h5>
                         <OrdersHeader data={{id,createdAt,status}} />
-                        <h6 className={className.title_1}
-                                >order items: <small>{products?.length} products</small>
-                        </h6> 
                     </div>
                     <div className="flex items-start gap-5 flex-[67%] ">
-                        <div className="flex-[60%]">
+                        <div className="flex-[50%]">
                             <OrderPayment 
                                 totalPaidInCent={totalPaidInCent}
                                 deliveryFree={deliveryFree} 
                                 />
                         </div>
-                        <div className="flex-[40%]">
+                        <div className="flex-[50%]">
                             <h5 className={className.title_1}>customer info</h5>
                             <h6 className={className.title_2}
                                 >user ID: <small>{userId}</small> 
@@ -58,9 +55,19 @@ export const OrderCard = ({data})=> {
                 </div>
 
             </div>
-            <div className="max-w-full">
-                <button onClick={()=> setIsProducts(!isProducts)}>
-                    <RiArrowDownWideLine />
+            <div className="max-w-full mt-2">
+                <button 
+                    className={`${className.title_1} text-center w-full flex justify-center items-center gap-5 capitalize`}
+                    onClick={()=> setIsProducts(!isProducts)}
+                    >
+                    <h6 className={className.title_1}
+                         >order items: <small>{products?.length} products</small>
+                    </h6>
+                    {
+                        isProducts ? 
+                        <RiArrowDownWideLine  size={24}/>
+                        : <RiArrowUpWideFill   size={24}/>
+                    }
                 </button>
                 <div className=" max-w-full overflow-x-auto">
                     {
