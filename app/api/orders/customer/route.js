@@ -1,7 +1,7 @@
 
 import { NextResponse } from "next/server";
-import { db } from "../../../../../lip/db";
-import { findUserAddressByEmail } from "../../../../../lip/user";
+import { db } from "../../../../lip/db";
+import { findUserAddressByEmail } from "../../../../lip/user";
 
 export async function GET (req) {
 
@@ -24,9 +24,14 @@ export async function GET (req) {
             }
         });
 
-        const {customer} = orders[0]
+        let address = '';
 
-        const address = await findUserAddressByEmail(customer?.email);
+        if(orders?.length > 0) {
+            const {customer} = orders[0]
+    
+            address = await findUserAddressByEmail(customer?.email);
+        }
+
 
         return NextResponse.json({orders,address},{status:200})
     

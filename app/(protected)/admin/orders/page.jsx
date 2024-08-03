@@ -6,14 +6,19 @@ import { GrCompliance } from "react-icons/gr";
 import { GiReturnArrow } from "react-icons/gi";
 
 import { fetchData } from "../../../../lip/fetchData";
-import {Loading} from "../../../loading";
+import Loading from "../../../loading";
 import {Error} from "../../../../ui/components/error"
  
 const navStatus = [
     {name: 'pending',Icon: MdPendingActions},
     {name: 'complated',Icon: GrCompliance},
-    {name: 'returned',Icon: GiReturnArrow},
+    {name: 'cancelled',Icon: GiReturnArrow},
 ];
+
+// PENDING
+// PROCESSING
+// COMPLETED
+// CANCELLED
 
 const className = {
     li: 'relative flex items-center gap-2 before:absolute before:-bottom-2  before:left-1 before:w-0 hover:before:w-full before:h-[1px]'
@@ -31,7 +36,7 @@ export default function ordersPage () {
         setError(null)
         setIsLoading(true);
 
-        fetchData(`orders/byStatus?status=${status}`)
+        fetchData(`orders/byStatus?status=${status?.toUpperCase()}`)
         .then((data)=> {
 
             console.log(data);
