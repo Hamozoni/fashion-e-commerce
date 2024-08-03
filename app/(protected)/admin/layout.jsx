@@ -9,11 +9,11 @@ export const metadata = {
   
   export default function AdminLayout({ children }) {
     return (
-          <div className="flex items-start">
-            <aside className="bg-white dark:bg-black sticky top-0 h-screen min-w-fit flex-[250px] max-w-[250px]">
+          <div className="md:flex items-start">
+            <aside className="fixed left-0 z-50  bg-white dark:bg-black top-0 h-screen min-w-fit flex-[250px] max-w-[250px]">
               <Navbar />
             </aside>
-            <aside style={{width: 'calc(100% - 250px)'}}>
+            <aside className="min-w-full md:min-w-0" style={{width: 'calc(100% - 250px)'}}>
               <Header />
               {children}
             </aside>
