@@ -25,7 +25,7 @@ export const Navbar = () => {
   }
   return (
     <section className="border-t-4 border-t-teal-300">
-      <h4 className="p-3 py-4 lg:px-5 mb-6 border-r-4 border-r-teal-300 rounded-full">
+      <h4 className="p-3 py-4 lg:px-5 mb-6">
         <Link href={`/`} className="text-3xl font-bold uppercase text-teal-400">
              system
         </Link>
