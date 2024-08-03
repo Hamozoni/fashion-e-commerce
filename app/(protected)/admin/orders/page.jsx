@@ -9,10 +9,9 @@ import { IoIosCloudDownload } from "react-icons/io";
 import { fetchData } from "../../../../lip/fetchData";
 import Loading from "../../../loading";
 import {Error} from "../../../../ui/components/error";
-import {OrdersHeader} from "../../orders/ordersHeader"
 import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
-import Image from "next/image";
-import { OrderPayment } from "../../orders/orderSummary";
+import {OrderCard} from "../_components/orderCard";
+
  
 const navStatus = [
     {name: 'pending',Icon: MdPendingActions},
@@ -82,47 +81,8 @@ export default function ordersPage () {
             <div className="">
                 {
                     isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> :
-                    orders?.map(({id,createdAt,products,status,customer,totalPaidInCent,deliveryFree})=> (
-                        <div key={id} className="capitalize p-3 rounded-md bg-gray-50 dark:bg-stone-950 mb-3 border border-gray-300 dark:border-stone-700">
-                            <div className="">
-                                
-                                <div className="flex lg:flex-row flex-col gap-5">
-                                    <div className=" flex-[33%]">
-                                         <h5 className={className.title_1}>order info</h5>
-                                         <OrdersHeader data={{id,createdAt,status}} />
-                                    </div>
-                                    <div className="flex items-start gap-5 flex-[67%] ">
-                                        <div className="flex-[60%]">
-                                            <OrderPayment 
-                                                totalPaidInCent={totalPaidInCent}
-                                                deliveryFree={deliveryFree} 
-                                                />
-                                        </div>
-                                        <div className="flex-[40%]">
-                                            <h5 className={className.title_1}>customer info</h5>
-                                            <div className="flex items-start justify-between gap-2 min-w-fit">
-                                                <Image className="rounded-md" src={customer?.image} width={50} height={80} alt="customer"/>
-                                                <div className="">
-                                                    <h5 className={className.title_1}>{customer?.name}</h5>
-                                                    <h6  className={`${className.title_2} line-clamp-1 lowercase`}>
-                                                        <small>{customer?.email}</small>
-                                                    </h6>
-                                                </div>
-                                            </div>
-
-                                            <h6 className={className.title_1}
-                                                >order items: {products?.length}
-                                            </h6>
-
-                                        </div>
-
-                                    </div>
-                                   
-
-                                </div>
-
-                            </div>
-                        </div>
+                    orders?.map((order)=> (
+                        <OrderCard key={order.id} data={order} />
                     ))
                 }
                 <div className="max-w-[150px] mx-auto my-3">

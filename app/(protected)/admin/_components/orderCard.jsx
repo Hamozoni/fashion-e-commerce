@@ -1,9 +1,79 @@
+"use client"
+import Image from "next/image";
+import { OrdersHeader } from "../../orders/ordersHeader";
+import { OrderPayment } from "../../orders/orderSummary";
+import { RiArrowDownWideLine } from "react-icons/ri";
+import { useState } from "react";
+import { CartItemsCard } from "../../../../ui/cards/cartItemsCard";
 
+const className = {
+    li: 'relative flex items-center gap-2 before:absolute before:-bottom-2  before:left-1 before:w-0 hover:before:w-full before:h-[1px]',
+    title_1: "text-teal-950 dark:text-teal-50 text-lg font-bold mb-2",
+    title_2: "text-teal-900 dark:text-teal-100 text-sm font-bold mb-2",
+}
 
-export const OrderCard = ()=> {
+export const OrderCard = ({data})=> {
+
+    const {id,createdAt,products,status,customer,totalPaidInCent,deliveryFree,userId} = data;
+
+    const [isProducts,setIsProducts] = useState(false)
+
     return (
-        <div className="">
+        <div className="capitalize p-3 rounded-md bg-gray-50 dark:bg-stone-950 mb-3 border border-gray-300 dark:border-stone-700">
+            <div className="">
+                <div className="flex lg:flex-row flex-col gap-5">
+                    <div className=" flex-[33%]">
+                        <h5 className={className.title_1}>order info</h5>
+                        <OrdersHeader data={{id,createdAt,status}} />
+                        <h6 className={className.title_1}
+                                >order items: <small>{products?.length} products</small>
+                        </h6> 
+                    </div>
+                    <div className="flex items-start gap-5 flex-[67%] ">
+                        <div className="flex-[60%]">
+                            <OrderPayment 
+                                totalPaidInCent={totalPaidInCent}
+                                deliveryFree={deliveryFree} 
+                                />
+                        </div>
+                        <div className="flex-[40%]">
+                            <h5 className={className.title_1}>customer info</h5>
+                            <h6 className={className.title_2}
+                                >user ID: <small>{userId}</small> 
+                            </h6> 
+                            <div className="flex items-start gap-2 min-w-fit">
+                                <Image className="rounded-md" src={customer?.image} width={50} height={80} alt="customer"/>
+                                <div className="">
+                                    <h5 className={className.title_1}>{customer?.name}</h5>
+                                    <h6  className={`${className.title_2} line-clamp-1 lowercase`}>
+                                        <small>{customer?.email}</small>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                
+
+                </div>
+
+            </div>
+            <div className="">
+                <button onClick={()=> setIsProducts(!isProducts)}>
+                    <RiArrowDownWideLine />
+                </button>
+                {
+                    isProducts ? <div className="">
+                        {
+                            products?.map((item)=> (
+                                <div key={item?.cartId} className="">
+                                    <CartItemsCard product={item} />
+                                </div>
+                            ))
+                        }
+                    </div> : null
+                }
+            </div>
         </div>
     )
 };
