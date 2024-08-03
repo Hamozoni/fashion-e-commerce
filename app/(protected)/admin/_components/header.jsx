@@ -16,14 +16,18 @@ export const Header = ()=> {
                 <div className="flex items-center gap-2">
                      <Image 
                         className="rounded-full border-2 border-teal-300" 
-                        src={currentUser.image} 
+                        src={currentUser?.image} 
                         width={50} 
                         height={50} 
                         alt="admin avatar" 
                         />
                     <div className="">
-                        <h5 className="text-sm font-bold text-teal-950 dark:text-teal-50">{currentUser.name}</h5>
-                        <h6 className="text-xs font-bold text-teal-900 dark:text-teal-100">{currentUser.role}</h6>
+                        <h5 className="text-sm font-bold text-teal-950 dark:text-teal-50">
+                            {currentUser?.name}
+                        </h5>
+                        <h6 className="text-xs font-bold text-teal-900 dark:text-teal-100">
+                            {currentUser?.role}
+                        </h6>
                     </div>
 
                 </div>

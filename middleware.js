@@ -10,7 +10,7 @@ export default async function auth (req) {
 
   const {pathname} = req.nextUrl
 
-  const protectedRoutes = ['/api/products/new','/checkout','/admin','/admin/products/new','/api/paymentIntent'];
+  const protectedRoutes = ['/api/products/new','/checkout','/admin','/admin/products/new','/api/paymentIntent','/admin/orders','/admin/dashboard','/admin/sales'];
 
   if(protectedRoutes.some( route => pathname.startsWith(route))) {
 
@@ -36,5 +36,5 @@ export default async function auth (req) {
  
 // Optionally, don't invoke Middleware on some paths
 export const config = {
-  matcher: ['/api/products/new','/checkout','/admin','/api/paymentIntent']
+  matcher: ['/api/products/new','/checkout','/admin','/admin/products/new','/api/paymentIntent','/admin/orders','/admin/dashboard','/admin/sales']
 }
