@@ -3,8 +3,8 @@
 export const OrdersHeader = ({data : {id,createdAt,status}})=> {
 
     const className = {
-        title_1: "text-teal-950 dark:text-teal-50 text-lg font-bold mb-2",
-        title_2: "text-teal-900 dark:text-teal-100 text-sm font-bold mb-2",
+        title_1: "text-teal-950 dark:text-teal-50 text-lg font-bold",
+        title_2: "text-teal-900 dark:text-teal-100 text-[16px] font-bold",
     };
 
     return (

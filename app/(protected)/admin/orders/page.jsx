@@ -12,6 +12,7 @@ import {Error} from "../../../../ui/components/error";
 import {OrdersHeader} from "../../orders/ordersHeader"
 import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import Image from "next/image";
+import { OrderPayment } from "../../orders/orderSummary";
  
 const navStatus = [
     {name: 'pending',Icon: MdPendingActions},
@@ -78,17 +79,29 @@ export default function ordersPage () {
             <div className="">
                 {
                     isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> :
-                    orders?.map(({id,createdAt,products,status,customer})=> (
+                    orders?.map(({id,createdAt,products,status,customer,totalPaidInCent,deliveryFree})=> (
                         <div key={id} className="capitalize p-3 rounded-md bg-gray-50 mb-3 border border-gray-200">
-                            <div className="flex items-start gap-3">
-                                <div className="flex items-start gap-2">
-                                    <Image className="rounded-md" src={customer?.image} width={40} height={60} alt="customer"/>
+                            <div className="">
+                                
+                                <div className="mt-3 flex items-start gap-5">
+                                    <OrdersHeader data={{id,createdAt,status}} />
                                     <div className="">
-                                        <h5>{customer?.name}</h5>
-                                        <h6>{customer?.emial}</h6>
+                                        <div className="flex items-start gap-2 min-w-fit">
+                                            <Image className="rounded-md" src={customer?.image} width={40} height={60} alt="customer"/>
+                                            <div className="">
+                                                <h5 className="text-sm">{customer?.name}</h5>
+                                                <h6 className="text-xs lowercase">{customer?.email}</h6>
+                                            </div>
+                                        </div>
+
+                                        <h6 className=''
+                                            >order items: {products?.length}
+                                        </h6>
+
                                     </div>
+                                    <OrderPayment totalPaidInCent={totalPaidInCent} deliveryFree={deliveryFree} />
+
                                 </div>
-                                <OrdersHeader data={{id,createdAt,status}} />
 
                             </div>
                         </div>
