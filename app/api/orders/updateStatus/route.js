@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import {db} from "../../../../lip/db" ;
 
-export async function UPDATE (req) {
+export async function PUT (req) {
 
 
-    const data = await req.body();
-    console.log(data);
+    
+    console.log(req.body);
 
-    return NextResponse.json(data,{status: 200})
+    return NextResponse.json({data: req.body},{status: 200})
 
     // try {
 
