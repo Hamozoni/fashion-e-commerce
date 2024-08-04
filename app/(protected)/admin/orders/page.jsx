@@ -47,15 +47,18 @@ export default function ordersPage () {
 
 
     const fetchOrders = (page)=> {
-        setError(null)
-        setIsLoading(true);
+        setError(null);
+
+        if(!isLoadingMorde){
+            setIsLoading(true);
+        }
 
         fetchData(`orders/byStatus?status=${status?.toUpperCase()}&page=${page}`)
         .then((data)=> {
             if(data.length === 0) {
                 setIsMordeOrders(false)
             }
-            setOrders(prev=> [,...prev,...data]);
+            setOrders(prev=> [...prev,...data]);
         })
         .catch((error)=> {
             setError(error);
@@ -103,16 +106,20 @@ export default function ordersPage () {
                         <OrderCard key={order.id} data={order} setOrders={setOrders} />
                     ))
                 }
-                <div className="max-w-[150px] mx-auto my-3">
+                {
+                    isLoadingMorde ? 
+                    <div className="max-w-[150px] mx-auto my-3">
 
-                    <ButtonWithIcon 
-                        text='load more'
-                        type='save'
-                        Icon={IoIosCloudDownload}
-                        disabled={isLoadingMorde}
-                        onClick={loadMoreOrders}
-                        />
-                </div>
+                        <ButtonWithIcon 
+                            text='load more'
+                            type='save'
+                            Icon={IoIosCloudDownload}
+                            disabled={isLoadingMorde}
+                            onClick={loadMoreOrders}
+                            />
+                    </div>
+                    : null
+                }
             </div>
 
         </div>
