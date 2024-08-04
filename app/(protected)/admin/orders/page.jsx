@@ -72,6 +72,7 @@ export default function ordersPage () {
     useEffect(()=> {
         setIsLoading(true);
         setIsLoadingMore(true);
+        setIsMordeOrders(true)
         setPage(1);
         fetchOrders(1,false);
     },[status]);
