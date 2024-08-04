@@ -17,7 +17,7 @@ export const Editing = ({clientSecret,status})=>{
 
     const handleUpdateStatus = (status)=> {
 
-        updateData('orders/updateStatus',{clientSecret,status})
+        updateData(`orders/updateStatus?status=${status.toUpperCase()}&clientSecret=${clientSecret}`)
         .then((data)=> {
             console.log(data)
         })

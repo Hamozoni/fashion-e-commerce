@@ -28,7 +28,7 @@ export const Navbar = () => {
 
   const pathname = usePathname();
 
-  const [isMenu,setIsMenu] = useState(true);
+  const [isMenu,setIsMenu] = useState(false);
   const {innerWidth} = useContext(AppContext);
 
   const className = {

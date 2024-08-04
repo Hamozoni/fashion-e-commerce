@@ -43,17 +43,9 @@ export const  PostData = async  (endPoint,formData)=> {
     };  
 
 
-export const updateData = async (endPoint,body)=> {
-    const options = {
-        method: 'PUT',
-        url: `/api/${endPoint}`,
-        headers: {
-            accept: 'application/json',
-        },
-        data: body,
-        };
+export const updateData = async (endPoint)=> {
     
-        const {data} = await axios(options)
+        const {data} = await axios.put(`/api/${endPoint}`,{headers: { 'content-type': 'multipart/form-data' }})
     
         return data;
 }
