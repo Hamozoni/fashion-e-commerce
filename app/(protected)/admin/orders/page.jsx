@@ -37,31 +37,47 @@ const className = {
 export default function ordersPage () {
 
     const [status,setStatus] = useState('pending');
-    const [orders,setOrders] = useState();
+    const [orders,setOrders] = useState([]);
     const [error,setError] = useState(null);
     const [isLoading,setIsLoading] = useState(false);
+    const [isLoadingMorde,setIsLoadingMore] = useState(false);
+    const [isMordeOrders,setIsMordeOrders] = useState(true);
     const [page,setPage] = useState(1);
 
-    const fetchOrders = ()=> {
+
+
+    const fetchOrders = (page)=> {
         setError(null)
         setIsLoading(true);
 
         fetchData(`orders/byStatus?status=${status?.toUpperCase()}&page=${page}`)
         .then((data)=> {
-            setOrders(data);
+            if(data.length === 0) {
+                setIsMordeOrders(false)
+            }
+            setOrders(prev=> [,...prev,...data]);
         })
         .catch((error)=> {
             setError(error);
             console.log(error)
         })
         .finally(()=> {
-            setIsLoading(false)
+            setIsLoading(false);
+            setIsLoadingMore(false)
         })
     }
 
     useEffect(()=> {
-        fetchOrders();
-    },[status,page]);
+        fetchOrders(page);
+    },[status]);
+
+    const loadMoreOrders = ()=> {
+        if(isMordeOrders) {
+            setIsLoadingMore(true);
+            fetchOrders(page + 1);
+            setPage(page + 1);
+        }
+    }
 
     return (
         <div className="p-3 lg:px-8">
@@ -93,6 +109,8 @@ export default function ordersPage () {
                         text='load more'
                         type='save'
                         Icon={IoIosCloudDownload}
+                        disabled={isLoadingMorde}
+                        onClick={loadMoreOrders}
                         />
                 </div>
             </div>
