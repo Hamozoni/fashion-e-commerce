@@ -17,7 +17,7 @@ import {OrderCard} from "../_components/orderCard";
 export const navStatus = [
     {name: 'pending',Icon: MdPendingActions},
     {name: 'processing',Icon: LuSettings2},
-    {name: 'complated',Icon: GrCompliance},
+    {name: 'completed',Icon: GrCompliance},
     {name: 'cancelled',Icon: GiReturnArrow},
 ];
 

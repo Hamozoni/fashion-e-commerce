@@ -9,28 +9,21 @@ export async function PUT (req) {
     const status = searchParams.get('status');
     const clientSecret = searchParams.get('clientSecret');
 
+    try {
 
 
-    // const data = JSON.parse(body)
-    
-    console.log("jhagkbkb bhbkjbkjabk",status,clientSecret);
+        const updatedOrder = await db.customerOrder.update({
+            where: {paymentClientSecret:clientSecret},
+            data : {
+                status: status
+            }
+        });
+        console.log(updatedOrder)
 
-    return NextResponse.json('kjkhuh',{status: 200})
+        return NextResponse.json(updatedOrder,{status: 200})
 
-    // try {
-
-
-    //     const updatedOrder = await db.customerOrder.update({
-    //         where: {clientSecret},
-    //         data : {
-    //             status: status
-    //         }
-    //     });
-
-    //     return NextResponse.json(updatedOrder,{status: 200})
-
-    // }
-    // catch (error) {
-    //     return NextResponse.json({data: 'something went wrong'},{status: 500})
-    // };
+    }
+    catch (error) {
+        return NextResponse.json('something went wrong',{status: 500})
+    };
 }
