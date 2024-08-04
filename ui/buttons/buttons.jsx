@@ -27,7 +27,7 @@ export const ButtonWithIcon = ({
         >
           {
             disabled ?
-              <PulseLoader size={10} className=" opacity-50"/>
+              <PulseLoader size={10} color="#2dd4bf"/>
             :
             <>
               <Icon size={16}/>

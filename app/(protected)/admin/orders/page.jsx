@@ -46,19 +46,18 @@ export default function ordersPage () {
 
 
 
-    const fetchOrders = (page)=> {
+    const fetchOrders = (page,isMore)=> {
         setError(null);
-
-        if(!isLoadingMorde){
-            setIsLoading(true);
-        }
-
         fetchData(`orders/byStatus?status=${status?.toUpperCase()}&page=${page}`)
         .then((data)=> {
             if(data.length === 0) {
                 setIsMordeOrders(false)
             }
-            setOrders(prev=> [...prev,...data]);
+            if(isMore) {
+                setOrders(prev=> [...prev,...data]);
+            }else {
+                setOrders(data);
+            }
         })
         .catch((error)=> {
             setError(error);
@@ -71,13 +70,16 @@ export default function ordersPage () {
     }
 
     useEffect(()=> {
-        fetchOrders(page);
+        setIsLoading(true);
+        setIsLoadingMore(true);
+        setPage(1);
+        fetchOrders(1,false);
     },[status]);
 
     const loadMoreOrders = ()=> {
         if(isMordeOrders) {
             setIsLoadingMore(true);
-            fetchOrders(page + 1);
+            fetchOrders(page + 1,true);
             setPage(page + 1);
         }
     }
@@ -107,7 +109,7 @@ export default function ordersPage () {
                     ))
                 }
                 {
-                    isLoadingMorde ? 
+                    isMordeOrders ? 
                     <div className="max-w-[150px] mx-auto my-3">
 
                         <ButtonWithIcon 
