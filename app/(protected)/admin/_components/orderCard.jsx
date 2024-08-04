@@ -15,7 +15,7 @@ const className = {
     title_2: "text-teal-900 dark:text-teal-100 text-sm font-bold mb-2",
 }
 
-export const OrderCard = ({data})=> {
+export const OrderCard = ({data,setOrders})=> {
 
     const {
         id,createdAt,
@@ -31,7 +31,11 @@ export const OrderCard = ({data})=> {
 
     return (
         <div className="capitalize relative p-3 rounded-md bg-gray-50 dark:bg-stone-950 mb-3 border border-gray-300 dark:border-stone-700">
-            <Editing clientSecret={paymentClientSecret} status={status} />
+            <Editing 
+                clientSecret={paymentClientSecret} 
+                status={status} 
+                setOrders={setOrders} 
+                />
             <div className="">
                 <div className="flex lg:flex-row flex-col gap-5">
                     <div className=" flex-[33%]">

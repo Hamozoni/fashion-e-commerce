@@ -84,7 +84,7 @@ export default function ordersPage () {
                 {
                     isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> :
                     orders?.map((order)=> (
-                        <OrderCard key={order.id} data={order} />
+                        <OrderCard key={order.id} data={order} setOrders={setOrders} />
                     ))
                 }
                 <div className="max-w-[150px] mx-auto my-3">
