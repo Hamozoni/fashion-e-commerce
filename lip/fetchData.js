@@ -50,7 +50,7 @@ export const updateData = async (endPoint,body)=> {
         headers: {
             accept: 'application/json',
         },
-        body,
+        data: body,
         };
     
         const {data} = await axios(options)
