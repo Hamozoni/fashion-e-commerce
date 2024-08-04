@@ -43,3 +43,19 @@ export const  PostData = async  (endPoint,formData)=> {
     };  
 
 
+export const updateData = async (endPoint,body)=> {
+    const options = {
+        method: 'UPDATE',
+        url: endPoint,
+        headers: {
+            accept: 'application/json',
+        },
+        body,
+        };
+    
+        const {data} = await axios(options)
+    
+        return data;
+}
+
+

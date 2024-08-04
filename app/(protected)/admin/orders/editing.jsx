@@ -4,6 +4,7 @@ import { useState } from "react";
 import { TfiMoreAlt } from "react-icons/tfi";
 
 import {navStatus} from "./page";
+import {updateData } from "../../../../lip/fetchData";
 
 export const Editing = ({clientSecret,status})=>{
 
@@ -11,11 +12,18 @@ export const Editing = ({clientSecret,status})=>{
     const [openedSection,setOpenedSection] = useState(null);
 
     const className = {
-        li : 'flex items-center gap-2 text-teal-950 py-1 dark:text-teal-50 hover:text-teal-800 dark:text-teal-200'
+        li : 'flex items-center gap-2 text-teal-950 py-1 dark:text-teal-50 hover:text-teal-800 hover:dark:text-teal-200'
     };
 
     const handleUpdateStatus = (status)=> {
 
+        updateData('orders/updateStatus',{clientSecret,status})
+        .then((data)=> {
+            console.log(data)
+        })
+        .catch((error)=> {
+            console.log(error)
+        })
 
     }
     
@@ -41,6 +49,7 @@ export const Editing = ({clientSecret,status})=>{
                                         navStatus?.map(({name,Icon})=> (
                                             status.toLowerCase() !== name  &&
                                             <li 
+                                                onClick={()=> handleUpdateStatus(name)}
                                                 className={className.li}
                                                 key={name}><Icon />{name}
                                             </li>
