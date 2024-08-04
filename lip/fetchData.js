@@ -46,7 +46,7 @@ export const  PostData = async  (endPoint,formData)=> {
 export const updateData = async (endPoint,body)=> {
     const options = {
         method: 'UPDATE',
-        url: endPoint,
+        url: `/api/${endPoint}`,
         headers: {
             accept: 'application/json',
         },
