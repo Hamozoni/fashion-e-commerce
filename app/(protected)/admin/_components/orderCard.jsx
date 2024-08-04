@@ -24,14 +24,14 @@ export const OrderCard = ({data})=> {
         customer,
         totalPaidInCent,
         deliveryFree,
-        userId,clientSecret
+        userId,paymentClientSecret
     } = data;
 
     const [isProducts,setIsProducts] = useState(false)
 
     return (
         <div className="capitalize relative p-3 rounded-md bg-gray-50 dark:bg-stone-950 mb-3 border border-gray-300 dark:border-stone-700">
-            <Editing clientSecret={clientSecret} status={status} />
+            <Editing clientSecret={paymentClientSecret} status={status} />
             <div className="">
                 <div className="flex lg:flex-row flex-col gap-5">
                     <div className=" flex-[33%]">
