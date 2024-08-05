@@ -5,24 +5,17 @@ const  AdminPage = async () => {
   let data = null
   let error = null
 
-  const fetchOverview = async ()=> {
-    try {
-  
-      fetchData('admin/overview')
-      .then((data)=> {
-        console.log(data)
-      })
-    }
-    catch (error) {
-  
-    };
+  const fetchOverview = ()=> {
+    fetchData('admin/overview')
+     .then((data)=> {
+       console.log(data)
+     })
+
   }
-
-  fetchOverview();
-
+  
 
   return (
-    <div>Admin page</div>
+    <div onClick={fetchOverview}>Admin page</div>
   )
 }
 
