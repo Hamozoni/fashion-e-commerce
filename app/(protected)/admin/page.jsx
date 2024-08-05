@@ -1,19 +1,14 @@
-import { fetchData } from "../../../lip/fetchData"
+import {OverviewContextProvider} from "./overviewContext";
 
 
-const  AdminPage = async () => {
-  let data = null
-  let error = null
-
-
-    fetchData('admin/overview')
-     .then((data)=> {
-       console.log(data)
-     })
-  
+const  AdminPage = () => {
 
   return (
-    <div>Admin page</div>
+    <div>
+      <OverviewContextProvider >
+        
+      </OverviewContextProvider>
+    </div>
   )
 }
 

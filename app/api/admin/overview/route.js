@@ -34,13 +34,26 @@ export async function GET () {
             }
         });
 
+        const totalCustomers = await db.user.count({
+            where : {
+                role: 'USER'
+            }
+        });
+
+        const totalAdmins = await db.user.count({
+            where : {
+                role: 'ADMIN'
+            }
+        });
         console.log({
             totalRevenue,
             totalOrders,
             totalCompletedOrder,
             totalPendingOrder,
             totalCanceledOrder,
-            totalProcessingOrder
+            totalProcessingOrder,
+            totalCustomers,
+            totalAdmins
         })
 
         return NextResponse.json({
@@ -49,10 +62,12 @@ export async function GET () {
             totalCompletedOrder,
             totalPendingOrder,
             totalCanceledOrder,
-            totalProcessingOrder
+            totalProcessingOrder,
+            totalCustomers,
+            totalAdmins
         },{status: 200})
 
     } catch (error) {
-        console.log(error)
+        return NextResponse.json(error,{status:500})
     }
 }
