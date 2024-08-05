@@ -15,17 +15,6 @@ export const OverviewHeader = ()=> {
 
     console.log(overviewData)
 
-    // const {
-    //     totalOrders,
-    //     totalCustomers,
-    //     totalAdmins
-    // } = overviewData;
-
-    // const  {
-    //     totalPaidInCent,
-    //     totalProductsQuantity
-    // } =  totalRevenue
-
     const overview = [
         {
             name: 'total revenue',
@@ -61,7 +50,7 @@ export const OverviewHeader = ()=> {
                 {
                     overview?.map(({name,Icon,data})=> (
                         <li className="min-w-fit w-[150px] flex flex-col items-center justify-between cursor-pointer hover:scale-105 gap-3 rounded-md p-4 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700">
-                            <div className="flex items-center justify-center rounded-full w-[80px] h-[80px] bg-teal-100 dark:bg-black">
+                            <div className="flex items-center justify-center rounded-full w-[80px] h-[80px] bg-white shadow-sm dark:bg-black">
                                 <Icon size={40} className="text-teal-700 dark:text-teal-400" />
                             </div>
                             <div className=" capitalize text-center mt-3">
