@@ -35,36 +35,36 @@ export const OverviewHeader = ()=> {
         {
             name: 'total orders',
             Icon : TbShoppingCartCheck,
-            data: overviewData?.totalOrders
+            data: overviewData?.totalOrders + " orders"
         },
         {
             name: 'total customers',
             Icon : FaPeopleRoof,
-            data: overviewData?.totalCustomers
+            data: overviewData?.totalCustomers + ' customers'
         },
         {
             name: 'total admins',
             Icon : MdOutlineAdminPanelSettings,
-            data: overviewData?.totalAdmins
+            data: overviewData?.totalAdmins + " admins"
         },
         {
             name: 'total ordered products',
             Icon : MdOutlineProductionQuantityLimits,
-            data:  overviewData?.totalRevenue?._sum?.totalProductsQuantity
+            data:  overviewData?.totalRevenue?._sum?.totalProductsQuantity + " products"
         },
     ]
 
 
     return (
         <div className="">
-            <ul className="flex items-center gap-5 overflow-x-auto">
+            <ul className="flex items-center gap-5 overflow-x-auto py-5">
                 {
                     overview?.map(({name,Icon,data})=> (
-                        <li className="flex min-w-fit items-center gap-3 rounded-md p-4 bg-teal-50 dark:bg-stone-900 border border-gray-200 dark:border-stone-700">
-                            <div className="flex items-center justify-center rounded-full w-[80px] h-[80px] bg-white dark:bg-black">
-                                <Icon size={40} className="text-teal-400" />
+                        <li className="min-w-fit w-[150px] flex flex-col items-center justify-between cursor-pointer hover:scale-105 gap-3 rounded-md p-4 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700">
+                            <div className="flex items-center justify-center rounded-full w-[80px] h-[80px] bg-teal-100 dark:bg-black">
+                                <Icon size={40} className="text-teal-700 dark:text-teal-400" />
                             </div>
-                            <div className=" capitalize flex justify-between h-full flex-col">
+                            <div className=" capitalize text-center mt-3">
                                 <h3 className="text-lg font-bold text-teal-950 dark:text-teal-50">{data}</h3>
                                 <h5 className="text-xs font-bold text-teal-900 dark:text-teal-100">{name}</h5>
                             </div>
