@@ -12,7 +12,6 @@ import Loading from "../../../loading";
 import {Error} from "../../../../ui/components/error";
 import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
 import {OrderCard} from "../_components/orderCard";
-import { OrderStatusChart } from "../_components/orderStatusChart";
 
  
 export const navStatus = [
@@ -103,7 +102,6 @@ export default function ordersPage () {
                 }
                 </ul>
             </nav>
-            <OrderStatusChart />
             <div className="max-w-full">
                 {
                     isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> :

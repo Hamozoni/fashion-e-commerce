@@ -45,6 +45,11 @@ input:focus {
     outline-color: transparent;
 }
 
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
 
 
 

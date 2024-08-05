@@ -1,24 +1,24 @@
 "use client"
-import {Line} from "react-chartjs-2";
+import {Bar} from "react-chartjs-2";
 
 import { 
     Chart as ChartJs,
     CategoryScale,
     LinearScale,
-    PointElement,
-    LineElement,
+    // PointElement,
+    BarElement,
     Title,
     Tooltip,
     Legend
 } from "chart.js";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { OverviewContext } from "../overviewContext";
 
 ChartJs.register(
     CategoryScale,
     LinearScale,
-    PointElement,
-    LineElement,
+    // PointElement,
+    BarElement,
     Title,
     Tooltip,
     Legend
@@ -32,7 +32,7 @@ export const OrderStatusChart = () => {
     const data = {
         labels : ["pending","prossing","compeleted","canceled"],
         datasets:[ {
-            label: 'order status',
+            label: 'Order Status',
             data : [
                 overviewData?.totalPendingOrder,
                 overviewData?.totalProcessingOrder,
@@ -43,10 +43,34 @@ export const OrderStatusChart = () => {
         }]
     };
 
-    const option = {
+    const options = {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Orders Status'
+        }
 
-    }
+    };
+
+    const chartRef = useRef(null)
+
+    useEffect(()=> {
+        const handleResize = ()=> {
+            const chart = chartRef?.current;
+            if(chart) {
+                chart.resize()
+            }
+        };
+
+        window.addEventListener('resize',handleResize);
+
+        return ()=> window.removeEventListener('resize',handleResize)
+    },[]);
 
 
-    return <Line options={option} data={data} />
+    return (
+        <div className=" relative w-full h-full">
+            <Bar ref={chartRef} options={options} data={data} />
+        </div>
+    )
 }
