@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import { useContext, useEffect, useRef, useState } from "react";
 import { OverviewContext } from "../overviewContext";
+import { fetchData } from "../../../../lip/fetchData";
 
 ChartJs.register(
     CategoryScale,
@@ -27,7 +28,7 @@ ChartJs.register(
 export const OrderStatusChart = () => {
 
     const {overviewData} = useContext(OverviewContext);
-    const [orderSortedBy,setOrderSortedBy] = useState('month')
+    const [filteredBy,setFilteredBy] = useState('month')
 
     const data = {
         labels : ["pending","prossing","compeleted","canceled"],
@@ -42,6 +43,13 @@ export const OrderStatusChart = () => {
             borderColor: "rgb(75,192,192)"
         }]
     };
+
+    useEffect(()=> {
+        fetchData(`admin/ordersStatus?filteredBy=${filteredBy}`)
+        .then((data)=> {
+            console.log(data)
+        })
+    },[filteredBy])
 
     const options = {
         responsive: true,
@@ -100,8 +108,8 @@ export const OrderStatusChart = () => {
                         orderSummaryNav?.map((name)=> (
                             <li 
                                  key={name}
-                                onClick={()=> setOrderSortedBy(name)}
-                                className={`${orderSortedBy == name ? 'bg-white dark:bg-black' :'hover:bg-gray-50'} text-sm font-bold text-teal-900 dark:text-teal-100 px-4 cursor-pointer py-1 rounded-md`}>
+                                onClick={()=> setFilteredBy(name)}
+                                className={`${filteredBy == name ? 'bg-white dark:bg-black' :'hover:bg-gray-50'} text-sm font-bold text-teal-900 dark:text-teal-100 px-4 cursor-pointer py-1 rounded-md`}>
                                 {name}
                             </li>
                         ))
