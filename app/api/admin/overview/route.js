@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { db } from "../../../../lip/db";
 
 export async function GET () {
 
@@ -10,11 +11,6 @@ export async function GET () {
                 totalProductsQuantity: true
             }
         });
-
-        // PENDING
-        // PROCESSING
-        // COMPLETED
-        // CANCELLED
 
         const totalOrders = await db.customerOrder.count();
         const totalCompletedOrder = await db.customerOrder.count({
