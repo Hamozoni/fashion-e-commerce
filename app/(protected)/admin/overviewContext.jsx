@@ -19,6 +19,7 @@ export const OverviewContextProvider = ({children})=> {
         fetchData('admin/overview')
         .then((data)=> {
             setOverviewData(data);
+            console.log(data)
         })
         .catch((error)=> {
             setErrors(error)

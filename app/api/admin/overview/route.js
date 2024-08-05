@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "../../../../lip/db";
 
-export async function GET () {
+export async function GET (req) {
 
     try {
 
@@ -56,7 +56,7 @@ export async function GET () {
             totalAdmins
         })
 
-        return NextResponse.json({
+        const data = {
             totalRevenue,
             totalOrders,
             totalCompletedOrder,
@@ -65,9 +65,12 @@ export async function GET () {
             totalProcessingOrder,
             totalCustomers,
             totalAdmins
-        },{status: 200})
+        }
+
+        return NextResponse.json(data,{status: 200})
 
     } catch (error) {
+        console.log(error)
         return NextResponse.json(error,{status:500})
     }
 }
