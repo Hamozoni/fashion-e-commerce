@@ -45,7 +45,7 @@ export const OverviewHeader = ()=> {
 
 
     return (
-        <div className="">
+        <div className=" mb-3">
             <ul className="flex items-center gap-5 overflow-x-auto py-5">
                 {
                     overview?.map(({name,Icon,data})=> (
