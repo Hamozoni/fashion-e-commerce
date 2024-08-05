@@ -1,24 +1,24 @@
 "use client"
-import {Bar} from "react-chartjs-2";
+import {Line} from "react-chartjs-2";
 
 import { 
     Chart as ChartJs,
     CategoryScale,
     LinearScale,
-    // PointElement,
-    BarElement,
+    PointElement,
+    LineElement,
     Title,
     Tooltip,
     Legend
 } from "chart.js";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { OverviewContext } from "../overviewContext";
 
 ChartJs.register(
     CategoryScale,
     LinearScale,
-    // PointElement,
-    BarElement,
+    PointElement,
+    LineElement,
     Title,
     Tooltip,
     Legend
@@ -27,7 +27,7 @@ ChartJs.register(
 export const OrderStatusChart = () => {
 
     const {overviewData} = useContext(OverviewContext);
-    console.log(overviewData);
+    const [orderSortedBy,setOrderSortedBy] = useState('month')
 
     const data = {
         labels : ["pending","prossing","compeleted","canceled"],
@@ -67,10 +67,63 @@ export const OrderStatusChart = () => {
         return ()=> window.removeEventListener('resize',handleResize)
     },[]);
 
+    const orderSummaryNav = ['3 days','week','month'];
+    const ordersStatusSammary = [
+        {
+            name: 'pending',
+            data: overviewData?.totalPendingOrder,
+        },
+        {
+            name: 'prossing',
+            data: overviewData?.totalProcessingOrder
+        },
+        {
+            name: 'compeletaed',
+            data:  overviewData?.totalCompletedOrder,
+        },
+        {
+            name: 'canceled',
+            data:  overviewData?.totalCanceledOrder
+        },
+    ]
+
 
     return (
-        <div className=" relative w-full h-full">
-            <Bar ref={chartRef} options={options} data={data} />
-        </div>
+        <section className="mt-5">
+            <header className=" capitalize flex items-center justify-between" >
+               <h4 className=" text-lg font-bold text-teal-950 dark:text-teal-50">
+                    orders summary
+                </h4>
+               <nav>
+                   <ul className="flex items-center gap-1 bg-gray-100 p-1 rounded-md">
+                      {
+                        orderSummaryNav?.map((name)=> (
+                            <li 
+                                 key={name}
+                                onClick={()=> setOrderSortedBy(name)}
+                                className={`${orderSortedBy == name ? 'bg-white dark:bg-black' :'hover:bg-gray-50'} text-sm font-bold text-teal-900 dark:text-teal-100 px-4 cursor-pointer py-1 rounded-md`}>
+                                {name}
+                            </li>
+                        ))
+                    }
+                   </ul>
+               </nav>
+            </header>
+            <ul className="flex items-center gap-3 capitalize my-4 overflow-x-auto">
+                {
+                    ordersStatusSammary?.map(({name,data})=> (
+                        <li 
+                            className={`${name === 'canceled' ? 'bg-rose-200 text-rose-900' : name === 'pending' ? 'bg-yellow-100 text-yellow-900' : name === 'compeletaed' ? 'bg-green-100 text-green-900' : 'bg-blue-100 text-blue-900'} text-center text-lg text-teal-950 dark:text-teal-950 font-bold flex-grow p-3 rounded-md`}
+                            key={name}>
+                            {data + " " + name}
+                        </li>
+                    ))
+                }
+            </ul>
+            <div className=" relative w-full h-full">
+                <Line ref={chartRef} options={options} data={data} />
+            </div>
+
+        </section>
     )
 }
