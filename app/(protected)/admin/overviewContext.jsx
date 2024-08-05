@@ -4,7 +4,7 @@ import { Error } from "../../../ui/components/error";
 import Loading from "./loading";
 import { createContext, useEffect, useState } from "react"
 
-export const overviewContext  = createContext();
+export const OverviewContext  = createContext();
 
 
 export const OverviewContextProvider = ({children})=> {
@@ -37,8 +37,8 @@ export const OverviewContextProvider = ({children})=> {
     if(errors) return <Error onClick={fetchOverviewData} />
 
     return (
-        <overviewContext.Provider value={{overviewData}}>
+        <OverviewContext.Provider value={{overviewData}}>
             {children}
-        </overviewContext.Provider>
+        </OverviewContext.Provider>
     )
 }
