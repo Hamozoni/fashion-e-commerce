@@ -1,6 +1,7 @@
 "use client"
 import { fetchData } from "../../../lip/fetchData"
-import { Error } from "../../../ui/components/error"
+import { Error } from "../../../ui/components/error";
+import Loading from "./loading";
 import { createContext, useEffect, useState } from "react"
 
 export const overviewContext  = createContext();
@@ -17,10 +18,13 @@ export const OverviewContextProvider = ({children})=> {
 
         fetchData('admin/overview')
         .then((data)=> {
-            console.log(data);
+            setOverviewData(data);
         })
         .catch((error)=> {
-            console.log(error)
+            setErrors(error)
+        })
+        .finally(()=> {
+            setIsLoading(false)
         })
     }
 
@@ -28,8 +32,12 @@ export const OverviewContextProvider = ({children})=> {
         fetchOverviewData();
     },[]);
 
+    if(isLoading) return <Loading />
+
+    if(errors) return <Error onClick={fetchOverviewData} />
+
     return (
-        <overviewContext.Provider >
+        <overviewContext.Provider value={{overviewData}}>
             {children}
         </overviewContext.Provider>
     )

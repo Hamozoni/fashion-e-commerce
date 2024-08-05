@@ -1,12 +1,11 @@
+
 import {OverviewContextProvider} from "./overviewContext";
 
-
-const  AdminPage = () => {
+const  AdminPage = async () => {
 
   return (
     <div>
       <OverviewContextProvider >
-        
       </OverviewContextProvider>
     </div>
   )
