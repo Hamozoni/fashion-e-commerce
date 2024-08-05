@@ -16,7 +16,7 @@ import { useContext, useState } from "react";
 import { AppContext } from "../../../contextProvider";
 
 const navData = [
-  {name: 'dashboard',link: '/admin/dashboard',Icon: LuLayoutDashboard},
+  {name: 'overview',link: '/admin',Icon: LuLayoutDashboard},
   {name: 'products',link: '/admin/products',Icon: MdOutlinePropane},
   {name: 'add new product',link: '/admin/products/new',Icon: IoMdAdd},
   {name: 'customers',link: '/admin/customers',Icon: GoPeople},

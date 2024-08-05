@@ -32,7 +32,7 @@ export const Header = ()=> {
 
                 </div>
                 <h3 className="text-xl text-teal-950 dark:text-teal-50 font-bold">
-                    {pathname === '/admin/products/new' ? 'add new product' :pathname?.replace('/admin/','')}
+                    {pathname === '/admin/products/new' ? 'add new product' : pathname === '/admin' ? 'overview' : pathname?.replace('/admin/','')}
                 </h3>
             </div>
         </header>
