@@ -37,8 +37,11 @@ export const RevenueChart = ({revenueData})=> {
                 revenueData[2]?.revenue / 100 || 0,
                 revenueData[3]?.revenue / 100 || 0,
               ],
-              backgroundColor: "rgb(200,200,200)",
-              borderColor: "rgb(200,200,200)"
+              backgroundColor:["#6be1c67a",'#e16b967a','#6b94e17a','#e06be17a'],
+              borderColor: "#7ee1dea1",
+              borderWidth: '#7ee1dea1',
+              color: '#7ee1dea1',
+              borderRadius: 10
             }
         ],
     };
