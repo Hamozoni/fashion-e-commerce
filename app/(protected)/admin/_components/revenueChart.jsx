@@ -1,12 +1,11 @@
 "use client"
-import {Line} from "react-chartjs-2";
+import {Bar} from "react-chartjs-2";
 
 import { 
     Chart as ChartJs,
     CategoryScale,
     LinearScale,
-    PointElement,
-    LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend
@@ -18,28 +17,29 @@ import {useEffect, useRef} from "react";
 ChartJs.register(
     CategoryScale,
     LinearScale,
-    PointElement,
-    LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend
 );
 
 
-export const OrdersStatusChart = ({ordersData})=> {
+export const RevenueChart = ({revenueData})=> {
 
     const data = {
-        labels : ["pending","prossing","compeleted","canceled"],
-        datasets:[ {
-            label: 'Order Status',
+        labels : [revenueData[0]?.name,revenueData[1]?.name,revenueData[2]?.name,revenueData[3]?.name],
+        datasets:[ 
+            {
+              label: 'revenue',
               data : [
-                ordersData?.pendingOrders,
-                ordersData?.processingOrders,
-                ordersData?.completedOrders,
-                ordersData?.canceledOrders
-            ],
-            borderColor: "rgb(75,192,192)"
-        }]
+                revenueData[0]?.revenue / 100 || 0,
+                revenueData[1]?.revenue / 100 || 0,
+                revenueData[2]?.revenue / 100 || 0,
+                revenueData[3]?.revenue / 100 || 0,
+              ]
+            }
+        ]
+
     };
     const options = {
         responsive: true,
@@ -67,7 +67,7 @@ export const OrdersStatusChart = ({ordersData})=> {
 
     return (
         <div className=" relative w-full h-full">
-            <Line ref={chartRef} options={options} data={data} />
+            <Bar ref={chartRef} options={options} data={data} />
         </div>
     )
 };
