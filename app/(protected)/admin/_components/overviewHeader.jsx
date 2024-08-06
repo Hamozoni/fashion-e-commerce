@@ -14,12 +14,17 @@ export const OverviewHeader = ()=> {
     const { overviewData} = useContext(OverviewContext);
 
     console.log(overviewData)
+    // totalRevenue: totalRevenue?._sum?.totalPaidInCent,
+    // totalOrderdProducts: totalRevenue?._sum?.totalProductsQuantity,
+    // totalOrders,
+    // totalCustomers,
+    // totalAdmins
 
     const overview = [
         {
             name: 'total revenue',
             Icon : BsBank2,
-            data: getCurrency(overviewData?.totalRevenue?._sum?.totalPaidInCent)
+            data: getCurrency(overviewData?.totalRevenue)
         },
         {
             name: 'total orders',
@@ -39,7 +44,7 @@ export const OverviewHeader = ()=> {
         {
             name: 'total ordered products',
             Icon : MdOutlineProductionQuantityLimits,
-            data:  overviewData?.totalRevenue?._sum?.totalProductsQuantity + " products"
+            data:  overviewData?.totalOrderdProducts + " products"
         },
     ]
 

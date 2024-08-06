@@ -13,26 +13,6 @@ export async function GET (req) {
         });
 
         const totalOrders = await db.customerOrder.count();
-        const totalCompletedOrder = await db.customerOrder.count({
-            where : {
-            status: 'COMPLETED'
-            }
-        });
-        const totalPendingOrder = await db.customerOrder.count({
-            where : {
-                status: 'PENDING'
-            }
-        });
-        const totalCanceledOrder = await db.customerOrder.count({
-            where : {
-                status: 'CANCELLED'
-            }
-        });
-        const totalProcessingOrder = await db.customerOrder.count({
-            where : {
-                status: 'PROCESSING'
-            }
-        });
 
         const totalCustomers = await db.user.count({
             where : {
@@ -45,24 +25,11 @@ export async function GET (req) {
                 role: 'ADMIN'
             }
         });
-        console.log({
-            totalRevenue,
-            totalOrders,
-            totalCompletedOrder,
-            totalPendingOrder,
-            totalCanceledOrder,
-            totalProcessingOrder,
-            totalCustomers,
-            totalAdmins
-        })
 
         const data = {
-            totalRevenue,
+            totalRevenue: totalRevenue?._sum?.totalPaidInCent,
+            totalOrderdProducts: totalRevenue?._sum?.totalProductsQuantity,
             totalOrders,
-            totalCompletedOrder,
-            totalPendingOrder,
-            totalCanceledOrder,
-            totalProcessingOrder,
             totalCustomers,
             totalAdmins
         }
