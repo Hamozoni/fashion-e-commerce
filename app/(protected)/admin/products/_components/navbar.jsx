@@ -14,7 +14,10 @@ export const  Navbar = ()=> {
 
     useEffect(()=> {
         setIsLoading(true);
-        fetchData('')
+        fetchData('admin/products/sectionsQuantity')
+        .then((data)=> {
+            console.log(data)
+        })
     },[]);
 
     return (
