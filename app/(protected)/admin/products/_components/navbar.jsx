@@ -41,11 +41,19 @@ export const  Navbar = ()=> {
                    {
                       sectionsData?.map(({name,items,quantity})=> (
                         <li 
-                            className="p-3 rounded-m bg-gray-50 border-gray-200 text-teal-950 capitalize text-[16px] min-w-fit font-bold"
+                            className="p-3 rounded-md flex-grow text-center bg-gray-50 border-gray-200  capitalize min-w-fit font-bold"
                             key={name}>
-                                <h5>{{name}}</h5>
-                                <h6>{items} items</h6>
-                                <h6>{quantity} quantity</h6>
+                                <h5 className="text-lg text-teal-950 mb-2">{name}</h5>
+                                <h6 className="text-sm text-gray-600">{items || 0} item  
+                                     <small>
+                                       {Math.floor((items / sectionsData?.find(e=> e.name === 'all sections').items) * 100)}%
+                                    </small>
+                                </h6>
+                                <h6 className="text-sm text-gray-600">{quantity || 0} quantity
+                                    <small>
+                                      {Math.floor((quantity / sectionsData?.find(e=> e.name === 'all sections').quantity) * 100)}%
+                                    </small>
+                                </h6>
                                  
                             </li>
                       ))
