@@ -52,11 +52,6 @@ export const OrderStatus = () => {
     },[filteredBy]);
 
 
-    if(isLoading) return <Loading />
-
-    if(error) return <Error onClick={handleFetchStatus}/>
-
-
 
     const ordersStatusSammary = [
         {
@@ -99,18 +94,23 @@ export const OrderStatus = () => {
                    </ul>
                </nav>
             </header>
-            <ul className="flex items-center gap-3 capitalize my-4 overflow-x-auto">
-                {
-                    ordersStatusSammary?.map(({name,data})=> (
-                        <li 
-                            className={`${name === 'canceled' ? 'bg-rose-200 text-rose-900' : name === 'pending' ? 'bg-yellow-100 text-yellow-900' : name === 'compeletaed' ? 'bg-green-100 text-green-900' : 'bg-blue-100 text-blue-900'} text-center text-lg font-bold flex-grow p-3 rounded-md cursor-pointer hover:scale-105`}
-                            key={name}>
-                            {data + " " + name}
-                        </li>
-                    ))
-                }
-            </ul>
-            <OrdersStatusChart ordersData={ordersData}  />
+           { 
+              isLoading ? <Loading /> : error ? <Error onClick={handleFetchStatus}/> :
+             <div className="">
+                <ul className="flex items-center gap-3 capitalize my-4 overflow-x-auto">
+                    {
+                        ordersStatusSammary?.map(({name,data})=> (
+                            <li 
+                                className={`${name === 'canceled' ? 'bg-rose-200 text-rose-900' : name === 'pending' ? 'bg-yellow-100 text-yellow-900' : name === 'compeletaed' ? 'bg-green-100 text-green-900' : 'bg-blue-100 text-blue-900'} text-center text-lg font-bold flex-grow p-3 rounded-md cursor-pointer hover:scale-105`}
+                                key={name}>
+                                {data + " " + name}
+                            </li>
+                        ))
+                    }
+                </ul>
+                <OrdersStatusChart ordersData={ordersData}  />
+            </div>
+          }
         </section>
     )
 }
