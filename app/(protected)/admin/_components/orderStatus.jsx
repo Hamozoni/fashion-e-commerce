@@ -60,7 +60,7 @@ export const OrderStatus = () => {
 
 
     return (
-        <section className="flex-1">
+        <section className="p-3 rounded-md bg-teal-50 border border-teal-100">
             <SummaryFilter
                 data={ordersStatusFilterDates}
                setFilteredBy={setFilteredBy}

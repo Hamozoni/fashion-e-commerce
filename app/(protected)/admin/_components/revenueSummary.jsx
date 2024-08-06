@@ -36,7 +36,7 @@ export const RevenueSummary = ()=> {
 
 
     return (
-        <section className="flex-1">
+        <section className="mt-8 p-3 rounded-md bg-teal-50 border border-teal-100">
             <SummaryFilter 
                 data={revenueFilterDates}
                 title='revenue' 
@@ -49,12 +49,12 @@ export const RevenueSummary = ()=> {
                     <Loading />
                 </div>
                 : error ? <Error onClick={handleFetchRevenue} />
-                :<div className="">
+                :<div className="mt-5">
                     <ul className="flex gap-3 items-center overflow-x-auto capitalize">
                         {  
                             revenueData?.map(({name,revenue})=> (
                                 <li 
-                                    className="p-2 bg-teal-50 rounded-md text-center"
+                                    className="p-2 bg-white rounded-md text-center flex-grow"
                                     key={name}
                                     >
                                     <h4 className="text-teal-950 dark:text-teal-50 text-lg font-bold">

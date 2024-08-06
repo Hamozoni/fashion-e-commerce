@@ -66,7 +66,7 @@ export const OrdersStatusChart = ({ordersData})=> {
     },[]);
 
     return (
-        <div className=" relative w-full h-full">
+        <div className=" relative w-full h-full p-3 bg-white rounded-md mt-3">
             <Line ref={chartRef} options={options} data={data} />
         </div>
     )

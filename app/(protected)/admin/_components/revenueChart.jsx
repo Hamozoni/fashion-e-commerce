@@ -66,7 +66,7 @@ export const RevenueChart = ({revenueData})=> {
     },[]);
 
     return (
-        <div className=" relative w-full h-full">
+        <div className=" relative w-full h-full p-3 bg-white rounded-md mt-3">
             <Bar ref={chartRef} options={options} data={data} />
         </div>
     )
