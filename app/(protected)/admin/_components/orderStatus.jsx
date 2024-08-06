@@ -5,26 +5,21 @@ import { fetchData } from "../../../../lip/fetchData";
 import {OrdersStatusChart} from "./ordersStatusChart";
 import Loading from "../loading";
 import { Error } from "../../../../ui/components/error";
+import {SummaryFilter} from "./summaryFilter";
 
 const now = new Date();
-const orderSummaryNav = [
-    {
-        name: 'week',
-        date: new Date(now.getFullYear(),now.getMonth(),now.getDay() - 7)
-    },
-    {
-        name: 'month',
-        date: new Date(now.getFullYear(),now.getMonth() - 1,now.getDay())
-    },
-    {
-        name: 'year',
-        date: new Date(now.getFullYear() - 1,now.getMonth(),now.getDay())
-    }
-];
+
+// const orderSummary = {
+//     name: 'year',
+//     date: new Date(now.getFullYear() - 1,now.getMonth(),now.getDay())
+// }
 
 export const OrderStatus = () => {
 
-    const [filteredBy,setFilteredBy] = useState({...orderSummaryNav[2]});
+    const [filteredBy,setFilteredBy] = useState({
+        name: 'year',
+        date: new Date(now.getFullYear() - 1,now.getMonth(),now.getDay())
+    });
     const [ordersData,setOrdersData] = useState({});
     const [isLoading,setIsLoading] = useState(false);
     const [error,setError] = useState(null);
@@ -75,27 +70,15 @@ export const OrderStatus = () => {
 
     return (
         <section className="mt-5">
-            <header className=" capitalize flex items-center justify-between" >
-               <h4 className=" text-lg font-bold text-teal-950 dark:text-teal-50">
-                    orders summary
-                </h4>
-               <nav>
-                   <ul className="flex items-center gap-1 bg-gray-100 dark:bg-stone-900 p-1 rounded-md">
-                      {
-                        orderSummaryNav?.map(({name,date})=> (
-                            <li 
-                                 key={name}
-                                onClick={()=> setFilteredBy({name,date})}
-                                className={`${filteredBy?.name == name ? 'bg-white dark:bg-black' :'hover:bg-gray-50 dark:hover:bg-stone-950'} text-sm font-bold text-teal-900 dark:text-teal-100 px-4 cursor-pointer py-1 rounded-md`}>
-                                {name}
-                            </li>
-                        ))
-                    }
-                   </ul>
-               </nav>
-            </header>
+            <SummaryFilter
+               setFilteredBy={setFilteredBy}
+               filteredBy={filteredBy}
+               title='orders status'
+             />
            { 
-              isLoading ? <Loading /> : error ? <Error onClick={handleFetchStatus}/> :
+              isLoading ? 
+                <div className="max-h-[300px]"><Loading /> </div>
+                : error ? <Error onClick={handleFetchStatus}/> :
              <div className="">
                 <ul className="flex items-center gap-3 capitalize my-4 overflow-x-auto">
                     {
