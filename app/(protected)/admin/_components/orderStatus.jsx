@@ -69,7 +69,7 @@ export const OrderStatus = () => {
 
 
     return (
-        <section className="mt-5">
+        <section className="flex-1">
             <SummaryFilter
                setFilteredBy={setFilteredBy}
                filteredBy={filteredBy}
