@@ -6,20 +6,11 @@ import {OrdersStatusChart} from "./ordersStatusChart";
 import Loading from "../loading";
 import { Error } from "../../../../ui/components/error";
 import {SummaryFilter} from "./summaryFilter";
-
-const now = new Date();
-
-// const orderSummary = {
-//     name: 'year',
-//     date: new Date(now.getFullYear() - 1,now.getMonth(),now.getDay())
-// }
+import {ordersStatusFilterDates} from "../../../../data/filteringDates"
 
 export const OrderStatus = () => {
 
-    const [filteredBy,setFilteredBy] = useState({
-        name: 'year',
-        date: new Date(now.getFullYear() - 1,now.getMonth(),now.getDay())
-    });
+    const [filteredBy,setFilteredBy] = useState(ordersStatusFilterDates[2]);
     const [ordersData,setOrdersData] = useState({});
     const [isLoading,setIsLoading] = useState(false);
     const [error,setError] = useState(null);
@@ -71,6 +62,7 @@ export const OrderStatus = () => {
     return (
         <section className="flex-1">
             <SummaryFilter
+                data={ordersStatusFilterDates}
                setFilteredBy={setFilteredBy}
                filteredBy={filteredBy}
                title='orders status'

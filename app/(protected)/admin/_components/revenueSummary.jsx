@@ -1,18 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {SummaryFilter} from "./summaryFilter";
+import {revenueFilterDates} from "../../../../data/filteringDates"
+import { fetchData } from "../../../../lip/fetchData";
 
-const now = new Date();
 
 export const RevenueSummary = ()=> {
-    const [filteredBy,setFilteredBy] = useState({
-        name: 'year',
-        date: new Date(now.getFullYear() - 1,now.getMonth(),now.getDay())
-    });
+    const [filteredBy,setFilteredBy] = useState(revenueFilterDates[3]);
+
+    useEffect(()=> {
+        fetchData(`admin/revenue?dates=${JSON.stringify(filteredBy?.date)}`)
+        .then((data)=> {
+            console.log(data)
+        })
+    },[filteredBy])
     return (
         <section className="flex-1">
             <SummaryFilter 
+                data={revenueFilterDates}
                 title='revenue' 
                 filteredBy={filteredBy} 
                 setFilteredBy={setFilteredBy} 
