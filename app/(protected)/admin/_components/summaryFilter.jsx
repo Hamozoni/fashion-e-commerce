@@ -9,7 +9,7 @@ export const SummaryFilter = ({data,setFilteredBy,filteredBy,title})=> {
                 {title} for a {filteredBy?.name}
             </h4>
             <nav>
-                <ul className="flex items-center gap-1 bg-gray-100 dark:bg-stone-900 p-1 rounded-md border border-white">
+                <ul className="flex items-center gap-1 bg-gray-100 dark:bg-stone-900 p-1 rounded-md border border-white dark:border-stone-950">
                 {
                     data?.map(({name,date})=> (
                         <li 

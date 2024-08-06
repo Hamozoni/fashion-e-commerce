@@ -36,10 +36,11 @@ export const RevenueChart = ({revenueData})=> {
                 revenueData[1]?.revenue / 100 || 0,
                 revenueData[2]?.revenue / 100 || 0,
                 revenueData[3]?.revenue / 100 || 0,
-              ]
+              ],
+              backgroundColor: "rgb(200,200,200)",
+              borderColor: "rgb(200,200,200)"
             }
-        ]
-
+        ],
     };
     const options = {
         responsive: true,
@@ -59,15 +60,18 @@ export const RevenueChart = ({revenueData})=> {
                 chart.resize()
             }
         };
-
         window.addEventListener('resize',handleResize);
+        return ()=> window.removeEventListener('resize',handleResize);
 
-        return ()=> window.removeEventListener('resize',handleResize)
     },[]);
 
     return (
-        <div className=" relative w-full h-full p-3 bg-white rounded-md mt-3">
-            <Bar ref={chartRef} options={options} data={data} />
+        <div className="relative w-full h-full p-3 bg-white dark:bg-black rounded-md mt-3">
+            <Bar 
+                ref={chartRef} 
+                options={options} 
+                data={data}
+                 />
         </div>
     )
 };

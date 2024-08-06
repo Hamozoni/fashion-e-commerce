@@ -60,7 +60,7 @@ export const OrderStatus = () => {
 
 
     return (
-        <section className="p-3 rounded-md bg-teal-50 border border-teal-100">
+        <section className="p-3 rounded-md bg-teal-50 dark:bg-stone-950 border border-teal-100 dark:border-stone-900">
             <SummaryFilter
                 data={ordersStatusFilterDates}
                setFilteredBy={setFilteredBy}
