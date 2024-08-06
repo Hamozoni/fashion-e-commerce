@@ -1,7 +1,7 @@
 "use client"
 import { useContext } from "react";
 import { FormInput } from "./FormInput";
-import { newProductContext } from "../new/page";
+import { newProductContext } from "../page";
 
 const className = {
     li:'text-teal-900 dark:text-teal-100 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-stone-900 border-2 border-gray-200'

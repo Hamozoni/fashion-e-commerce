@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import { FormTextera,FormInput } from "./FormInput";
 import {SelectCategory} from "./selectCategory";
-import { newProductContext } from "../new/page";
+import { newProductContext } from "../page";
 
 export const ProductInfoForm = ()=> {
 

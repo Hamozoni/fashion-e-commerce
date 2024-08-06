@@ -5,7 +5,7 @@ import { FormInput } from "./FormInput";
 
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
-import { newProductContext } from "../new/page";
+import { newProductContext } from "../page";
 
 export function SpecificationInputs() {
 

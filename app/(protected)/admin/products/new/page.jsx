@@ -2,10 +2,10 @@
 import {createContext, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 // components
-import {SpecificationInputs}from "../_components/SpecificationInputs";
+import {SpecificationInputs}from "./_components/SpecificationInputs";
 import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
-import {ImagesColor} from "../_components/ImagesClolors";
-import {ProductInfoForm} from "../_components/productInfoForm"
+import {ImagesColor} from "./_components/ImagesClolors";
+import {ProductInfoForm} from "./_components/productInfoForm"
 import {Loading} from "../../../../../ui/models/Loading";
 // icons
 import { CiSaveDown2 } from "react-icons/ci";
