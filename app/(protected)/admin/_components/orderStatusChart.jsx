@@ -45,7 +45,8 @@ const orderSummaryNav = [
 export const OrderStatusChart = () => {
 
     const {overviewData} = useContext(OverviewContext);
-    const [filteredBy,setFilteredBy] = useState({...orderSummaryNav[2]})
+    const [filteredBy,setFilteredBy] = useState({...orderSummaryNav[2]});
+    const [ordersData,setOrdersData] = useState({})
 
     const data = {
         labels : ["pending","prossing","compeleted","canceled"],
@@ -65,6 +66,7 @@ export const OrderStatusChart = () => {
         fetchData(`admin/ordersStatus?date=${filteredBy?.date}`)
         .then((data)=> {
             console.log(data)
+            setOrdersData(data)
         })
     },[filteredBy])
 
