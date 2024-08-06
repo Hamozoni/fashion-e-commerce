@@ -5,7 +5,7 @@ import {OverviewHeader} from "./_components/overviewHeader";
 // import dynamic from "next/dynamic";
 // const {OrderStatusChart} = dynamic(()=> import("./_components/orderStatusChart",{ssr: false}));
 
-import {OrderStatusChart} from "./_components/orderStatusChart"
+import {OrderStatus} from "./_components/orderStatus"
 
 const  AdminPage =  () => {
 
@@ -14,7 +14,7 @@ const  AdminPage =  () => {
       <OverviewContextProvider >
         <OverviewHeader />
         <div className="">
-            <OrderStatusChart />
+            <OrderStatus />
         </div>
       </OverviewContextProvider>
     </div>

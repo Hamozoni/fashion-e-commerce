@@ -1,32 +1,12 @@
 "use client"
-import {Line} from "react-chartjs-2";
 
-import { 
-    Chart as ChartJs,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-} from "chart.js";
-import { useContext, useEffect, useRef, useState } from "react";
-import { OverviewContext } from "../overviewContext";
+import {useEffect, useState } from "react";
 import { fetchData } from "../../../../lip/fetchData";
+import {OrdersStatusChart} from "./ordersStatusChart";
+import Loading from "../loading";
+import { Error } from "../../../../ui/components/error";
 
-ChartJs.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
-
-const now = new Date()
-
+const now = new Date();
 const orderSummaryNav = [
     {
         name: 'week',
@@ -42,74 +22,58 @@ const orderSummaryNav = [
     }
 ];
 
-export const OrderStatusChart = () => {
+export const OrderStatus = () => {
 
-    const {overviewData} = useContext(OverviewContext);
     const [filteredBy,setFilteredBy] = useState({...orderSummaryNav[2]});
-    const [ordersData,setOrdersData] = useState({})
+    const [ordersData,setOrdersData] = useState({});
+    const [isLoading,setIsLoading] = useState(false);
+    const [error,setError] = useState(null);
 
-    const data = {
-        labels : ["pending","prossing","compeleted","canceled"],
-        datasets:[ {
-            label: 'Order Status',
-            data : [
-                overviewData?.totalPendingOrder,
-                overviewData?.totalProcessingOrder,
-                overviewData?.totalCompletedOrder,
-                overviewData?.totalCanceledOrder
-            ],
-            borderColor: "rgb(75,192,192)"
-        }]
-    };
 
-    useEffect(()=> {
+
+    const handleFetchStatus = ()=> {
+        setIsLoading(true);
+        setError(null);
         fetchData(`admin/ordersStatus?date=${filteredBy?.date}`)
         .then((data)=> {
             console.log(data)
-            setOrdersData(data)
+            setOrdersData(data);
         })
-    },[filteredBy])
-
-    const options = {
-        responsive: true,
-        title: {
-            display: true,
-            text: 'Orders Status'
-        }
-
+        .catch((error)=> {
+            setError(error)
+        })
+        .finally(()=> {
+            setIsLoading(false);
+        })
     };
 
-    const chartRef = useRef(null)
-
     useEffect(()=> {
-        const handleResize = ()=> {
-            const chart = chartRef?.current;
-            if(chart) {
-                chart.resize()
-            }
-        };
+        handleFetchStatus()
+    },[filteredBy]);
 
-        window.addEventListener('resize',handleResize);
 
-        return ()=> window.removeEventListener('resize',handleResize)
-    },[]);
+    if(isLoading) return <Loading />
+
+    if(error) return <Error onClick={handleFetchStatus}/>
+
+
 
     const ordersStatusSammary = [
         {
             name: 'pending',
-            data: overviewData?.totalPendingOrder,
+            data: ordersData?.pendingOrders,
         },
         {
             name: 'prossing',
-            data: overviewData?.totalProcessingOrder
+            data: ordersData?.processingOrders
         },
         {
             name: 'compeletaed',
-            data:  overviewData?.totalCompletedOrder,
+            data:  ordersData?.completedOrders,
         },
         {
             name: 'canceled',
-            data:  overviewData?.totalCanceledOrder
+            data:  ordersData?.canceledOrders
         },
     ]
 
@@ -146,10 +110,7 @@ export const OrderStatusChart = () => {
                     ))
                 }
             </ul>
-            <div className=" relative w-full h-full">
-                <Line ref={chartRef} options={options} data={data} />
-            </div>
-
+            <OrdersStatusChart ordersData={ordersData}  />
         </section>
     )
 }
