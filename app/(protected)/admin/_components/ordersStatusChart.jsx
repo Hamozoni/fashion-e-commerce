@@ -38,6 +38,7 @@ export const OrdersStatusChart = ({ordersData})=> {
                 ordersData?.completedOrders,
                 ordersData?.canceledOrders
             ],
+            backgroundColor: 'rgb(75,192,192)',
             borderColor: "rgb(75,192,192)"
         }]
     };

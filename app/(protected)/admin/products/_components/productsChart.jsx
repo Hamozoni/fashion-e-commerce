@@ -28,11 +28,15 @@ ChartJs.register(
 
 export const ProductsChart = ({productData})=> {
 
+    const chartLabel = productData?.map((item)=> item?.name);
+    const chartData = productData?.map((item)=>item?.items );
+    const chartData2 = productData?.map((item)=>item?.quantity );
+
     const data = {
-        // labels : ["pending","prossing","compeleted","canceled"],
+        labels : [chartLabel,chartLabel],
         datasets:[ {
             label: 'Order Status',
-              data : productData,
+            data :[chartData,chartData2],
             borderColor: "rgb(75,192,192)"
         }]
     };
