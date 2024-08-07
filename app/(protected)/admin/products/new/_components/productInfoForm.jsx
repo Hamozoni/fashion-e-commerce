@@ -10,8 +10,8 @@ export const ProductInfoForm = ()=> {
     const {detValidError,setProductDetails} = useContext(newProductContext);
 
     return (
-        <>
-            <div className="flex  gap-5 flex-wrap">
+        <div className="bg-teal-50 p-3 rounded-md border border-teal-200">
+            <div className="flex gap-5 flex-wrap">
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
                             return {...prev,name: e.target.value.toLowerCase()}
@@ -56,6 +56,6 @@ export const ProductInfoForm = ()=> {
             />
 
         </div>
-        </>
+        </div>
     )
 }
