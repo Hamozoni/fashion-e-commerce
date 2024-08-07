@@ -22,7 +22,7 @@ export const Header = ()=> {
                         alt="admin avatar" 
                         />
                     <div className="">
-                        <h5 className="text-sm font-bold text-teal-950 dark:text-teal-50">
+                        <h5 className="text-xs sm:text-sm font-bold text-teal-950 dark:text-teal-50">
                             {currentUser?.name}
                         </h5>
                         <h6 className="text-xs font-bold text-teal-900 dark:text-teal-100">
