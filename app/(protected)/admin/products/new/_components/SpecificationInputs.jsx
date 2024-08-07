@@ -30,7 +30,7 @@ export function SpecificationInputs() {
     }
 
   return (
-    <section className="mb-10 pb-10 border-b border-teal-100 dark:border-stone-800 bg-teal-50 px-3">
+    <section className="my-10 pb-10 rounded-md border-b border-teal-200 dark:border-stone-800 bg-teal-50 px-3 border ">
         <header
              className="my-3">
              <h4 
