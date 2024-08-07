@@ -37,21 +37,26 @@ export const  Navbar = ()=> {
     return (
         <header>
             <nav>
-                <ul className="flex items-center gap-3 overflow-x-auto">
+                <ul className="flex items-center gap-3 overflow-x-auto w-full">
                    {
-                      sectionsData?.map(({name,items,quantity})=> (
+                      sectionsData?.map(({name,items,quantity,products})=> (
                         <li 
-                            className="p-3 rounded-md flex-grow text-center bg-gray-50 border-gray-200  capitalize min-w-fit font-bold"
+                            className="p-3 cursor-pointer rounded-md flex-1 flex-grow text-center bg-gray-50 border border-teal-200  capitalize min-w-fit font-bold"
                             key={name}>
                                 <h5 className="text-lg text-teal-950 mb-2">{name}</h5>
+                                <h6 className="text-sm text-gray-600">{products || 0} products  
+                                     <small className="px-2">
+                                       {Math.floor((products / sectionsData?.find(e=> e.name === 'all').products) * 100)}%
+                                    </small>
+                                </h6>
                                 <h6 className="text-sm text-gray-600">{items || 0} item  
-                                     <small>
-                                       {Math.floor((items / sectionsData?.find(e=> e.name === 'all sections').items) * 100)}%
+                                     <small className="px-2">
+                                       {Math.floor((items / sectionsData?.find(e=> e.name === 'all').items) * 100)}%
                                     </small>
                                 </h6>
                                 <h6 className="text-sm text-gray-600">{quantity || 0} quantity
-                                    <small>
-                                      {Math.floor((quantity / sectionsData?.find(e=> e.name === 'all sections').quantity) * 100)}%
+                                    <small className="px-2">
+                                      {Math.floor((quantity / sectionsData?.find(e=> e.name === 'all').quantity) * 100)}%
                                     </small>
                                 </h6>
                                  

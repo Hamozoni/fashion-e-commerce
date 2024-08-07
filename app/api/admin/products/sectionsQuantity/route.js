@@ -67,28 +67,37 @@ export async function GET () {
            }
         });
 
+        const allProduct = await db.product.count();
+        const allMenProduct = await db.product.count({where: {category: 'men'}});
+        const allWomenProduct = await db.product.count({where: {category: 'women'}});
+        const allKidsProduct = await db.product.count({where: {category: 'kids'}});
+
         console.log(allProducts,menSection,womenSection,kidsSection)
 
         const data = [
             {
-                name: 'all sections',
+                name: 'all',
                 quantity: allProducts?._sum?.stackQuantity,
-                items: allProductsItems
+                items: allProductsItems,
+                products: allProduct
             },
             {
-                name: 'men section',
+                name: 'men',
                 quantity: menSection?._sum?.stackQuantity,
-                items: menSectionItems
+                items: menSectionItems,
+                products: allMenProduct
             },
             {
-                name: 'women section',
+                name: 'women',
                 quantity: womenSection?._sum?.stackQuantity,
-                items: womenSectionItems
+                items: womenSectionItems,
+                products:allWomenProduct
             },
             {
-                name: 'kids section',
+                name: 'kids',
                 quantity: kidsSection?._sum?.stackQuantity,
-                items: kidsSectionItems
+                items: kidsSectionItems,
+                products: allKidsProduct
             },
 
         ]
