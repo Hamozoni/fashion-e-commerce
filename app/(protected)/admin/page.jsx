@@ -7,6 +7,7 @@ import {RevenueSummary} from "./_components/revenueSummary";
 // const {OrderStatusChart} = dynamic(()=> import("./_components/orderStatusChart",{ssr: false}));
 
 import {OrderStatus} from "./_components/orderStatus"
+import { ProductsChart } from "./_components/productsChart";
 
 const  AdminPage =  () => {
 
@@ -18,6 +19,7 @@ const  AdminPage =  () => {
             <OrderStatus />
             <RevenueSummary />
         </div>
+        <ProductsChart />
       </OverviewContextProvider>
     </div>
   )

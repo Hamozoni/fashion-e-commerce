@@ -4,12 +4,6 @@ import {db} from "../../../../../lip/db";
 export async function GET () {
     try{
 
-        const allProducts = await db.productSize.aggregate({
-            _sum : {
-                stackQuantity: true
-            }
-        });
-
         const menSection = await db.productSize.aggregate({
             _sum : {
                  stackQuantity: true
@@ -42,8 +36,6 @@ export async function GET () {
            }
         });
 
-        const allProductsItems = await db.productSize.count();
-
         const menSectionItems = await db.productSize.count({
             where: {
                 product: {
@@ -66,8 +58,6 @@ export async function GET () {
                }
            }
         });
-
-        const allProduct = await db.product.count();
         const allMenProduct = await db.product.count({where: {category: 'men'}});
         const allWomenProduct = await db.product.count({where: {category: 'women'}});
         const allKidsProduct = await db.product.count({where: {category: 'kids'}});
@@ -75,12 +65,6 @@ export async function GET () {
         console.log(allProducts,menSection,womenSection,kidsSection)
 
         const data = [
-            {
-                name: 'all',
-                quantity: allProducts?._sum?.stackQuantity,
-                items: allProductsItems,
-                products: allProduct
-            },
             {
                 name: 'men',
                 quantity: menSection?._sum?.stackQuantity,
