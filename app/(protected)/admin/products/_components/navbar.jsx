@@ -1,15 +1,17 @@
 "use client";
 import Image from "next/image";
 import {categoriesData} from "../../../../../data/categoriesData";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { IoMdArrowDropdown,IoMdArrowDropright } from "react-icons/io";
 import { useState } from "react";
 
 export const Navbar = ()=> {
     const [categoryName,setCategoryName] = useState('all');
+    const [subcategoryName,setSubcategoryName] = useState('all');
     const [subCategory,setSubCategory] = useState(categoriesData[0]?.sub);
+    const [isSubcategory,setIsSubcategory] = useState(false)
 
     const handleCategory = (category)=> {
-
+        setSubcategoryName('all')
         if(category === 'all'){
             setCategoryName('all');
             setSubCategory(null)
@@ -19,7 +21,7 @@ export const Navbar = ()=> {
         }
     }
     return (
-        <header className="flex justify-between">
+        <header className="flex justify-between items-start">
             <nav>
                 <ul className="flex items-center gap-3 justify-center capitalize">
                     <li 
@@ -50,21 +52,35 @@ export const Navbar = ()=> {
                 </ul>
             </nav>
             <div className=" relative capitalize">
-                <div className="flex items-center gap-3 cursor-pointer">
+                <div 
+                    onClick={()=> setIsSubcategory(!isSubcategory)}
+                    className="flex justify-between flex-col gap-3 cursor-pointer bg-teal-50 p-3 rounded-md border border-teal-100">
                     <h4>filter by sub category:</h4>
-                    <h6 className="flex items-center gap-3 text-sm text-gray-500">all <IoMdArrowDropdown /></h6>
+                    <h6 className="flex items-center justify-between gap-3 text-sm text-gray-500">
+                        {subcategoryName} { isSubcategory ? <IoMdArrowDropdown /> : <IoMdArrowDropright />}
+                    </h6>
                 </div>
-                <ul className=" absolute right-0 top-1/2 w-full bg-teal-50 p-3 rounded-md  ">
+                {
+                    isSubcategory ? 
+                <ul className=" absolute right-0 top-full w-full bg-teal-50 p-3 rounded-md border border-teal-100">
+                    <li onClick={()=> setSubcategoryName('all')}>
+                        all
+                    </li>
                     {
                         subCategory ? 
                         subCategory?.map((subCate)=> (
-                            <li key={subCate?.id} className="flex items-center gap-3 py-3 cursor-pointer">
+                            <li 
+                                onClick={()=> setSubcategoryName(subCate?.name)}
+                                key={subCate?.id} 
+                                className={`${subcategoryName === subCate?.name ? 'bg-teal-600 text-teal-50 rounded-md' : 'hover:bg-white'} flex items-center gap-3 px-3 py-2 cursor-pointer`}>
                                 <Image className="rounded-full" src={subCate?.imagePath} width={30} height={30} alt={subCate?.name} />  {subCate?.name}
                             </li>
 
                         )) : <li>all</li>
                     }
                 </ul>
+                : null
+                }
 
             </div>
         </header>
