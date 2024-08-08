@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import {fetchData} from "../../../../lip/fetchData";
-import { Loading } from "../../../../ui/models/Loading";
+import  Loading  from "../loading";
 import { Error } from "../../../../ui/components/error";
 import {DoughnutChart} from "../_charts/doughnut"
 
@@ -38,7 +38,7 @@ export const  ProductsChart = ()=> {
     if(error) return <Error onClick={handleFetch} />
 
     return (
-        <section className="p-3 rounded-md border border-teal-100 bg-teal-50 my-8">
+        <section className="p-3 rounded-md border border-teal-100 dark:border-stone-800 bg-teal-50 dark:bg-stone-950 my-8">
             <header>
                 <h4 className="text-teal-950 dark:text-teal-50 text-lg font-bold capitalize">
                     products status
@@ -47,9 +47,9 @@ export const  ProductsChart = ()=> {
                     {
                         productsData?.map(({name,products,items,quantity})=>(
                             <li 
-                                className="flex-grow text-center p-3 rounded-md bg-white capitalize"
+                                className="flex-grow text-center p-3 rounded-md bg-white dark:bg-black capitalize"
                                 key={name}>
-                                <h4 className="text-teal-950 text-lg font-bold mb-2">{name}</h4>
+                                <h4 className="text-teal-950 dark:text-teal-50 text-lg font-bold mb-2">{name}</h4>
                                 <h6 className="text-xs font-bold text-gray-500">products {products || 0}</h6>
                                 <h6 className="text-xs font-bold text-gray-500">items {items || 0}</h6>
                                 <h6 className="text-xs font-bold text-gray-500">quantity {quantity || 0}</h6>
@@ -59,7 +59,7 @@ export const  ProductsChart = ()=> {
                 </ul>
 
             </header>
-            <div className="sm:flex items-center gap-3 bg-white">
+            <div className="sm:flex items-center gap-3">
                 <DoughnutChart
                     labels={['men','women','kids']}
                     chartData={productsData?.map(e=> e.products)}

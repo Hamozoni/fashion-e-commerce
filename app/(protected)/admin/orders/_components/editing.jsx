@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { TfiMoreAlt } from "react-icons/tfi";
 
-import {navStatus} from "./page";
-import {updateData } from "../../../../lip/fetchData";
-import { Loading } from "../../../../ui/models/Loading";
+import {navStatus} from "../page";
+import {updateData } from "../../../../../lip/fetchData";
+import { Loading } from "../../../../../ui/models/Loading";
 
 export const Editing = ({clientSecret,status,setOrders})=>{
 

@@ -31,7 +31,18 @@ export async function GET (req) {
             }
         });
 
-        return NextResponse.json(orders,{status:200})
+        const orderNumber = await db.customerOrder.count({
+            where : {
+                status
+            },
+        });
+
+        const data = {
+            orders,
+            orderNumber
+        }
+
+        return NextResponse.json(data,{status:200})
     
 
     }
