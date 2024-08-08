@@ -28,7 +28,7 @@ export const navStatus = [
 
 
 const className = {
-    li: 'relative flex items-center gap-2 before:absolute before:-bottom-2  before:left-1 before:w-0 hover:before:w-full before:h-[1px] bg-gray-50 dark:bg-stone-900 px-4 py-1 rounded-md',
+    li: 'relative flex items-center gap-2 before:absolute before:-bottom-2  before:left-1 before:w-0 hover:before:w-full before:h-[1px] bg-gray-50 px-4 py-1 rounded-md',
     title_1: "text-teal-950 dark:text-teal-50 text-lg font-bold mb-2",
     title_2: "text-teal-900 dark:text-teal-100 text-sm font-bold mb-2",
 }
@@ -48,6 +48,7 @@ export default function ordersPage () {
 
     const fetchOrders = (page,isMore)=> {
         setError(null);
+        setOrdersNum(0)
         fetchData(`orders/byStatus?status=${status?.toUpperCase()}&page=${page}`)
         .then((data)=> {
             setOrdersNum(data?.orderNumber)
@@ -84,14 +85,14 @@ export default function ordersPage () {
 
     return (
         <div className="p-3 lg:px-8">
-            <nav className="">
+            <nav className="mb-5">
                 <ul className="flex py-5 overflow-x-auto items-center sm:justify-center cursor-pointer gap-4 text-teal-950 dark:text-teal-50 text-[16px] font-bold capitalize">
                 {
                     navStatus?.map(({name,Icon})=> (
                         <li 
                             onClick={()=> setStatus(name)}
                             key={name} 
-                            className={`${status === name ? 'text-teal-300 before:w-full before:bg-teal-300' : 'before:bg-teal-950 dark:before:bg-teal-50'} ${className.li}`}>
+                            className={`${status === name ? 'bg-teal-300 text-teal-950 before:w-full before:bg-teal-300' : 'before:bg-teal-950 dark:before:bg-teal-50 dark:bg-stone-900'} ${className.li}`}>
                             <Icon size={22}/> {name} { status === name  ? ordersNum : ''}
                        </li>
 
@@ -102,8 +103,8 @@ export default function ordersPage () {
             <div className="max-w-full">
                 {
                     isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> :
-                    orders?.map((order)=> (
-                        <OrderCard key={order.id} data={order} setOrders={setOrders} />
+                    orders?.map((order,index)=> (
+                        <OrderCard key={order.id} index={index} data={order} setOrders={setOrders} />
                     ))
                 }
                 {

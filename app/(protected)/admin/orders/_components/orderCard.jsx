@@ -15,7 +15,7 @@ const className = {
     title_2: "text-teal-900 dark:text-teal-100 text-sm font-bold mb-2",
 }
 
-export const OrderCard = ({data,setOrders})=> {
+export const OrderCard = ({data,setOrders,index})=> {
 
     const {
         id,createdAt,
@@ -30,12 +30,13 @@ export const OrderCard = ({data,setOrders})=> {
     const [isProducts,setIsProducts] = useState(false)
 
     return (
-        <div className="capitalize relative p-3 rounded-md bg-teal-50 dark:bg-stone-950 mb-3 border border-teal-100 dark:border-stone-700">
+        <div className="capitalize relative p-3 rounded-md bg-teal-50 dark:bg-stone-950 mb-8 border border-teal-100 dark:border-stone-700">
             <Editing 
                 clientSecret={paymentClientSecret} 
                 status={status} 
                 setOrders={setOrders} 
                 />
+            <p className=" w-8 h-8 absolute top-0 left-1/2 -translate-y-1/2 -translate-x-1/2 p-3 rounded-full text-lg text-teal-50 dark:text-teal-950 bg-teal-500 dark:bg-teal-50  flex justify-center items-center">{index + 1}</p>
             <div className="">
                 <div className="flex lg:flex-row flex-col gap-5">
                     <div className=" flex-[33%]">
