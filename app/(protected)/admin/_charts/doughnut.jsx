@@ -24,7 +24,7 @@ export const DoughnutChart = ({labels,chartData,bgColors,text})=> {
     const data = {
         labels : labels,
         datasets:[ {
-            label: 'products',
+            label:text,
             data :chartData,
             backgroundColor: bgColors,
             borderColor: bgColors
@@ -55,12 +55,12 @@ export const DoughnutChart = ({labels,chartData,bgColors,text})=> {
 
             const {ctx,width,height} = chart;
             ctx.restore();
-            const fontSize = (height / 114).toFixed(2);
-             ctx.font = `${fontSize}em sans-serif`;
+            // const fontSize = (height / 114).toFixed(2);
+             ctx.font = `20px sans-serif`;
              ctx.textBaseLine = 'middle';
 
              const textX = Math.round((width - ctx.measureText(text).width) / 2);
-             const textY = height / 2;
+             const textY = (height / 2) + 10;
 
              ctx.fillText(text,textX,textY);
 
