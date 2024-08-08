@@ -62,8 +62,6 @@ export async function GET () {
         const allWomenProduct = await db.product.count({where: {category: 'women'}});
         const allKidsProduct = await db.product.count({where: {category: 'kids'}});
 
-        console.log(allProducts,menSection,womenSection,kidsSection)
-
         const data = [
             {
                 name: 'men',
