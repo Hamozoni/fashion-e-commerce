@@ -26,19 +26,14 @@ ChartJs.register(
 );
 
 
-export const OrdersStatusChart = ({ordersData})=> {
+export const LineChart = ({ChartData,labels,bgColors,text})=> {
 
     const data = {
-        labels : ["pending","prossing","compeleted","canceled"],
+        labels : labels,
         datasets:[ {
-            label: 'Order Status',
-              data : [
-                ordersData?.pendingOrders,
-                ordersData?.processingOrders,
-                ordersData?.completedOrders,
-                ordersData?.canceledOrders
-            ],
-            backgroundColor: 'rgb(75,192,192)',
+            label: text,
+              data : ChartData,
+            backgroundColor: bgColors,
             borderColor: "rgb(75,192,192)",
             tenstion: 0.4
         }]
@@ -47,7 +42,7 @@ export const OrdersStatusChart = ({ordersData})=> {
         responsive: true,
         title: {
             display: true,
-            text: 'Orders Status'
+            text,
         }
 
     };

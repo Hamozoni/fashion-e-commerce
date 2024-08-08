@@ -1,8 +1,8 @@
 "use client"
 
-import {useEffect, useState } from "react";
+import {useContext, useEffect, useState } from "react";
 import { fetchData } from "../../../../lip/fetchData";
-import {OrdersStatusChart} from "./ordersStatusChart";
+import {LineChart} from "../_charts/line";
 import Loading from "../loading";
 import { Error } from "../../../../ui/components/error";
 import {SummaryFilter} from "./summaryFilter";
@@ -14,7 +14,6 @@ export const OrderStatus = () => {
     const [ordersData,setOrdersData] = useState({});
     const [isLoading,setIsLoading] = useState(false);
     const [error,setError] = useState(null);
-
 
 
     const handleFetchStatus = ()=> {
@@ -37,24 +36,22 @@ export const OrderStatus = () => {
         handleFetchStatus()
     },[filteredBy]);
 
-
-
     const ordersStatusSammary = [
         {
             name: 'pending',
-            data: ordersData?.pendingOrders,
+            data: ordersData?.pending,
         },
         {
             name: 'prossing',
-            data: ordersData?.processingOrders
+            data: ordersData?.processing
         },
         {
             name: 'compeletaed',
-            data:  ordersData?.completedOrders,
+            data:  ordersData?.completed,
         },
         {
             name: 'canceled',
-            data:  ordersData?.canceledOrders
+            data:  ordersData?.canceled
         },
     ]
 
@@ -62,7 +59,7 @@ export const OrderStatus = () => {
     return (
         <section className="p-3 rounded-md bg-teal-50 dark:bg-stone-950 border border-teal-100 dark:border-stone-900">
             <SummaryFilter
-                data={ordersStatusFilterDates}
+               data={ordersStatusFilterDates}
                setFilteredBy={setFilteredBy}
                filteredBy={filteredBy}
                title='orders status'
@@ -83,7 +80,12 @@ export const OrderStatus = () => {
                         ))
                     }
                 </ul>
-                <OrdersStatusChart ordersData={ordersData}  />
+                <LineChart 
+                labels={['pending','prossing','completed','canceled']}
+                ChartData={[ordersData?.pending,ordersData?.processing,ordersData?.completed,ordersData?.canceled]}
+                bgColors={['#00968896','#ffc10770','#ff572287']}
+                text='Orders Status'
+                 />
             </div>
           }
         </section>

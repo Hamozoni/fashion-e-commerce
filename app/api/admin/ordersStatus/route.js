@@ -8,7 +8,7 @@ export async function GET (req) {
 
 
     try{
-        const completedOrders = await db.customerOrder.count({
+        const completed = await db.customerOrder.count({
             where : {
                 AND : [
                     {
@@ -23,7 +23,7 @@ export async function GET (req) {
             }
 
         });
-        const pendingOrders = await db.customerOrder.count({
+        const pending = await db.customerOrder.count({
             where : {
                 AND : [
                     {
@@ -37,7 +37,7 @@ export async function GET (req) {
                 ]
             }
         });
-        const canceledOrders = await db.customerOrder.count({
+        const canceled = await db.customerOrder.count({
             where : {
                 AND : [
                     {
@@ -51,7 +51,7 @@ export async function GET (req) {
                 ]
             }
         });
-        const processingOrders = await db.customerOrder.count({
+        const processing = await db.customerOrder.count({
             where : {
                 AND : [
                     {
@@ -67,10 +67,10 @@ export async function GET (req) {
         });
 
         const data = {
-            completedOrders,
-            pendingOrders,
-            canceledOrders,
-            processingOrders,
+            completed,
+            pending,
+            canceled,
+            processing,
         }
 
         return NextResponse.json(data,{status: 200})
