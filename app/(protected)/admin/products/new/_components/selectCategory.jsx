@@ -6,7 +6,7 @@ import { IoMdArrowDropright,IoMdArrowDropdown } from "react-icons/io";
 import { GiCheckMark } from "react-icons/gi";
 
 const className = {
-    container: 'flex flex-col gap-3 mb-3 group rounded-md',
+    container: 'flex flex-col gap-3 mb-3 group rounded-md flex-1',
     label: 'text-lg font-bold text-gray-500 dark:text-stone-300 group-hover:text-teal-500',
     select: 'cursor-pointer px-3 py-1 flex items-center justify-between gap-3 w-[180px] bg-gray-50 dark:bg-stone-950 ',
     ul:"w-full bg-gray-50 dark:bg-stone-950 shadow-md",
@@ -76,7 +76,7 @@ export const SelectCategory = ()=> {
                     <div 
                          onClick={()=> setIsSubCategoryModel(!isSubCatecoryModel)}
                         className={`${className.select} text-lg font-medium text-teal-950 dark:text-teal-50`}>
-                        <h5 >{subCategoryName || 'subcategory'}</h5>
+                        <h5 className="text-[16px] font-medium text-gray-600"  >{subCategoryName || 'subcategory'}</h5>
                         {
                             isSubCatecoryModel ? 
                             <IoMdArrowDropdown size={22}/> :

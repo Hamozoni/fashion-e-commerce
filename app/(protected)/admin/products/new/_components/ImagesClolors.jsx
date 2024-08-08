@@ -48,7 +48,7 @@ export function ImagesColor() {
     }
 
   return (
-    <section className="mb-10 pb-10 px-3 border border-teal-200 dark:border-stone-800 rounded-md bg-teal-50 ">
+    <section className="mb-10 pb-10 px-3 border border-teal-200 rounded-md bg-teal-50 dark:bg-stone-950 dark:border-stone-900">
 
         <header className="my-3">
             <h4 
@@ -59,7 +59,7 @@ export function ImagesColor() {
         <div >
                 {
                     productColors?.map((_,index)=> (
-                        <div className="p-2 border-2 border-gray-200 dark:border-stone-800 rounded-md mb-5 shadow-sm ">
+                        <div className="p-2 border border-gray-200 dark:border-stone-900 dark:bg-black rounded-md mb-5 shadow-sm ">
                             <div key={index} className="flex items-center gap-3 mb-3 flex-wrap">
                             <FormInput
                                     onClick={(e)=> setProductColors((prev)=> {

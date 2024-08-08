@@ -10,7 +10,7 @@ export const ProductInfoForm = ()=> {
     const {detValidError,setProductDetails} = useContext(newProductContext);
 
     return (
-        <div className="bg-teal-50 p-3 rounded-md border border-teal-100">
+        <div className="bg-teal-50 dark:bg-black p-3 rounded-md border border-teal-100 dark:border-stone-800">
             <div className="flex gap-5 flex-wrap">
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
