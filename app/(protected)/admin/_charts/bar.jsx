@@ -24,20 +24,15 @@ ChartJs.register(
 );
 
 
-export const RevenueChart = ({revenueData})=> {
+export const BarChart = ({chartData,labels,text,bgColors})=> {
 
     const data = {
-        labels : [revenueData[0]?.name,revenueData[1]?.name,revenueData[2]?.name,revenueData[3]?.name],
+        labels : labels,
         datasets:[ 
             {
-              label: 'revenue',
-              data : [
-                revenueData[0]?.revenue / 100 || 0,
-                revenueData[1]?.revenue / 100 || 0,
-                revenueData[2]?.revenue / 100 || 0,
-                revenueData[3]?.revenue / 100 || 0,
-              ],
-              backgroundColor:["#6be1c67a",'#e16b967a','#6b94e17a','#e06be17a'],
+              label: text,
+              data : chartData,
+              backgroundColor:bgColors,
               borderColor: "#7ee1dea1",
               borderWidth: '#7ee1dea1',
               color: '#7ee1dea1',
@@ -49,7 +44,7 @@ export const RevenueChart = ({revenueData})=> {
         responsive: true,
         title: {
             display: true,
-            text: 'Orders Status'
+            text,
         }
 
     };

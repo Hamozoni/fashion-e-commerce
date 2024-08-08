@@ -59,6 +59,8 @@ export const DoughnutChart = ({labels,chartData,bgColors,text})=> {
              ctx.font = `16px sans-serif`;
              ctx.textBaseLine = 'middle';
 
+             ctx.color = '#7ee1dea1'
+
              const textX = Math.round((width - ctx.measureText(text).width) / 2);
              const textY = (height / 2) + 10;
 

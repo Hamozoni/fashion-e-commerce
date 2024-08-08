@@ -13,13 +13,6 @@ export const OverviewHeader = ()=> {
 
     const { overviewData} = useContext(OverviewContext);
 
-    console.log(overviewData)
-    // totalRevenue: totalRevenue?._sum?.totalPaidInCent,
-    // totalOrderdProducts: totalRevenue?._sum?.totalProductsQuantity,
-    // totalOrders,
-    // totalCustomers,
-    // totalAdmins
-
     const overview = [
         {
             name: 'total revenue',
