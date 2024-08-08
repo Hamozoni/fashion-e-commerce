@@ -40,28 +40,8 @@ export const  Navbar = ()=> {
     if(error) return <Error onClick={handleFetch} />
 
     return (
-        <header>
-            <div className="sm:flex items-center gap-3 justify-center mb-3">
-                <DoughnutChart
-                    labels={['men','women','kids']}
-                    chartData={sectionsFilteredData?.map(e=> e.products)}
-                    bgColors={['#00968896','#ff572287','#ffc10770']}
-                    text='Products'
-                 />
-                   <DoughnutChart
-                    labels={['men','women','kids']}
-                    chartData={sectionsFilteredData?.map(e=> e.items)}
-                    bgColors={['#00968896','#ff572287','#ffc10770']}
-                    text='Items'
-                 />
-                 <DoughnutChart
-                    labels={['men','women','kids']}
-                    chartData={sectionsFilteredData?.map(e=> e.quantity)}
-                    bgColors={['#00968896','#ff572287','#ffc10770']}
-                    text='Quantity'
-                 />
-            </div>
-            <nav>
+        <header className="flex items-start gap-3">
+            <nav className="flex-1">
                 <ul className="flex items-center gap-3 overflow-x-auto w-full">
                    {
                       sectionsData?.map(({name,items,quantity,products})=> (
@@ -74,6 +54,26 @@ export const  Navbar = ()=> {
                    }
                 </ul>
             </nav>
+            <div className="max-[120px]">
+                <DoughnutChart
+                    labels={['men','women','kids']}
+                    chartData={sectionsFilteredData?.map(e=> e.products)}
+                    bgColors={['#ffc10770','#ff572287','#00968896']}
+                    text='Products'
+                 />
+                   <DoughnutChart
+                    labels={['men','women','kids']}
+                    chartData={sectionsFilteredData?.map(e=> e.items)}
+                    bgColors={['#00968896','#ffc10770','#ff572287']}
+                    text='Items'
+                 />
+                 <DoughnutChart
+                    labels={['men','women','kids']}
+                    chartData={sectionsFilteredData?.map(e=> e.quantity)}
+                    bgColors={['#ff572287','#00968896','#ffc10770']}
+                    text='Quantity'
+                 />
+            </div>
         </header>
     )
 }
