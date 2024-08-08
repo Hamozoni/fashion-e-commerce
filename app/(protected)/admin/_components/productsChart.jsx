@@ -40,13 +40,20 @@ export const  ProductsChart = ()=> {
     return (
         <section className="p-3 rounded-md border border-teal-100 bg-teal-50 my-8">
             <header>
-                <h4 className="text-teal-950 dark:text-teal-50 text-lg font-bold mb-3 capitalize">
+                <h4 className="text-teal-950 dark:text-teal-50 text-lg font-bold capitalize">
                     products status
                 </h4>
-                <ul>
+                <ul className="flex items-center gap-3 my-3">
                     {
                         productsData?.map(({name,products,items,quantity})=>(
-                            <li key={name}></li>
+                            <li 
+                                className="flex-grow text-center p-3 rounded-md bg-white capitalize"
+                                key={name}>
+                                <h4 className="text-teal-950 text-lg font-bold mb-2">{name}</h4>
+                                <h6 className="text-xs font-bold text-gray-500">products {products || 0}</h6>
+                                <h6 className="text-xs font-bold text-gray-500">items {items || 0}</h6>
+                                <h6 className="text-xs font-bold text-gray-500">quantity {quantity || 0}</h6>
+                            </li>
                         ))
                     }
                 </ul>
