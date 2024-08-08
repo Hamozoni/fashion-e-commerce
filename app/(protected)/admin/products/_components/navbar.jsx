@@ -10,6 +10,7 @@ import {DoughnutChart} from "../../_charts/doughnut"
 export const  Navbar = ()=> {
 
     const [sectionsData,setSectionData] = useState([]);
+    const [sectionsFilteredData,setSectionsFilteredData] = useState([]);
     const [isLoading,setIsLoading] = useState(false);
     const [error,setError] = useState(null);
 
@@ -18,7 +19,9 @@ export const  Navbar = ()=> {
         setIsLoading(true);
         fetchData('admin/products/sectionsQuantity')
         .then((data)=> {
-            setSectionData(data)
+            setSectionData(data);
+            const filterdData = data.filter(e=> e.name !== 'all')
+            setSectionsFilteredData(filterdData)
             console.log(data)
         })
         .catch((error)=> {
@@ -67,8 +70,25 @@ export const  Navbar = ()=> {
                    }
                 </ul>
             </nav>
-            <div className="">
-                {/* <DoughnutChart /> */}
+            <div className="sm:flex items-center gap-3 justify-center">
+                <DoughnutChart
+                    labels={['men','women','kids']}
+                    chartData={sectionsFilteredData?.map(e=> e.products)}
+                    bgColors={['#00968896','#ff572287','#ffc10770']}
+                    text='Products'
+                 />
+                   <DoughnutChart
+                    labels={['men','women','kids']}
+                    chartData={sectionsFilteredData?.map(e=> e.items)}
+                    bgColors={['#00968896','#ff572287','#ffc10770']}
+                    text='Items'
+                 />
+                 <DoughnutChart
+                    labels={['men','women','kids']}
+                    chartData={sectionsFilteredData?.map(e=> e.quantity)}
+                    bgColors={['#00968896','#ff572287','#ffc10770']}
+                    text='Quantity'
+                 />
             </div>
         </header>
     )

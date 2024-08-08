@@ -5,6 +5,7 @@ import {
     Chart as ChartJs,
     ArcElement,
     Tooltip,
+    Title,
     Legend
 } from "chart.js";
 import {useEffect, useRef} from "react";
@@ -14,26 +15,23 @@ import {useEffect, useRef} from "react";
 ChartJs.register(
     ArcElement,
     Tooltip,
-    Legend
+    Legend,
+    Title
 );
 
-export const DoughnutChart = (labels,chartData,bgColors)=> {
+export const DoughnutChart = ({labels,chartData,bgColors,text})=> {
 
     const data = {
         labels : labels,
         datasets:[ {
-            label: 'Order Status',
+            label: 'products',
             data :chartData,
-            backgroundColor: bgColors
+            backgroundColor: bgColors,
+            borderColor: bgColors
         }]
     };
     const options = {
         responsive: true,
-        title: {
-            display: true,
-            text: 'Orders Status'
-        }
-
     };
 
     const chartRef = useRef(null)
@@ -50,10 +48,29 @@ export const DoughnutChart = (labels,chartData,bgColors)=> {
 
         return ()=> window.removeEventListener('resize',handleResize)
     },[]);
+
+    const textCenterPlugin = {
+        id: 'textCenter',
+        beforeDraw : (chart)=> {
+
+            const {ctx,width,height} = chart;
+            ctx.restore();
+            const fontSize = (height / 114).toFixed(2);
+             ctx.font = `${fontSize}em sans-serif`;
+             ctx.textBaseLine = 'middle';
+
+             const textX = Math.round((width - ctx.measureText(text).width) / 2);
+             const textY = height / 2;
+
+             ctx.fillText(text,textX,textY);
+
+             ctx.save()
+        }
+    }
     
     return (
         <div className=" relative w-full h-full p-3 bg-white dark:bg-black  rounded-md mt-3">
-            <Doughnut ref={chartRef} options={options} data={data} />
+            <Doughnut ref={chartRef} options={options} data={data} plugins={[textCenterPlugin]} />
         </div>
     )
 }
