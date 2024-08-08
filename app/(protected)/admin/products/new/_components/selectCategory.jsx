@@ -23,15 +23,15 @@ export const SelectCategory = ()=> {
     const [subCategoryName,setSubCategoryName] = useState('');
 
     return (
-        <div className="flex gap-5">
+        <div className="flex gap-5 flex-wrap">
             <div className={className.container}>
                 <h4 className={className.label}>category *</h4>
 
                 <div className={`${isCategoryModel? 'border-teal-300' : 'border-gray-200 dark:border-stone-700'}  w-fit`}>
                     <div 
                          onClick={()=> setIsCategoryModel(!isCategoryModel)}
-                         className={` ${className.select} text-lg font-medium text-teal-950 dark:text-teal-50`}>
-                        <h5 >{categoryName || 'category'}</h5>
+                         className={` ${className.select} `}>
+                        <h5 className="text-[16px] font-medium text-gray-600" >{categoryName || 'category'}</h5>
                         {
                             isCategoryModel ? 
                             <IoMdArrowDropdown size={22}/> :
@@ -87,6 +87,7 @@ export const SelectCategory = ()=> {
                         isSubCatecoryModel ? 
                         <ul className={className.ul}>
                             {
+                                categoryName?.length > 0 ?
                                 category?.sub?.map(({name,id})=> (
                                 <li
                                 className={`${name === subCategoryName ? 'bg-gray-200 dark:bg-stone-800' : 'hover:bg-gray-100 dark:hover:bg-stone-900'} ${className.li}`}
@@ -111,10 +112,10 @@ export const SelectCategory = ()=> {
                                         : null
                                     }
                                 </li>
-                            ))
-                            }
-                        </ul> : 
-                        <p>select category first</p>
+                            )) 
+                            :<li className="p-2 text-xs font-bold">select category first</li>
+                        }
+                        </ul> : null
                     }
 
                 </div>
