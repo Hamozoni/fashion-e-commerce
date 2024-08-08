@@ -1,13 +1,9 @@
 "use client"
-import {Line} from "react-chartjs-2";
+import {Doughnut} from "react-chartjs-2";
 
 import { 
     Chart as ChartJs,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
+    ArcElement,
     Tooltip,
     Legend
 } from "chart.js";
@@ -16,28 +12,19 @@ import {useEffect, useRef} from "react";
 
 
 ChartJs.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
+    ArcElement,
     Tooltip,
     Legend
 );
 
-
-export const ProductsChart = ({productData})=> {
-
-    const chartLabel = productData?.map((item)=> item?.name);
-    const chartData = productData?.map((item)=>item?.items );
-    const chartData2 = productData?.map((item)=>item?.quantity );
+export const DoughnutChart = (labels,chartData,bgColors)=> {
 
     const data = {
-        labels : [chartLabel,chartLabel],
+        labels : labels,
         datasets:[ {
             label: 'Order Status',
-            data :[chartData,chartData2],
-            borderColor: "rgb(75,192,192)"
+            data :chartData,
+            backgroundColor: bgColors
         }]
     };
     const options = {
@@ -63,10 +50,10 @@ export const ProductsChart = ({productData})=> {
 
         return ()=> window.removeEventListener('resize',handleResize)
     },[]);
-
+    
     return (
         <div className=" relative w-full h-full p-3 bg-white dark:bg-black  rounded-md mt-3">
-            <Line ref={chartRef} options={options} data={data} />
+            <Doughnut ref={chartRef} options={options} data={data} />
         </div>
     )
-};
+}

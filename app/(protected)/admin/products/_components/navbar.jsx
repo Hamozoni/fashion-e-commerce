@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import {fetchData} from "../../../../../lip/fetchData";
 import { Loading } from "../../../../../ui/models/Loading";
 import { Error } from "../../../../../ui/components/error";
-import {ProductsChart} from "./productsChart"
+import {DoughnutChart} from "../../_charts/doughnut"
+
 export const  Navbar = ()=> {
 
     const [sectionsData,setSectionData] = useState([]);
@@ -32,6 +33,7 @@ export const  Navbar = ()=> {
     },[]);
 
     if(isLoading) return <Loading />
+
     if(error) return <Error onClick={handleFetch} />
 
     return (
@@ -64,10 +66,10 @@ export const  Navbar = ()=> {
                       ))
                    }
                 </ul>
-                <div className="">
-                    <ProductsChart productData={sectionsData}  />
-                </div>
             </nav>
+            <div className="">
+                {/* <DoughnutChart /> */}
+            </div>
         </header>
     )
 }
