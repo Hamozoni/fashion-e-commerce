@@ -15,10 +15,11 @@ export const  ProductsChart = ()=> {
 
 
     const handleFetch = ()=> {
+        setError(null)
         setIsLoading(true);
         fetchData('admin/products/sectionsQuantity')
         .then((data)=> {
-            setProductsData(filterdData)
+            setProductsData(data)
             console.log(data)
         })
         .catch((error)=> {
@@ -37,8 +38,21 @@ export const  ProductsChart = ()=> {
     if(error) return <Error onClick={handleFetch} />
 
     return (
-        <div className="">
-            <div className="sm:flex items-center gap-3">
+        <section className="p-3 rounded-md border border-teal-100 bg-teal-50 my-8">
+            <header>
+                <h4 className="text-teal-950 dark:text-teal-50 text-lg font-bold mb-3 capitalize">
+                    products status
+                </h4>
+                <ul>
+                    {
+                        productsData?.map(({name,products,items,quantity})=>(
+                            <li key={name}></li>
+                        ))
+                    }
+                </ul>
+
+            </header>
+            <div className="sm:flex items-center gap-3 bg-white">
                 <DoughnutChart
                     labels={['men','women','kids']}
                     chartData={productsData?.map(e=> e.products)}
@@ -58,6 +72,6 @@ export const  ProductsChart = ()=> {
                     text='Quantity'
                  />
             </div>
-        </div>
+        </section>
     )
 }
