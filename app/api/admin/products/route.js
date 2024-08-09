@@ -1,0 +1,58 @@
+
+import { skip } from "node:test";
+import {db} from "../../../../lip/db";
+import { NextResponse } from "next/server";
+export async function GET (req){
+
+    const {searchParams} = new URL(req.url);
+
+    const category = searchParams.get('category');
+    const sub = searchParams.get('sub');
+    const page = searchParams.get('page');
+
+    const take = 10;
+
+    const skip = (take * +page) - take
+
+
+    try{
+        if(category === 'all') {
+
+            const products = await db.product.findMany({
+                take,
+                skip
+            });
+
+            return NextResponse.json(products,{status: 200});
+        }else {
+            if(sub === 'all') {
+                const products = await db.product.findMany({
+                    where : {
+                        category,
+                    },
+                    take,
+                    skip
+                });
+    
+                return NextResponse.json(products,{status: 200});
+            }else {
+                const products = await db.product.findMany({
+                    where : {
+                        category,
+                        subcategory: sub,
+                    },
+                    take,
+                    skip
+                });
+    
+                return NextResponse.json(products,{status: 200});
+            }
+        }
+
+    }
+    catch (error) {
+        return NextResponse.json(error,{status: 500});
+    }
+
+
+}
