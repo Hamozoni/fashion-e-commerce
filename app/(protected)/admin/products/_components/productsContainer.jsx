@@ -15,7 +15,7 @@ export const ProductsContainer = ()=> {
         fetchData(`admin/products?category=${categoryName}&sub=${subcategoryName}&page=${page}`)
         .then((data)=> {
             console.log(data)
-            setProducts(data)
+            setProducts(data?.products)
         })
         .catch((error)=> {
             console.log(error)

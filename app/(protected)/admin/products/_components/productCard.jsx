@@ -2,7 +2,7 @@ import Image from "next/image"
 import {getCurrency} from "../../../../../lip/getCurrency";
 
 export const ProductCard = ({product})=> {
-    const {imagePath,brand,name,colors,size} = product
+    const {imagePath,brand,name,colors,sizes} = product
     return (
         <div className="">
             <div className="">
@@ -32,7 +32,7 @@ export const ProductCard = ({product})=> {
                                     </div>
                                 </div>
                                 {
-                                    size?.map(({colorName : color,name,stackQuantity})=> (
+                                    sizes?.map(({colorName : color,name,stackQuantity})=> (
                                         colorName === color ?
                                         <div className="">
                                             <h6>size: {name}</h6>
