@@ -7,10 +7,11 @@ export const ProductsContainer = ()=> {
 
     const [categoryName,setCategoryName] = useState('all');
     const [subcategoryName,setSubcategoryName] = useState('all');
-    const [products,setProducts] = useState([])
+    const [products,setProducts] = useState([]);
+    const [page,setPage] = useState(1);
 
     useEffect(()=> {
-        fetchData(`admin/products?category=${categoryName}&sub=${subcategoryName}`)
+        fetchData(`admin/products?category=${categoryName}&sub=${subcategoryName}&page=${page}`)
         .then((data)=> {
             console.log(data)
             setProducts(data)

@@ -8,7 +8,7 @@ export async function GET (req){
 
     const category = searchParams.get('category');
     const sub = searchParams.get('sub');
-    const page = searchParams.get('page');
+    const page = searchParams.get('page') || 1;
 
     const take = 10;
 
@@ -20,10 +20,23 @@ export async function GET (req){
 
             const products = await db.product.findMany({
                 take,
-                skip
+                skip,
+                includes: {
+                    sizes: true,
+                    images: true,
+                    colors: true
+                }
             });
 
-            return NextResponse.json(products,{status: 200});
+            const count = await db.product.count();
+
+            const data = {
+                count,
+                products
+            }
+
+            return NextResponse.json(data,{status: 200});
+
         }else {
             if(sub === 'all') {
                 const products = await db.product.findMany({
@@ -34,23 +47,62 @@ export async function GET (req){
                     skip
                 });
     
-                return NextResponse.json(products,{status: 200});
+                const count = await db.product.count({
+                    where : {
+                        category,
+                    },
+                });
+
+                const data = {
+                    count,
+                    products
+                }
+    
+                return NextResponse.json(data,{status: 200});
             }else {
                 const products = await db.product.findMany({
                     where : {
-                        category,
-                        subcategory: sub,
-                    },
-                    take,
-                    skip
-                });
+                        AND:[
+                            {
+                                category,
+                            },
+                            {
+                                subcategory: sub,
+
+                            }
+                            ]
+                        },
+                        take,
+                        skip
+                   }
+            );
     
-                return NextResponse.json(products,{status: 200});
+                const count = await db.product.count({
+                    where : {
+                        AND:[
+                            {
+                                category,
+                            },
+                            {
+                                subcategory: sub,
+
+                            }
+                            ]
+                        },
+                });
+
+                const data = {
+                    count,
+                    products
+                }
+    
+                return NextResponse.json(data,{status: 200});
             }
         }
 
     }
     catch (error) {
+        console.log(error)
         return NextResponse.json(error,{status: 500});
     }
 
