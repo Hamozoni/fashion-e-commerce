@@ -7,7 +7,7 @@ import { useState } from "react";
 export const Navbar = ()=> {
     const [categoryName,setCategoryName] = useState('all');
     const [subcategoryName,setSubcategoryName] = useState('all');
-    const [subCategory,setSubCategory] = useState(categoriesData[0]?.sub);
+    const [subCategory,setSubCategory] = useState('all');
     const [isSubcategory,setIsSubcategory] = useState(false)
 
     const handleCategory = (category)=> {
