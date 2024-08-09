@@ -38,15 +38,15 @@ export const ProductCard = ({product})=> {
 
                                     </div>
                                 </div>
-                                <div className="flex gap-2 items-center">
-                                    <div className="p-2 rounded-md bg-teal-50">
+                                <div className="flex gap-2 items-center p-2 rounded-md bg-teal-50">
+                                    <div className="">
                                         <h6 className={className.smStitle}>sizes: </h6>
                                         <h6 className={className.smStitle}>quantities: </h6>
                                     </div>
                                     {
                                         sizes?.map(({colorName : color,shortName,stackQuantity})=> (
                                             colorName === color ?
-                                            <div className="">
+                                            <div className="text-center bg-white p-2 rounded-md">
                                                 <h6 className={className.smStitle}>{shortName}</h6>
                                                 <p className={className.smStitle}>{stackQuantity}</p>
                                             </div>
