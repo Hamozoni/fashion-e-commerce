@@ -21,7 +21,7 @@ export async function GET (req){
             const products = await db.product.findMany({
                 take,
                 skip,
-                includes: {
+                include : {
                     sizes: true,
                     images: true,
                     colors: true
@@ -42,6 +42,11 @@ export async function GET (req){
                 const products = await db.product.findMany({
                     where : {
                         category,
+                    },
+                    include : {
+                        sizes: true,
+                        images: true,
+                        colors: true
                     },
                     take,
                     skip
@@ -71,6 +76,11 @@ export async function GET (req){
 
                             }
                             ]
+                        },
+                        include : {
+                            sizes: true,
+                            images: true,
+                            colors: true
                         },
                         take,
                         skip
