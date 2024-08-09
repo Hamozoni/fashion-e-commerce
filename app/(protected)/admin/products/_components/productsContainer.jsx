@@ -2,6 +2,7 @@
 import {fetchData} from "../../../../../lip/fetchData";
 import { useEffect, useState } from "react";
 import {Navbar} from "./navbar";
+import {ProductCard} from "./productCard"
 
 export const ProductsContainer = ()=> {
 
@@ -30,6 +31,13 @@ export const ProductsContainer = ()=> {
                 setSubcategoryName={setSubcategoryName}
                 subcategoryName={subcategoryName}
                 />
+            <div className="">
+                {
+                    products?.map((product)=> (
+                        <ProductCard key={product?.id} product={product} />
+                    ))
+                }
+            </div>
         </div>
     )
 };
