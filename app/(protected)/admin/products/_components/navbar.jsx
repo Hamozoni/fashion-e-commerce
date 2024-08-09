@@ -62,7 +62,7 @@ export const Navbar = ()=> {
                 </div>
                 {
                     isSubcategory ? 
-                <ul className=" absolute right-0 top-full w-full bg-teal-50 p-3 rounded-md border border-teal-100">
+                <ul className=" absolute right-0 top-[102%] w-full bg-teal-50 p-3 rounded-md border border-teal-100">
                     <li onClick={()=> setSubcategoryName('all')}>
                         all
                     </li>
