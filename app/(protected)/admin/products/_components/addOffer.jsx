@@ -14,15 +14,12 @@ export const AddOffer = ({product})=> {
     return (
         <>
             <div className="absolute -top-6 right-2">
-                <div className="max-w-[100px]">
-                    <ButtonWithIcon 
-                        text={isOfferModel ? 'open':'offer' }
-                        Icon={isOfferModel ? FaMinus : IoMdAdd} 
-                        type={isOfferModel ? 'delete' :'primary'}
-                        onClick={()=> 
-                        setIsOfferModel(true)} 
-                        />
-                </div>
+                <button 
+                     onClick={()=> setIsOfferModel(true)} 
+                     className="max-w-[100px] flex items-center gap-3 rounded-md bg-teal-50">
+    `                {isOfferModel ? 'open':'create offer' }
+                    {isOfferModel ? <FaMinus /> : <IoMdAdd/>} `
+                </button>
             </div>
             {
                 isOfferModel ? 

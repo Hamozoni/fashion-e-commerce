@@ -55,6 +55,7 @@ export const zProductDetailsSchema =  z.object({
 
 
 export const addingOfferSchema = z.object({
+  id: z.string(),
   offerPrice: z.number().min(100),
   expiresDate: z.date().refine(date=> {
     const now = new Date();

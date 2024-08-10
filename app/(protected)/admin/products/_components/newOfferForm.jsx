@@ -32,7 +32,8 @@ export const NewOfferForm = ({item})=> {
 
         const data = {
             offerPrice: priceInput,
-            expiresDate :  new Date(dateInput)
+            expiresDate :  new Date(dateInput),
+            id: item?.id
         }
 
        const validate = addingOfferSchema.safeParse(data);
