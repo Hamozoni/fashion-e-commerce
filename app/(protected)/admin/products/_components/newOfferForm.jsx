@@ -24,22 +24,33 @@ export const NewOfferForm = ({item})=> {
 
         setError(null);
 
-        if(item.priceInHalala >= priceInput) {
+        if(item.priceInHalala <= priceInput) {
             setError('offer price should be less the original price');
             return
         }
         const formData = new FormData();
-        formData.set('offerPrice',Number(priceInput));
+        formData.set('offerPrice',priceInput);
         formData.set('expiresDate',dateInput);
+
+        const data = {
+            offerPrice: priceInput,
+            expiresDate :  new Date(dateInput)
+        }
 
         console.log(dateInput)
 
-       const validate = addingOfferSchema.safeParse(Object.fromEntries(formData.entries()));
+       const validate = addingOfferSchema.safeParse(data);
 
        if(validate.success){
+            PostData('admin/sales',formData)
+            .then((data)=> {
+                console.log(data)
+            }).catch((error)=> {
 
+            })
        }else {
-           console.log(JSON.parse(validate.error));
+           console.log(data);
+           console.log(validate);
        }
     };
 
@@ -49,7 +60,7 @@ export const NewOfferForm = ({item})=> {
 
     return (
         <form onSubmit={(e)=> handleSubmit(e)} className=" mt-8 mb-3">
-            <div className="flex items-center gap-3 ">
+            <div className="sm:flex items-center gap-3 ">
                 <div className="flex-1">
                     <label 
                         className={className.smallHead}
@@ -77,7 +88,7 @@ export const NewOfferForm = ({item})=> {
                         offer expires at: 
                     </label>
                     <input 
-                        onClick={(e)=> setDateInput(e.target.value)}
+                        onChange={(e)=> setDateInput(e.target.value)}
                         className="w-full rounded-md bg-white overflow-hidden p-3 my-3" 
                         type="datetime-local" 
                         name="" 
