@@ -18,25 +18,28 @@ export async function PUT (req) {
             id
         };
 
-
-    const validate = addingOfferSchema.safeParse(data);
-
-    if(validate.success) {
-        //  const newOffer = await db.productColors.update({
-        //     where: {id},
-        //     data: {
-        //         offerPriceInHalala: +offerPrice,
-        //         offerExpiresAt: new Date(expiresDate).toISOString()
-        //     }
-
-        //  })
-
-         
+        const validate = addingOfferSchema.safeParse(data);
+        console.log(validate.success)
+        
         return NextResponse.json(data,{status: 200});
 
-    }else {
-        return NextResponse.json(JSON.parse(validate.error),{status: 500})
-    }
+
+    // if(validate.success) {
+    //      const newOffer = await db.productColors.update({
+    //         where: {id},
+    //         data: {
+    //             offerPriceInHalala: +offerPrice,
+    //             offerExpiresAt: new Date(expiresDate).toISOString()
+    //         }
+
+    //      })
+
+         
+        
+
+    // }else {
+    //     return NextResponse.json(JSON.parse(validate.error),{status: 500})
+    // }
       
 
     }

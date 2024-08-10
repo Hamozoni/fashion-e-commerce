@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { FaMinus } from "react-icons/fa6";
-import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
 import { IoMdAdd } from "react-icons/io";
 import { CardHeader } from "./productCard";
 import { ProductColors } from "./productColors";
@@ -13,12 +12,12 @@ export const AddOffer = ({product})=> {
 
     return (
         <>
-            <div className="absolute -top-6 right-2">
+            <div className="absolute -top-6 right-2 ">
                 <button 
                      onClick={()=> setIsOfferModel(true)} 
-                     className="max-w-[100px] flex items-center gap-3 rounded-md bg-teal-50">
-    `                {isOfferModel ? 'open':'create offer' }
-                    {isOfferModel ? <FaMinus /> : <IoMdAdd/>} `
+                     className="capitalize max-w-[150px] flex items-center gap-2 hover:scale-95  rounded-md text-xs font-bold bg-teal-50 p-2">
+                    {isOfferModel ? <FaMinus /> : <IoMdAdd/>}
+                    {isOfferModel ? 'open':'create offer' }
                 </button>
             </div>
             {

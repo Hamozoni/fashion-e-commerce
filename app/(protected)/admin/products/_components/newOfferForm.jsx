@@ -39,7 +39,7 @@ export const NewOfferForm = ({item})=> {
        const validate = addingOfferSchema.safeParse(data);
 
        if(validate.success){
-        updateData(`admin/sales?offerPrice=${data?.priceInput}&expiresAt=${data?.expiresDate}&id=${item?.id}`)
+        updateData(`admin/sales?offerPrice=${data?.offerPrice}&expiresAt=${data?.expiresDate}&id=${item?.id}`)
             .then((data)=> {
                 console.log(data)
             }).catch((error)=> {
