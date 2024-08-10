@@ -7,7 +7,8 @@ import { CardHeader } from "./productCard";
 import { ProductColors } from "./productColors";
 export const AddOffer = ({product})=> {
 
-    const [isOfferModel,setIsOfferModel] = useState(false)
+    const [isOfferModel,setIsOfferModel] = useState(false);
+    const [selectedItem,setSelectedItem] = useState(null)
     return (
         <>
             <div className="absolute -top-6 right-2">
@@ -31,10 +32,14 @@ export const AddOffer = ({product})=> {
                         <CardHeader product={product}/>
                         <div className="">
                             <h6 className='my-3 text-teal-950 font-bold text-sm'>pleace select a color : </h6>
-                            <div className="flex items-center justify-center gap-3 flex-wrap border border-teal-300 rounded-md p-3">
+                            <div className="flex items-center justify-center gap-3 flex-wrap ">
                                 {
                                     product?.colors?.map((color)=> (
-                                        <div key={color?.id} className="border-2 border-teal-300 rounded-md">
+                                        <div 
+                                            onClick={()=> setSelectedItem(color)}
+                                            key={color?.id} 
+                                            className={`${color?.id === selectedItem?.id ? 'border-teal-300' : ''} border-2 rounded-md cursor-pointer`}
+                                             >
                                             <ProductColors color={color} sizes={product?.sizes} />
                                         </div>
                                     ))

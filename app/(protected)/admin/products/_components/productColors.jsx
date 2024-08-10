@@ -7,7 +7,7 @@ export const ProductColors = ({color: {color,priceInHalala,colorName},sizes})=> 
 
      return (
           <div key={color} className="flex items-center gap-2 p-[2px] rounded-md bg-white dark:bg-stone-700 flex-grow" >
-               <div className="">
+               <div className="px-2">
                     <h5 className={className.smStitle}>{getCurrency(priceInHalala)}</h5>
                     <div 
                          style={{backgroundColor: color}} 
