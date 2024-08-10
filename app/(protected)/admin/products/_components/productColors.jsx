@@ -1,5 +1,6 @@
 import {getCurrency} from "../../../../../lip/getCurrency";
-export const ProductColors = ({color: {color,priceInHalala,},sizes})=> {
+
+export const ProductColors = ({color: {color,priceInHalala,colorName},sizes})=> {
      const className = {
           smStitle : 'text-xs font-bold text-gray-600 dark:text-gray-300'
       };
