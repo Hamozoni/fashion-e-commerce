@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { getCurrency } from "../../../../../lip/getCurrency";
 import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
 import { VscSaveAll } from "react-icons/vsc";
-import { PostData } from "../../../../../lip/fetchData";
+import {updateData } from "../../../../../lip/fetchData";
 import {addingOfferSchema} from "../../../../../validationSchemas/newProductSchemas";
 
 export const NewOfferForm = ({item})=> {
@@ -37,7 +37,7 @@ export const NewOfferForm = ({item})=> {
        const validate = addingOfferSchema.safeParse(data);
 
        if(validate.success){
-        updateData(`admin/sales?offerPrice=${data?.priceInput}&expiresAt=${data?.expiresDate}`)
+        updateData(`admin/sales?offerPrice=${data?.priceInput}&expiresAt=${data?.expiresDate}&id=${item?.id}`)
             .then((data)=> {
                 console.log(data)
             }).catch((error)=> {
