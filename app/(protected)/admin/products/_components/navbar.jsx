@@ -23,14 +23,19 @@ export const Navbar = ({
             setCategoryName(category?.name);
             setSubCategory(category?.sub)
         }
-    }
+    };
+
+    const className = {
+        categoryLi: ' px-3 py-2 text-sm sm:text-lg border border-teal-100 dark:border-stone-800 cursor-pointer rounded-md flex items-center gap-2 min-w-fit'
+    };
+
     return (
         <header className="flex justify-between items-start flex-wrap pb-4">
-            <nav className=" pb-2">
-                <ul className="flex items-start gap-3 capitalize overflow-x-auto">
+            <nav className="">
+                <ul className="flex items-start gap-3 capitalize overflow-x-auto py-2">
                     <li 
                        onClick={() => handleCategory('all')}
-                        className={`${categoryName === 'all' ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 '} p-3 border text-sm sm:text-lg rounded-md border-teal-100 cursor-pointer text-center`} >
+                        className={`${categoryName === 'all' ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 dark:bg-stone-950 dark:text-teal-50'} ${className.categoryLi}`} >
                         <h4>all</h4>
                     </li>
                     {
@@ -38,7 +43,7 @@ export const Navbar = ({
                             <li 
                                 onClick={() => handleCategory(cate)}
                                 key={cate?.id} 
-                                className={`${categoryName === cate?.name ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 text-teal-950 hover:scale-105'} px-3 py-2 text-sm sm:text-lg border border-teal-100 cursor-pointer rounded-md flex items-center gap-2 min-w-fit`}
+                                className={`${categoryName === cate?.name ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 dark:bg-stone-950 text-teal-950 dark:text-teal-50 hover:scale-105'} ${className.categoryLi}`}
                                 >
                                     <Image className="rounded-full" src={cate?.imagePath} width={50} height={30} alt="cate"/>
                                     <h4 className="text-center">{cate?.name}</h4>
