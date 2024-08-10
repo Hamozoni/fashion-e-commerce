@@ -1,14 +1,19 @@
+
 import Image from "next/image"
 import {getCurrency} from "../../../../../lip/getCurrency";
+import {AddOffer} from "./addOffer"
 
 export const ProductCard = ({product})=> {
     const {imagePath,brand,name,colors,sizes,id} = product;
 
     const className = {
         smStitle : 'text-xs font-bold text-gray-600 dark:text-gray-300'
-    }
+    };
+
+
     return (
-        <div className="gap-2 my-5 p-3 bg-teal-50 dark:bg-stone-900 rounded-md border border-teal-100 dark:border-stone-800 capitalize">
+        <div className="gap-2 my-8 p-3 relative bg-teal-50 dark:bg-stone-900 rounded-md border border-teal-100 dark:border-stone-800 capitalize">
+            <AddOffer product={product} />
             <div className="flex  gap-3 mb-2 border border-white dark:border-stone-600 rounded-md">
                 <div className="w-[60px] h-[60px] min-w-[60px] rounded-md bg-white overflow-hidden">
                     <Image 

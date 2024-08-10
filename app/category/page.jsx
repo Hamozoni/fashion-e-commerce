@@ -20,7 +20,7 @@ const CatecoryPage = () => {
   const [isLoading,setIsLoading] = useState(false);
   const [isDataDone,setIsDataDone] = useState(false);
   const [isLoadingMore,setIsLoadingMore] = useState(false);
-  const [page,setPage] = useState(2);
+  const [page,setPage] = useState(1);
 
   useEffect(()=> {
 
@@ -35,6 +35,7 @@ const CatecoryPage = () => {
         if(data?.length === 0) {
           setIsDataDone(true);
         }
+        console.log(data)
 
         setProducts(prev=> [...prev,...data]);
     })
@@ -69,7 +70,7 @@ const CatecoryPage = () => {
               products for {section} :
             </h5>
             <div className=""> 
-              <div className="flex flex-wrap gap-2 sm:gap-4">
+              <div className="flex flex-wrap gap-2 sm:gap-4 w-full">
                   {
                     isLoading ? <Loading /> : 
                     products?.map((product)=> (

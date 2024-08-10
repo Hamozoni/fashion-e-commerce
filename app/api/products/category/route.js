@@ -14,7 +14,7 @@ export const GET = async (req)=> {
     try{
         const data = await db.product.findMany({
             take : take,
-            skip: (take * page) - take,
+            skip: (take * +page) - take,
             where: {category},
             include: {
                 images: true,
