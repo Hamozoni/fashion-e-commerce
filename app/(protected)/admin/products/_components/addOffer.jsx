@@ -9,7 +9,8 @@ import {NewOfferForm} from "./newOfferForm"
 export const AddOffer = ({product})=> {
 
     const [isOfferModel,setIsOfferModel] = useState(false);
-    const [selectedItem,setSelectedItem] = useState(null)
+    const [selectedItem,setSelectedItem] = useState(null);
+    
     return (
         <>
             <div className="absolute -top-6 right-2">
@@ -48,7 +49,7 @@ export const AddOffer = ({product})=> {
                             </div>
                             {
                                 selectedItem ?
-                                <NewOfferForm />
+                                <NewOfferForm item={selectedItem} />
                                 : null
                             }
                         </div>
