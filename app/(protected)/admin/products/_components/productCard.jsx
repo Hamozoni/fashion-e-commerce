@@ -2,15 +2,15 @@ import Image from "next/image"
 import {getCurrency} from "../../../../../lip/getCurrency";
 
 export const ProductCard = ({product})=> {
-    const {imagePath,brand,name,colors,sizes} = product;
+    const {imagePath,brand,name,colors,sizes,id} = product;
 
     const className = {
         smStitle : 'text-xs font-bold text-gray-600'
     }
     return (
         <div className="gap-2 my-5 p-3 bg-teal-50 rounded-md border border-teal-100 capitalize">
-            <div className="flex  gap-3 mb-2">
-                <div className="w-[60px] h-[60px] rounded-md bg-white overflow-hidden">
+            <div className="flex  gap-3 mb-2 border border-white">
+                <div className="w-[60px] h-[60px] min-w-[60px] rounded-md bg-white overflow-hidden">
                     <Image 
                        className="min-w-[60px] max-w-[60px] min-h-[60px] max-h-[60px] object-contain" 
                         src={imagePath} 
@@ -20,8 +20,9 @@ export const ProductCard = ({product})=> {
 
                 </div>
                 <div className="">
-                    <h4 className={className}>{brand}</h4>
+                    <h4 className={className.smStitle}>{brand}</h4>
                     <h3 className="line-clamp-1 text-sm font-bold text-teal-950 mb-2">{name}</h3>
+                    <h6 className={className.smStitle}>ID : <small>{id}</small></h6>
                 </div>
             </div>
             <div className="">
