@@ -28,7 +28,7 @@ export const ProductCard = ({product})=> {
                 <div className="flex items-center gap-4 flex-wrap">
                     {
                         colors?.map(({color,colorName,priceInHalala})=> (
-                            <div key={color} className="flex items-center gap-2 p-2 rounded-md bg-white flex-grow" >
+                            <div key={color} className="flex items-center gap-2 p-[2px] rounded-md bg-white flex-grow" >
                                 <div className="">
                                     <h5 className={className.smStitle}>{getCurrency(priceInHalala)}</h5>
                                     <div 
