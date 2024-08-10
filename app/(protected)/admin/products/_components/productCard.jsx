@@ -28,17 +28,17 @@ export const ProductCard = ({product})=> {
                 <div className="flex items-center gap-4 flex-wrap">
                     {
                         colors?.map(({color,colorName,priceInHalala})=> (
-                            <div key={color} className="flex items-center gap-2 p-2 rounded-md bg-white flex-grow justify-center" >
+                            <div key={color} className="flex items-center gap-2 p-2 rounded-md bg-white flex-grow" >
                                 <div className="">
                                     <h5 className={className.smStitle}>{getCurrency(priceInHalala)}</h5>
                                     <div 
                                         style={{backgroundColor: color}} 
-                                        className=" h-[30px] rounded-md border border-teal-100"
+                                        className=" h-[30px] rounded-md border border-teal-100 mt-2"
                                         >
 
                                     </div>
                                 </div>
-                                <div className="flex gap-2 items-center p-2 rounded-md bg-teal-50">
+                                <div className="flex gap-2 items-center p-2 rounded-md bg-teal-50 flex-grow">
                                     <div className="">
                                         <h6 className={className.smStitle}>sizes: </h6>
                                         <h6 className={className.smStitle}>quantities: </h6>

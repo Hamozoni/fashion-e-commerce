@@ -31,14 +31,14 @@ export const Navbar = ({
                     <li 
                        onClick={() => handleCategory('all')}
                         className={`${categoryName === 'all' ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 '} p-3 border rounded-md border-teal-100 cursor-pointer text-center`} >
-                        <div className={`flex flex-wrap max-w-[80px] max-h-[40px] justify-center mb-2`}>
+                        {/* <div className={`flex flex-wrap max-w-[80px] max-h-[40px] justify-center mb-2`}>
                             {
                                categoriesData?.map(({imagePath})=> (
                                   <Image className="" src={imagePath}  width={40} height={20} alt="all"/> 
                                )) 
                             }
 
-                        </div>
+                        </div> */}
                         <h4>all</h4>
                     </li>
                     {
@@ -48,7 +48,7 @@ export const Navbar = ({
                                 key={cate?.id} 
                                 className={`${categoryName === cate?.name ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 text-teal-950 hover:scale-105'} p-3 border border-teal-100 cursor-pointer rounded-md`}
                                 >
-                                   <Image className="rounded-md" src={cate?.imagePath} width={80} height={40} alt={cate?.name} />
+                                   {/* <Image className="rounded-md" src={cate?.imagePath} width={80} height={40} alt={cate?.name} /> */}
                                     <h4 className="text-center">{cate?.name}</h4>
                             </li>
                         ))
