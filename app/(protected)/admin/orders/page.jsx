@@ -104,7 +104,7 @@ export default function ordersPage () {
                 {
                     isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> :
                     orders?.map((order,index)=> (
-                        <OrderCard key={order.id} index={index} data={order} setOrders={setOrders} />
+                        <OrderCard key={order.id} index={index} data={order} setOrdersNum={setOrdersNum} setOrders={setOrders} />
                     ))
                 }
                 {

@@ -7,7 +7,7 @@ import {navStatus} from "../page";
 import {updateData } from "../../../../../lip/fetchData";
 import { Loading } from "../../../../../ui/models/Loading";
 
-export const Editing = ({clientSecret,status,setOrders})=>{
+export const Editing = ({clientSecret,status,setOrders,setOrdersNum})=>{
 
     const [isEditing,setIsEditing] = useState(false);
     const [isLoading,setIsLoading] = useState(false);
@@ -26,6 +26,7 @@ export const Editing = ({clientSecret,status,setOrders})=>{
 
                 return [...newOrders]
             });
+            setOrdersNum(prev => prev - 1)
             setIsLoading(false)
             console.log(data)
         })
