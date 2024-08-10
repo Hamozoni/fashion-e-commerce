@@ -5,6 +5,7 @@ import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
 import { IoMdAdd } from "react-icons/io";
 import { CardHeader } from "./productCard";
 import { ProductColors } from "./productColors";
+import {NewOfferForm} from "./newOfferForm"
 export const AddOffer = ({product})=> {
 
     const [isOfferModel,setIsOfferModel] = useState(false);
@@ -32,19 +33,24 @@ export const AddOffer = ({product})=> {
                         <CardHeader product={product}/>
                         <div className="">
                             <h6 className='my-3 text-teal-950 font-bold text-sm'>pleace select a color : </h6>
-                            <div className="flex items-center justify-center gap-3 flex-wrap ">
+                            <div className="flex items-center  gap-3 flex-wrap ">
                                 {
                                     product?.colors?.map((color)=> (
                                         <div 
                                             onClick={()=> setSelectedItem(color)}
                                             key={color?.id} 
-                                            className={`${color?.id === selectedItem?.id ? 'border-teal-300' : ''} border-2 rounded-md cursor-pointer`}
+                                            className={`${color?.id === selectedItem?.id ? 'border-teal-300' : ''} border-2 rounded-md cursor-pointer flex-grow`}
                                              >
                                             <ProductColors color={color} sizes={product?.sizes} />
                                         </div>
                                     ))
                                 }
                             </div>
+                            {
+                                selectedItem ?
+                                <NewOfferForm />
+                                : null
+                            }
                         </div>
                     </div>
                 </div>
