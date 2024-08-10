@@ -1,4 +1,4 @@
-import {z} from "zod";
+import {number, z} from "zod";
 
 
 const ACCEPTED_IMAGE_TYPES = [
@@ -51,3 +51,15 @@ export const zProductDetailsSchema =  z.object({
   size: z.string(),
   priceInHalala : z.number().min(100),
 });
+
+
+
+export const addingOfferSchema = z.object({
+  offerPrice: z.number().min(100),
+  expiresDate: z.date().refine(date=> {
+    const now = new Date();
+    const oneDayFromNow = new Date(now.setDate(now.getDate() + 1));
+
+    return date >= oneDayFromNow;
+  },{message: 'date must be at least greater one day than current date'}) 
+})
