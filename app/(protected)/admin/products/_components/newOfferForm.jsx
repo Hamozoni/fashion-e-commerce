@@ -65,6 +65,9 @@ export const NewOfferForm = ({item})=> {
                         >old price: {getCurrency(item?.priceInHalala)}
                     </label>
                     <div className="flex items-center my-3 gap-3 w-full rounded-md bg-white overflow-hidden px-3">
+                        <p className={className.smallHead}>  
+                            {getCurrency(priceInput)}
+                        </p>
                         <input 
                                 ref={inputRef}
                                 className="w-full p-3"
@@ -74,9 +77,6 @@ export const NewOfferForm = ({item})=> {
                                 id="newOffer" 
                                 required
                                 />
-                        <p className={className.smallHead}>  
-                            {getCurrency(priceInput)}
-                        </p>
                     </div>
                     <ZodError error={error} field='offerPrice' />
 
