@@ -6,6 +6,7 @@ import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
 import { VscSaveAll } from "react-icons/vsc";
 import {updateData } from "../../../../../lip/fetchData";
 import {addingOfferSchema} from "../../../../../validationSchemas/newProductSchemas";
+import {ZodError} from "../../../../../ui/components/zodError"
 
 export const NewOfferForm = ({item})=> {
     const [priceInput,setPriceInput] = useState(0);
@@ -25,7 +26,7 @@ export const NewOfferForm = ({item})=> {
         setError(null);
 
         if(item.priceInHalala <= priceInput) {
-            setError('offer price should be less the original price');
+            setError([{path:['offerPrice'],message:'offer price should be less the original price'}]);
             return
         }
 
@@ -45,7 +46,8 @@ export const NewOfferForm = ({item})=> {
             })
        }else {
            console.log(data);
-           console.log(validate);
+           setError(JSON.parse(validate.error))
+           console.log();
        }
     };
 
@@ -55,7 +57,7 @@ export const NewOfferForm = ({item})=> {
 
     return (
         <form onSubmit={(e)=> handleSubmit(e)} className=" mt-8 mb-3">
-            <div className="sm:flex items-center gap-3 ">
+            <div className="sm:flex items-center gap-3 mb-3 ">
                 <div className="flex-1">
                     <label 
                         className={className.smallHead}
@@ -76,6 +78,7 @@ export const NewOfferForm = ({item})=> {
                             {getCurrency(priceInput)}
                         </p>
                     </div>
+                    <ZodError error={error} field='offerPrice' />
 
                 </div>
                 <div className="flex-1">
@@ -89,6 +92,7 @@ export const NewOfferForm = ({item})=> {
                         name="" 
                         id="date" 
                        />
+                    <ZodError error={error} field='expiresDate' />
                 </div>
 
             </div>
