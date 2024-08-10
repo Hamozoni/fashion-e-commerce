@@ -11,11 +11,11 @@ export const Navbar = ({
     setSubcategoryName
 })=> {
 
-    const [subCategory,setSubCategory] = useState('all');
+    const [subCategory,setSubCategory] = useState(null);
     const [isSubcategory,setIsSubcategory] = useState(false)
 
     const handleCategory = (category)=> {
-        setSubcategoryName('all')
+        setSubcategoryName(null)
         if(category === 'all'){
             setCategoryName('all');
             setSubCategory(null)
@@ -59,7 +59,6 @@ export const Navbar = ({
                 <div 
                     onClick={()=> setIsSubcategory(!isSubcategory)}
                     className="flex justify-between flex-col gap-3 cursor-pointer bg-teal-50 p-3 rounded-md border border-teal-100">
-                    <h4>filter by sub category:</h4>
                     <h6 className="flex items-center justify-between gap-3 text-sm text-gray-500">
                         {subcategoryName} { isSubcategory ? <IoMdArrowDropdown /> : <IoMdArrowDropright />}
                     </h6>
