@@ -28,21 +28,16 @@ export const NewOfferForm = ({item})=> {
             setError('offer price should be less the original price');
             return
         }
-        const formData = new FormData();
-        formData.set('offerPrice',priceInput);
-        formData.set('expiresDate',dateInput);
 
         const data = {
             offerPrice: priceInput,
             expiresDate :  new Date(dateInput)
         }
 
-        console.log(dateInput)
-
        const validate = addingOfferSchema.safeParse(data);
 
        if(validate.success){
-            PostData('admin/sales',formData)
+        updateData(`admin/sales?offerPrice=${data?.priceInput}&expiresAt=${data?.expiresDate}`)
             .then((data)=> {
                 console.log(data)
             }).catch((error)=> {
