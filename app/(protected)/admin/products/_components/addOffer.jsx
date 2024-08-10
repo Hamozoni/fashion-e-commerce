@@ -10,7 +10,7 @@ export const AddOffer = ({product})=> {
 
     const [isOfferModel,setIsOfferModel] = useState(false);
     const [selectedItem,setSelectedItem] = useState(null);
-    
+
     return (
         <>
             <div className="absolute -top-6 right-2">
@@ -34,7 +34,7 @@ export const AddOffer = ({product})=> {
                         <CardHeader product={product}/>
                         <div className="">
                             <h6 className='my-3 text-teal-950 font-bold text-sm'>pleace select a color : </h6>
-                            <div className="flex items-center  gap-3 flex-wrap ">
+                            <div className="flex items-center  gap-3 flex-wrap max-h-[320px] overflow-y-auto">
                                 {
                                     product?.colors?.map((color)=> (
                                         <div 
