@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import {Navbar} from "./navbar";
 import {ProductCard} from "./productCard";
 import { TbAdjustmentsSearch } from "react-icons/tb";
+import { LiaTruckLoadingSolid } from "react-icons/lia";
+import { Loading } from "../../../../../ui/models/Loading";
+import {Error} from "../../../../../ui/components/error"
+import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
 
 export const ProductsContainer = ()=> {
 
@@ -12,40 +16,86 @@ export const ProductsContainer = ()=> {
     const [products,setProducts] = useState([]);
     const [allResults,setAllResults] = useState(0);
     const [isLoading,setIsLoading] = useState(false);
+    const [isLoadingMore,setIsLoadingMore] = useState(false);
     const [error,setError] = useState(null);
     const [page,setPage] = useState(1);
 
-    useEffect(()=> {
+    const handleFetch = (page,isLoadMore = false)=> {
+        if(isLoadMore){
+            setIsLoadingMore(true);
+        }else {
+            setIsLoading(true);
+        };
+
+        setError(null);
+
         fetchData(`admin/products?category=${categoryName}&sub=${subcategoryName}&page=${page}`)
         .then((data)=> {
-            console.log(data);
+            if(isLoadMore) {
+                setProducts(prev => [...prev,...data?.products]);
+            }else {
+                setProducts(data?.products)
+            }
             setAllResults(data?.count)
-            setProducts(data?.products)
         })
         .catch((error)=> {
+            setError(error)
             console.log(error)
         })
+        .finally(()=> {
+            setIsLoading(false);
+            setIsLoadingMore(false)
+        })
+    }
 
+    useEffect(()=> {
+        setPage(1)
+        handleFetch(1);
     },[categoryName,subcategoryName]);
+
+    const handleLoadMore = ()=> {
+        setPage(page + 1);
+        handleFetch(page + 1,true);
+    }
 
     return (
         <div className="">
+            {
+                isLoading ? <Loading /> : null
+            }
             <Navbar 
                 categoryName={categoryName} 
                 setCategoryName={setCategoryName} 
                 setSubcategoryName={setSubcategoryName}
                 subcategoryName={subcategoryName}
                 />
-            <section className="">
-                <h6 className="text-sm font-bold text-gray-500">
-                    <TbAdjustmentsSearch /> all results {allResults}
-                </h6>
-                {
-                    products?.map((product)=> (
-                        <ProductCard key={product?.id} product={product} />
-                    ))
-                }
-            </section>
+            {
+                 error ? <Error onClick={handleFetch} /> :
+                <section className="">
+                    <h6 className="text-sm font-bold text-gray-500 capitalize flex items-center gap-2">
+                        <TbAdjustmentsSearch /> all results {allResults}
+                    </h6>
+                    {
+                        products?.map((product)=> (
+                            <ProductCard key={product?.id} product={product} />
+                        ))
+                    }
+                    {
+                        products?.length < allResults &&
+                        <div className="max-w-[150px] mx-auto">
+                            <ButtonWithIcon 
+                                text='laod more' 
+                                Icon={LiaTruckLoadingSolid} 
+                                type='save'
+                                onClick={handleLoadMore}
+                                disabled={isLoadingMore}
+                                />
+
+                        </div>
+                    }
+                </section>
+
+            }
         </div>
     )
 };
