@@ -16,7 +16,11 @@ export const AddOffer = ({product})=> {
             {
                 isOfferModel ? 
                 <div className="">
-                    <Overlay onClick={()=> setIsOfferModel(false)} />
+                    <div onClick={()=> setIsOfferModel(false)} className="z-[100] fixed top-0 left-0 h-screen w-screen dark:bg-white bg-black opacity-35">
+                    </div>
+
+                    
+
                 </div>
                 : null
 
