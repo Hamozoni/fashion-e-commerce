@@ -45,7 +45,7 @@ export const AddOffer = ({product})=> {
                             </div>
                             {
                                 selectedItem ?
-                                <NewOfferForm item={selectedItem} />
+                                <NewOfferForm item={selectedItem} setIsOfferModel={setIsOfferModel} />
                                 : null
                             }
                         </div>

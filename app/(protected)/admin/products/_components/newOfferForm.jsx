@@ -4,13 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { getCurrency } from "../../../../../lip/getCurrency";
 import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
 import { VscSaveAll } from "react-icons/vsc";
+import { FaRegCalendarCheck } from "react-icons/fa6";
 import {updateData } from "../../../../../lip/fetchData";
 import {addingOfferSchema} from "../../../../../validationSchemas/newProductSchemas";
 import {ZodError} from "../../../../../ui/components/zodError"
 import { Loading } from "../../../../../ui/models/Loading";
 import { Error } from "../../../../../ui/components/error";
 
-export const NewOfferForm = ({item})=> {
+export const NewOfferForm = ({item,setIsOfferModel})=> {
 
     const [priceInput,setPriceInput] = useState(0);
     const [dateInput,setDateInput] = useState(null);
@@ -27,6 +28,7 @@ export const NewOfferForm = ({item})=> {
     },[]);
 
     const handleSubmit = (e)=> {
+        setData(null)
         e.preventDefault();
         setValidateError(null);
         setError(null)
@@ -68,56 +70,79 @@ export const NewOfferForm = ({item})=> {
 
     return (
         
-            error ? <Error onClick={()=> setError(null)} /> :
-            <form onSubmit={(e)=> handleSubmit(e)} className=" mt-8 mb-3">
-                {
-                    isLoading ? <Loading />: null
-                }
-                <div className="sm:flex items-center gap-3 mb-3 ">
-                    <div className="flex-1">
-                        <label 
-                            className={className.smallHead}
-                            htmlFor="newOffer"
-                            >old price: {getCurrency(item?.priceInHalala)}
-                        </label>
-                        <div className="flex items-center my-3 gap-3 w-full rounded-md bg-white overflow-hidden px-3">
-                            <p className={className.smallHead}>  
-                                {getCurrency(priceInput)}
-                            </p>
-                            <input 
-                                    ref={inputRef}
-                                    className="w-full p-3"
-                                    onChange={(e)=> setPriceInput(+e.target.value)} 
-                                    type="number" 
-                                    name="offerPrice" 
-                                    id="newOffer" 
-                                    required
-                                    />
-                        </div>
-                        <ZodError error={validateError} field='offerPrice' />
-    
-                    </div>
-                    <div className="flex-1">
-                        <label className={className.smallHead} htmlFor="date">
-                            offer expires at: 
-                        </label>
-                        <input 
-                            onChange={(e)=> setDateInput(e.target.value)}
-                            className="w-full rounded-md bg-white overflow-hidden p-3 my-3" 
-                            type="datetime-local" 
-                            name="" 
-                            id="date" 
-                           />
-                        <ZodError error={validateError} field='expiresDate' />
-                    </div>
-    
-                </div>
+        data ?  
+        <div className="">
+            <h5>price updated {getCurrency(priceInput)}</h5>
+            <div className="text-center">
+                <FaRegCalendarCheck size={40} />
+            </div>
+            <div className="flex items-center gap-3">
                 <ButtonWithIcon 
+                    onClick={()=> setIsOfferModel(false)}
                     disabled={isLoading}
-                    text='submit' 
+                    text='done' 
+                    Icon={VscSaveAll} 
+                    type='primary' />
+
+                <ButtonWithIcon 
+                    onClick={()=> setData(null)}
+                    disabled={isLoading}
+                    text='containue' 
                     Icon={VscSaveAll} 
                     type='save' />
-            </form>
+            </div>
+        </div>
+        : error ? 
+        <Error onClick={()=> setError(null)} /> :
+        <form onSubmit={(e)=> handleSubmit(e)} className=" mt-8 mb-3">
+            {
+                isLoading ? <Loading />: null
+            }
+            <div className="sm:flex items-center gap-3 mb-3 ">
+                <div className="flex-1">
+                    <label 
+                        className={className.smallHead}
+                        htmlFor="newOffer"
+                        >old price: {getCurrency(item?.priceInHalala)}
+                    </label>
+                    <div className="flex items-center my-3 gap-3 w-full rounded-md bg-white overflow-hidden px-3">
+                        <p className={className.smallHead}>  
+                            {getCurrency(priceInput)}
+                        </p>
+                        <input 
+                                ref={inputRef}
+                                className="w-full p-3"
+                                onChange={(e)=> setPriceInput(+e.target.value)} 
+                                type="number" 
+                                name="offerPrice" 
+                                id="newOffer" 
+                                required
+                                />
+                    </div>
+                    <ZodError error={validateError} field='offerPrice' />
+
+                </div>
+                <div className="flex-1">
+                    <label className={className.smallHead} htmlFor="date">
+                        offer expires at: 
+                    </label>
+                    <input 
+                        onChange={(e)=> setDateInput(e.target.value)}
+                        className="w-full rounded-md bg-white overflow-hidden p-3 my-3" 
+                        type="datetime-local" 
+                        name="" 
+                        id="date" 
+                        />
+                    <ZodError error={validateError} field='expiresDate' />
+                </div>
+
+            </div>
+            <ButtonWithIcon 
+                disabled={isLoading}
+                text='submit' 
+                Icon={VscSaveAll} 
+                type='save' />
+        </form>
 
         
     )
