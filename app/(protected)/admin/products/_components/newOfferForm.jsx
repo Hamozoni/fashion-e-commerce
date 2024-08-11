@@ -57,8 +57,8 @@ export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
                 setProducts((prev)=> {
                     const productIndex = prev.findIndex(e=> e.id === product.id);
                     const colorIndex = product.colors.findIndex(e=> e.id === item.id);
-                    prev[productIndex].colors[colorIndex] = data
-                    return prev;
+                    prev[productIndex].colors.splice(colorIndex,1,data)
+                    return [...prev];
                 });
 
                 console.log(data)

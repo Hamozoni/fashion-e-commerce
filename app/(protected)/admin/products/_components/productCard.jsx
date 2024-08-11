@@ -36,7 +36,7 @@ export const ProductCard = ({product,setProducts})=> {
     const {colors,sizes} = product;
 
     return (
-        <div className="gap-2 my-8 p-3 relative bg-teal-50 dark:bg-stone-900 rounded-md border border-teal-100 dark:border-stone-800 capitalize">
+        <div className="gap-2 my-8 p-3 relative bg-gray-50 dark:bg-stone-950 rounded-md border border-teal-100 dark:border-stone-800 capitalize">
             <AddOffer 
                 product={product} 
                 setProducts={setProducts} 
