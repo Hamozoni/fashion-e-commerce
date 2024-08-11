@@ -7,43 +7,45 @@ export async function PUT (req) {
 
     try{
 
-        const {seachParams} = new URL(req.url);
-        const offerPrice = seachParams.get('offerPrice');
-        const expiresDate = seachParams.get('expiresAt');
-        const id = seachParams.get('id');
+        const {searchParams} = new URL(req.url);
+        const offerPrice = searchParams.get('offerPrice');
+        const expiresDate = searchParams.get('expiresAt');
+        const id = searchParams.get('id');
     
-        const data = {
+        const newOffer = {
             offerPrice: +offerPrice,
             expiresDate: new Date(expiresDate),
             id
         };
 
-        const validate = addingOfferSchema.safeParse(data);
+        const validate = addingOfferSchema.safeParse(newOffer);
         console.log(validate.success)
         
-        return NextResponse.json(data,{status: 200});
-
-
-    // if(validate.success) {
-    //      const newOffer = await db.productColors.update({
-    //         where: {id},
-    //         data: {
-    //             offerPriceInHalala: +offerPrice,
-    //             offerExpiresAt: new Date(expiresDate).toISOString()
-    //         }
-
-    //      })
-
-         
         
+        
+        if(validate.success) {
+            const data = await db.productColors.update({
+                where: {id},
+                data: {
+                    offerPriceInHalala: +offerPrice,
+                    offerExpiresAt: new Date(expiresDate).toISOString()
+                }
+                
+            })
+            
+            
+            
+            return NextResponse.json(data,{status: 200});
 
-    // }else {
-    //     return NextResponse.json(JSON.parse(validate.error),{status: 500})
-    // }
+    }else {
+        return NextResponse.json(JSON.parse(validate.error),{status: 500})
+    }
       
 
     }
     catch(error) {
+        console.log(error);
 
+        return NextResponse.json(error,{status:500})
     }
 }
