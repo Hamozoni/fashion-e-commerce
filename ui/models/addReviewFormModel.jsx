@@ -5,6 +5,7 @@ import { useContext, useRef, useState } from "react";
 // icons
 import { RxCross2 } from "react-icons/rx";
 import { BiSave } from "react-icons/bi";
+import { GiCancel } from "react-icons/gi";
 
 // components
 import {Overlay} from "./overlay";
@@ -18,6 +19,8 @@ import { PostData } from "../../lip/fetchData";
 // context
 import { ReviewsContext } from "../productReviews/reviewsContext";
 import { AppContext } from "../../app/contextProvider";
+import { Loading } from "./Loading";
+import { FaBullseye } from "react-icons/fa6";
 
 export const AddReviewFormModel = ({setShowModel})=> {
 
@@ -68,6 +71,9 @@ export const AddReviewFormModel = ({setShowModel})=> {
     return (
         <>
             <div className={className.WhriteReview}>
+                 {
+                    isPending ? <Loading /> : null
+                 }
                 <section className="min-h-fit p-3">
                     <span onClick={()=> setShowModel(false)}><RxCross2 /></span>
                     <header className="text-center mb-4">
@@ -143,11 +149,13 @@ export const AddReviewFormModel = ({setShowModel})=> {
                                 type="primary"
                                 disabled={isPending}
                                 />
-                            <div   
+                            <ButtonWithIcon
+                                text='cancel'
+                                Icon={GiCancel}
+                                type="delete"
+                                disabled={false}
                                 onClick={()=> setShowModel(false)} 
-                                className="text-rose-600 cursor-pointer min-w-1/2 w-1/2 flex items-center justify-center">
-                                    cancel
-                                </div>
+                                />
                         </footer>
                     </form>
                 </section>
