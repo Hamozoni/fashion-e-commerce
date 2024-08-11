@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { getCurrency } from "../../../../../lip/getCurrency";
 import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
 import { VscSaveAll } from "react-icons/vsc";
-import { FaRegCalendarCheck } from "react-icons/fa6";
+import { FaRegCalendarCheck,FaCheck } from "react-icons/fa6";
+import { FiGitCommit } from "react-icons/fi";
+
 import {updateData } from "../../../../../lip/fetchData";
 import {addingOfferSchema} from "../../../../../validationSchemas/newProductSchemas";
 import {ZodError} from "../../../../../ui/components/zodError"
@@ -71,25 +73,31 @@ export const NewOfferForm = ({item,setIsOfferModel})=> {
     return (
         
         data ?  
-        <div className="">
-            <h5>price updated {getCurrency(priceInput)}</h5>
-            <div className="text-center">
-                <FaRegCalendarCheck size={40} />
-            </div>
+        <div className="mt-4">
             <div className="flex items-center gap-3">
-                <ButtonWithIcon 
-                    onClick={()=> setIsOfferModel(false)}
-                    disabled={isLoading}
-                    text='done' 
-                    Icon={VscSaveAll} 
-                    type='primary' />
+                <div className="text-center flex-1">
+                    <FaRegCalendarCheck color="#14b8a6 " size={240} />
+                </div>
+                <div className="flex-1">
+                    <h5 className="text-center text-lg font-bold text-teal-950 mb-5">
+                        price updated {getCurrency(priceInput)}
+                    </h5>
+                    <ButtonWithIcon 
+                        onClick={()=> setIsOfferModel(false)}
+                        disabled={isLoading}
+                        text='done' 
+                        Icon={FaCheck} 
+                        type='primary' />
+                    <hr className="my-3" />
 
-                <ButtonWithIcon 
-                    onClick={()=> setData(null)}
-                    disabled={isLoading}
-                    text='containue' 
-                    Icon={VscSaveAll} 
-                    type='save' />
+                    <ButtonWithIcon 
+                        onClick={()=> setData(null)}
+                        disabled={isLoading}
+                        text='containue' 
+                        Icon={FiGitCommit} 
+                        type='save' />
+                </div>
+
             </div>
         </div>
         : error ? 
