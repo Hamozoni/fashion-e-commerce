@@ -94,16 +94,18 @@ const NewProducts = () => {
             isPendding ? <Loading /> : ''
         }
         <div className="w-full max-w-full  dark:border-stone-900 rounded-md p-3">
-            <h4 className="text-lg text-teal-950 dark:text-teal-50 font-bold mb-5">
-                new product form
+            <h4 className="text-xl text-teal-950 dark:text-teal-50 font-bold mb-5">
+                new product form:
             </h4>
             <div className="">
                 <form 
                     ref={formRef}
                     onSubmit={handleSubmit} 
                     >
-                    <ProductInfoForm/>
-                    <SpecificationInputs/>
+                    <div className="lg:flex items-start gap-3">
+                        <ProductInfoForm/>
+                        <SpecificationInputs/>
+                    </div>
                     <ImagesColor/>
 
                     <div className="w-[200px] mx-auto">

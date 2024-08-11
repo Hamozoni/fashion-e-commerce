@@ -6,10 +6,10 @@ import { IoMdArrowDropright,IoMdArrowDropdown } from "react-icons/io";
 import { GiCheckMark } from "react-icons/gi";
 
 const className = {
-    container: 'flex flex-col gap-3 mb-3 group rounded-md flex-1',
-    label: 'text-lg font-bold text-gray-500 dark:text-stone-300 group-hover:text-teal-500',
-    select: 'cursor-pointer px-3 py-1 flex items-center justify-between gap-3 w-[180px] bg-gray-50 dark:bg-stone-950 ',
-    ul:"w-full bg-gray-50 dark:bg-stone-950 shadow-md",
+    container: 'flex flex-col gap-1 mb-1 group rounded-md flex-1',
+    label: 'text-sm font-bold text-gray-500 dark:text-stone-300 group-hover:text-teal-500',
+    select: 'cursor-pointer px-3 py-2 flex items-center justify-between gap-3 w-[180px] bg-white dark:bg-stone-950 ',
+    ul:"w-full bg-white dark:bg-stone-950 shadow-md",
     li: 'px-3 p-1 cursor-pointer text-sm font-medium text-teal-900 dark:text-teal-100 flex items-center justify-between',
 }
 
@@ -31,7 +31,7 @@ export const SelectCategory = ()=> {
                     <div 
                          onClick={()=> setIsCategoryModel(!isCategoryModel)}
                          className={` ${className.select} `}>
-                        <h5 className="text-[16px] font-medium text-gray-600" >{categoryName || 'category'}</h5>
+                        <h5 className="text-sm font-medium text-gray-600" >{categoryName || 'category'}</h5>
                         {
                             isCategoryModel ? 
                             <IoMdArrowDropdown size={22}/> :
@@ -76,7 +76,7 @@ export const SelectCategory = ()=> {
                     <div 
                          onClick={()=> setIsSubCategoryModel(!isSubCatecoryModel)}
                         className={`${className.select} text-lg font-medium text-teal-950 dark:text-teal-50`}>
-                        <h5 className="text-[16px] font-medium text-gray-600"  >{subCategoryName || 'subcategory'}</h5>
+                        <h5 className="text-sm font-medium text-gray-600"  >{subCategoryName || 'subcategory'}</h5>
                         {
                             isSubCatecoryModel ? 
                             <IoMdArrowDropdown size={22}/> :

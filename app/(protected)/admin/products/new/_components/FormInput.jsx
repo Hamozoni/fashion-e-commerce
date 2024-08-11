@@ -2,8 +2,8 @@ import { BiSolidError } from "react-icons/bi";
 import {ZodError} from "../../../../../../ui/components/zodError";
 
 const className = {
-  inputClass : 'w-full max-w-full text-teal-900 dark:text-teal-100 bg-gray-50 dark:bg-stone-950 outline-none border-b-gray-200 dark:border-b-stone-700 border-b-2 rounded-tl-md rounded-tr-md  focus:border-teal-400 dark:focus:border-teal-400 p-2 my-2',
-  label: 'text-lg font-bold text-gray-500 dark:text-stone-300 group-hover:text-teal-500',
+  inputClass : 'w-full text-sm max-w-full text-teal-950 dark:text-teal-50 bg-whitw dark:bg-stone-950 outline-none border-b-gray-200 dark:border-b-stone-700 border-b-2 rounded-tl-md rounded-tr-md  focus:border-teal-400 dark:focus:border-teal-400 p-2 my-1',
+  label: 'text-sm font-bold text-gray-500 dark:text-stone-300 group-hover:text-teal-500',
 };
 
 export function FormInput({name,label,type,placeHolder,errors,required = true,onClick}) {
@@ -18,7 +18,7 @@ export function FormInput({name,label,type,placeHolder,errors,required = true,on
 
     
   return (
-    <div className="group pb-4 flex-grow">
+    <div className="group pb-2 flex-grow">
         <label 
             className={className.label} 
             >{label} * 
@@ -45,7 +45,7 @@ export const FormTextera = ({label,placeHolder,errors,required = true,onClick})=
 
   return (
 
-    <div className="group pb-4 border-b border-gray-100 dark:border-stone-700 flex-grow w-full">
+    <div className="group border-b border-gray-100 dark:border-stone-700 flex-grow w-full">
       <label className={className.label}  htmlFor="description">{label}* </label>
       <textarea  
           onChange={onClick}

@@ -10,8 +10,8 @@ export const ProductInfoForm = ()=> {
     const {detValidError,setProductDetails} = useContext(newProductContext);
 
     return (
-        <div className="bg-teal-50 dark:bg-black p-3 rounded-md border border-teal-100 dark:border-stone-800">
-            <div className="flex gap-5 flex-wrap">
+        <div className="bg-gray-50 dark:bg-black p-3 rounded-md border border-gray-200 dark:border-stone-800">
+            <div className="flex gap-x-5 gap-y-2 flex-wrap">
                     <FormInput
                         onClick={e => setProductDetails(prev=> {
                             return {...prev,name: e.target.value.toLowerCase()}
@@ -45,15 +45,15 @@ export const ProductInfoForm = ()=> {
             <SelectCategory />
         </div>
         <div >
-        <FormTextera 
-            onClick={e => setProductDetails(prev=> {
-                return {...prev,describtion: e.target.value}
-            })}
-            name={['describtion']}
-            label='describtion'
-            placeHolder='product describtion...' 
-            errors={detValidError}
-            />
+            <FormTextera 
+                onClick={e => setProductDetails(prev=> {
+                    return {...prev,describtion: e.target.value}
+                })}
+                name={['describtion']}
+                label='describtion'
+                placeHolder='product describtion...' 
+                errors={detValidError}
+                />
 
         </div>
         </div>
