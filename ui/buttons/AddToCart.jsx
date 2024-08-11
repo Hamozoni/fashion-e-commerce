@@ -8,7 +8,6 @@ import {removeItemFromCart, addToCart } from "../../store/features/cartSlice";
 // component
 import {QuantityBtn} from "./quantityBtn";
 import { ButtonWithIcon } from "./buttons";
-import { randomUUID } from "crypto";
 
 export function AddToCart({product,isFromCard=false}) {
 
@@ -18,14 +17,14 @@ export function AddToCart({product,isFromCard=false}) {
     console.log(product);
 
     const incrementItem = ()=> {
-        const uniqueId = randomUUID()
+        const uniqueId = crypto.randomUUID()
         dispatch(addToCart({
             id,
             name,
             priceInHalala: +priceInHalala,
             category,
             subcategory,
-            serialNumber: `${serialNumber}_${uniqueId}`,
+            serialNumber: `${uniqueId}${serialNumber}`,
             brand,
             imagePath,
             color,
