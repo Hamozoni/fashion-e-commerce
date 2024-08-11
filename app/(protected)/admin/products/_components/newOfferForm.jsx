@@ -13,7 +13,10 @@ import {ZodError} from "../../../../../ui/components/zodError"
 import { Loading } from "../../../../../ui/models/Loading";
 import { Error } from "../../../../../ui/components/error";
 
-export const NewOfferForm = ({item,setIsOfferModel})=> {
+export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
+
+
+
 
     const [priceInput,setPriceInput] = useState(0);
     const [dateInput,setDateInput] = useState(null);
@@ -51,6 +54,14 @@ export const NewOfferForm = ({item,setIsOfferModel})=> {
        if(validate.success){
         updateData(`admin/sales?offerPrice=${priceInput}&expiresAt=${dateInput}&id=${item?.id}`)
             .then((data)=> {
+                setProducts((prev)=> {
+                    const productIndex = prev.findIndex(e=> e.id === product.id);
+                    const colorIndex = product.colors.findIndex(e=> e.id === item.id);
+                    prev[productIndex].colors[colorIndex] = data
+                    return prev;
+                });
+
+                console.log(data)
                 setData(data);
             }).catch((error)=> {
                 setError(error)
@@ -63,7 +74,7 @@ export const NewOfferForm = ({item,setIsOfferModel})=> {
     };
 
     const className = {
-        smallHead : 'text-sm font-bold text-teal-950'
+        smallHead : 'text-sm font-bold text-teal-950 dark:text-teal-50'
     };
 
     const SuccessMessage = ()=> {
@@ -75,13 +86,13 @@ export const NewOfferForm = ({item,setIsOfferModel})=> {
                     </div>
                     <div className="flex-1 capitalize">
                         <header className="mb-5 text-center">
-                            <h5 className="text-center text-lg font-bold text-teal-950 mb-2">
+                            <h5 className="text-center text-lg font-bold text-teal-950 dark:text-teal-50 mb-2">
                                 sale price {getCurrency(priceInput)}
                             </h5>
                             <time 
                                 className={className.smallHead}
                                 datetime={new Date(dateInput)}>
-                                expiers at{new Date(dateInput).toLocaleDateString()}
+                                expier date: {new Date(dateInput).toLocaleString()}
                             </time>
                         </header>
                         <ButtonWithIcon 
@@ -122,13 +133,13 @@ export const NewOfferForm = ({item,setIsOfferModel})=> {
                         htmlFor="newOffer"
                         >old price: {getCurrency(item?.priceInHalala)}
                     </label>
-                    <div className="flex items-center my-3 gap-3 w-full rounded-md bg-white overflow-hidden px-3">
+                    <div className="flex items-center my-3 gap-3 w-full rounded-md bg-white dark:bg-stone-800 overflow-hidden px-3">
                         <p className={className.smallHead}>  
                             {getCurrency(priceInput)}
                         </p>
                         <input 
                                 ref={inputRef}
-                                className="w-full p-3"
+                                className={`${className.smallHead} w-full p-3 bg-transparent`}
                                 onChange={(e)=> setPriceInput(+e.target.value)} 
                                 type="number" 
                                 name="offerPrice" 
@@ -145,7 +156,7 @@ export const NewOfferForm = ({item,setIsOfferModel})=> {
                     </label>
                     <input 
                         onChange={(e)=> setDateInput(e.target.value)}
-                        className="w-full rounded-md bg-white overflow-hidden p-3 my-3" 
+                        className={`${className.smallHead} w-full rounded-md bg-white dark:bg-stone-800 overflow-hidden p-3 my-3`} 
                         type="datetime-local" 
                         name="" 
                         id="date" 

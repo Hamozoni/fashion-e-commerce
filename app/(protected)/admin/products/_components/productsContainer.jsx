@@ -77,7 +77,11 @@ export const ProductsContainer = ()=> {
                     </h6>
                     {
                         products?.map((product)=> (
-                            <ProductCard key={product?.id} product={product} />
+                            <ProductCard 
+                                key={product?.id} 
+                                product={product} 
+                                setProducts={setProducts} 
+                                />
                         ))
                     }
                     {
