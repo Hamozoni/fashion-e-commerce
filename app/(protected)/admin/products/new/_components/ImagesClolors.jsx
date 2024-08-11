@@ -86,7 +86,7 @@ export function ImagesColor() {
                                     placeHolder='price in halala...'
                                     errors={colValidError}
                                     />
-                                    <div className="flex flex-col gap-0">
+                                    <div className="flex flex-col gap-0 pb-2 flex-grow">
                                         <label 
                                              className={className.label}
                                              htmlFor="images"

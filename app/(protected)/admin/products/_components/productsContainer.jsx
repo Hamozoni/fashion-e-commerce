@@ -21,6 +21,7 @@ export const ProductsContainer = ()=> {
     const [page,setPage] = useState(1);
 
     const handleFetch = (page,isLoadMore = false)=> {
+
         if(isLoadMore){
             setIsLoadingMore(true);
         }else {
@@ -69,7 +70,7 @@ export const ProductsContainer = ()=> {
                 subcategoryName={subcategoryName}
                 />
             {
-                 error ? <Error onClick={handleFetch} /> :
+                 !!error ? <Error onClick={()=> handleFetch(page)} /> :
                 <section className="">
                     <h6 className="text-lg font-bold text-gray-500 capitalize flex items-center gap-2">
                         <TbAdjustmentsSearch /> all results {allResults}
