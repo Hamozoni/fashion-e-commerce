@@ -76,7 +76,7 @@ export const SelectSizes = ({i})=> {
     return (
         <div className="">
             <div className="">
-                <h5 className="text-center p-4 text-teal-900 dark:text-teal-50 text-lg">
+                <h5 className="text-center p-3 text-teal-900 dark:text-teal-50 text-lg">
                     place slesct avalbe sizes *
                 </h5>
                 <ul className="flex items-center justify-center  gap-3">
@@ -94,7 +94,7 @@ export const SelectSizes = ({i})=> {
                 </ul>
 
             </div>
-            <div className="flex flex-wrap gap-5 mt-4">
+            <div className="flex flex-wrap gap-x-2 mt-4">
                 {
                     productSizes[i]?.length > 0 &&
                     productSizes[i]?.map(({shortName,id},index)=> (
@@ -107,7 +107,7 @@ export const SelectSizes = ({i})=> {
                                 });
                             }
                             }
-                            name={`${shortName}stackQuantity`}
+                            name={'stackQuantity'}
                             key={id}  
                             label={`${shortName} size quantity *`}
                             type='number'

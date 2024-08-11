@@ -30,8 +30,8 @@ export const SelectCategory = ()=> {
                 <div className={`${isCategoryModel? 'border-teal-300' : 'border-gray-200 dark:border-stone-700'}  w-fit`}>
                     <div 
                          onClick={()=> setIsCategoryModel(!isCategoryModel)}
-                         className={` ${className.select} `}>
-                        <h5 className="text-sm font-medium text-gray-600" >{categoryName || 'category'}</h5>
+                         className={` ${className.select} text-gray-600 dark:text-gray-300 `}>
+                        <h5 className="text-sm font-medium " >{categoryName || 'category'}</h5>
                         {
                             isCategoryModel ? 
                             <IoMdArrowDropdown size={22}/> :
@@ -75,8 +75,8 @@ export const SelectCategory = ()=> {
                 <div className="relative w-fit">
                     <div 
                          onClick={()=> setIsSubCategoryModel(!isSubCatecoryModel)}
-                        className={`${className.select} text-lg font-medium text-teal-950 dark:text-teal-50`}>
-                        <h5 className="text-sm font-medium text-gray-600"  >{subCategoryName || 'subcategory'}</h5>
+                        className={`${className.select} text-gray-600 dark:text-gray-300`}>
+                        <h5 className="text-sm font-bold"  >{subCategoryName || 'subcategory'}</h5>
                         {
                             isSubCatecoryModel ? 
                             <IoMdArrowDropdown size={22}/> :

@@ -8,7 +8,6 @@ export const ZodError = ({error,field})=> {
             {error?.find(e=> e?.path?.includes(field))?.message }
         </p>
         
-
     )
 
 };

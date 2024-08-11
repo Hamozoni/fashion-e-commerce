@@ -44,31 +44,32 @@ export function ImagesColor() {
     },[category]);
 
     const className = {
-        addRemovBtn : 'w-[70px] cursor-pointer hover:scale-105 rounded-full flex items-center justify-center border-2'
+        addRemovBtn : 'w-[70px] cursor-pointer hover:scale-105 rounded-full flex items-center justify-center border-2',
+        inputClass : 'w-full text-sm max-w-full text-teal-950 dark:text-teal-50 bg-whitw dark:bg-stone-950 outline-none border-b-gray-200 dark:border-b-stone-700 border-b-2 rounded-tl-md rounded-tr-md  focus:border-teal-400 dark:focus:border-teal-400 p-2 my-1',
+        label: 'text-sm font-bold text-gray-500 dark:text-stone-300 group-hover:text-teal-500',
     }
 
   return (
-    <section className="mb-10 pb-10 px-3 border border-gray-200 rounded-md bg-gray-50 dark:bg-stone-950 dark:border-stone-900">
-
-        <header className="my-3">
-            <h4 
-                className="text-center text-lg text-teal-900 dark:text-teal-100 py-3 font-bold"
-                > color details
-            </h4>
-        </header>
+    <section className="mb-10 p-3 border border-gray-200 rounded-md bg-gray-50 dark:bg-stone-950 dark:border-stone-900">
         <div >
                 {
                     productColors?.map((_,index)=> (
-                        <div className="p-2 border border-gray-200 dark:border-stone-900 dark:bg-black rounded-md mb-5 shadow-sm ">
-                            <div key={index} className="flex items-center gap-3 mb-3 flex-wrap">
-                            <FormInput
+                        <div key={index}  className="">
+                            <header className="mb-3">
+                                <h4 
+                                    className="text-center text-lg text-teal-900 dark:text-teal-100 font-bold"
+                                    > color {index + 1}
+                                </h4>
+                            </header>
+                            <div className="flex items-center gap-2 flex-wrap">
+                                <FormInput
                                     onClick={(e)=> setProductColors((prev)=> {
                                             prev[index].colorName = e.target.value;
 
                                             return [...prev]
                                         })
                                    }
-                                    name={[index,"colorName"]} 
+                                    name={"colorName"} 
                                     label={`color name ${index + 1}`}
                                     type='text'
                                     placeHolder='your color name...'
@@ -77,25 +78,22 @@ export function ImagesColor() {
                                  <FormInput
                                     onClick={(e)=>  setProductColors((prev)=>{
                                             prev[index].priceInHalala = +e.target.value;
-
                                             return [...prev]
-                                        
-                                        })
-
-                                    } 
-                                    name={[index,'priceInHalala']}
+                                        }) } 
+                                    name={'priceInHalala'}
                                     label={`price in halala ${index + 1}`}
                                     type='number'
                                     placeHolder='price in halala...'
                                     errors={colValidError}
                                     />
-                                    <div className="flex flex-col gap-4 mb-5">
+                                    <div className="flex flex-col gap-0">
                                         <label 
-                                             className="text-lg font-bold text-gray-500 dark:text-stone-300"
+                                             className={className.label}
                                              htmlFor="images"
                                              >images *
                                         </label>
                                         <input 
+                                            className={`${className.inputClass} p-[5px] bg-white`}
                                             id='images'
                                             type="file"
                                             name={`images_${index}`}
@@ -110,7 +108,7 @@ export function ImagesColor() {
                                             prev[index].color = e.target.value;
                                             return [...prev]
                                         })}
-                                    name={[index,"color"]}
+                                    name={"color"}
                                     label={`color ${index + 1}`}
                                     type='color'
                                     errors={colValidError}

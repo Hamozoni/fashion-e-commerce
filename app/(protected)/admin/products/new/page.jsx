@@ -102,7 +102,7 @@ const NewProducts = () => {
                     ref={formRef}
                     onSubmit={handleSubmit} 
                     >
-                    <div className="lg:flex items-start gap-3">
+                    <div className="lg:flex gap-3 mb-3 items-stretch">
                         <ProductInfoForm/>
                         <SpecificationInputs/>
                     </div>

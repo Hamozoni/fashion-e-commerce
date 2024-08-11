@@ -8,14 +8,6 @@ const className = {
 
 export function FormInput({name,label,type,placeHolder,errors,required = true,onClick}) {
 
-  if(errors) {
-
-    console.log(errors)
-
-
-  }
-
-
     
   return (
     <div className="group pb-2 flex-grow">
@@ -25,18 +17,12 @@ export function FormInput({name,label,type,placeHolder,errors,required = true,on
         </label>
         <input 
             onChange={onClick}
-            className={type !== 'color' ? className.inputClass : 'flex mt-3 rounded-full bg-transparent'}
+            className={type === 'color' ? 'w-full max-w-full h-[45px] rounded-md overflow-hidden' : className.inputClass}
             type={type} 
             placeholder={placeHolder}
             required={required}
         />
-        {
-          errors?.find(e=> JSON.stringify(e?.path) === JSON.stringify(name)) &&
-        <p className=" text-rose-500 text-sm font-medium capitalize flex items-center gap-3">
-              <BiSolidError />
-              {errors?.find(e=> JSON.stringify(e?.path) === JSON.stringify(name))?.message }
-          </p>
-        }
+         <ZodError error={errors} field={name} />
     </div>
   )
 };

@@ -30,7 +30,7 @@ export function SpecificationInputs() {
     }
 
   return (
-    <section className="my-8 p-3 rounded-md border-b border-gray-200 dark:border-stone-800 bg-gray-50 dark:bg-stone-950 border ">
+    <section className="flex-1 p-3 rounded-md border-b border-gray-200 dark:border-stone-800 bg-gray-50 dark:bg-stone-950 border ">
         <header
              className="mb-3">
              <h4 
@@ -42,13 +42,13 @@ export function SpecificationInputs() {
 
             {
                 productSpecifications?.map((_,index)=> (
-                    <div key={index} className="flex items-center gap-3  flex-wrap dark:bg-black">
+                    <div key={index} className="flex items-center gap-2  flex-wrap dark:bg-black">
                         <FormInput
                             onClick={e => setProductSpecifications(prev => {
                                 prev[index].name =  e.target.value
                                 return [...prev]
                             })}
-                            name={[index,'name']}
+                            name={'name'}
                             label={`name ${index + 1}`}
                             type='text'
                             placeHolder='specification key...'
@@ -59,7 +59,7 @@ export function SpecificationInputs() {
                                 prev[index].value = e.target.value
                                 return prev
                             })}
-                            name={[index,'value']}
+                            name={'value'}
                             label={`value ${index + 1}`}
                             type='text'
                             placeHolder='specification value...'
