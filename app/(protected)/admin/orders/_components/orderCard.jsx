@@ -30,7 +30,7 @@ export const OrderCard = ({data,setOrders,index,setOrdersNum})=> {
     const [isProducts,setIsProducts] = useState(false)
 
     return (
-        <div className="capitalize relative p-3 rounded-md bg-teal-50 dark:bg-stone-950 mb-8 border border-teal-100 dark:border-stone-700">
+        <div className="capitalize relative p-3 rounded-md bg-gray-50 dark:bg-stone-950 mb-8 border border-gray-200 shadow-md dark:border-stone-700">
             <Editing 
                 clientSecret={paymentClientSecret} 
                 status={status} 

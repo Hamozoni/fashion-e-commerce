@@ -15,9 +15,6 @@ import { Error } from "../../../../../ui/components/error";
 
 export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
 
-
-
-
     const [priceInput,setPriceInput] = useState(0);
     const [dateInput,setDateInput] = useState(null);
     const [validateError,setValidateError] = useState(null);
@@ -40,6 +37,7 @@ export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
         setIsLoading(true)
         if(item.priceInHalala <= priceInput) {
             setValidateError([{path:['offerPrice'],message:'offer price should be less the original price'}]);
+            setIsLoading(false)
             return
         }
 
@@ -60,8 +58,6 @@ export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
                     prev[productIndex].colors.splice(colorIndex,1,data)
                     return [...prev];
                 });
-
-                console.log(data)
                 setData(data);
             }).catch((error)=> {
                 setError(error)
@@ -69,6 +65,7 @@ export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
                 setIsLoading(false);
             })
        }else {
+            setIsLoading(false)
            setValidateError(JSON.parse(validate.error))
        }
     };
@@ -114,7 +111,7 @@ export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
                 </div>
             </div>
         )
-    }
+    };
 
     return (
         
@@ -145,6 +142,9 @@ export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
                                 name="offerPrice" 
                                 id="newOffer" 
                                 required
+                                placeholder="0.00"
+                                min='100'
+                                max={priceInput}
                                 />
                     </div>
                     <ZodError error={validateError} field='offerPrice' />

@@ -48,7 +48,7 @@ export function ImagesColor() {
     }
 
   return (
-    <section className="mb-10 pb-10 px-3 border border-teal-200 rounded-md bg-teal-50 dark:bg-stone-950 dark:border-stone-900">
+    <section className="mb-10 pb-10 px-3 border border-gray-200 rounded-md bg-gray-50 dark:bg-stone-950 dark:border-stone-900">
 
         <header className="my-3">
             <h4 

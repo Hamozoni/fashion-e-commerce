@@ -1,5 +1,6 @@
 "use client"
 
+import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -11,8 +12,9 @@ import { TiThMenuOutline } from "react-icons/ti";
 
 import { ThemeModel } from "../../../../ui/models/themeModel";
 import { SignOut } from "../../../../ui/buttons/signOut";
+import {AdminAccount} from "./adminAccount"
+
 import { Overlay } from "../../../../ui/models/overlay";
-import { useContext, useState } from "react";
 import { AppContext } from "../../../contextProvider";
 
 const navData = [
@@ -50,11 +52,7 @@ export const Navbar = () => {
       
       <section className={`${isMenu ? '' : '-translate-x-full md:translate-x-0'} border-t-4 border-t-teal-300 w-[250px] z-[70] fixed md:sticky left-0 bg-white top-0 h-screen min-w-fit dark:bg-black flex flex-col justify-between pb-4`}>
         <div className="max-h-full overflow-y-auto">
-          <h4 className="p-3 py-4 lg:px-8 mb-6">
-            <Link href={`/admin`} className="text-3xl font-bold uppercase text-teal-400">
-                dashboard
-            </Link>
-          </h4>
+             <AdminAccount />
             <nav className="flex flex-col gap-5 mt-3">
 
               {

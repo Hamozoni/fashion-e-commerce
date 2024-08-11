@@ -40,7 +40,6 @@ export const ProductsContainer = ()=> {
         })
         .catch((error)=> {
             setError(error)
-            console.log(error)
         })
         .finally(()=> {
             setIsLoading(false);
@@ -72,7 +71,7 @@ export const ProductsContainer = ()=> {
             {
                  error ? <Error onClick={handleFetch} /> :
                 <section className="">
-                    <h6 className="text-sm font-bold text-gray-500 capitalize flex items-center gap-2">
+                    <h6 className="text-lg font-bold text-gray-500 capitalize flex items-center gap-2">
                         <TbAdjustmentsSearch /> all results {allResults}
                     </h6>
                     {
