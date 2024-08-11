@@ -19,9 +19,6 @@ export async function PUT (req) {
         };
 
         const validate = addingOfferSchema.safeParse(newOffer);
-        console.log(validate.success)
-        
-        
         
         if(validate.success) {
             const data = await db.productColors.update({

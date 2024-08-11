@@ -52,54 +52,63 @@ export const NewOfferForm = ({item,setIsOfferModel})=> {
         updateData(`admin/sales?offerPrice=${priceInput}&expiresAt=${dateInput}&id=${item?.id}`)
             .then((data)=> {
                 setData(data);
-                console.log(data)
             }).catch((error)=> {
                 setError(error)
-                console.log(error)
             }).finally(()=> {
                 setIsLoading(false);
             })
        }else {
-           console.log(data);
            setValidateError(JSON.parse(validate.error))
-           console.log();
        }
     };
 
     const className = {
         smallHead : 'text-sm font-bold text-teal-950'
+    };
+
+    const SuccessMessage = ()=> {
+        return (
+            <div className="mt-4">
+                <div className="flex items-center gap-3">
+                    <div className="text-center flex-1">
+                        <FaRegCalendarCheck color="#14b8a6 " size={240} />
+                    </div>
+                    <div className="flex-1 capitalize">
+                        <header className="mb-5 text-center">
+                            <h5 className="text-center text-lg font-bold text-teal-950 mb-2">
+                                sale price {getCurrency(priceInput)}
+                            </h5>
+                            <time 
+                                className={className.smallHead}
+                                datetime={new Date(dateInput)}>
+                                expiers at{new Date(dateInput).toLocaleDateString()}
+                            </time>
+                        </header>
+                        <ButtonWithIcon 
+                            onClick={()=> setIsOfferModel(false)}
+                            disabled={isLoading}
+                            text='done' 
+                            Icon={FaCheck} 
+                            type='primary' />
+                        <hr className="my-3" />
+
+                        <ButtonWithIcon 
+                            onClick={()=> setData(null)}
+                            disabled={isLoading}
+                            text='containue' 
+                            Icon={FiGitCommit} 
+                            type='save' />
+                    </div>
+
+                </div>
+            </div>
+        )
     }
 
     return (
         
         data ?  
-        <div className="mt-4">
-            <div className="flex items-center gap-3">
-                <div className="text-center flex-1">
-                    <FaRegCalendarCheck color="#14b8a6 " size={240} />
-                </div>
-                <div className="flex-1">
-                    <h5 className="text-center text-lg font-bold text-teal-950 mb-5">
-                        price updated {getCurrency(priceInput)}
-                    </h5>
-                    <ButtonWithIcon 
-                        onClick={()=> setIsOfferModel(false)}
-                        disabled={isLoading}
-                        text='done' 
-                        Icon={FaCheck} 
-                        type='primary' />
-                    <hr className="my-3" />
-
-                    <ButtonWithIcon 
-                        onClick={()=> setData(null)}
-                        disabled={isLoading}
-                        text='containue' 
-                        Icon={FiGitCommit} 
-                        type='save' />
-                </div>
-
-            </div>
-        </div>
+        <SuccessMessage />
         : error ? 
         <Error onClick={()=> setError(null)} /> :
         <form onSubmit={(e)=> handleSubmit(e)} className=" mt-8 mb-3">
