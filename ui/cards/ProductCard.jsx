@@ -23,13 +23,7 @@ const className = {
 export function ProductCard({product}) {
 
    const [productDetails,setProductDetails] = useState(product);
-
-   console.log(product)
-
    const {id,color,colorName,size,imagePath,priceInHalala} = productDetails;
-
-
-   
    
    const linkHref = {
        pathname : `/product/${id}`,
@@ -39,7 +33,6 @@ export function ProductCard({product}) {
     const { innerWidth } = useContext(AppContext);
     const imageWidth = innerWidth < 400 ? 160 : innerWidth  <  440 ?  180 : innerWidth < 460 ?  200 : 220;
     const cardHeight = innerWidth < 400 ? 200 : innerWidth < 600 ? 260 : 280;
-    
 
     const imageStyle = useMemo(()=> {
         return {
