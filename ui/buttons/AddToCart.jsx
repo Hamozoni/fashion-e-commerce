@@ -8,28 +8,37 @@ import {removeItemFromCart, addToCart } from "../../store/features/cartSlice";
 // component
 import {QuantityBtn} from "./quantityBtn";
 import { ButtonWithIcon } from "./buttons";
+import { useState } from "react";
 
 export function AddToCart({product,isFromCard=false}) {
 
-    const {id,name,priceInHalala,category,subcategory,colorName,serialNumber,brand,color,size,imagePath} = product;
+    const {id,name,priceInHalala,category,subcategory,colorName,serialNumber,brand,color,size,imagePath,sizes} = product;
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.color === color && e.size === size)?.quantity);
     const dispatch = useAppDispatch();
     
+    const [isError,setIsErroe] = useState(false)
     const incrementItem = ()=> {
-        const uniqueId = crypto.randomUUID()
-        dispatch(addToCart({
-            id,
-            name,
-            priceInHalala: +priceInHalala,
-            category,
-            subcategory,
-            serialNumber: `${uniqueId}${serialNumber}`,
-            brand,
-            imagePath,
-            color,
-            colorName,
-            size,
-        }));
+        
+        const isAvailbeSize = sizes?.find(e => (e.shortName === size && e.colorName === colorName));
+
+        if(!!isAvailbeSize){
+            const uniqueId = crypto.randomUUID()
+            dispatch(addToCart({
+                id,
+                name,
+                priceInHalala: +priceInHalala,
+                category,
+                subcategory,
+                serialNumber: `${uniqueId}${serialNumber}`,
+                brand,
+                imagePath,
+                color,
+                colorName,
+                size,
+            }));
+        }else {
+            setIsErroe(true);
+        }
     };
 
 

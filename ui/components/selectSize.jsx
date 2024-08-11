@@ -11,7 +11,7 @@ export const SizesOptions = ({product,setProduct})=> {
             colorName === product?.colorName ?
             <li 
                 className={`${product.size === shortName ? "border-2 shadow-md": ""} hover:bg-teal-50 dark:hover:bg-teal-950 dark:text-teal-100 hover:scale-105 text-teal-800 uppercase text-center text-sm  border-2 rounded-full min-w-fit p-3 py-1 cursor-pointer`}
-                style={product.size === shortName ? {borderColor: product.color}: {}}
+                style={product.size === shortName ? {borderColor: product.color,backgroundColor : '#0f766e', color: 'white'}: {}}
                 onClick={()=> setProduct(prev=> {
                   const size = shortName;
 
