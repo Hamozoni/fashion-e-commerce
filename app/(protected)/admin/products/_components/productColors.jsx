@@ -42,7 +42,7 @@ export const ProductColors = ({color: {color,priceInHalala,offerPriceInHalala,of
                {
                     sizes?.map(({colorName : color,shortName,stackQuantity})=> (
                          colorName === color ?
-                         <div className="text-center bg-white dark:bg-stone-800 p-2 rounded-md">
+                         <div key={color} className="text-center bg-white dark:bg-stone-800 p-2 rounded-md">
                               <h6 className={className.smStitle}>{shortName}</h6>
                               <p className={className.smStitle}>{stackQuantity}</p>
                          </div>

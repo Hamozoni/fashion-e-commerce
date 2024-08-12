@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState,createContext} from "react";
+import { useEffect, useState,createContext, useCallback} from "react";
 // next auth session
 // creating context
 export const AppContext = createContext();
@@ -12,8 +12,6 @@ const ContextProvider = ({children,session}) => {
   const [currentUser,setCurrentUser] = useState(session);
   
   const [theme,setTheme] = useState('user device');
-
-  console.log(session)
   
   useEffect(()=> {
     setCurrentUser(session);
@@ -28,18 +26,17 @@ const ContextProvider = ({children,session}) => {
         return ()=> window.removeEventListener('resize',getWidth);
     },[]);
 
-    const handleTheme = ()=> {
-      const storageTheme = localStorage.getItem('theme');
-
-      const useDevice = ()=> {
-        if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-            localStorage.setItem('theme','user device');
-            document.documentElement.classList.add('dark');
-        }else {
-           document.documentElement.classList.remove('dark');
-        }
+    const useDevice = ()=> {
+      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+          localStorage.setItem('theme','user device');
+          document.documentElement.classList.add('dark');
+      }else {
+         document.documentElement.classList.remove('dark');
       }
+    };
 
+    const handleTheme = useCallback(()=> {
+      const storageTheme = localStorage.getItem('theme');
      if(storageTheme){
         if(storageTheme === 'user device'){
             useDevice();
@@ -55,9 +52,11 @@ const ContextProvider = ({children,session}) => {
         useDevice();
      };
      console.log( document.documentElement.classList)
-    };
+    },[]);
 
-    useEffect(handleTheme,[theme]);
+    useEffect(()=> {
+      handleTheme()
+    },[theme,handleTheme]);
 
   return (
     <AppContext.Provider 

@@ -16,19 +16,15 @@ const SearchPage = ()=> {
 
     const searchQuery = searchParams.get('query');
 
-    console.log(searchQuery);
-
     useEffect(()=> {
         setError(null);
         setIsLoading(true);
         fetchData(`search?query=${searchQuery}`)
         .then((data)=> {
             setData(data);
-            console.log(data)
         })
         .catch((error)=> {
             setError(error);
-            console.log(error);
         })
         .finally(()=> {
             setIsLoading(false);
@@ -49,7 +45,7 @@ const SearchPage = ()=> {
             <div className="flex flex-wrap gap-5 justify-center">
                 {
                     data?.map((product)=> (
-                        <ProductCard product={product} />
+                        <ProductCard key={product?.id} product={product} />
                     ))
                 }
             </div>

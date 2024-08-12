@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {SummaryFilter} from "./summaryFilter";
 import {revenueFilterDates} from "../../../../data/filteringDates"
 import { fetchData } from "../../../../lip/fetchData";
-import {BarChart, RevenueChart} from "../_charts/bar";
+import {BarChart} from "../_charts/bar";
 import Loading from "../loading";
 import { Error } from "../../../../ui/components/error";
 import { getCurrency } from "../../../../lip/getCurrency";
@@ -16,7 +16,7 @@ export const RevenueSummary = ()=> {
     const [isLoading,setIsLoading] = useState(false);
     const [error,setError] = useState(null);
 
-    const handleFetchRevenue = ()=> {
+    const handleFetchRevenue = useCallback(()=> {
         setIsLoading(true);
         fetchData(`admin/revenue?dates=${JSON.stringify(filteredBy?.date)}`)
         .then((data)=> {
@@ -29,10 +29,10 @@ export const RevenueSummary = ()=> {
         .finally(()=> {
             setIsLoading(false)
         })
-    }
+    },[])
     useEffect(()=> {
         handleFetchRevenue();
-    },[filteredBy]);
+    },[filteredBy,handleFetchRevenue]);
 
 
     return (

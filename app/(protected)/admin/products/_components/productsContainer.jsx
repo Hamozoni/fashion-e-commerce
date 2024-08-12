@@ -1,6 +1,6 @@
 "use client"
 import {fetchData} from "../../../../../lip/fetchData";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {Navbar} from "./navbar";
 import {ProductCard} from "./productCard";
 import { TbAdjustmentsSearch } from "react-icons/tb";
@@ -20,12 +20,13 @@ export const ProductsContainer = ()=> {
     const [error,setError] = useState(null);
     const [page,setPage] = useState(1);
 
-    const handleFetch = (page,isLoadMore = false)=> {
+    const handleFetch = useCallback((page,isLoadMore = false)=> {
 
         if(isLoadMore){
             setIsLoadingMore(true);
         }else {
             setIsLoading(true);
+            setPage(1)
         };
 
         setError(null);
@@ -46,12 +47,11 @@ export const ProductsContainer = ()=> {
             setIsLoading(false);
             setIsLoadingMore(false)
         })
-    }
+    },[])
 
     useEffect(()=> {
-        setPage(1)
         handleFetch(1);
-    },[categoryName,subcategoryName]);
+    },[categoryName,subcategoryName,handleFetch]);
 
     const handleLoadMore = ()=> {
         setPage(page + 1);

@@ -47,7 +47,7 @@ export const OverviewHeader = ()=> {
             <ul className="flex items-center gap-5 overflow-x-auto py-5">
                 {
                     overview?.map(({name,Icon,data})=> (
-                        <li className="min-w-fit flex-grow w-[150px] flex flex-col items-center justify-between cursor-pointer hover:scale-105 gap-3 rounded-md p-4 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700">
+                        <li key={name} className="min-w-fit flex-grow w-[150px] flex flex-col items-center justify-between cursor-pointer hover:scale-105 gap-3 rounded-md p-4 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700">
                             <div className="flex items-center justify-center rounded-full w-[80px] h-[80px] bg-white shadow-sm dark:bg-black">
                                 <Icon size={40} className="text-teal-700 dark:text-teal-400" />
                             </div>

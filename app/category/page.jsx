@@ -1,6 +1,6 @@
 "use client"
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 // data
 import { categoriesData } from "../../data/categoriesData";
 import { fetchData } from "../../lip/fetchData";
@@ -22,9 +22,9 @@ const CatecoryPage = () => {
   const [isLoadingMore,setIsLoadingMore] = useState(false);
   const [page,setPage] = useState(1);
 
-  useEffect(()=> {
 
-    if(products?.length > 0){
+  const fetchCategory = useCallback((page = 1,isMore = false)=> {
+    if(isMore){
       setIsLoadingMore(true);
     }else {
       setIsLoading(true)
@@ -46,8 +46,11 @@ const CatecoryPage = () => {
       setIsLoadingMore(false);
       setIsLoading(false)
     })
+  },[]);
 
-  },[section,page]);
+  useEffect(()=> {
+    fetchCategory()
+  },[section]);
 
   return (
     <div className="p-3 lg:px-8">
@@ -83,7 +86,10 @@ const CatecoryPage = () => {
                 <div className="max-w-fit mx-auto mt-6">
                    <LoadMoreBtn 
                       isLoadingMore={isLoadingMore} 
-                      onClick={()=> setPage(page + 1)} 
+                      onClick={()=> {
+                        fetchCategory(page + 1,true)
+                        setPage(page + 1)
+                      }} 
                       />
                 </div>
               }

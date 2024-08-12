@@ -1,6 +1,6 @@
 
 
-export default function customersPage () {
+export default function CustomersPage () {
     return (
         <div className="">
             

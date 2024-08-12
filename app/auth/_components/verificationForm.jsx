@@ -1,25 +1,23 @@
 // "use client";
-
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState, useTransition} from "react";
 import { ScaleLoader } from "react-spinners";
 import {verificationAction} from "../../../actions/auth/verification"
 import { ErrorSucces } from "./errorSucces";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
-export function VerificationForm(context) {
+export function VerificationForm() {
 
 
-    // const [error,setError] = useState(null);
-    // const [success,setSuccess] = useState(null);
-    // const [isLoading,startTransition] = useTransition();
+    const [error,setError] = useState(null);
+    const [success,setSuccess] = useState(null);
+    const [isLoading,startTransition] = useTransition();
 
-    // const searchPaams = useSearchParams();
+    const searchPaams = useSearchParams();
 
-    // const token = searchPaams.get('token');
+    const token = searchPaams.get('token');
 
     useEffect(()=> {
-
         setError(null);
         setSuccess(null);
 

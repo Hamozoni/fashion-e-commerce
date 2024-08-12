@@ -1,6 +1,6 @@
 "use client"
 
-import {  useContext, useEffect} from "react";
+import {  useCallback, useContext, useEffect} from "react";
 import { FormInput } from "./FormInput";
 
 import { IoIosAdd } from "react-icons/io";
@@ -38,10 +38,14 @@ export function ImagesColor() {
         })
     };
 
-    useEffect(()=> {
+    const  handleSizes = useCallback(()=> {
         const sizesLength = new Array(productColors.length).fill([]);
         setProductSizes(sizesLength)
-    },[category]);
+    },)
+
+    useEffect(()=> {
+        handleSizes
+    },[category,handleSizes]);
 
     const className = {
         addRemovBtn : 'w-[70px] cursor-pointer hover:scale-105 rounded-full flex items-center justify-center border-2',

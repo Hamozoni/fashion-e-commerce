@@ -27,6 +27,7 @@ export function ImagesGalary() {
                                 key={img.id} 
                                 src={img?.imagePath} 
                                 width={60} height={60} 
+                                alt='product image'
                                 />
                                 : null
 

@@ -9,7 +9,7 @@ import { useAppSelector } from "../../store/store";
 import { useAppDispatch } from "../../store/store";
 import {clearAllItemsFromCart} from "../../store/features/cartSlice"
 
-function cartPage() {
+function CartPage() {
 
     const cartItems = useAppSelector(state=> state.cart.products);
     const totalItemsOnCart = useAppSelector((state)=> state.cart.totalQuantity);
@@ -68,4 +68,4 @@ function cartPage() {
   )
 }
 
-export default cartPage;
+export default CartPage;

@@ -1,4 +1,5 @@
-import {ProductsContainer} from "./_components/productsContainer"
+import {ProductsContainer} from "./_components/productsContainer";
+
 const Products = () => {
   return (
     <div className="p-3 lg:px-8">

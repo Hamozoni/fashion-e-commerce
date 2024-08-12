@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { MdPendingActions } from "react-icons/md";
 import { GrCompliance } from "react-icons/gr";
@@ -34,7 +34,7 @@ const className = {
 }
 
 
-export default function ordersPage () {
+export default function OrdersPage () {
 
     const [status,setStatus] = useState('pending');
     const [orders,setOrders] = useState([]);
@@ -46,7 +46,7 @@ export default function ordersPage () {
 
 
 
-    const fetchOrders = (page,isMore)=> {
+    const fetchOrders = useCallback((page,isMore)=> {
         setError(null);
         setOrdersNum(0)
         fetchData(`orders/byStatus?status=${status?.toUpperCase()}&page=${page}`)
@@ -66,14 +66,14 @@ export default function ordersPage () {
             setIsLoading(false);
             setIsLoadingMore(false)
         })
-    }
+    },[])
 
     useEffect(()=> {
         setIsLoading(true);
         setIsLoadingMore(true);
         setPage(1);
         fetchOrders(1,false);
-    },[status]);
+    },[status,fetchOrders]);
 
     const loadMoreOrders = ()=> {
         if(isMordeOrders) {
@@ -102,7 +102,12 @@ export default function ordersPage () {
             </nav>
             <div className="max-w-full">
                 {
-                    isLoading ? <Loading /> : !!error ? <Error onClick={fetchOrders}/> :
+                    isLoading ? <Loading /> 
+                    : !!error ? 
+                    <Error 
+                        onClick={()=> fetchOrders(page,false)}
+                        /> 
+                    :
                     orders?.map((order,index)=> (
                         <OrderCard key={order.id} index={index} data={order} setOrdersNum={setOrdersNum} setOrders={setOrders} />
                     ))

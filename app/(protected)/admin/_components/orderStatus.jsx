@@ -1,6 +1,6 @@
 "use client"
 
-import {useContext, useEffect, useState } from "react";
+import {useCallback, useContext, useEffect, useState } from "react";
 import { fetchData } from "../../../../lip/fetchData";
 import {LineChart} from "../_charts/line";
 import Loading from "../loading";
@@ -16,7 +16,7 @@ export const OrderStatus = () => {
     const [error,setError] = useState(null);
 
 
-    const handleFetchStatus = ()=> {
+    const handleFetchStatus = useCallback(()=> {
         setIsLoading(true);
         setError(null);
         fetchData(`admin/ordersStatus?date=${filteredBy?.date}`)
@@ -30,11 +30,11 @@ export const OrderStatus = () => {
         .finally(()=> {
             setIsLoading(false);
         })
-    };
+    },[]);
 
     useEffect(()=> {
         handleFetchStatus()
-    },[filteredBy]);
+    },[filteredBy,handleFetchStatus]);
 
     const ordersStatusSammary = [
         {

@@ -1,11 +1,11 @@
 "use client"
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 // components
 import {SelectColor} from "../../../ui/components/selectColor";
 import {SelectSize} from "../../../ui/components/selectSize";
 import {Features} from "./features"
-import {AddToCart} from "../../../ui/buttons/addToCart";
+import  {AddToCart } from "../../../ui/buttons/addToCart";
 import {Specifications}from "./specifications";
 import {ImagesGalary} from "./imagesGalary";
 import {AddToListBtn }from "../../../ui/buttons/addToListBtn";
@@ -28,7 +28,7 @@ export function ProductDetails({data}) {
         size
     } = searchParamsObject;
 
-    useEffect(()=> {
+    const handleDetails = useCallback(()=> {
         if(colorName && size ) {
             const selectedColor = product.colors.find(e=> e.colorName === colorName);
             const { 
@@ -53,8 +53,11 @@ export function ProductDetails({data}) {
             });
 
         };
-
     },[]);
+
+    useEffect(()=> {
+        handleDetails()
+    },[handleDetails]);
 
   return (
         <ProductDetailsContext.Provider 

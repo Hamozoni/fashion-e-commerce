@@ -12,7 +12,7 @@ import { LuSend } from "react-icons/lu";
 import { ButtonWithIcon } from "../../../ui/buttons/buttons";
 import Link from "next/link";
 
-function newPasswordPage() {
+export default function NewPasswordPage() {
 
     const token = useSearchParams().get("token");
     const [error,setError] = useState(null);
@@ -94,6 +94,4 @@ function newPasswordPage() {
         </form>
     </div>
   )
-}
-
-export default newPasswordPage
+};

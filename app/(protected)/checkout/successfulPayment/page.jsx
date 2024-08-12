@@ -14,7 +14,7 @@ import { clearAllItemsFromCart } from "../../../../store/features/cartSlice";
 import {useAppDispatch} from "../../../../store/store";
 
  
- const successfulPayment = () => {
+ const SuccessfulPayment = () => {
 
     const [error,setError] = useState(null);
     const [isLoading,setIsLoading] = useState();
@@ -99,4 +99,4 @@ import {useAppDispatch} from "../../../../store/store";
 
 };
 
-export default successfulPayment;
+export default SuccessfulPayment;
