@@ -27,29 +27,39 @@ const ContextProvider = ({children,session}) => {
     },[]);
 
     const useDevice = ()=> {
-      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-          localStorage.setItem('theme','user device');
-          document.documentElement.classList.add('dark');
-      }else {
-         document.documentElement.classList.remove('dark');
-      }
+
     };
 
     const handleTheme = useCallback(()=> {
       const storageTheme = localStorage.getItem('theme');
      if(storageTheme){
         if(storageTheme === 'user device'){
-            useDevice();
+          if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+              localStorage.setItem('theme','user device');
+              document.documentElement.classList.add('dark');
+            }else {
+              document.documentElement.classList.remove('dark');
+            }
             setTheme(storageTheme);
         }else if (storageTheme === 'dark') {
             document.documentElement.classList.add(storageTheme);
             setTheme(storageTheme);
         }else {
             document.documentElement.classList.remove('dark');
-            setTheme('light');
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                localStorage.setItem('theme','user device');
+                document.documentElement.classList.add('dark');
+            }else {
+              document.documentElement.classList.remove('dark');
+            }
         }
      }else {
-        useDevice();
+          if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+            localStorage.setItem('theme','user device');
+            document.documentElement.classList.add('dark');
+          }else {
+            document.documentElement.classList.remove('dark');
+          }
      };
      console.log( document.documentElement.classList)
     },[]);

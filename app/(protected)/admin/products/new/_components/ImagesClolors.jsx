@@ -41,7 +41,7 @@ export function ImagesColor() {
     const  handleSizes = useCallback(()=> {
         const sizesLength = new Array(productColors.length).fill([]);
         setProductSizes(sizesLength)
-    },)
+    },[])
 
     useEffect(()=> {
         handleSizes
