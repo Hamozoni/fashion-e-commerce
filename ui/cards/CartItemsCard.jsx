@@ -21,11 +21,11 @@ export const CartItemsCard = ({product,isOrdered = false})=> {
     const dispatch = useAppDispatch();
 
     const {innerWidth} = useContext(AppContext);
-    const {name,id,color,colorName,size,imagePath,priceInHalala,quantity} = product;
+    const {name,id,color,colorName,size,imagePath,priceInHalala,quantity,offerPriceInHalala} = product;
 
     const linkHref = {
         pathname : `/product/${id}`,
-        query: {color,colorName,size,imagePath,priceInHalala}
+        query: {colorName,size}
      };
 
      const className = {
@@ -57,9 +57,16 @@ export const CartItemsCard = ({product,isOrdered = false})=> {
                 <div className="flex justify-between items-center mt-3 w-full">
                     <div className="">
                         <div className="flex gap-3 items-center lg-pt-0">
-                            <h5 className={className.text}>
+                            <h5 className={`${className.text} ${offerPriceInHalala ? 'line-through text-xs' : ''}`}>
                                 {getCurrency(priceInHalala)} × {quantity}
                             </h5>
+                            {
+                                offerPriceInHalala ? 
+                                <h5 className={className.text}>
+                                {getCurrency(offerPriceInHalala)} × {quantity}
+                            </h5>
+                                :null
+                            }
                         </div>
                         <div className="">
                             <h5 className={className.text}>

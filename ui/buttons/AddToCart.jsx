@@ -13,7 +13,7 @@ import { useState } from "react";
 
 export function AddToCart({product,isFromCard=false}) {
 
-    const {id,name,priceInHalala,category,subcategory,colorName,serialNumber,brand,color,size,imagePath,sizes} = product;
+    const {id,name,priceInHalala,offerPriceInHalala,category,subcategory,colorName,serialNumber,brand,color,size,imagePath,sizes} = product;
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.color === color && e.size === size)?.quantity);
     const dispatch = useAppDispatch();
     
@@ -29,6 +29,7 @@ export function AddToCart({product,isFromCard=false}) {
                 id,
                 name,
                 priceInHalala: +priceInHalala,
+                offerPriceInHalala,
                 category,
                 subcategory,
                 serialNumber: `${uniqueId}${serialNumber}`,
