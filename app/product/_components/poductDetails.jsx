@@ -22,23 +22,31 @@ export function ProductDetails({data}) {
     const [product,setProduct]= useState(data);
     const searchParams = useSearchParams();
 
+    const searchParamsObject = Object.fromEntries(searchParams.entries());
+    const {
+        colorName,
+        size
+    } = searchParamsObject;
+
     useEffect(()=> {
+        if(colorName && size ) {
+            const selectedColor = product.colors.find(e=> e.colorName === colorName);
+            const { 
+                color,
+                priceInHalala,
+                offerExpiresAt,
+                offerPriceInHalala,
+            } = selectedColor;
 
-        const searchParamsObject = Object.fromEntries(searchParams.entries());
-        const {
-            color,
-            colorName,
-            size,imagePath,
-            priceInHalala
-        } = searchParamsObject;
-
-        if(color && colorName && size && imagePath && priceInHalala) {
             setProduct((prev)=> {
                 const selectedValues = {
-                    color,
                     colorName,
-                    size,imagePath,
-                    priceInHalala
+                    size,
+                    color,
+                    priceInHalala,
+                    offerExpiresAt,
+                    offerPriceInHalala,
+                    imagePath : product.images.find(e=> e.colorName === colorName).imagePath
                 }
     
                 return {...prev,...selectedValues}
@@ -84,7 +92,8 @@ export function ProductDetails({data}) {
                         <Features />
                         <div className="flex items-center gap-2 pt-5 ">
                             <AddToCart
-                                product={product} 
+                                product={product}
+                                isFromCard={false}
                             />
                         <AddToListBtn product={product} />
                         </div>
