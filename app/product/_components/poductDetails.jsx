@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import {SelectColor} from "../../../ui/components/selectColor";
 import {SelectSize} from "../../../ui/components/selectSize";
 import {Features} from "./features"
-import  {AddToCart } from "../../../ui/buttons/addToCart";
+import  {AddToCartBtn } from "../../../ui/buttons/addToCartBtn";
 import {Specifications}from "./specifications";
 import {ImagesGalary} from "./imagesGalary";
 import {AddToListBtn }from "../../../ui/buttons/addToListBtn";
@@ -94,7 +94,7 @@ export function ProductDetails({data}) {
                         </div>
                         <Features />
                         <div className="flex items-center gap-2 pt-5 ">
-                            <AddToCart
+                            <AddToCartBtn
                                 product={product}
                                 isFromCard={false}
                             />

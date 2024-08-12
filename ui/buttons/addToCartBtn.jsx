@@ -11,7 +11,7 @@ import {QuantityBtn} from "./quantityBtn";
 import { ButtonWithIcon } from "./buttons";
 import { useState } from "react";
 
-export function AddToCart({product,isFromCard=false}) {
+export function AddToCartBtn({product,isFromCard=false}) {
 
     const {id,name,priceInHalala,offerPriceInHalala,category,subcategory,colorName,serialNumber,brand,color,size,imagePath,sizes} = product;
     const quantity = useAppSelector(state => state.cart.products?.find(e=> e.id === id && e.color === color && e.size === size)?.quantity);

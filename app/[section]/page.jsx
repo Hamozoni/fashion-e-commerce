@@ -21,7 +21,7 @@ async function page({params,searchParams}) {
                 {
                     data?.length > 0 ?
                     data?.map((product)=> (
-                        <ProductCard product={product}/>
+                        <ProductCard key={product?.id} product={product}/>
                     ))
                     :
                      (
