@@ -40,9 +40,9 @@ export const ProductColors = ({color: {color,priceInHalala,offerPriceInHalala,of
                          <h6 className={className.smStitle}>quantities: </h6>
                     </div>
                {
-                    sizes?.map(({colorName : color,shortName,stackQuantity})=> (
+                    sizes?.map(({colorName : color,shortName,stackQuantity,id})=> (
                          colorName === color ?
-                         <div key={color} className="text-center bg-white dark:bg-stone-800 p-2 rounded-md">
+                         <div key={id} className="text-center bg-white dark:bg-stone-800 p-2 rounded-md">
                               <h6 className={className.smStitle}>{shortName}</h6>
                               <p className={className.smStitle}>{stackQuantity}</p>
                          </div>

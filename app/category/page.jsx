@@ -18,6 +18,7 @@ const CatecoryPage = () => {
 
   const [products,setProducts] = useState([]);
   const [isLoading,setIsLoading] = useState(false);
+  const [error,setError] = useState(null);
   const [isDataDone,setIsDataDone] = useState(false);
   const [isLoadingMore,setIsLoadingMore] = useState(false);
   const [page,setPage] = useState(1);
@@ -29,28 +30,26 @@ const CatecoryPage = () => {
     }else {
       setIsLoading(true)
     }
-
+    setError(null)
     fetchData(`products/category?category=${section}&page=${page}`)
     .then((data)=> {
         if(data?.length === 0) {
           setIsDataDone(true);
         }
-        console.log(data)
-
         setProducts(prev=> [...prev,...data]);
     })
     .catch((error)=> {
-        console.log(error)
+      setError(error)
     })
     .finally(()=> {
       setIsLoadingMore(false);
       setIsLoading(false)
     })
-  },[]);
+  },[section]);
 
   useEffect(()=> {
     fetchCategory()
-  },[section]);
+  },[]);
 
   return (
     <div className="p-3 lg:px-8">
