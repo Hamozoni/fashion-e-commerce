@@ -33,7 +33,9 @@ export const MobileMenu = () => {
         <div className="capitalize fixed min-w-fit left-0 z-[70] h-screen max-h-screen top-0 w-fit bg-gray-50 dark:bg-stone-950">
             <header className="flex items-center justify-between p-3">
                 <h4 className="text-teal-950 dark:text-teal-50 text-xl font-bold">categories</h4>
-                <button className="text-teal-950 dark:text-teal-50"><GiTireIronCross/></button>
+                <button className="text-teal-950 dark:text-teal-50">
+                  <GiTireIronCross/>
+                </button>
             </header>
             <div className="h-[90%] max-h-[90%] overflow-y-auto">
               <ul className="py-1 h-fit min-h-fit">

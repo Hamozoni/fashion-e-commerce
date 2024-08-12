@@ -10,7 +10,7 @@ const initialState = {
 const getTotal = (state)=> {
 
     state.totalQuantity = state.products.reduce((total,curr)=> (total += curr.quantity),0);
-    state.totalPaid = state.products.reduce((total,curr)=> (total += curr.priceInHalala * curr.quantity),0);
+    state.totalPaid = state.products.reduce((total,curr)=> (total += (curr.offerPriceInHalala || curr.priceInHalala ) * curr.quantity),0);
     state.deliveryFree = state.totalPaid  > 14999 ? 0 : 1700;
 
     return state;

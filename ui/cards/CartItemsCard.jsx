@@ -56,8 +56,8 @@ export const CartItemsCard = ({product,isOrdered = false})=> {
                 </Link>
                 <div className="flex justify-between items-center mt-3 w-full">
                     <div className="">
-                        <div className="flex gap-3 items-center lg-pt-0">
-                            <h5 className={`${className.text} ${offerPriceInHalala ? 'line-through text-xs' : ''}`}>
+                        <div className="lg-pt-0">
+                            <h5 className={`${className.text} ${offerPriceInHalala ? 'line-through text-[10px] sm:text-[10px]' : ''}`}>
                                 {getCurrency(priceInHalala)} × {quantity}
                             </h5>
                             {

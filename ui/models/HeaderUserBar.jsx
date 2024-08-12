@@ -28,6 +28,17 @@ export function HeaderUserBar() {
         ul: 'fixed top-0 right-0  min-w-[300px] max-h-screen h-screen bg-gray-50 dark:bg-black py-2 z-50 ',
         li: 'px-4 py-3 capitalize hover:bg-gray-200 dark:hover:bg-teal-950 flex items-center gap-3 text-sm font-medium text-teal-950 dark:text-teal-100 cursor-pointer'
     };
+
+
+    const userAvatar =  currentUser?.image ?  <Image 
+        src={currentUser?.image} 
+        width={40} height={40} 
+        className="rounded-full"
+        />
+        :<FaUserLarge 
+        size={26} 
+        className="text-teal-900 dark:text-teal-100 rounded-full border border-teal-900 dark:border-teal-100" 
+        />
     
   return (
     <div className={className.flex} >
@@ -36,12 +47,10 @@ export function HeaderUserBar() {
                 <div className="cursor-pointer">
                     {
                         currentUser ? 
-                        <div className="" onClick={()=> setIsAccount(true)}>
-                            {
-                                currentUser?.image ?
-                                <Image src={currentUser?.image} width={40} height={40} className="rounded-full" />
-                                :<FaUserLarge />
-                            }
+                        <div 
+                            className=""
+                            onClick={()=> setIsAccount(true)}>
+                            {userAvatar}
                         </div>
                         :
                         <Link 
@@ -57,13 +66,9 @@ export function HeaderUserBar() {
                 <Overlay onClick={()=> setIsAccount(false)} />
                     <div className={className.ul}>
                         <header className="p-4 mb-4 border-b border-teal-100 dark:border-teal-950">
-                            <div className="flex">
+                            <div className="flex items-center">
                                 <div className="">
-                                    {
-                                        currentUser?.image ?
-                                        <Image src={currentUser?.image} width={50} height={50} className="rounded-full" />
-                                        :<FaUserLarge />
-                                    }
+                                    {userAvatar}
                                 </div>
                                 <div className="">
                                     <h4 className="text-teal-950 dark:text-teal-50 font-bold text-lg pl-3">{currentUser?.name}</h4>
@@ -72,7 +77,9 @@ export function HeaderUserBar() {
                             </div>
                         </header>
                         <ul  className="max-h-full overflow-y-auto">
-                            <li onClick={()=> setIsAccount(false)} className={className.li}>
+                            <li 
+                                onClick={()=> setIsAccount(false)} 
+                                className={className.li}>
                                 <BsCartCheck size={24} />
                                 <Link 
                                     href="/orders" 
