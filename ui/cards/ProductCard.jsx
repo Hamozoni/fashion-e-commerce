@@ -23,11 +23,20 @@ const className = {
 export function ProductCard({product}) {
 
    const [productDetails,setProductDetails] = useState(product);
-   const {id,color,colorName,size,imagePath,priceInHalala} = productDetails;
+   const {
+        id,
+        color,
+        colorName,
+        size,
+        imagePath,
+        priceInHalala,
+        offerPriceInHalala,
+        offerExpiresAt
+    } = productDetails;
    
    const linkHref = {
        pathname : `/product/${id}`,
-       query: {color,colorName,size,imagePath,priceInHalala}
+       query: {color,colorName,size,imagePath,priceInHalala,offerPriceInHalala,offerExpiresAt}
     };
     
     const { innerWidth } = useContext(AppContext);
@@ -97,9 +106,19 @@ export function ProductCard({product}) {
                     />
             </div>
             <div className="sm:flex items-center justify-between gap-3">
-                <h2 className="text-sm mb-2 sm:mb-0 sm:text-[16px] font-medium text-teal-900 dark:text-teal-100 text-center ">
-                    {getCurrency(productDetails?.priceInHalala)}
-                </h2>
+                <div className="text-sm mb-2 sm:mb-0 sm:text-[16px] font-medium text-teal-900 dark:text-teal-100 text-center ">
+                    <h2 className={offerPriceInHalala ? 'line-through text-xs': ''}>
+                        {getCurrency(priceInHalala)}
+                    </h2>
+                    {
+                        offerPriceInHalala ? 
+                    <h2>
+                        {getCurrency(offerPriceInHalala)}
+                    </h2>
+                    :null
+                    }
+
+                </div>
                 <AddToCart 
                     product={productDetails}
                     isFromCard={true}  

@@ -8,7 +8,7 @@ export const ColorOptions = ({product,setProduct})=> {
         <ul className="flex items-center gap-2">
             {
 
-                product?.colors?.map(({colorName,color,priceInHalala})=> (
+                product?.colors?.map(({colorName,color,priceInHalala,offerExpiresAt,offerPriceInHalala})=> (
 
                     <li 
                         className={`${colorName === product.colorName ? 'border-2 shadow-xl' : ''} flex items-center justify-center   mb-1 w-8 h-8 rounded-full shadow-md cursor-pointer`}
@@ -16,9 +16,11 @@ export const ColorOptions = ({product,setProduct})=> {
                         style={{borderColor: color}}
                         onClick={()=> setProduct((prev)=> {
                             const modified = {
-                                color :color,
-                                colorName : colorName,
-                                priceInHalala : priceInHalala,
+                                color,
+                                colorName ,
+                                priceInHalala,
+                                offerExpiresAt,
+                                offerPriceInHalala,
                                 imagePath : product?.images.find(e => e.colorName === colorName).imagePath
 
                             }
