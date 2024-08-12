@@ -31,12 +31,12 @@ export function ProductCard({product}) {
         imagePath,
         priceInHalala,
         offerPriceInHalala,
-        offerExpiresAt
+        // offerExpiresAt
     } = productDetails;
    
    const linkHref = {
        pathname : `/product/${id}`,
-       query: {color,colorName,size,imagePath,priceInHalala,offerPriceInHalala,offerExpiresAt}
+       query: {colorName,size}
     };
     
     const { innerWidth } = useContext(AppContext);
@@ -73,7 +73,7 @@ export function ProductCard({product}) {
                     className=" min-h-[280px] max-h-[280px] flex items-center justify-center bg-white overflow-hidden">
                         <Image
                             className='object-contain'
-                            src={productDetails?.imagePath}
+                            src={imagePath}
                             alt='product image'
                             width={imageWidth}
                             height={cardHeight}
@@ -107,17 +107,16 @@ export function ProductCard({product}) {
             </div>
             <div className="sm:flex items-center justify-between gap-3">
                 <div className="text-sm mb-2 sm:mb-0 sm:text-[16px] font-medium text-teal-900 dark:text-teal-100 text-center ">
+                   {
+                        offerPriceInHalala ? 
+                        <h2>
+                            {getCurrency(offerPriceInHalala)}
+                        </h2>
+                        :null
+                    }
                     <h2 className={offerPriceInHalala ? 'line-through text-xs': ''}>
                         {getCurrency(priceInHalala)}
                     </h2>
-                    {
-                        offerPriceInHalala ? 
-                    <h2>
-                        {getCurrency(offerPriceInHalala)}
-                    </h2>
-                    :null
-                    }
-
                 </div>
                 <AddToCart 
                     product={productDetails}
