@@ -4,13 +4,13 @@ import { NextResponse } from "next/server";
 import NextAuth from "next-auth"
 import authConfig from "./auth.config";
  
-// export const { auth: middleware } = NextAuth(authConfig)
+export const { auth: middleware } = NextAuth(authConfig)
 
 export default async function auth (req) {
 
   const {pathname} = req.nextUrl
 
-  const protectedRoutes = ['/checkout','/admin','/admin/products/new','/admin/orders','/admin/dashboard','/admin/sales'];
+  const protectedRoutes = ['/checkout','/admin','/admin/products/new','/admin/products','/admin/orders','/admin/dashboard','/admin/sales'];
 
   if(protectedRoutes.some( route => pathname.startsWith(route))) {
 
@@ -36,5 +36,5 @@ export default async function auth (req) {
  
 // Optionally, don't invoke Middleware on some paths
 export const config = {
-  matcher: ['/checkout','/admin','/admin/products/new','/admin/orders','/admin/dashboard','/admin/sales']
+  matcher: ['/checkout','/admin','/admin/products/new','/admin/products','/admin/orders','/admin/dashboard','/admin/sales']
 }

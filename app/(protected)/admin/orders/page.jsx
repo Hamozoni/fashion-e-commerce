@@ -60,20 +60,19 @@ export default function OrdersPage () {
         })
         .catch((error)=> {
             setError(error);
-            console.log(error)
         })
         .finally(()=> {
             setIsLoading(false);
             setIsLoadingMore(false)
         })
-    },[]);
+    },[status]);
 
     useEffect(()=> {
         setIsLoading(true);
         setIsLoadingMore(true);
         setPage(1);
         fetchOrders(1,false);
-    },[status,fetchOrders]);
+    },[fetchOrders]);
 
     const loadMoreOrders = ()=> {
         if(isMordeOrders) {
@@ -109,7 +108,13 @@ export default function OrdersPage () {
                         /> 
                     :
                     orders?.map((order,index)=> (
-                        <OrderCard key={order.id} index={index} data={order} setOrdersNum={setOrdersNum} setOrders={setOrders} />
+                        <OrderCard 
+                            key={order.id} 
+                            index={index} 
+                            data={order} 
+                            setOrdersNum={setOrdersNum} 
+                            setOrders={setOrders} 
+                            />
                     ))
                 }
                 {

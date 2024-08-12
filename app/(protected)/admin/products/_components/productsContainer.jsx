@@ -47,11 +47,11 @@ export const ProductsContainer = ()=> {
             setIsLoading(false);
             setIsLoadingMore(false)
         })
-    },[])
+    },[categoryName,subcategoryName])
 
     useEffect(()=> {
         handleFetch(1);
-    },[categoryName,subcategoryName,handleFetch]);
+    },[handleFetch]);
 
     const handleLoadMore = ()=> {
         setPage(page + 1);
