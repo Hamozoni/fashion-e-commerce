@@ -19,14 +19,12 @@ import { useSession } from "next-auth/react";
 function LoginPage() {
 
     const callback = useSearchParams().get("callback");
-
-
-
     const loginForm = useRef(null);
+
     const [isLoading,startTranation] = useTransition();
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSuccess] = useState(null);
-    const {currentUser,setCurrentUser} = useContext(AppContext);
+    const {currentUser} = useContext(AppContext);
 
     const router = useRouter();
 

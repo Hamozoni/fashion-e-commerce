@@ -29,7 +29,7 @@ export  async function POST (req) {
 
 
         if(findOrder) {
-            return NextResponse.json({order:findOrder},{status: 200});
+            return NextResponse.json(findOrder,{status: 200});
         }
 
         const order = await db.customerOrder.create({

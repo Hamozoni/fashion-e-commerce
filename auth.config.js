@@ -41,6 +41,6 @@ export default {
             }
         })
     ] ,
-    // trustHost: true,
-    // debug: true
+    trustHost: true,
+    debug: true
 }

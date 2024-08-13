@@ -48,7 +48,7 @@ import {useAppDispatch} from "../../../../store/store";
         PostData('payments/confirmPayment',formData)
         .then((data)=> {
             console.log(data)
-            setOrder(data?.order)
+            setOrder(data)
             dispatch(clearAllItemsFromCart());
         })
         .catch((error)=> {
