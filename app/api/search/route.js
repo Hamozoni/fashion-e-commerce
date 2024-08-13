@@ -7,10 +7,17 @@ export async function GET(req) {
     const {searchParams} = new URL(req.url);
 
     const query = searchParams?.get('query');
+    const page = searchParams?.get('page');
+    const take = 10;
+    const skip = (take * +page || 1) - take;
 
     try{
 
-        const data = await db.product.findMany({
+        if(!query) {
+            return NextResponse.json("query param is requared");
+        }
+
+        const products = await db.product.findMany({
             where: {
                 name: {
                     contains: query
@@ -20,15 +27,22 @@ export async function GET(req) {
                 images: true,
                 sizes: true,
                 colors: true
-            }
+            },
+            take,
+            skip
         });
 
-        console.log(data)
-        return NextResponse.json(data,{status: 200})
+        const count = await db.product.count({
+            where: {
+                name: {
+                    contains: query
+                }
+            }
+        })
+        return NextResponse.json({products,count},{status: 200})
     }
     catch (error){
-        console.log(error);
-
+        
         return NextResponse.json(error,{satatus: 404})
     }
 

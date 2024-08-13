@@ -9,10 +9,14 @@ export const GET = async (req)=> {
     const page = searchParams.get('page');
 
     const take = 7;
-    const skip = (take * +page) - take
+    const skip = (take * +page || 1) - take;
 
 
     try{
+
+        if(!category) {
+            return NextResponse.json("category param is requared");
+        }
         const products = await db.product.findMany({
             take,
             skip,
