@@ -9,12 +9,13 @@ export const GET = async (req)=> {
     const page = searchParams.get('page');
 
     const take = 7;
+    const skip = (take * +page) - take
 
 
     try{
-        const data = await db.product.findMany({
-            take : take,
-            skip: (take * +page) - take,
+        const products = await db.product.findMany({
+            take,
+            skip,
             where: {category},
             include: {
                 images: true,
@@ -23,7 +24,11 @@ export const GET = async (req)=> {
             }
         });
 
-        return NextResponse.json(data,{status: 200});
+        const count = db.product.count({
+            where: {category}
+        })
+
+        return NextResponse.json({products,count},{status: 200});
     }catch (error) {
         return NextResponse.json('opps! something went wrong',{status: 500});
     }

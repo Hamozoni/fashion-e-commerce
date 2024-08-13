@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {useCallback, useContext, useEffect, useRef, useState } from "react";
+import {useCallback, useEffect, useRef, useState } from "react";
 // fetch api
 import {fetchData} from "../../lip/fetchData";
 // loader
@@ -14,55 +14,54 @@ import { Error } from "../components/error";
 export const CategoryProducts = ({category})=> {
 
     const [products,setProducts] = useState([]);
-    const [isLoading,setisLoading] = useState(false);
+    const [isLoading,setIsLoading] = useState(false);
     const [isLoadingMore,setIsLoadingMore] = useState(false);
-    const [isThereMoreData,setIsThereMoreData] = useState(true);
     const [IsError,setIsError] = useState(null);
+    const [count,setCount] = useState(0);
 
     const [page,setPage] = useState(1);
 
     const [leftScroll,setLeftScroll] = useState(0)
     const [leftScrollEnds,setLeftScrollEnds] = useState(200);
 
-    const handleFetchCategory = useCallback(()=> {
-        if (products.length > 0) {
-            setIsLoadingMore(true)
+    const handleFetchCategory = useCallback((isMore,page)=> {
+
+        if(isMore) {
+            setIsLoading(true);
         }else {
-            setisLoading(true);
-        };
+            setIsLoading(true);
+        }
 
         setIsError(null);
-
         fetchData(`products/category?category=${category}&page=${page}`)
         .then((data)=> {
-            if(data?.length > 0) {
-                setProducts(prev => [...prev,...data]);
+            setCount(data.count)
+            if (isMore) {
+                setProducts(prev=> [...prev,...data.products]);
             }else {
-                setIsThereMoreData(false)
-            }
+                setProducts(data.products);
+            };
         })
         .catch((error)=> {
             setIsError(error);
         })
         .finally(()=> {
-             setisLoading(false);
+             setIsLoading(false);
              setIsLoadingMore(false)
         });
-    },[category,page])
+    },[category])
 
     useEffect(()=> {
-        handleFetchCategory()
+        handleFetchCategory(false,1)
     },[handleFetchCategory]);
 
     const productsContainerRef = useRef();
 
     const handleScroll = (e)=> {
-
         const scrollEnds = (e.target.children.length * 235) - (e.target.scrollLeft + e.target.clientWidth);
         setLeftScroll(e.target.scrollLeft);
         setLeftScrollEnds(scrollEnds)
     };
-
 
     const scrollRight = ()=> {
         productsContainerRef.current.scrollBy({
@@ -79,7 +78,6 @@ export const CategoryProducts = ({category})=> {
             behavior: 'smooth'
         });
     };
-
 
     return (
         <section className="py-5">
@@ -98,7 +96,9 @@ export const CategoryProducts = ({category})=> {
             </header>
             <div className="relative">
                 {
-                    isLoading ? <Loading /> : IsError ? <Error onClick={handleFetchCategory} /> :
+                    isLoading ? <Loading /> 
+                    : IsError ? 
+                    <Error onClick={()=>handleFetchCategory(false,page)} /> :
                     <div 
                         onScroll={handleScroll} 
                         ref={productsContainerRef} 
@@ -110,11 +110,14 @@ export const CategoryProducts = ({category})=> {
                         }
 
                         {
-                            isThereMoreData ? 
+                            count <= products?.length ? 
                             <div className="min-w-[200px] min-h-full flex items-center justify-center">
                                 <LoadMoreBtn 
                                     isLoadingMore={isLoadingMore} 
-                                    onClick={()=> setPage(page + 1)}
+                                    onClick={()=> {
+                                        handleFetchCategory(true,page + 1)
+                                        setPage(page + 1)
+                                    }}
                                    />
                             </div>
                             : null
