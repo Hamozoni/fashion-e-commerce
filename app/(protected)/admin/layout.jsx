@@ -1,6 +1,4 @@
 import {Navbar} from "./_components/navbar";
-import {Header} from "./_components/header"
-
 
 export const metadata = {
     title: "system shop",

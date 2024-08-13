@@ -8,6 +8,7 @@ export const OverviewContext  = createContext();
 
 
 export const OverviewContextProvider = ({children})=> {
+
     const [overviewData,setOverviewData] = useState({});
     const [isLoading,setIsLoading] = useState(false);
     const [errors,setErrors] = useState(null);
@@ -19,7 +20,6 @@ export const OverviewContextProvider = ({children})=> {
         fetchData('admin/overview')
         .then((data)=> {
             setOverviewData(data);
-            console.log(data)
         })
         .catch((error)=> {
             setErrors(error)

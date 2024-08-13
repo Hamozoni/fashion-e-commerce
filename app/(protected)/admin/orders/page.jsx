@@ -21,12 +21,6 @@ export const navStatus = [
     {name: 'cancelled',Icon: GiReturnArrow},
 ];
 
-// PENDING
-// PROCESSING
-// COMPLETED
-// CANCELLED
-
-
 const className = {
     li: 'relative flex items-center gap-2 before:absolute before:-bottom-2  before:left-1 before:w-0 hover:before:w-full before:h-[1px] bg-gray-50 px-4 py-1 rounded-md',
     title_1: "text-teal-950 dark:text-teal-50 text-lg font-bold mb-2",
