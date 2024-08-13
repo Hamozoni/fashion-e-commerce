@@ -1,8 +1,8 @@
 import {Navbar} from "./_components/navbar";
 
 export const metadata = {
-    title: "system shop",
-    description: "store for all categories products",
+    title: "admin",
+    description: "admid page for hamozoni fashion store",
   };
   
   export default function AdminLayout({ children }) {

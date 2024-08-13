@@ -12,6 +12,8 @@ const ContextProvider = ({children,session}) => {
   const [currentUser,setCurrentUser] = useState(session);
   
   const [theme,setTheme] = useState('user device');
+
+  console.log(session)
   
   useEffect(()=> {
     setCurrentUser(session);
@@ -26,47 +28,38 @@ const ContextProvider = ({children,session}) => {
         return ()=> window.removeEventListener('resize',getWidth);
     },[]);
 
-    const useDevice = ()=> {
-
+    const userDeviceTheme = ()=> {
+      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+          localStorage.setItem('theme','user device');
+          document.documentElement.classList.add('dark');
+      }else {
+         document.documentElement.classList.remove('dark');
+      }
     };
-
+    
     const handleTheme = useCallback(()=> {
       const storageTheme = localStorage.getItem('theme');
+
+
      if(storageTheme){
         if(storageTheme === 'user device'){
-          if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-              localStorage.setItem('theme','user device');
-              document.documentElement.classList.add('dark');
-            }else {
-              document.documentElement.classList.remove('dark');
-            }
+            userDeviceTheme();
             setTheme(storageTheme);
         }else if (storageTheme === 'dark') {
             document.documentElement.classList.add(storageTheme);
             setTheme(storageTheme);
         }else {
             document.documentElement.classList.remove('dark');
-            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-                localStorage.setItem('theme','user device');
-                document.documentElement.classList.add('dark');
-            }else {
-              document.documentElement.classList.remove('dark');
-            }
+            setTheme('light');
         }
      }else {
-          if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-            localStorage.setItem('theme','user device');
-            document.documentElement.classList.add('dark');
-          }else {
-            document.documentElement.classList.remove('dark');
-          }
+        userDeviceTheme();
      };
-     console.log( document.documentElement.classList)
-    },[]);
+    },[theme]);
 
     useEffect(()=> {
       handleTheme()
-    },[theme,handleTheme]);
+    },[handleTheme]);
 
   return (
     <AppContext.Provider 

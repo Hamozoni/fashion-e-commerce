@@ -8,7 +8,7 @@ import { auth } from "../auth";
 import "./globals.css";
 
 export const metadata = {
-  title : "myh store shop",
+  title : "fashon",
   description: "store for all fashoin",
 };
 
