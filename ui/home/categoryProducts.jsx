@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {useContext, useEffect, useRef, useState } from "react";
+import {useCallback, useContext, useEffect, useRef, useState } from "react";
 // fetch api
 import {fetchData} from "../../lip/fetchData";
 // loader
@@ -10,6 +10,7 @@ import Loading from "../../app/loading";
 import { ProductCard } from "../cards/productCard";
 import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../buttons/buttons";
 import { AppContext } from "../../app/contextProvider";
+import { Error } from "../components/error";
 
 export const CategoryProducts = ({category,page,onClick})=> {
 
@@ -22,12 +23,16 @@ export const CategoryProducts = ({category,page,onClick})=> {
     const [leftScroll,setLeftScroll] = useState(0)
     const [leftScrollEnds,setLeftScrollEnds] = useState(200);
 
-    useEffect(()=> {
+
+    const handleFetchCategory = useCallback(()=> {
         if (products.length > 0) {
             setIsLoadingMore(true)
         }else {
             setisLoading(true);
-        }
+        };
+
+        setError(null);
+
         fetchData(`products/category?category=${category}&page=${page}`)
         .then((data)=> {
             if(data?.length > 0) {
@@ -35,8 +40,6 @@ export const CategoryProducts = ({category,page,onClick})=> {
             }else {
                 setIsThereMoreData(false)
             }
-            console.log(data);
-            setError(null);
         })
         .catch((error)=> {
             setError(error);
@@ -45,7 +48,11 @@ export const CategoryProducts = ({category,page,onClick})=> {
              setisLoading(false);
              setIsLoadingMore(false)
         });
-    },[category,page]);
+    },[category,page])
+
+    useEffect(()=> {
+        handleFetchCategory()
+    },[]);
 
     const {innerWidth} = useContext(AppContext)
     const productsContainerRef = useRef();
@@ -92,7 +99,7 @@ export const CategoryProducts = ({category,page,onClick})=> {
             </header>
             <div className="relative">
                 {
-                    isLoading ? <Loading /> : 
+                    isLoading ? <Loading /> : error ? <Error onClick={handleFetchCategory} /> :
                     <div onScroll={handleScroll} ref={productsContainerRef} className="flex gap-5 overflow-x-auto py-6">
                         {
                             products?.map((product)=> (

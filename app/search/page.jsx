@@ -1,11 +1,12 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {fetchData} from '../../lip/fetchData';
 import {Loading} from "../../ui/models/Loading";
 import {ProductCard} from "../../ui/cards/productCard";
+import { Error } from "../../ui/components/error";
 
 const SearchPage = ()=> {
 
@@ -16,7 +17,7 @@ const SearchPage = ()=> {
 
     const searchQuery = searchParams.get('query');
 
-    useEffect(()=> {
+    const fetchSearch = useCallback(()=> {
         setError(null);
         setIsLoading(true);
         fetchData(`search?query=${searchQuery}`)
@@ -29,26 +30,33 @@ const SearchPage = ()=> {
         .finally(()=> {
             setIsLoading(false);
         })
-    },[searchQuery]);
+
+    },[searchQuery])
+
+    useEffect(()=> {
+        fetchSearch()
+    },[fetchSearch]);
 
 
     return (
         <div className="min-h-screen p-3 lg:px-8">
             {
-                isLoading ? <Loading /> : null
-            }
-            <header className="mb-4 mt-3">
-                <h3 className="text-xl font-bold text-teal-950 dark:text-teal-50 capitalize"
-                >search results: {data?.length}
-            </h3>
-            </header>
-            <div className="flex flex-wrap gap-5 justify-center">
-                {
-                    data?.map((product)=> (
-                        <ProductCard key={product?.id} product={product} />
-                    ))
-                }
-            </div>
+                isLoading ? <Loading /> : error ? <Error onClick={fetchSearch}/> :
+                <>
+                    <header className="mb-4 mt-3">
+                        <h3 className="text-xl font-bold text-teal-950 dark:text-teal-50 capitalize"
+                        >search results: {data?.length}
+                    </h3>
+                    </header>
+                    <div className="flex flex-wrap gap-5 justify-center">
+                        {
+                            data?.map((product)=> (
+                                <ProductCard key={product?.id} product={product} />
+                            ))
+                        }
+                    </div>
+                </>
+             }
         </div>
     )
 }
