@@ -1,6 +1,5 @@
 
 import {Resend} from "resend";
-import { OrderSummary } from "../app/(protected)/orders/orderSummary";
 import { getCurrency } from "./getCurrency";
 
 const resend = new Resend(process.env.RESENSD_API_KEY);
@@ -19,7 +18,7 @@ export const verifyEmail = async (email,token)=> {
     `
 
      await resend.emails.send({
-        from:"onboarding@resend.dev",
+        from: process.env.FASHION_EMAIL,
         to: email,
         subject: "Verify Your Email",
         html: emailContent
@@ -42,7 +41,7 @@ export const resetPasswordEmail = async(email,token)=> {
    `
 
    await resend.emails.send({
-      from:"onboarding@resend.dev",
+      from:process.env.FASHION_EMAIL,
       to: email,
       subject: "Reset Password Email",
       html: emailContent
@@ -65,7 +64,7 @@ export const ordersEmail = async (email,address,data)=> {
       </div>
    </div>`
    await resend.emails.send({
-      from:"onboarding@resend.dev",
+      from:process.env.FASHION_EMAIL,
       to: email,
       subject: "Your Order Summary",
       html : emailContent

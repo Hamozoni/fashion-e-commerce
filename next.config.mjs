@@ -30,15 +30,15 @@ const nextConfig = {
           },
         ]
       },
-      async rewrites() {
-        return [
-          {
-            source : '/api/auth/:path*',
-            destination: `http://localhost:3000/api/auth/:path*`
-          }
-        ]
+      // async rewrites() {
+      //   return [
+      //     {
+      //       source : '/api/auth/:path*',
+      //       destination: `http://localhost:3000/api/auth/:path*`
+      //     }
+      //   ]
         
-      },
+      // },
     images: {
         remotePatterns: [
           {
