@@ -5,7 +5,6 @@ import Image from "next/image"
 import {ButtonWithIcon} from "../buttons/buttons";
 import {RatingStars} from "../productReviews/components/reviewsRating"
 // icons
-import { FaRegUser } from "react-icons/fa";
 import { VscEdit } from "react-icons/vsc";
 import { MdDelete,MdOutlineSaveAs } from "react-icons/md";
 import { IoIosArrowRoundBack } from "react-icons/io";
@@ -17,16 +16,17 @@ import { ReviewsContext } from "../productReviews/reviewsContext";
 import { AppContext } from "../../app/contextProvider";
 // overlay model
 import {Overlay} from "../models/overlay";
+import { FaUserLarge } from "react-icons/fa6";
 
 export function ReviewCard({review,index}) {
-
-     const {setReviews} = useContext(ReviewsContext)
-
+    // review data and user data context
+    const {setReviews} = useContext(ReviewsContext)
     const {currentUser} = useContext(AppContext);
+
     const [loading,startTransition] = useTransition();
+    // review card status
     const [isRemoveModle,setIsRemoveModle] = useState(false);
     const [isEdidable,setIsEdidable] = useState(false);
-
     const [reviewTitle,setReviewTitle] = useState(review?.rateTitle);
     const [reviewText,setReviewText] = useState(review?.rateText);
     const [rating,setRating] = useState(review?.rating);
@@ -73,8 +73,8 @@ export function ReviewCard({review,index}) {
     }
 
 
-
-    const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) ? "Edited at" :'';
+// if review has been edited shows that
+const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) ? "Edited at" :'';
 
   return (
         <div className={`${isEdidable ? 'border border-gray-100 dark:border-stone-700':' shadow-md'} ${className.card} `}>
@@ -88,7 +88,10 @@ export function ReviewCard({review,index}) {
                         alt="auther"
                         />
                     :
-                    <FaRegUser size={30} />
+                    <FaUserLarge
+                        size={50} 
+                        className="text-teal-900 dark:text-teal-100 rounded-md border border-teal-900 dark:border-teal-100" 
+                   />
                 }
                 <section className="">
                     <h4 className="text-teal-950 dark:text-teal-50 font-bold text-lg">
