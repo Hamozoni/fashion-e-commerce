@@ -41,11 +41,11 @@ export function ImagesColor() {
     const  handleSizes = useCallback(()=> {
         const sizesLength = new Array(productColors.length).fill([]);
         setProductSizes(sizesLength)
-    },[])
+    },[category])
 
     useEffect(()=> {
         handleSizes
-    },[category,handleSizes]);
+    },[handleSizes]);
 
     const className = {
         addRemovBtn : 'w-[70px] cursor-pointer hover:scale-105 rounded-full flex items-center justify-center border-2',

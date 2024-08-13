@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {useContext, useMemo, useState } from "react";
 // component
-import {AddToListBtn} from "../buttons/addToListBtn";
+// import {AddToListBtn} from "../buttons/addToListBtn";
 import {ColorOptions} from "../components/selectColor"
 import {SizesOptions} from "../components/selectSize"
 // lip
@@ -87,9 +87,9 @@ export function ProductCard({product}) {
                 />
             </div>
         </div>
-        <div className={className.heart}>
+        {/* <div className={className.heart}>
             <AddToListBtn product={productDetails} />
-        </div>
+        </div> */}
         <div className="p-3">
             <div className="">
                 <Link
@@ -117,10 +117,10 @@ export function ProductCard({product}) {
                         {getCurrency(priceInHalala)}
                     </h2>
                 </div>
-                <AddToCartBtn 
+                {/* <AddToCartBtn 
                     product={productDetails}
                     isFromCard={true}  
-                    />
+                    /> */}
             </div>
         </div>
     </div>

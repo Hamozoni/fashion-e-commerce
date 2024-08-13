@@ -5,10 +5,10 @@ import { useSearchParams } from "next/navigation";
 import {SelectColor} from "../../../ui/components/selectColor";
 import {SelectSize} from "../../../ui/components/selectSize";
 import {Features} from "./features"
-import  {AddToCartBtn } from "../../../ui/buttons/addToCartBtn";
+// import  {AddToCartBtn } from "../../../ui/buttons/addToCartBtn";
 import {Specifications}from "./specifications";
 import {ImagesGalary} from "./imagesGalary";
-import {AddToListBtn }from "../../../ui/buttons/addToListBtn";
+// import {AddToListBtn }from "../../../ui/buttons/addToListBtn";
 // lip
 import {getCurrency} from "../../../lip/getCurrency";
 import { ReviewsAverage } from "../../../ui/productReviews/components/reviewsAverage";
@@ -53,7 +53,7 @@ export function ProductDetails({data}) {
             });
 
         };
-    },[]);
+    },[colorName,size]);
 
     useEffect(()=> {
         handleDetails()
@@ -94,11 +94,11 @@ export function ProductDetails({data}) {
                         </div>
                         <Features />
                         <div className="flex items-center gap-2 pt-5 ">
-                            <AddToCartBtn
+                            {/* <AddToCartBtn
                                 product={product}
                                 isFromCard={false}
-                            />
-                        <AddToListBtn product={product} />
+                            /> */}
+                        {/* <AddToListBtn product={product} /> */}
                         </div>
                     </div>
                 </div>
