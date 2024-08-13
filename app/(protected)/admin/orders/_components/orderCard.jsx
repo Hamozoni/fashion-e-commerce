@@ -8,6 +8,7 @@ import { CartItemsCard } from "../../../../../ui/cards/cartItemsCard";
 import {Editing} from "./editing";
 
 import { RiArrowDownWideLine,RiArrowUpWideFill } from "react-icons/ri";
+import { FaUserLarge } from "react-icons/fa6";
 
 const className = {
     li: 'relative flex items-center gap-2 before:absolute before:-bottom-2  before:left-1 before:w-0 hover:before:w-full before:h-[1px]',
@@ -57,7 +58,19 @@ export const OrderCard = ({data,setOrders,index,setOrdersNum})=> {
                                 >user ID: <small>{userId}</small> 
                             </h6> 
                             <div className="flex items-start gap-2 min-w-fit">
-                                <Image className="rounded-md" src={customer?.image} width={50} height={80} alt="customer"/>
+                                {   customer.image ?
+                                    <Image 
+                                        className="rounded-md" 
+                                        src={customer?.image} 
+                                        width={50} 
+                                        height={80} 
+                                        alt="customer"
+                                        /> :
+                                    <FaUserLarge
+                                        size={50} 
+                                        className="text-teal-900 dark:text-teal-100 rounded-md border border-teal-900 dark:border-teal-100" 
+                                       />
+                                }
                                 <div className="">
                                     <h5 className={className.title_1}>{customer?.name}</h5>
                                     <h6  className={`${className.title_2} line-clamp-1 lowercase`}>
