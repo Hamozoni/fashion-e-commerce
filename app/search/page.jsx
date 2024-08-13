@@ -19,10 +19,10 @@ const SearchPage = ()=> {
     const searchParams = useSearchParams();
     const searchQuery = searchParams.get('query');
 
-    const fetchSearch = useCallback(()=> {
+    const fetchSearch = useCallback((page)=> {
         setError(null);
         setIsLoading(true);
-        fetchData(`search?query=${searchQuery}`)
+        fetchData(`search?query=${searchQuery}&page=${page}`)
         .then((data)=> {
             setData(data?.products);
             setCount(data?.count)
@@ -50,24 +50,28 @@ const SearchPage = ()=> {
                 <div>
                     <header className="mb-4 mt-3">
                         <h3 className="text-xl font-bold text-teal-950 dark:text-teal-50 capitalize"
-                        >search results: {count}
+                        >all search results: {count}
                     </h3>
                     </header>
-                    <div className="flex flex-wrap gap-5 justify-center">
+                    <div className="flex flex-wrap gap-5">
                         {
                             data?.map((product)=> (
                                 <ProductCard key={product?.id} product={product} />
                             ))
                         }
                     </div>
-                    <footer>
-                        <ButtonWithIcon
-                           text='load more'
-                           type='primary'
-                           Icon={RiDownloadCloud2Fill}
-                           onClick={''}
-                         />
-                    </footer>
+                    {
+                        count < data?.length ? 
+                        <footer className="w-[140px] mx-auto my-5">
+                            <ButtonWithIcon
+                            text='load more'
+                            type='primary'
+                            Icon={RiDownloadCloud2Fill}
+                            onClick={''}
+                            />
+                        </footer>
+                        : null
+                    }
                 </div>
              }
         </div>

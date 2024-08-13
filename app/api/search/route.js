@@ -9,7 +9,7 @@ export async function GET(req) {
     const query = searchParams?.get('query');
     const page = searchParams?.get('page');
     const take = 10;
-    const skip = (take * +page || 1) - take;
+    const skip = (take * (+page || 1)) - take;
 
     try{
 
