@@ -7,12 +7,14 @@ import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 
 import bcrypt from 'bcryptjs';
+// process.env.GITHUB_CLIENT_ID
+// process.env.GITHUB_CLIENT_SECRET
 
 export default { 
     providers: [
         Github({
-            clientId : process.env.GITHUB_CLIENT_ID,
-            clientSecret: process.env.GITHUB_CLIENT_SECRET
+            clientId : 'Ov23liqg6EGli5xB9ohm',
+            clientSecret: '968ac1e1c737c625f717e9d98a16e965b31e4f42'
         }),
         Google({
             clientId: process.env.GOOGLE_CLIENT_ID,

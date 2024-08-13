@@ -69,15 +69,15 @@ export function ReviewCard({review,index}) {
     };
 
     const className = {
-        card: 'my-5 rounded-md p-3 border-l-2 border-r-2 border-teal-300 '
+        card: 'my-8 rounded-md p-3 border-x-2 border-x-teal-300 '
     }
 
 
-// if review has been edited shows that
+// if review has been edited shows edit date
 const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) ? "Edited at" :'';
 
   return (
-        <div className={`${isEdidable ? 'border border-gray-100 dark:border-stone-700':' shadow-md'} ${className.card} `}>
+        <div className={`${isEdidable ? 'border border-gray-100 dark:border-stone-700':' shadow-md border-b border-b-teal-50 dark:border-b-stone-800'} ${className.card} `}>
             <header className="flex items-center gap-2 pb-2">
                 {
                     review?.auther?.image ?
