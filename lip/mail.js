@@ -18,7 +18,7 @@ export const verifyEmail = async (email,token)=> {
     `
 
      await resend.emails.send({
-        from: 'fashion@hamozoni.com',
+        from: 'Fashion@hamozoni.com',
         to: email,
         subject: "Verify Your Email",
         html: emailContent
@@ -41,7 +41,7 @@ export const resetPasswordEmail = async(email,token)=> {
    `
 
    await resend.emails.send({
-      from:'fashion@hamozoni.com',
+      from:'Fashion@hamozoni.com',
       to: email,
       subject: "Reset Password Email",
       html: emailContent
@@ -65,7 +65,7 @@ export const ordersEmail = async (email,address,data)=> {
       </div>
    </div>`
    await resend.emails.send({
-      from:'fashion@hamozoni.com',
+      from:'Fashion@hamozoni.com',
       to: email,
       subject: "Your Order Summary",
       html : emailContent

@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import {useAppSelector} from "../../../../store/store";
 import {PostData} from "../../../../lip/fetchData";
 import { useSearchParams } from "next/navigation";
@@ -32,7 +32,7 @@ import {useAppDispatch} from "../../../../store/store";
 
     const {payment_intent,payment_intent_client_secret} = Object.fromEntries(searchParams.entries());
 
-    const handlePlacingOrder = ()=> {
+    const handlePlacingOrder = useCallback(()=> {
         setError(null);
         setIsLoading(true);
         const formData = new FormData();
@@ -60,12 +60,12 @@ import {useAppDispatch} from "../../../../store/store";
         .finally(()=> {
             setIsLoading(false)
         });
-    }
+    },[])
 
 
     useEffect(()=>{
         handlePlacingOrder()
-    },[]);
+    },[handlePlacingOrder]);
 
 
     if(isLoading) {
