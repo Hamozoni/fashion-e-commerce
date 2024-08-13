@@ -10,7 +10,7 @@ export const verifyEmail = async (email,token)=> {
 
     const emailContent = `
     <div>
-       <header> <h1> System Store </h1> <h3>Hello</h3> </header>
+       <header> <h1> Fashion Store </h1> <h3>Hello</h3> </header>
        <p>We received a request to verify your email for the system store account associated with ${email}</p>
        <a href=${confimLink}>Verify Your Email</a>
        <p>If you didn’t make this request, or if you’re having trouble signing in, contact us via our support site. No changes have been made to your account.</p>
@@ -18,7 +18,7 @@ export const verifyEmail = async (email,token)=> {
     `
 
      await resend.emails.send({
-        from: process.env.FASHION_EMAIL,
+        from: 'fashion@hamozoni.com',
         to: email,
         subject: "Verify Your Email",
         html: emailContent
@@ -33,7 +33,7 @@ export const resetPasswordEmail = async(email,token)=> {
 
    const emailContent = `
    <div>
-      <header> <h1> System Store </h1> <h3>Hello</h3> </header>
+      <header> <h1> Fashion Store </h1> <h3>Hello</h3> </header>
       <p>We received a request to reset the password for the system store account associated with ${email}</p>
       <a href=${resetLink}>Reset Password</a>
       <p>If you didn’t make this request, or if you’re having trouble signing in, contact us via our support site. No changes have been made to your account.</p>
@@ -41,7 +41,7 @@ export const resetPasswordEmail = async(email,token)=> {
    `
 
    await resend.emails.send({
-      from:process.env.FASHION_EMAIL,
+      from:'fashion@hamozoni.com',
       to: email,
       subject: "Reset Password Email",
       html: emailContent
@@ -52,6 +52,7 @@ export const resetPasswordEmail = async(email,token)=> {
 export const ordersEmail = async (email,address,data)=> {
 
  const emailContent =  `<div>
+       <header> <h1> Fashion Store </h1> <h3>Hello</h3> </header>
        <h2>Your Order ID : ${data?.orderId}</h2>
       <h3 >Your Order Summary</h3>
       <div className="">
@@ -64,7 +65,7 @@ export const ordersEmail = async (email,address,data)=> {
       </div>
    </div>`
    await resend.emails.send({
-      from:process.env.FASHION_EMAIL,
+      from:'fashion@hamozoni.com',
       to: email,
       subject: "Your Order Summary",
       html : emailContent
