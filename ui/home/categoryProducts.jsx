@@ -9,20 +9,20 @@ import Loading from "../../app/loading";
 // components
 import { ProductCard } from "../cards/productCard";
 import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../buttons/buttons";
-import { AppContext } from "../../app/contextProvider";
 import { Error } from "../components/error";
 
-export const CategoryProducts = ({category,page,onClick})=> {
+export const CategoryProducts = ({category})=> {
 
     const [products,setProducts] = useState([]);
     const [isLoading,setisLoading] = useState(false);
     const [isLoadingMore,setIsLoadingMore] = useState(false);
     const [isThereMoreData,setIsThereMoreData] = useState(true);
-    const [error,setError] = useState(null);
+    const [IsError,setIsError] = useState(null);
+
+    const [page,setPage] = useState(1);
 
     const [leftScroll,setLeftScroll] = useState(0)
     const [leftScrollEnds,setLeftScrollEnds] = useState(200);
-
 
     const handleFetchCategory = useCallback(()=> {
         if (products.length > 0) {
@@ -31,7 +31,7 @@ export const CategoryProducts = ({category,page,onClick})=> {
             setisLoading(true);
         };
 
-        setError(null);
+        setIsError(null);
 
         fetchData(`products/category?category=${category}&page=${page}`)
         .then((data)=> {
@@ -42,7 +42,7 @@ export const CategoryProducts = ({category,page,onClick})=> {
             }
         })
         .catch((error)=> {
-            setError(error);
+            setIsError(error);
         })
         .finally(()=> {
              setisLoading(false);
@@ -52,9 +52,8 @@ export const CategoryProducts = ({category,page,onClick})=> {
 
     useEffect(()=> {
         handleFetchCategory()
-    },[]);
+    },[handleFetchCategory]);
 
-    const {innerWidth} = useContext(AppContext)
     const productsContainerRef = useRef();
 
     const handleScroll = (e)=> {
@@ -99,8 +98,11 @@ export const CategoryProducts = ({category,page,onClick})=> {
             </header>
             <div className="relative">
                 {
-                    isLoading ? <Loading /> : error ? <Error onClick={handleFetchCategory} /> :
-                    <div onScroll={handleScroll} ref={productsContainerRef} className="flex gap-5 overflow-x-auto py-6">
+                    isLoading ? <Loading /> : IsError ? <Error onClick={handleFetchCategory} /> :
+                    <div 
+                        onScroll={handleScroll} 
+                        ref={productsContainerRef} 
+                        className="flex gap-5 overflow-x-auto py-6">
                         {
                             products?.map((product)=> (
                                 <ProductCard key={product.id} product={product} />
@@ -112,7 +114,7 @@ export const CategoryProducts = ({category,page,onClick})=> {
                             <div className="min-w-[200px] min-h-full flex items-center justify-center">
                                 <LoadMoreBtn 
                                     isLoadingMore={isLoadingMore} 
-                                    onClick={onClick}
+                                    onClick={()=> setPage(page + 1)}
                                    />
                             </div>
                             : null
@@ -120,19 +122,15 @@ export const CategoryProducts = ({category,page,onClick})=> {
 
                     </div>
                 }
-                {
-                    innerWidth > 630 &&
-                    <>
-                        <ScrollLeftBtn 
-                            onClick={scrollLeft} 
-                            leftScroll={leftScroll}
-                            />
-                        <ScrollRightBtn 
-                            onClick={scrollRight}
-                            leftScrollEnds={leftScrollEnds}
-                            />
-                    </>
-                }
+
+                <ScrollLeftBtn 
+                    onClick={scrollLeft} 
+                    leftScroll={leftScroll}
+                    />
+                <ScrollRightBtn 
+                    onClick={scrollRight}
+                    leftScrollEnds={leftScrollEnds}
+                    />
             </div>
         </section>
     )
