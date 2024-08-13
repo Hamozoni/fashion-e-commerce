@@ -83,9 +83,6 @@ export function ProductDetails({data}) {
                                 </ReviewsContextProvider>
                             </header>
                             <div className="flex items-center  text-teal-950 gap-2">
-                                <h4 className={`${product?.offerPriceInHalala ? 'text-xs  sm:text-sm line-through' :''} text-lg sm:text-2xl font-extrabold text-teal-900 dark:text-teal-100`}>
-                                    {getCurrency(+product?.priceInHalala)}
-                                </h4>
                                 {
                                     product?.offerPriceInHalala ? 
                                     <h4 className="text-lg sm:text-2xl font-extrabold text-teal-900 dark:text-teal-100">
@@ -93,6 +90,9 @@ export function ProductDetails({data}) {
                                     </h4>
                                     :null
                                 }
+                                <h4 className={`${product?.offerPriceInHalala ? 'text-xs  sm:text-sm line-through' :''} text-lg sm:text-2xl font-extrabold text-teal-900 dark:text-teal-100`}>
+                                    {getCurrency(+product?.priceInHalala)}
+                                </h4>
                                 <p className="text-teal-800 dark:text-teal-200 text-sm">Inclusive of VAT</p>
                             </div>
                             <SelectSize />

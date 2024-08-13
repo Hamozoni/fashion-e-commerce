@@ -82,9 +82,9 @@ const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) 
                 {
                     review?.auther?.image ?
                     <Image
-                         className="rounded-full" 
+                        className="rounded-md" 
                         src={review?.auther?.image} 
-                        width={40} height={40} 
+                        width={50} height={50} 
                         alt="auther"
                         />
                     :
