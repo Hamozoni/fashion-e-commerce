@@ -7,7 +7,7 @@ import { VscSaveAll } from "react-icons/vsc";
 import { FaRegCalendarCheck,FaCheck } from "react-icons/fa6";
 import { FiGitCommit } from "react-icons/fi";
 
-import {updateData } from "@lip/fetchData";
+import {updateData } from "@/lip/fetchData";
 import {addingOfferSchema} from "@/validationSchemas/newProductSchemas";
 import {ZodError} from "@/ui/components/zodError"
 import { Loading } from "@/ui/models/Loading";
