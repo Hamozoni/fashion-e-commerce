@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { OrdersHeader } from "../../../orders/ordersHeader";
 import { OrderPayment } from "../../../orders/orderSummary";
-import { CartItemsCard } from "../../../../../ui/cards/cartItemsCard";
+import { CartItemsCard } from "@/ui/cards/cartItemsCard";
 import {Editing} from "./editing";
 
 import { RiArrowDownWideLine,RiArrowUpWideFill } from "react-icons/ri";

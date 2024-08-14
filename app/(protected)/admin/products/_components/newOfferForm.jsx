@@ -1,17 +1,17 @@
 "use status";
 
 import { useEffect, useRef, useState } from "react";
-import { getCurrency } from "../../../../../lip/getCurrency";
-import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
+import { getCurrency } from "@/lip/getCurrency";
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import { VscSaveAll } from "react-icons/vsc";
 import { FaRegCalendarCheck,FaCheck } from "react-icons/fa6";
 import { FiGitCommit } from "react-icons/fi";
 
-import {updateData } from "../../../../../lip/fetchData";
-import {addingOfferSchema} from "../../../../../validationSchemas/newProductSchemas";
-import {ZodError} from "../../../../../ui/components/zodError"
-import { Loading } from "../../../../../ui/models/Loading";
-import { Error } from "../../../../../ui/components/error";
+import {updateData } from "@lip/fetchData";
+import {addingOfferSchema} from "@/validationSchemas/newProductSchemas";
+import {ZodError} from "@/ui/components/zodError"
+import { Loading } from "@/ui/models/Loading";
+import { Error } from "@/ui/components/error";
 
 export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
 

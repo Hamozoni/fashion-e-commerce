@@ -7,7 +7,7 @@ import { TbShoppingCartCheck } from "react-icons/tb";
 import { FaPeopleRoof } from "react-icons/fa6";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
-import {getCurrency} from "../../../../lip/getCurrency"
+import {getCurrency} from "@/lip/getCurrency"
 
 export const OverviewHeader = ()=> {
 

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useEffect } from "react";
-import {fetchData} from "../../../../lip/fetchData";
+import {fetchData} from "@/lip/fetchData";
 import  Loading  from "../loading";
-import { Error } from "../../../../ui/components/error";
+import { Error } from "@/ui/components/error";
 import {DoughnutChart} from "../_charts/doughnut"
 
 export const  ProductsChart = ()=> {

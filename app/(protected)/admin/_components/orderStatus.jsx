@@ -1,12 +1,12 @@
 "use client"
 
-import {useCallback, useContext, useEffect, useState } from "react";
-import { fetchData } from "../../../../lip/fetchData";
+import {useCallback, useEffect, useState } from "react";
+import { fetchData } from "@/lip/fetchData";
 import {LineChart} from "../_charts/line";
 import Loading from "../loading";
-import { Error } from "../../../../ui/components/error";
+import { Error } from "@/ui/components/error";
 import {SummaryFilter} from "./summaryFilter";
-import {ordersStatusFilterDates} from "../../../../data/filteringDates"
+import {ordersStatusFilterDates} from "@/data/filteringDates"
 
 export const OrderStatus = () => {
 

@@ -1,13 +1,13 @@
 "use client"
-import {fetchData} from "../../../../../lip/fetchData";
+import {fetchData} from "@/lip/fetchData";
 import { useCallback, useEffect, useState } from "react";
 import {Navbar} from "./navbar";
 import {ProductCard} from "./productCard";
 import { TbAdjustmentsSearch } from "react-icons/tb";
 import { LiaTruckLoadingSolid } from "react-icons/lia";
-import { Loading } from "../../../../../ui/models/Loading";
-import {Error} from "../../../../../ui/components/error"
-import { ButtonWithIcon } from "../../../../../ui/buttons/buttons";
+import { Loading } from "@/ui/models/Loading";
+import {Error} from "@/ui/components/error"
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
 
 export const ProductsContainer = ()=> {
 

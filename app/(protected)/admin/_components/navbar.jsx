@@ -10,11 +10,11 @@ import { MdOutlineLocalOffer,MdOutlinePropane,MdShoppingCartCheckout } from "rea
 import { IoMdAdd } from "react-icons/io";
 import { TiThMenuOutline } from "react-icons/ti";
 
-import { ThemeModel } from "../../../../ui/models/themeModel";
-import { SignOut } from "../../../../ui/buttons/signOut";
+import { ThemeModel } from "@/ui/models/themeModel";
+import { SignOut } from "@/ui/buttons/signOut";
 import {AdminAccount} from "./adminAccount"
 
-import { Overlay } from "../../../../ui/models/overlay";
+import { Overlay } from "@/ui/models/overlay";
 import { AppContext } from "../../../contextProvider";
 
 const navData = [

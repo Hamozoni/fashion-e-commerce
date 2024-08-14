@@ -1,4 +1,4 @@
-import {getCurrency} from "../../../../../lip/getCurrency";
+import {getCurrency} from "@/lip/getCurrency";
 
 export const ProductColors = ({color: {color,priceInHalala,offerPriceInHalala,offerExpiresAt,colorName},sizes})=> {
      const className = {

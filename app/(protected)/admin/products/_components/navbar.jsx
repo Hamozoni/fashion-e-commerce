@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import {categoriesData} from "../../../../../data/categoriesData";
+import {categoriesData} from "@/data/categoriesData";
 import { IoMdArrowDropdown,IoMdArrowDropright } from "react-icons/io";
 import { useState } from "react";
 

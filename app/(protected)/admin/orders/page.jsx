@@ -7,10 +7,10 @@ import { GiReturnArrow } from "react-icons/gi";
 import { IoIosCloudDownload } from "react-icons/io";
 import { LuSettings2 } from "react-icons/lu";
 
-import { fetchData } from "../../../../lip/fetchData";
+import { fetchData } from "@/lip/fetchData";
 import Loading from "../../../loading";
-import {Error} from "../../../../ui/components/error";
-import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
+import {Error} from ".@/ui/components/error";
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import {OrderCard} from "./_components/orderCard";
 
  
