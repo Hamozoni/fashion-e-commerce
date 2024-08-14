@@ -2,13 +2,13 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import { OrdersHeader } from "../../../orders/ordersHeader";
 import { OrderPayment } from "../../../orders/orderSummary";
 import { CartItemsCard } from "@/ui/cards/cartItemsCard";
 import {Editing} from "./editing";
 
 import { RiArrowDownWideLine,RiArrowUpWideFill } from "react-icons/ri";
 import { FaUserLarge } from "react-icons/fa6";
+import { OrdersHeader } from "@/app/(protected)/orders/orderCard";
 
 const className = {
     li: 'relative flex items-center gap-2 before:absolute before:-bottom-2  before:left-1 before:w-0 hover:before:w-full before:h-[1px]',

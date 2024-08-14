@@ -9,7 +9,7 @@ import { LuSettings2 } from "react-icons/lu";
 
 import { fetchData } from "@/lip/fetchData";
 import Loading from "../../../loading";
-import {Error} from ".@/ui/components/error";
+import {Error} from "@/ui/components/error";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import {OrderCard} from "./_components/orderCard";
 
@@ -32,7 +32,7 @@ export default function OrdersPage () {
 
     const [status,setStatus] = useState('pending');
     const [orders,setOrders] = useState([]);
-    const [error,setError] = useState(null);
+    const [isError,setIsError] = useState(null);
     const [isLoading,setIsLoading] = useState(false);
     const [isLoadingMorde,setIsLoadingMore] = useState(false);
     const [page,setPage] = useState(1);
@@ -41,7 +41,7 @@ export default function OrdersPage () {
 
 
     const fetchOrders = useCallback((page,isMore)=> {
-        setError(null);
+        setIsError(null);
         setOrdersNum(0)
         fetchData(`orders/byStatus?status=${status?.toUpperCase()}&page=${page}`)
         .then((data)=> {
@@ -53,7 +53,7 @@ export default function OrdersPage () {
             }
         })
         .catch((error)=> {
-            setError(error);
+            setIsError(error);
         })
         .finally(()=> {
             setIsLoading(false);
@@ -96,7 +96,7 @@ export default function OrdersPage () {
             <div className="max-w-full">
                 {
                     isLoading ? <Loading /> 
-                    : !!error ? 
+                    : !!isError ? 
                     <Error 
                         onClick={()=> fetchOrders(page,false)}
                         /> 
