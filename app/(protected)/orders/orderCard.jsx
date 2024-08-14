@@ -46,16 +46,16 @@ export const OrderCard = ({order,address})=> {
 
     return (
         <div className=" capitalize mb-8 rounded-md p-3 border-b dark:border-stone-800 bg-gray-50 dark:bg-stone-950">
-            <div className="md:flex items-start gap-5 max-w-full">
-                <div className="flex-[50%]  lg:flex-[60%]">
+            <div className="md:flex items-start gap-5 ">
+                <div className="flex-[50%]  lg:flex-[60%] max-w-[50%] lg:max-w-[60%]">
                     <OrdersHeader data={{id,createdAt,products,status}}/>
                     <h6 className={className.title_1}
                         >items: {products?.length}
                     </h6>
-                    <div className="flex items-center max-w-[50%] lg:max-w-[60%] gap-3 overflow-x-auto">
+                    <div className="flex items-center max-w-full gap-3 overflow-x-auto">
                         {
                             products.map((product)=> (
-                                <div key={product.cartId}  className=" max-[300px] min-[300px]">
+                                <div key={product.cartId} className="min-w-[350px]">
                                     <CartItemsCard 
                                         product={product} 
                                         isOrdered={true} 
