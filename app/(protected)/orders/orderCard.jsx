@@ -47,7 +47,7 @@ export const OrderCard = ({order,address})=> {
     return (
         <div className=" capitalize mb-8 rounded-md p-3 border-b dark:border-stone-800 bg-gray-50 dark:bg-stone-900">
             <div className="md:flex items-start gap-5 ">
-                <div className="md:flex-[50%]  lg:flex-[60%] max-w-[50%] lg:max-w-[60%]">
+                <div className="md:flex-[50%]  lg:flex-[60%] md:max-w-[50%] lg:max-w-[60%]">
                     <OrdersHeader data={{id,createdAt,products,status}}/>
                     <h6 className={`${className.title_1} pt-3`}
                         >items: {products?.length}
