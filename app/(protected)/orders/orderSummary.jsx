@@ -38,7 +38,7 @@ export const OrderPayment = ({totalPaidInCent,deliveryFree})=> {
 export const OrderSummary = ({address,data:{deliveryFree,totalPaidInCent}})=> {
 
     return (
-        <div className=" capitalize bg-gray-50 dark:bg-stone-950 shadow-md p-3 flex-[50%] lg:flex-[35%] rounded-md sticky top-[100px] mb-8">
+        <div className=" capitalize bg-gray-50 dark:bg-stone-950 shadow-md p-3 flex-[50%] lg:flex-[40%] rounded-md sticky top-[100px] mb-8">
             <section className=" mb-4">
                 <h5 className={className.title_1} >delivery </h5>
                 <div className="">
