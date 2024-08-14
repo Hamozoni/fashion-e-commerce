@@ -1,4 +1,4 @@
-import {db} from "../../../../lip/db";
+import {db} from "@/lip/db";
 import { NextResponse } from "next/server";
 
 export async function GET (req) {

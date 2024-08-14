@@ -1,15 +1,15 @@
 "use client";
 import { IoShieldCheckmark } from "react-icons/io5";
 // components
-import { ButtonWithIcon } from "../../../../ui/buttons/buttons";
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import  {CartDetails}  from "../../../cart/_components/cartDetails";
 import {UserField} from "./userField";
 import { useElements, useStripe,PaymentElement } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
-import { useAppSelector } from "../../../../store/store";
+import { useAppSelector } from "@/store/store";
 import { AppContext } from "../../../contextProvider";
-import { getCurrency } from "../../../../lip/getCurrency";
-import {PostData } from "../../../../lip/fetchData";
+import { getCurrency } from "@/lip/getCurrency";
+import {PostData } from "@/lip/fetchData";
 
 
 

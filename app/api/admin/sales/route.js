@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import {addingOfferSchema} from "../../../../validationSchemas/newProductSchemas";
-import { db } from "../../../../lip/db";
+import {addingOfferSchema} from "@/validationSchemas/newProductSchemas";
+import { db } from "@/lip/db";
 
 
 export async function PUT (req) {

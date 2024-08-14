@@ -2,9 +2,9 @@
 
 import { useContext, useEffect, useState } from "react";
 import {AppContext} from "../../contextProvider";
-import {fetchData} from "../../../lip/fetchData";
+import {fetchData} from "@/lip/fetchData";
 import Loading from "../../loading";
-import { CartItemsCard } from "../../../ui/cards/cartItemsCard";
+import { CartItemsCard } from "@/ui/cards/cartItemsCard";
 
 import { OrderSummary } from "./orderSummary";
 import {OrdersHeader} from "./ordersHeader";

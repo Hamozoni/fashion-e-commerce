@@ -1,6 +1,6 @@
 "use client"
-import { fetchData } from "../../../lip/fetchData"
-import { Error } from "../../../ui/components/error";
+import { fetchData } from "@/lip/fetchData"
+import { Error } from "@/ui/components/error";
 import Loading from "./loading";
 import { createContext, useEffect, useState } from "react"
 

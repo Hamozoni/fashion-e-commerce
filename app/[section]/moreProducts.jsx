@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import {CategoryProducts} from "../../ui/home/categoryProducts";
+import {CategoryProducts} from "@/ui/home/categoryProducts";
 
 export const MoreProducts = ({category})=> {
 

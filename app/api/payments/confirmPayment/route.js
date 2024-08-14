@@ -1,8 +1,8 @@
 
-import {db} from '../../../../lip/db';
+import {db} from '@/lip/db';
 import { NextResponse } from "next/server";
 
-import {ordersEmail} from "../../../../lip/mail"
+import {ordersEmail} from "@/lip/mail"
 export  async function POST (req) {
 
     try {

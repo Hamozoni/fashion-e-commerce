@@ -1,4 +1,4 @@
-import { getCurrency } from "../../../lip/getCurrency";
+import { getCurrency } from "@/lip/getCurrency";
 
 const className = {
     title_1: "text-teal-950 dark:text-teal-50 text-lg font-bold mb-2",

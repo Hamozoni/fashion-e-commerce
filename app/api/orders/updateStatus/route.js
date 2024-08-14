@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import {db} from "../../../../lip/db" ;
+import {db} from "@/lip/db" ;
 
 
 export async function PUT (req) {

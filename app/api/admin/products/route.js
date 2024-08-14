@@ -1,7 +1,7 @@
 
-import { skip } from "node:test";
-import {db} from "../../../../lip/db";
+import {db} from "@/lip/db";
 import { NextResponse } from "next/server";
+
 export async function GET (req){
 
     const {searchParams} = new URL(req.url);

@@ -1,17 +1,17 @@
 "use client";
 
 import { useCallback, useContext, useEffect, useState } from "react";
-import {useAppSelector} from "../../../../store/store";
-import {PostData} from "../../../../lip/fetchData";
+import {useAppSelector} from "@/store/store";
+import {PostData} from "@/lip/fetchData";
 import { useSearchParams } from "next/navigation";
 import {AppContext} from "../../../contextProvider"
 import { OrderSummary } from "../../orders/orderSummary";
-import {Error} from "../../../../ui/components/error";
+import {Error} from "@/ui/components/error";
 
 import { IoCheckmark } from "react-icons/io5";
 import { ClimbingBoxLoader } from "react-spinners";
-import { clearAllItemsFromCart } from "../../../../store/features/cartSlice";
-import {useAppDispatch} from "../../../../store/store";
+import { clearAllItemsFromCart } from "@/store/features/cartSlice";
+import {useAppDispatch} from "@/store/store";
 
  
  const SuccessfulPayment = () => {

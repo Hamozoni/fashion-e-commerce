@@ -1,5 +1,5 @@
 import { BiSolidError } from "react-icons/bi";
-import {ZodError} from "../../../../../../ui/components/zodError";
+import {ZodError} from "@/ui/components/zodError";
 
 const className = {
   inputClass : 'w-full text-sm max-w-full text-teal-950 dark:text-teal-50 bg-whitw dark:bg-stone-950 outline-none border-b-gray-200 dark:border-b-stone-700 border-b-2 rounded-tl-md rounded-tr-md  focus:border-teal-400 dark:focus:border-teal-400 p-2 my-1',

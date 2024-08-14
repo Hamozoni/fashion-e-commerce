@@ -1,8 +1,8 @@
 // components
-import {ProductCard} from "../../ui/cards/productCard";
+import {ProductCard} from "@ui/cards/productCard";
 import {MoreProducts} from "./moreProducts"
 // server action
-import {productsByCategoryAction} from "../../actions/products/productsByCategory"
+import {productsByCategoryAction} from "@/actions/products/productsByCategory"
 
 async function page({params,searchParams}) {
 
