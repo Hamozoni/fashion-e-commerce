@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
-import { db } from "../../../../lip/db";
-import { ratingSchema } from "../../../../validationSchemas/ratingSchema";
+import { db } from "@/lip/db";
+import { ratingSchema } from "@/validationSchemas/ratingSchema";
 
 import { NextResponse } from 'next/server';
 

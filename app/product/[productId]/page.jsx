@@ -1,10 +1,10 @@
 // components
 import {ProductDetails} from "../_components/poductDetails";
-import {ProductReviews}from "../../../ui/productReviews/productReviews";
+import {ProductReviews}from "@/ui/productReviews/productReviews";
 import {RelatedProducts} from "../_components/relatedProducts"
 import { MoreProducts } from "../../[section]/moreProducts";
 // server actions
-import {productById} from "../../../actions/products/productById";
+import {productById} from "@/actions/products/productById";
 
 
 async function  productPage({params}) {

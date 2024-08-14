@@ -3,11 +3,11 @@ import AuthHeader from "../_components/authHeader";
 import AuthSocial from "../_components/authSocial";
 import {AuthInput} from "../_components/authInput";
 import {registerInputs} from "../_components/authInputsData";
-import {registerSchema} from "../../../validationSchemas/authSchemas"
+import {registerSchema} from "@/validationSchemas/authSchemas"
 import { useContext, useRef, useState, useTransition } from "react";
-import {registerAction} from "../../../actions/auth/register";
+import {registerAction} from "@/actions/auth/register";
 import {ErrorSucces} from "../_components/errorSucces";
-import { ButtonWithIcon } from "../../../ui/buttons/buttons";
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
 
 import { LuClipboardSignature } from "react-icons/lu";
 import { AppContext } from "../../contextProvider";

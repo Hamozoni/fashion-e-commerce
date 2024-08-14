@@ -2,12 +2,12 @@
 import Link from "next/link";
 import Image from "next/image";
 // components
-import {CartItemsCard} from "../../ui/cards/cartItemsCard";
+import {CartItemsCard} from "@/ui/cards/cartItemsCard";
 import {CartSummary} from "./_components/CartSummary";
 // redux store
-import { useAppSelector } from "../../store/store";
-import { useAppDispatch } from "../../store/store";
-import {clearAllItemsFromCart} from "../../store/features/cartSlice"
+import { useAppSelector } from "@/store/store";
+import { useAppDispatch } from "@/store/store";
+import {clearAllItemsFromCart} from "@/store/features/cartSlice"
 
 function CartPage() {
 

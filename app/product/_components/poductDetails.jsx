@@ -2,18 +2,18 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 // components
-import {SelectColor} from "../../../ui/components/selectColor";
-import {SelectSize} from "../../../ui/components/selectSize";
+import {SelectColor} from "@/ui/components/selectColor";
+import {SelectSize} from "@/ui/components/selectSize";
 import {Features} from "./features"
-import  {AddToCartBtn } from "../../../ui/buttons/addToCartBtn";
+import  {AddToCartBtn } from "@/ui/buttons/addToCartBtn";
 import {Specifications}from "./specifications";
 import {ImagesGalary} from "./imagesGalary";
-import {AddToListBtn }from "../../../ui/buttons/addToListBtn";
+import {AddToListBtn }from "@/ui/buttons/addToListBtn";
 // lip
-import {getCurrency} from "../../../lip/getCurrency";
-import { ReviewsAverage } from "../../../ui/productReviews/components/reviewsAverage";
+import {getCurrency} from "@/lip/getCurrency";
+import { ReviewsAverage } from "@/ui/productReviews/components/reviewsAverage";
 // reviews context component
-import {ReviewsContextProvider} from "../../../ui/productReviews/reviewsContext"
+import {ReviewsContextProvider} from "@/ui/productReviews/reviewsContext"
 
 export const ProductDetailsContext =  createContext(null);
 

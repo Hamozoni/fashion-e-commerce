@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState,createContext, useCallback} from "react";
-// next auth session
-// creating context
+
 export const AppContext = createContext();
 
 const ContextProvider = ({children,session}) => {

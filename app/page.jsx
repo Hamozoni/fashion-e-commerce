@@ -1,7 +1,7 @@
 
-import {HomeSlider} from "../ui/home/homeSlider";
-import {CategoriesNav} from "../ui/components/categoriesNav";
-import {CategoriesProducts} from "../ui/home/categoriesProducts"
+import {HomeSlider} from "@/ui/home/homeSlider";
+import {CategoriesNav} from "@/ui/components/categoriesNav";
+import {CategoriesProducts} from "@/ui/home/categoriesProducts"
 
 export default async function Home() {
 

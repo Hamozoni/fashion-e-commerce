@@ -1,10 +1,10 @@
 "use client";
 // redux store
-import {useAppDispatch, useAppSelector} from "../../store/store";
-import { removeAllFromLikedList } from "../../store/features/likedListSlice";
+import {useAppDispatch, useAppSelector} from "@/store/store";
+import { removeAllFromLikedList } from "@/store/features/likedListSlice";
 // components
-import {ProductCard} from "../../ui/cards/productCard"
-import { ButtonWithIcon } from "../../ui/buttons/buttons";
+import {ProductCard} from "@/ui/cards/productCard"
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
 // icons
 import { MdOutlineDeleteOutline } from "react-icons/md";
 

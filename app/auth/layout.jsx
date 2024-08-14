@@ -1,5 +1,5 @@
 export const metadata = {
-    title: "system auth page",
+    title: "auth page",
     description: "easy register and login"
 }
 

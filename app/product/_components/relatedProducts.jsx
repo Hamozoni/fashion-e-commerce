@@ -1,9 +1,9 @@
 "use client"
 import { useEffect, useState } from "react";
 // fetch api
-import { fetchData } from "../../../lip/fetchData";
+import { fetchData } from "@/lip/fetchData";
 // components
-import { ProductCard } from "../../../ui/cards/productCard";
+import { ProductCard } from "@/ui/cards/productCard";
 // loader
 import Loading from "../../loading";
 

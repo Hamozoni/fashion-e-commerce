@@ -5,11 +5,10 @@ import AuthHeader from "../_components/authHeader";
 import { IoLockClosed } from "react-icons/io5";
 import { useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
-import { SubmitBtn } from "../_components/submitBtn";
 import { AuthInput } from "../_components/authInput";
-import {newPasswordAction} from "../../../actions/auth/newPassword";
+import {newPasswordAction} from "@/actions/auth/newPassword";
 import { LuSend } from "react-icons/lu";
-import { ButtonWithIcon } from "../../../ui/buttons/buttons";
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import Link from "next/link";
 
 export default function NewPasswordPage() {

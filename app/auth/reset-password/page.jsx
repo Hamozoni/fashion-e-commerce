@@ -3,11 +3,10 @@
 import { useRef, useState, useTransition } from "react";
 import { AuthInput } from "../_components/authInput";
 
-import {resetPasswordAction} from "../../../actions/auth/resetPassword";
-import { SubmitBtn } from "../_components/submitBtn";
+import {resetPasswordAction} from "@/actions/auth/resetPassword";
 import AuthHeader from "../_components/authHeader";
 import { ErrorSucces } from "../_components/errorSucces";
-import { ButtonWithIcon } from "../../../ui/buttons/buttons";
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
 
 import { MdOutlineMail } from "react-icons/md";
 import { LuSend } from "react-icons/lu";
@@ -17,7 +16,7 @@ const ResetPassword = ()=> {
     const [isLoading,startTranation] = useTransition();
     const [error,setError] = useState(null);
     const [success,setSuccess] = useState(null);
-    const resetForm = useRef()
+    const resetForm = useRef();
 
     const reset = ()=> {
 

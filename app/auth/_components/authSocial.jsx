@@ -6,8 +6,8 @@ import Link from "next/link";
 import { DEFAULT_LOGIN_REDIRECT } from "../../../routes";
 import { useTransition } from "react";
 import { useSearchParams } from "next/navigation";
-import { ButtonWithIcon } from "../../../ui/buttons/buttons";
-import { Loading } from "../../../ui/models/Loading";
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
+import { Loading } from "@/ui/models/Loading";
 
 function AuthSocial({text,link,page}) {
 
