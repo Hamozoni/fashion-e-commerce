@@ -16,7 +16,7 @@ export const OrdersHeader = ({data : {id,createdAt,status}})=> {
     };
 
     return (
-        <header>
+        <header className="bg-gray-100 dark:bg-stone-950 p-3 rounded-md">
             <div >
                 <div className="flex flex-wrap items-center gap-4 gap-y-0">
                     <h4 className={className.title_2}
