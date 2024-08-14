@@ -34,7 +34,7 @@ export const CartItemsCard = ({product,isOrdered = false})=> {
 
 
   return (
-    <div className="p-3 mb-8 rounded-md shadow-md border border-gray-100 dark:border-stone-900 w-full">
+    <div className="p-3 rounded-md shadow-md border border-gray-100 dark:border-stone-900 w-full">
         <div className={`flex gap-3`}>
             <Link 
                 href={linkHref}
