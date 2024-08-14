@@ -5,12 +5,12 @@ import { useCallback, useEffect, useState } from "react";
 // icons
 import { RiDownloadCloud2Fill } from "react-icons/ri";
 // axios fetch
-import {fetchData} from '../../lip/fetchData';
+import {fetchData} from '@/lip/fetchData';
 // components
-import {Loading} from "../../ui/models/Loading";
-import {ProductCard} from "../../ui/cards/productCard";
-import { Error } from "../../ui/components/error";
-import { ButtonWithIcon } from "../../ui/buttons/buttons";
+import {Loading} from "@/ui/models/Loading";
+import {ProductCard} from "@/ui/cards/productCard";
+import { Error } from "@/ui/components/error";
+import { ButtonWithIcon } from "@/ui/buttons/buttons";
 
 const SearchPage = ()=> {
 
@@ -71,7 +71,7 @@ const SearchPage = ()=> {
                         }
                     </div>
                     {
-                        count < data?.length ? 
+                        count > data?.length ? 
                         <footer className="w-[140px] mx-auto my-5">
                             <ButtonWithIcon
                             text='load more'

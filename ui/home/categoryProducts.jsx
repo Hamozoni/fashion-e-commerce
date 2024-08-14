@@ -3,9 +3,9 @@
 import Link from "next/link";
 import {useCallback, useEffect, useRef, useState } from "react";
 // fetch api
-import {fetchData} from "../../lip/fetchData";
+import {fetchData} from "@/lip/fetchData";
 // loader
-import Loading from "../../app/loading";
+import Loading from "@/app/loading";
 // components
 import { ProductCard } from "../cards/productCard";
 import { LoadMoreBtn, ScrollLeftBtn, ScrollRightBtn } from "../buttons/buttons";

@@ -2,13 +2,14 @@
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 // data
-import { categoriesData } from "../../data/categoriesData";
-import { fetchData } from "../../lip/fetchData";
+import { categoriesData } from "@/data/categoriesData";
+import { fetchData } from "@/lip/fetchData";
 // components
-import { SubcategoryCard } from "../../ui/cards/subcategoryCard";
-import { ProductCard } from "../../ui/cards/productCard";
-import { LoadMoreBtn } from "../../ui/buttons/buttons";
+import { SubcategoryCard } from "@/ui/cards/subcategoryCard";
+import { ProductCard } from "@/ui/cards/productCard";
+import { LoadMoreBtn } from "@/ui/buttons/buttons";
 import Loading from "../loading";
+import { Error } from "@/ui/components/error";
 
 const CatecoryPage = () => {
   
@@ -18,8 +19,8 @@ const CatecoryPage = () => {
 
   const [products,setProducts] = useState([]);
   const [isLoading,setIsLoading] = useState(false);
-  const [error,setError] = useState(null);
-  const [isDataDone,setIsDataDone] = useState(false);
+  const [IsError,setIsError] = useState(null);
+  const [count,setCount] = useState(0);
   const [isLoadingMore,setIsLoadingMore] = useState(false);
   const [page,setPage] = useState(1);
 
@@ -30,16 +31,18 @@ const CatecoryPage = () => {
     }else {
       setIsLoading(true)
     }
-    setError(null)
+    setIsError(null)
     fetchData(`products/category?category=${section}&page=${page}`)
     .then((data)=> {
-        if(data?.length === 0) {
-          setIsDataDone(true);
+        if(isMore) {
+          setProducts(prev=> [...prev,...data?.products]);
+        }else {
+          setProducts(data?.products)
         }
-        setProducts(prev=> [...prev,...data]);
+        setCount(data?.count)
     })
     .catch((error)=> {
-      setError(error)
+      setIsError(error)
     })
     .finally(()=> {
       setIsLoadingMore(false);
@@ -48,7 +51,7 @@ const CatecoryPage = () => {
   },[section]);
 
   useEffect(()=> {
-    fetchCategory()
+    fetchCategory(1,false)
   },[]);
 
   return (
@@ -71,17 +74,20 @@ const CatecoryPage = () => {
             <h5 className="text-lg sm:text-xl text-teal-950 dark:text-teal-50 capitalize mt-10 mb-5 font-bold" >
               products for {section} :
             </h5>
+            {
+             isLoading ? <Loading /> 
+             : IsError ?  <Error onClick={()=> fetchCategory(page,false)} /> 
+             :
             <div className=""> 
               <div className="flex flex-wrap gap-2 sm:gap-4 w-full">
                   {
-                    isLoading ? <Loading /> : 
                     products?.map((product)=> (
                        <ProductCard key={product.id} product={product}/>
                     ))
                   }
               </div>
               {
-                isDataDone ? null :
+                count > products?.length ? 
                 <div className="max-w-fit mx-auto mt-6">
                    <LoadMoreBtn 
                       isLoadingMore={isLoadingMore} 
@@ -91,8 +97,10 @@ const CatecoryPage = () => {
                       }} 
                       />
                 </div>
+                : null
               }
             </div>
+            }
         </section>
     </div>
   )

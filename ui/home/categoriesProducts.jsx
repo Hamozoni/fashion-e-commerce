@@ -1,18 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import {CategoryProducts} from "./categoryProducts";
 import Image from "next/image";
 
-import offerImage from "../../public/categories/sliders/offer-1.jpg"
-import offer2Image from "../../public/categories/sliders/offer-2.webp"
+import offerImage from "@/public/categories/sliders/offer-1.jpg"
+import offer2Image from "@/public/categories/sliders/offer-2.webp"
 
 export const CategoriesProducts = ()=> {
-
-    const [menPage,setMenPage] = useState(1);
-    const [womenPage,setWomenPage] = useState(1);
-    const [kidsPage,setKidsPage] = useState(1);
-
 
     const width = window.innerWidth
 
