@@ -11,7 +11,7 @@ export const StatusNavbar = ({st})=> {
     const orderStatus =  ["pending","prossing","completed","canceled"];
 
     const className = {
-        li: 'text-teal-950 dark:text-teal-50 bg-gray-100 dark:bg-stone-900'
+        li: 'text-teal-950 dark:text-teal-50 bg-gray-50 hover:bg-white dark:hover:bg-black dark:bg-stone-900'
       }
 
     return (
