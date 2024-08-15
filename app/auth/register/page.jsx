@@ -12,6 +12,7 @@ import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import { LuClipboardSignature } from "react-icons/lu";
 import { AppContext } from "../../contextProvider";
 import { useRouter } from "next/navigation";
+import { Loading } from "@/ui/models/Loading";
 
 function RegisterPage() {
 
@@ -96,6 +97,11 @@ function RegisterPage() {
                 <AuthSocial text="already have an account?" link='/auth/login' page='signUp' />
             }
         </div>
+        {
+            isLoading ? 
+            <Loading />
+            :null
+        }
     </div>
   )
 }

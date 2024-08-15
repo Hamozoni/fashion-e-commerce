@@ -7,7 +7,7 @@ function AuthHeader({text}) {
           <h1  className='text-xl mb-3 uppercase font-bold text-teal-300 flex items-center justify-center gap-2'>
               <BiSolidLock size={40}/> fashion
           </h1>
-          <h5 className='captilize text-teal-900 dark:text-teal-100 capitalize text-sm font-medium'>
+          <h5 className='captilize text-teal-900 dark:text-teal-100 capitalize text-lg font-medium'>
             {text}
           </h5>
         </div>

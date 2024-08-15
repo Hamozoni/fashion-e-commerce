@@ -14,6 +14,7 @@ import { ButtonWithIcon } from "@/ui/buttons/buttons";
 
 import { BiLogInCircle } from "react-icons/bi";
 import { useSession } from "next-auth/react";
+import { Loading } from "@/ui/models/Loading";
 
 
 function LoginPage() {
@@ -78,11 +79,6 @@ function LoginPage() {
                             />
                     ))
                 }
-                <div className="py-3 text-center">
-                    <Link className="text-teal-950 dark:text-teal-50 hover:scale-110 font-bold text-sm" href="/auth/reset-password">
-                        forgot password?
-                    </Link>
-                </div>
                 <ErrorSucces 
                     error={serverErrror} 
                     success={serverSucces} 
@@ -99,6 +95,11 @@ function LoginPage() {
             
             <AuthSocial text="don't have an account?" link='/auth/register' page='logIn' />
         </div>
+        {
+            isLoading ? 
+            <Loading />
+            :null
+        }
     </div>
   )
 }

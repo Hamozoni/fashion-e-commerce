@@ -22,6 +22,18 @@ function AuthSocial({text,link,page}) {
 
   return (
     <div className="relative mt-8">
+        <div 
+            className="flex items-center mb-3 justify-between gap-3 ">
+            <Link 
+                href={link} 
+                className="capitalize text-teal-900 dark:text-teal-100 font-medium hover:text-teal-800 dark:hover:text-teal-50 "
+                >
+                {text}
+            </Link>
+            <Link className="text-teal-950 dark:text-teal-50 hover:scale-110 font-bold text-sm" href="/auth/reset-password">
+                forgot password?
+           </Link>
+        </div>
         <div className="flex items-center justify-between gap-3 flex-col">
             <ButtonWithIcon 
                 text={page === 'logIn' ? "login with github" :"signUp with github"} 
@@ -38,15 +50,6 @@ function AuthSocial({text,link,page}) {
                 onClick={()=> OauthSignIn("google")}
                 disabled={isLoading === 'google'}
                 />
-        </div>
-        <div 
-            className="text-center p-3 ">
-            <Link 
-                href={link} 
-                className="capitalize text-teal-900 dark:text-teal-100 font-medium hover:text-teal-800 dark:hover:text-teal-50 "
-                >
-                {text}
-            </Link>
         </div>
         {
             isLoading && <Loading/>
