@@ -7,12 +7,15 @@ import { MoreProducts } from "../../[section]/moreProducts";
 import {productById} from "@/actions/products/productById";
 
 
+export async function generateMetadata ({params}) {
+  const {productId} = params;
+  const {data} = await productById(productId);
 
-export const metadata = {
-  title: 'product page',
-  description : 'product info'
-}
-
+  return {
+    title: data?.name,
+    description : data?.describtion
+  }
+};
 
 async function  productPage({params}) {
 

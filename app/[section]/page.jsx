@@ -5,10 +5,15 @@ import {MoreProducts} from "./moreProducts"
 import {productsByCategoryAction} from "@/actions/products/productsByCategory"
 import { NoResults } from "@/ui/components/noResults";
 
-export const metadata = {
-    title: 'Subcategory Page',
-    description: 'this page shows fashion subcategory products'
-}
+
+export async function generateMetadata({params,searchParams}) {
+    const {section} = params;
+    const {sub} = searchParams;
+    return {
+        title: `${section} ${sub} products`,
+        description: `${section} ${sub} fashion products` 
+    }
+};
 
 async function page({params,searchParams}) {
 
