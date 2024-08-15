@@ -5,16 +5,22 @@ import {MoreProducts} from "./moreProducts"
 import {productsByCategoryAction} from "@/actions/products/productsByCategory"
 import { NoResults } from "@/ui/components/noResults";
 
+export const metadata = {
+    title: 'Subcategory Page',
+    description: 'this page shows fashion subcategory products'
+}
+
 async function page({params,searchParams}) {
 
     const {section} = params;
     const {sub} = searchParams;
     const { data } = await productsByCategoryAction(section,sub);
+    metadata.title = `${section} ${sub} products`;
 
     return (
         <section className="p-4 lg:px-8">
             <header>
-                <h4 className="pb-3 capitalize font-bold text-xl text-teal-950 dark:text-teal-100"> 
+                <h4 className="pb-3 capitalize font-bold text-lg text-teal-950 dark:text-teal-100"> 
                     {section} {sub} products:
                 </h4>
             </header>

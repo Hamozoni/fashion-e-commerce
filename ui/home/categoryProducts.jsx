@@ -83,7 +83,7 @@ export const CategoryProducts = ({category})=> {
         <section className="py-5">
             <header className="flex items-center justify-between mb-3">
                  <h4 
-                    className=" text-lg sm:text-xl capitalize text-teal-950 dark:text-teal-50 font-bold "
+                    className=" text-sm sm:text-lg capitalize text-teal-950 dark:text-teal-50 font-bold "
                     >for {category} may you like : 
                 </h4>
 
