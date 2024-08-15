@@ -7,6 +7,13 @@ import { MoreProducts } from "../../[section]/moreProducts";
 import {productById} from "@/actions/products/productById";
 
 
+
+export const metadata = {
+  title: 'product page',
+  description : 'product info'
+}
+
+
 async function  productPage({params}) {
 
   const {productId} = params;

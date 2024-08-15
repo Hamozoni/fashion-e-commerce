@@ -15,7 +15,6 @@ async function page({params,searchParams}) {
     const {section} = params;
     const {sub} = searchParams;
     const { data } = await productsByCategoryAction(section,sub);
-    metadata.title = `${section} ${sub} products`;
 
     return (
         <section className="p-4 lg:px-8">
