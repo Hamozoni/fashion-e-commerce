@@ -9,11 +9,24 @@ export async function GET (req) {
         const {searchParams} = new URL(req.url);
 
         const userId = searchParams.get('userId');
+        const status = searchParams.get('status');
+
+        const where = !!status ? {
+            AND : [
+                {
+                   status: status.toUpperCase()
+                },
+                {
+                    userId
+                }
+            ]
+        }: {
+            userId
+        }
+
 
         const orders = await db.customerOrder.findMany({
-            where : {
-                userId
-            },
+            where,
             include : {
                 products: true, 
                 customer : {
@@ -24,6 +37,8 @@ export async function GET (req) {
             }
         });
 
+        const count = await db.customerOrder.count({where})
+
         let address = '';
 
         if(orders?.length > 0) {
@@ -33,7 +48,7 @@ export async function GET (req) {
         }
 
 
-        return NextResponse.json({orders,address},{status:200})
+        return NextResponse.json({orders,address,count},{status:200})
     
 
     }

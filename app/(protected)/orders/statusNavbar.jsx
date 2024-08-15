@@ -2,13 +2,13 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-export const StatusNavbar = ({st})=> {
+export const StatusNavbar = ()=> {
 
     const searchParams = useSearchParams();
     const status = searchParams.get('status');
     const router = useRouter()
 
-    const orderStatus =  ["pending","prossing","completed","canceled"];
+    const orderStatus =  ["pending","processing","completed","canceled"];
 
     const className = {
         li: 'text-teal-950 dark:text-teal-50 bg-gray-50 hover:bg-white dark:hover:bg-black dark:bg-stone-900'
