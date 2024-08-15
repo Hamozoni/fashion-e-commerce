@@ -7,6 +7,11 @@ import { auth } from "@/auth";
 
 import "./globals.css";
 
+export const metadata = {
+  title: 'fashon home page',
+  describion: 'store for all fashion'
+}
+
 export default async function RootLayout({ children }) {
   const session = await auth();
   
@@ -14,7 +19,7 @@ export default async function RootLayout({ children }) {
     <SessionProvider session={session}>
       <html lang="en">
         <head>
-            <title>fashon home page</title>
+            <title></title>
             <link 
               rel="shortcut icon" 
               href="/favicon.ico" 

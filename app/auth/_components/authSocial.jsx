@@ -3,8 +3,7 @@ import {signIn} from "next-auth/react"
 import { SiGithub } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
-import { DEFAULT_LOGIN_REDIRECT } from "../../../routes";
-import { useTransition } from "react";
+import { useState} from "react";
 import { useSearchParams } from "next/navigation";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import { Loading } from "@/ui/models/Loading";
@@ -12,25 +11,24 @@ import { Loading } from "@/ui/models/Loading";
 function AuthSocial({text,link,page}) {
 
     const callbackUrl = useSearchParams().get("callback");
-    const [isLoading,startTranation] = useTransition();
+    const [isLoading,setIsLoading] = useState();
 
     const OauthSignIn = (provider)=> {
-        startTranation(()=> {
+        setIsLoading(provider)
             signIn(provider,{
-                callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT
+                callbackUrl: callbackUrl || process.env.NEXT_PUBLIC_URL
             })
-        })
     };
 
   return (
-    <div className="relative mt-5">
-        <div className="flex items-center justify-between gap-5">
+    <div className="relative mt-8">
+        <div className="flex items-center justify-between gap-3 flex-col">
             <ButtonWithIcon 
                 text={page === 'logIn' ? "login with github" :"signUp with github"} 
                 Icon={SiGithub}
                 type='save'
                 onClick={()=> OauthSignIn("github")}
-                disabled={isLoading}
+                disabled={isLoading === 'github'}
                 />
 
             <ButtonWithIcon 
@@ -38,7 +36,7 @@ function AuthSocial({text,link,page}) {
                 Icon={FcGoogle}
                 type='save'
                 onClick={()=> OauthSignIn("google")}
-                disabled={isLoading}
+                disabled={isLoading === 'google'}
                 />
         </div>
         <div 

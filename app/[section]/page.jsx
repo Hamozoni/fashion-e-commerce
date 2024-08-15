@@ -40,7 +40,6 @@ async function page({params,searchParams}) {
                 }
             </div>
             <MoreProducts category={section} />
-
         </section>
     )
 }
