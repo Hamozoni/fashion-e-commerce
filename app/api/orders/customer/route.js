@@ -9,9 +9,9 @@ export async function GET (req) {
         const {searchParams} = new URL(req.url);
 
         const userId = searchParams.get('userId');
-        const status = searchParams.get('status');
+        const status = searchParams.get('status') ?? 'all';
 
-        const where = !!status ? {
+        const where =  status !== "all"  ? {
             AND : [
                 {
                    status: status.toUpperCase()
@@ -23,6 +23,8 @@ export async function GET (req) {
         }: {
             userId
         }
+
+        console.log('order status',where)
 
 
         const orders = await db.customerOrder.findMany({
@@ -53,6 +55,8 @@ export async function GET (req) {
 
     }
     catch (error){
+
+        console.log(error)
 
         return NextResponse.json(error,{status: 500})
     };

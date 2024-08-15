@@ -8,7 +8,7 @@ export const StatusNavbar = ()=> {
     const status = searchParams.get('status');
     const router = useRouter()
 
-    const orderStatus =  ["pending","processing","completed","canceled"];
+    const orderStatus =  ["pending","processing","completed","cancelled"];
 
     const className = {
         li: 'text-teal-950 dark:text-teal-50 bg-gray-50 hover:bg-white dark:hover:bg-black dark:bg-stone-900'
