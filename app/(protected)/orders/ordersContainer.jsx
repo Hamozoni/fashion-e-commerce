@@ -57,7 +57,7 @@ export const OrdersContainer = ()=> {
                     count === 0 ?
                     <NoResults /> :
                     orders?.map((order) => (
-                        <OrderCard id={order?.id} order={order} address={address}/>
+                        <OrderCard key={order.id} id={order?.id} order={order} address={address}/>
                     ))  
                 }
 
