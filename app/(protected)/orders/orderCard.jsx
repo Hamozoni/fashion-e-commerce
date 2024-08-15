@@ -10,11 +10,6 @@ const className = {
 
 export const OrdersHeader = ({data : {id,createdAt,status}})=> {
 
-    const className = {
-        title_1: "text-teal-950 dark:text-teal-50 text-lg font-bold",
-        title_2: "text-teal-900 dark:text-teal-100 text-[16px] font-bold",
-    };
-
     return (
         <header className="bg-gray-100 dark:bg-stone-950 p-3 rounded-md">
             <div >
