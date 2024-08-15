@@ -6,6 +6,7 @@ import {fetchData} from "@/lip/fetchData";
 import Loading from "../../loading";
 import { OrderCard } from "./orderCard";
 import { useSearchParams } from "next/navigation";
+import { NoResults } from "@/ui/components/noResults";
 
 export const OrdersContainer = ()=> {
 
@@ -53,9 +54,11 @@ export const OrdersContainer = ()=> {
             </h5>
             <div className="">
                 {
-                orders?.map((order) => (
-                    <OrderCard id={order?.id} order={order} address={address}/>
-                ))  
+                    count === 0 ?
+                    <NoResults /> :
+                    orders?.map((order) => (
+                        <OrderCard id={order?.id} order={order} address={address}/>
+                    ))  
                 }
 
             </div>   

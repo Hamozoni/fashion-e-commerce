@@ -3,6 +3,7 @@ import {ProductCard} from "@/ui/cards/productCard";
 import {MoreProducts} from "./moreProducts"
 // server action
 import {productsByCategoryAction} from "@/actions/products/productsByCategory"
+import { NoResults } from "@/ui/components/noResults";
 
 async function page({params,searchParams}) {
 
@@ -24,11 +25,8 @@ async function page({params,searchParams}) {
                         <ProductCard key={product?.id} product={product}/>
                     ))
                     :
-                     (
-                        <div className=" h-[300px] w-full flex justify-center items-center">
-                            <h5 className="capitalize font-bold text-xl text-green-800">no products found</h5>
-                        </div>
-                    )
+
+                    <NoResults />
                 }
             </div>
             <MoreProducts category={section} />
