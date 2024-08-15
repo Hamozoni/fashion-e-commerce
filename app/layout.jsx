@@ -7,16 +7,20 @@ import { auth } from "@/auth";
 
 import "./globals.css";
 
-export const metadata = {
-  title : "fashon",
-  description: "store for all fashoin",
-};
-
 export default async function RootLayout({ children }) {
-  const session = await auth()
+  const session = await auth();
+  
   return (
     <SessionProvider session={session}>
       <html lang="en">
+        <head>
+            <title>fashon home page</title>
+            <link 
+              rel="shortcut icon" 
+              href="/favicon.ico" 
+              type="image/x-icon"
+               />
+        </head>
        <ContexProvider session={session?.user}>
           <body className="dark:bg-black">
             <ReduxProvider>

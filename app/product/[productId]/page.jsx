@@ -13,7 +13,10 @@ export async function generateMetadata ({params}) {
 
   return {
     title: data?.name,
-    description : data?.describtion
+    description : data?.describtion,
+    icons: {
+      icon: data?.imagePath
+    }
   }
 };
 
