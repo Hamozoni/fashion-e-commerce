@@ -1,23 +1,26 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 // fetch api
 import { fetchData } from "@/lip/fetchData";
 // components
 import { ProductCard } from "@/ui/cards/productCard";
 // loader
 import Loading from "../../loading";
+import { Error } from "@/ui/components/error";
+import { NoResults } from "@/ui/components/noResults";
 
 export const RelatedProducts = ({id})=> {
 
     const [products,setProducts] = useState([]);
     const [isLoading,setIsLoading] = useState(null);
-    const [error,setError] = useState(null)
+    const [error,setError] = useState(null);
 
-    useEffect(()=> {
+
+    const fetchRelated = useCallback(()=> {
+        setError(null)
         fetchData(`products/relatedById?id=${id}`)
         .then((data)=> {
             setError(null);
-            console.log(data)
             setProducts(data);
         })
         .catch((error)=> {
@@ -26,7 +29,11 @@ export const RelatedProducts = ({id})=> {
         .finally(()=> {
             setIsLoading(false);
         })
-    },[id]);
+    },[id])
+
+    useEffect(()=> {
+        fetchRelated()
+    },[fetchRelated]);
 
     return (
         <section>
@@ -35,8 +42,10 @@ export const RelatedProducts = ({id})=> {
             </h4>
             <div className="flex gap-5 overflow-x-auto py-5">
                 {
-                    isLoading ? <Loading /> :
-                    products?.map((product)=> (
+                    isLoading ? <Loading /> 
+                    : error ? <Error onClick={fetchRelated} /> 
+                    : products?.length === 0 ? <NoResults />
+                    : products?.map((product)=> (
                         <ProductCard key={product.id} product={product}/>
                     ))
                 }
