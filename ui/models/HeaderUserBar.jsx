@@ -101,7 +101,7 @@ export function HeaderUserBar() {
                                 <LuUserX2  size={24} /> delete my account
                             </li>
                             
-                            <li onClick={()=> setIsAccount(false)} className={className.li}>
+                            <li className={className.li}>
                                 <SignOut/>
                             </li>
                         </ul>

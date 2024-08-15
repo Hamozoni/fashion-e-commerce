@@ -20,17 +20,21 @@ function AuthSocial({text,link,page}) {
             })
     };
 
+    const className = {
+        link: 'text-teal-950 dark:text-teal-50 hover:scale-110 font-bold text-sm'
+    }
+
   return (
-    <div className="relative mt-8">
+    <div className="relative mt-8 capitalize">
         <div 
             className="flex items-center mb-3 justify-between gap-3 ">
             <Link 
                 href={link} 
-                className="capitalize text-teal-900 dark:text-teal-100 font-medium hover:text-teal-800 dark:hover:text-teal-50 "
+                className={className.link}
                 >
                 {text}
             </Link>
-            <Link className="text-teal-950 dark:text-teal-50 hover:scale-110 font-bold text-sm" href="/auth/reset-password">
+            <Link className={className.link} href="/auth/reset-password">
                 forgot password?
            </Link>
         </div>
