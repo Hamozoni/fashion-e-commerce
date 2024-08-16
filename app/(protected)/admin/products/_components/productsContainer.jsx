@@ -8,6 +8,7 @@ import { Navbar } from "./navbar";
 import {usePathname, useSearchParams } from "next/navigation";
 import { Error } from "@/ui/components/error";
 import { fetchData } from "@/lip/fetchData";
+import { NoResults } from "@/ui/components/noResults";
 
 export const ProductsContainer = ()=> {
 
@@ -61,7 +62,7 @@ export const ProductsContainer = ()=> {
                     {
                         isError ?  
                         <Error onClick={handleFetchMore} />
-                        :data?.length < allResults &&
+                        :data?.length < allResults ?
                         <div className="max-w-[150px] mx-auto">
                             <ButtonWithIcon 
                                 text='laod more' 
@@ -72,6 +73,8 @@ export const ProductsContainer = ()=> {
                                 />
 
                         </div>
+                        :allResults === 0 && 
+                        <NoResults />
                     }
                 </section>
 
