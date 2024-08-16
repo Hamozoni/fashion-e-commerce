@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Navbar } from "../../products/_components/navbar"
+import { OfferProductCard } from "./offerProductCard";
 
 export const OffersContainer = ()=> {
 
@@ -10,11 +11,6 @@ export const OffersContainer = ()=> {
     const [count,setCount] = useState(0);
     const [isLoading,setIsLoading] = useState(false);
 
-    useEffect(()=> {
-
-        console.log(products)
-
-    },[]);
 
     return (
         <div className="">
@@ -22,6 +18,16 @@ export const OffersContainer = ()=> {
                setData={setProducts}
                setCount={setCount}
             />
+            <div className="">
+                <h5>all results {count}</h5>
+                <div className="">
+                    {
+                        products?.map(product=> (
+                            <OfferProductCard key={product?.id} product={product} />
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     )
 }

@@ -83,29 +83,43 @@ export async function GET (req) {
 
         if(category === 'all' ) {
             
-            const offers = await db.productColors.findMany({
+            const products = await db.productColors.findMany({
                 include: {
-                    product: true
+                    product: {
+                        select : {
+                            name: true,
+                            brand: true,
+                            imagePath: true,
+                            images: true
+                        }
+                    }
                 },
                 take,
                 skip
             });
     
             const count = await db.productColors.count()
-            return NextResponse.json({offers,count},{status: 200})
+            return NextResponse.json({products,count},{status: 200})
 
         }else {
-                const offers = await db.productColors.findMany({
+                const products = await db.productColors.findMany({
                     where,
                     include: {
-                        product: true
+                        product: {
+                            select : {
+                                name: true,
+                                brand: true,
+                                imagePath: true,
+                                images: true
+                            }
+                        }
                     },
                     take,
                     skip
                 });
         
                 const count = await db.productColors.count({where})
-                return NextResponse.json({offers,count},{status: 200})
+                return NextResponse.json({products,count},{status: 200})
         }
     }
     catch (error) {
