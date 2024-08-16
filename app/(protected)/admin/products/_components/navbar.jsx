@@ -31,7 +31,7 @@ export const Navbar = ({
 
     return (
         <header className="flex justify-between items-start flex-wrap pb-8">
-            <nav className="">
+            <nav className="pb-3">
                 <ul className="flex items-start gap-3 capitalize overflow-x-auto">
                     <li 
                        onClick={() => handleCategory('all')}
