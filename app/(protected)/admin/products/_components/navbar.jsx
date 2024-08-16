@@ -20,8 +20,8 @@ export const Navbar = ()=> {
     };
 
     const handleCategory = (cate)=> {
-        setSubCategoryData(cate);
-        router.push(`/admin/products?category=${cate?.name}&subcategory=all`)
+        setSubCategoryData(cate.sub);
+        router.push(`?category=${cate?.name}&subcategory=all`)
     }
 
     return (
@@ -56,7 +56,7 @@ export const Navbar = ()=> {
                     </h6>
                 </div>
                 {
-                   ['men','women','kids']?.includes(category) ? 
+                  isSubcategory ? 
                 <ul className=" absolute z-50 min-w-fit right-0 top-[102%] w-full bg-teal-50 dark:bg-stone-900 text-teal-950 dark:text-teal-50 p-3 rounded-md border border-teal-100 dark:border-gray-600">
                     <li 
                         className={`${subcategory === 'all' ? 'bg-teal-600 text-teal-50 rounded-md' : 'hover:bg-white dark:hover:bg-stone-800'} flex items-center gap-3 px-3 py-2 cursor-pointer`}
@@ -64,7 +64,7 @@ export const Navbar = ()=> {
                         all
                     </li>
                     {
-                        subcategoryData?.length > 0 ? 
+                        ['men','women','kids']?.includes(category) ? 
                         subcategoryData?.map((subCate)=> (
                             <li 
                                 onClick={()=> router.push(`?category=${category}&subcategory=${subCate?.name}`)}

@@ -1,7 +1,5 @@
 import { fetchData } from "@/lip/fetchData";
 import {ProductsContainer} from "./_components/productsContainer";
-import { Navbar } from "./_components/navbar";
-
 
 export default  async function ProductsPage ({searchParams}){
   console.log('searchParams',searchParams);
@@ -17,7 +15,6 @@ const {category,subcategory} = searchParams || search
 
   return (
     <div className="p-3 lg:px-8">
-       <Navbar />
         <ProductsContainer 
           products={products} 
           count={count}

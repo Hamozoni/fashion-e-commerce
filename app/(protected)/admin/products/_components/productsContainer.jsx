@@ -4,14 +4,16 @@ import { TbAdjustmentsSearch } from "react-icons/tb";
 import { LiaTruckLoadingSolid } from "react-icons/lia";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import { useState } from "react";
+import { Navbar } from "./navbar";
 
 export const ProductsContainer = ({products,count})=> {
 
     const [data,setData] = useState(products);
-    const [allResults,setAllResults] = useState(count)
+    const [allResults,setAllResults] = useState(count);
 
     return (
         <div className="">
+            <Navbar />
 
             {
                 <section className="">
