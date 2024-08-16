@@ -1,6 +1,8 @@
 
 
-const salesPage = ()=> {
+const offersPage = ()=> {
+
+    
     return (
         <div className="">
             sales
@@ -9,4 +11,4 @@ const salesPage = ()=> {
 };
 
 
-export default salesPage;
+export default offersPage;
