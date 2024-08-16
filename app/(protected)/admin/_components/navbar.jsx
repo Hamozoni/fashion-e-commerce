@@ -61,7 +61,7 @@ export const Navbar = () => {
                 <Link 
                     key={link}
                     href={link} 
-                    className={`${className.link} ${pathname === link ? 'bg-teal-400 text-teal-50 dark:bg-teal-950' : 'hover:bg-gray-100 dark:hover:bg-teal-800'}`}>
+                    className={`${className.link} ${link.startsWith(pathname) ? 'bg-teal-400 text-teal-50 dark:bg-teal-950' : 'hover:bg-gray-100 dark:hover:bg-teal-800'}`}>
                     <Icon size={24}/>  {name}
                 </Link>
                 ))

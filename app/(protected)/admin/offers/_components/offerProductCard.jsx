@@ -13,26 +13,23 @@ export const OfferProductCard = ({product})=> {
 
     return (
         <div className="">
-            <Image 
+                <h6>{brand}</h6>
+                <h5>{name}</h5>
+            <div className="flex items-center gap-3">
+                <Image
+                className="w-[80px] h-[80px]" 
                 src={images?.find(e=> e.colorName === colorName)?.imagePath} 
                 width={40} 
                 height={40} 
                 alt={brand} 
                 />
-            <div className="">
-                <div className="">
-                    <h6>{brand}</h6>
-                    <h5>{name}</h5>
-
-                </div>
-                <div className="">
+                <div className="flex items-center gap-3">
                     <div className="">
-                        <h6>{colorName} :</h6>
-                        <div style={{backgroundColor: color}} className=""></div>
+                        <h6>color: {colorName}</h6>
                     </div>
                     <div className="">
-                        <h6>{getCurrency(priceInHalala)}</h6>
-                        <h5>{getCurrency(offerPriceInHalala)}</h5>
+                        <h6>original price: {getCurrency(priceInHalala)}</h6>
+                        <h5>offer price: {getCurrency(offerPriceInHalala)}</h5>
                     </div>
                 </div>
             </div>
