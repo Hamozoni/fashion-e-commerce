@@ -23,7 +23,7 @@ const navData = [
   {name: 'add new product',link: '/admin/products/new',Icon: IoMdAdd},
   {name: 'customers',link: '/admin/customers',Icon: GoPeople},
   {name: 'orders',link: '/admin/orders',Icon: MdShoppingCartCheckout},
-  {name: 'offers',link: '/admin/offers',Icon: MdOutlineLocalOffer},
+  {name: 'offers',link: '/admin/offers?category=all&subcategory=all',Icon: MdOutlineLocalOffer},
 ]
 
 export const Navbar = () => {

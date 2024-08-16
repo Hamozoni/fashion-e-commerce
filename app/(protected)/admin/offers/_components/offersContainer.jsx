@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "../../products/_components/navbar"
 
-export const OffersContainer = ({data})=> {
+export const OffersContainer = ()=> {
 
     const [categoryName,setCategoryName] = useState('all');
     const [subcategoryName,setSubCategory] = useState('');
-    const [products,setProducts] = useState(data);
+    const [products,setProducts] = useState([]);
+    const [count,setCount] = useState(0);
     const [isLoading,setIsLoading] = useState(false);
 
     useEffect(()=> {
@@ -18,10 +19,8 @@ export const OffersContainer = ({data})=> {
     return (
         <div className="">
             <Navbar 
-               categoryName={categoryName}
-               setCategoryName={setCategoryName}
-               subcategoryName={subcategoryName}
-               setSubcategoryName={setSubCategory}
+               setData={setProducts}
+               setCount={setCount}
             />
         </div>
     )

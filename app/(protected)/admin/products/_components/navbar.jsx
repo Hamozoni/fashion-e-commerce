@@ -29,7 +29,7 @@ export const Navbar = ({setData,setCount})=> {
     const handleFetch = useCallback(()=> {
 
         setIsLoading(true)
-        fetchData(`${pathname}?category=${category || 'all'}&sub=${subcategory || "all"}&page=1`)
+        fetchData(`${pathname}?category=${category || 'all'}&subcategory=${subcategory || "all"}&page=1`)
         .then(data=> {
             setData(data?.products);
             setCount(data?.count);
@@ -54,7 +54,7 @@ export const Navbar = ({setData,setCount})=> {
 
     return (
         <>
-            <header className="flex justify-between items-start flex-wrap p-3 bg-slate-100 sticky top-0 shadow-md left-0 rounded-md z-50">
+            <header className="flex justify-between items-start flex-wrap p-3 bg-gray-100 sticky top-0 shadow-md left-0 rounded-md z-50 mb-3">
                 <nav className="pb-3">
                     <ul className="flex items-start gap-3 capitalize overflow-x-auto">
                         <li 
