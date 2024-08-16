@@ -5,11 +5,13 @@ import { TbAdjustmentsSearch } from "react-icons/tb";
 import { LiaTruckLoadingSolid } from "react-icons/lia";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
 
-export const ProductsContainer = async ({searchParams})=> {
+export const ProductsContainer = async ()=> {
 
-    const {category,subcategory} = searchParams;
 
-    const {products,count} = await fetchData(`admin/products?category=${category || 'all'}&sub=${subcategory || 'all'}&page=1`);
+
+    const category = 'all';
+    const subcategory = 'all'
+    const {products,count} = await fetchData(`admin/products?category=${category}&sub=${subcategory}&page=1`);
 
 
     return (
@@ -35,8 +37,8 @@ export const ProductsContainer = async ({searchParams})=> {
                                 text='laod more' 
                                 Icon={LiaTruckLoadingSolid} 
                                 type='save'
-                                onClick={handleLoadMore}
-                                disabled={isLoadingMore}
+                                // onClick={handleLoadMore}
+                                // disabled={isLoadingMore}
                                 />
 
                         </div>
