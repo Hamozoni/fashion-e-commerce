@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { FaMinus } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
+import { RxCross2 } from "react-icons/rx";
 import { CardHeader } from "./productCard";
 import { ProductColors } from "./productColors";
 import {NewOfferForm} from "./newOfferForm";
@@ -25,12 +26,21 @@ export const AddOffer = ({product,setProducts})=> {
             {
                 isOfferModel ? 
                 <div className=" capitalize">
-                    <div onClick={()=> setIsOfferModel(false)} className="z-[100] fixed top-0 left-0 h-screen w-screen dark:bg-white bg-black opacity-35">
+                    <div 
+                        onClick={()=> setIsOfferModel(false)} 
+                        className="z-[100] fixed top-0 left-0 h-screen w-screen dark:bg-white bg-black opacity-35">
                     </div>
                     <div className="fixed z-[102] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-fit w-fit min-w-[300px] sm:min-w-[600px] lg:min-w-[900px] max-w-full p-5 rounded-md bg-gray-100 dark:bg-black">
-                        <h5 className="text-teal-950 dark:text-teal-50 font-bold text-lg mb-5">
-                            adding offer to 
-                        </h5>
+                         <header className="flex items-center justify-between">
+                            <h5 className="text-teal-950 dark:text-teal-50 font-bold text-lg mb-5">
+                                adding offer to 
+                            </h5>
+                            <button 
+                                className="text-teal-950 dark:text-teal-50"
+                                onClick={()=> setIsOfferModel(false)} >
+                                <RxCross2 size={24} /> 
+                             </button>
+                         </header>
                         <CardHeader product={product}/>
                         <div className="">
                             <h6 className='my-3 text-teal-950 font-bold dark:text-teal-50 text-sm'>
@@ -44,7 +54,11 @@ export const AddOffer = ({product,setProducts})=> {
                                             key={color?.id} 
                                             className={`${color?.id === selectedItem?.id ? 'border-teal-300' : 'border-white dark:border-black'} border-2 rounded-md cursor-pointer flex-grow`}
                                              >
-                                            <ProductColors color={color} sizes={product?.sizes} />
+                                            <ProductColors 
+                                                color={color} 
+                                                sizes={product?.sizes}  
+                                                imagePath={product?.images?.find(e=> e.colorName === color.colorName)?.imagePath}
+                                             />
                                         </div>
                                     ))
                                 }

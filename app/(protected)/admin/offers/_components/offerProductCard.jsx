@@ -16,10 +16,10 @@ export const OfferProductCard = ({product})=> {
     }
 
     return (
-        <div className="p-3 rounded-md bg-gray-50 mb-5 capitalize font-bold flex gap-3">
-            <div className="bg-white min-w-[80px] h-full flex justify-center items-center">
+        <div className="p-3 rounded-md bg-gray-50 dark:bg-stone-900 mb-5 capitalize font-bold flex gap-3 border border-gray-200 dark:border-stone-700">
+            <div className="bg-white min-w-[80px] h-full flex justify-center items-center rounded-md">
                 <Image
-                    className="w-[80px] h-[80px]" 
+                    className="w-[80px] h-[80px] rounded-md" 
                     src={images?.find(e=> e.colorName === colorName)?.imagePath} 
                     width={80} 
                     height={80} 

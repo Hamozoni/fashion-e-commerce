@@ -56,7 +56,7 @@ export const Navbar = ({setData,setCount,setPage})=> {
 
     return (
         <>
-            <header className="flex justify-between items-start flex-wrap bg-white dark:bg-black sticky top-0 left-0 z-50 mb-3">
+            <header className="flex justify-between items-start flex-wrap bg-white dark:bg-black sticky top-0 left-0 z-50 mb-3 pt-3">
                 <nav className="pb-3">
                     <ul className="flex items-start gap-3 capitalize overflow-x-auto">
                         <li 
