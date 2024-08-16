@@ -1,18 +1,14 @@
-
-import {fetchData} from "@/lip/fetchData"
+"use client";
 import {ProductCard} from "./productCard";
 import { TbAdjustmentsSearch } from "react-icons/tb";
 import { LiaTruckLoadingSolid } from "react-icons/lia";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
+import { useState } from "react";
 
-export const ProductsContainer = async ()=> {
+export const ProductsContainer = ({products,count})=> {
 
-
-
-    const category = 'all';
-    const subcategory = 'all'
-    const {products,count} = await fetchData(`admin/products?category=${category}&sub=${subcategory}&page=1`);
-
+    const [data,setData] = useState(products);
+    const [allResults,setAllResults] = useState(count)
 
     return (
         <div className="">
@@ -20,10 +16,10 @@ export const ProductsContainer = async ()=> {
             {
                 <section className="">
                     <h6 className="text-lg font-bold text-gray-500 capitalize flex items-center gap-2">
-                        <TbAdjustmentsSearch /> all results {count}
+                        <TbAdjustmentsSearch /> all results {allResults}
                     </h6>
                     {
-                        products?.map((product)=> (
+                        data?.map((product)=> (
                             <ProductCard 
                                 key={product?.id} 
                                 product={product} 
@@ -31,7 +27,7 @@ export const ProductsContainer = async ()=> {
                         ))
                     }
                     {
-                        products?.length < count &&
+                        data?.length < allResults &&
                         <div className="max-w-[150px] mx-auto">
                             <ButtonWithIcon 
                                 text='laod more' 

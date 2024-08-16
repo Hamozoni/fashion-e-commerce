@@ -21,7 +21,7 @@ export const Navbar = ()=> {
 
     const handleCategory = (cate)=> {
         setSubCategoryData(cate);
-        router.push(`?category=${cate?.name}&subcategory=all`)
+        router.push(`/admin/products?category=${cate?.name}&subcategory=all`)
     }
 
     return (
