@@ -14,12 +14,12 @@ export const Navbar = ({setData,setCount})=> {
     const {category,subcategory} = Object.fromEntries(searchParams.entries());
     const router = useRouter();
 
+    const pathname = usePathname()
+
     const [subcategoryData,setSubCategoryData] = useState([]);
     const [isSubcategory,setIsSubcategory] = useState(false);
     const [isError,setIsError] = useState(null);
     const [isLoading,setIsLoading] = useState(false);
-
-    const pathname = usePathname()
 
 
     const className = {
@@ -29,7 +29,7 @@ export const Navbar = ({setData,setCount})=> {
     const handleFetch = useCallback(()=> {
 
         setIsLoading(true)
-        fetchData(`${pathname}&page=1`)
+        fetchData(`${pathname}?category=${category || 'all'}&sub=${subcategory || "all"}&page=1`)
         .then(data=> {
             setData(data?.products);
             setCount(data?.count);
@@ -120,7 +120,7 @@ export const Navbar = ({setData,setCount})=> {
                 isLoading ? <Loading /> :
                 isError && 
                 <div 
-                    className="fixed top-0 left-0 w-full h-screen bg-black dark:bg-white opacity-30 z-50">
+                    className="fixed top-0 left-0 w-full h-screen bg-black dark:bg-white opacity-80 z-[99]">
                         <Error onClick={handleFetch} />
 
                 </div>

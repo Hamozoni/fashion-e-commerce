@@ -5,12 +5,15 @@ import { LiaTruckLoadingSolid } from "react-icons/lia";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import { useState } from "react";
 import { Navbar } from "./navbar";
-import {usePathname} from "next/navigation";
+import {usePathname, useSearchParams } from "next/navigation";
 import { Error } from "@/ui/components/error";
 import { fetchData } from "@/lip/fetchData";
 
 export const ProductsContainer = ()=> {
 
+    const searchParams = useSearchParams();
+
+    const {category,subcategory} =  Object.fromEntries(searchParams.entries());
     const pathname = usePathname()
 
     const [data,setData] = useState([]);
@@ -22,7 +25,7 @@ export const ProductsContainer = ()=> {
     const handleFetchMore = ()=> {
         setIsError(null)
         setIsLoadingMore(true)
-        fetchData(`${pathname}}&page=${page + 1}`)
+        fetchData(`${pathname}?category=${category || 'all'}&subcategory=${subcategory || 'all'}&page=${page + 1}`)
         .then(data=> {
             setData(prev=> [...prev,...data?.products]);
             setAllResults(data?.count);

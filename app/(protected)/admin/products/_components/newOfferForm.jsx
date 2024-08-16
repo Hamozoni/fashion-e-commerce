@@ -50,7 +50,7 @@ export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {
        const validate = addingOfferSchema.safeParse(data);
 
        if(validate.success){
-        updateData(`admin/sales?offerPrice=${priceInput}&expiresAt=${dateInput}&id=${item?.id}`)
+        updateData(`admin/offers?offerPrice=${priceInput}&expiresAt=${dateInput}&id=${item?.id}`)
             .then((data)=> {
                 setProducts((prev)=> {
                     const productIndex = prev.findIndex(e=> e.id === product.id);
