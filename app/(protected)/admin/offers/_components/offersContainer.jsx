@@ -39,17 +39,24 @@ export const OffersContainer = ()=> {
         .finally(()=> {
             setIsLoading(false)
         })
+    };
+
+    const className = {
+        title : 'flex items-center gap-2 text-lg font-bold text-gray-400 mb-3'
     }
 
 
     return (
-        <div className="">
+        <div className="capitalize">
             <Navbar 
                setData={setProducts}
                setCount={setCount}
+               setPage={setPage}
             />
             <div className="">
-                <h5><TbAdjustmentsSearch /> all results {count}</h5>
+                <h5 className={className.title}>
+                    <TbAdjustmentsSearch size={24} /> all results {count}
+                </h5>
                 <div className="">
                     {
                         products?.map(product=> (
@@ -59,15 +66,18 @@ export const OffersContainer = ()=> {
                 </div>
                 {
                     isErrror ? <Error onClick={handleFetchMore} />:
+                    (count > 0 &&  count > products?.length) ?
                     <div className="max-w-[150px] mx-auto">
                         <ButtonWithIcon
-                        text='load more'
-                        Icon={FaTruckLoading}
-                        type='save'
-                        disabled={isLoading}
+                            text='load more'
+                            Icon={FaTruckLoading}
+                            type='save'
+                            disabled={isLoading}
+                            onClick={handleFetchMore}
                         />
 
                     </div>
+                    : null
                 }
             </div>
         </div>

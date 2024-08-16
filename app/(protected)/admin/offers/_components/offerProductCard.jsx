@@ -11,26 +11,45 @@ export const OfferProductCard = ({product})=> {
         colorName
     } = product;
 
+    const className = {
+        subTitle : 'text-xs sm:text-sm text-teal-900 dark:text-teal-100 font-bold'
+    }
+
     return (
-        <div className="">
-                <h6>{brand}</h6>
-                <h5>{name}</h5>
-            <div className="flex items-center gap-3">
+        <div className="p-3 rounded-md bg-gray-50 mb-5 capitalize font-bold flex gap-3">
+            <div className="bg-white min-w-[80px] h-full flex justify-center items-center">
                 <Image
-                className="w-[80px] h-[80px]" 
-                src={images?.find(e=> e.colorName === colorName)?.imagePath} 
-                width={40} 
-                height={40} 
-                alt={brand} 
+                    className="w-[80px] h-[80px]" 
+                    src={images?.find(e=> e.colorName === colorName)?.imagePath} 
+                    width={80} 
+                    height={80} 
+                    alt={brand} 
                 />
-                <div className="flex items-center gap-3">
+            </div>  
+            <div className="">
+                    <h5 className="text-sm sm:text-[18px] mb-2 font-bold text-teal-950 dark:text-teal-50 line-clamp-2">
+                        {name}
+                    </h5>
+                <div className='flex gap-5 flex-wrap'>
                     <div className="">
-                        <h6>color: {colorName}</h6>
+                        <h6 className={className?.subTitle}>
+                             brand: <small>{brand}</small>
+                        </h6>
+                        <h6 className={className?.subTitle}>
+                            color: <small>{colorName}</small>
+                        </h6>
                     </div>
                     <div className="">
-                        <h6>original price: {getCurrency(priceInHalala)}</h6>
-                        <h5>offer price: {getCurrency(offerPriceInHalala)}</h5>
+                        <h5 className={`${className?.subTitle} line-through`}>
+                            original price: <small>{getCurrency(priceInHalala)}</small>
+                        </h5>
+                        <h5 className={className?.subTitle}>
+                            offer price: <small>{getCurrency(offerPriceInHalala)}</small>
+                        </h5>
                     </div>
+                    <h5 className={className?.subTitle}>
+                            offer Expires At: <small>{new Date(offerExpiresAt).toLocaleString()}</small>
+                    </h5>
                 </div>
             </div>
         </div>

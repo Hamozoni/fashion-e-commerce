@@ -8,7 +8,7 @@ import { fetchData } from "@/lip/fetchData";
 import { Loading } from "@/ui/models/Loading";
 import { Error } from "@/ui/components/error";
 
-export const Navbar = ({setData,setCount})=> {
+export const Navbar = ({setData,setCount,setPage})=> {
 
     const searchParams = useSearchParams();
     const {category,subcategory} = Object.fromEntries(searchParams.entries());
@@ -27,7 +27,7 @@ export const Navbar = ({setData,setCount})=> {
     };
 
     const handleFetch = useCallback(()=> {
-
+        setPage(1)
         setIsLoading(true)
         fetchData(`${pathname}?category=${category || 'all'}&subcategory=${subcategory || "all"}&page=1`)
         .then(data=> {

@@ -44,7 +44,11 @@ export const ProductsContainer = ()=> {
 
     return (
         <div className="">
-            <Navbar setData={setData} setCount={setAllResults} />
+            <Navbar 
+                setData={setData} 
+                setCount={setAllResults} 
+                setPage={setPage} 
+                />
 
             {
                 <section className="">
