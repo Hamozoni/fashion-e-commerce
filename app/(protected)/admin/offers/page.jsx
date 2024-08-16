@@ -1,11 +1,12 @@
+import { OffersContainer } from "./_components/offersContainer";
 
 
 const offersPage = ()=> {
 
-    
+
     return (
-        <div className="">
-            sales
+        <div className="p-3 lg:px-8">
+            <OffersContainer />
         </div>
     )
 };
