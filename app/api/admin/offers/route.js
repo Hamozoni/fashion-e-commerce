@@ -49,14 +49,14 @@ export async function PUT (req) {
 
 export async function GET (req) {
 
-    const searchParams = new URL(req.url);
+    const {searchParams} = new URL(req.url);
     const category = searchParams.get('category');
     const subcategory = searchParams.get('subcategory');
 
     const page = searchParams.get('page');
 
     const take = 10;
-    const skip = (skip * (+page || 1)) - take;
+    const skip = (take * (+page || 1)) - take;
 
     const where = subcategory === 'all' ? {
 
@@ -83,7 +83,7 @@ export async function GET (req) {
 
         if(category === 'all' ) {
             
-            const offers = await db.productColors({
+            const offers = await db.productColors.findMany({
                 include: {
                     product: true
                 },
@@ -92,10 +92,10 @@ export async function GET (req) {
             });
     
             const count = await db.productColors.count()
-            return NextResponse.json({offers,count})
+            return NextResponse.json({offers,count},{status: 200})
 
         }else {
-                const offers = await db.productColors({
+                const offers = await db.productColors.findMany({
                     where,
                     include: {
                         product: true
@@ -105,11 +105,13 @@ export async function GET (req) {
                 });
         
                 const count = await db.productColors.count({where})
-                return NextResponse.json({offers,count})
+                return NextResponse.json({offers,count},{status: 200})
         }
     }
     catch (error) {
-        console.error(error)
+        console.error(error);
+
+        return NextResponse.json('something went wrong',{status: 500})
     }
 
 }

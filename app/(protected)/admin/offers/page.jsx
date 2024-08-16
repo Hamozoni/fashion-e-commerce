@@ -1,15 +1,13 @@
 import { OffersContainer } from "./_components/offersContainer";
+import { fetchData } from "@/lip/fetchData";
 
+export default async function offersPage () {
 
-const offersPage = ()=> {
-
+   const data =  await fetchData('admin/offers?category=all&subcategory=all&page=1');
 
     return (
         <div className="p-3 lg:px-8">
-            <OffersContainer />
+            <OffersContainer data={data} />
         </div>
     )
 };
-
-
-export default offersPage;

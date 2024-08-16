@@ -3,39 +3,34 @@ import Image from "next/image";
 import {categoriesData} from "@/data/categoriesData";
 import { IoMdArrowDropdown,IoMdArrowDropright } from "react-icons/io";
 import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export const Navbar = ({
-    categoryName,
-    setCategoryName,
-    subcategoryName,
-    setSubcategoryName
-})=> {
+export const Navbar = ()=> {
 
-    const [subCategory,setSubCategory] = useState(null);
+    const searchParams = useSearchParams();
+    const {category,subcategory} = Object.fromEntries(searchParams.entries());
+    const router = useRouter()
+
+    const [subcategoryData,setSubCategoryData] = useState([]);
     const [isSubcategory,setIsSubcategory] = useState(false)
 
-    const handleCategory = (category)=> {
-        setSubcategoryName('all')
-        if(category === 'all'){
-            setCategoryName('all');
-            setSubCategory(null)
-        }else {
-            setCategoryName(category?.name);
-            setSubCategory(category?.sub)
-        }
-    };
 
     const className = {
         categoryLi: ' px-3 py-2 text-sm sm:text-lg border border-teal-100 dark:border-stone-700 cursor-pointer rounded-md flex items-center gap-2 min-w-fit'
     };
+
+    const handleCategory = (cate)=> {
+        setSubCategoryData(cate);
+        router.push(`?category=${cate?.name}&subcategory=all`)
+    }
 
     return (
         <header className="flex justify-between items-start flex-wrap pb-8">
             <nav className="pb-3">
                 <ul className="flex items-start gap-3 capitalize overflow-x-auto">
                     <li 
-                       onClick={() => handleCategory('all')}
-                        className={`${categoryName === 'all' ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 dark:bg-stone-800 dark:text-teal-50'} ${className.categoryLi}`} >
+                       onClick={() => router.push('?category=all&sucategory=all')}
+                        className={`${category === 'all' ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 dark:bg-stone-800 dark:text-teal-50'} ${className.categoryLi}`} >
                         <h4>all</h4>
                     </li>
                     {
@@ -43,7 +38,7 @@ export const Navbar = ({
                             <li 
                                 onClick={() => handleCategory(cate)}
                                 key={cate?.id} 
-                                className={`${categoryName === cate?.name ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 dark:bg-stone-800 text-teal-950 dark:text-teal-50 hover:scale-105 '} ${className.categoryLi}`}
+                                className={`${category === cate?.name ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 dark:bg-stone-800 text-teal-950 dark:text-teal-50 hover:scale-105 '} ${className.categoryLi}`}
                                 >
                                     <Image className="rounded-full" src={cate?.imagePath} width={50} height={30} alt="cate"/>
                                     <h4 className="text-center">{cate?.name}</h4>
@@ -57,24 +52,24 @@ export const Navbar = ({
                     onClick={()=> setIsSubcategory(!isSubcategory)}
                     className="flex justify-between flex-col gap-3 cursor-pointer bg-teal-50 dark:bg-stone-900 text-teal-950 dark:text-teal-50  p-3 rounded-md border border-teal-100 dark:border-gray-600">
                     <h6 className="flex items-center justify-between gap-3 text-sm text-gray-500 dark:text-gray-200">
-                      filter:  {subcategoryName} { isSubcategory ? <IoMdArrowDropdown /> : <IoMdArrowDropright />}
+                      filter:  {subcategory} { isSubcategory ? <IoMdArrowDropdown /> : <IoMdArrowDropright />}
                     </h6>
                 </div>
                 {
-                    isSubcategory ? 
+                   ['men','women','kids']?.includes(category) ? 
                 <ul className=" absolute z-50 min-w-fit right-0 top-[102%] w-full bg-teal-50 dark:bg-stone-900 text-teal-950 dark:text-teal-50 p-3 rounded-md border border-teal-100 dark:border-gray-600">
                     <li 
-                        className={`${subcategoryName === 'all' ? 'bg-teal-600 text-teal-50 rounded-md' : 'hover:bg-white dark:hover:bg-stone-800'} flex items-center gap-3 px-3 py-2 cursor-pointer`}
+                        className={`${subcategory === 'all' ? 'bg-teal-600 text-teal-50 rounded-md' : 'hover:bg-white dark:hover:bg-stone-800'} flex items-center gap-3 px-3 py-2 cursor-pointer`}
                          onClick={()=> setSubcategoryName('all')}>
                         all
                     </li>
                     {
-                        subCategory ? 
-                        subCategory?.map((subCate)=> (
+                        subcategoryData?.length > 0 ? 
+                        subcategoryData?.map((subCate)=> (
                             <li 
                                 onClick={()=> setSubcategoryName(subCate?.name)}
                                 key={subCate?.id} 
-                                className={`${subcategoryName === subCate?.name ? 'bg-teal-600 text-teal-50 rounded-md' : 'hover:bg-white dark:hover:bg-stone-800'} flex items-center gap-3 px-3 py-2 cursor-pointer`}>
+                                className={`${subcategory === subCate?.name ? 'bg-teal-600 text-teal-50 rounded-md' : 'hover:bg-white dark:hover:bg-stone-800'} flex items-center gap-3 px-3 py-2 cursor-pointer`}>
                                 <Image className="rounded-full" src={subCate?.imagePath} width={30} height={30} alt={subCate?.name} />  {subCate?.name}
                             </li>
 

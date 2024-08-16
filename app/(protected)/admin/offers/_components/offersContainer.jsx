@@ -1,11 +1,19 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../../products/_components/navbar"
 
-export const OffersContainer = ()=> {
+export const OffersContainer = ({data})=> {
 
     const [categoryName,setCategoryName] = useState('all');
     const [subcategoryName,setSubCategory] = useState('');
+    const [products,setProducts] = useState(data);
+    const [isLoading,setIsLoading] = useState(false);
+
+    useEffect(()=> {
+
+        console.log(products)
+
+    },[]);
 
     return (
         <div className="">
