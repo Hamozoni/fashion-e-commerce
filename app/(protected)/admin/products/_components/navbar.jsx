@@ -60,17 +60,23 @@ export const Navbar = ()=> {
                 <ul className=" absolute z-50 min-w-fit right-0 top-[102%] w-full bg-teal-50 dark:bg-stone-900 text-teal-950 dark:text-teal-50 p-3 rounded-md border border-teal-100 dark:border-gray-600">
                     <li 
                         className={`${subcategory === 'all' ? 'bg-teal-600 text-teal-50 rounded-md' : 'hover:bg-white dark:hover:bg-stone-800'} flex items-center gap-3 px-3 py-2 cursor-pointer`}
-                         onClick={()=> setSubcategoryName('all')}>
+                         onClick={()=> router.push(`?category=${category}&subcategory=all`)}>
                         all
                     </li>
                     {
                         subcategoryData?.length > 0 ? 
                         subcategoryData?.map((subCate)=> (
                             <li 
-                                onClick={()=> setSubcategoryName(subCate?.name)}
+                                onClick={()=> router.push(`?category=${category}&subcategory=${subCate?.name}`)}
                                 key={subCate?.id} 
                                 className={`${subcategory === subCate?.name ? 'bg-teal-600 text-teal-50 rounded-md' : 'hover:bg-white dark:hover:bg-stone-800'} flex items-center gap-3 px-3 py-2 cursor-pointer`}>
-                                <Image className="rounded-full" src={subCate?.imagePath} width={30} height={30} alt={subCate?.name} />  {subCate?.name}
+                                <Image 
+                                    className="rounded-full" 
+                                    src={subCate?.imagePath} 
+                                    width={30} height={30} 
+                                    alt={subCate?.name} 
+                                    />  
+                                {subCate?.name}
                             </li>
 
                         )) : null

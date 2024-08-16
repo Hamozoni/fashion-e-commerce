@@ -19,7 +19,7 @@ import { AppContext } from "../../../contextProvider";
 
 const navData = [
   {name: 'overview',link: '/admin',Icon: LuLayoutDashboard},
-  {name: 'products',link: '/admin/products',Icon: MdOutlinePropane},
+  {name: 'products',link: '/admin/products?category=all&subcategory=all',Icon: MdOutlinePropane},
   {name: 'add new product',link: '/admin/products/new',Icon: IoMdAdd},
   {name: 'customers',link: '/admin/customers',Icon: GoPeople},
   {name: 'orders',link: '/admin/orders',Icon: MdShoppingCartCheckout},
