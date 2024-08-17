@@ -44,12 +44,18 @@ export const OffersContainer = ()=> {
 
     useEffect(()=> {
         const nowDate = Date.now();
-        setProducts(prev=> {
+        
+        const parseDate = (e)=> {
+            const date = Date.parse(e)
+            return date
+        };
+
+        setProducts(prev => {
             let filteredProducts = [] 
             if(isValid){
-                filteredProducts = prev.filter((e)=>  Date.parse(e.offerExpiresAt) > nowDate);
+                filteredProducts = prev.filter((e)=>  parseDate(e.offerExpiresAt) > nowDate);
             }else {
-                filteredProducts = prev.filter((e)=>  Date.parse(e.offerExpiresAt) < nowDate);
+                filteredProducts = prev.filter((e)=>  parseDate(e.offerExpiresAt) < nowDate);
             }
             return [...filteredProducts]
         })
