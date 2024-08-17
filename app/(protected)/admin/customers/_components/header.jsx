@@ -4,7 +4,7 @@ import { FaUserSlash } from "react-icons/fa6";
 import { FaUserCheck } from "react-icons/fa6";
 export const Header = ({data})=> {
 
-    const {allCount,adminCount,verifiedCount,unverifiedCount} = data;
+    const {allCount,adminCount,verifiedCount,unverifiedCount,customers} = data;
     const headerData = [
         {name: 'all customers',count: allCount,Icon: FaUsers},
         {name: 'verified customers',count: verifiedCount,Icon:FaUserCheck },
@@ -13,19 +13,23 @@ export const Header = ({data})=> {
     ]
 
 
-    console.log({allCount,adminCount,verifiedCount,unverifiedCount})
+    console.log({allCount,adminCount,verifiedCount,unverifiedCount,customers})
 
     return (
         <header>
-            <ul className="flex items-center gap-5">
+            <ul className="flex items-center gap-3 py-3">
                 {
                     headerData?.map(({name,count,Icon})=> (
-                        <li key={name}>
-                            <div className="flex items-center gap-3">
-                                <Icon />
-                                <h5>{count}</h5>
+                        <li 
+                            className="p-3 rounded-md bg-teal-50 border border-teal-200 capitalize"
+                            key={name}>
+                            <div className="flex items-center text-teal-400 justify-center gap-2 mb-2">
+                                <Icon size={26} />
+                                <h5 className="text-lg font-bold">{count}</h5>
                             </div>
-                            <h6>{name}</h6>
+                            <h6 className="text-gray-500 font-extrabold text-sm">
+                                {name}
+                            </h6>
                         </li>
 
                     ))

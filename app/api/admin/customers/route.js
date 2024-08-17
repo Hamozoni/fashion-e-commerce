@@ -14,8 +14,47 @@ export async function GET (req){
     try{
 
         const customers = await db.user.findMany({
+            where:{
+                role: 'USER'
+            },
             take,
-            skip
+            skip,
+            include: {
+                orders:{
+                    select: {
+                        id: true,
+                        totalPaidInCent: true,
+                        status: true,
+                        totalProductsQuantity: true,
+                    }
+                },
+            },
+            select: {
+                name: true,
+                email: true,
+                id: true,
+                image: true,
+                _sum: {
+                    orders: {
+                        select: {
+                            totalPaidInCent: true,
+                        }
+                    }
+                },
+                _count: {
+                    select:{ 
+                        orders: true
+                    }
+                },
+                _avg: {
+                    select:{ 
+                        reviews:{
+                            rating: true
+                        }
+                    }
+                }
+
+            },
         });
 
         const allCount = await db.user.count();

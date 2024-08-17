@@ -13,12 +13,13 @@ export default async function CustomersPage () {
     } = await fetchData('admin/customers?page=1');
 
     return (
-        <div className="">
+        <div className="p-3 lg:px-8">
             <Header 
                 data={{
                     allCount,adminCount,
                     verifiedCount,
-                    unverifiedCount
+                    unverifiedCount,
+                    customers
                     }} 
             /> 
         </div>

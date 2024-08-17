@@ -34,7 +34,7 @@ export const Navbar = () => {
   const {innerWidth} = useContext(AppContext);
 
   const className = {
-     link: 'capitalize m-0 px-3 lg:px-8 py-2 text-sm font-bold dark:text-teal-100  hover:text-black-500 flex items-center rounded-tr-full rounded-br-full gap-2 w-fit min-w-[250px]',
+     link: 'capitalize m-0 px-3 lg:px-8 py-2 text-sm font-bold dark:text-teal-100  hover:text-black-500 flex items-center  gap-2 w-fit min-w-[250px]',
   };
 
   return (
@@ -53,7 +53,7 @@ export const Navbar = () => {
       <section className={`${isMenu ? '' : '-translate-x-full md:translate-x-0'} border-t-4 border-t-teal-300 w-[250px] z-[70] fixed md:sticky left-0 bg-white top-0 h-screen min-w-fit dark:bg-black flex flex-col justify-between pb-4`}>
         <div className="max-h-full overflow-y-auto">
              <AdminAccount />
-            <nav className="flex flex-col gap-5 mt-3">
+            <nav className="flex flex-col gap-2 mt-3">
 
               {
                 navData?.map(({name,link,Icon})=> (

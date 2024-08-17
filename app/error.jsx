@@ -6,7 +6,8 @@ import { PiTrayArrowDownThin } from "react-icons/pi";
 
 const ErrorPage = ()=> {
 
-    const router = useRouter()
+    const router = useRouter();
+    
     return (
         <div className="w-full">
             <div className="flex items-center justify-center flex-col gap-5 capitalize h-[400px] ">
@@ -22,7 +23,7 @@ const ErrorPage = ()=> {
                         text='tray again'
                         Icon={PiTrayArrowDownThin}
                         disabled={false}
-                        onClick={()=> router.refresh()}
+                        onClick={()=> router.back()}
                          />
                 </div>
             </div>
