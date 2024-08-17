@@ -6,6 +6,7 @@ import { TiStarFullOutline,TiStarHalfOutline } from "react-icons/ti";
 import { CiStar } from "react-icons/ci";
 // context
 import {ReviewsContext} from "../reviewsContext";
+import { RatingStars } from './reviewsRating';
 
 const reviewsStars = new Array(5).fill('star')
 
@@ -26,6 +27,7 @@ export const ReviewsAverage = () => {
             >{reviewsAvg > 0 ? reviewsAvg?.toFixed(1) : 0} out of 5
         </h5>
         <div className="flex items-center text-yellow-400 text-[30px]">
+            <RatingStars rating={reviewsAvg} />
             {
                 reviewsStars?.map((_,index)=> (
 

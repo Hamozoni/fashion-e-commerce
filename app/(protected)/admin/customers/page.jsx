@@ -1,5 +1,6 @@
 import { fetchData } from "@/lip/fetchData"
 import { Header } from "./_components/header";
+import { CardsContainer } from "./_components/cardsContainer";
 
 
 export default async function CustomersPage () {
@@ -22,6 +23,7 @@ export default async function CustomersPage () {
                     customers
                     }} 
             /> 
+            <CardsContainer customers={customers} />
         </div>
     )
 }
