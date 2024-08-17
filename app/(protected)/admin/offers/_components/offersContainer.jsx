@@ -20,7 +20,7 @@ export const OffersContainer = ()=> {
     const [products,setProducts] = useState([]);
     const [count,setCount] = useState(0);
     const [isLoading,setIsLoading] = useState(false);
-    const [isValid,setIsValid] = useState(false);
+    const [isValid,setIsValid] = useState(true);
     const [isErrror,setIsError] = useState(null);
     const [page,setPage] = useState(1);
 
@@ -41,25 +41,6 @@ export const OffersContainer = ()=> {
             setIsLoading(false)
         })
     };
-
-    useEffect(()=> {
-        const nowDate = Date.now();
-        
-        const parseDate = (e)=> {
-            const date = Date.parse(e)
-            return date
-        };
-
-        setProducts(prev => {
-            let filteredProducts = [] 
-            if(isValid){
-                filteredProducts = prev.filter((e)=>  parseDate(e.offerExpiresAt) > nowDate);
-            }else {
-                filteredProducts = prev.filter((e)=>  parseDate(e.offerExpiresAt) < nowDate);
-            }
-            return [...filteredProducts]
-        })
-    },[isValid]);
 
     const className = {
         title : 'flex items-center gap-2 text-lg font-bold text-gray-400',
@@ -95,9 +76,28 @@ export const OffersContainer = ()=> {
                 </section>
                 <div className="">
                     {
-                        products?.map(product=> (
-                            <OfferProductCard key={product?.id} product={product} />
-                        ))
+                        products?.map(product=> {
+                            const nowDate = Date.now();
+                            const expireDate = Date.parse(product.offerExpiresAt);
+                            if(isValid) {
+                                if(expireDate > nowDate) {
+                                    return(
+                                        <OfferProductCard 
+                                              key={product?.id} 
+                                              product={product} />  
+                                   )  
+                                }
+                            }else {
+                                if(expireDate < nowDate) {
+                                    return(
+                                        <OfferProductCard 
+                                              key={product?.id} 
+                                              product={product} />  
+                                   )  
+                                }
+                            }
+                            
+                        })
                     }
                 </div>
                 {

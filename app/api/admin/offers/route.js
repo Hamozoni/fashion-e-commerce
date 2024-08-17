@@ -59,12 +59,36 @@ export async function GET (req) {
     const skip = (take * (+page || 1)) - take;
 
     const where = subcategory === 'all' ? {
+        AND: [
+            {
+              offerPriceInHalala: {
+                not: null
+               }
+            },
+            {
+              offerExpiresAt: {
+                not: null
+               }
+            },
+            {
+              product : {
+                category
+              }
+            }
 
-        product : {
-            category
-        }
+        ]
     } : {
            AND : [
+               {
+                offerPriceInHalala: {
+                  not: null
+                 }
+              },
+              {
+                offerExpiresAt: {
+                  not: null
+                 }
+              },
                {
                 product : {
                    category
@@ -84,6 +108,20 @@ export async function GET (req) {
         if(category === 'all' ) {
             
             const products = await db.productColors.findMany({
+                where: {
+                    AND : [
+                        {
+                         offerPriceInHalala: {
+                           not: null
+                          }
+                       },
+                       {
+                         offerExpiresAt: {
+                           not: null
+                          }
+                       }
+                    ]
+                },
                 include: {
                     product: {
                         select : {
@@ -98,7 +136,22 @@ export async function GET (req) {
                 skip
             });
     
-            const count = await db.productColors.count()
+            const count = await db.productColors.count({
+                where: {
+                    AND : [
+                        {
+                         offerPriceInHalala: {
+                           not: null
+                          }
+                       },
+                       {
+                         offerExpiresAt: {
+                           not: null
+                          }
+                       }
+                    ]
+                },
+            })
             return NextResponse.json({products,count},{status: 200})
 
         }else {
