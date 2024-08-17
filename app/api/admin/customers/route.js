@@ -31,8 +31,13 @@ export async function GET (req){
                 emailVerified : null
             }
         });
+        const adminCount = await db.user.count({
+            where :{
+                role : 'ADMIN'
+            }
+        });
 
-        return NextResponse.json({customers,allCount,verifiedCount,unverifiedCount},{status: 200})
+        return NextResponse.json({customers,allCount,verifiedCount,unverifiedCount,adminCount},{status: 200})
 
     }
     catch (error) {
