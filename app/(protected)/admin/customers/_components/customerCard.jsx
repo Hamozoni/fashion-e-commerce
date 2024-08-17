@@ -13,20 +13,20 @@ export const CustomerCard = ({customer})=> {
 
     const className = {
         tHead: 'bg-white text-sm font-bold text-gray-400 p-2 capitalize',
-        bTitle: 'text-[16px] font-bold capitalize text-teal-950',
+        bTitle: 'text-xs sm:text-[16px] font-bold capitalize text-teal-950',
         bSTilte: 'text-xs font-bold text-teal-900',
-        bTTitle:'text-sm font-bold text-teal-900 capitalize flex items-center gap-3'
+        bTTitle:'text-xs sm:text-sm font-bold text-teal-900 capitalize flex items-center gap-3'
     }
     return (
-        <div className="flex p-3 rounded-md bg-gray-50 border border-gray-100 mb-3">
+        <div className="flex p-3 rounded-md bg-gray-50 border border-gray-100 mb-3 flex-wrap">
             <section className="flex-1">
                 <h5 className={className.tHead}>info: </h5>
                 <div className="flex items-center gap-3 p-2">
-                    <div className="">
+                    <div className="max-h-[30px] sm:max-h-[40px] rounded-md overflow-hidden">
                         {
                             image ?
-                            <Image src={image} width={70} height={70} alt='user' />
-                            : <FaRegUser size={50} />
+                            <Image src={image} width={40} height={40} alt='user' />
+                            : <FaRegUser size={40} />
                         }
                     </div>
                     <div className="">

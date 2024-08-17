@@ -18,22 +18,22 @@ export const Header = ({data})=> {
     console.log({allCount,adminCount,verifiedCount,unverifiedCount,customers})
 
     return (
-        <header className="flex flex-col-reverse lg:flex-row items-center gap-3 bg-teal-50 p-3 rounded-md mb-8">
+        <header className="flex flex-col-reverse lg:flex-row items-stretch gap-3 bg-teal-50 p-3 rounded-md mb-8">
             <LineChart
                 ChartData={[allCount,adminCount,verifiedCount,unverifiedCount]}
                 labels={['all','admin','verified','unverified']}
                 bgColors={['#aae978b3']}
                 text='customers'
                 />
-            <ul className="flex gap-2 lg:flex-col flex-1 min-w-[200px]">
+            <ul className="flex gap-2 lg:flex-col flex-1 min-w-[200px] overflow-x-auto">
                 {
                     headerData?.map(({name,count,Icon})=> (
                         <li 
                             className="p-3 flex-grow text-center min-w-fit rounded-md bg-white border border-gray-200 capitalize"
                             key={name}>
                             <div className="flex items-center text-teal-400 justify-center gap-2 mb-2">
-                                <Icon size={26} />
-                                <h5 className="text-lg font-bold">
+                                <Icon className="text-lg sm:text-xl" />
+                                <h5 className="text-sm sm:text-lg font-bold">
                                     {count}
                                 </h5>
                             </div>
