@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { Navbar } from "../../products/_components/navbar"
 import { OfferProductCard } from "./offerProductCard";
 
