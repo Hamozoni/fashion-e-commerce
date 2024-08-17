@@ -1,3 +1,4 @@
+"use client"
 import { FaUsers } from "react-icons/fa";
 import { MdOutlineVerifiedUser } from "react-icons/md";
 import { FaUserSlash } from "react-icons/fa6";

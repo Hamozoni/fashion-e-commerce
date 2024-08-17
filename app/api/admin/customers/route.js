@@ -19,42 +19,34 @@ export async function GET (req){
             },
             take,
             skip,
-            include: {
+            select: {
                 orders:{
                     select: {
                         id: true,
                         totalPaidInCent: true,
                         status: true,
                         totalProductsQuantity: true,
-                    }
-                },
-            },
-            select: {
-                name: true,
-                email: true,
-                id: true,
-                image: true,
-                _sum: {
-                    orders: {
+                    },
+                    _sum: {
                         select: {
                             totalPaidInCent: true,
                         }
-                    }
+                    },
                 },
-                _count: {
-                    select:{ 
-                        orders: true
-                    }
-                },
-                _avg: {
-                    select:{ 
-                        reviews:{
-                            rating: true
-                        }
-                    }
-                }
 
             },
+            // _count: {
+            //     select:{ 
+            //         orders: true
+            //     }
+            // },
+            // _avg: {
+            //     select:{ 
+            //         reviews:{
+            //             rating: true
+            //         }
+            //     }
+            // }
         });
 
         const allCount = await db.user.count();
