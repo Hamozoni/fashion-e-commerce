@@ -23,7 +23,7 @@ export default async function CustomersPage () {
                     customers
                     }} 
             /> 
-            <CardsContainer customers={customers} />
+            <CardsContainer customers={customers} count={allCount} />
         </div>
     )
 }

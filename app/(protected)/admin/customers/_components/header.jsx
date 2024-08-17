@@ -18,7 +18,7 @@ export const Header = ({data})=> {
     console.log({allCount,adminCount,verifiedCount,unverifiedCount,customers})
 
     return (
-        <header className="flex flex-col-reverse lg:flex-row items-stretch gap-3 bg-teal-50 p-3 rounded-md mb-8">
+        <header className="flex flex-col-reverse lg:flex-row items-stretch gap-3 bg-teal-50 border border-teal-200 p-3 rounded-md mb-8">
             <LineChart
                 ChartData={[allCount,adminCount,verifiedCount,unverifiedCount]}
                 labels={['all','admin','verified','unverified']}
