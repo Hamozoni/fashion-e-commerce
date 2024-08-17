@@ -18,10 +18,10 @@ export const CustomerCard = ({customer})=> {
         bTTitle:'text-xs sm:text-sm font-bold text-teal-900 capitalize flex items-center gap-3'
     }
     return (
-        <div className="flex p-3 rounded-md bg-gray-50 border border-gray-100 mb-3 flex-wrap">
-            <section className="flex-1">
-                <h5 className={className.tHead}>info: </h5>
-                <div className="flex items-center gap-3 p-2">
+        <div className="flex p-2 gap-2 items-stretch rounded-md bg-gray-50 border border-gray-300 mb-3 flex-wrap">
+            <section className="flex-1 p-2 bg-white rounded-md border border-gray-200">
+                {/* <h5 className={className.tHead}>info: </h5> */}
+                <div className="flex items-center gap-3 ">
                     <div className="max-h-[30px] sm:max-h-[40px] rounded-md overflow-hidden">
                         {
                             image ?
@@ -35,32 +35,34 @@ export const CustomerCard = ({customer})=> {
                     </div>
                 </div>
             </section>
-            <section className="flex-1">
-                <h5 className={className.tHead}>orders: </h5>
-                <div className="p-2">
-                    <div className={className.bTTitle}>
-                        <h5>total orders: </h5>
-                        <p>{orders?.length}</p>
+            <div className="flex flex-1 gap-2 items-stretch">
+                <section className="flex-1 p-2 bg-white rounded-md border border-gray-200">
+                    {/* <h5 className={className.tHead}>orders: </h5> */}
+                    <div >
+                        <div className={className.bTTitle}>
+                            <h5 className="mb-2">total orders: </h5>
+                            <p>{orders?.length}</p>
+                        </div>
+                        <div className={className.bTTitle}>
+                            <h5>total paid: </h5>
+                            <p>{getCurrency(totalPaid)}</p>
+                        </div>
                     </div>
-                    <div className={className.bTTitle}>
-                        <h5>total paid: </h5>
-                        <p>{getCurrency(totalPaid)}</p>
+                </section>
+                <section className="flex-1 p-2 bg-white rounded-md border border-gray-200">
+                    {/* <h5 className={className.tHead}>reviews: </h5> */}
+                    <div >
+                        <div className={className.bTTitle}>
+                            <h5>total reviews: </h5>
+                            <p>{reviews?.length}</p>
+                        </div>
+                        <div className={className.bTTitle}>
+                            <h5>rating: </h5>
+                            <RatingStars rating={avgRating} />
+                        </div>
                     </div>
-                </div>
-            </section>
-            <section className="flex-1">
-                <h5 className={className.tHead}>reviews: </h5>
-                <div className="p-2">
-                    <div className={className.bTTitle}>
-                        <h5>total reviews: </h5>
-                        <p>{reviews?.length}</p>
-                    </div>
-                    <div className={className.bTTitle}>
-                        <h5>rating: </h5>
-                        <RatingStars rating={avgRating} />
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     )
 }
