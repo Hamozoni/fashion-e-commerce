@@ -27,26 +27,24 @@ export async function GET (req){
                         status: true,
                         totalProductsQuantity: true,
                     },
-                    _sum: {
-                        select: {
-                            totalPaidInCent: true,
-                        }
-                    },
                 },
+                reviews: {
+                    select: {
+                        rating: true,
+                        id: true,
+                        rateTitle: true,
+                        rateText: true
+                    }
 
+                },
+                id:true,
+                name:true,
+                email:true,
+                role: true,
+                emailVerified:true,
+                createdAt: true
             },
-            // _count: {
-            //     select:{ 
-            //         orders: true
-            //     }
-            // },
-            // _avg: {
-            //     select:{ 
-            //         reviews:{
-            //             rating: true
-            //         }
-            //     }
-            // }
+
         });
 
         const allCount = await db.user.count();
