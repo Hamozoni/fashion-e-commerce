@@ -8,8 +8,10 @@ export const CustomerCard = ({customer})=> {
 
     const {image,name,email,reviews,orders} = customer;
 
-    const totalPaid = orders.reduce((prev,curr)=> prev.totalPaidInCent + curr.totalPaidInCent ,0);
-    const avgRating = reviews.reduce((prev,curr)=> prev.rating + curr.rating,0) / reviews?.length
+    const totalPaid = orders?.length > 0 ? orders.reduce((total,curr)=> total + curr.totalPaidInCent,0) : 0;
+    const avgRating = reviews?.length > 0 ? reviews.reduce((total,curr)=> total + curr.rating,0) / reviews?.length : 0;
+
+
     return (
         <div className="">
             <section className="">
