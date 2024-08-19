@@ -63,7 +63,7 @@ export const LineChart = ({ChartData,labels,bgColors,text})=> {
     },[]);
 
     return (
-        <div className=" relative w-full h-full p-3 bg-white dark:bg-black  rounded-md border border-gray-200">
+        <div className=" relative w-full h-full p-3 bg-white dark:bg-black  rounded-md border border-gray-200 dark:border-stone-900">
             <Line ref={chartRef} options={options} data={data} />
         </div>
     )

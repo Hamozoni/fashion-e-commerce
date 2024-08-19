@@ -64,7 +64,7 @@ export const BarChart = ({chartData,labels,text,bgColors})=> {
     },[]);
 
     return (
-        <div className="relative w-full h-full p-3 bg-white dark:bg-black rounded-md mt-3">
+        <div className="relative w-full h-full p-3 bg-white dark:bg-black  rounded-md border border-gray-200 dark:border-stone-900">
             <Bar 
                 ref={chartRef} 
                 options={options} 

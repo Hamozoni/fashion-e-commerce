@@ -18,7 +18,7 @@ export const Header = ({data})=> {
     console.log({allCount,adminCount,verifiedCount,unverifiedCount,customers})
 
     return (
-        <header className="flex flex-col-reverse lg:flex-row items-stretch gap-3 bg-teal-50 border border-teal-200 p-3 rounded-md mb-8">
+        <header className="flex flex-col-reverse lg:flex-row items-stretch gap-3 bg-teal-50 dark:bg-stone-950 border border-teal-200 dark:border-stone-800 p-3 rounded-md mb-8">
             <LineChart
                 ChartData={[allCount,adminCount,verifiedCount,unverifiedCount]}
                 labels={['all','admin','verified','unverified']}
@@ -29,7 +29,7 @@ export const Header = ({data})=> {
                 {
                     headerData?.map(({name,count,Icon})=> (
                         <li 
-                            className="p-3 flex-grow text-center min-w-fit rounded-md bg-white border border-gray-200 capitalize"
+                            className="p-3 flex-grow text-center min-w-fit rounded-md bg-white dark:bg-black border border-gray-200 dark:border-stone-800 capitalize"
                             key={name}>
                             <div className="flex items-center text-teal-400 justify-center gap-2 mb-2">
                                 <Icon className="text-lg sm:text-xl" />
