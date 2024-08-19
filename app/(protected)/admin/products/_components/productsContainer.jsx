@@ -1,6 +1,5 @@
 "use client";
 import {ProductCard} from "./productCard";
-import { TbAdjustmentsSearch } from "react-icons/tb";
 import { LiaTruckLoadingSolid } from "react-icons/lia";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import { useState } from "react";
@@ -9,6 +8,7 @@ import {usePathname, useSearchParams } from "next/navigation";
 import { Error } from "@/ui/components/error";
 import { fetchData } from "@/lip/fetchData";
 import { NoResults } from "@/ui/components/noResults";
+import { AllResultsTitle } from "@/ui/components/allResultsTitle";
 
 export const ProductsContainer = ()=> {
 
@@ -53,9 +53,7 @@ export const ProductsContainer = ()=> {
 
             {
                 <section className="">
-                    <h6 className="text-lg font-bold text-gray-500 capitalize flex items-center gap-2">
-                        <TbAdjustmentsSearch /> all results {allResults}
-                    </h6>
+                    <AllResultsTitle count={allResults} />
                     {
                         data?.map((product)=> (
                             <ProductCard 

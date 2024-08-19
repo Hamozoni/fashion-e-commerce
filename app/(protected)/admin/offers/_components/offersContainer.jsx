@@ -3,13 +3,13 @@ import {useState } from "react";
 import { Navbar } from "../../products/_components/navbar"
 import { OfferProductCard } from "./offerProductCard";
 
-import { TbAdjustmentsSearch } from "react-icons/tb";
 import { FaTruckLoading } from "react-icons/fa";
 
 import { fetchData } from "@/lip/fetchData";
 import { useSearchParams } from "next/navigation";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import { Error } from "@/ui/components/error";
+import { AllResultsTitle } from "@/ui/components/allResultsTitle";
 
 export const OffersContainer = ()=> {
 
@@ -43,7 +43,6 @@ export const OffersContainer = ()=> {
     };
 
     const className = {
-        title : 'flex items-center gap-2 text-lg font-bold text-gray-400',
         validBtn: `${isValid ? 'text-teal-300 border-b border-b-teal-300': 'text-teal-950 dark:text-teal-50 ' } font-bold capitalize text-sm`,
         expiresBtn: `${isValid ? 'text-teal-950 dark:text-teal-50': ' text-teal-300 border-b border-b-teal-300' } font-bold capitalize text-sm`,
     }
@@ -59,9 +58,7 @@ export const OffersContainer = ()=> {
             />
             <div className="">
                 <section className="flex items-center justify-between mb-3">
-                    <h5 className={className.title}>
-                        <TbAdjustmentsSearch size={24} /> all results {count}
-                    </h5>
+                    <AllResultsTitle count={count} />
                     <nav className="flex items-center gap-5">
                         <button 
                             onClick={()=> setIsValid(true)}
