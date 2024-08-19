@@ -9,6 +9,7 @@ import { GoPeople } from "react-icons/go";
 import { MdOutlineLocalOffer,MdOutlinePropane,MdShoppingCartCheckout } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import { RiArrowRightWideLine } from "react-icons/ri";
+import { IoStorefrontOutline } from "react-icons/io5";
 
 import { ThemeModel } from "@/ui/models/themeModel";
 import { SignOut } from "@/ui/buttons/signOut";
@@ -23,6 +24,7 @@ const navData = [
   {name: 'customers',link: '/admin/customers',Icon: GoPeople},
   {name: 'orders',link: '/admin/orders',Icon: MdShoppingCartCheckout},
   {name: 'offers',link: '/admin/offers?category=all&subcategory=all',Icon: MdOutlineLocalOffer},
+  {name: 'shop',link: '/',Icon: IoStorefrontOutline},
 ]
 
 export const Navbar = () => {

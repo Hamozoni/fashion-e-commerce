@@ -34,9 +34,50 @@ export async function GET(req) {
 
         const count = await db.product.count({
             where: {
-                name: {
-                    contains: query
-                }
+                OR: [
+                    { 
+                        name: {
+                         contains: query
+                        }
+                    },
+                    {
+                        describtion: {
+                            contains: query
+                           }
+
+                    },
+                    {
+                        category: {
+                            contains: query
+                           }
+
+                    },
+                    {
+                        subcategory: {
+                            contains: query
+                           }
+
+                    },
+                    {
+                        brand: {
+                            contains: query
+                           }
+
+                    },
+                    {
+                        colorName: {
+                            contains: query
+                           }
+
+                    },
+                    {
+                        size: {
+                            contains: query
+                           }
+
+                    }
+
+                ]
             }
         })
         return NextResponse.json({products,count},{status: 200})

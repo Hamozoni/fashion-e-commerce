@@ -8,6 +8,7 @@ import { FaUserLarge } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
 import { FaRegHeart  } from "react-icons/fa";
 import { LuUserX2 } from "react-icons/lu";
+import { TbLayoutDashboard } from "react-icons/tb";
 // components
 import {SignOut} from "../buttons/signOut";
 import {Overlay} from "./overlay";
@@ -77,6 +78,12 @@ export function HeaderUserBar() {
                             </div>
                         </header>
                         <ul  className="max-h-full overflow-y-auto">
+                            <li onClick={()=> setIsAccount(false)} className={className.li} >
+                               <TbLayoutDashboard size={24} />  
+                                <Link href='/admin/dashboard'>
+                                   admin dashboard
+                                </Link>
+                            </li>
                             <li 
                                 onClick={()=> setIsAccount(false)} 
                                 className={className.li}>
@@ -91,7 +98,7 @@ export function HeaderUserBar() {
                             <IoCartOutline size={24} />  <Link href='/cart'>cart</Link>
                             </li>
                             <li onClick={()=> setIsAccount(false)} className={className.li} >
-                            <FaRegHeart size={24} />  <Link href='/likedList'>my wistList</Link>
+                               <FaRegHeart size={24} />  <Link href='/likedList'>my wishList</Link>
                             </li>
                             <ThemeModel />
                             <li onClick={()=> setIsAccount(false)} className={className.li}>
