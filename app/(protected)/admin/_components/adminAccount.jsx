@@ -21,7 +21,7 @@ export const AdminAccount = ()=> {
                 />
     return (
 
-        <div className="flex items-center gap-2 py-5 px-3 md:px-8 borer-b border-b-gray-100">
+        <div className="flex items-center gap-2 borer-b border-b-gray-100">
             {userAvatar}
             <div className="">
                 <h5 className="text-xs sm:text-sm font-bold text-teal-950 dark:text-teal-50">

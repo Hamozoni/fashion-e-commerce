@@ -52,7 +52,11 @@ export const Navbar = () => {
       
       <section className={`${isMenu ? '' : '-translate-x-full md:translate-x-0'} border-t-4 border-t-teal-300 w-[250px] z-[70] fixed md:sticky left-0 bg-white top-0 h-screen min-w-fit dark:bg-black flex flex-col justify-between pb-4`}>
         <div className="max-h-full overflow-y-auto">
-             <AdminAccount />
+             <div className="py-5 px-3 lg:px-8">
+                <h3 className="text-xl font-bold text-teal-500 text-center">
+                  Fashion  Dashboard
+                </h3>
+             </div>
             <nav className="flex flex-col gap-2 mt-3">
 
               {
@@ -61,7 +65,7 @@ export const Navbar = () => {
                 <Link 
                     key={link}
                     href={link} 
-                    className={`${className.link} ${link.startsWith(pathname) ? 'bg-teal-400 text-teal-50 dark:bg-teal-950' : 'hover:bg-gray-100 dark:hover:bg-teal-800'}`}>
+                    className={`${className.link} ${link.includes(pathname) ? 'bg-teal-400 text-teal-50 dark:bg-teal-950' : 'hover:bg-gray-100 dark:hover:bg-teal-800'}`}>
                     <Icon size={24}/>  {name}
                 </Link>
                 ))
