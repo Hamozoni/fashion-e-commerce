@@ -11,6 +11,53 @@ export async function GET(req) {
     const take = 10;
     const skip = (take * (+page || 1)) - take;
 
+    const where = {
+        OR: [
+            { 
+                name: {
+                 contains: query
+                }
+            },
+            {
+                describtion: {
+                    contains: query
+                   }
+
+            },
+            {
+                category: {
+                    contains: query
+                   }
+
+            },
+            {
+                subcategory: {
+                    contains: query
+                   }
+
+            },
+            {
+                brand: {
+                    contains: query
+                   }
+
+            },
+            {
+                colorName: {
+                    contains: query
+                   }
+
+            },
+            {
+                size: {
+                    contains: query
+                   }
+
+            }
+
+        ]
+    }
+
     try{
 
         if(!query) {
@@ -18,11 +65,7 @@ export async function GET(req) {
         }
 
         const products = await db.product.findMany({
-            where: {
-                name: {
-                    contains: query
-                }
-            },
+            where,
             include: {
                 images: true,
                 sizes: true,
@@ -32,54 +75,7 @@ export async function GET(req) {
             skip
         });
 
-        const count = await db.product.count({
-            where: {
-                OR: [
-                    { 
-                        name: {
-                         contains: query
-                        }
-                    },
-                    {
-                        describtion: {
-                            contains: query
-                           }
-
-                    },
-                    {
-                        category: {
-                            contains: query
-                           }
-
-                    },
-                    {
-                        subcategory: {
-                            contains: query
-                           }
-
-                    },
-                    {
-                        brand: {
-                            contains: query
-                           }
-
-                    },
-                    {
-                        colorName: {
-                            contains: query
-                           }
-
-                    },
-                    {
-                        size: {
-                            contains: query
-                           }
-
-                    }
-
-                ]
-            }
-        })
+        const count = await db.product.count({where})
         return NextResponse.json({products,count},{status: 200})
     }
     catch (error){

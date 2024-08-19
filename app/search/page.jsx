@@ -1,5 +1,6 @@
 import { AllResultsTitle } from "@/ui/components/allResultsTitle";
 import { ProductsContainer } from "./productsContainer";
+import { fetchData } from "@/lip/fetchData";
 
 export default async function searchPage ({searchParams}){
 
