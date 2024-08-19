@@ -23,7 +23,7 @@ export const Navbar = ({setData,setCount,setPage})=> {
 
 
     const className = {
-        categoryLi: ' px-3 py-2 text-sm sm:text-lg border border-teal-100 dark:border-stone-700 cursor-pointer rounded-md flex items-center gap-2 min-w-fit'
+        categoryLi: ' px-3 py-2 text-xs sm:text-sm border border-teal-100 dark:border-stone-700 cursor-pointer rounded-full flex items-center gap-2 min-w-fit'
     };
 
     const handleFetch = useCallback(()=> {
@@ -56,12 +56,12 @@ export const Navbar = ({setData,setCount,setPage})=> {
 
     return (
         <>
-            <header className="flex justify-between items-start flex-wrap bg-white dark:bg-black sticky top-0 left-0 z-50 mb-3 pt-3">
-                <nav className="pb-3">
-                    <ul className="flex items-start gap-3 capitalize overflow-x-auto">
+            <header className="flex justify-between items-start flex-wrap bg-white dark:bg-black sticky top-0 left-0 z-50 mb-3 py-3">
+                <nav className="">
+                    <ul className="flex items-stretch gap-3 capitalize overflow-x-auto">
                         <li 
                         onClick={() => router.push('?category=all&subcategory=all')}
-                            className={`${category === 'all' ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 dark:bg-stone-800 dark:text-teal-50'} ${className.categoryLi}`} >
+                            className={`${category === 'all' ? 'bg-teal-400 text-teal-50' : 'bg-teal-50 dark:bg-stone-800 dark:text-teal-50'} ${className.categoryLi}`} >
                             <h4>all</h4>
                         </li>
                         {
@@ -69,7 +69,7 @@ export const Navbar = ({setData,setCount,setPage})=> {
                                 <li 
                                     onClick={() => handleCategory(cate)}
                                     key={cate?.id} 
-                                    className={`${category === cate?.name ? 'bg-teal-400 scale-105 text-teal-50' : 'bg-teal-50 dark:bg-stone-800 text-teal-950 dark:text-teal-50 hover:scale-105 '} ${className.categoryLi}`}
+                                    className={`${category === cate?.name ? 'bg-teal-400 text-teal-50 border-gray-400' : 'bg-teal-50 dark:bg-stone-800 text-teal-950 dark:text-teal-50'} ${className.categoryLi}`}
                                     >
                                         <Image className="rounded-full" src={cate?.imagePath} width={50} height={30} alt="cate"/>
                                         <h4 className="text-center">{cate?.name}</h4>

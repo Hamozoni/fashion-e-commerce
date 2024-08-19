@@ -49,7 +49,7 @@ export const RevenueSummary = ()=> {
                     <Loading />
                 </div>
                 : error ? <Error onClick={handleFetchRevenue} />
-                :<div className="mt-5">
+                :<div className="my-5">
                     <ul className="flex gap-3 items-center overflow-x-auto capitalize">
                         {  
                             revenueData?.map(({name,revenue})=> (
@@ -57,10 +57,10 @@ export const RevenueSummary = ()=> {
                                     className="p-2 bg-white dark:bg-black rounded-md text-center flex-grow"
                                     key={name}
                                     >
-                                    <h4 className="text-teal-950 dark:text-teal-50 text-lg font-bold">
+                                    <h4 className="text-teal-950 dark:text-teal-50 text-sm font-bold">
                                         {getCurrency(revenue || 0)}
                                     </h4>
-                                    <h6 className="text-teal-900 dark:text-teal-100 text-sm font-bold">
+                                    <h6 className="text-teal-900 dark:text-teal-100 text-xs font-bold">
                                         {name}
                                     </h6>
                                 </li>
