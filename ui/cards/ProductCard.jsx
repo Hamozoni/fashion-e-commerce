@@ -16,7 +16,7 @@ import { AddToCartBtn } from "../buttons/addToCartBtn";
 const className = {
     card: ' rounded-lg border border-gray-100 dark:border-teal-950 cursor-pointer hover:border-gray-200 dark:hover:border-teal-900 relative overflow-hidden hover:scale-105',
     heart: 'absolute top-2 left-2',
-    title: "text-sm sm:text-[18px] font-bold text-teal-900 dark:text-teal-50 hover:text-teal-900 dark:hover:text-teal-100 line-clamp-2 capitalize"
+    title: "text-sm sm:text-[16px] font-bold text-teal-900 dark:text-teal-50 hover:text-teal-900 dark:hover:text-teal-100 line-clamp-2 capitalize"
 };
 
 

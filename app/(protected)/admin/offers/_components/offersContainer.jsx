@@ -46,7 +46,7 @@ export const OffersContainer = ()=> {
 
 
     return (
-        <div className="capitalize">
+        <div className="capitalize min-h-[450px]">
             <Navbar 
                setData={setProducts}
                setCount={setCount}

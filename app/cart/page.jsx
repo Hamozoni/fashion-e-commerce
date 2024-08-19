@@ -16,7 +16,7 @@ function CartPage() {
 
     const className = {
         startShopping: 'border border-teal-200 dark:border-stone-900  py-2 px-6 text-teal-950 dark:text-teal-50 capitalize bg-teal-50 dark:bg-stone-700 rounded-full absolute bottom-[20px] left-[50%] translate-x-[-50%]',
-        sectionTitle: 'text-teal-900 dark:text-teal-100 font-bold text-center lg:text-left text-xl w-full py-5  lg:px-0'
+        sectionTitle: 'text-teal-900 dark:text-teal-100 font-bold text-center lg:text-left text-lg w-full py-5  lg:px-0'
     };
 
     const cartCard = cartItems?.map((product)=> (

@@ -50,7 +50,7 @@ export const CartItemsCard = ({product,isOrdered = false})=> {
             <section className="w-full">
                 <Link href={linkHref}>
                     <h4 
-                        className="text-sm sm:text-lg font-bold text-teal-950 dark:text-teal-50 hover:opacity-95 line-clamp-3"
+                        className="text-sm font-bold text-teal-950 dark:text-teal-50 hover:opacity-95 line-clamp-3"
                         >{name}
                     </h4>
                 </Link>

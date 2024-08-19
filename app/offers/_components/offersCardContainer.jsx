@@ -22,6 +22,7 @@ export const OfferCardContainer = ()=> {
 
 
     const handeMoreData = ()=> {
+
         setIsLoading(true);
         setIsError(null);
 
@@ -41,7 +42,7 @@ export const OfferCardContainer = ()=> {
     };
 
     return (
-        <div className="">
+        <div className="min-h-[450px]">
             <Navbar 
                 setData={setProducts} 
                 setCount={setCount} 

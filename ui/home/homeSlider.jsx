@@ -6,6 +6,7 @@ import Image from "next/image";
 import {categoriesData} from "../../data/categoriesData";
 import { ScrollLeftBtn, ScrollRightBtn } from "../buttons/buttons";
 import { AppContext } from "../../app/contextProvider";
+import { useRouter } from "next/navigation";
 
 const cateLength = categoriesData.length
 
@@ -14,6 +15,7 @@ export function HomeSlider() {
     const [themeMode,setThemeMode] = useState(document.documentElement.classList.contains('dark'))
 
     const [sliderIndex,setSliderIndex] = useState(0);
+
     const handleNext = ()=> {
         if(sliderIndex <  cateLength - 1) {
             setSliderIndex(prev=> prev + 1)
@@ -46,6 +48,8 @@ export function HomeSlider() {
 
       return ()=> clearInterval(sliderInterval)
     });
+
+    const router = useRouter()
 
   return (
     <div className="h-vh relative">
@@ -82,6 +86,7 @@ export function HomeSlider() {
                                     </h2>
                                     <p className="text-lg sm:text-2xl text-teal-900 dark:text-teal-100 my-4 max-w-[580px] mx-auto">{dec}</p>
                                     <button
+                                        onClick={()=> router.push(`/offers?category=${name}&subcategory=all`)}
                                         className="text-lg sm:text-xl text-teal-900 dark:text-teal-100  p-1 px-5 capitalize rounded-full border border-teal-600 dark:border-teal-200 hover:scale-105"
                                         >shop now
                                     </button>
