@@ -3,13 +3,10 @@ import {useState } from "react";
 import { Navbar } from "../../products/_components/navbar"
 import { OfferProductCard } from "./offerProductCard";
 
-import { FaTruckLoading } from "react-icons/fa";
-
 import { fetchData } from "@/lip/fetchData";
 import { useSearchParams } from "next/navigation";
-import { ButtonWithIcon } from "@/ui/buttons/buttons";
-import { Error } from "@/ui/components/error";
 import { AllResultsTitle } from "@/ui/components/allResultsTitle";
+import { LoadMoreBtn } from "@/ui/buttons/loadMoreBtn";
 
 export const OffersContainer = ()=> {
 
@@ -99,19 +96,13 @@ export const OffersContainer = ()=> {
                     }
                 </div>
                 {
-                    isErrror ? <Error onClick={handleFetchMore} />:
-                    (count > 0 &&  count > products?.length) ?
-                    <div className="max-w-[150px] mx-auto">
-                        <ButtonWithIcon
-                            text='load more'
-                            Icon={FaTruckLoading}
-                            type='save'
-                            disabled={isLoading}
-                            onClick={handleFetchMore}
+                    count > products?.length ?
+                    <LoadMoreBtn 
+                        isError={isErrror} 
+                        isLoading={isLoading} 
+                        onClick={handleFetchMore}
                         />
-
-                    </div>
-                    : null
+                    :null
                 }
             </div>
         </div>
