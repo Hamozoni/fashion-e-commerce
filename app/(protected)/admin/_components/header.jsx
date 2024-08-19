@@ -5,11 +5,11 @@ import { AiOutlineNotification } from "react-icons/ai";
 export const Header = ()=> {
     return (
         <header className=" p-3 lg:px-8">
-            <div className="flex items-center justify-between gap-5">
-                <div className="flex-1">
+            <div className="flex items-center justify-between gap-2 lg:gap-5">
+                <div className="lg:flex-1">
                    <AdminAccount />
                 </div>
-               <div className="flex-1 flex items-center gap-5">
+               <div className="flex-1 flex items-center gap-2 lg:gap-5">
                     <div className="flex-1">
                         <form action="" className="flex items-stretch rounded-full border border-gray-200 overflow-hidden w-full" >
                             <input 

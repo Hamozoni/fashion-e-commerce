@@ -17,9 +17,6 @@ export const MainHeader = ()=> {
 
     const pathname = usePathname();
 
-    console.log(pathname)
-  
-
     const className = {
         flex:  'flex items-center gap-4 relative',
     };

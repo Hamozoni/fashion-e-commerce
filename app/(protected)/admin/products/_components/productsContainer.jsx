@@ -48,6 +48,7 @@ export const ProductsContainer = ()=> {
                 setData={setData} 
                 setCount={setAllResults} 
                 setPage={setPage} 
+                pathname={pathname}
                 />
 
             {

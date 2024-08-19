@@ -8,11 +8,10 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { GoPeople } from "react-icons/go";
 import { MdOutlineLocalOffer,MdOutlinePropane,MdShoppingCartCheckout } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
-import { TiThMenuOutline } from "react-icons/ti";
+import { RiArrowRightWideLine } from "react-icons/ri";
 
 import { ThemeModel } from "@/ui/models/themeModel";
 import { SignOut } from "@/ui/buttons/signOut";
-import {AdminAccount} from "./adminAccount"
 
 import { Overlay } from "@/ui/models/overlay";
 import { AppContext } from "../../../contextProvider";
@@ -43,9 +42,9 @@ export const Navbar = () => {
           (isMenu && innerWidth < 768) ? <Overlay onClick={()=> setIsMenu(false)} /> : 
           <button
               onClick={()=> setIsMenu(true)} 
-              className=" text-teal-400 fixed top-[15px] md:-left-full left-[15px] z-[70] w-[60px]"
+              className=" text-teal-400 fixed top-1/2 -translate-y-1/2 md:-left-full left-[0] z-[70] w-[60px]"
               >
-              <TiThMenuOutline size={40} />
+              <RiArrowRightWideLine size={40} />
           </button>
         }
 

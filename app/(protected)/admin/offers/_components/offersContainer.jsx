@@ -55,6 +55,7 @@ export const OffersContainer = ()=> {
                setData={setProducts}
                setCount={setCount}
                setPage={setPage}
+               pathname='admin/offers'
             />
             <div className="">
                 <section className="flex items-center justify-between mb-3">

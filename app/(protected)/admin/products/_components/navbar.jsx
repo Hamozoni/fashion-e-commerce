@@ -3,18 +3,16 @@ import Image from "next/image";
 import {categoriesData} from "@/data/categoriesData";
 import { IoMdArrowDropdown,IoMdArrowDropright } from "react-icons/io";
 import { useCallback, useEffect, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { fetchData } from "@/lip/fetchData";
 import { Loading } from "@/ui/models/Loading";
 import { Error } from "@/ui/components/error";
 
-export const Navbar = ({setData,setCount,setPage})=> {
+export const Navbar = ({setData,setCount,setPage,pathname})=> {
 
     const searchParams = useSearchParams();
     const {category,subcategory} = Object.fromEntries(searchParams.entries());
     const router = useRouter();
-
-    const pathname = usePathname()
 
     const [subcategoryData,setSubCategoryData] = useState([]);
     const [isSubcategory,setIsSubcategory] = useState(false);

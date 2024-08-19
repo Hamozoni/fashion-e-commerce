@@ -125,10 +125,12 @@ export async function GET (req) {
                 include: {
                     product: {
                         select : {
+                            id: true,
                             name: true,
                             brand: true,
                             imagePath: true,
-                            images: true
+                            images: true,
+                            sizes: true
                         }
                     }
                 },
@@ -160,10 +162,12 @@ export async function GET (req) {
                     include: {
                         product: {
                             select : {
+                                id: true,
                                 name: true,
                                 brand: true,
                                 imagePath: true,
-                                images: true
+                                images: true,
+                                sizes: true
                             }
                         }
                     },
