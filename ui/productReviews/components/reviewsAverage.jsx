@@ -1,14 +1,9 @@
 "use client";
 
 import React, { useContext, useEffect, useState} from 'react'
-// icons
-import { TiStarFullOutline,TiStarHalfOutline } from "react-icons/ti";
-import { CiStar } from "react-icons/ci";
 // context
 import {ReviewsContext} from "../reviewsContext";
 import { RatingStars } from './reviewsRating';
-
-const reviewsStars = new Array(5).fill('star')
 
 export const ReviewsAverage = () => {
 
@@ -28,17 +23,6 @@ export const ReviewsAverage = () => {
         </h5>
         <div className="flex items-center text-yellow-400 text-[30px]">
             <RatingStars rating={reviewsAvg} />
-            {
-                reviewsStars?.map((_,index)=> (
-
-                    (reviewsAvg > index && reviewsAvg < index + 1)  ? 
-                    <TiStarHalfOutline />
-                    :reviewsAvg > index ?
-                    <TiStarFullOutline /> :
-                    <CiStar />
-                       
-                ))
-            }
         </div>
     </div>
   )
