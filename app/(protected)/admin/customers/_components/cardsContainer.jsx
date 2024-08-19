@@ -14,7 +14,7 @@ export const CardsContainer = ({customers,count})=> {
             <div className="">
                 {
                     customers?.map((customer)=> (
-                        <CustomerCard customer={customer} />
+                        <CustomerCard key={customer?.id} customer={customer} />
                     ))
                 }
             </div>
