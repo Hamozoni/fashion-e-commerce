@@ -1,3 +1,5 @@
+import {OfferCardContainer} from './_components/offersCardContainer';
+
 
 export default function offersPage () {
 
@@ -5,8 +7,8 @@ export default function offersPage () {
 
 
     return (
-        <div className="">
-
+        <div className="p-3 lg:px-8">
+            <OfferCardContainer />
         </div>
     )
 }
