@@ -1,4 +1,3 @@
-import { BiSolidError } from "react-icons/bi";
 import {ZodError} from "@/ui/components/zodError";
 
 const className = {
