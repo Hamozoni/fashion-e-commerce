@@ -18,14 +18,14 @@ export const OfferCardContainer = ()=> {
 
     const searchParams = useSearchParams();
 
-    const {category,subcategory} = Object.fromEntries(searchParams.entries());
+    const {category,subcategory} =  Object.fromEntries(searchParams.entries());
 
 
     const handeMoreData = ()=> {
         setIsLoading(true);
         setIsError(null);
 
-        const endPoint = `admin/offers?category=${category}&subcategory=${subcategory}&page=${page + 1}`
+        const endPoint = `admin/offers?category=${category || 'all'}&subcategory=${subcategory || 'all'}&page=${page + 1}`
 
         fetchData(endPoint)
         .then(data=> {
@@ -49,7 +49,7 @@ export const OfferCardContainer = ()=> {
                 pathname='admin/offers'
                 />
             <AllResultsTitle count={count} />
-            <div className="flex items-center gap-5 flex-wrap">
+            <div className="flex items-center gap-5 flex-wrap mt-3">
                 {
                     products?.map(({
                         id,
@@ -82,7 +82,7 @@ export const OfferCardContainer = ()=> {
                 }
             </div>
             {
-                count <= products.length ? 
+                count > products.length ? 
                 <LoadMoreBtn 
                     isError={isError} 
                     isLoading={isLoading} 

@@ -1,14 +1,12 @@
 "use client";
 import {ProductCard} from "./productCard";
-import { LiaTruckLoadingSolid } from "react-icons/lia";
-import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import { useState } from "react";
 import { Navbar } from "./navbar";
 import {usePathname, useSearchParams } from "next/navigation";
-import { Error } from "@/ui/components/error";
 import { fetchData } from "@/lip/fetchData";
 import { NoResults } from "@/ui/components/noResults";
 import { AllResultsTitle } from "@/ui/components/allResultsTitle";
+import { LoadMoreBtn } from "@/ui/buttons/loadMoreBtn";
 
 export const ProductsContainer = ()=> {
 
@@ -25,8 +23,9 @@ export const ProductsContainer = ()=> {
 
     const handleFetchMore = ()=> {
         setIsError(null)
-        setIsLoadingMore(true)
-        fetchData(`${pathname}?category=${category || 'all'}&subcategory=${subcategory || 'all'}&page=${page + 1}`)
+        setIsLoadingMore(true);
+        const endPoint = `${pathname}?category=${category || 'all'}&subcategory=${subcategory || 'all'}&page=${page + 1}`
+        fetchData(endPoint)
         .then(data=> {
             setData(prev=> [...prev,...data?.products]);
             setAllResults(data?.count);
@@ -54,29 +53,24 @@ export const ProductsContainer = ()=> {
             {
                 <section className="">
                     <AllResultsTitle count={allResults} />
-                    {
-                        data?.map((product)=> (
-                            <ProductCard 
-                                key={product?.id} 
-                                product={product} 
-                                />
-                        ))
-                    }
-                    {
-                        isError ?  
-                        <Error onClick={handleFetchMore} />
-                        :data?.length < allResults ?
-                        <div className="max-w-[150px] mx-auto">
-                            <ButtonWithIcon 
-                                text='laod more' 
-                                Icon={LiaTruckLoadingSolid} 
-                                type='save'
-                                onClick={handleFetchMore}
-                                disabled={isLoadingMore}
-                                />
+                    <div className="">
+                        {
+                            data?.map((product)=> (
+                                <ProductCard 
+                                    key={product?.id} 
+                                    product={product} 
+                                    />
+                            ))
+                        }
 
-                        </div>
-                        :allResults === 0 && 
+                    </div>
+                    <LoadMoreBtn 
+                        isError={isError} 
+                        isLoading={isLoadingMore} 
+                        onClick={handleFetchMore} 
+                        />
+                    {
+                    allResults === 0 && 
                         <NoResults />
                     }
                 </section>

@@ -50,13 +50,13 @@ export async function PUT (req) {
 export async function GET (req) {
 
     const {searchParams} = new URL(req.url);
-    const category = searchParams.get('category');
-    const subcategory = searchParams.get('subcategory');
+    const category = searchParams.get('category') || 'all';
+    const subcategory = searchParams.get('subcategory') || 'all';
 
-    const page = searchParams.get('page');
+    const page = searchParams.get('page') || 1;
 
     const take = 10;
-    const skip = (take * (+page || 1)) - take;
+    const skip = (take * +page) - take;
 
     const where = subcategory === 'all' ? {
         AND: [

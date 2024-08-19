@@ -26,8 +26,9 @@ export const Navbar = ({setData,setCount,setPage,pathname})=> {
 
     const handleFetch = useCallback(()=> {
         setPage(1)
-        setIsLoading(true)
-        fetchData(`${pathname}?category=${category || 'all'}&subcategory=${subcategory || "all"}&page=1`)
+        setIsLoading(true);
+        const endPoint = `${pathname}?category=${category || 'all'}&subcategory=${subcategory || "all"}&page=1`
+        fetchData(endPoint)
         .then(data=> {
             setData(data?.products);
             setCount(data?.count);
