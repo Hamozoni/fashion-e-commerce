@@ -12,21 +12,21 @@ export const CustomerCard = ({customer})=> {
     const avgRating = reviews?.length > 0 ? reviews.reduce((total,curr)=> total + curr.rating,0) / reviews?.length : 0;
 
     const className = {
-        tHead: 'bg-white text-sm font-bold text-gray-400 p-2 capitalize',
-        bTitle: 'text-xs sm:text-[16px] font-bold capitalize text-teal-950',
-        bSTilte: 'text-xs font-bold text-teal-900',
-        bTTitle:'text-xs sm:text-sm font-bold text-teal-900 capitalize flex items-center gap-3'
+        card:'flex p-2 gap-2 items-stretch rounded-md bg-gray-50 dark:bg-stone-950 border border-gray-300  dark:border-stone-800 mb-3 flex-wrap',
+        bTitle: 'text-xs sm:text-[16px] font-bold capitalize text-teal-950 dark:text-teal-50',
+        bSTilte: 'text-xs font-bold text-teal-900 dark:text-teal-100',
+        bTTitle:'text-xs sm:text-sm font-bold text-teal-900 dark:text-teal-100 capitalize flex items-center gap-3',
+        section:'flex-1 p-2 bg-white dark:bg-black rounded-md border border-gray-200 dark:border-stone-900'
     }
     return (
-        <div className="flex p-2 gap-2 items-stretch rounded-md bg-gray-50 border border-gray-300 mb-3 flex-wrap">
-            <section className="flex-1 p-2 bg-white rounded-md border border-gray-200">
-                {/* <h5 className={className.tHead}>info: </h5> */}
+        <div className={className.card}>
+            <section className={className.section}>
                 <div className="flex items-center gap-3 ">
                     <div className="max-h-[30px] sm:max-h-[40px] rounded-md overflow-hidden">
                         {
                             image ?
                             <Image src={image} width={40} height={40} alt='user' />
-                            : <FaRegUser size={40} />
+                            : <FaRegUser color="#9ca3af" size={40} />
                         }
                     </div>
                     <div className="">
@@ -36,8 +36,7 @@ export const CustomerCard = ({customer})=> {
                 </div>
             </section>
             <div className="flex flex-1 gap-2 items-stretch">
-                <section className="flex-1 p-2 bg-white rounded-md border border-gray-200">
-                    {/* <h5 className={className.tHead}>orders: </h5> */}
+                <section className={className.section}>
                     <div >
                         <div className={className.bTTitle}>
                             <h5 className="mb-2">total orders: </h5>
@@ -49,8 +48,7 @@ export const CustomerCard = ({customer})=> {
                         </div>
                     </div>
                 </section>
-                <section className="flex-1 p-2 bg-white rounded-md border border-gray-200">
-                    {/* <h5 className={className.tHead}>reviews: </h5> */}
+                <section className={className.section}>
                     <div >
                         <div className={className.bTTitle}>
                             <h5>total reviews: </h5>
