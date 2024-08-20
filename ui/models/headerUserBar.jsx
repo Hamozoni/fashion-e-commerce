@@ -80,7 +80,7 @@ export function HeaderUserBar() {
                         <ul  className="max-h-full overflow-y-auto">
                             <li onClick={()=> setIsAccount(false)} className={className.li} >
                                <TbLayoutDashboard size={24} />  
-                                <Link href='/admin/dashboard'>
+                                <Link href='/admin/new'>
                                    admin dashboard
                                 </Link>
                             </li>
