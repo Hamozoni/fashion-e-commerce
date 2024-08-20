@@ -21,7 +21,7 @@ import { ButtonWithIcon } from "../buttons/buttons";
 import { AppContext } from "../../app/contextProvider";
 import { useSession } from "next-auth/react";
 
-export function AddressMap({onClick}) {
+export function AddressMap({onClick}) {  
 
     const [position,setPosition] = useState({lat: 26.3159003,lng: 50.2052888});
     const [formatedAddress,setFormatedAddress] = useState("")
