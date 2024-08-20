@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 // server actions
 import { signOutAction } from "../../actions/auth/signOut";
 // app context
-import { Loading } from "../models/Loading";
+import { Loading } from "../models/loading";
 
 export function SignOut() {
 

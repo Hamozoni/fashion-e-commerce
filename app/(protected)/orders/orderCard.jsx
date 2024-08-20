@@ -1,5 +1,5 @@
 
-import { CartItemsCard } from "@/ui/cards/CartItemsCard";
+import { CartItemsCard } from "@/ui/cards/cartItemsCard";
 import { OrderSummary } from "./orderSummary";
 
 const className = {

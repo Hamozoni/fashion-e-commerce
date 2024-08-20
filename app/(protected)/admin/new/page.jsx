@@ -6,7 +6,7 @@ import {SpecificationInputs}from "./_components/SpecificationInputs";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import {ImagesColor} from "./_components/ImagesClolors";
 import {ProductInfoForm} from "./_components/productInfoForm"
-import {Loading} from "@/ui/models/Loading";
+import {Loading} from "@/ui/models/loading";
 // icons
 import { CiSaveDown2 } from "react-icons/ci";
 // form data fomater

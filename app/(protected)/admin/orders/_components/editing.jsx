@@ -5,7 +5,7 @@ import { TfiMoreAlt } from "react-icons/tfi";
 
 import {navStatus} from "../page";
 import {updateData } from "@/lip/fetchData";
-import { Loading } from "@/ui/models/Loading";
+import { Loading } from "@/ui/models/loading";
 
 export const Editing = ({clientSecret,status,setOrders,setOrdersNum})=>{
 

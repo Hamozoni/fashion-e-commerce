@@ -10,7 +10,7 @@ import { FiGitCommit } from "react-icons/fi";
 import {updateData } from "@/lip/fetchData";
 import {addingOfferSchema} from "@/validationSchemas/newProductSchemas";
 import {ZodError} from "@/ui/components/zodError"
-import { Loading } from "@/ui/models/Loading";
+import { Loading } from "@/ui/models/loading";
 import { Error } from "@/ui/components/error";
 
 export const NewOfferForm = ({item,setIsOfferModel,setProducts,product})=> {

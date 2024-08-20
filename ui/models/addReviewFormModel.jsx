@@ -19,7 +19,7 @@ import { PostData } from "../../lip/fetchData";
 // context
 import { ReviewsContext } from "../productReviews/reviewsContext";
 import { AppContext } from "../../app/contextProvider";
-import { Loading } from "./Loading";
+import { Loading } from "./loading";
 import { FaBullseye } from "react-icons/fa6";
 
 export const AddReviewFormModel = ({setShowModel})=> {

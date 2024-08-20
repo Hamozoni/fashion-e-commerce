@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState} from "react";
 import { useSearchParams } from "next/navigation";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
-import { Loading } from "@/ui/models/Loading";
+import { Loading } from "@/ui/models/loading";
 
 function AuthSocial({text,link,page}) {
 

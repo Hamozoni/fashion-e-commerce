@@ -5,7 +5,7 @@ import { IoMdArrowDropdown,IoMdArrowDropright } from "react-icons/io";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchData } from "@/lip/fetchData";
-import { Loading } from "@/ui/models/Loading";
+import { Loading } from "@/ui/models/loading";
 import { Error } from "@/ui/components/error";
 
 export const Navbar = ({setData,setCount,setPage,pathname})=> {

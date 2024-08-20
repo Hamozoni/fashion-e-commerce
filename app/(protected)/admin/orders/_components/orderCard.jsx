@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { OrderPayment } from "../../../orders/orderSummary";
-import { CartItemsCard } from "@/ui/cards/CartItemsCard";
+import { CartItemsCard } from "@/ui/cards/cartItemsCard";
 import {Editing} from "./editing";
 
 import { RiArrowDownWideLine,RiArrowUpWideFill } from "react-icons/ri";

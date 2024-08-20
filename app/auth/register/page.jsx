@@ -12,7 +12,7 @@ import { ButtonWithIcon } from "@/ui/buttons/buttons";
 import { LuClipboardSignature } from "react-icons/lu";
 import { AppContext } from "../../contextProvider";
 import { useRouter } from "next/navigation";
-import { Loading } from "@/ui/models/Loading";
+import { Loading } from "@/ui/models/loading";
 
 function RegisterPage() {
 

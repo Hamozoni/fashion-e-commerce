@@ -1,7 +1,7 @@
 "use client";
 
 import AuthHeader from "../_components/authHeader"
-import { AuthInput } from "../_components/AuthInput"
+import { AuthInput } from "../_components/authInput"
 import { loginInputs } from "../_components/authInputsData"
 import AuthSocial from "../_components/authSocial";
 import {loginAction} from "@/actions/auth/login";
@@ -13,7 +13,7 @@ import { ButtonWithIcon } from "@/ui/buttons/buttons";
 
 import { BiLogInCircle } from "react-icons/bi";
 import { useSession } from "next-auth/react";
-import { Loading } from "@/ui/models/Loading";
+import { Loading } from "@/ui/models/loading";
 
 
 function LoginPage() {
