@@ -2,9 +2,9 @@
 import {createContext, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 // components
-import {SpecificationInputs}from "./_components/SpecificationInputs";
+import {SpecificationInputs}from "./_components/specificationInputs";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
-import {ImagesColor} from "./_components/ImagesClolors";
+import {ImagesColor} from "./_components/imagesClolors";
 import {ProductInfoForm} from "./_components/productInfoForm"
 import {Loading} from "@/ui/models/loading";
 // icons

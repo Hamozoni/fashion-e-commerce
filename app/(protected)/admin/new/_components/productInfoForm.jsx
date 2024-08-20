@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { FormTextera,FormInput } from "./FormInput";
+import { FormTextera,FormInput } from "./formInput";
 import {SelectCategory} from "./selectCategory";
 import { newProductContext } from "../page";
 

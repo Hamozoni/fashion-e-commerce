@@ -1,6 +1,6 @@
 "use client"
 import { useContext } from "react";
-import { FormInput } from "./FormInput";
+import { FormInput } from "./formInput";
 import { newProductContext } from "../page";
 
 const className = {

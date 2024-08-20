@@ -3,7 +3,7 @@
 import { Navbar } from "@/app/(protected)/admin/products/_components/navbar";
 import { fetchData } from "@/lip/fetchData";
 import { LoadMoreBtn } from "@/ui/buttons/loadMoreBtn";
-import { ProductCard } from "@/ui/cards/ProductCard";
+import { ProductCard } from "@/ui/cards/productCard";
 import { AllResultsTitle } from "@/ui/components/allResultsTitle";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";

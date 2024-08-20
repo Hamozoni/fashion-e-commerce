@@ -1,7 +1,7 @@
 "use client"
 
 import {  useCallback, useContext, useEffect} from "react";
-import { FormInput } from "./FormInput";
+import { FormInput } from "./formInput";
 
 import { IoIosAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
