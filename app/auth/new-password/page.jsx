@@ -5,7 +5,7 @@ import AuthHeader from "../_components/authHeader";
 import { IoLockClosed } from "react-icons/io5";
 import { useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
-import { AuthInput } from "../_components/authInput";
+import { AuthInput } from "../_components/AuthInput";
 import {newPasswordAction} from "@/actions/auth/newPassword";
 import { LuSend } from "react-icons/lu";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";

@@ -16,7 +16,6 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 
 export const CartItemsCard = ({product,isOrdered = false})=> {
 
-    console.log(product)
 
     const dispatch = useAppDispatch();
 

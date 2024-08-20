@@ -14,7 +14,7 @@ import { IoStorefrontOutline } from "react-icons/io5";
 import { ThemeModel } from "@/ui/models/themeModel";
 import { SignOut } from "@/ui/buttons/signOut";
 
-import { Overlay } from "@/ui/models/overlay";
+import { Overlay } from "./overlay";
 import { AppContext } from "../../../contextProvider";
 
 const navData = [

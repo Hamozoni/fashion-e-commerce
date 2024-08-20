@@ -1,13 +1,12 @@
 "use client";
 
 import AuthHeader from "../_components/authHeader"
-import { AuthInput } from "../_components/authInput"
+import { AuthInput } from "../_components/AuthInput"
 import { loginInputs } from "../_components/authInputsData"
 import AuthSocial from "../_components/authSocial";
 import {loginAction} from "@/actions/auth/login";
 import { useContext, useRef, useState, useTransition } from "react";
 import { ErrorSucces } from "../_components/errorSucces";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AppContext } from "../../contextProvider";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
