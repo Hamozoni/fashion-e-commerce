@@ -42,9 +42,14 @@ const nextConfig = {
             hostname: "lh3.googleusercontent.com",
             pathname: "/a/**"
           },
+          {
+            protocol: "https",
+            hostname: "firebasestorage.googleapis.com",
+            pathname: "/v0/b/e-commrerce.appspot.com/o/**"
+          },
         ]
     },
 };
 
-
+// https://firebasestorage.googleapis.com/
 export default nextConfig

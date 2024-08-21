@@ -15,7 +15,6 @@ export async function POST (request) {
     const specifications = JSON.parse(data.specifications);
     const details = JSON.parse(data.details);
 
-
     try {
         const existProduct = await db.product.findUnique({where : {
             serialNumber : details?.serialNumber
@@ -26,7 +25,7 @@ export async function POST (request) {
         }
 
     }
-    catch {
+    catch (error) {
         return  NextResponse.json("opss! something went wrong", { status: 500 })
     }
     finally {
@@ -37,36 +36,28 @@ export async function POST (request) {
 
         let images = [];
 
+        const firebaseURL = 'https://firebasestorage.googleapis.com/v0/b/e-commrerce.appspot.com/o/'
+
         for(let index = 0;index < colors?.length; index++){
-            // await fs.mkdir("public/products",{recursive: true});
             const imageFiles = formData.getAll(`images_${index}`);
-
-
 
             for(let i = 0; i < imageFiles?.length; i++){
 
-                const storageRef = ref(storage,`images/products/${crypto.randomUUID()}-${imageFiles[i]?.name}`);
+                const storageRef = ref(storage,`images/products/${imageFiles[i]?.name}`);
                 const snapshot = await uploadBytesResumable(storageRef,imageFiles[i]);
                 const imagePath = await getDownloadURL(snapshot.ref);
 
-
-
-                // const imagePath = `/products/${crypto.randomUUID()}-${imageFiles[i]?.name}`;
-
-                // await fs.writeFile(`public${imagePath}`,Buffer.from(await imageFiles[i]?.arrayBuffer()))
-
-                images.push({imagePath,colorName: colors[index]?.colorName});
+                images.push({imagePath: imagePath.replace(firebaseURL,''),colorName: colors[index]?.colorName});
 
                 if(index === 0 && i === 0) {
-                    details.imagePath = imagePath
+                    details.imagePath = imagePath.replace(firebaseURL,'');
                 };
 
             }
-        }
-        
-    // creating new product in db
+        };
 
         try {
+
             const product = await db.product.create({
                   data : {
                       ...details,
@@ -86,11 +77,6 @@ export async function POST (request) {
               return NextResponse.json({product},{status: 200});
         }
         catch (error){
-
-            for(let i = 0; i < images.length; i++){
-                await fs.unlink(`public${images[i]?.imagePath}`)
-            }
-           console.log(error)
            return NextResponse.json("something went wrong", { status: 500 })
         }
         finally {
