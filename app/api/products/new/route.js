@@ -1,7 +1,9 @@
 
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import { db } from  "@/lip/db"
+import { db } from  "@/lip/db";
+import {ref,uploadBytesResumable,getDownloadURL } from 'firebase/storage';
+import { storage } from '@/lip/firebase';
 
 export async function POST (request) {
 
@@ -20,7 +22,6 @@ export async function POST (request) {
         }});
     
         if(!!existProduct){
-            console.log(existProduct);
             return  NextResponse.json("Error the products already added before try another product", { status: 400 })
         }
 

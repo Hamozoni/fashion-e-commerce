@@ -55,8 +55,7 @@ const NewProducts = () => {
         if(!!formatedFormData) {
             setIsPending(true);
             PostData('/products/new',formatedFormData)
-            .then((data)=> {
-                console.log(data);
+            .then(()=> {
                 router.push('/admin/products')
             })
             .catch((error)=> {

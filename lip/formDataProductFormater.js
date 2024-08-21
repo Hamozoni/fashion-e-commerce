@@ -24,14 +24,12 @@ export const formDataProductFormater = (
         setDetValidError(null)
     }else {
         setDetValidError(JSON.parse(validateDetails?.error));
-        console.log(JSON.parse(validateDetails?.error))
     };
 
     const validateColor = zProductColorSchema?.safeParse(productColors);
     if(validateColor.success) {
     }else {
         setColValidError(JSON.parse(validateColor?.error));
-        console.log(JSON.parse(validateColor?.error))
     };
 
     const sizes = []
@@ -48,7 +46,6 @@ export const formDataProductFormater = (
         setSizeValidError(null)
     }else {
         setSizeValidError(JSON.parse(validateSize?.error));
-        console.log(JSON.parse(validateSize?.error))
     }
 
     const validateSpecif = zProductSpeciSchema?.safeParse(productSpecifications);
@@ -56,7 +53,6 @@ export const formDataProductFormater = (
         setSpeciValidError(null)
     }else {
        setSpeciValidError(JSON.parse(validateSpecif?.error));
-       console.log(JSON.parse(validateSpecif?.error))
     }
     // giving eatch size objet prop of color nam
     formData.append('sizes',JSON.stringify(sizes));
