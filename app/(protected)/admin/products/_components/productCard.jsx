@@ -10,7 +10,7 @@ const className = {
 
 export const CardHeader = ({product})=> {
 
-    const {name,brand,id,imagePath} = product
+    const {name,brand,id} = product
         return (
             <div className="mb-3">
                 <h3 className="line-clamp-1 text-sm font-bold text-teal-950 dark:text-teal-50">

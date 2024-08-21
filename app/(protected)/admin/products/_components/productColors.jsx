@@ -30,7 +30,10 @@ export const ProductColors = ({color: {color,priceInHalala,offerPriceInHalala,of
                     }
                </div>
                <div className="flex gap-2 items-center p-2 rounded-md bg-gray-50 dark:bg-stone-950 flex-grow">
-                     <Image src={imagePath} width={38} height={38} alt={colorName}/>
+                     <Image  
+                         src={`${process.env.FIREBASE_IMAGES_URL}${imagePath}`} 
+                         width={38} height={38} alt={colorName}
+                         />
                      <div 
                          style={{backgroundColor: color}} 
                          className=" h-[38px] flex-1 rounded-md border border-teal-100 mt-2"

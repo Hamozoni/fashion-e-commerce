@@ -25,7 +25,7 @@ export function ImagesGalary() {
                                     return {...prev,imagePath}
                                 })} 
                                 key={img.id} 
-                                src={img?.imagePath} 
+                                src={`${process.env.FIREBASE_IMAGES_URL}${img?.imagePath}`}
                                 width={60} height={60} 
                                 alt='product image'
                                 />
@@ -38,7 +38,7 @@ export function ImagesGalary() {
             <div className="min-h-[500px] max-h-[500px] flex items-center justify-center flex-1">
                 <Image 
                     className="rounded-md min-h-[500px] max-h-[500px] bg-white"
-                    src={imagePath} 
+                    src={`${process.env.FIREBASE_IMAGES_URL}${imagePath}`}
                     width={500} height={500}
                     alt="product image"
                     />

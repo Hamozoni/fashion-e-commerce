@@ -144,7 +144,7 @@ const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) 
                                 <div key={id} className="bg-white dark:bg-stone-950 rounded-md ">
                                     <Image
                                         className=""
-                                        src={imagePath?.replace('public','')} 
+                                        src={`${process.env.FIREBASE_IMAGES_URL}${imagePath}`}
                                         width={160} height={200} alt='product image'
                                         />
 

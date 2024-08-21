@@ -40,7 +40,7 @@ export const CartItemsCard = ({product,isOrdered = false})=> {
                 className="flex items-center justify-center sm:mb-0">
                 <Image
                     className={`${innerWidth > 550 ? 'max-h-[200px] min-h-[200px] max-w-[150px] min-w-[150px]' :'max-h-[150px] min-h-[150px] max-w-[100px] min-w-[100px]'} bg-white object-contain rounded-md`}
-                    src={imagePath}
+                    src={`${process.env.FIREBASE_IMAGES_URL}${imagePath}`}
                     width={innerWidth > 550 ? 150 : 100}
                     height={innerWidth > 550 ? 200 : 150}
                     alt='product image'

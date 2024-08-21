@@ -73,7 +73,7 @@ export function ProductCard({product}) {
                     className=" min-h-[280px] max-h-[280px] flex items-center justify-center bg-white overflow-hidden">
                         <Image
                             className='object-contain'
-                            src={imagePath}
+                            src={`${process.env.FIREBASE_IMAGES_URL}${imagePath}`}
                             alt='product image'
                             width={imageWidth}
                             height={cardHeight}

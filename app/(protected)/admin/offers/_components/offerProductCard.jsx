@@ -20,7 +20,7 @@ export const OfferProductCard = ({product})=> {
             <div className="bg-white min-w-[80px] h-full flex justify-center items-center rounded-md">
                 <Image
                     className="w-[80px] h-[80px] rounded-md" 
-                    src={images?.find(e=> e.colorName === colorName)?.imagePath} 
+                    src={`${process.env.FIREBASE_IMAGES_URL}${images?.find(e=> e.colorName === colorName)?.imagePath}`} 
                     width={80} 
                     height={80} 
                     alt={brand} 
