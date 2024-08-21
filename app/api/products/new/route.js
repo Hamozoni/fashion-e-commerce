@@ -38,16 +38,22 @@ export async function POST (request) {
         let images = [];
 
         for(let index = 0;index < colors?.length; index++){
-            await fs.mkdir("public/products",{recursive: true});
+            // await fs.mkdir("public/products",{recursive: true});
             const imageFiles = formData.getAll(`images_${index}`);
 
-            console.log(imageFiles)
+
 
             for(let i = 0; i < imageFiles?.length; i++){
 
-                const imagePath = `/products/${crypto.randomUUID()}-${imageFiles[i]?.name}`;
+                const storageRef = ref(storage,`images/products/${crypto.randomUUID()}-${imageFiles[i]?.name}`);
+                const snapshot = await uploadBytesResumable(storageRef,imageFiles[i]);
+                const imagePath = await getDownloadURL(snapshot.ref);
 
-                await fs.writeFile(`public${imagePath}`,Buffer.from(await imageFiles[i]?.arrayBuffer()))
+
+
+                // const imagePath = `/products/${crypto.randomUUID()}-${imageFiles[i]?.name}`;
+
+                // await fs.writeFile(`public${imagePath}`,Buffer.from(await imageFiles[i]?.arrayBuffer()))
 
                 images.push({imagePath,colorName: colors[index]?.colorName});
 
