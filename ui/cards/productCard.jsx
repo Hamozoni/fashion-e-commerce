@@ -19,6 +19,8 @@ const className = {
     title: "text-sm sm:text-[16px] font-bold text-teal-900 dark:text-teal-50 hover:text-teal-900 dark:hover:text-teal-100 line-clamp-2 capitalize"
 };
 
+const FIREBASE_IMAGES_URL = 'https://firebasestorage.googleapis.com/v0/b/e-commrerce.appspot.com/o/'
+
 
 export function ProductCard({product}) {
 
@@ -73,7 +75,7 @@ export function ProductCard({product}) {
                     className=" min-h-[280px] max-h-[280px] flex items-center justify-center bg-white overflow-hidden">
                         <Image
                             className='object-contain'
-                            src={`${process.env.FIREBASE_IMAGES_URL}${imagePath}`}
+                            src={`${FIREBASE_IMAGES_URL}${imagePath}`}
                             alt='product image'
                             width={imageWidth}
                             height={cardHeight}

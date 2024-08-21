@@ -17,6 +17,7 @@ import { AppContext } from "../../app/contextProvider";
 // overlay model
 import {Overlay} from "../models/overlay";
 import { FaUserLarge } from "react-icons/fa6";
+const FIREBASE_IMAGES_URL = 'https://firebasestorage.googleapis.com/v0/b/e-commrerce.appspot.com/o/';
 
 export function ReviewCard({review,index}) {
     // review data and user data context
@@ -144,7 +145,7 @@ const updatedAt = Date.parse(review?.createdAt) < Date.parse(review?.updatedAt) 
                                 <div key={id} className="bg-white dark:bg-stone-950 rounded-md ">
                                     <Image
                                         className=""
-                                        src={`${process.env.FIREBASE_IMAGES_URL}${imagePath}`}
+                                        src={`${FIREBASE_IMAGES_URL}${imagePath}`}
                                         width={160} height={200} alt='product image'
                                         />
 

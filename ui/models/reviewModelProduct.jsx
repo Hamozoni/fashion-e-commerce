@@ -1,6 +1,7 @@
 import Image from "next/image"
 import {ZodError} from "../components/zodError"
-import { RatingStars } from "../productReviews/components/reviewsRating"
+import { RatingStars } from "../productReviews/components/reviewsRating";
+const FIREBASE_IMAGES_URL = 'https://firebasestorage.googleapis.com/v0/b/e-commrerce.appspot.com/o/'
 
 
 export const FormModelProduct = ({error,product,rating,setRating}) => {
@@ -10,7 +11,7 @@ export const FormModelProduct = ({error,product,rating,setRating}) => {
                 <div className="h-[150px] max-h-[150px] w-[100px] min-w-[100px] bg-white">
                     <Image
                     className="max-h-full" 
-                        src={product?.images[0]?.imagePath?.replace("public","")} 
+                        src={`${FIREBASE_IMAGES_URL}${product?.images[0]?.imagePath?.replace("public","")}`} 
                         width={100} 
                         height={150}
                         />

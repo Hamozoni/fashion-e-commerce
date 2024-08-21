@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useContext} from "react";
 
 import { ProductDetailsContext } from "./poductDetails";
+const FIREBASE_IMAGES_URL = 'https://firebasestorage.googleapis.com/v0/b/e-commrerce.appspot.com/o/'
 
 export function ImagesGalary() {
 
@@ -25,7 +26,7 @@ export function ImagesGalary() {
                                     return {...prev,imagePath}
                                 })} 
                                 key={img.id} 
-                                src={`${process.env.FIREBASE_IMAGES_URL}${img?.imagePath}`}
+                                src={`${FIREBASE_IMAGES_URL}${img?.imagePath}`}
                                 width={60} height={60} 
                                 alt='product image'
                                 />
@@ -38,7 +39,7 @@ export function ImagesGalary() {
             <div className="min-h-[500px] max-h-[500px] flex items-center justify-center flex-1">
                 <Image 
                     className="rounded-md min-h-[500px] max-h-[500px] bg-white"
-                    src={`${process.env.FIREBASE_IMAGES_URL}${imagePath}`}
+                    src={`${FIREBASE_IMAGES_URL}${imagePath}`}
                     width={500} height={500}
                     alt="product image"
                     />

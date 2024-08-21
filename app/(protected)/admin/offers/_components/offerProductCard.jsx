@@ -1,5 +1,7 @@
 import { getCurrency } from "@/lip/getCurrency";
-import Image from "next/image"
+import Image from "next/image";
+
+const FIREBASE_IMAGES_URL = 'https://firebasestorage.googleapis.com/v0/b/e-commrerce.appspot.com/o/'
 
 export const OfferProductCard = ({product})=> {
     const {
@@ -20,7 +22,7 @@ export const OfferProductCard = ({product})=> {
             <div className="bg-white min-w-[80px] h-full flex justify-center items-center rounded-md">
                 <Image
                     className="w-[80px] h-[80px] rounded-md" 
-                    src={`${process.env.FIREBASE_IMAGES_URL}${images?.find(e=> e.colorName === colorName)?.imagePath}`} 
+                    src={`${FIREBASE_IMAGES_URL}${images?.find(e=> e.colorName === colorName)?.imagePath}`} 
                     width={80} 
                     height={80} 
                     alt={brand} 
