@@ -5,7 +5,7 @@ export default async function Middleware (req) {
 
   const {pathname} = req.nextUrl
 
-  const protectedRoutes = ['/checkout','/admin','/admin/products','/admin/products/new','/admin/orders','/admin/customers','/admin/sales'];
+  const protectedRoutes = ['/checkout','/admin','/orders'];
 
   if(protectedRoutes.some( route => pathname.startsWith(route))) {
 
@@ -31,5 +31,5 @@ export default async function Middleware (req) {
  
 // Optionally, don't invoke Middleware on some paths
 export const config = {
-  matcher: ['/checkout','/admin','/admin/products','/admin/products/new','/admin/orders','/admin/customers','/admin/sales']
+  matcher: ['/checkout','/admin','/orders']
 }
