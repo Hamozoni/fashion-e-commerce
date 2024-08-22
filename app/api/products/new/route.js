@@ -1,5 +1,3 @@
-
-import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
 import { db } from  "@/lip/db";
 import {ref,uploadBytesResumable,getDownloadURL } from 'firebase/storage';

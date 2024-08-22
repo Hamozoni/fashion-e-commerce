@@ -1,6 +1,9 @@
-import fs from 'fs/promises';
+
 import { db } from "@/lip/db";
 import { ratingSchema } from "@/validationSchemas/ratingSchema";
+import {ref,uploadBytesResumable,getDownloadURL } from 'firebase/storage';
+import { storage } from '@/lip/firebase';
+
 
 import { NextResponse } from 'next/server';
 
@@ -10,17 +13,10 @@ export async function POST (request) {
 
     const reviewImages = formData.getAll('reviewImage');
 
-    console.log(formData);
-
-
     const data = Object.fromEntries(formData.entries());
 
     data.rating = Number(data.rating);
 
-    console.log(data);
-
-
-    
     const validateForm = ratingSchema.safeParse(data);
 
     if(validateForm.error) {
@@ -29,7 +25,8 @@ export async function POST (request) {
 
     delete data.reviewImage
 
-    let images = []
+    let images = [];
+    const firebaseURL = 'https://firebasestorage.googleapis.com/v0/b/e-commrerce.appspot.com/o/'
     
     if(validateForm.success) {
 
@@ -39,22 +36,18 @@ export async function POST (request) {
             try{
 
                 for (let i = 0; i < imagesLength; i++) {
-                    if(reviewImages[i].size > 200) {
-                        await fs.mkdir('public/reviewsImages',{recursive: true});
-                        const imagePath = `public/reviewsImages/${crypto.randomUUID()}_${reviewImages[i]?.name}`;
-    
-                        await fs.writeFile(imagePath,Buffer.from(await reviewImages[i]?.arrayBuffer()))
+
+                    const storageRef = ref(storage,`images/reviews/${reviewImages[i]?.name}`);
+                    const snapshot = await uploadBytesResumable(storageRef,reviewImages[i]);
+                    const imagePath = await getDownloadURL(snapshot.ref);
         
-                        images.push({imagePath,id: crypto.randomUUID()})
-                    }
+                    images.push({imagePath: imagePath.replace(firebaseURL,''),id: crypto.randomUUID()})
+                
                 }
 
 
             }
             catch {
-                for(let i = 0; i < images.length;i++) {
-                    await fs.unlink(images[i]?.imagePath)
-                }
                 return NextResponse.json({massage: 'something went wrong'},{status:422})
             }
         }else {
@@ -71,13 +64,9 @@ export async function POST (request) {
                 }
             }});
             review.images = images
-            console.log(review)
             return NextResponse.json({...review},{status:200})
         }
         catch (error){
-            for(let i = 0; i < images.length;i++) {
-                await fs.unlink(images[i]?.imagePath)
-            }
             return NextResponse.json('something went wrong',{status:400})
         }
         finally {
