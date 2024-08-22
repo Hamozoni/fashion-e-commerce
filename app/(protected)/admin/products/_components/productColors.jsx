@@ -1,6 +1,8 @@
 import {getCurrency} from "@/lip/getCurrency";
 import Image from "next/image";
 
+const firebaseURL = 'https://firebasestorage.googleapis.com/v0/b/e-commrerce.appspot.com/o/'
+
 export const ProductColors = ({color: {color,priceInHalala,offerPriceInHalala,offerExpiresAt,colorName},sizes,imagePath})=> {
      const className = {
           smStitle : 'text-xs font-bold text-gray-600 dark:text-gray-300'
@@ -31,7 +33,7 @@ export const ProductColors = ({color: {color,priceInHalala,offerPriceInHalala,of
                </div>
                <div className="flex gap-2 items-center p-2 rounded-md bg-gray-50 dark:bg-stone-950 flex-grow">
                      <Image  
-                         src={`${process.env.FIREBASE_IMAGES_URL}${imagePath}`} 
+                         src={`${firebaseURL}${imagePath}`} 
                          width={38} height={38} alt={colorName}
                          />
                      <div 
