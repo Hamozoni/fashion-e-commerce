@@ -86,15 +86,10 @@ export function AddressMap({onClick}) {
     }
 
     const currentPosition = (e)=> {
-
         const position = e.detail.latLng
-
         setPosition(position)
-
         getCurrentAddress(position.lat,position.lng);
         setIsLocateMeCenter(false)
-
-
     };
 
     const locateMe = ()=> {
@@ -125,10 +120,8 @@ export function AddressMap({onClick}) {
             startTranation(()=> {
                 addNewAddress(reqBody)
                .then((data)=> {
-                   console.log(data);
                    if(data?.data) {
-
-                    setCurrentUser(prev=> {
+                    setCurrentUser( prev=> {
                         return {...prev,address: data.data}
                     })
                        onClick();
@@ -147,7 +140,7 @@ export function AddressMap({onClick}) {
     <section 
         onClick={(e)=> {
             if(e.target.classList.contains("grand")){
-                onClick()
+                onClick();
             }
         }}
         className="grand capitalize fixed top-0 left-0 w-[100vw] h-[100vh] z-50 flex justify-center items-center ">
@@ -157,7 +150,10 @@ export function AddressMap({onClick}) {
                     <h4 className="text-lg text-teal-950 dark:text-teal-50 font-bold">
                         add new address
                     </h4>
-                    <button onClick={onClick} className="text-teal-950 dark:text-teal-50" >
+                    <button 
+                        onClick={onClick} 
+                        className="text-teal-950 dark:text-teal-50"
+                         >
                         <RxCross2 size={24} />
                     </button>
                 </div>
@@ -166,9 +162,7 @@ export function AddressMap({onClick}) {
                 </div>
             </header>
             <div className="w-full h-full flex-3" >
-                <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}
-
-                >
+                <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}>
                     <Map 
                         zoomControl={true}
                         defaultCenter={position}
