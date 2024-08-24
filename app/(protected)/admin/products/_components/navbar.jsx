@@ -25,6 +25,12 @@ export const Navbar = ({setData,setCount,setPage,pathname})=> {
     };
 
     const handleFetch = useCallback(()=> {
+        setSubCategoryData(()=> {
+            if(category !== 'all'){
+                const subcategory = categoriesData?.find( e => e.name === category)?.sub
+                return [...subcategory]
+            }else []
+        });
         setPage(1)
         setIsLoading(true);
         const endPoint = `${pathname}?category=${category || 'all'}&subcategory=${subcategory || "all"}&page=1`
@@ -32,8 +38,6 @@ export const Navbar = ({setData,setCount,setPage,pathname})=> {
         .then(data=> {
             setData(data?.products);
             setCount(data?.count);
-
-            console.log(data)
         })
         .catch(error=> {
             setIsError(error)
@@ -44,13 +48,12 @@ export const Navbar = ({setData,setCount,setPage,pathname})=> {
     },[category,subcategory]);
 
     useEffect(()=> {
-        handleFetch()
+        handleFetch();
     },[handleFetch])
 
 
-    const handleCategory = (cate)=> {
-        setSubCategoryData(cate.sub);
-        router.push(`?category=${cate?.name}&subcategory=all`);
+    const handleCategory = (categoryName)=> {
+        router.push(`?category=${categoryName}&subcategory=all`);
     }
 
     return (
@@ -66,7 +69,7 @@ export const Navbar = ({setData,setCount,setPage,pathname})=> {
                         {
                             categoriesData?.map((cate)=> (
                                 <li 
-                                    onClick={() => handleCategory(cate)}
+                                    onClick={() => handleCategory(cate?.name)}
                                     key={cate?.id} 
                                     className={`${category === cate?.name ? 'bg-teal-400 text-teal-50 border-gray-400' : 'bg-teal-50 dark:bg-stone-800 text-teal-950 dark:text-teal-50'} ${className.categoryLi}`}
                                     >
