@@ -12,13 +12,13 @@ import {
     Marker
 } from "@vis.gl/react-google-maps";
 // fetch api
-import{fetchLocationData}from "../../lip/fetchData";
+import{fetchLocationData}from "@/lip/fetchData";
 // server actions
-import {addNewAddress} from "../../actions/user/addNewAddress";
+import {addNewAddress} from "@/actions/user/addNewAddress";
 // component
 import { ButtonWithIcon } from "../buttons/buttons";
 // app context
-import { AppContext } from "../../app/contextProvider";
+import { AppContext } from "@/app/contextProvider";
 import { useSession } from "next-auth/react";
 
 export function AddressMap({onClick}) {  
@@ -49,6 +49,8 @@ export function AddressMap({onClick}) {
             if(data.status === "OK"){
 
               setFormatedAddress(data.results[0]?.formatted_address);
+
+              console.log(data)
                const getAddress = ()=> {
                     let address = {}
                     data?.results[0]?.address_components?.map((el)=> {

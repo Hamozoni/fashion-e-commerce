@@ -19,7 +19,7 @@ export const  fetchLocationData = async  (endPoint)=> {
     
   const options = {
       method: 'GET',
-      url: `${process.env.NEXT_PUBLIC_URL}${endPoint}`,
+      url: endPoint,
           headers: {
               accept: 'application/json',
           }
