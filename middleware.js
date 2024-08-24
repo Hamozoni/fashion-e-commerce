@@ -29,7 +29,6 @@ export default async function Middleware (req) {
 
 }
  
-// Optionally, don't invoke Middleware on some paths
 export const config = {
   matcher: ['/checkout','/admin','/orders']
 }

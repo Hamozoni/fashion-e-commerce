@@ -101,7 +101,7 @@ export function HeaderUserBar() {
                                <FaRegHeart size={24} />  <Link href='/likedList'>my wishList</Link>
                             </li>
                             <ThemeModel />
-                            <li onClick={()=> setIsAccount(false)} className={className.li}>
+                            <li className={className.li}>
                                   <UserAddress />
                             </li>
                             <li onClick={()=> setIsAccount(false)} className={className.li}>
