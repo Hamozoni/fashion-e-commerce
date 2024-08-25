@@ -36,6 +36,9 @@ export const GET = async (req)=> {
     }catch (error) {
         return NextResponse.json('opps! something went wrong',{status: 500});
     }
+    finally {
+        await db.$disconnect()
+    }
 
 
 } 

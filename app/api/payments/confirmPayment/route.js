@@ -76,4 +76,7 @@ export  async function POST (req) {
         console.log(error)
         return NextResponse.json({error:"something went wrong"},{status: 500});
     }
+    finally {
+        await db.$disconnect()
+    }
 }
