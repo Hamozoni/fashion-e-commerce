@@ -37,7 +37,9 @@ export async function GET (req) {
         return NextResponse.json(data,{status: 200})
 
     } catch (error) {
-        console.log(error)
         return NextResponse.json(error,{status:500})
+    }
+    finally {
+        await db.$disconnect()
     }
 }

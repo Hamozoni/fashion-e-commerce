@@ -180,9 +180,10 @@ export async function GET (req) {
         }
     }
     catch (error) {
-        console.error(error);
-
         return NextResponse.json('something went wrong',{status: 500})
+    }
+    finally {
+        await db.$disconnect()
     }
 
 }

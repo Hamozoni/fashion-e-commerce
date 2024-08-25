@@ -70,8 +70,10 @@ export async function GET (req){
 
     }
     catch (error) {
-        console.log(error);
         return NextResponse.json('opps! something went wrong',{status: 500});
+    }
+    finally {
+        await db.$disconnect()
     }
 
 }

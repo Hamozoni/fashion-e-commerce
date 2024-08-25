@@ -25,5 +25,8 @@ export async function PUT (req) {
     }
     catch (error) {
         return NextResponse.json('something went wrong',{status: 500})
-    };
+    }
+    finally {
+        await db.$disconnect()
+    }
 }
