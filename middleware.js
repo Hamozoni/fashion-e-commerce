@@ -11,6 +11,8 @@ export default async function Middleware (req) {
 
     const token = await getToken({req,secret:process.env.AUTH_SECRET});
 
+    console.log(token)
+
     if(!token) {
 
       let callback = pathname;
