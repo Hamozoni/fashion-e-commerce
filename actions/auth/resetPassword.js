@@ -34,6 +34,9 @@ export async function resetPasswordAction(formData) {
     }catch {
         return {error: "something went wrong!"}
     }
+    finally {
+        await db.$disconnect()
+    }
 
 }
 
