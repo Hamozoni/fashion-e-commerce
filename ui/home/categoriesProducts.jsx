@@ -3,8 +3,8 @@
 import {CategoryProducts} from "./categoryProducts";
 import Image from "next/image";
 
-import offerImage from "@/public/categories/sliders/offer-1.jpg"
-import offer2Image from "@/public/categories/sliders/offer-2.webp"
+import offer1 from "@/public/categories/sliders/offer-1.jpg"
+import offer2 from "@/public/categories/sliders/offer-2.webp"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -30,7 +30,7 @@ export const CategoriesProducts = ()=> {
                 <Image 
                     width={width} 
                     height={200} 
-                    src={offerImage}  
+                    src={offer1}  
                     alt="offer"
                     />
            </div>
@@ -46,7 +46,7 @@ export const CategoriesProducts = ()=> {
               <Image 
                     width={width} 
                     height={200} 
-                    src={offer2Image}  
+                    src={offer2}  
                     alt="offer"
                     />
            </div>
