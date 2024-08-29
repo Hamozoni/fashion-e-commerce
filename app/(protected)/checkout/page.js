@@ -15,12 +15,11 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 const checkoutPage = ()=>  {
 
   const {currentUser} = useContext(AppContext);
-
-  const pathname = usePathname();
+  
   const router = useRouter()
 
   if(!currentUser) {
-    return router.push(`/auth/login?callback=${pathname}`);
+    return router.push(`/auth/login?callback=/checkout`);
   }
 
   return (

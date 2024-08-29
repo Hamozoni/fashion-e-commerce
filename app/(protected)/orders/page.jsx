@@ -1,8 +1,16 @@
 
+import { auth } from "@/auth";
 import { OrdersContainer } from "./ordersContainer";
 import { StatusNavbar } from "./statusNavbar";
+import { redirect } from "next/navigation";
 
 async function orderPage() {
+
+  const session = await auth();
+
+  if(!session?.user) {
+    return redirect(`/auth/login?callback=/orders`)
+  }
 
   return (
     <div className="p-3 md:px-8">
