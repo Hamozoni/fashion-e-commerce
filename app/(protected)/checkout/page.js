@@ -1,4 +1,5 @@
 "use client"
+import { AppContext } from "@/app/contextProvider";
 import {Payment} from "./_components/payment";
 
 const className = {
@@ -7,10 +8,20 @@ const className = {
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-console.log(process.env.NEXT_PUBLIC_STRIPE_KEY)
+import { useContext } from "react";
+import {usePathname, useRouter } from "next/navigation";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 const checkoutPage = ()=>  {
+
+  const {currentUser} = useContext(AppContext);
+
+  const pathname = usePathname();
+  const router = useRouter()
+
+  if(!currentUser) {
+    return router.push(`/auth/login?callback=${pathname}`);
+  }
 
   return (
     <div className="p-3 lg:px-8">
