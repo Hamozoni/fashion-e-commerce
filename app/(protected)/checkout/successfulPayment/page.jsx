@@ -3,7 +3,7 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import {useAppSelector} from "@/store/store";
 import {PostData} from "@/lip/fetchData";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {AppContext} from "../../../contextProvider"
 import { OrderSummary } from "../../orders/orderSummary";
 import {Error} from "@/ui/components/error";
@@ -25,7 +25,13 @@ import {useAppDispatch} from "@/store/store";
     const deliveryFree = useAppSelector(state=> state.cart.deliveryFree);
     const products = useAppSelector(state=> state.cart.products);
     const {currentUser} = useContext(AppContext);
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+
+    const router = useRouter()
+  
+    if(!currentUser) {
+      return router.push(`/auth/login`);
+    }
 
 
     const searchParams = useSearchParams();

@@ -9,13 +9,13 @@ const className = {
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useContext } from "react";
-import {usePathname, useRouter } from "next/navigation";
+import {useRouter } from "next/navigation";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 const checkoutPage = ()=>  {
 
   const {currentUser} = useContext(AppContext);
-  
+
   const router = useRouter()
 
   if(!currentUser) {
