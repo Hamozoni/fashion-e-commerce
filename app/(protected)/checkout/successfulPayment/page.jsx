@@ -53,14 +53,12 @@ import {useAppDispatch} from "@/store/store";
 
         PostData('payments/confirmPayment',formData)
         .then((data)=> {
-            console.log(data)
             setOrder(data)
             dispatch(clearAllItemsFromCart());
         })
         .catch((error)=> {
 
             const {response} = error
-            console.log(response?.data?.error);
             setError(response?.data?.error);
         })
         .finally(()=> {
