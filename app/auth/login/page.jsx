@@ -55,7 +55,7 @@ function LoginPage() {
                 }
             })
             .catch((error)=> {
-                console.log(error)
+                setServerErrror('oops! something went wrong')
             })
 
         })
