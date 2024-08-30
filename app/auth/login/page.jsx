@@ -54,7 +54,7 @@ function LoginPage() {
                     setServerSuccess(data?.success);
                 }
             })
-            .catch((error)=> {
+            .catch(()=> {
                 setServerErrror('oops! something went wrong')
             })
 
@@ -63,7 +63,7 @@ function LoginPage() {
     };
 
   return (
-    <div>
+    <div className="p-4">
         <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-[450px] p-4 rounded-md shadow-md">
             <AuthHeader text='login'/>
             <form ref={loginForm} action={login}>
@@ -92,7 +92,11 @@ function LoginPage() {
                     />
             </form>
             
-            <AuthSocial text="don't have an account?" link='/auth/register' page='logIn' />
+            <AuthSocial 
+                text="don't have an account?" 
+                link='/auth/register'
+                page='logIn' 
+                />
         </div>
         {
             isLoading ? 
