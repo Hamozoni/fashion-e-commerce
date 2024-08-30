@@ -66,53 +66,56 @@ function LoginPage() {
     };
 
   return (
-    <div className="p-4 w-full flex items-stretch justify-center">
-        <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-full sm:max-w-[450px] p-4">
-            <AuthHeader text='login'/>
-            <form ref={loginForm} action={login}>
-                {
-                    loginInputs?.map(input=> (
-                        <AuthInput 
-                            key={input.name} 
-                            type={input.type} 
-                            name={input.name} 
-                            Icon={input.Icon}
-                            isLoading={isLoading}
-                            />
-                    ))
-                }
-                <ErrorSucces 
-                    error={serverErrror} 
-                    success={serverSucces} 
-                    />
+    <div className="flex items-center justify-center w-full p-4">
+        <div className="border w-full sm:w-fit border-teal-100 dark:border-stone-800  rounded-md shadow-md overflow-hidden  flex items-stretch justify-center">
+            <div className="bg-white dark:bg-stone-950 w-full sm:w-[450px] sm:max-w-[450px] flex-1 p-4">
+                <AuthHeader text='login'/>
+                <form ref={loginForm} action={login}>
+                    {
+                        loginInputs?.map(input=> (
+                            <AuthInput 
+                                key={input.name} 
+                                type={input.type} 
+                                name={input.name} 
+                                Icon={input.Icon}
+                                isLoading={isLoading}
+                                />
+                        ))
+                    }
+                    <ErrorSucces 
+                        error={serverErrror} 
+                        success={serverSucces} 
+                        />
 
-                <ButtonWithIcon 
-                    text='logIn' 
-                    Icon={BiLogInCircle} 
-                    type='primary' 
-                    onClick={()=>''} 
-                    disabled={isLoading}
+                    <ButtonWithIcon 
+                        text='logIn' 
+                        Icon={BiLogInCircle} 
+                        type='primary' 
+                        onClick={()=>''} 
+                        disabled={isLoading}
+                        />
+                </form>
+                
+                <AuthSocial 
+                    text="don't have an account?" 
+                    link='/auth/register'
+                    page='logIn' 
                     />
-            </form>
-            
-            <AuthSocial 
-                text="don't have an account?" 
-                link='/auth/register'
-                page='logIn' 
-                />
-        </div>
-        {
-            innerWidth > 910 ?
-            <div className="">
-                <Image src={loginImage} height={450} width={450} alt="login"/>
             </div>
-            : null
-        }
-        {
-            isLoading ? 
-            <Loading />
-            :null
-        }
+            {
+                innerWidth > 910 ?
+                <div className=" flex-1">
+                    <Image src={loginImage} height={450} width={450} alt="login"/>
+                </div>
+                : null
+            }
+            {
+                isLoading ? 
+                <Loading />
+                :null
+            }
+        </div>
+
     </div>
   )
 }
