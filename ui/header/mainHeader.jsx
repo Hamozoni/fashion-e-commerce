@@ -39,7 +39,7 @@ export const MainHeader = ()=> {
                     href='/' 
                     className=' capitalize text-2xl lg:text-3xl font-extrabold text-teal-500 dark:text-teal-200'
                     >
-                    system
+                    fashion
                 </Link>
             </div>
             <section className={`${className.flex} flex-1 justify-end`}>
