@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import {useSearchParams } from "next/navigation";
 import AuthHeader from "../_components/authHeader";
 import { IoLockClosed } from "react-icons/io5";
 import { useRef, useState, useTransition } from "react";
@@ -18,7 +18,6 @@ export default function NewPasswordPage() {
     const [success,setSuccess] = useState(null);
     const [isLoading,startTranation] = useTransition();
     const newPasswordForm = useRef();
-    const router = useRouter()
 
     const newPassword = ()=> {
         setError(null);

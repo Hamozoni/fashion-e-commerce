@@ -12,7 +12,7 @@ async function verificationPage(context) {
   const data = await verificationAction(token)
 
   return (
-    <div className="">
+    <div className="p-4">
         <div 
             className=" bg-white dark:bg-stone-950 w-[450px] p-4 rounded-md shadow-md"
             >

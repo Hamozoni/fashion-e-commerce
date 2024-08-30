@@ -45,7 +45,6 @@ function RegisterPage() {
                     .then((data)=> {
                         if(data.success) {
                             setServerSucces(data.success)
-                            console.log(data.success)
                         }else if(data.error) {
                             setServerErrror(data.error);
 
@@ -54,14 +53,13 @@ function RegisterPage() {
             
             }else if(test.error) {
                 setValidationError(JSON.parse(test.error));
-                console.log(JSON.parse(test.error));
             }
        })
     };
 
 
   return (
-    <div>
+    <div className="p-4">
         <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-[450px] p-4 rounded-md shadow-md">
             <AuthHeader text='create an account'/>
             <form ref={registerForm}  action={register}>
