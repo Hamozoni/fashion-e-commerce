@@ -8,11 +8,13 @@ import { useContext, useRef, useState, useTransition } from "react";
 import {registerAction} from "@/actions/auth/register";
 import {ErrorSucces} from "../_components/errorSucces";
 import { ButtonWithIcon } from "@/ui/buttons/buttons";
+import loginImage from "@/public/login-image.jpg";
 
 import { LuClipboardSignature } from "react-icons/lu";
 import { AppContext } from "../../contextProvider";
 import { useRouter } from "next/navigation";
 import { Loading } from "@/ui/models/loading";
+import Image from "next/image";
 
 function RegisterPage() {
 
@@ -22,7 +24,7 @@ function RegisterPage() {
     const [validationError,setValidationError] = useState(null);
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSucces] = useState(null);
-    const {currentUser} = useContext(AppContext);
+    const {currentUser,innerWidth} = useContext(AppContext);
     const router = useRouter()
 
     if(currentUser) {
@@ -59,47 +61,58 @@ function RegisterPage() {
 
 
   return (
-    <div className="p-4">
-        <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-[450px] max-w-full p-4 rounded-md shadow-md">
-            <AuthHeader text='create an account'/>
-            <form ref={registerForm}  action={register}>
+    <div className="flex items-center justify-center w-full p-4">
+        <div className="border w-full sm:w-fit border-teal-100 dark:border-stone-800  rounded-md shadow-md overflow-hidden  flex items-stretch justify-center">
 
+            <div className="bg-white dark:bg-stone-950 w-full sm:w-[450px] sm:max-w-[450px] flex-1 p-4">
+                <AuthHeader text='create an account'/>
+                <form ref={registerForm}  action={register}>
+
+                    {
+                        serverSucces ? null :
+                        registerInputs.map((input)=> (
+                            <AuthInput 
+                                key={input.name}
+                                type={input.type} 
+                                name={input.name} 
+                                Icon={input.Icon} 
+                                isLoading={isLoading}
+                                error={validationError ? validationError?.find(e=> e.path?.includes(input.name)) : null}
+                                />
+                        ))
+                    }
+                    <ErrorSucces error={serverErrror} success={serverSucces}/>
+
+                    {
+                        serverSucces ? null :
+                            <ButtonWithIcon 
+                                text='create an account' 
+                                Icon={LuClipboardSignature} 
+                                type='primary' 
+                                onClick={()=>''} 
+                                disabled={isLoading}
+                                />
+                    }
+                </form>
                 {
                     serverSucces ? null :
-                    registerInputs.map((input)=> (
-                        <AuthInput 
-                            key={input.name}
-                            type={input.type} 
-                            name={input.name} 
-                            Icon={input.Icon} 
-                            isLoading={isLoading}
-                            error={validationError ? validationError?.find(e=> e.path?.includes(input.name)) : null}
-                            />
-                    ))
+                    <AuthSocial text="already have an account?" link='/auth/login' page='signUp' />
                 }
-                <ErrorSucces error={serverErrror} success={serverSucces}/>
-
-                {
-                    serverSucces ? null :
-                        <ButtonWithIcon 
-                            text='create an account' 
-                            Icon={LuClipboardSignature} 
-                            type='primary' 
-                            onClick={()=>''} 
-                            disabled={isLoading}
-                            />
-                }
-            </form>
+            </div>
             {
-                serverSucces ? null :
-                <AuthSocial text="already have an account?" link='/auth/login' page='signUp' />
+                innerWidth > 970 ?
+                <div className=" flex-1">
+                    <Image src={loginImage} height={520} width={520} alt="login"/>
+                </div>
+                : null
+            }
+            {
+                isLoading ? 
+                <Loading />
+                :null
             }
         </div>
-        {
-            isLoading ? 
-            <Loading />
-            :null
-        }
+
     </div>
   )
 }
