@@ -64,7 +64,7 @@ function LoginPage() {
 
   return (
     <div className="p-4">
-        <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-[450px] p-4 rounded-md shadow-md">
+        <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-[450px] max-w-full p-4 rounded-md shadow-md">
             <AuthHeader text='login'/>
             <form ref={loginForm} action={login}>
                 {

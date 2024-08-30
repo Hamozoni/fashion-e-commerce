@@ -12,9 +12,9 @@ async function verificationPage(context) {
   const data = await verificationAction(token)
 
   return (
-    <div className="p-4">
+    <div className="p-4 ">
         <div 
-            className=" bg-white dark:bg-stone-950 w-[450px] p-4 rounded-md shadow-md"
+            className=" bg-white dark:bg-stone-950 w-[450px] max-w-full p-4 rounded-md shadow-md"
             >
              <AuthHeader text='confirming your verification...'/>
 
