@@ -15,6 +15,9 @@ import { BiLogInCircle } from "react-icons/bi";
 import { useSession } from "next-auth/react";
 import { Loading } from "@/ui/models/loading";
 
+import loginImage from "@/public/login-image.jpg"
+import Image from "next/image";
+
 
 function LoginPage() {
 
@@ -24,7 +27,7 @@ function LoginPage() {
     const [isLoading,startTranation] = useTransition();
     const [serverErrror,setServerErrror] = useState(null);
     const [serverSucces,setServerSuccess] = useState(null);
-    const {currentUser} = useContext(AppContext);
+    const {currentUser,innerWidth} = useContext(AppContext);
 
     const router = useRouter();
 
@@ -63,8 +66,8 @@ function LoginPage() {
     };
 
   return (
-    <div className="p-4 w-full">
-        <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-full sm:max-w-[450px] p-4 rounded-md shadow-md">
+    <div className="p-4 w-full flex items-stretch justify-center">
+        <div className="bg-white dark:bg-stone-950 border border-teal-100 dark:border-stone-800 w-full sm:max-w-[450px] p-4">
             <AuthHeader text='login'/>
             <form ref={loginForm} action={login}>
                 {
@@ -98,6 +101,13 @@ function LoginPage() {
                 page='logIn' 
                 />
         </div>
+        {
+            innerWidth > 910 ?
+            <div className="">
+                <Image src={loginImage} height={450} width={450} alt="login"/>
+            </div>
+            : null
+        }
         {
             isLoading ? 
             <Loading />
