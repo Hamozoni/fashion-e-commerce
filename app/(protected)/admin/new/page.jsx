@@ -56,7 +56,7 @@ const NewProducts = () => {
             setIsPending(true);
             PostData('/products/new',formatedFormData)
             .then(()=> {
-                router.push('/admin/products')
+                router.push('/admin/products?category=all&subcategory=all')
             })
             .catch((error)=> {
                 console.log(error)
