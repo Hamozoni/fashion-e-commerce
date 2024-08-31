@@ -10,11 +10,13 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useContext } from "react";
 import {useRouter } from "next/navigation";
+import { useAppSelector } from "@/store/store";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 const checkoutPage = ()=>  {
 
   const {currentUser} = useContext(AppContext);
+  const totalPaidInCent = useAppSelector(state=> state.cart.totalPaid)
 
   const router = useRouter()
 
@@ -34,7 +36,7 @@ const checkoutPage = ()=>  {
                   options={
                       {
                           mode: 'payment',
-                          amount: 4555,
+                          amount: totalPaidInCent,
                           currency: 'sar'
                       }
                   }
