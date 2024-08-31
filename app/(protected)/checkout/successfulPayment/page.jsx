@@ -71,6 +71,10 @@ import {useAppDispatch} from "@/store/store";
         handlePlacingOrder()
     },[handlePlacingOrder]);
 
+    const handleError = ()=> {
+        handlePlacingOrder()
+    }
+
 
     if(isLoading) {
         return (
@@ -79,9 +83,9 @@ import {useAppDispatch} from "@/store/store";
             </div>
         )
     }
+    if(!!error) return <Error onClick={handleError} />
 
     return (
-        error ? <Error onClick={handlePlacingOrder} /> :
         <div className="p-3 md:px-8 max-w-[700px] mx-auto" >
             <header className="mb-6">
                 <div className="mx-auto w-[200px] h-[200px] rounded-full bg-teal-100 text-teal-700 flex items-center justify-center mb-4">
