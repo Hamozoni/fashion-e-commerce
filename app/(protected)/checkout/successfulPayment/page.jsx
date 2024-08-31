@@ -28,13 +28,13 @@ import {useAppDispatch} from "@/store/store";
     const dispatch = useAppDispatch();
 
     const router = useRouter()
+    const searchParams = useSearchParams();
   
     if(!currentUser) {
       return router.push(`/auth/login`);
     }
 
 
-    const searchParams = useSearchParams();
 
     const {payment_intent,payment_intent_client_secret} = Object.fromEntries(searchParams.entries());
 
@@ -79,9 +79,9 @@ import {useAppDispatch} from "@/store/store";
             </div>
         )
     }
-    if(!!error) return <Error onClick={handlePlacingOrder} />
 
     return (
+        error ? <Error onClick={handlePlacingOrder} /> :
         <div className="p-3 md:px-8 max-w-[700px] mx-auto" >
             <header className="mb-6">
                 <div className="mx-auto w-[200px] h-[200px] rounded-full bg-teal-100 text-teal-700 flex items-center justify-center mb-4">

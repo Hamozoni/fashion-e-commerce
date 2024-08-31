@@ -13,7 +13,7 @@ import {useRouter } from "next/navigation";
 import { useAppSelector } from "@/store/store";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
-const checkoutPage = ()=>  {
+const CheckoutPage = ()=>  {
 
   const {currentUser} = useContext(AppContext);
   const totalPaidInCent = useAppSelector(state=> state.cart.totalPaid)
@@ -50,4 +50,4 @@ const checkoutPage = ()=>  {
   )
 }
 
-export default checkoutPage;
+export default CheckoutPage;
