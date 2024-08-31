@@ -16,6 +16,11 @@ import {useAppDispatch} from "@/store/store";
  
  const SuccessfulPayment = () => {
 
+     const {currentUser} = useContext(AppContext);
+    if(!currentUser) {
+         router.push(`/auth/login`);
+      }
+
     const [error,setError] = useState(null);
     const [isLoading,setIsLoading] = useState();
     const [order,setOrder] = useState({})
@@ -24,16 +29,10 @@ import {useAppDispatch} from "@/store/store";
     const totalProductsQuantity = useAppSelector(state=> state.cart.totalQuantity)
     const deliveryFree = useAppSelector(state=> state.cart.deliveryFree);
     const products = useAppSelector(state=> state.cart.products);
-    const {currentUser} = useContext(AppContext);
     const dispatch = useAppDispatch();
 
     const router = useRouter()
     const searchParams = useSearchParams();
-  
-    if(!currentUser) {
-      return router.push(`/auth/login`);
-    }
-
 
 
     const {payment_intent,payment_intent_client_secret} = Object.fromEntries(searchParams.entries());
