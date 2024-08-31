@@ -71,9 +71,6 @@ import {useAppDispatch} from "@/store/store";
         handlePlacingOrder()
     },[handlePlacingOrder]);
 
-    const handleError = ()=> {
-        handlePlacingOrder()
-    }
 
 
     if(isLoading) {
@@ -83,7 +80,7 @@ import {useAppDispatch} from "@/store/store";
             </div>
         )
     }
-    if(!!error) return <Error onClick={handleError} />
+    if(!!error) return <Error onClick={()=> router.refresh()} />
 
     return (
         <div className="p-3 md:px-8 max-w-[700px] mx-auto" >
