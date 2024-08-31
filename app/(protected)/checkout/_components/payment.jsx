@@ -33,8 +33,6 @@ export function Payment() {
         setIsLoading(true);
         PostData('payments/paymentIntent',formData)
         .then((data)=> {
-            console.log(data);
-
             setClientSecret(data?.clientSecret);
         })
         .catch((error)=> {

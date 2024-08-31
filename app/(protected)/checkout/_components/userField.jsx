@@ -17,7 +17,7 @@ export function UserField({name}) {
                     {currentUser?.address ? currentUser?.address?.formatedAddress : <UserAddress />}
                 </address>
                 :
-                <h5>{currentUser[name]}</h5>
+                <h5 className={name === 'email' ? 'lowercase' : ''}>{currentUser[name]}</h5>
             }
         </div>
     </div>
