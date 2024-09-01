@@ -53,9 +53,9 @@ export const MainHeader = ()=> {
                     innerWidth > 991 ? 
                     <UserAddress/> : null
                 }
-                <HeaderUserBar />
                 <LikedList />
                 <HeaderCart/>
+                <HeaderUserBar />
             </section>
         </div>
     </header>
